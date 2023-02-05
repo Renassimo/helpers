@@ -1,13 +1,45 @@
 version: v1.0
-name: Initial Pipeline
+name: Helpers Pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
+
+execution_time_limit:
+  minutes: 10
+
+auto_cancel:
+  running:
+    when: 'true'
+
+global_job_config:
+  env_vars:
+    - name: BASE_URL
+      value: 'http://localhost:3000'
+
+  prologue:
+    commands:
+      - checkout
+
+      # restore cache for nvm, yarn and node_modules
+      - cache restore
+      - nvm use
 blocks:
-  - name: 'Block #1'
+  - name: Setup
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Deps and cache
           commands:
-            - checkout
+            - yarn install --frozen-lockfile
+            - cache store
+
+  - name: Tests
+    task:
+      jobs:
+        - name: Lint JS
+          commands:
+            - yarn lint
+
+        - name: Unit test
+          commands:
+            - yarn test
