@@ -6,7 +6,9 @@
     "prettier"
   ],
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "error"
+    "@typescript-eslint/no-unused-vars": 2,
+    "@typescript-eslint/no-explicit-any": 2,
+    "@typescript-eslint/no-empty-function": 1,
+    "@typescript-eslint/ban-ts-comment": 1
   }
 }
