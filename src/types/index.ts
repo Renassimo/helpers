@@ -1,3 +1,5 @@
+import { NextApiRequest } from 'next';
+
 export interface User {
   email: string;
   name: string;
@@ -8,3 +10,7 @@ export interface User {
 export type Data = {
   name: string;
 };
+
+export interface NextApiRequestWithAuth extends NextApiRequest {
+  uid?: string;
+}

@@ -1,9 +1,14 @@
 import { NotionResult } from '@/types/notion';
+import { FiveBookData } from '@/types/fiveBook';
 
-export const deserializeDay = (result: NotionResult, dayCode: string) => ({
+export const deserializeDay = (result: NotionResult) => ({
   id: result?.id,
   attributes: {
-    dayCode: +dayCode,
+    dayCode: {
+      id: result?.properties?.['Day code']?.id,
+      // @ts-ignore
+      value: result.properties?.['Day code']?.number,
+    },
     question: {
       id: result?.properties?.Question?.id,
       // @ts-ignore
@@ -27,4 +32,25 @@ export const deserializeDay = (result: NotionResult, dayCode: string) => ({
       {}
     ),
   },
+});
+
+export const serializeDay = (data: FiveBookData) => ({
+  ...Object.entries(data?.attributes?.answers).reduce((result, answer) => {
+    const [year, body] = answer;
+    const { value } = body;
+    if (value) {
+      return {
+        ...result,
+        [`Answer ${year}`]: {
+          type: 'rich_text',
+          rich_text: [
+            {
+              text: { content: value },
+            },
+          ],
+        },
+      };
+    }
+    return result;
+  }, {}),
 });

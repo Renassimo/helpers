@@ -14,7 +14,7 @@ class NotionService {
       body: JSON.stringify(args),
     });
 
-  updatePage = (pageId: string, args: Record<string, never>) =>
+  updatePage = (pageId: string, args: object) =>
     fetch(`${this.baseURL}/pages/${pageId}`, {
       method: 'PATCH',
       headers: this.headers,

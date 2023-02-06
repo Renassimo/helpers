@@ -1,7 +1,7 @@
 export interface FiveBookData {
   id: string;
   attributes: {
-    dayCode: number;
+    dayCode: DayCode;
     answers: FiveBookAnswer;
     question: FiveBookQuestionOrAnswer;
   };
@@ -14,4 +14,9 @@ export interface FiveBookAnswer {
 export interface FiveBookQuestionOrAnswer {
   id: string;
   value: string | null;
+}
+
+export interface DayCode {
+  id: string;
+  value: number;
 }

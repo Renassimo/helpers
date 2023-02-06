@@ -1,11 +1,11 @@
 import { auth } from '@/lib/firebaseAdmin';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Data } from '@/types';
+import { NextApiRequestWithAuth } from '@/types';
 
 export function withAuth(
-  handler: (req: NextApiRequest, res: NextApiResponse<Data>) => void
+  handler: (req: NextApiRequest, res: NextApiResponse) => void
 ) {
-  return async (req: NextApiRequest, res: NextApiResponse) => {
+  return async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
     const { token } = req.cookies;
 
     if (!token)
@@ -19,8 +19,7 @@ export function withAuth(
         return res
           .status(401)
           .json({ code: '401', detail: 'Not authenticated' });
-      // todo remove line bellow after api check
-      // req.uid = decodedToken.uid
+      req.uid = decodedToken.uid;
     } catch (error: any) {
       console.error(error);
       const errorCode = error?.errorInfo?.code;

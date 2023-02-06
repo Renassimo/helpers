@@ -1,16 +1,10 @@
+import { useCallback } from 'react';
 import Head from 'next/head';
-import { GetServerSidePropsContext } from 'next';
 
 import { FiveBookData } from '@/types/fiveBook';
 import { NotionError } from '@/types/notion';
 
-import getServerSideUserData from '@/utils/serverSideUserData';
-import { redirectToSignIn, showNotFound } from '@/utils/serverSideRender';
-
-import NotionService from '@/services/notion';
-
-import { getDay } from '@/handlers/fiveBook/get';
-import { getDayCode } from '@/utils/dayjs';
+export { getServerSideProps } from '@/handlers/fiveBook/getServerSideProps';
 
 const FiveBook = ({
   data,
@@ -19,6 +13,18 @@ const FiveBook = ({
   data: FiveBookData;
   error: NotionError;
 }) => {
+  const update = useCallback(async () => {
+    const response = await fetch(
+      `/api/5book/${data?.attributes?.dayCode?.value}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+      }
+    );
+    const responseData = await response.json();
+    console.log(responseData);
+  }, [data]);
+
   console.log({ data, error });
 
   return (
@@ -26,31 +32,28 @@ const FiveBook = ({
       <Head>
         <title>5book - helpers</title>
       </Head>
-      <main>{data?.attributes?.question?.value}</main>
+      <main>
+        {data && (
+          <>
+            <h1>{data?.attributes?.question?.value}</h1>
+            <ul>
+              {Object.entries(data?.attributes?.answers).map(
+                ([year, answer]) => (
+                  <li key={answer.id}>
+                    {year} - {answer.value}
+                  </li>
+                )
+              )}
+            </ul>
+            <button type="button" onClick={update}>
+              Emulate update
+            </button>
+          </>
+        )}
+        {error && <h3>Error: {error.message}</h3>}
+      </main>
     </>
   );
-};
-
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { user, notionData } = await getServerSideUserData(ctx);
-  if (!user) return redirectToSignIn;
-
-  const { fiveBook = null } = notionData ?? {};
-  const { dataBaseID = null, token = null } = fiveBook ?? {};
-  if (!dataBaseID && !token) return showNotFound;
-
-  const notionService = new NotionService(token);
-  const { dayCode = getDayCode() } = ctx.query;
-  const { data, error } = await getDay(notionService, dataBaseID, `${dayCode}`);
-  if (error?.status === 404) return showNotFound;
-
-  return {
-    props: {
-      user,
-      data,
-      error,
-    },
-  };
 };
 
 export default FiveBook;
