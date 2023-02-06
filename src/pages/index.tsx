@@ -4,6 +4,7 @@ import { GetServerSidePropsContext } from 'next';
 import getServerSideUserData from '@/utils/serverSideUserData';
 
 import useAuth from '@/hooks/useAuth';
+
 import { User } from '@/types';
 
 const Home = ({ user: serverSideUser }: { user: User }) => {

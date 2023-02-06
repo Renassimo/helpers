@@ -13,7 +13,7 @@ const getServerSideUserData = async (ctx: GetServerSidePropsContext) => {
   const { email = '', name = '', picture = '', uid = '' } = decodedToken ?? {};
   const user = decodedToken ? { email, name, picture, uid } : null;
   // retrieve user data from firestore
-  const notionData = decodedToken ? await getUserData(uid) : null;
+  const { notionData = null } = decodedToken ? await getUserData(uid) : {};
   return { user, notionData };
 };
 

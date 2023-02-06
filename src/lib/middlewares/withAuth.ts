@@ -21,10 +21,9 @@ export function withAuth(
           .json({ code: '401', detail: 'Not authenticated' });
       // todo remove line bellow after api check
       // req.uid = decodedToken.uid
-      // @ts-ignore
-    } catch (error: never) {
+    } catch (error: any) {
       console.error(error);
-      const errorCode = error.errorInfo.code;
+      const errorCode = error?.errorInfo?.code;
 
       error.status = 401;
       if (errorCode === 'auth/internal-error') error.status = 500;

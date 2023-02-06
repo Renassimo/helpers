@@ -18,7 +18,9 @@ const auth = firebaseAdmin.auth();
 
 async function getUserData(uid: string) {
   const doc = await firestore.collection('users').doc(uid).get();
-  return { id: doc.id, ...doc.data() };
+  // @ts-ignore
+  const { notionData = null } = doc.data();
+  return { id: doc.id, notionData };
 }
 
 export { firebaseAdmin, firestore, auth, getUserData };
