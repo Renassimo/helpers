@@ -7,12 +7,18 @@ class NotionService {
     this.baseURL = process.env.NOTION_API_BASE_URL ?? '';
   }
 
-  queryDatabase = (dataBaseID: string, args: object) =>
-    fetch(`${this.baseURL}/databases/${dataBaseID}/query`, {
-      method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify(args),
-    });
+  queryDatabase = async (dataBaseID: string, args: object) => {
+    const response = await fetch(
+      `${this.baseURL}/databases/${dataBaseID}/query`,
+      {
+        method: 'POST',
+        headers: this.headers,
+        body: JSON.stringify(args),
+      }
+    );
+    const data = await response.json();
+    return { response, data };
+  };
 
   updatePage = (pageId: string, args: object) =>
     fetch(`${this.baseURL}/pages/${pageId}`, {
