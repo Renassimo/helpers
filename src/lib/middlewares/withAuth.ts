@@ -1,6 +1,7 @@
 import { auth } from '@/lib/firebaseAdmin';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/types';
+import { getError } from '@/utils/errors';
 
 export function withAuth(
   handler: (req: NextApiRequest, res: NextApiResponse) => void
@@ -8,17 +9,12 @@ export function withAuth(
   return async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
     const { token } = req.cookies;
 
-    if (!token)
-      return res
-        .status(401)
-        .json({ code: '401', detail: 'Not authenticated. No token' });
+    if (!token) return res.status(401).json(getError(401, 'No token'));
 
     try {
       const decodedToken = await auth.verifyIdToken(token);
       if (!decodedToken || !decodedToken.uid)
-        return res
-          .status(401)
-          .json({ code: '401', detail: 'Not authenticated' });
+        return res.status(401).json(getError(401));
       req.uid = decodedToken.uid;
     } catch (error: any) {
       console.error(error);
@@ -27,9 +23,7 @@ export function withAuth(
       error.status = 401;
       if (errorCode === 'auth/internal-error') error.status = 500;
 
-      return res
-        .status(error.status)
-        .json({ code: `${error.status}`, detail: errorCode });
+      return res.status(error.status).json(getError(error.status, errorCode));
     }
 
     return handler(req, res);
