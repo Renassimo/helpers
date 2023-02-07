@@ -8,10 +8,20 @@ jest.mock('@/services/notion');
 describe('getDay', () => {
   let mockedResponse: object;
   let mockedData: object;
+
   const mockedDataBaseID = 'mocked_data_base_id';
   const mockedDayCode = '10101';
   const mockedToken = 'mocked_token';
   const mockedDeserializedData = { data: 'some deserialized data' };
+  const mockedDataToDeserialize = { data: 'some data to deserialize' };
+  const expectedQueryDatabaseArgs = [
+    mockedDataBaseID,
+    {
+      filter: {
+        and: [{ property: 'Day code', number: { equals: +mockedDayCode } }],
+      },
+    },
+  ];
   const mockedQueryDatabase = jest.fn(async () => ({
     response: mockedResponse,
     data: mockedData,
@@ -21,6 +31,10 @@ describe('getDay', () => {
     (deserializeDay as unknown as jest.Mock).mockImplementation(
       jest.fn(() => mockedDeserializedData)
     );
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   describe('when response is ok', () => {
@@ -34,7 +48,7 @@ describe('getDay', () => {
     describe('and has result', () => {
       test('responses with data', async () => {
         // Arrange
-        mockedData = { results: [{ data: 'some data to deserialize' }] };
+        mockedData = { results: [mockedDataToDeserialize] };
         const mockedNotionService = new NotionService(mockedToken);
         const expectedResult = { data: mockedDeserializedData };
         // Act
@@ -45,6 +59,11 @@ describe('getDay', () => {
         );
         // Assert
         expect(result).toEqual(expectedResult);
+        expect(deserializeDay).toHaveBeenCalledWith(mockedDataToDeserialize);
+        expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+          expectedQueryDatabaseArgs[0],
+          expectedQueryDatabaseArgs[1]
+        );
       });
     });
 
@@ -62,6 +81,11 @@ describe('getDay', () => {
         );
         // Assert
         expect(result).toEqual(expectedResult);
+        expect(deserializeDay).not.toHaveBeenCalled();
+        expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+          expectedQueryDatabaseArgs[0],
+          expectedQueryDatabaseArgs[1]
+        );
       });
     });
   });
@@ -92,6 +116,11 @@ describe('getDay', () => {
       );
       // Assert
       expect(result).toEqual(expectedResult);
+      expect(deserializeDay).not.toHaveBeenCalled();
+      expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+        expectedQueryDatabaseArgs[0],
+        expectedQueryDatabaseArgs[1]
+      );
     });
   });
 });
