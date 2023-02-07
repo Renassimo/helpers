@@ -1,8 +1,8 @@
 import { NextApiResponse } from 'next';
 
 import { withAuth } from '@/lib/middlewares/withAuth';
-import { getUserData } from '@/lib/firebaseAdmin';
 
+import getUserNotionData from '@/utils/userNotionData';
 import { getError } from '@/utils/errors';
 
 import { NextApiRequestWithAuth } from '@/types';
@@ -14,7 +14,7 @@ import updateDay from '@/handlers/fiveBook/update';
 const handler = async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
   if (req.method === 'PATCH') {
     try {
-      const { notionData = null } = await getUserData(`${req.uid}`);
+      const { notionData = null } = await getUserNotionData(`${req.uid}`);
       const { fiveBook = null } = notionData ?? {};
       const { token = null } = fiveBook ?? {};
 

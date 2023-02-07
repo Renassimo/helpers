@@ -14,4 +14,4 @@ if (typeof window !== 'undefined' && !firebase.apps.length) {
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 }
 
-export { firebase };
+export default firebase;

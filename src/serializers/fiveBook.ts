@@ -1,38 +1,41 @@
 import { NotionResult } from '@/types/notion';
 import { FiveBookData } from '@/types/fiveBook';
 
-export const deserializeDay = (result: NotionResult) => ({
-  id: result?.id,
-  attributes: {
-    dayCode: {
-      id: result?.properties?.['Day code']?.id,
-      // @ts-ignore
-      value: result.properties?.['Day code']?.number,
-    },
-    question: {
-      id: result?.properties?.Question?.id,
-      // @ts-ignore
-      value: result?.properties?.Question?.rich_text[0]?.plain_text ?? null,
-    },
-    answers: Object.entries(result?.properties).reduce(
-      (result, [key, value]) => {
-        const [name, year] = key.split(' ');
-        if (name === 'Answer') {
-          return {
-            ...result,
-            [year]: {
-              id: value?.id,
-              // @ts-ignore
-              value: value?.rich_text[0]?.plain_text ?? null,
-            },
-          };
-        }
-        return result;
+export const deserializeDay = (result: NotionResult) => {
+  const { id, properties } = result;
+  const dayCode = properties?.['Day code'];
+  const question = properties?.['Question'];
+
+  return {
+    id: id,
+    attributes: {
+      dayCode: {
+        id: dayCode?.id,
+        value: dayCode?.number,
       },
-      {}
-    ),
-  },
-});
+      question: {
+        id: question?.id,
+        value: question?.rich_text?.[0]?.plain_text ?? null,
+      },
+      answers: Object.entries(result?.properties).reduce(
+        (result, [key, answer]) => {
+          const [name, year] = key.split(' ');
+          if (name === 'Answer') {
+            return {
+              ...result,
+              [year]: {
+                id: answer?.id,
+                value: answer?.rich_text?.[0]?.plain_text ?? null,
+              },
+            };
+          }
+          return result;
+        },
+        {}
+      ),
+    },
+  };
+};
 
 export const serializeDay = (data: FiveBookData) => ({
   ...Object.entries(data?.attributes?.answers).reduce((result, answer) => {

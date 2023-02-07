@@ -47,13 +47,21 @@ export interface NotionUpdatedBy {
 }
 
 export interface NotionProperties {
-  [key: string]: NotionRichText | NotionCreatedTime | NotionNumber | NotionName;
+  [key: string]: NotionUniversalProperty;
 }
 
-export interface NotionRichText {
+export interface NotionProperty {
   id: string;
-  type: 'rich_text';
-  rich_text: NotionText[];
+  type: string;
+}
+
+export interface NotionUniversalProperty extends NotionProperty {
+  id: string;
+  type: string;
+  title?: NotionText;
+  number?: number;
+  created_time?: string;
+  rich_text?: NotionText[];
 }
 
 export interface NotionText {
@@ -62,22 +70,4 @@ export interface NotionText {
   plain_text: string;
   text: object;
   type: 'text';
-}
-
-export interface NotionCreatedTime {
-  created_time: string;
-  id: string;
-  type: 'created_time';
-}
-
-export interface NotionNumber {
-  id: string;
-  number: number;
-  type: 'number';
-}
-
-export interface NotionName {
-  id: 'title';
-  title: NotionText;
-  type: 'title';
 }

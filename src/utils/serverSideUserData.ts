@@ -2,27 +2,31 @@ import nookies from 'nookies';
 
 import { GetServerSidePropsContext } from 'next';
 
-import { auth, getUserData } from '@/lib/firebaseAdmin';
+import auth from '@/lib/firebase/auth';
+
+import getUserNotionData from '@/utils/userNotionData';
 
 const getServerSideUserData = async (ctx: GetServerSidePropsContext) => {
   const cookies = nookies.get(ctx);
   const { token } = cookies;
-  let decodedToken;
 
-  if (token) {
-    try {
-      decodedToken = await auth.verifyIdToken(cookies.token);
-    } catch (error) {
-      decodedToken = null;
-    }
+  if (!token) return { user: null, notionData: null };
+
+  try {
+    const {
+      email = '',
+      name = '',
+      picture = '',
+      uid = '',
+    } = (await auth.verifyIdToken(cookies.token)) ?? {
+      name: '',
+    };
+    const { notionData = null } = await getUserNotionData(uid);
+
+    return { user: { email, name, picture, uid }, notionData };
+  } catch (error) {
+    return { user: null, notionData: null };
   }
-
-  // @ts-ignore
-  const { email = '', name = '', picture = '', uid = '' } = decodedToken ?? {};
-  const user = decodedToken ? { email, name, picture, uid } : null;
-  // retrieve user data from firestore
-  const { notionData = null } = decodedToken ? await getUserData(uid) : {};
-  return { user, notionData };
 };
 
 export default getServerSideUserData;

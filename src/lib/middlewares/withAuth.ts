@@ -1,4 +1,4 @@
-import { auth } from '@/lib/firebaseAdmin';
+import auth from '@/lib/firebase/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/types';
 import { getError } from '@/utils/errors';

@@ -5,7 +5,7 @@ import nookies from 'nookies';
 import { UrlObject } from 'url';
 import { User } from '@/types';
 
-import { firebase } from '@/lib/firebaseClient';
+import firebase from '@/lib/firebase/client';
 import AuthContext from '@/contexts/auth';
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           displayName = '',
           photoURL = '',
           uid = '',
-          // @ts-ignore
+          // @ts-ignore - todo resolve it
         } = user.multiFactor.user;
         setUser({ email, name: displayName, picture: photoURL, uid });
         nookies.set(undefined, 'token', token, { path: '/' });
