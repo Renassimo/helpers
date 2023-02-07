@@ -20,12 +20,15 @@ class NotionService {
     return { response, data };
   };
 
-  updatePage = (pageId: string, args: object) =>
-    fetch(`${this.baseURL}/pages/${pageId}`, {
+  updatePage = async (pageId: string, args: object) => {
+    const response = await fetch(`${this.baseURL}/pages/${pageId}`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify(args),
     });
+    const data = await response.json();
+    return { response, data };
+  };
 
   retrieveBlockChildren = (blockId: string) =>
     fetch(`${this.baseURL}/blocks/${blockId}/children`, {

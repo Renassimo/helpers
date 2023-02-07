@@ -46,7 +46,7 @@ describe('getDay', () => {
     });
 
     describe('and has result', () => {
-      test('responses with data', async () => {
+      test('returns data', async () => {
         // Arrange
         mockedData = { results: [mockedDataToDeserialize] };
         const mockedNotionService = new NotionService(mockedToken);
@@ -68,7 +68,7 @@ describe('getDay', () => {
     });
 
     describe('and has no result', () => {
-      test('responses with 404 error', async () => {
+      test('returns 404 error', async () => {
         // Arrange
         mockedData = { results: [] };
         const mockedNotionService = new NotionService(mockedToken);
@@ -98,7 +98,7 @@ describe('getDay', () => {
       }));
     });
 
-    test('responses with error', async () => {
+    test('returns error', async () => {
       // Arrange
       mockedData = {
         code: 'internal_server_error',

@@ -6,10 +6,9 @@ const updateDay = async (notionService: NotionService, requestBody: string) => {
   const body = JSON.parse(requestBody);
   const serializedBody = serializeDay(body);
 
-  const response = await notionService.updatePage(`${body?.id}`, {
+  const { response, data } = await notionService.updatePage(`${body?.id}`, {
     properties: serializedBody,
   });
-  const data = await response.json();
 
   if (response.ok)
     return { status: 200, responseBody: { data: deserializeDay(data) } };
