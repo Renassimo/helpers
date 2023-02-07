@@ -14,7 +14,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 
   const { fiveBook = null } = notionData ?? {};
   const { dataBaseID = null, token = null } = fiveBook ?? {};
-  if (!dataBaseID && !token) return showNotFound;
+  if (!dataBaseID || !token) return showNotFound;
 
   const notionService = new NotionService(token);
   const { dayCode = getDayCode() } = ctx.query;
