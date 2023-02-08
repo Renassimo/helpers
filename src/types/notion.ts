@@ -56,8 +56,6 @@ export interface NotionProperty {
 }
 
 export interface NotionUniversalProperty extends NotionProperty {
-  id: string;
-  type: string;
   title?: NotionText;
   number?: number;
   created_time?: string;
@@ -65,9 +63,33 @@ export interface NotionUniversalProperty extends NotionProperty {
 }
 
 export interface NotionText {
+  type: string;
   annotations: object;
   href: string | null;
   plain_text: string;
   text: object;
-  type: 'text';
+}
+
+export interface NotionRichText {
+  id: string;
+  type: 'rich_text';
+  rich_text: NotionText[];
+}
+
+export interface NotionCreatedTime {
+  created_time: string;
+  id: string;
+  type: 'created_time';
+}
+
+export interface NotionNumber {
+  id: string;
+  number: number;
+  type: 'number';
+}
+
+export interface NotionName {
+  id: 'title';
+  title: NotionText;
+  type: 'title';
 }
