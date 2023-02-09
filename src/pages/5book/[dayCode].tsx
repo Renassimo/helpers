@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { FiveBookData } from '@/types/fiveBook';
 import { NotionError } from '@/types/notion';
 
-export { getServerSideProps } from '@/handlers/fiveBook/getServerSideProps';
+export { getServerSideProps } from '@/handlers/fiveBook';
 
 const FiveBook = ({
   data,

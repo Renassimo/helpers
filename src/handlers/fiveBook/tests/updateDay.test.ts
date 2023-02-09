@@ -1,4 +1,4 @@
-import updateDay from '@/handlers/fiveBook/update';
+import updateDay from '@/handlers/fiveBook/updateDay';
 import NotionService from '@/services/notion';
 import { deserializeDay, serializeDay } from '@/serializers/fiveBook';
 

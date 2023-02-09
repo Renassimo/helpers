@@ -1,4 +1,4 @@
-import { getServerSideProps } from '@/handlers/fiveBook/getServerSideProps';
+import getServerSideProps from '@/handlers/fiveBook/getServerSideProps';
 import { GetServerSidePropsContext } from 'next';
 
 import getServerSideUserData from '@/utils/serverSideUserData';
@@ -6,14 +6,14 @@ import { getDayCode } from '@/utils/dayjs';
 
 import NotionService from '@/services/notion';
 
-import getDay from '@/handlers/fiveBook/get';
+import { getDay } from '@/handlers/fiveBook';
 
 jest.mock('@/utils/serverSideUserData');
 jest.mock('@/services/notion', () => jest.fn());
 jest.mock('@/utils/dayjs', () => ({
   getDayCode: jest.fn(),
 }));
-jest.mock('@/handlers/fiveBook/get');
+jest.mock('@/handlers/fiveBook/getDay');
 jest.mock('@/lib/firebase/auth', jest.fn());
 jest.mock('@/lib/firebase/firestore', jest.fn());
 

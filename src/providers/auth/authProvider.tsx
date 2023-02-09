@@ -3,7 +3,7 @@ import Router from 'next/router';
 import nookies from 'nookies';
 
 import { UrlObject } from 'url';
-import { User } from '@/types';
+import { User } from '@/types/auth';
 
 import firebase from '@/lib/firebase/client';
 import AuthContext from '@/contexts/auth';

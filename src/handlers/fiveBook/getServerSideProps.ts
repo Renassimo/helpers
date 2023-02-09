@@ -1,14 +1,14 @@
 import { GetServerSidePropsContext } from 'next';
 
 import getServerSideUserData from '@/utils/serverSideUserData';
-import { redirectToSignIn, showNotFound } from '@/utils/serverSideRender';
+import { redirectToSignIn, showNotFound } from '@/utils/serverSideRenderProps';
 import { getDayCode } from '@/utils/dayjs';
 
 import NotionService from '@/services/notion';
 
-import getDay from '@/handlers/fiveBook/get';
+import { getDay } from '@/handlers/fiveBook';
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { user, notionData } = await getServerSideUserData(ctx);
   if (!user) return redirectToSignIn;
 
@@ -33,3 +33,5 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     },
   };
 };
+
+export default getServerSideProps;

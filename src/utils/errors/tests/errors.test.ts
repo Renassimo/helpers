@@ -1,4 +1,4 @@
-import { errors, getError } from '@/utils/errors/index';
+import { errors, getError } from '@/utils/errors';
 
 describe('getError', () => {
   test('returns error object', () => {

@@ -1,11 +1,11 @@
 import auth from '@/lib/firebase/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { NextApiRequestWithAuth } from '@/types';
+import { NextApiRequestWithAuth } from '@/types/auth';
 import { getError } from '@/utils/errors';
 
-export function withAuth(
+const withAuth = (
   handler: (req: NextApiRequest, res: NextApiResponse) => void
-) {
+) => {
   return async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
     const { token } = req.cookies;
 
@@ -28,4 +28,6 @@ export function withAuth(
 
     return handler(req, res);
   };
-}
+};
+
+export default withAuth;

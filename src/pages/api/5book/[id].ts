@@ -1,15 +1,15 @@
 import { NextApiResponse } from 'next';
 
-import { withAuth } from '@/lib/middlewares/withAuth';
+import withAuth from '@/lib/middlewares/withAuth';
 
 import getUserNotionData from '@/utils/userNotinData';
 import { getError } from '@/utils/errors';
 
-import { NextApiRequestWithAuth } from '@/types';
+import { NextApiRequestWithAuth } from '@/types/auth';
 
 import NotionService from '@/services/notion';
 
-import updateDay from '@/handlers/fiveBook/update';
+import { updateDay } from '@/handlers/fiveBook';
 
 const handler = async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
   if (req.method === 'PATCH') {

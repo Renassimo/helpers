@@ -30,11 +30,14 @@ class NotionService {
     return { response, data };
   };
 
-  retrieveBlockChildren = (blockId: string) =>
-    fetch(`${this.baseURL}/blocks/${blockId}/children`, {
+  retrieveBlockChildren = async (blockId: string) => {
+    const response = await fetch(`${this.baseURL}/blocks/${blockId}/children`, {
       method: 'GET',
       headers: this.headers,
     });
+    const data = await response.json();
+    return { response, data };
+  };
 
   private get headers() {
     return {

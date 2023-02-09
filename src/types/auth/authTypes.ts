@@ -7,10 +7,6 @@ export interface User {
   uid: string;
 }
 
-export type Data = {
-  name: string;
-};
-
 export interface NextApiRequestWithAuth extends NextApiRequest {
   uid?: string;
 }
