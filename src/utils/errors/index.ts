@@ -1,4 +1,4 @@
-const errors: Record<number, Record<string, string | number>> = {
+export const errors: Record<number, Record<string, string | number>> = {
   401: {
     code: 'not_authenticated',
     message: 'Not Authenticated',
