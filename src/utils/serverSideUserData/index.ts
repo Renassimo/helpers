@@ -21,7 +21,7 @@ const getServerSideUserData = async (ctx: GetServerSidePropsContext) => {
     } = (await auth.verifyIdToken(cookies.token)) ?? {
       name: '',
     };
-    const { notionData = null } = await getUserNotionData(uid);
+    const { notionData } = await getUserNotionData(uid);
 
     return { user: { email, name, picture, uid }, notionData };
   } catch (error) {

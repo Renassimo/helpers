@@ -2,11 +2,11 @@ import getUserNotionData from '@/utils/userNotinData';
 
 jest.mock('@/lib/firebase/firestore', jest.fn());
 
-describe('getUserNotionData fail', () => {
+describe('getUserNotionData', () => {
   const mockedUid = 'uid';
 
   describe('when got error', () => {
-    test('returns notion data', async () => {
+    test('returns notion as null', async () => {
       // Arrange
       const expectedResult = {
         id: mockedUid,
