@@ -1,4 +1,4 @@
-import getUserNotionData from '@/utils/userNotionData';
+import getUserNotionData from '@/utils/userNotinData';
 
 let notionData: unknown;
 let id: unknown;
@@ -16,7 +16,7 @@ jest.mock('@/lib/firebase/firestore', () => ({
   }),
 }));
 
-describe('getUserNotionData', () => {
+describe('getUserNotionData success', () => {
   const mockedUid = 'uid';
   const mockedNotionData = {
     fiveBook: { dataBaseId: 'data-base-id', token: 'token' },

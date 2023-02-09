@@ -2,7 +2,7 @@ import { NextApiResponse } from 'next';
 
 import { withAuth } from '@/lib/middlewares/withAuth';
 
-import getUserNotionData from '@/utils/userNotionData';
+import getUserNotionData from '@/utils/userNotinData';
 import { getError } from '@/utils/errors';
 
 import { NextApiRequestWithAuth } from '@/types';

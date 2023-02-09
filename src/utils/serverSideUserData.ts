@@ -4,7 +4,7 @@ import { GetServerSidePropsContext } from 'next';
 
 import auth from '@/lib/firebase/auth';
 
-import getUserNotionData from '@/utils/userNotionData';
+import getUserNotionData from '@/utils/userNotinData';
 
 const getServerSideUserData = async (ctx: GetServerSidePropsContext) => {
   const cookies = nookies.get(ctx);
