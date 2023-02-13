@@ -50,6 +50,7 @@ describe('getServerSideUserData', () => {
         );
         // Assert
         expect(result).toEqual(expectedResult);
+        expect(getUserNotionData).toHaveBeenCalledWith(userData.uid);
       });
     });
   });
