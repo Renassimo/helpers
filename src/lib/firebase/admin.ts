@@ -13,12 +13,4 @@ if (!firebaseAdmin.apps.length) {
   });
 }
 
-const firestore = firebaseAdmin.firestore();
-const auth = firebaseAdmin.auth();
-
-async function getUserData(uid: string) {
-  const doc = await firestore.collection('users').doc(uid).get();
-  return { id: doc.id, ...doc.data() };
-}
-
-export { firebaseAdmin, firestore, auth, getUserData };
+export default firebaseAdmin;

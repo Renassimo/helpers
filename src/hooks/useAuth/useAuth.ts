@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import AuthContext from '@/contexts/auth';
 
-import { User } from '@/types';
+import { User } from '@/types/auth';
 
 const useAuth = (serverSideUser: User | null = null) => {
   const { user, ...props } = useContext(AuthContext);

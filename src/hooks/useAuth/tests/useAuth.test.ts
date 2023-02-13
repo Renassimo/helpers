@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import useAuth from './useAuth';
+import useAuth from '@/hooks/useAuth';
 
 jest.mock('react');
 jest.mock('@/contexts/auth');
@@ -20,14 +20,17 @@ describe('useAuth', () => {
     uid,
   };
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('when client side user is null', () => {
     const mockUseContext = jest.fn(() => ({
       user: null,
       signIn,
       signOut,
     }));
-    // @ts-ignore
-    useContext.mockImplementation(mockUseContext);
+    (useContext as unknown as jest.Mock).mockImplementationOnce(mockUseContext);
 
     test('returns server side user', () => {
       // Arrange
@@ -49,8 +52,7 @@ describe('useAuth', () => {
       signIn,
       signOut,
     }));
-    // @ts-ignore
-    useContext.mockImplementation(mockUseContext);
+    (useContext as unknown as jest.Mock).mockImplementationOnce(mockUseContext);
 
     test('returns client side user', () => {
       // Arrange
@@ -72,8 +74,7 @@ describe('useAuth', () => {
       signIn,
       signOut,
     }));
-    // @ts-ignore
-    useContext.mockImplementation(mockUseContext);
+    (useContext as unknown as jest.Mock).mockImplementationOnce(mockUseContext);
 
     test('returns no user', () => {
       // Arrange
