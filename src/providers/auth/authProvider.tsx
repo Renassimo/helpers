@@ -1,58 +1,17 @@
-import { useCallback, useEffect, useState, ReactNode } from 'react';
-import Router from 'next/router';
-import nookies from 'nookies';
-
-import { UrlObject } from 'url';
-import { User } from '@/types/auth';
-
-import firebase from '@/lib/firebase/client';
+import { ReactNode } from 'react';
 import AuthContext from '@/contexts/auth';
 
+import useSignIn from './hooks/useSignIn';
+import useSignOut from './hooks/useSignOut';
+import useRefreshToken from './hooks/useRefreshToken';
+import useUser from './hooks/useUser';
+
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-
-  const signIn = useCallback(async (redirect?: string | UrlObject) => {
-    await firebase
-      .auth()
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    if (redirect) await Router.push(redirect);
-  }, []);
-
-  const signOut = useCallback(async () => {
-    await firebase.auth().signOut();
-    Router.reload();
-  }, []);
-
-  useEffect(() => {
-    return firebase.auth().onIdTokenChanged(async (user) => {
-      if (!user) {
-        setUser(null);
-        nookies.set(undefined, 'token', '', { path: '/' });
-      } else {
-        const token = await user.getIdToken();
-        const {
-          email = '',
-          displayName = '',
-          photoURL = '',
-          uid = '',
-          // @ts-ignore - todo resolve it
-        } = user.multiFactor.user;
-        setUser({ email, name: displayName, picture: photoURL, uid });
-        nookies.set(undefined, 'token', token, { path: '/' });
-      }
-    });
-  }, []);
-
+  const signIn = useSignIn();
+  const signOut = useSignOut();
+  const user = useUser();
   // force refresh the token every 10 minutes
-  useEffect(() => {
-    const handle = setInterval(async () => {
-      const user = firebase.auth().currentUser;
-      if (user) await user.getIdToken(true);
-    }, 10 * 60 * 1000);
-
-    // clean up setInterval
-    return () => clearInterval(handle);
-  }, []);
+  useRefreshToken();
 
   return (
     <AuthContext.Provider value={{ user, signIn, signOut }}>
