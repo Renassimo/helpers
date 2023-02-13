@@ -6,13 +6,13 @@ const getDay = async (
   dataBaseID: string,
   dayCode: string
 ) => {
-  const { response, data } = await notionService.queryDatabase(dataBaseID, {
+  const { ok, data } = await notionService.queryDatabase(dataBaseID, {
     filter: {
       and: [{ property: 'Day code', number: { equals: +dayCode } }],
     },
   });
 
-  if (response.ok) {
+  if (ok) {
     const [result] = data?.results;
     return result
       ? { data: deserializeDay(result) }

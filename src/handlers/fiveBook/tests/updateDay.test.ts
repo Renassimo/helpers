@@ -6,7 +6,7 @@ jest.mock('@/serializers/fiveBook');
 jest.mock('@/services/notion');
 
 describe('updateDay', () => {
-  let mockedResponse: object;
+  let mockedOk: boolean;
   let mockedData: object;
 
   const mockedID = 'mocked_id';
@@ -27,7 +27,7 @@ describe('updateDay', () => {
     },
   ];
   const mockedUpdatePage = jest.fn(async () => ({
-    response: mockedResponse,
+    ok: mockedOk,
     data: mockedData,
   }));
 
@@ -46,7 +46,7 @@ describe('updateDay', () => {
 
   describe('when response is ok', () => {
     beforeEach(() => {
-      mockedResponse = { ok: true };
+      mockedOk = true;
       (NotionService as unknown as jest.Mock).mockImplementationOnce(() => ({
         updatePage: mockedUpdatePage,
       }));
@@ -74,7 +74,7 @@ describe('updateDay', () => {
   });
   describe('when response is not ok', () => {
     beforeEach(() => {
-      mockedResponse = { ok: false };
+      mockedOk = false;
       (NotionService as unknown as jest.Mock).mockImplementationOnce(() => ({
         updatePage: mockedUpdatePage,
       }));

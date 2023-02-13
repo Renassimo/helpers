@@ -17,7 +17,7 @@ class NotionService {
       }
     );
     const data = await response.json();
-    return { response, data };
+    return { ok: response.ok, data };
   };
 
   updatePage = async (pageId: string, args: object) => {
@@ -27,7 +27,7 @@ class NotionService {
       body: JSON.stringify(args),
     });
     const data = await response.json();
-    return { response, data };
+    return { ok: response.ok, data };
   };
 
   retrieveBlockChildren = async (blockId: string) => {
@@ -36,7 +36,7 @@ class NotionService {
       headers: this.headers,
     });
     const data = await response.json();
-    return { response, data };
+    return { ok: response.ok, data };
   };
 
   private get headers() {
