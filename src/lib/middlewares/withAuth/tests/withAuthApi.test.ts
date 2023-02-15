@@ -1,12 +1,15 @@
-import withAuth from '@/lib/middlewares/withAuth';
-import { getError } from '@/utils/errors';
 import { NextApiRequest, NextApiResponse } from 'next';
+import withAuthApi from '../withAuthApi';
+import { getError } from '@/utils/errors';
+import getUserNotionData from '@/utils/userNotinData';
 
 let withoutError: boolean;
 let userData: unknown;
 let mockedErrorCode: unknown;
 
 jest.mock('@/utils/errors');
+jest.mock('@/utils/userNotinData');
+jest.mock('@/lib/firebase/firestore', jest.fn());
 jest.mock(
   '@/lib/firebase/auth',
   jest.fn(() => ({
@@ -24,7 +27,7 @@ jest.mock(
   }))
 );
 
-describe('withAuth', () => {
+describe('withAuthApi', () => {
   const mockedHandler = jest.fn();
   const mockedJson = jest.fn();
   const mockedStatus = jest.fn(() => ({
@@ -32,6 +35,11 @@ describe('withAuth', () => {
   }));
   const mockedGetError = { error: 'error' };
   const mockedRes = { status: mockedStatus };
+  const helperName = 'fiveBook';
+  let mockedNotionData: unknown = undefined;
+  const mockedGetUserNotionData = jest.fn(() => ({
+    notionData: mockedNotionData,
+  }));
 
   describe('when got no errors', () => {
     const mockedUid = 'uid';
@@ -40,6 +48,10 @@ describe('withAuth', () => {
       (getError as unknown as jest.Mock).mockImplementationOnce(() => ({
         error: 'error',
       }));
+      (getUserNotionData as unknown as jest.Mock).mockImplementationOnce(
+        mockedGetUserNotionData
+      );
+      mockedNotionData = undefined;
       withoutError = false;
     });
 
@@ -55,6 +67,11 @@ describe('withAuth', () => {
         picture: 'https://pic.net',
         uid: mockedUid,
       };
+      mockedNotionData = {
+        anyHelper: {
+          token: undefined,
+        },
+      };
 
       const mockedToken = 'token';
       const mockedCookies = { token: mockedToken };
@@ -63,10 +80,11 @@ describe('withAuth', () => {
       const expectedReq = {
         ...mockedReq,
         uid: mockedUid,
+        notionData: mockedNotionData,
       };
 
       // Act
-      await withAuth(mockedHandler)(
+      await withAuthApi(mockedHandler)(
         mockedReq as unknown as NextApiRequest,
         mockedRes as unknown as NextApiResponse
       );
@@ -90,7 +108,7 @@ describe('withAuth', () => {
         const expectedStatus = 401;
 
         // Act
-        await withAuth(mockedHandler)(
+        await withAuthApi(mockedHandler)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -118,7 +136,7 @@ describe('withAuth', () => {
         const expectedStatus = 401;
 
         // Act
-        await withAuth(mockedHandler)(
+        await withAuthApi(mockedHandler)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -150,7 +168,7 @@ describe('withAuth', () => {
         const expectedStatus = 401;
 
         // Act
-        await withAuth(mockedHandler)(
+        await withAuthApi(mockedHandler)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -160,6 +178,157 @@ describe('withAuth', () => {
         expect(mockedJson).toHaveBeenCalledWith(mockedGetError);
         expect(getError).toHaveBeenCalledWith(expectedStatus);
         expect(mockedReq).toEqual(expectedReq);
+      });
+    });
+
+    describe('when got no notionData', () => {
+      test('returns 403 error', async () => {
+        // Arrange
+        userData = {
+          email: 'email@example.com',
+          name: 'Name',
+          picture: 'https://pic.net',
+          uid: mockedUid,
+        };
+        mockedNotionData = undefined;
+
+        const mockedToken = 'token';
+        const mockedCookies = { token: mockedToken };
+        const mockedReq = { cookies: mockedCookies };
+        const expectedReq = {
+          ...mockedReq,
+          uid: mockedUid,
+        };
+        const expectedStatus = 403;
+
+        // Act
+        await withAuthApi(mockedHandler)(
+          mockedReq as unknown as NextApiRequest,
+          mockedRes as unknown as NextApiResponse
+        );
+
+        // Assert
+        expect(mockedStatus).toHaveBeenCalledWith(expectedStatus);
+        expect(mockedJson).toHaveBeenCalledWith(mockedGetError);
+        expect(getError).toHaveBeenCalledWith(expectedStatus, 'No Notion data');
+        expect(mockedReq).toEqual(expectedReq);
+      });
+    });
+
+    describe('when helperName passed', () => {
+      test('returns handler', async () => {
+        // Arrange
+        userData = {
+          email: 'email@example.com',
+          name: 'Name',
+          picture: 'https://pic.net',
+          uid: mockedUid,
+        };
+        const notionToken = 'notion-token';
+        mockedNotionData = {
+          [helperName]: {
+            token: notionToken,
+          },
+        };
+
+        const mockedToken = 'token';
+        const mockedCookies = { token: mockedToken };
+        const mockedReq = { cookies: mockedCookies };
+
+        const expectedReq = {
+          ...mockedReq,
+          uid: mockedUid,
+          notionHelperData: {
+            token: notionToken,
+          },
+        };
+
+        // Act
+        await withAuthApi(mockedHandler, helperName)(
+          mockedReq as unknown as NextApiRequest,
+          mockedRes as unknown as NextApiResponse
+        );
+        // Assert
+        expect(mockedStatus).not.toHaveBeenCalled();
+        expect(mockedJson).not.toHaveBeenCalled();
+        expect(getError).not.toHaveBeenCalled();
+        expect(mockedReq).toEqual(expectedReq);
+      });
+
+      describe('when got no helperData', () => {
+        test('returns 403 error', async () => {
+          // Arrange
+          userData = {
+            email: 'email@example.com',
+            name: 'Name',
+            picture: 'https://pic.net',
+            uid: mockedUid,
+          };
+          mockedNotionData = {};
+
+          const mockedToken = 'token';
+          const mockedCookies = { token: mockedToken };
+          const mockedReq = { cookies: mockedCookies };
+          const expectedReq = {
+            ...mockedReq,
+            uid: mockedUid,
+          };
+          const expectedStatus = 403;
+
+          // Act
+          await withAuthApi(mockedHandler, helperName)(
+            mockedReq as unknown as NextApiRequest,
+            mockedRes as unknown as NextApiResponse
+          );
+
+          // Assert
+          expect(mockedStatus).toHaveBeenCalledWith(expectedStatus);
+          expect(mockedJson).toHaveBeenCalledWith(mockedGetError);
+          expect(getError).toHaveBeenCalledWith(
+            expectedStatus,
+            'No Notion helper data'
+          );
+          expect(mockedReq).toEqual(expectedReq);
+        });
+      });
+
+      describe('when got no Notion token', () => {
+        test('returns 403 error', async () => {
+          // Arrange
+          userData = {
+            email: 'email@example.com',
+            name: 'Name',
+            picture: 'https://pic.net',
+            uid: mockedUid,
+          };
+          mockedNotionData = {
+            [helperName]: {},
+          };
+
+          const mockedToken = 'token';
+          const mockedCookies = { token: mockedToken };
+          const mockedReq = { cookies: mockedCookies };
+          const expectedReq = {
+            ...mockedReq,
+            uid: mockedUid,
+          };
+          const expectedStatus = 403;
+
+          // Act
+          await withAuthApi(mockedHandler, helperName)(
+            mockedReq as unknown as NextApiRequest,
+            mockedRes as unknown as NextApiResponse
+          );
+
+          // Assert
+          expect(mockedStatus).toHaveBeenCalledWith(expectedStatus);
+          expect(mockedJson).toHaveBeenCalledWith(mockedGetError);
+          expect(getError).toHaveBeenCalledWith(
+            expectedStatus,
+            'No Notion token'
+          );
+          expect(mockedReq).toEqual(expectedReq);
+        });
       });
     });
   });
@@ -188,7 +357,7 @@ describe('withAuth', () => {
       const expectedStatus = 401;
 
       // Act
-      await withAuth(mockedHandler)(
+      await withAuthApi(mockedHandler)(
         mockedReq as unknown as NextApiRequest,
         mockedRes as unknown as NextApiResponse
       );
@@ -210,7 +379,7 @@ describe('withAuth', () => {
         mockedErrorCode = 'auth/internal-error';
 
         // Act
-        await withAuth(mockedHandler)(
+        await withAuthApi(mockedHandler)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );

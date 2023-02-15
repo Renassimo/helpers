@@ -5,6 +5,18 @@ const errors: Record<number, Record<string, string | number>> = {
     object: 'error',
     status: 401,
   },
+  403: {
+    code: 'forbidden',
+    message: 'Forbidden',
+    object: 'error',
+    status: 403,
+  },
+  404: {
+    code: 'not_found',
+    message: 'Not Found',
+    object: 'error',
+    status: 404,
+  },
   405: {
     code: 'method_not_allowed',
     message: 'Method Not Allowed',

@@ -2,7 +2,7 @@ class NotionService {
   token!: string;
   baseURL!: string;
 
-  constructor(token: string) {
+  constructor(token = '') {
     this.token = token;
     this.baseURL = process.env.NOTION_API_BASE_URL ?? '';
   }

@@ -1,4 +1,5 @@
-import { NextApiRequest } from 'next';
+import { NextApiRequest, GetServerSidePropsContext } from 'next';
+import { NotionData, NotionHelperData } from '@/types/notion';
 
 export interface User {
   email: string;
@@ -9,4 +10,13 @@ export interface User {
 
 export interface NextApiRequestWithAuth extends NextApiRequest {
   uid?: string;
+  notionData?: NotionData;
+  notionHelperData?: NotionHelperData;
+}
+
+export interface GetServerSidePropsContextWithAuth
+  extends GetServerSidePropsContext {
+  user: User | null;
+  notionData?: NotionData;
+  notionHelperData?: NotionHelperData;
 }
