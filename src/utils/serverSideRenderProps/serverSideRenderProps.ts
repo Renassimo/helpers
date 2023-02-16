@@ -1,7 +1,7 @@
 export const redirectToSignIn = {
   redirect: {
     permanent: false,
-    destination: '/sign-in',
+    destination: '/signIn',
   },
 };
 

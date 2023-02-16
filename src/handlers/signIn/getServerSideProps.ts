@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
+
 import getServerSideUserData from '@/utils/serverSideUserData';
 import { redirectToMain } from '@/utils/serverSideRenderProps';
 

@@ -65,7 +65,7 @@ describe('withAuthServerSideProps', () => {
       const expectedResult = {
         redirect: {
           permanent: false,
-          destination: '/sign-in',
+          destination: '/signIn',
         },
       };
       // Act

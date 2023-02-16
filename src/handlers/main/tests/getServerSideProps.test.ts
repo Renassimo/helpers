@@ -32,7 +32,7 @@ describe('getServerSideProps', () => {
       props: {
         user: mockedUser,
         pages: [
-          { name: 'someHelper', url: '/someHelper' },
+          { name: 'Some Helper', url: '/someHelper' },
           { name: mockedHelperName, url: mockedHelperPath },
         ],
       },
