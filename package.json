@@ -6,12 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "yarn eslint src",
     "test": "jest",
-    "scan": "yarn eslint src && yarn test"
+    "check-types": "tsc --noemit",
+    "scan": "yarn eslint src && yarn check-types && yarn test"
   },
   "dependencies": {
     "@next/font": "13.1.5",
+    "change-case": "^4.1.2",
     "dayjs": "^1.11.7",
     "firebase": "^9.17.1",
     "firebase-admin": "^11.5.0",
@@ -22,9 +24,9 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",

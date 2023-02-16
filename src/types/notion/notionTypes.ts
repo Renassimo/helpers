@@ -1,11 +1,11 @@
-export interface NotionProjectData {
+export interface NotionHelperData {
   dataBaseID: string;
   token: string;
 }
 
 export interface NotionData {
-  fiveBook?: NotionProjectData;
-  spotting?: NotionProjectData;
+  fiveBook?: NotionHelperData;
+  spotting?: NotionHelperData;
 }
 
 export interface NotionDataBaseResponse {

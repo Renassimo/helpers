@@ -1,20 +1,15 @@
-import { GetServerSidePropsContext } from 'next';
-
-import getServerSideUserData from '@/utils/serverSideUserData';
-import { redirectToSignIn, showNotFound } from '@/utils/serverSideRenderProps';
+import { showNotFound } from '@/utils/serverSideRenderProps';
 import { getDayCode } from '@/utils/dayjs';
 
 import NotionService from '@/services/notion';
 
 import { getDay } from '@/handlers/fiveBook';
 
-const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { user, notionData } = await getServerSideUserData(ctx);
-  if (!user) return redirectToSignIn;
+import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
-  const { fiveBook = null } = notionData ?? {};
-  const { dataBaseID = null, token = null } = fiveBook ?? {};
-  if (!dataBaseID || !token) return showNotFound;
+const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
+  const { user, notionHelperData } = ctx;
+  const { dataBaseID, token } = notionHelperData!;
 
   const notionService = new NotionService(token);
   const { dayCode = getDayCode() } = ctx.query;
