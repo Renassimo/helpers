@@ -12,7 +12,10 @@
     "scan": "yarn eslint src && yarn check-types && yarn test"
   },
   "dependencies": {
-    "@next/font": "13.1.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.9",
+    "@mui/material": "^5.11.9",
     "change-case": "^4.1.2",
     "dayjs": "^1.11.7",
     "firebase": "^9.17.1",

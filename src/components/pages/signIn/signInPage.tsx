@@ -4,6 +4,8 @@ import useAuth from '@/hooks/useAuth';
 
 import { User } from '@/types/auth';
 
+import Button from '@mui/material/Button';
+
 const SignInPage = ({ user: serverSideUser }: { user: User }) => {
   const { signIn } = useAuth(serverSideUser);
   return (
@@ -12,9 +14,10 @@ const SignInPage = ({ user: serverSideUser }: { user: User }) => {
         <title>Helpers - Sign In</title>
       </Head>
       <main>
-        <button onClick={() => signIn('/')} type="button">
+        <Button onClick={() => signIn('/')} type="button">
           sign in
-        </button>
+        </Button>
+        <p>Helpers - Sign in</p>
       </main>
     </>
   );
