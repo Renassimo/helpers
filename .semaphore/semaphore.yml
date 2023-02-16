@@ -40,6 +40,10 @@ blocks:
           commands:
             - yarn lint
 
+        - name: Check types
+          commands:
+            - yarn check-types
+
         - name: Unit test
           commands:
             - yarn test

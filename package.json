@@ -6,9 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "yarn eslint src",
     "test": "jest",
-    "scan": "yarn eslint src && yarn test"
+    "check-types": "tsc --noemit",
+    "scan": "yarn eslint src && yarn check-types && yarn test"
   },
   "dependencies": {
     "@next/font": "13.1.5",
