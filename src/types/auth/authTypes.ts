@@ -20,3 +20,8 @@ export interface GetServerSidePropsContextWithAuth
   notionData?: NotionData;
   notionHelperData?: NotionHelperData;
 }
+
+export interface PageInfo {
+  name: string;
+  path: string;
+}
