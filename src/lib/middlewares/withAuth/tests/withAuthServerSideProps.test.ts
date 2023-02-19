@@ -13,8 +13,12 @@ describe('withAuthServerSideProps', () => {
   const mockedContext = {
     cookies: 'some cookies',
   };
-  const mockedDataBaseId = 'data-base-id';
-  const mockedNotionToken = 'notion-token';
+  const mockedDataBaseID = 'data-base-id';
+  const mockedDataBaseID2 = 'data-base-id-2';
+  const mockedNotionToken = 'token';
+  const mockedNotionToken2 = 'toke-2n';
+  const mockedHelperName2 = 'Helper Name';
+  const mockedHelperPath2 = '/helper';
   let mockedUser: unknown = {};
   let mockedNotionData: unknown = {};
 
@@ -28,8 +32,14 @@ describe('withAuthServerSideProps', () => {
     };
     mockedNotionData = {
       someHelper: {
-        dataBaseID: mockedDataBaseId,
+        dataBaseID: mockedDataBaseID,
         token: mockedNotionToken,
+      },
+      anotherHelper: {
+        dataBaseID: mockedDataBaseID2,
+        token: mockedNotionToken2,
+        title: mockedHelperName2,
+        path: mockedHelperPath2,
       },
     };
     const mockedGetServerSideUserData = jest.fn(() => ({
@@ -43,6 +53,10 @@ describe('withAuthServerSideProps', () => {
 
   test('returns handler', async () => {
     // Arrange
+    const expectedPages = [
+      { title: mockedHelperName2, path: mockedHelperPath2 },
+      { title: 'Some Helper', path: '/someHelper' },
+    ]
     const expectedResult = handlerResult;
     // Act
     const result = await withAuthServerSideProps(mockedHandler)(
@@ -54,6 +68,7 @@ describe('withAuthServerSideProps', () => {
       ...mockedContext,
       notionData: mockedNotionData,
       user: mockedUser,
+      pages: expectedPages,
     });
     expect(result).toEqual(expectedResult);
   });
@@ -101,11 +116,21 @@ describe('withAuthServerSideProps', () => {
   describe('when helperName passed', () => {
     test('returns handler', async () => {
       // Arrange
+      const expectedPages = [
+        { title: 'Five Book', path: '/fiveBook' },
+        { title: mockedHelperName2, path: mockedHelperPath2 },
+      ]
       const expectedResult = handlerResult;
       mockedNotionData = {
         [helperName]: {
-          dataBaseID: mockedDataBaseId,
+          dataBaseID: mockedDataBaseID,
           token: mockedNotionToken,
+        },
+        anotherHelper: {
+          dataBaseID: mockedDataBaseID2,
+          token: mockedNotionToken2,
+          title: mockedHelperName2,
+          path: mockedHelperPath2,
         },
       };
       // Act
@@ -118,10 +143,11 @@ describe('withAuthServerSideProps', () => {
       expect(mockedHandler).toHaveBeenCalledWith({
         ...mockedContext,
         notionHelperData: {
-          dataBaseID: mockedDataBaseId,
+          dataBaseID: mockedDataBaseID,
           token: mockedNotionToken,
         },
         user: mockedUser,
+        pages: expectedPages,
       });
       expect(result).toEqual(expectedResult);
     });
@@ -186,7 +212,7 @@ describe('withAuthServerSideProps', () => {
         // Arrange
         mockedNotionData = {
           [helperName]: {
-            dataBaseID: mockedDataBaseId,
+            dataBaseID: mockedDataBaseID,
           },
         };
         const expectedResult = { notFound: true };

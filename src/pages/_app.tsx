@@ -1,11 +1,17 @@
 import Head from 'next/head';
+import type { AppProps } from 'next/app';
+
 import { Global } from '@emotion/react';
 import globalStyles from '@/styles/globalStyles';
-import type { AppProps } from 'next/app';
 
 import AuthProvider from '@/providers/auth';
 
+import useAppLoading from '@/hooks/useAppLoading';
+
+import Loader from '@/components/common/Loader';
+
 const App = ({ Component, pageProps }: AppProps) => {
+  const { loading } = useAppLoading();
   return (
     <AuthProvider>
       <Head>
@@ -15,7 +21,8 @@ const App = ({ Component, pageProps }: AppProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Global styles={globalStyles} />
-      <Component {...pageProps} />
+      {loading && <Loader />}
+      <Component {...pageProps} loading={loading} />
     </AuthProvider>
   );
 };

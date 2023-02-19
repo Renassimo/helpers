@@ -3,11 +3,7 @@ import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
 describe('getServerSideProps', () => {
   const mockedDataBaseID = 'data-base-id';
-  const mockedDataBaseID2 = 'data-base-id-2';
   const mockedNotionToken = 'token';
-  const mockedNotionToken2 = 'toke-2n';
-  const mockedHelperName = 'Helper Name';
-  const mockedHelperPath = '/helper';
   const mockedUser = { name: 'User' };
 
   test('returns props', async () => {
@@ -17,23 +13,19 @@ describe('getServerSideProps', () => {
         dataBaseID: mockedDataBaseID,
         token: mockedNotionToken,
       },
-      anotherHelper: {
-        dataBaseID: mockedDataBaseID2,
-        token: mockedNotionToken2,
-        name: mockedHelperName,
-        path: mockedHelperPath,
-      },
     };
     const mockedContext = {
       user: mockedUser,
       notionData: mockedNotionData,
+      pages: [
+        { title: 'Some Helper', url: '/someHelper' },
+      ],
     };
     const expectedResult = {
       props: {
         user: mockedUser,
         pages: [
           { title: 'Some Helper', url: '/someHelper' },
-          { title: mockedHelperName, url: mockedHelperPath },
         ],
       },
     };

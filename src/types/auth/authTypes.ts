@@ -19,9 +19,10 @@ export interface GetServerSidePropsContextWithAuth
   user: User | null;
   notionData?: NotionData;
   notionHelperData?: NotionHelperData;
+  pages: PageInfo[];
 }
 
 export interface PageInfo {
-  name: string;
+  title: string;
   path: string;
 }

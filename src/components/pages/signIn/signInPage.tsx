@@ -3,8 +3,6 @@ import styled from '@emotion/styled';
 
 import useAuth from '@/hooks/useAuth';
 
-import { User } from '@/types/auth';
-
 import GoogleIcon from '@mui/icons-material/Google';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
@@ -13,28 +11,21 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-const Wrapper = styled.main`
-  min-height: 100vh;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 254, 252, 1) 0%,
-    rgba(223, 232, 255, 1) 100%
-  );
-`;
+import PageWrapper from '@/components/common/PageWrapper';
 
 const Img = styled.img`
   width: 150px;
   height: 150px;
 `;
 
-const SignInPage = ({ user: serverSideUser }: { user: User }) => {
-  const { signIn } = useAuth(serverSideUser);
+const SignInPage = () => {
+  const { signIn } = useAuth();
   return (
     <>
       <Head>
         <title>Helpers - Sign In</title>
       </Head>
-      <Wrapper>
+      <PageWrapper>
         <Container fixed>
           <Grid
             container
@@ -70,7 +61,7 @@ const SignInPage = ({ user: serverSideUser }: { user: User }) => {
             </Grid>
           </Grid>
         </Container>
-      </Wrapper>
+      </PageWrapper>
     </>
   );
 };
