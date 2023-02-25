@@ -54,7 +54,7 @@ const Modal = ({
       </DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <LoadingButton onClick={onSubmit} loading={loading} autoFocus>
+        <LoadingButton onClick={onSubmit} loading={loading}>
           Save
         </LoadingButton>
       </DialogActions>

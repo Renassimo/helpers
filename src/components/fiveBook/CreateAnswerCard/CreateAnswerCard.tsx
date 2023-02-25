@@ -114,6 +114,7 @@ const CreateAnswersCard = () => {
           margin="dense"
           value={answer}
           onChange={onAnswerChanged}
+          autoFocus
         />
         <LoadingButton
           variant="outlined"

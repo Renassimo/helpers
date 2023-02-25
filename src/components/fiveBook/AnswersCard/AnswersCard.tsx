@@ -87,6 +87,7 @@ const AnswersCard = () => {
           fullWidth
           margin="dense"
           value={answer}
+          autoFocus
           onChange={onAnswerChanged}
         />
       </Modal>
