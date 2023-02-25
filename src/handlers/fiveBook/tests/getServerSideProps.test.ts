@@ -23,9 +23,13 @@ describe('getServerSideProps', () => {
   const mockedToken = 'token';
   const mockedUser = { name: 'User' };
   const mockedData = { properties: {} };
+  const mockedPath = '/5book';
+  const mockedTitle = '5book';
+  const mockedPages = [{ path: mockedPath, title: mockedTitle }];
   const mockedContext = {
     query: mockedQuery,
     user: mockedUser,
+    pages: mockedPages,
     notionHelperData: { dataBaseID: mockedDataBaseID, token: mockedToken },
   };
 
@@ -49,6 +53,7 @@ describe('getServerSideProps', () => {
           data: mockedData,
           error: null,
           user: mockedUser,
+          pages: mockedPages,
         },
       };
       // Act
@@ -76,6 +81,7 @@ describe('getServerSideProps', () => {
             data: mockedData,
             error: null,
             user: mockedUser,
+            pages: mockedPages,
           },
         };
         // Act
@@ -109,6 +115,7 @@ describe('getServerSideProps', () => {
           data: null,
           error: { status: 500 },
           user: mockedUser,
+          pages: mockedPages,
         },
       };
       // Act

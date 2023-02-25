@@ -11,7 +11,7 @@ export const deserializeDay = (result: NotionResult) => {
     attributes: {
       dayCode: {
         id: dayCode?.id,
-        value: dayCode?.number,
+        value: String(dayCode?.number),
       },
       question: {
         id: question?.id,

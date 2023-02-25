@@ -81,7 +81,7 @@ describe('Five book serializers', () => {
         attributes: {
           dayCode: {
             id: dayCode.id,
-            value: dayCode.number,
+            value: String(dayCode.number),
           },
           question: {
             id: question.id,

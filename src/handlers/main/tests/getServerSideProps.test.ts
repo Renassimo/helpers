@@ -17,16 +17,12 @@ describe('getServerSideProps', () => {
     const mockedContext = {
       user: mockedUser,
       notionData: mockedNotionData,
-      pages: [
-        { title: 'Some Helper', url: '/someHelper' },
-      ],
+      pages: [{ title: 'Some Helper', url: '/someHelper' }],
     };
     const expectedResult = {
       props: {
         user: mockedUser,
-        pages: [
-          { title: 'Some Helper', url: '/someHelper' },
-        ],
+        pages: [{ title: 'Some Helper', url: '/someHelper' }],
       },
     };
     // Act

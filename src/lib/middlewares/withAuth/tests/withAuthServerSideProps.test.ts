@@ -56,7 +56,7 @@ describe('withAuthServerSideProps', () => {
     const expectedPages = [
       { title: mockedHelperName2, path: mockedHelperPath2 },
       { title: 'Some Helper', path: '/someHelper' },
-    ]
+    ];
     const expectedResult = handlerResult;
     // Act
     const result = await withAuthServerSideProps(mockedHandler)(
@@ -119,7 +119,7 @@ describe('withAuthServerSideProps', () => {
       const expectedPages = [
         { title: 'Five Book', path: '/fiveBook' },
         { title: mockedHelperName2, path: mockedHelperPath2 },
-      ]
+      ];
       const expectedResult = handlerResult;
       mockedNotionData = {
         [helperName]: {

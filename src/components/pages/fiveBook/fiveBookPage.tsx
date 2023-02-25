@@ -1,56 +1,64 @@
-import { useCallback } from 'react';
-import Head from 'next/head';
-
 import { FiveBookData } from '@/types/fiveBook';
 import { NotionError } from '@/types/notion';
+import { PageInfo, User } from '@/types/auth';
+
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import Grid from '@mui/material/Grid';
+
+import PageTemplate from '@/components/templates/PageTemplate';
+import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
+import AnswersCard from '@/components/fiveBook/AnswersCard';
+import FiveBookProvider from '@/providers/fiveBook/fiveBookProvider';
+import DayLink from '@/components/fiveBook/DayLink';
 
 const FiveBookPage = ({
+  user,
+  pages,
   data,
   error,
 }: {
+  user: User;
+  pages: PageInfo[];
   data: FiveBookData;
   error: NotionError;
 }) => {
-  const update = useCallback(async () => {
-    const response = await fetch(
-      `/api/5book/${data?.attributes?.dayCode?.value}`,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(data),
-      }
-    );
-    const responseData = await response.json();
-    console.log(responseData);
-  }, [data]);
-
-  console.log({ data, error });
+  const theme = useTheme();
+  const isMediumScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <>
-      <Head>
-        <title>5book - helpers</title>
-      </Head>
-      <main>
+    <FiveBookProvider data={data}>
+      <PageTemplate title="5book" user={user} pages={pages}>
         {data && (
-          <>
-            <h1>{data?.attributes?.question?.value}</h1>
-            <ul>
-              {Object.entries(data?.attributes?.answers).map(
-                ([year, answer]) => (
-                  <li key={answer.id}>
-                    {year} - {answer.value}
-                  </li>
-                )
-              )}
-            </ul>
-            <button type="button" onClick={update}>
-              Emulate update
-            </button>
-          </>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            spacing={2}
+            mt={2}
+          >
+            {isMediumScreen && (
+              <Grid item md={1} textAlign="center">
+                <DayLink prev />
+              </Grid>
+            )}
+            <Grid item xs={12} sm={10} md={5}>
+              <CreateAnswerCard />
+            </Grid>
+            <Grid item xs={12} sm={10} md={5}>
+              <AnswersCard />
+            </Grid>
+            {isMediumScreen && (
+              <Grid item md={1} textAlign="center">
+                <DayLink next />
+              </Grid>
+            )}
+          </Grid>
         )}
         {error && <h3>Error: {error.message}</h3>}
-      </main>
-    </>
+      </PageTemplate>
+    </FiveBookProvider>
   );
 };
 

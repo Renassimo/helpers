@@ -8,7 +8,7 @@ import { getDay } from '@/handlers/fiveBook';
 import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
 const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
-  const { user, notionHelperData } = ctx;
+  const { user, notionHelperData, pages } = ctx;
   const { dataBaseID, token } = notionHelperData!;
 
   const notionService = new NotionService(token);
@@ -23,6 +23,7 @@ const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
   return {
     props: {
       user,
+      pages,
       data,
       error,
     },

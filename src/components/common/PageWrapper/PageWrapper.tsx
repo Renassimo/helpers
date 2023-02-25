@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const PageWrapper = styled.main`
   min-height: 100vh;

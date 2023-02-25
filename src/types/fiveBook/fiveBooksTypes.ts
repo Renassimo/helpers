@@ -2,12 +2,12 @@ export interface FiveBookData {
   id: string;
   attributes: {
     dayCode: DayCode;
-    answers: FiveBookAnswer;
+    answers: FiveBookAnswers;
     question: FiveBookQuestionOrAnswer;
   };
 }
 
-export interface FiveBookAnswer {
+export interface FiveBookAnswers {
   [key: string]: FiveBookQuestionOrAnswer;
 }
 
@@ -18,5 +18,10 @@ export interface FiveBookQuestionOrAnswer {
 
 export interface DayCode {
   id: string;
-  value: number;
+  value: string;
+}
+
+export interface ClientAnswer {
+  year: string;
+  value: string | null;
 }

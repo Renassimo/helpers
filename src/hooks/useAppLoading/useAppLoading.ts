@@ -24,7 +24,7 @@ const useAppLoading = () => {
     };
   }, []);
 
-  return {loading}
+  return { loading };
 };
 
 export default useAppLoading;

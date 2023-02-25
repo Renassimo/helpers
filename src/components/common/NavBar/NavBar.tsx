@@ -1,5 +1,5 @@
-import { useState, MouseEvent } from 'react';
-import Link from 'next/link'
+import { useState, MouseEvent, useCallback } from 'react';
+import Link from 'next/link';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,6 +10,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 
 import { PageInfo, User } from '@/types/auth';
 
@@ -25,12 +26,17 @@ const NavBar = ({
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
   const { user, signOut } = useAuth(serverSideUser);
   const { name, picture } = user ?? {};
-  const handleOpenMenu = (event: MouseEvent<HTMLElement>) => {
-    setMenuAnchor(event.currentTarget);
-  };
-  const handleCloseMenu = () => {
+
+  const handleOpenMenu = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      setMenuAnchor(event.currentTarget);
+    },
+    [setMenuAnchor]
+  );
+  const handleCloseMenu = useCallback(() => {
     setMenuAnchor(null);
-  };
+  }, [setMenuAnchor]);
+
   return (
     <AppBar position="static" color="transparent" sx={{ boxShadow: 'none' }}>
       <Toolbar
@@ -49,6 +55,12 @@ const NavBar = ({
             onClose={handleCloseMenu}
             open={!!menuAnchor}
           >
+            <MenuItem>
+              <Link href="/">
+                <Typography textAlign="center">Main</Typography>
+              </Link>
+            </MenuItem>
+            <Divider variant="middle" />
             {pages.map(({ title, path }) => (
               <MenuItem key={title}>
                 <Link href={path}>
@@ -56,6 +68,7 @@ const NavBar = ({
                 </Link>
               </MenuItem>
             ))}
+            <Divider variant="middle" />
             <MenuItem key="sign-out" onClick={signOut}>
               <Typography textAlign="center">Sign Out</Typography>
             </MenuItem>

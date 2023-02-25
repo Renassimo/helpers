@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
-import sortBy from 'lodash/sortBy'
+import sortBy from 'lodash/sortBy';
 
 import getServerSideUserData from '@/utils/serverSideUserData';
 import { redirectToSignIn, showNotFound } from '@/utils/serverSideRenderProps';
@@ -10,10 +10,13 @@ import { capitalCase } from 'change-case';
 
 // todo use as separate module
 const getPages = (notionData: NotionData) =>
-  sortBy(Object.entries(notionData ?? {}).map(([key, value]) => ({
-    title: value?.title ?? capitalCase(key),
-    path: value?.path ?? `/${key}`,
-  })), 'title');
+  sortBy(
+    Object.entries(notionData ?? {}).map(([key, value]) => ({
+      title: value?.title ?? capitalCase(key),
+      path: value?.path ?? `/${key}`,
+    })),
+    'title'
+  );
 
 const withAuthServerSideProps = (
   handler: (ctx: GetServerSidePropsContextWithAuth) => object,
