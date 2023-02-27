@@ -1,12 +1,10 @@
-import { ReactNode, useEffect, useMemo, useState } from 'react';
-import dayjs from 'dayjs';
+import { ReactNode, useEffect, useState } from 'react';
 
 import FiveBookContext from '@/contexts/fiveBook';
 
 import { FiveBookData } from '@/types/fiveBook';
 
-import { getNextDayCode, getPrevDayCode, getYear } from '@/utils/dayjs';
-import { getIsoMonthDayFromDayCode } from '@/utils/fiveBook';
+import useFiveBookData from '@/providers/fiveBook/hooks/useFiveBookData';
 
 const FiveBookProvider = ({
   children,
@@ -21,56 +19,9 @@ const FiveBookProvider = ({
     setData(apiData);
   }, [apiData]);
 
-  const currentYear = useMemo(() => getYear(), []);
-
-  const dayData = useMemo(() => {
-    if (!data)
-      return {
-        id: '',
-        dayCode: '',
-        question: '',
-        answers: [],
-        yearOptions: [],
-        day: null,
-        fiveBookDay: null,
-        prevFiveBookDayCode: null,
-        nextFiveBookDayCode: null,
-        fiveBookDayText: '',
-      };
-
-    const dayCode = data.attributes.dayCode.value;
-    const day = dayjs(`${currentYear}-${getIsoMonthDayFromDayCode(dayCode)}`);
-    const fiveBookDay = dayjs(`2020-${getIsoMonthDayFromDayCode(dayCode)}`);
-    const prevFiveBookDayCode = getPrevDayCode(fiveBookDay);
-    const nextFiveBookDayCode = getNextDayCode(fiveBookDay);
-    const fiveBookDayText = dayjs(fiveBookDay).format('D MMMM');
-
-    const answers = Object.entries(data.attributes.answers).map(
-      ([key, { value }]) => ({ year: key, value: value })
-    );
-
-    const yearOptions = Object.keys(data.attributes.answers)
-      .filter(
-        (key) => !data.attributes.answers[key].value && +key <= +currentYear
-      )
-      .reverse();
-
-    return {
-      id: data.id,
-      dayCode: data.attributes.dayCode.value,
-      question: data.attributes.question.value,
-      answers,
-      yearOptions,
-      day,
-      fiveBookDay,
-      prevFiveBookDayCode,
-      nextFiveBookDayCode,
-      fiveBookDayText,
-    };
-  }, [data, currentYear]);
+  const dayData = useFiveBookData(data);
 
   const value = {
-    currentYear,
     setData,
     ...dayData,
   };

@@ -1,5 +1,6 @@
 import {
   getDayCode,
+  getDayText,
   getNextDayCode,
   getPrevDayCode,
   getYear,
@@ -48,6 +49,17 @@ describe('DayJS', () => {
       const expectedResult = '210';
       // Act
       const result = getPrevDayCode(date);
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('getDayText', () => {
+    test('returns dayText', () => {
+      // Arrange
+      const expectedResult = '11 February';
+      // Act
+      const result = getDayText(date);
       // Assert
       expect(result).toEqual(expectedResult);
     });
