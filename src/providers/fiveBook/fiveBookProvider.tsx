@@ -21,7 +21,7 @@ const FiveBookProvider = ({
     setData(apiData);
   }, [apiData]);
 
-  const currentYear = useMemo(() => String(getYear()), []);
+  const currentYear = useMemo(() => getYear(), []);
 
   const dayData = useMemo(() => {
     if (!data)
