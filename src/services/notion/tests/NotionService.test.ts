@@ -29,6 +29,18 @@ describe('Notion service', () => {
       );
       // Assert
       expect(result).toEqual(expectedResult);
+      expect(fetchMock.lastUrl()).toEqual(
+        `${mockedURL}/databases/${mockedDataBaseID}/query`
+      );
+      expect(fetchMock.lastOptions()).toEqual({
+        body: '{"arg1":[],"arg2":{}}',
+        headers: {
+          Authorization: 'Bearer token',
+          'Content-Type': 'application/json',
+          'Notion-Version': '2022-02-22',
+        },
+        method: 'POST',
+      });
     });
   });
   describe('updatePage', () => {
@@ -44,6 +56,16 @@ describe('Notion service', () => {
       const result = await notionService.updatePage(mockedPageID, mockedArgs);
       // Assert
       expect(result).toEqual(expectedResult);
+      expect(fetchMock.lastUrl()).toEqual(`${mockedURL}/pages/${mockedPageID}`);
+      expect(fetchMock.lastOptions()).toEqual({
+        body: '{"arg1":[],"arg2":{}}',
+        headers: {
+          Authorization: 'Bearer token',
+          'Content-Type': 'application/json',
+          'Notion-Version': '2022-02-22',
+        },
+        method: 'PATCH',
+      });
     });
   });
 
@@ -63,6 +85,18 @@ describe('Notion service', () => {
       const result = await notionService.retrieveBlockChildren(mockedBlockID);
       // Assert
       expect(result).toEqual(expectedResult);
+      expect(result).toEqual(expectedResult);
+      expect(fetchMock.lastUrl()).toEqual(
+        `${mockedURL}/blocks/${mockedBlockID}/children`
+      );
+      expect(fetchMock.lastOptions()).toEqual({
+        headers: {
+          Authorization: 'Bearer token',
+          'Content-Type': 'application/json',
+          'Notion-Version': '2022-02-22',
+        },
+        method: 'GET',
+      });
     });
   });
 });

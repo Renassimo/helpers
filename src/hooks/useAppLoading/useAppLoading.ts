@@ -3,6 +3,7 @@ import Router from 'next/router';
 
 const useAppLoading = () => {
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const start = () => {
       setLoading(true);
