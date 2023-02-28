@@ -5,7 +5,7 @@ import { ClientAnswer, FiveBookData } from '@/types/fiveBook';
 
 const FiveBookContext = createContext<{
   currentYear: string | null;
-  setData: Dispatch<SetStateAction<FiveBookData>>;
+  setData: Dispatch<SetStateAction<FiveBookData | null>>;
   id: string;
   dayCode: string;
   question: string | null;

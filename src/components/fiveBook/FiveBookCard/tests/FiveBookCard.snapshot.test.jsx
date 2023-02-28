@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
-import PageWrapper from './PageWrapper';
+import FiveBookCard from '../FiveBookCard';
 
-describe('PageWrapper', () => {
+describe('FiveBookCard', () => {
   test('renders successfully', () => {
     // Arrange
     // Act
-    const { container } = render(<PageWrapper>Children</PageWrapper>);
+    const { container } = render(<FiveBookCard>Children</FiveBookCard>);
     // Assert
     expect(container).toMatchSnapshot();
   });

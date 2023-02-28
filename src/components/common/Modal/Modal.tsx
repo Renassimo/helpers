@@ -37,7 +37,7 @@ const Modal = ({
     >
       <DialogTitle id="responsive-modal">
         {title}
-        {onClose ? (
+        {onClose && (
           <IconButton
             aria-label="close"
             onClick={onClose}
@@ -50,7 +50,7 @@ const Modal = ({
           >
             <CloseIcon />
           </IconButton>
-        ) : null}
+        )}
       </DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>

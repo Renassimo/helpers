@@ -7,10 +7,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Grid from '@mui/material/Grid';
 
+import FiveBookProvider from '@/providers/fiveBook/fiveBookProvider';
+
 import PageTemplate from '@/components/templates/PageTemplate';
 import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
 import AnswersCard from '@/components/fiveBook/AnswersCard';
-import FiveBookProvider from '@/providers/fiveBook/fiveBookProvider';
 import DayLink from '@/components/fiveBook/DayLink';
 
 const FiveBookPage = ({
@@ -21,8 +22,8 @@ const FiveBookPage = ({
 }: {
   user: User;
   pages: PageInfo[];
-  data: FiveBookData;
-  error: NotionError;
+  data: FiveBookData | null;
+  error: NotionError | null;
 }) => {
   const theme = useTheme();
   const isMediumScreen = useMediaQuery(theme.breakpoints.up('md'));

@@ -22,7 +22,7 @@ const MainPage = ({ user, pages }: { user: User; pages: PageInfo[] }) => (
         spacing={2}
         mt={5}
       >
-        {pages.map(({ title, path }) => (
+        {pages?.map(({ title, path }) => (
           <Grid item key={title} xs={10} sm={6} md={4} lg={3} xl={3}>
             <Link href={path}>
               <Paper>

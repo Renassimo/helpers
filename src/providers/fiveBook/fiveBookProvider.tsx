@@ -11,7 +11,7 @@ const FiveBookProvider = ({
   data: apiData,
 }: {
   children: ReactNode;
-  data: FiveBookData;
+  data: FiveBookData | null;
 }) => {
   const [data, setData] = useState(apiData);
 

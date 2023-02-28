@@ -1,20 +1,17 @@
 import { useState, MouseEvent, useCallback } from 'react';
-import Link from 'next/link';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 
 import { PageInfo, User } from '@/types/auth';
 
 import useAuth from '@/hooks/useAuth';
+
+import NavBarMenu from '@/components/common/NavBar/components/NavBarMenu';
 
 const NavBar = ({
   serverSideUser,
@@ -49,30 +46,12 @@ const NavBar = ({
               <Avatar alt={name} src={picture} />
             </IconButton>
           </Tooltip>
-          <Menu
-            id="menu-appbar"
-            anchorEl={menuAnchor}
+          <NavBarMenu
+            anchor={menuAnchor}
             onClose={handleCloseMenu}
-            open={!!menuAnchor}
-          >
-            <MenuItem>
-              <Link href="/">
-                <Typography textAlign="center">Main</Typography>
-              </Link>
-            </MenuItem>
-            <Divider variant="middle" />
-            {pages.map(({ title, path }) => (
-              <MenuItem key={title}>
-                <Link href={path}>
-                  <Typography textAlign="center">{title}</Typography>
-                </Link>
-              </MenuItem>
-            ))}
-            <Divider variant="middle" />
-            <MenuItem key="sign-out" onClick={signOut}>
-              <Typography textAlign="center">Sign Out</Typography>
-            </MenuItem>
-          </Menu>
+            pages={pages}
+            signOut={signOut}
+          />
         </Box>
       </Toolbar>
     </AppBar>

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageTemplate renders successfully 1`] = `
+<div>
+  <main
+    class="css-hfxpxn"
+  >
+    <div>
+      Mocked Nav Bar:
+      <span>
+        Name
+         - 
+        title
+      </span>
+    </div>
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+    >
+      Children
+    </div>
+  </main>
+</div>
+`;

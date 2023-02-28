@@ -23,7 +23,7 @@ import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
 import { getTurboModeAnswers } from '@/utils/fiveBook';
 import { getDayCode } from '@/utils/dayjs';
 
-const CreateAnswersCard = () => {
+const CreateAnswerCard = () => {
   const {
     day,
     fiveBookDayText,
@@ -137,4 +137,4 @@ const CreateAnswersCard = () => {
   );
 };
 
-export default CreateAnswersCard;
+export default CreateAnswerCard;

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 
-import DayLink from './DayLink';
+import DayLink from '../DayLink';
 
 jest.mock('@/hooks/fiveBook/useFiveBook');
 
