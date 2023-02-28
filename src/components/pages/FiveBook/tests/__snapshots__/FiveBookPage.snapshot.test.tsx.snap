@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiveBookPage when got data and screen width is lower than "md" renders successfully 1`] = `
+<div>
+  <div>
+    Mocked Page Template (
+    5book
+    ):
+    <span>
+      Name
+       - 
+      title
+    </span>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-5kx8cm-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+      >
+        <div>
+          Mocked Create Answer Card:
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+      >
+        <div>
+          Mocked Answer Card:
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FiveBookPage when got data and screen width is wider than "md" renders successfully 1`] = `
+<div>
+  <div>
+    Mocked Page Template (
+    5book
+    ):
+    <span>
+      Name
+       - 
+      title
+    </span>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-5kx8cm-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-md-1 css-9775m2-MuiGrid-root"
+      >
+        <div>
+          Mocked Day Link: Prev: 
+          Next: 
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+      >
+        <div>
+          Mocked Create Answer Card:
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+      >
+        <div>
+          Mocked Answer Card:
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-md-1 css-9775m2-MuiGrid-root"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FiveBookPage when got error renders successfully 1`] = `
+<div>
+  <div>
+    Mocked Page Template (
+    5book
+    ):
+    <span>
+      Name
+       - 
+      title
+    </span>
+    <h3>
+      Error: 
+      I am Teapot
+    </h3>
+  </div>
+</div>
+`;
