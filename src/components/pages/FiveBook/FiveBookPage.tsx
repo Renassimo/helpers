@@ -7,7 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Grid from '@mui/material/Grid';
 
-import FiveBookProvider from '@/providers/fiveBook/fiveBookProvider';
+import FiveBookProvider from '@/providers/fiveBook/FiveBookProvider';
 
 import PageTemplate from '@/components/templates/PageTemplate';
 import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
