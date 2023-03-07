@@ -1,13 +1,25 @@
 import { ReactNode } from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
+
+const Wrapper = styled.div(
+  ({ theme }) => css`
+    padding: ${theme.spacing(2)};
+    height: 85vh;
+    overflow: auto;
+
+    ${theme.breakpoints.down('md')} {
+      height: auto;
+      max-height: none;
+    }
+  `
+);
 
 const FiveBookCard = ({ children }: { children: ReactNode }) => (
   <Paper>
-    <Box p={2} height="85vh" sx={{ maxHeight: '85vh', overflow: 'auto' }}>
-      {children}
-    </Box>
+    <Wrapper>{children}</Wrapper>
   </Paper>
 );
 

@@ -54,7 +54,7 @@ const AnswersCard = () => {
       <Typography component="h2" variant="h6" textAlign="center" m={2}>
         {question}
       </Typography>
-      <List sx={{ maxHeight: '85vh', overflow: 'auto' }}>
+      <List>
         {answers.map(
           ({ year, value }) =>
             value && (

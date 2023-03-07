@@ -1,4 +1,5 @@
-import { useState, MouseEvent, useCallback } from 'react';
+import { useState, MouseEvent, useCallback, ReactNode } from 'react';
+import Link from 'next/link';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,9 +17,11 @@ import NavBarMenu from '@/components/common/NavBar/components/NavBarMenu';
 const NavBar = ({
   serverSideUser,
   pages,
+  children,
 }: {
   serverSideUser: User;
   pages: PageInfo[];
+  children?: ReactNode;
 }) => {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
   const { user, signOut } = useAuth(serverSideUser);
@@ -38,8 +41,14 @@ const NavBar = ({
     <AppBar position="static" color="transparent" sx={{ boxShadow: 'none' }}>
       <Toolbar
         variant="dense"
-        sx={{ display: 'flex', justifyContent: 'flex-end' }}
+        sx={{ display: 'flex', justifyContent: 'space-between' }}
       >
+        <Box>
+          <Link href="/">
+            <Avatar alt="Main page" src="/favicon.ico" />
+          </Link>
+        </Box>
+        {children && <Box>{children}</Box>}
         <Box>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenMenu}>
