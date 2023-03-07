@@ -44,8 +44,10 @@ const NavBar = ({
         sx={{ display: 'flex', justifyContent: 'space-between' }}
       >
         <Box>
-          <Link href="/">
-            <Avatar alt="Main page" src="/favicon.ico" />
+          <Link href="/" passHref>
+            <IconButton>
+              <Avatar alt="Main page" src="/favicon.ico" />
+            </IconButton>
           </Link>
         </Box>
         {children && <Box>{children}</Box>}

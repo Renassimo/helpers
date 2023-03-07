@@ -1,9 +1,10 @@
-import { render, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import useAuth from '@/hooks/useAuth';
 
 import NavBar from '@/components/common/NavBar';
+import renderWithTheme from '@/tests/helpers';
 
 jest.mock('@/hooks/useAuth');
 
@@ -30,20 +31,38 @@ describe('NavBar', () => {
     (useAuth as unknown as jest.Mock).mockImplementation(mockedUseAuth);
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('renders successfully', () => {
     // Arrange
     // Act
-    const { baseElement } = render(
+    const { baseElement } = renderWithTheme(
       <NavBar serverSideUser={user} pages={pages} />
     );
     // Assert
     expect(baseElement).toMatchSnapshot();
   });
 
+  describe('When children passed', () => {
+    test('renders successfully', async () => {
+      // Arrange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <NavBar serverSideUser={user} pages={pages}>
+          <div>Children</div>
+        </NavBar>
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
   describe('When menu is open', () => {
     test('renders successfully', async () => {
       // Arrange
-      const { baseElement, getByAltText } = render(
+      const { baseElement, getByAltText } = renderWithTheme(
         <NavBar serverSideUser={user} pages={pages} />
       );
       // Act
@@ -57,7 +76,7 @@ describe('NavBar', () => {
     describe('by clicking avatar', () => {
       test('renders successfully', async () => {
         // Arrange
-        const { baseElement, getByAltText } = render(
+        const { baseElement, getByAltText } = renderWithTheme(
           <NavBar serverSideUser={user} pages={pages} />
         );
         await waitFor(() => {
@@ -75,7 +94,7 @@ describe('NavBar', () => {
     describe('by clicking outside', () => {
       test('renders successfully', async () => {
         // Arrange
-        const { baseElement, getByAltText } = render(
+        const { baseElement, getByAltText } = renderWithTheme(
           <NavBar serverSideUser={user} pages={pages} />
         );
         await waitFor(() => {
@@ -94,7 +113,7 @@ describe('NavBar', () => {
   describe('When sign out', () => {
     test('renders successfully', async () => {
       // Arrange
-      const { baseElement, getByAltText, getByText } = render(
+      const { baseElement, getByAltText, getByText } = renderWithTheme(
         <NavBar serverSideUser={user} pages={pages} />
       );
       await waitFor(() => {

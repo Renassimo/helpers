@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import renderWithTheme from '@/tests/helpers';
 
 import PageTemplate from '@/components/templates/PageTemplate';
 import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
@@ -94,13 +94,13 @@ describe('FiveBookPage', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { container } = render(
+        const { container } = renderWithTheme(
           <FiveBookPage user={user} pages={pages} data={data} error={null} />
         );
         // Assert
         expect(container).toMatchSnapshot();
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
-          '@media (min-width:900px)'
+          '@media (max-width:899.95px)'
         );
       });
     });
@@ -117,13 +117,13 @@ describe('FiveBookPage', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { container } = render(
+        const { container } = renderWithTheme(
           <FiveBookPage user={user} pages={pages} data={data} error={null} />
         );
         // Assert
         expect(container).toMatchSnapshot();
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
-          '@media (min-width:900px)'
+          '@media (max-width:899.95px)'
         );
       });
     });
@@ -133,7 +133,7 @@ describe('FiveBookPage', () => {
     test('renders successfully', () => {
       // Arrange
       // Act
-      const { container } = render(
+      const { container } = renderWithTheme(
         <FiveBookPage user={user} pages={pages} data={null} error={error} />
       );
       // Assert

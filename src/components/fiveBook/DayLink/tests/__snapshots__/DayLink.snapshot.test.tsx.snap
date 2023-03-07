@@ -3,34 +3,54 @@
 exports[`DayLink renders successfully 1`] = `
 <div>
   <a
+    class="css-rl46ge"
     href="/5book/101"
   >
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-      data-testid="ArrowBackIosNewIcon"
-      focusable="false"
-      viewBox="0 0 24 24"
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
     >
-      <path
-        d="M17.77 3.77 16 2 6 12l10 10 1.77-1.77L9.54 12z"
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+        data-testid="ArrowBackIosNewIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M17.77 3.77 16 2 6 12l10 10 1.77-1.77L9.54 12z"
+        />
+      </svg>
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
       />
-    </svg>
+    </button>
   </a>
   <a
+    class="css-rl46ge"
     href="/5book/103"
   >
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-      data-testid="ArrowForwardIosIcon"
-      focusable="false"
-      viewBox="0 0 24 24"
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
     >
-      <path
-        d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+        data-testid="ArrowForwardIosIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+        />
+      </svg>
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
       />
-    </svg>
+    </button>
   </a>
 </div>
 `;

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
 import useAuth from '@/hooks/useAuth';
@@ -13,7 +13,7 @@ describe('SignInPage', () => {
     const mockedSignIn = jest.fn();
     const mockedUseAuth = jest.fn(() => ({ signIn: mockedSignIn }));
     (useAuth as unknown as jest.Mock).mockImplementationOnce(mockedUseAuth);
-    const { getByText } = render(<SignInPage />);
+    const { getByText } = renderWithTheme(<SignInPage />);
     // Act
     await userEvent.click(getByText('Sign In'));
     // Assert
