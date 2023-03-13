@@ -1,11 +1,9 @@
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+
 import { FiveBookData } from '@/types/fiveBook';
 import { NotionError } from '@/types/notion';
 import { PageInfo, User } from '@/types/auth';
-
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
-import Grid from '@mui/material/Grid';
 
 import FiveBookProvider from '@/providers/fiveBook/FiveBookProvider';
 
@@ -13,6 +11,54 @@ import PageTemplate from '@/components/templates/PageTemplate';
 import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
 import AnswersCard from '@/components/fiveBook/AnswersCard';
 import DayLink from '@/components/fiveBook/DayLink';
+import DatePicker from '@/components/fiveBook/DatePicker';
+
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+const Wrapper = styled.div(
+  ({ theme }) => css`
+    padding: ${theme.spacing(4)} 0;
+    display: grid;
+    grid-gap: ${theme.spacing(2)};
+    grid-template-columns: auto 1fr 1fr auto;
+    grid-template-rows: 1fr;
+
+    ${theme.breakpoints.down('md')} {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+    }
+  `
+);
+
+const DayLinkWrapper = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ${theme.breakpoints.down('md')} {
+      display: none;
+    }
+  `
+);
+
+const CreateAnswerCardWrapper = styled.div(
+  ({ theme }) => css`
+    ${theme.breakpoints.down('md')} {
+      grid-row: 2;
+    }
+  `
+);
+
+const AnswerCardWrapper = styled.div(
+  ({ theme }) => css`
+    ${theme.breakpoints.down('md')} {
+      grid-row: 1;
+    }
+  `
+);
 
 const FiveBookPage = ({
   user,
@@ -26,36 +72,39 @@ const FiveBookPage = ({
   error: NotionError | null;
 }) => {
   const theme = useTheme();
-  const isMediumScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const isLowerThanMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <FiveBookProvider data={data}>
-      <PageTemplate title="5book" user={user} pages={pages}>
+      <PageTemplate
+        title="5book"
+        user={user}
+        pages={pages}
+        navBarChildren={
+          isLowerThanMd && (
+            <Box display="grid" gap={1} gridTemplateColumns="1fr 1fr 1fr">
+              <DayLink prev />
+              <DatePicker />
+              <DayLink next />
+            </Box>
+          )
+        }
+      >
         {data && (
-          <Grid
-            container
-            justifyContent="center"
-            alignItems="center"
-            spacing={2}
-            mt={2}
-          >
-            {isMediumScreen && (
-              <Grid item md={1} textAlign="center">
-                <DayLink prev />
-              </Grid>
-            )}
-            <Grid item xs={12} sm={10} md={5}>
+          <Wrapper>
+            <DayLinkWrapper>
+              <DayLink prev />
+            </DayLinkWrapper>
+            <CreateAnswerCardWrapper>
               <CreateAnswerCard />
-            </Grid>
-            <Grid item xs={12} sm={10} md={5}>
+            </CreateAnswerCardWrapper>
+            <AnswerCardWrapper>
               <AnswersCard />
-            </Grid>
-            {isMediumScreen && (
-              <Grid item md={1} textAlign="center">
-                <DayLink next />
-              </Grid>
-            )}
-          </Grid>
+            </AnswerCardWrapper>
+            <DayLinkWrapper>
+              <DayLink next />
+            </DayLinkWrapper>
+          </Wrapper>
         )}
         {error && <h3>Error: {error.message}</h3>}
       </PageTemplate>

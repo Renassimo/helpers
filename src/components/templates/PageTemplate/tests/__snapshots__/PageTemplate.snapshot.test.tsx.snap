@@ -3,20 +3,58 @@
 exports[`PageTemplate renders successfully 1`] = `
 <div>
   <main
-    class="css-hfxpxn"
+    class="css-3wo33r"
   >
-    <div>
-      Mocked Nav Bar:
-      <span>
-        Name
-         - 
-        title
-      </span>
+    <div
+      class="css-5aiikd"
+    >
+      <div>
+        Mocked Nav Bar:
+        <span>
+          Name
+           - 
+          title
+        </span>
+      </div>
     </div>
     <div
-      class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+      class="css-16cpvj6"
     >
-      Children
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+      >
+        Children
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`PageTemplate when navBarChildren passed renders successfully 1`] = `
+<div>
+  <main
+    class="css-3wo33r"
+  >
+    <div
+      class="css-5aiikd"
+    >
+      <div>
+        Mocked Nav Bar:
+        <span>
+          Name
+           - 
+          title
+        </span>
+      </div>
+    </div>
+    <div
+      class="css-16cpvj6"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+      >
+        Children
+      </div>
     </div>
   </main>
 </div>

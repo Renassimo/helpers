@@ -1,6 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Dayjs } from 'dayjs';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -10,27 +9,20 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import MenuItem from '@mui/material/MenuItem';
 import LoadingButton from '@mui/lab/LoadingButton';
-
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import FiveBookCard from '@/components/fiveBook/FiveBookCard';
+import DatePicker from '@/components/fiveBook/DatePicker';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
 
 import { getTurboModeAnswers } from '@/utils/fiveBook';
-import { getDayCode } from '@/utils/dayjs';
 
 const CreateAnswerCard = () => {
-  const {
-    day,
-    fiveBookDayText,
-    yearOptions,
-    nextFiveBookDayCode,
-    currentYear,
-  } = useFiveBook();
+  const { fiveBookDayText, yearOptions, nextFiveBookDayCode, currentYear } =
+    useFiveBook();
   const { update, loading } = useUpdateAnswers();
 
   const [year, setYear] = useState(currentYear);
@@ -70,28 +62,20 @@ const CreateAnswerCard = () => {
       setAnswer(event.target.value),
     [setAnswer]
   );
-  const onDatePickerChanged = useCallback(
-    (event: Dayjs | null) => push(`/5book/${getDayCode(event)}`),
-    [push]
-  );
+
+  const theme = useTheme();
+  const isLowerThanMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <FiveBookCard>
       <Typography component="h1" variant="h5" textAlign="center" m={2}>
         {fiveBookDayText}
       </Typography>
-      <Box mt={2}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-            openTo="day"
-            value={day}
-            views={['month', 'day']}
-            onChange={onDatePickerChanged}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
-      </Box>
+      {!isLowerThanMd && (
+        <Box mt={2}>
+          <DatePicker staticPicker />
+        </Box>
+      )}
       <Box mx={2}>
         <TextField
           select
