@@ -42,10 +42,10 @@ describe('UpdateAnswer snapshot', () => {
 
   test('renders successfully', () => {
     // Arrange
-    const { baseElement } = renderWithTheme(<UpdateAnswer />);
     // Act
-    expect(baseElement).toMatchSnapshot();
+    const { baseElement } = renderWithTheme(<UpdateAnswer />);
     // Assert
+    expect(baseElement).toMatchSnapshot();
   });
 
   describe('when loading', () => {
@@ -55,10 +55,10 @@ describe('UpdateAnswer snapshot', () => {
 
     test('renders successfully', () => {
       // Arrange
-      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Act
-      expect(baseElement).toMatchSnapshot();
+      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Assert
+      expect(baseElement).toMatchSnapshot();
     });
   });
 
@@ -73,10 +73,10 @@ describe('UpdateAnswer snapshot', () => {
 
     test('renders successfully', () => {
       // Arrange
-      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Act
-      expect(baseElement).toMatchSnapshot();
+      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Assert
+      expect(baseElement).toMatchSnapshot();
     });
   });
 
@@ -87,10 +87,10 @@ describe('UpdateAnswer snapshot', () => {
 
     test('renders successfully', () => {
       // Arrange
-      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Act
-      expect(baseElement).toMatchSnapshot();
+      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Assert
+      expect(baseElement).toMatchSnapshot();
     });
   });
 
@@ -101,10 +101,10 @@ describe('UpdateAnswer snapshot', () => {
 
     test('renders successfully', () => {
       // Arrange
-      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Act
-      expect(baseElement).toMatchSnapshot();
+      const { baseElement } = renderWithTheme(<UpdateAnswer />);
       // Assert
+      expect(baseElement).toMatchSnapshot();
     });
   });
 });
