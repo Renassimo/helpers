@@ -6,7 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 jest.mock('@mui/material/useMediaQuery');
 
-describe('Modal', () => {
+describe('Modal snapshot', () => {
   const mockedProps = {
     onClose: jest.fn(),
     onSubmit: jest.fn(),

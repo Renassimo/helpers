@@ -1,1 +1,1 @@
-export { default } from './UpdateAnswer';
+export { default } from './MockedUpdateAnswer';
