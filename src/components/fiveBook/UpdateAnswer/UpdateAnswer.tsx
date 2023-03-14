@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { useRouter } from 'next/router';
 
 import { TextField } from '@mui/material';
@@ -44,14 +44,13 @@ const UpdateAnswer = () => {
     });
   }, [query, replace]);
 
-  const onSubmit = useCallback(
-    async (event: FormEvent<HTMLFormElement>) => {
-      // @ts-ignore
-      await update({ [String(year)]: event.target['updateAnswer'].value });
-      await handleModalClose();
-    },
-    [handleModalClose, update, year]
-  );
+  const updateAnswerRef = useRef<HTMLInputElement>(null);
+
+  const onSubmit = useCallback(async () => {
+    // @ts-ignore
+    await update({ [String(year)]: updateAnswerRef?.current?.value });
+    await handleModalClose();
+  }, [handleModalClose, update, year]);
 
   return (
     <Modal
@@ -65,6 +64,9 @@ const UpdateAnswer = () => {
         {question}
       </Typography>
       <TextField
+        id="updateAnswer"
+        label="Update"
+        inputRef={updateAnswerRef}
         multiline
         rows={4}
         fullWidth

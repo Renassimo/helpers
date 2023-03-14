@@ -70,13 +70,21 @@ exports[`UpdateAnswer snapshot renders successfully 1`] = `
             <div
               class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
             >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-focused MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="true"
+                for="updateAnswer"
+                id="updateAnswer-label"
+              >
+                Update
+              </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth Mui-focused MuiInputBase-formControl MuiInputBase-multiline css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <textarea
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r1:"
+                  id="updateAnswer"
                   name="updateAnswer"
                   rows="4"
                   style="height: 0px; overflow: hidden;"
@@ -95,12 +103,10 @@ exports[`UpdateAnswer snapshot renders successfully 1`] = `
                   class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-ihdtdm"
+                    class="css-14lo706"
                   >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
+                    <span>
+                      Update
                     </span>
                   </legend>
                 </fieldset>
@@ -203,13 +209,21 @@ exports[`UpdateAnswer snapshot when loading renders successfully 1`] = `
             <div
               class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
             >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-focused MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="true"
+                for="updateAnswer"
+                id="updateAnswer-label"
+              >
+                Update
+              </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth Mui-focused MuiInputBase-formControl MuiInputBase-multiline css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <textarea
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r4:"
+                  id="updateAnswer"
                   name="updateAnswer"
                   rows="4"
                   style="height: 0px; overflow: hidden;"
@@ -228,12 +242,10 @@ exports[`UpdateAnswer snapshot when loading renders successfully 1`] = `
                   class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-ihdtdm"
+                    class="css-14lo706"
                   >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
+                    <span>
+                      Update
                     </span>
                   </legend>
                 </fieldset>
