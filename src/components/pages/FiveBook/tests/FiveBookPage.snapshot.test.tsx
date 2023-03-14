@@ -102,6 +102,9 @@ describe('FiveBookPage', () => {
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
           '@media (max-width:899.95px)'
         );
+        expect(MockedCreateAnswerCard).toHaveBeenCalled();
+        expect(MockedAnswerCard).toHaveBeenCalled();
+        expect(MockedDayLink).toHaveBeenCalledWith({ prev: true }, {});
       });
     });
 
@@ -125,6 +128,9 @@ describe('FiveBookPage', () => {
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
           '@media (max-width:899.95px)'
         );
+        expect(MockedCreateAnswerCard).toHaveBeenCalled();
+        expect(MockedAnswerCard).toHaveBeenCalled();
+        expect(MockedDayLink).toHaveBeenCalledWith({ prev: true }, {});
       });
     });
   });

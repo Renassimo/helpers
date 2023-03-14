@@ -48,5 +48,6 @@ describe('AnswersCard snapshot', () => {
     const { baseElement } = renderWithTheme(<AnswersCard />);
     // Assert
     expect(baseElement).toMatchSnapshot();
+    expect(UpdateAnswer).toHaveBeenCalled();
   });
 });

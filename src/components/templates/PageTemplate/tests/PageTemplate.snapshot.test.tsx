@@ -35,7 +35,7 @@ describe('PageTemplate', () => {
     );
     // Assert
     expect(container).toMatchSnapshot();
-    expect(NavBar).toHaveBeenCalledWith(
+    expect(MockedNavBar).toHaveBeenCalledWith(
       {
         pages,
         serverSideUser: user,
@@ -62,7 +62,7 @@ describe('PageTemplate', () => {
       );
       // Assert
       expect(container).toMatchSnapshot();
-      expect(NavBar).toHaveBeenCalledWith(
+      expect(MockedNavBar).toHaveBeenCalledWith(
         {
           children: navBarChildren,
           pages,
