@@ -2,7 +2,7 @@ import renderWithTheme from '@/tests/helpers';
 
 import useAuth from '@/hooks/useAuth';
 
-import SignInPage from '@/components/pages/SignIn';
+import SignInPage from '../SignInPage';
 
 jest.mock('@/hooks/useAuth');
 

@@ -1,7 +1,8 @@
-import PageWrapper from '../PageWrapper';
 import renderWithTheme from '@/tests/helpers';
 
-describe('PageWrapper', () => {
+import PageWrapper from '../PageWrapper';
+
+describe('PageWrapper snapshot', () => {
   test('renders successfully', () => {
     // Arrange
     // Act

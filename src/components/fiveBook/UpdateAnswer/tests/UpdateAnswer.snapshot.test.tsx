@@ -1,7 +1,9 @@
+import renderWithTheme from '@/tests/helpers';
+
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
-import renderWithTheme from '@/tests/helpers';
-import UpdateAnswer from '@/components/fiveBook/UpdateAnswer';
+
+import UpdateAnswer from '../UpdateAnswer';
 
 let mockedUpdateYear = '2022';
 

@@ -7,7 +7,7 @@ import getTurboModeAnswers from '@/utils/fiveBook/getTurboModeAnswers';
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
 
-import CreateAnswerForm from '@/components/fiveBook/CreateAnswerForm';
+import CreateAnswerForm from '../CreateAnswerForm';
 
 jest.mock('@/hooks/fiveBook/useFiveBook');
 jest.mock('@/hooks/fiveBook/useUpdateAnswers');

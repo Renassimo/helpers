@@ -12,7 +12,7 @@ import MockedCreateAnswerCard from '@/components/fiveBook/CreateAnswerCard/mocks
 import MockedAnswerCard from '@/components/fiveBook/AnswersCard/mocks';
 import MockedDayLink from '@/components/fiveBook/DayLink/mocks';
 
-import FiveBookPage from '@/components/pages/FiveBook';
+import FiveBookPage from '../FiveBookPage';
 
 import { NotionError } from '@/types/notion';
 
@@ -102,9 +102,10 @@ describe('FiveBookPage', () => {
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
           '@media (max-width:899.95px)'
         );
-        expect(MockedCreateAnswerCard).toHaveBeenCalled();
-        expect(MockedAnswerCard).toHaveBeenCalled();
+        expect(MockedCreateAnswerCard).toHaveBeenCalledWith({}, {});
+        expect(MockedAnswerCard).toHaveBeenCalledWith({}, {});
         expect(MockedDayLink).toHaveBeenCalledWith({ prev: true }, {});
+        expect(MockedPageTemplate).toHaveBeenCalled();
       });
     });
 
@@ -128,9 +129,10 @@ describe('FiveBookPage', () => {
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
           '@media (max-width:899.95px)'
         );
-        expect(MockedCreateAnswerCard).toHaveBeenCalled();
-        expect(MockedAnswerCard).toHaveBeenCalled();
+        expect(MockedCreateAnswerCard).toHaveBeenCalledWith({}, {});
+        expect(MockedAnswerCard).toHaveBeenCalledWith({}, {});
         expect(MockedDayLink).toHaveBeenCalledWith({ prev: true }, {});
+        expect(MockedPageTemplate).toHaveBeenCalled();
       });
     });
   });

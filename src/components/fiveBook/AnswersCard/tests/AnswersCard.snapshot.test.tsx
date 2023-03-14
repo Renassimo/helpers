@@ -1,11 +1,12 @@
 import renderWithTheme from '@/tests/helpers';
 
 import UpdateAnswer from '@/components/fiveBook/UpdateAnswer';
-import AnswersCard from '@/components/fiveBook/AnswersCard';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 
 import MockedUpdateAnswer from '@/components/fiveBook/UpdateAnswer/mocks';
+
+import AnswersCard from '../AnswersCard';
 
 jest.mock('@/hooks/fiveBook/useFiveBook');
 jest.mock('@/components/fiveBook/UpdateAnswer');
@@ -35,7 +36,7 @@ describe('AnswersCard snapshot', () => {
       question: mockedQuestion,
     };
     (useFiveBook as jest.Mock).mockImplementation(() => mockUseFiveBook);
-    (UpdateAnswer as jest.Mock).mockImplementation(() => MockedUpdateAnswer);
+    (UpdateAnswer as jest.Mock).mockImplementation(MockedUpdateAnswer);
   });
 
   afterEach(() => {
@@ -48,6 +49,6 @@ describe('AnswersCard snapshot', () => {
     const { baseElement } = renderWithTheme(<AnswersCard />);
     // Assert
     expect(baseElement).toMatchSnapshot();
-    expect(UpdateAnswer).toHaveBeenCalled();
+    expect(MockedUpdateAnswer).toHaveBeenCalledWith({}, {});
   });
 });

@@ -1,10 +1,10 @@
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithTheme from '@/tests/helpers';
 
 import useAuth from '@/hooks/useAuth';
 
-import NavBar from '@/components/common/NavBar';
-import renderWithTheme from '@/tests/helpers';
+import NavBar from '../NavBar';
 
 jest.mock('@/hooks/useAuth');
 

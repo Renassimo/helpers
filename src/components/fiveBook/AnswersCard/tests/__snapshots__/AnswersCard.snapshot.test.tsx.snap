@@ -66,6 +66,9 @@ exports[`AnswersCard snapshot renders successfully 1`] = `
         </ul>
       </div>
     </div>
+    <div>
+      Mocked Update Answer:
+    </div>
   </div>
 </body>
 `;

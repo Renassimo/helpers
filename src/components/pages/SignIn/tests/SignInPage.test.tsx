@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import useAuth from '@/hooks/useAuth';
 
-import SignInPage from '@/components/pages/SignIn';
+import SignInPage from '../SignInPage';
 
 jest.mock('@/hooks/useAuth');
 

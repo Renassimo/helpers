@@ -2,12 +2,13 @@ import renderWithTheme from '@/tests/helpers';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
 import DatePicker from '@/components/fiveBook/DatePicker';
 import CreateAnswerForm from '@/components/fiveBook/CreateAnswerForm';
 
 import MockedDatePicker from '@/components/fiveBook/DatePicker/mocks';
 import MockedCreateAnswerForm from '@/components/fiveBook/CreateAnswerForm/mocks';
+
+import CreateAnswerCard from '../CreateAnswerCard';
 
 jest.mock('@mui/material/useMediaQuery');
 jest.mock('@/components/fiveBook/DatePicker');

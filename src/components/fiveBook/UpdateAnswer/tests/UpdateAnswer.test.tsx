@@ -1,9 +1,11 @@
+import { waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import renderWithTheme from '@/tests/helpers';
+
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
-import renderWithTheme from '@/tests/helpers';
-import UpdateAnswer from '@/components/fiveBook/UpdateAnswer';
-import userEvent from '@testing-library/user-event';
-import { waitFor } from '@testing-library/react';
+
+import UpdateAnswer from '../UpdateAnswer';
 
 const mockedUpdateYear = '2022';
 const mockedReplace = jest.fn();
