@@ -9,7 +9,7 @@ import Link from '@mui/material/Link';
 import FiveBookCard from '@/components/fiveBook/FiveBookCard';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
-import ChangeAnswer from '@/components/fiveBook/ChangeAnswer';
+import UpdateAnswer from '@/components/fiveBook/UpdateAnswer';
 import { useRouter } from 'next/router';
 
 const AnswersCard = () => {
@@ -52,7 +52,7 @@ const AnswersCard = () => {
           )}
         </List>
       </FiveBookCard>
-      <ChangeAnswer />
+      <UpdateAnswer />
     </>
   );
 };

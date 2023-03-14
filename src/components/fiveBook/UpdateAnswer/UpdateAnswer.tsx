@@ -9,9 +9,10 @@ import Modal from '@/components/common/Modal';
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
 
-const ChangeAnswer = () => {
+const UpdateAnswer = () => {
   const { answers, question } = useFiveBook();
   const { update, loading } = useUpdateAnswers(false);
+
   const { query, replace } = useRouter();
   const { updateYear } = query;
 
@@ -76,4 +77,4 @@ const ChangeAnswer = () => {
   );
 };
 
-export default ChangeAnswer;
+export default UpdateAnswer;
