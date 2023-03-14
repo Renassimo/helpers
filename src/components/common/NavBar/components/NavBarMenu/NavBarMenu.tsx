@@ -6,6 +6,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 
 const NavBarMenu = ({
   anchor,
@@ -23,17 +24,17 @@ const NavBarMenu = ({
   return (
     <Menu id="menu-appbar" anchorEl={anchor} onClose={onClose} open={!!anchor}>
       {withMain && (
-        <>
+        <Box>
           <MenuItem>
             <Link href="/">
               <Typography textAlign="center">Main</Typography>
             </Link>
           </MenuItem>
           <Divider variant="middle" />
-        </>
+        </Box>
       )}
       {pages.length > 0 && (
-        <>
+        <Box>
           {pages.map(({ title, path }) => (
             <MenuItem key={title}>
               <Link href={path}>
@@ -42,7 +43,7 @@ const NavBarMenu = ({
             </MenuItem>
           ))}
           <Divider variant="middle" />
-        </>
+        </Box>
       )}
       <MenuItem key="sign-out" onClick={signOut}>
         <Typography textAlign="center">Sign Out</Typography>
