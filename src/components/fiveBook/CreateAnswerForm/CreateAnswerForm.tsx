@@ -90,6 +90,7 @@ const CreateAnswerForm = () => {
         fullWidth
         onClick={onSubmit}
         loading={loading}
+        disabled={!answer}
       >
         Save
       </LoadingButton>

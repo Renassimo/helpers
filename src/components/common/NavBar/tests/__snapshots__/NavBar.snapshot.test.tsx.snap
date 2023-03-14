@@ -305,27 +305,32 @@ exports[`NavBar When menu is open renders successfully 1`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
+        <div
+          class="MuiBox-root css-0"
+          tabindex="0"
         >
-          <a
-            href="path"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -449,27 +454,32 @@ exports[`NavBar When sign out renders successfully 1`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
+        <div
+          class="MuiBox-root css-0"
+          tabindex="0"
         >
-          <a
-            href="path"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -593,27 +603,32 @@ exports[`NavBar When sign out renders successfully 2`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
+        <div
+          class="MuiBox-root css-0"
+          tabindex="0"
         >
-          <a
-            href="path"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -737,27 +752,32 @@ exports[`NavBar When sign out renders successfully 3`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
+        <div
+          class="MuiBox-root css-0"
+          tabindex="0"
         >
-          <a
-            href="path"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -890,27 +910,32 @@ exports[`NavBar When sign out renders successfully 4`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
+        <div
+          class="MuiBox-root css-0"
+          tabindex="0"
         >
-          <a
-            href="path"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
