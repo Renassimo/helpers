@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageWrapper renders successfully 1`] = `
+exports[`PageWrapper snapshot renders successfully 1`] = `
 <div>
   <main
-    class="css-hfxpxn"
+    class="css-3wo33r"
   >
     Children
   </main>

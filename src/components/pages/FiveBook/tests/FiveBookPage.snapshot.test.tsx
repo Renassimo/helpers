@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import renderWithTheme from '@/tests/helpers';
 
 import PageTemplate from '@/components/templates/PageTemplate';
 import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
@@ -12,7 +12,7 @@ import MockedCreateAnswerCard from '@/components/fiveBook/CreateAnswerCard/mocks
 import MockedAnswerCard from '@/components/fiveBook/AnswersCard/mocks';
 import MockedDayLink from '@/components/fiveBook/DayLink/mocks';
 
-import FiveBookPage from '@/components/pages/FiveBook';
+import FiveBookPage from '../FiveBookPage';
 
 import { NotionError } from '@/types/notion';
 
@@ -94,14 +94,18 @@ describe('FiveBookPage', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { container } = render(
+        const { container } = renderWithTheme(
           <FiveBookPage user={user} pages={pages} data={data} error={null} />
         );
         // Assert
         expect(container).toMatchSnapshot();
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
-          '@media (min-width:900px)'
+          '@media (max-width:899.95px)'
         );
+        expect(MockedCreateAnswerCard).toHaveBeenCalledWith({}, {});
+        expect(MockedAnswerCard).toHaveBeenCalledWith({}, {});
+        expect(MockedDayLink).toHaveBeenCalledWith({ prev: true }, {});
+        expect(MockedPageTemplate).toHaveBeenCalled();
       });
     });
 
@@ -117,14 +121,18 @@ describe('FiveBookPage', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { container } = render(
+        const { container } = renderWithTheme(
           <FiveBookPage user={user} pages={pages} data={data} error={null} />
         );
         // Assert
         expect(container).toMatchSnapshot();
         expect(mockUseMediaQuery).toHaveBeenCalledWith(
-          '@media (min-width:900px)'
+          '@media (max-width:899.95px)'
         );
+        expect(MockedCreateAnswerCard).toHaveBeenCalledWith({}, {});
+        expect(MockedAnswerCard).toHaveBeenCalledWith({}, {});
+        expect(MockedDayLink).toHaveBeenCalledWith({ prev: true }, {});
+        expect(MockedPageTemplate).toHaveBeenCalled();
       });
     });
   });
@@ -133,7 +141,7 @@ describe('FiveBookPage', () => {
     test('renders successfully', () => {
       // Arrange
       // Act
-      const { container } = render(
+      const { container } = renderWithTheme(
         <FiveBookPage user={user} pages={pages} data={null} error={error} />
       );
       // Assert

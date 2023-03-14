@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInPage renders successfully 1`] = `
+exports[`SignInPage snapshots renders successfully 1`] = `
 <body>
   <div>
     <main
-      class="css-hfxpxn"
+      class="css-3wo33r"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"

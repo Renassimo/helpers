@@ -1,11 +1,12 @@
-import { render } from '@testing-library/react';
+import renderWithTheme from '@/tests/helpers';
+
 import PageWrapper from '../PageWrapper';
 
-describe('PageWrapper', () => {
+describe('PageWrapper snapshot', () => {
   test('renders successfully', () => {
     // Arrange
     // Act
-    const { container } = render(<PageWrapper>Children</PageWrapper>);
+    const { container } = renderWithTheme(<PageWrapper>Children</PageWrapper>);
     // Assert
     expect(container).toMatchSnapshot();
   });

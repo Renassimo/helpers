@@ -1,5 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`NavBar When children passed renders successfully 1`] = `
+<body>
+  <div>
+    <header
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
+      >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div>
+            Children
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-0"
+        >
+          <button
+            aria-label="Open settings"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            data-mui-internal-clone-element="true"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+            >
+              <img
+                alt="Name"
+                class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                src="https://pic.com"
+              />
+            </div>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
+    </header>
+  </div>
+</body>
+`;
+
 exports[`NavBar When closes menu by clicking avatar renders successfully 1`] = `
 <body
   style=""
@@ -9,8 +81,34 @@ exports[`NavBar When closes menu by clicking avatar renders successfully 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >
@@ -50,8 +148,34 @@ exports[`NavBar When closes menu by clicking outside renders successfully 1`] = 
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >
@@ -93,8 +217,34 @@ exports[`NavBar When menu is open renders successfully 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >
@@ -155,48 +305,32 @@ exports[`NavBar When menu is open renders successfully 1`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
+        <div
+          class="MuiBox-root css-0"
           tabindex="0"
         >
-          <a
-            href="/"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              Main
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <a
-            href="path"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-            >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -232,8 +366,34 @@ exports[`NavBar When sign out renders successfully 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >
@@ -294,48 +454,32 @@ exports[`NavBar When sign out renders successfully 1`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
+        <div
+          class="MuiBox-root css-0"
           tabindex="0"
         >
-          <a
-            href="/"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              Main
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <a
-            href="path"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-            >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -371,8 +515,34 @@ exports[`NavBar When sign out renders successfully 2`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >
@@ -433,48 +603,32 @@ exports[`NavBar When sign out renders successfully 2`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
+        <div
+          class="MuiBox-root css-0"
           tabindex="0"
         >
-          <a
-            href="/"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              Main
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <a
-            href="path"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-            >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -510,8 +664,34 @@ exports[`NavBar When sign out renders successfully 3`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >
@@ -572,48 +752,32 @@ exports[`NavBar When sign out renders successfully 3`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
+        <div
+          class="MuiBox-root css-0"
           tabindex="0"
         >
-          <a
-            href="/"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              Main
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <a
-            href="path"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-            >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -658,8 +822,34 @@ exports[`NavBar When sign out renders successfully 4`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >
@@ -720,48 +910,32 @@ exports[`NavBar When sign out renders successfully 4`] = `
         role="menu"
         tabindex="-1"
       >
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
+        <div
+          class="MuiBox-root css-0"
           tabindex="0"
         >
-          <a
-            href="/"
+          <li
+            class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            <a
+              href="path"
             >
-              Main
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                title
+              </p>
+            </a>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <hr
+            class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
-        <li
-          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
-          role="menuitem"
-          tabindex="-1"
-        >
-          <a
-            href="path"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-            >
-              title
-            </p>
-          </a>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </li>
-        <hr
-          class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
-        />
+        </div>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -802,8 +976,34 @@ exports[`NavBar renders successfully 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-15hkpbs-MuiToolbar-root"
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
       >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+              >
+                <img
+                  alt="Main page"
+                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                  src="/favicon.ico"
+                />
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+        </div>
         <div
           class="MuiBox-root css-0"
         >

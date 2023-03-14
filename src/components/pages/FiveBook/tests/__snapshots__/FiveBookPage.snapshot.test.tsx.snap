@@ -12,22 +12,33 @@ exports[`FiveBookPage when got data and screen width is lower than "md" renders 
       title
     </span>
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-5kx8cm-MuiGrid-root"
+      class="css-1alf391"
     >
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+        class="css-eqvws1"
+      >
+        <div>
+          Mocked Day Link: Prev: 
+          Next: 
+        </div>
+      </div>
+      <div
+        class="css-1ve8esb"
       >
         <div>
           Mocked Create Answer Card:
         </div>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+        class="css-wstn32"
       >
         <div>
           Mocked Answer Card:
         </div>
       </div>
+      <div
+        class="css-eqvws1"
+      />
     </div>
   </div>
 </div>
@@ -45,10 +56,10 @@ exports[`FiveBookPage when got data and screen width is wider than "md" renders 
       title
     </span>
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-5kx8cm-MuiGrid-root"
+      class="css-1alf391"
     >
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-md-1 css-9775m2-MuiGrid-root"
+        class="css-eqvws1"
       >
         <div>
           Mocked Day Link: Prev: 
@@ -56,21 +67,21 @@ exports[`FiveBookPage when got data and screen width is wider than "md" renders 
         </div>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+        class="css-1ve8esb"
       >
         <div>
           Mocked Create Answer Card:
         </div>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-10 MuiGrid-grid-md-5 css-xydpsu-MuiGrid-root"
+        class="css-wstn32"
       >
         <div>
           Mocked Answer Card:
         </div>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-md-1 css-9775m2-MuiGrid-root"
+        class="css-eqvws1"
       />
     </div>
   </div>

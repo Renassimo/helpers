@@ -23,7 +23,7 @@ global_job_config:
 
       # restore cache for nvm, yarn and node_modules
       - cache restore
-      - nvm use
+      - nvm install
 blocks:
   - name: Setup
     task:

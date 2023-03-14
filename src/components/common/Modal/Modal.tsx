@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FormEvent, ReactNode } from 'react';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -22,12 +22,16 @@ const Modal = ({
   open: boolean;
   children: ReactNode;
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   title: string;
   loading: boolean;
 }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit(event);
+  };
   return (
     <Dialog
       fullScreen={fullScreen}
@@ -52,12 +56,14 @@ const Modal = ({
           </IconButton>
         )}
       </DialogTitle>
-      <DialogContent>{children}</DialogContent>
-      <DialogActions>
-        <LoadingButton onClick={onSubmit} loading={loading}>
-          Save
-        </LoadingButton>
-      </DialogActions>
+      <form onSubmit={handleSubmit}>
+        <DialogContent>{children}</DialogContent>
+        <DialogActions>
+          <LoadingButton loading={loading} type="submit">
+            Save
+          </LoadingButton>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 };

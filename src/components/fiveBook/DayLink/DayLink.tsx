@@ -1,9 +1,18 @@
 import Link from 'next/link';
+import styled from '@emotion/styled';
 
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Button from '@mui/material/Button';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 
 const DayLink = ({ prev = false, next = false }) => {
   const { prevFiveBookDayCode, nextFiveBookDayCode } = useFiveBook();
@@ -11,14 +20,18 @@ const DayLink = ({ prev = false, next = false }) => {
   return (
     <>
       {prev && (
-        <Link href={`/5book/${prevFiveBookDayCode}`}>
-          <ArrowBackIosNewIcon />
-        </Link>
+        <StyledLink href={`/5book/${prevFiveBookDayCode}`} passHref>
+          <Button>
+            <ArrowBackIosNewIcon />
+          </Button>
+        </StyledLink>
       )}
       {next && (
-        <Link href={`/5book/${nextFiveBookDayCode}`}>
-          <ArrowForwardIosIcon />
-        </Link>
+        <StyledLink href={`/5book/${nextFiveBookDayCode}`} passHref>
+          <Button>
+            <ArrowForwardIosIcon />
+          </Button>
+        </StyledLink>
       )}
     </>
   );

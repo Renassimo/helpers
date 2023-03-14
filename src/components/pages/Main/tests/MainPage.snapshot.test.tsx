@@ -40,6 +40,7 @@ describe('MainPage', () => {
     const { container } = render(<MainPage user={user} pages={pages} />);
     // Assert
     expect(container).toMatchSnapshot();
+    expect(MockedPageTemplate).toHaveBeenCalled();
   });
 
   describe('when got no pages', () => {
@@ -50,6 +51,7 @@ describe('MainPage', () => {
       const { container } = render(<MainPage user={user} pages={pages} />);
       // Assert
       expect(container).toMatchSnapshot();
+      expect(MockedPageTemplate).toHaveBeenCalled();
     });
   });
 });

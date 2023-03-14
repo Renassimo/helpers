@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loader renders successfully 1`] = `
+exports[`Loader snapshot renders successfully 1`] = `
 <div>
   <div
     class="MuiBox-root css-sy48ec"

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import renderWithTheme from '@/tests/helpers';
 
 import Modal from '../Modal';
 
@@ -6,7 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 jest.mock('@mui/material/useMediaQuery');
 
-describe('Modal', () => {
+describe('Modal snapshot', () => {
   const mockedProps = {
     onClose: jest.fn(),
     onSubmit: jest.fn(),
@@ -29,7 +29,7 @@ describe('Modal', () => {
     test('renders successfully', () => {
       // Arrange
       // Act
-      const { baseElement } = render(
+      const { baseElement } = renderWithTheme(
         <Modal open loading={false} {...mockedProps}>
           Modal
         </Modal>
@@ -45,7 +45,7 @@ describe('Modal', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { baseElement } = render(
+        const { baseElement } = renderWithTheme(
           <Modal open loading {...mockedProps}>
             Modal
           </Modal>
@@ -62,7 +62,7 @@ describe('Modal', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { baseElement } = render(
+        const { baseElement } = renderWithTheme(
           <Modal open={false} loading={false} {...mockedProps}>
             Modal
           </Modal>
@@ -84,7 +84,7 @@ describe('Modal', () => {
     test('renders successfully', () => {
       // Arrange
       // Act
-      const { baseElement } = render(
+      const { baseElement } = renderWithTheme(
         <Modal open loading={false} {...mockedProps}>
           Modal
         </Modal>
@@ -100,7 +100,7 @@ describe('Modal', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { baseElement } = render(
+        const { baseElement } = renderWithTheme(
           <Modal open loading {...mockedProps}>
             Modal
           </Modal>
@@ -117,7 +117,7 @@ describe('Modal', () => {
       test('renders successfully', () => {
         // Arrange
         // Act
-        const { baseElement } = render(
+        const { baseElement } = renderWithTheme(
           <Modal open={false} loading={false} {...mockedProps}>
             Modal
           </Modal>
