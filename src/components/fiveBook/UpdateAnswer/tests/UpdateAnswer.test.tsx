@@ -67,7 +67,7 @@ describe('UpdateAnswer', () => {
       // Act
       await userEvent.click(getByLabelText('close'));
       // Assert
-      expect(mockUpdate).not.toHaveBeenCalled()
+      expect(mockUpdate).not.toHaveBeenCalled();
       expect(mockedReplace).toHaveBeenCalledWith(
         { pathname: '', query: {} },
         undefined,
