@@ -7,9 +7,7 @@ import { Alert } from '@/types/alerts';
 const DEFAULT_LIFETIME = 5000;
 
 const useAlertsProvider = () => {
-  const [alerts, setAlerts] = useState<Alert[]>([
-    { id: 123, text: 'Hello!', severity: 'info' },
-  ]);
+  const [alerts, setAlerts] = useState<Alert[]>([]);
 
   const removeAlert = useCallback(
     (id: number) => {
@@ -24,7 +22,7 @@ const useAlertsProvider = () => {
     (text: string, severity: AlertColor = 'info', lifetime?: number) => {
       const id = Number(new Date());
       setAlerts((alerts: Alert[]) => [...alerts, { id, text, severity }]);
-      if (lifetime) {
+      if (lifetime && lifetime > 0) {
         setTimeout(() => {
           removeAlert(id);
         }, lifetime);

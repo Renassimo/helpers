@@ -18,7 +18,6 @@ const AlertsProvider = ({ children }: { children: ReactNode }) => {
   } = useAlertsProvider();
 
   const value = {
-    alerts,
     clearAll,
     createErrorAlert,
     createInfoAlert,
