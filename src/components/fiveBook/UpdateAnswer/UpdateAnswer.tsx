@@ -8,10 +8,12 @@ import Modal from '@/components/common/Modal';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
+import useAlerts from '@/hooks/alerts';
 
 const UpdateAnswer = () => {
   const { answers, question } = useFiveBook();
   const { update, loading } = useUpdateAnswers(false);
+  const { createErrorAlert } = useAlerts();
 
   const { query, replace } = useRouter();
   const { updateYear } = query;
@@ -47,10 +49,14 @@ const UpdateAnswer = () => {
   const updateAnswerRef = useRef<HTMLInputElement>(null);
 
   const onSubmit = useCallback(async () => {
-    // @ts-ignore
-    await update({ [String(year)]: updateAnswerRef?.current?.value });
-    await handleModalClose();
-  }, [handleModalClose, update, year]);
+    try {
+      // @ts-ignore
+      await update({ [String(year)]: updateAnswerRef?.current?.value });
+      await handleModalClose();
+    } catch (error: any) {
+      createErrorAlert(error.message);
+    }
+  }, [createErrorAlert, handleModalClose, update, year]);
 
   return (
     <Modal
