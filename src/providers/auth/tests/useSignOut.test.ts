@@ -1,9 +1,13 @@
 import Router from 'next/router';
 import { renderHook, cleanup, act } from '@testing-library/react-hooks';
+
+import useAlerts from '@/hooks/alerts';
+
 import useSignOut from '../hooks/useSignOut';
 
-const mockSignOut = jest.fn();
+let mockSignOut: () => void = jest.fn();
 
+jest.mock('@/hooks/alerts');
 jest.mock('next/router', () => ({
   reload: jest.fn(),
 }));
@@ -14,8 +18,16 @@ jest.mock('@/lib/firebase/client', () => ({
 }));
 
 describe('UseSignOut', () => {
+  const mockedCreateErrorAlert = jest.fn();
+
   afterEach(() => {
     cleanup();
+  });
+
+  beforeEach(() => {
+    (useAlerts as unknown as jest.Mock).mockImplementationOnce(() => ({
+      createErrorAlert: mockedCreateErrorAlert,
+    }));
   });
 
   test('signs out', async () => {
@@ -36,5 +48,25 @@ describe('UseSignOut', () => {
     // Assert
     expect(mockSignOut).toHaveBeenCalledWith();
     expect(mockedReload).toHaveBeenCalled();
+  });
+
+  describe('when got error', () => {
+    beforeEach(() => {
+      mockSignOut = () => {
+        throw new Error('new error');
+      };
+    });
+
+    test('creates alert', async () => {
+      // Arrange
+      const { result } = renderHook(() => useSignOut());
+      const { current: signOut } = result;
+      // Act
+      await act(() => {
+        signOut();
+      });
+      // Assert
+      expect(mockedCreateErrorAlert).toHaveBeenCalledWith('new error');
+    });
   });
 });

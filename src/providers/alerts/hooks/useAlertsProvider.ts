@@ -19,7 +19,11 @@ const useAlertsProvider = () => {
   );
 
   const createAlert = useCallback(
-    (text: string, severity: AlertColor = 'info', lifetime?: number) => {
+    (
+      text: string | number,
+      severity: AlertColor = 'info',
+      lifetime?: number
+    ) => {
       const id = Number(new Date());
       setAlerts((alerts: Alert[]) => [...alerts, { id, text, severity }]);
       if (lifetime && lifetime > 0) {
@@ -32,24 +36,25 @@ const useAlertsProvider = () => {
   );
 
   const createErrorAlert = useCallback(
-    (text: string, lifetime?: number) => createAlert(text, 'error', lifetime),
+    (text: string | number, lifetime?: number) =>
+      createAlert(text, 'error', lifetime),
     [createAlert]
   );
 
   const createInfoAlert = useCallback(
-    (text: string, lifetime = DEFAULT_LIFETIME) =>
+    (text: string | number, lifetime = DEFAULT_LIFETIME) =>
       createAlert(text, 'info', lifetime),
     [createAlert]
   );
 
   const createWarnAlert = useCallback(
-    (text: string, lifetime = DEFAULT_LIFETIME) =>
+    (text: string | number, lifetime = DEFAULT_LIFETIME) =>
       createAlert(text, 'warning', lifetime),
     [createAlert]
   );
 
   const createSuccessAlert = useCallback(
-    (text: string, lifetime = DEFAULT_LIFETIME) =>
+    (text: string | number, lifetime = DEFAULT_LIFETIME) =>
       createAlert(text, 'success', lifetime),
     [createAlert]
   );

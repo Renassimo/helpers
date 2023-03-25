@@ -13,10 +13,12 @@ import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
 
 import { getTurboModeAnswers } from '@/utils/fiveBook';
+import useAlerts from '@/hooks/alerts';
 
 const CreateAnswerForm = () => {
   const { yearOptions, nextFiveBookDayCode, currentYear } = useFiveBook();
   const { update, loading } = useUpdateAnswers();
+  const { createErrorAlert } = useAlerts();
 
   const [year, setYear] = useState(currentYear);
   const [answer, setAnswer] = useState('');
@@ -25,15 +27,20 @@ const CreateAnswerForm = () => {
   const { push } = useRouter();
 
   const onSubmit = useCallback(async () => {
-    if (isTurboMode) {
-      await update(getTurboModeAnswers(answer, yearOptions, String(year)));
-      await push(`/5book/${nextFiveBookDayCode}`);
-    } else {
-      await update({ [String(year)]: answer });
+    try {
+      if (isTurboMode) {
+        await update(getTurboModeAnswers(answer, yearOptions, String(year)));
+        await push(`/5book/${nextFiveBookDayCode}`);
+      } else {
+        await update({ [String(year)]: answer });
+      }
+      setAnswer('');
+    } catch (error: any) {
+      createErrorAlert(error.message);
     }
-    setAnswer('');
   }, [
     answer,
+    createErrorAlert,
     isTurboMode,
     nextFiveBookDayCode,
     push,
