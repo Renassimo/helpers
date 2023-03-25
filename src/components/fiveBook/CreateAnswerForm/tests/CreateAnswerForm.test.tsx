@@ -6,9 +6,11 @@ import getTurboModeAnswers from '@/utils/fiveBook/getTurboModeAnswers';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
+import useAlerts from '@/hooks/alerts';
 
 import CreateAnswerForm from '../CreateAnswerForm';
 
+jest.mock('@/hooks/alerts');
 jest.mock('@/hooks/fiveBook/useFiveBook');
 jest.mock('@/hooks/fiveBook/useUpdateAnswers');
 jest.mock('@/utils/fiveBook/getTurboModeAnswers');
@@ -17,6 +19,7 @@ jest.mock('next/router', () => ({
 }));
 
 describe('CreateAnswerForm', () => {
+  const mockedCreateErrorAlert = jest.fn();
   const mockedYearOptions = ['2019', '2021', '2023'];
   const mockedNextFiveBookDayCode = '314';
   const mockedCurrentYear = '2023';
@@ -38,6 +41,10 @@ describe('CreateAnswerForm', () => {
     (useUpdateAnswers as unknown as jest.Mock).mockImplementation(
       mockedUseUpdateAnswers
     );
+
+    (useAlerts as unknown as jest.Mock).mockImplementation(() => ({
+      createErrorAlert: mockedCreateErrorAlert,
+    }));
   });
 
   afterEach(() => {
@@ -67,7 +74,7 @@ describe('CreateAnswerForm', () => {
       );
     });
 
-    test('renders successfully', async () => {
+    test('creates answers', async () => {
       // Arrange
       const { getByLabelText, getByText } = renderWithTheme(
         <CreateAnswerForm />
@@ -119,7 +126,7 @@ describe('CreateAnswerForm', () => {
         );
       });
 
-      test('renders successfully', async () => {
+      test('creates answers', async () => {
         // Arrange
         const year = '2019';
         const { getByLabelText, getByText } = renderWithTheme(
@@ -143,6 +150,35 @@ describe('CreateAnswerForm', () => {
           year
         );
       });
+    });
+  });
+
+  describe('when got error', () => {
+    beforeEach(() => {
+      const mockedUseUpdateAnswers = jest.fn(() => ({
+        update: () => {
+          throw new Error('new error');
+        },
+        loading: false,
+      }));
+      (useUpdateAnswers as unknown as jest.Mock).mockImplementation(
+        mockedUseUpdateAnswers
+      );
+    });
+
+    test('creates error alert', async () => {
+      // Arrange
+      const { getByLabelText, getByText } = renderWithTheme(
+        <CreateAnswerForm />
+      );
+      // Act
+      await waitFor(async () => {
+        await userEvent.type(getByLabelText('Answer'), answer);
+        await userEvent.click(getByText('Save'));
+      });
+      // Assert
+      expect(mockedCreateErrorAlert).toHaveBeenCalledWith('new error');
+      expect(mockedUpdate).not.toHaveBeenCalled();
     });
   });
 });

@@ -1,10 +1,14 @@
 import Router from 'next/router';
 import { renderHook, cleanup, act } from '@testing-library/react-hooks';
+
+import useAlerts from '@/hooks/alerts';
+
 import useSignIn from '../hooks/useSignIn';
 
-const mockedSignInWithPopup = jest.fn();
+let mockedSignInWithPopup: () => void = jest.fn();
 const googleAuthProviderMockedMethod = jest.fn();
 
+jest.mock('@/hooks/alerts');
 jest.mock('next/router', () => ({
   push: jest.fn(),
 }));
@@ -20,8 +24,16 @@ jest.mock('@/lib/firebase/client', () => ({
 }));
 
 describe('UseSignIn', () => {
+  const mockedCreateErrorAlert = jest.fn();
+
   afterEach(() => {
     cleanup();
+  });
+
+  beforeEach(() => {
+    (useAlerts as unknown as jest.Mock).mockImplementationOnce(() => ({
+      createErrorAlert: mockedCreateErrorAlert,
+    }));
   });
 
   test('signs in', async () => {
@@ -58,6 +70,26 @@ describe('UseSignIn', () => {
         googleAuthProviderMethod: googleAuthProviderMockedMethod,
       });
       expect(mockedPush).toHaveBeenCalledWith(redirectUrl);
+    });
+  });
+
+  describe('when got error', () => {
+    beforeEach(() => {
+      mockedSignInWithPopup = () => {
+        throw new Error('new error');
+      };
+    });
+
+    test('creates alert', async () => {
+      // Arrange
+      const { result } = renderHook(() => useSignIn());
+      const { current: signIn } = result;
+      // Act
+      await act(() => {
+        signIn();
+      });
+      // Assert
+      expect(mockedCreateErrorAlert).toHaveBeenCalledWith('new error');
     });
   });
 });

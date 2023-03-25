@@ -10,7 +10,8 @@
     "test": "jest",
     "check-types": "tsc --noemit",
     "pretty": "yarn prettier --write src",
-    "scan": "yarn eslint src && yarn check-types && yarn test"
+    "scan": "yarn eslint src && yarn check-types && yarn test",
+    "equip": "yarn pretty && yarn scan"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

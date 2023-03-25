@@ -3,10 +3,19 @@ import Router from 'next/router';
 
 import firebase from '@/lib/firebase/client';
 
-const useSignOut = () =>
-  useCallback(async () => {
-    await firebase.auth().signOut();
-    Router.reload();
-  }, []);
+import useAlerts from '@/hooks/alerts';
+
+const useSignOut = () => {
+  const { createErrorAlert } = useAlerts();
+
+  return useCallback(async () => {
+    try {
+      await firebase.auth().signOut();
+      Router.reload();
+    } catch (error: any) {
+      createErrorAlert(error.message);
+    }
+  }, [createErrorAlert]);
+};
 
 export default useSignOut;

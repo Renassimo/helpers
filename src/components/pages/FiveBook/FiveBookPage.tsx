@@ -17,6 +17,8 @@ import Box from '@mui/material/Box';
 
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import useAlerts from '@/hooks/alerts';
+import { useEffect } from 'react';
 
 const Wrapper = styled.div(
   ({ theme }) => css`
@@ -74,6 +76,11 @@ const FiveBookPage = ({
 }) => {
   const theme = useTheme();
   const isLowerThanMd = useMediaQuery(theme.breakpoints.down('md'));
+  const { createErrorAlert } = useAlerts();
+
+  useEffect(() => {
+    if (error) createErrorAlert(error.message || error.code || error.status);
+  }, [createErrorAlert, error]);
 
   return (
     <FiveBookProvider data={data}>
