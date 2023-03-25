@@ -2,9 +2,10 @@ import { NotionResult } from '@/types/notion';
 import { FiveBookData } from '@/types/fiveBook';
 
 export const deserializeDay = (result: NotionResult) => {
-  const { id, properties } = result;
+  const { id, properties, icon } = result;
   const dayCode = properties?.['Day code'];
   const question = properties?.['Question'];
+  const emoji = icon?.emoji;
 
   return {
     id: id,
@@ -13,6 +14,7 @@ export const deserializeDay = (result: NotionResult) => {
         id: dayCode?.id,
         value: String(dayCode?.number),
       },
+      emoji,
       question: {
         id: question?.id,
         value: question?.rich_text?.[0]?.plain_text ?? null,

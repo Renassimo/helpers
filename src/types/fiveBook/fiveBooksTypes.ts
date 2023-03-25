@@ -4,6 +4,7 @@ export interface FiveBookData {
     dayCode: DayCode;
     answers: FiveBookAnswers;
     question: FiveBookQuestionOrAnswer;
+    emoji?: string;
   };
 }
 

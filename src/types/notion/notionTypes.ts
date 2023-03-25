@@ -29,7 +29,7 @@ export interface NotionResult {
   cover: string | null;
   created_by: NotionUpdatedBy;
   created_time: string;
-  icon: string | null;
+  icon: { type: string; emoji: string } | null;
   id: string;
   last_edited_by: NotionUpdatedBy;
   object: string;
