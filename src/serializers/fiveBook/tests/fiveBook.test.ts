@@ -83,9 +83,9 @@ describe('Five book serializers', () => {
             id: dayCode.id,
             value: String(dayCode.number),
           },
+          emoji: '✈️',
           question: {
             id: question.id,
-            emoji: '✈️',
             value: question.rich_text[0].plain_text,
           },
           answers: {

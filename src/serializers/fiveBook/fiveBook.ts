@@ -14,9 +14,9 @@ export const deserializeDay = (result: NotionResult) => {
         id: dayCode?.id,
         value: String(dayCode?.number),
       },
+      emoji,
       question: {
         id: question?.id,
-        emoji,
         value: question?.rich_text?.[0]?.plain_text ?? null,
       },
       answers: Object.entries(result?.properties).reduce(

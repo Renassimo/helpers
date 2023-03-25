@@ -32,7 +32,8 @@ describe('useFiveBookData', () => {
       id: 'ID',
       attributes: {
         dayCode: { id: 'dayCodeId', value: '203' },
-        question: { id: 'questionId', value: 'Wsup?', emoji: '⛺️' },
+        question: { id: 'questionId', value: 'Wsup?' },
+        emoji: '⛺️',
         answers: {
           '2012': { id: 'answer2012Id', value: 'Fine!' },
           '2020': { id: 'answer2020Id', value: 'Good!' },
