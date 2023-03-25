@@ -11,7 +11,7 @@ import CreateAnswerForm from '@/components/fiveBook/CreateAnswerForm';
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 
 const CreateAnswerCard = () => {
-  const { fiveBookDayText } = useFiveBook();
+  const { fiveBookDayText, emoji } = useFiveBook();
 
   const theme = useTheme();
   const isLowerThanMd = useMediaQuery(theme.breakpoints.down('md'));
@@ -19,7 +19,7 @@ const CreateAnswerCard = () => {
   return (
     <FiveBookCard>
       <Typography component="h1" variant="h5" textAlign="center" m={2}>
-        {fiveBookDayText}
+        {fiveBookDayText} {emoji}
       </Typography>
       {!isLowerThanMd && (
         <Box mt={2}>

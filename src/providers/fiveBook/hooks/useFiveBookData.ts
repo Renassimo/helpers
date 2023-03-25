@@ -49,6 +49,7 @@ const useFiveBookData = (data: FiveBookData | null) => {
       id: data.id,
       dayCode: data.attributes.dayCode.value,
       question: data.attributes.question.value,
+      emoji: data.attributes.question.emoji,
       answers,
       yearOptions,
       day,

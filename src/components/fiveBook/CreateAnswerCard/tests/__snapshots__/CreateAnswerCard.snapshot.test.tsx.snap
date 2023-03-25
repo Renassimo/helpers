@@ -11,7 +11,35 @@ exports[`CreateAnswerCard snapshot when screen width is lower than md renders su
       >
         <h1
           class="MuiTypography-root MuiTypography-h5 css-jrpjrq-MuiTypography-root"
-        />
+        >
+          25 March
+           
+          🛤️
+        </h1>
+        <div>
+          Mocked Create Answer Form
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`CreateAnswerCard snapshot when screen width is lower than md when got no emoji renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1ps6pg7-MuiPaper-root"
+    >
+      <div
+        class="css-w0nmsf"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h5 css-jrpjrq-MuiTypography-root"
+        >
+          25 March
+           
+        </h1>
         <div>
           Mocked Create Answer Form
         </div>
@@ -32,7 +60,43 @@ exports[`CreateAnswerCard snapshot when screen width is wider than md renders su
       >
         <h1
           class="MuiTypography-root MuiTypography-h5 css-jrpjrq-MuiTypography-root"
-        />
+        >
+          25 March
+           
+          🛤️
+        </h1>
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Mocked DatePicker. Static: 
+            , onChange: 
+          </div>
+        </div>
+        <div>
+          Mocked Create Answer Form
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`CreateAnswerCard snapshot when screen width is wider than md when got no emoji renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1ps6pg7-MuiPaper-root"
+    >
+      <div
+        class="css-w0nmsf"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h5 css-jrpjrq-MuiTypography-root"
+        >
+          25 March
+           
+        </h1>
         <div
           class="MuiBox-root css-1yuhvjn"
         >

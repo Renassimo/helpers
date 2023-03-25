@@ -7,6 +7,7 @@ const FiveBookContext = createContext<{
   currentYear: string | null;
   setData: Dispatch<SetStateAction<FiveBookData | null>>;
   id: string;
+  emoji?: string;
   dayCode: string;
   question: string | null;
   answers: ClientAnswer[];

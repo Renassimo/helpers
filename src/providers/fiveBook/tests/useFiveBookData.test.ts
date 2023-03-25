@@ -32,7 +32,7 @@ describe('useFiveBookData', () => {
       id: 'ID',
       attributes: {
         dayCode: { id: 'dayCodeId', value: '203' },
-        question: { id: 'questionId', value: 'Wsup?' },
+        question: { id: 'questionId', value: 'Wsup?', emoji: '⛺️' },
         answers: {
           '2012': { id: 'answer2012Id', value: 'Fine!' },
           '2020': { id: 'answer2020Id', value: 'Good!' },
@@ -57,6 +57,7 @@ describe('useFiveBookData', () => {
         { year: '2020', value: data.attributes.answers['2020'].value },
         { year: '2021', value: data.attributes.answers['2021'].value },
       ],
+      emoji: '⛺️',
       yearOptions: ['2021'],
       day: dayjs(`${mockedCurrentYear}-${mockedIsoMonthDayFromDayCode}`),
       fiveBookDay,

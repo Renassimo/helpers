@@ -59,7 +59,7 @@ describe('Five book serializers', () => {
         object: 'created_by_object',
       },
       created_time: 'created_time',
-      icon: null,
+      icon: { type: 'emoji', emoji: '✈️' },
       id: 'result_id',
       last_edited_by: {
         id: 'last_edited_by_id',
@@ -85,6 +85,7 @@ describe('Five book serializers', () => {
           },
           question: {
             id: question.id,
+            emoji: '✈️',
             value: question.rich_text[0].plain_text,
           },
           answers: {
