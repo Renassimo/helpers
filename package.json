@@ -11,7 +11,7 @@
     "check-types": "tsc --noemit",
     "pretty": "yarn prettier --write src",
     "scan": "yarn eslint src && yarn check-types && yarn test",
-    "prepare": "yarn pretty && yarn scan"
+    "equip": "yarn pretty && yarn scan"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
