@@ -41,6 +41,20 @@ export interface NotionResult {
   url: string;
 }
 
+export interface NotionBlockChildrenResult {
+  archived: boolean;
+  created_by: NotionUpdatedBy;
+  created_time: string;
+  has_children: boolean;
+  id: string;
+  image: NotionImageBlock;
+  last_edited_by: NotionUpdatedBy;
+  last_edited_by_time: string;
+  object: string;
+  parent: NotionParent;
+  type: string;
+}
+
 export interface NotionUpdatedBy {
   id: string;
   object: string;
@@ -56,10 +70,14 @@ export interface NotionProperty {
 }
 
 export interface NotionUniversalProperty extends NotionProperty {
-  title?: NotionText;
+  title?: NotionText[];
   number?: number;
   created_time?: string;
   rich_text?: NotionText[];
+  select?: NotionSelect;
+  date?: NotionDate;
+  checkbox?: boolean;
+  url?: string;
 }
 
 export interface NotionText {
@@ -92,4 +110,32 @@ export interface NotionName {
   id: 'title';
   title: NotionText;
   type: 'title';
+}
+
+export interface NotionSelect {
+  id: string;
+  color: string;
+  name: string;
+}
+
+export interface NotionDate {
+  start: string;
+  end: string | null;
+  timezone: string | null;
+}
+
+export interface NotionImageBlock {
+  caption: any[];
+  file: NotionFile;
+  type: string;
+}
+
+export interface NotionFile {
+  expiry_time: string;
+  url: string;
+}
+
+export interface NotionParent {
+  page_id: string;
+  type: string;
 }
