@@ -16,7 +16,7 @@ const getChangedAnswers = (
 
       return {
         ...result,
-        [key]: { value },
+        [key]: value,
       };
     },
     {}

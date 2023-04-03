@@ -38,23 +38,11 @@ describe('FiveBookPage', () => {
   const data = {
     id: 'id',
     attributes: {
-      dayCode: {
-        id: 'day-code-id',
-        value: '203',
-      },
-      question: {
-        id: 'question-id',
-        value: 'wSup?',
-      },
+      dayCode: '203',
+      question: 'wSup?',
       answers: {
-        '2012': {
-          id: 'answer-2012-id',
-          value: 'Fine!',
-        },
-        '2018': {
-          id: 'answer-2018-id',
-          value: 'Good!',
-        },
+        '2012': 'Fine!',
+        '2018': 'Good!',
       },
     },
   };

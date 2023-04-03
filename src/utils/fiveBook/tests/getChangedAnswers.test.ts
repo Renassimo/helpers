@@ -30,9 +30,7 @@ describe('getChangedAnswers', () => {
   test('returns new answers', () => {
     // Arrange
     const expectedResult = {
-      '2023': {
-        value: 'Amazing!',
-      },
+      '2023': 'Amazing!',
     };
     // Act
     const result = getChangedAnswers(original, changed);
@@ -44,12 +42,8 @@ describe('getChangedAnswers', () => {
     test('returns new and changed answers', () => {
       // Arrange
       const expectedResult = {
-        '2022': {
-          value: 'Very Nice!',
-        },
-        '2023': {
-          value: 'Amazing!',
-        },
+        '2022': 'Very Nice!',
+        '2023': 'Amazing!',
       };
       // Act
       const result = getChangedAnswers(original, changed, false);

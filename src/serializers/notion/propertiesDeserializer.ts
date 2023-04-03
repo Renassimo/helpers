@@ -4,6 +4,7 @@ class NotionPropertiesDeserializer {
   result: NotionResult;
   id: string;
   url: string;
+  emoji?: string;
   properties: NotionProperties;
 
   constructor(result: NotionResult) {
@@ -11,6 +12,7 @@ class NotionPropertiesDeserializer {
     this.id = result.id;
     this.url = result.url;
     this.properties = result.properties;
+    this.emoji = result.icon?.emoji;
   }
 
   private getProperty(propertyName: string) {
@@ -26,6 +28,11 @@ class NotionPropertiesDeserializer {
     return this.getAttribute(
       property?.[isTitle ? 'title' : 'rich_text']?.[0]?.plain_text
     );
+  }
+
+  getNumberAttribute(propertyName: string) {
+    const property = this.getProperty(propertyName);
+    return this.getAttribute(property?.number);
   }
 
   getSelectAttribute(propertyName: string) {

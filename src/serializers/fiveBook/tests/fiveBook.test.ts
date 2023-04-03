@@ -79,24 +79,12 @@ describe('Five book serializers', () => {
       const expectedResult = {
         id: data.id,
         attributes: {
-          dayCode: {
-            id: dayCode.id,
-            value: String(dayCode.number),
-          },
+          dayCode: String(dayCode.number),
           emoji: '✈️',
-          question: {
-            id: question.id,
-            value: question.rich_text[0].plain_text,
-          },
+          question: question.rich_text[0].plain_text,
           answers: {
-            2015: {
-              id: answer2015.id,
-              value: null,
-            },
-            2016: {
-              id: answer2016.id,
-              value: answer2016.rich_text[0].plain_text,
-            },
+            2015: null,
+            2016: answer2016.rich_text[0].plain_text,
           },
         },
       };
@@ -119,14 +107,8 @@ describe('Five book serializers', () => {
           value: 'How are you?',
         },
         answers: {
-          2015: {
-            id: 'answer_2015_id',
-            value: '',
-          },
-          2016: {
-            id: 'answer_2016_id',
-            value: 'I am fine!',
-          },
+          2015: '',
+          2016: 'I am fine!',
         },
       },
     };
@@ -138,7 +120,7 @@ describe('Five book serializers', () => {
           rich_text: [
             {
               text: {
-                content: data.attributes.answers['2016'].value,
+                content: data.attributes.answers['2016'],
               },
             },
           ],
