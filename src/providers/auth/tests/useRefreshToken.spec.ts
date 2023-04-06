@@ -1,4 +1,4 @@
-import { renderHook, cleanup } from '@testing-library/react-hooks';
+import { renderHook, cleanup } from '@testing-library/react';
 import useRefreshToken from '../hooks/useRefreshToken';
 import refreshTokenInInterval from '../utils/refreshTokenInInterval';
 

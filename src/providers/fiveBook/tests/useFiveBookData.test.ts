@@ -6,7 +6,7 @@ import {
   getPrevDayCode,
   getYear,
 } from '@/utils/dayjs';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { getIsoMonthDayFromDayCode } from '@/utils/fiveBook';
 import dayjs from 'dayjs';
 

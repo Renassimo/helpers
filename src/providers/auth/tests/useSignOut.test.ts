@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { renderHook, cleanup, act } from '@testing-library/react-hooks';
+import { renderHook, cleanup, act } from '@testing-library/react';
 
 import useAlerts from '@/hooks/alerts';
 
