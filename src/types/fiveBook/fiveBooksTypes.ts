@@ -16,3 +16,12 @@ export interface ClientAnswer {
   year: string;
   value: string | null;
 }
+
+export interface UpdateFiveBookData {
+  data: {
+    id: string;
+    attributes: {
+      answers: FiveBookAnswers;
+    };
+  };
+}

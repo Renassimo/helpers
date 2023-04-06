@@ -20,7 +20,7 @@ const useUpdateAnswers = (onlyCreate = true) => {
         },
       };
 
-      const response = await updateDay(dayCode, data);
+      const response = await updateDay(dayCode, { data });
       if (response) setData(response.data);
     },
     [answers, dayCode, id, onlyCreate, setData, updateDay]

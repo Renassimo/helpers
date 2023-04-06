@@ -45,9 +45,11 @@ describe('useUpdateAnswers', () => {
     // Assert
     expect(setData).toHaveBeenCalledWith(expectedData.data);
     expect(updateDay).toHaveBeenCalledWith(dayCode, {
-      id,
-      attributes: {
-        answers: changedAnswers,
+      data: {
+        id,
+        attributes: {
+          answers: changedAnswers,
+        },
       },
     });
     expect(getChangedAnswers).toHaveBeenCalledWith(answers, payload, true);

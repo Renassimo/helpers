@@ -8,7 +8,12 @@ describe('useUpdateDay', () => {
     const responseData = { hello: 'world' };
     const expectedResult = responseData;
     const dayCode = '203';
-    const payload = { id: 'id' };
+    const payload = {
+      data: {
+        id: 'id',
+        attributes: { answers: { '2015': 'changed 2015 answer' } },
+      },
+    };
     fetchMock.patch(`/api/5book/${dayCode}`, responseData);
 
     const {
@@ -21,7 +26,7 @@ describe('useUpdateDay', () => {
     expect(result).toEqual(expectedResult);
     expect(fetchMock.lastUrl()).toEqual(`/api/5book/${dayCode}`);
     expect(fetchMock.lastOptions()).toEqual({
-      body: '{"id":"id"}',
+      body: '{"data":{"id":"id","attributes":{"answers":{"2015":"changed 2015 answer"}}}}',
       method: 'PATCH',
     });
   });

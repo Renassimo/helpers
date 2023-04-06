@@ -12,8 +12,10 @@ describe('updateDay', () => {
   const mockedID = 'mocked_id';
   const mockedToken = 'mocked_token';
   const mockedBody = {
-    data: 'some data to serialize',
-    id: mockedID,
+    data: {
+      attributes: 'some data to serialize',
+      id: mockedID,
+    },
   };
   const mockedRequestBody = JSON.stringify(mockedBody);
   const mockedSerializedData = { data: 'some serialized data' };
@@ -64,7 +66,7 @@ describe('updateDay', () => {
       const result = await updateDay(mockedNotionService, mockedRequestBody);
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(serializeDay).toHaveBeenCalledWith(mockedBody);
+      expect(serializeDay).toHaveBeenCalledWith(mockedBody.data);
       expect(deserializeDay).toHaveBeenCalledWith(mockedDataToDeserialize);
       expect(mockedNotionService.updatePage).toHaveBeenCalledWith(
         expectedUpdatePageArgs[0],
@@ -92,7 +94,7 @@ describe('updateDay', () => {
       const result = await updateDay(mockedNotionService, mockedRequestBody);
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(serializeDay).toHaveBeenCalledWith(mockedBody);
+      expect(serializeDay).toHaveBeenCalledWith(mockedBody.data);
       expect(deserializeDay).not.toHaveBeenCalled();
       expect(mockedNotionService.updatePage).toHaveBeenCalledWith(
         expectedUpdatePageArgs[0],
