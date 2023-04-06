@@ -6,7 +6,7 @@ import {
   getPrevDayCode,
   getYear,
 } from '@/utils/dayjs';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { getIsoMonthDayFromDayCode } from '@/utils/fiveBook';
 import dayjs from 'dayjs';
 
@@ -31,13 +31,13 @@ describe('useFiveBookData', () => {
     const data = {
       id: 'ID',
       attributes: {
-        dayCode: { id: 'dayCodeId', value: '203' },
-        question: { id: 'questionId', value: 'Wsup?' },
+        dayCode: '203',
+        question: 'Wsup?',
         emoji: '⛺️',
         answers: {
-          '2012': { id: 'answer2012Id', value: 'Fine!' },
-          '2020': { id: 'answer2020Id', value: 'Good!' },
-          '2021': { id: 'answer2022Id', value: null },
+          '2012': 'Fine!',
+          '2020': 'Good!',
+          '2021': null,
         },
       },
     };
@@ -51,12 +51,12 @@ describe('useFiveBookData', () => {
     const expectedResult = {
       currentYear: mockedCurrentYear,
       id: data.id,
-      dayCode: data.attributes.dayCode.value,
-      question: data.attributes.question.value,
+      dayCode: data.attributes.dayCode,
+      question: data.attributes.question,
       answers: [
-        { year: '2012', value: data.attributes.answers['2012'].value },
-        { year: '2020', value: data.attributes.answers['2020'].value },
-        { year: '2021', value: data.attributes.answers['2021'].value },
+        { year: '2012', value: data.attributes.answers['2012'] },
+        { year: '2020', value: data.attributes.answers['2020'] },
+        { year: '2021', value: data.attributes.answers['2021'] },
       ],
       emoji: '⛺️',
       yearOptions: ['2021'],
@@ -89,7 +89,7 @@ describe('useFiveBookData', () => {
     expect(current).toEqual(expectedResult);
     expect(getYear).toHaveBeenCalledTimes(1);
     expect(getIsoMonthDayFromDayCode).toHaveBeenCalledWith(
-      data.attributes.dayCode.value
+      data.attributes.dayCode
     );
     expect(getPrevDayCode).toHaveBeenCalledWith(fiveBookDay);
     expect(getNextDayCode).toHaveBeenCalledWith(fiveBookDay);

@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import useUser from '../hooks/useUser';
 import getIdTokenChangedCallback from '../utils/getIdTokenChangedCallback';
 

@@ -1,28 +1,27 @@
 export interface FiveBookData {
   id: string;
   attributes: {
-    dayCode: DayCode;
+    dayCode: string;
     answers: FiveBookAnswers;
-    question: FiveBookQuestionOrAnswer;
+    question: string;
     emoji?: string;
   };
 }
 
 export interface FiveBookAnswers {
-  [key: string]: FiveBookQuestionOrAnswer;
-}
-
-export interface FiveBookQuestionOrAnswer {
-  id: string;
-  value: string | null;
-}
-
-export interface DayCode {
-  id: string;
-  value: string;
+  [key: string]: string;
 }
 
 export interface ClientAnswer {
   year: string;
   value: string | null;
+}
+
+export interface UpdateFiveBookData {
+  data: {
+    id: string;
+    attributes: {
+      answers: FiveBookAnswers;
+    };
+  };
 }

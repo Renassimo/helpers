@@ -27,7 +27,7 @@ const useFiveBookData = (data: FiveBookData | null) => {
         fiveBookDayText: '',
       };
 
-    const dayCode = data.attributes.dayCode.value;
+    const dayCode = data.attributes.dayCode;
     const isoMonthDay = getIsoMonthDayFromDayCode(dayCode);
     const day = dayjs(`${currentYear}-${isoMonthDay}`);
     const fiveBookDay = dayjs(`2020-${isoMonthDay}`);
@@ -36,19 +36,17 @@ const useFiveBookData = (data: FiveBookData | null) => {
     const fiveBookDayText = getDayText(fiveBookDay);
 
     const answers = Object.entries(data.attributes.answers).map(
-      ([key, { value }]) => ({ year: key, value: value })
+      ([key, value]) => ({ year: key, value: value })
     );
 
     const yearOptions = Object.keys(data.attributes.answers)
-      .filter(
-        (key) => !data.attributes.answers[key].value && +key <= +currentYear
-      )
+      .filter((key) => !data.attributes.answers[key] && +key <= +currentYear)
       .reverse();
 
     return {
       id: data.id,
-      dayCode: data.attributes.dayCode.value,
-      question: data.attributes.question.value,
+      dayCode: data.attributes.dayCode,
+      question: data.attributes.question,
       emoji: data.attributes.emoji,
       answers,
       yearOptions,

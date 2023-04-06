@@ -4,9 +4,9 @@ import { deserializeDay, serializeDay } from '@/serializers/fiveBook';
 
 const updateDay = async (notionService: NotionService, requestBody: string) => {
   const body = JSON.parse(requestBody);
-  const serializedBody = serializeDay(body);
+  const serializedBody = serializeDay(body.data);
 
-  const { ok, data } = await notionService.updatePage(`${body?.id}`, {
+  const { ok, data } = await notionService.updatePage(`${body?.data?.id}`, {
     properties: serializedBody,
   });
 

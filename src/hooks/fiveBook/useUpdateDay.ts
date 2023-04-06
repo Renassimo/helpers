@@ -1,10 +1,11 @@
 import { useCallback, useState } from 'react';
+import { UpdateFiveBookData } from '@/types/fiveBook';
 
 const useUpdateDay = () => {
   const [loading, setLoading] = useState(false);
 
   const update = useCallback(
-    async (dayCode: string, payload: Record<string, any>) => {
+    async (dayCode: string, payload: UpdateFiveBookData) => {
       setLoading(true);
 
       const response = await fetch(`/api/5book/${dayCode}`, {
