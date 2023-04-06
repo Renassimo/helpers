@@ -16,7 +16,7 @@ describe('updateDay', () => {
     id: mockedID,
   };
   const mockedRequestBody = JSON.stringify(mockedBody);
-  const mockedSerializedData = { data: 'some serialize data' };
+  const mockedSerializedData = { data: 'some serialized data' };
   const mockedDataToDeserialize = { data: 'some data to deserialize' };
   const mockedDeserializedData = 'some deserialized data';
   const mockedErrorMessage = 'Not Authenticated';

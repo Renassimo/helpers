@@ -1,4 +1,9 @@
 import { NotionResult } from '@/types/notion';
+import {
+  SpottedPlaneDescription,
+  SpottedPlaneFirstFlight,
+  SpottedPlaneGroup,
+} from '@/types/spotting';
 
 import NotionPropertiesDeserializer from '@/serializers/notion';
 
@@ -30,6 +35,69 @@ export const deserializeSpottedPlanes = (
         spottedDate: deserializer.getDateAttribute('Spotted date'),
         url: deserializer.url,
         photoUrl: photoUrls[id],
+      },
+    };
+  });
+};
+
+export const serializeSpottedPlanes = (data: SpottedPlaneDescription[]) => {
+  return data.map((spottedPlane: SpottedPlaneDescription) => {
+    const { id, attributes } = spottedPlane;
+    const {
+      description,
+      hashtags,
+      newFirstFlight,
+      groupName,
+      groupDescription,
+      groupHashtags,
+    } = attributes;
+
+    const text = `${description}\n${hashtags}`;
+
+    const group: SpottedPlaneGroup | Record<string, never> =
+      groupName && groupDescription && groupHashtags
+        ? {
+            'Group post': { checkbox: true },
+            'Group text': {
+              type: 'rich_text',
+              rich_text: [
+                {
+                  text: { content: `${groupDescription}\n${groupHashtags}` },
+                },
+              ],
+            },
+            Group: { select: { name: groupName || 'Default' } },
+          }
+        : {};
+
+    const firstFlight: SpottedPlaneFirstFlight | Record<string, never> =
+      newFirstFlight
+        ? {
+            'First flight': {
+              date: { start: newFirstFlight },
+            },
+          }
+        : {};
+
+    return {
+      id,
+      body: {
+        icon: { type: 'emoji', emoji: '✈️' },
+        properties: {
+          'Ready to publish': {
+            checkbox: true,
+          },
+          Text: {
+            type: 'rich_text',
+            rich_text: [
+              {
+                text: { content: text },
+              },
+            ],
+          },
+          ...firstFlight,
+          ...group,
+        },
       },
     };
   });
