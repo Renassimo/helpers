@@ -34,7 +34,7 @@ export const deserializeSpottedPlanes = (
         registration: deserializer.getTextAttribute('Registration'),
         spottedDate: deserializer.getDateAttribute('Spotted date'),
         url: deserializer.url,
-        photoUrl: photoUrls[id],
+        photoUrl: photoUrls[id] ?? null,
       },
     };
   });

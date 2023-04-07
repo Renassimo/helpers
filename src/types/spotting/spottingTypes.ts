@@ -1,36 +1,48 @@
-export interface SpottedPlane {
+export interface SpottedPlaneApiDataAttributes {
+  airplaneName: string | null;
+  cn: string | null;
+  carrier: string | null;
+  firstFlight: string | null;
+  flown: boolean;
+  groupPost: boolean;
+  manufacturer: string | null;
+  model: string | null;
+  modelled: boolean;
+  name: string | null;
+  photosUrl: string | null;
+  place: string | null;
+  planespottersUrl: string | null;
+  registration: string | null;
+  spottedDate: string | null;
+  url: string;
+  photoUrl: string | null;
+}
+
+export interface SpottedPlaneApiData {
   id: string;
-  attributes: {
-    airplaneName: string;
-    cn: string;
-    carrier: string;
-    firstFlight: string;
-    flown: boolean;
-    groupPost: boolean;
-    manufacturer: string;
-    model: string;
-    modelled: boolean;
-    name: string;
-    photosUrl: string;
-    place: string;
-    planespottersUrl: string;
-    registration: string;
-    spottedDate: string;
-    url: string;
-    photoUrl: string;
-  };
+  attributes: SpottedPlaneApiDataAttributes;
+}
+
+export interface SpottedPlaneDescriptionAttributes {
+  description: string;
+  hashtags: string;
+  newFirstFlight?: string;
+  groupName?: string;
+  groupDescription?: string;
+  groupHashtags?: string;
 }
 
 export interface SpottedPlaneDescription {
   id: string;
-  attributes: {
-    description: string;
-    hashtags: string;
-    newFirstFlight?: string;
-    groupName?: string;
-    groupDescription?: string;
-    groupHashtags?: string;
-  };
+  attributes: SpottedPlaneDescriptionAttributes;
+}
+
+type SpottedPlaneProviderDataAttributes = SpottedPlaneApiDataAttributes &
+  SpottedPlaneDescriptionAttributes;
+
+export interface SpottedPlaneProviderData
+  extends SpottedPlaneProviderDataAttributes {
+  id: string;
 }
 
 export interface SpottedPlaneGroup {

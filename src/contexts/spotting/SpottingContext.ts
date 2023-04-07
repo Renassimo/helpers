@@ -1,0 +1,39 @@
+import { createContext } from 'react';
+import { SpottedPlaneProviderData } from '@/types/spotting';
+
+const SpottingContext = createContext<{
+  spottedPlanes: SpottedPlaneProviderData[];
+  updateDescription: (id: string, description: string) => void;
+  updateHashtags: (id: string, hashtags: string) => void;
+  updateNewFirstFlight: (id: string, newFirstFlight: string) => void;
+  updateGroupName: (id: string, groupName: string) => void;
+  updateGroupDescription: (id: string, groupDescription: string) => void;
+  updateGroupHashtags: (id: string, groupHashtags: string) => void;
+  getUpdateFunctions: (id: string) => Record<string, (payload: string) => void>;
+  filterPlanes: (ids: string[]) => void;
+  selectedIds: string[];
+  addSelectedId: (id: string) => void;
+  removeSelectedIds: (ids: string[]) => void;
+}>({
+  spottedPlanes: [],
+  updateDescription: () => {},
+  updateHashtags: () => {},
+  updateNewFirstFlight: () => {},
+  updateGroupName: () => {},
+  updateGroupDescription: () => {},
+  updateGroupHashtags: () => {},
+  getUpdateFunctions: () => ({
+    updateDescription: () => {},
+    updateHashtags: () => {},
+    updateNewFirstFlight: () => {},
+    updateGroupName: () => {},
+    updateGroupDescription: () => {},
+    updateGroupHashtags: () => {},
+  }),
+  filterPlanes: () => {},
+  selectedIds: [],
+  addSelectedId: () => {},
+  removeSelectedIds: () => {},
+});
+
+export default SpottingContext;
