@@ -62,17 +62,6 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
   const updateGroupHashtags = (id: string, groupHashtags: string) =>
     updateSpottedPlane(id, { groupHashtags });
 
-  const getUpdateFunctions = (id: string) => ({
-    updateDescription: (payload: string) => updateDescription(id, payload),
-    updateHashtags: (payload: string) => updateHashtags(id, payload),
-    updateNewFirstFlight: (payload: string) =>
-      updateNewFirstFlight(id, payload),
-    updateGroupName: (payload: string) => updateGroupName(id, payload),
-    updateGroupDescription: (payload: string) =>
-      updateGroupDescription(id, payload),
-    updateGroupHashtags: (payload: string) => updateGroupHashtags(id, payload),
-  });
-
   const filterPlanes = (ids: string[]) => {
     setSpottingData((current: Record<string, SpottedPlaneProviderData>) =>
       Object.values(current).reduce(
@@ -95,6 +84,17 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
       current.filter((id: string) => !ids.includes(id))
     );
   };
+
+  const getUpdateFunctions = (id: string) => ({
+    updateDescription: (payload: string) => updateDescription(id, payload),
+    updateHashtags: (payload: string) => updateHashtags(id, payload),
+    updateNewFirstFlight: (payload: string) =>
+      updateNewFirstFlight(id, payload),
+    updateGroupName: (payload: string) => updateGroupName(id, payload),
+    updateGroupDescription: (payload: string) =>
+      updateGroupDescription(id, payload),
+    updateGroupHashtags: (payload: string) => updateGroupHashtags(id, payload),
+  });
 
   return {
     spottedPlanes,
