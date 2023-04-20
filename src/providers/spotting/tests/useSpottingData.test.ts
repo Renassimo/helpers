@@ -4,6 +4,14 @@ import useSpottingData, {
   defaultDescriptionData,
 } from '@/providers/spotting/hooks/useSpottingData';
 
+import {
+  convertLinesIntoText,
+  getDescriptionLines,
+  getHashtagLines,
+} from '@/utils/spotting';
+
+jest.mock('@/utils/spotting');
+
 describe('useSpottingData', () => {
   const mockedPlane1 = {
     id: 'mocked-plane-1-id',
@@ -83,6 +91,10 @@ describe('useSpottingData', () => {
     filterPlanes: expect.any(Function),
     addSelectedId: expect.any(Function),
     removeSelectedIds: expect.any(Function),
+    generateDescription: expect.any(Function),
+    generateHashtags: expect.any(Function),
+    clearDescription: expect.any(Function),
+    clearHashtags: expect.any(Function),
   };
 
   test('returns data', () => {
@@ -335,6 +347,185 @@ describe('useSpottingData', () => {
         result.current.addSelectedId(mockedPlane2.id);
         result.current.addSelectedId(mockedPlane3.id);
         result.current.removeSelectedIds([mockedPlane1.id, mockedPlane3.id]);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+    });
+  });
+
+  describe('when generates description', () => {
+    const mockedLines = [['line1'], ['line2']];
+    const mockedText = 'mocked description';
+    const mockedGetDescriptionLines = jest.fn(() => mockedLines);
+    const mockedConvertLinesIntoText = jest.fn(() => mockedText);
+
+    beforeEach(() => {
+      (getDescriptionLines as unknown as jest.Mock).mockImplementationOnce(
+        mockedGetDescriptionLines
+      );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+    });
+
+    test('returns updated data', async () => {
+      // Arrange
+      const mockedSpottedPlane1 = {
+        ...mockedPlane1.attributes,
+        id: mockedPlane1.id,
+        ...defaultDescriptionData,
+      };
+      const expectedResult = {
+        spottedPlanes: [
+          { ...mockedSpottedPlane1, description: mockedText },
+          {
+            ...mockedPlane2.attributes,
+            id: mockedPlane2.id,
+            ...defaultDescriptionData,
+          },
+          {
+            ...mockedPlane3.attributes,
+            id: mockedPlane3.id,
+            ...defaultDescriptionData,
+          },
+        ],
+        selectedIds: [],
+        ...expectedFunctions,
+      };
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.generateDescription(mockedPlane1.id);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+      expect(mockedGetDescriptionLines).toHaveBeenCalledWith(
+        mockedSpottedPlane1
+      );
+      expect(mockedConvertLinesIntoText).toHaveBeenCalledWith(mockedLines);
+    });
+  });
+
+  describe('when generates hashtags', () => {
+    const mockedLines = [['#line1'], ['#line2']];
+    const mockedText = '#mocked #description';
+    const mockedGetHashtagLines = jest.fn(() => mockedLines);
+    const mockedConvertLinesIntoText = jest.fn(() => mockedText);
+
+    beforeEach(() => {
+      (getHashtagLines as unknown as jest.Mock).mockImplementationOnce(
+        mockedGetHashtagLines
+      );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+    });
+
+    test('returns updated data', async () => {
+      // Arrange
+      const mockedSpottedPlane2 = {
+        ...mockedPlane2.attributes,
+        id: mockedPlane2.id,
+        ...defaultDescriptionData,
+      };
+      const expectedResult = {
+        spottedPlanes: [
+          {
+            ...mockedPlane1.attributes,
+            id: mockedPlane1.id,
+            ...defaultDescriptionData,
+          },
+          {
+            ...mockedSpottedPlane2,
+            hashtags: mockedText,
+          },
+          {
+            ...mockedPlane3.attributes,
+            id: mockedPlane3.id,
+            ...defaultDescriptionData,
+          },
+        ],
+        selectedIds: [],
+        ...expectedFunctions,
+      };
+
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.generateHashtags(mockedPlane2.id);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+      expect(mockedGetHashtagLines).toHaveBeenCalledWith(mockedSpottedPlane2);
+      expect(mockedConvertLinesIntoText).toHaveBeenCalledWith(mockedLines);
+    });
+  });
+
+  describe('when clears description', () => {
+    test('returns updated data', async () => {
+      // Arrange
+      const expectedResult = {
+        spottedPlanes: [
+          {
+            ...mockedPlane1.attributes,
+            id: mockedPlane1.id,
+            ...defaultDescriptionData,
+          },
+          {
+            ...mockedPlane2.attributes,
+            id: mockedPlane2.id,
+            ...defaultDescriptionData,
+          },
+          {
+            ...mockedPlane3.attributes,
+            id: mockedPlane3.id,
+            ...defaultDescriptionData,
+          },
+        ],
+        selectedIds: [],
+        ...expectedFunctions,
+      };
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.generateDescription(mockedPlane1.id);
+        result.current.clearDescription(mockedPlane1.id);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+    });
+  });
+
+  describe('when clears hashtags', () => {
+    test('returns updated data', async () => {
+      // Arrange
+      const expectedResult = {
+        spottedPlanes: [
+          {
+            ...mockedPlane1.attributes,
+            id: mockedPlane1.id,
+            ...defaultDescriptionData,
+          },
+          {
+            ...mockedPlane2.attributes,
+            id: mockedPlane2.id,
+            ...defaultDescriptionData,
+          },
+          {
+            ...mockedPlane3.attributes,
+            id: mockedPlane3.id,
+            ...defaultDescriptionData,
+          },
+        ],
+        selectedIds: [],
+        ...expectedFunctions,
+      };
+
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.generateHashtags(mockedPlane2.id);
+        result.current.clearHashtags(mockedPlane2.id);
       });
       // Assert
       expect(result.current).toEqual(expectedResult);

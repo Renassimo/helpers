@@ -1,8 +1,15 @@
 import { useState } from 'react';
+
 import {
   SpottedPlaneApiData,
   SpottedPlaneProviderData,
 } from '@/types/spotting';
+
+import {
+  convertLinesIntoText,
+  getDescriptionLines,
+  getHashtagLines,
+} from '@/utils/spotting';
 
 export const defaultDescriptionData = {
   description: '',
@@ -15,7 +22,9 @@ export const defaultDescriptionData = {
 
 const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const [spottingData, setSpottingData] = useState(
+  const [spottingData, setSpottingData] = useState<
+    Record<string, SpottedPlaneProviderData>
+  >(
     data?.reduce(
       (result, { id, attributes }: SpottedPlaneApiData) => ({
         ...result,
@@ -30,7 +39,7 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
   );
 
   const updateSpottedPlane = (id: string, payload: Record<string, string>) => {
-    setSpottingData((current: Record<string, SpottedPlaneProviderData>) => {
+    setSpottingData((current) => {
       const item = current[id];
       if (item) {
         return {
@@ -41,6 +50,7 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
           },
         };
       }
+      return current;
     });
   };
 
@@ -96,6 +106,23 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
     updateGroupHashtags: (payload: string) => updateGroupHashtags(id, payload),
   });
 
+  const generateDescription = (id: string) => {
+    const lines = getDescriptionLines(spottingData[id]);
+    const text = convertLinesIntoText(lines);
+
+    updateDescription(id, text);
+  };
+
+  const generateHashtags = (id: string) => {
+    const lines = getHashtagLines(spottingData[id]);
+    const text = convertLinesIntoText(lines);
+
+    updateHashtags(id, text);
+  };
+
+  const clearDescription = (id: string) => updateDescription(id, '');
+  const clearHashtags = (id: string) => updateHashtags(id, '');
+
   return {
     spottedPlanes,
     updateDescription,
@@ -109,6 +136,10 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
     selectedIds,
     addSelectedId,
     removeSelectedIds,
+    generateDescription,
+    generateHashtags,
+    clearDescription,
+    clearHashtags,
   };
 };
 
