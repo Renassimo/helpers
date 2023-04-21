@@ -1,4 +1,4 @@
-type LineWord = string | null | undefined | false;
+import { LineWord } from '@/types/spotting';
 
 export const convertName = (name: string | null) =>
   name?.split('-').join('').split(' ').join('') ?? null;

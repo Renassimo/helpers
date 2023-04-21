@@ -77,3 +77,5 @@ export interface SpottedPlaneSerializedDescription {
     };
   };
 }
+
+export type LineWord = string | null | undefined | false;

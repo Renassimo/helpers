@@ -1,4 +1,4 @@
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { LineWord, SpottedPlaneProviderData } from '@/types/spotting';
 
 import {
   convertName,
@@ -9,6 +9,9 @@ import {
   specialHashTags,
 } from '@/utils/spotting';
 import { formatFromNotionDate } from '@/utils/dayjs';
+
+const withEnter = (words: LineWord[]) =>
+  words.find((word: LineWord) => !!word) ? [...words, '\n'] : words;
 
 export const getDescriptionLines = (data: SpottedPlaneProviderData) => {
   const {
@@ -68,23 +71,23 @@ export const getHashtagLines = (data: SpottedPlaneProviderData) => {
     convertedCarrier ? specialHashTags[convertedCarrier] ?? {} : {};
 
   return [
-    [
+    withEnter([
       insRHash(convertedModel),
       insRHash(convertedManufacturer),
       avrModelTag,
       avrCarrierTag,
       insRHash(convertedCarrier),
       insRHash(convertedPlace),
-    ],
-    [isSpotted ? insHash('renassimo_spotted') : null],
-    [modelled ? insHash('renassimo_modelled') : null],
-    [
+    ]),
+    withEnter([isSpotted ? insHash('renassimo_spotted') : null]),
+    withEnter([modelled ? insHash('renassimo_modelled') : null]),
+    withEnter([
       insHash(convertedManufacturer),
       insHash(convertedModel),
       commonModelTag,
       commonCarrierTag,
       insHash(convertedCarrier),
-    ],
+    ]),
     [
       '#spotting #aviation #avgeek #flywithme #planes #jets #jetlovers',
       isSpotted && '#kznspotting #waw #epwa #wawspotting #warsawspotting',

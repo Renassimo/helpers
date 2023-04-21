@@ -14,6 +14,10 @@ const SpottingContext = createContext<{
   selectedIds: string[];
   addSelectedId: (id: string) => void;
   removeSelectedIds: (ids: string[]) => void;
+  generateDescription: (id: string) => void;
+  generateHashtags: (id: string) => void;
+  clearDescription: (id: string) => void;
+  clearHashtags: (id: string) => void;
 }>({
   spottedPlanes: [],
   updateDescription: () => {},
@@ -34,6 +38,10 @@ const SpottingContext = createContext<{
   selectedIds: [],
   addSelectedId: () => {},
   removeSelectedIds: () => {},
+  generateDescription: () => {},
+  generateHashtags: () => {},
+  clearDescription: () => {},
+  clearHashtags: () => {},
 });
 
 export default SpottingContext;

@@ -14,6 +14,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
 
 import SelectableCard from '@/components/spotting/SelectableCard';
+import SpottedPlaneForm from '@/components/spotting/SpottedPlaneForm';
 
 const SpottedPlaneCard = ({
   data,
@@ -22,9 +23,17 @@ const SpottedPlaneCard = ({
   data: SpottedPlaneProviderData;
   selectable?: boolean;
 }) => {
-  const { id, name, photoUrl, planespottersUrl } = data;
+  const { id, name, photoUrl, planespottersUrl, description, hashtags } = data;
 
-  const { selectedIds, addSelectedId, removeSelectedIds } = useSpottedPlanes();
+  const {
+    selectedIds,
+    addSelectedId,
+    removeSelectedIds,
+    generateDescription,
+    generateHashtags,
+    clearHashtags,
+    clearDescription,
+  } = useSpottedPlanes();
   const isAnySelected = selectedIds.length > 0;
   const isSelected = selectedIds.includes(id);
 
@@ -41,6 +50,22 @@ const SpottedPlaneCard = ({
   const onPhotoClick = () => {
     if (isPhotoSelectable) toggleSelect();
   };
+
+  const createDescription = () => {
+    generateDescription(id);
+    generateHashtags(id);
+  };
+
+  const apply = () => {
+    console.log('Apply!');
+  };
+
+  const discard = () => {
+    clearDescription(id);
+    clearHashtags(id);
+  };
+
+  const showDescription = description || hashtags;
 
   return (
     <SelectableCard
@@ -71,9 +96,23 @@ const SpottedPlaneCard = ({
             </IconButton>
           )}
         </Typography>
+        {showDescription && <SpottedPlaneForm data={data} />}
       </CardContent>
       <CardActions sx={{ justifyContent: 'end' }}>
-        <Button size="small">Create description</Button>
+        {showDescription ? (
+          <>
+            <Button size="small" onClick={discard}>
+              Discard
+            </Button>
+            <Button size="small" onClick={apply}>
+              Apply
+            </Button>
+          </>
+        ) : (
+          <Button size="small" onClick={createDescription}>
+            Create description
+          </Button>
+        )}
       </CardActions>
     </SelectableCard>
   );
