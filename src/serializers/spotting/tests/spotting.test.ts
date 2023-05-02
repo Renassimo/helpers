@@ -158,7 +158,7 @@ describe('Spotting serializers', () => {
                 rich_text: [
                   {
                     text: {
-                      content: `${mockedDescription1}\n${mockedHashtags1}`,
+                      content: `${mockedDescription1}\n\n${mockedHashtags1}`,
                     },
                   },
                 ],
@@ -170,7 +170,7 @@ describe('Spotting serializers', () => {
                 rich_text: [
                   {
                     text: {
-                      content: `${mockedGroupDescription1}\n${mockedGroupHashtags1}`,
+                      content: `${mockedGroupDescription1}\n\n${mockedGroupHashtags1}`,
                     },
                   },
                 ],
@@ -192,7 +192,7 @@ describe('Spotting serializers', () => {
                 rich_text: [
                   {
                     text: {
-                      content: `${mockedDescription2}\n${mockedHashtags2}`,
+                      content: `${mockedDescription2}\n\n${mockedHashtags2}`,
                     },
                   },
                 ],

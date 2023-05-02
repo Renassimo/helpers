@@ -54,6 +54,14 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
     });
   };
 
+  const removeSpottedPlane = (id: string) => {
+    setSpottingData((current) => {
+      const currentCopy = { ...current };
+      delete currentCopy[id];
+      return currentCopy;
+    });
+  };
+
   const updateDescription = (id: string, description: string) =>
     updateSpottedPlane(id, { description });
 
@@ -125,6 +133,7 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
 
   return {
     spottedPlanes,
+    removeSpottedPlane,
     updateDescription,
     updateHashtags,
     updateNewFirstFlight,

@@ -3,6 +3,7 @@ import { SpottedPlaneProviderData } from '@/types/spotting';
 
 const SpottingContext = createContext<{
   spottedPlanes: SpottedPlaneProviderData[];
+  removeSpottedPlane: (id: string) => void;
   updateDescription: (id: string, description: string) => void;
   updateHashtags: (id: string, hashtags: string) => void;
   updateNewFirstFlight: (id: string, newFirstFlight: string) => void;
@@ -20,6 +21,7 @@ const SpottingContext = createContext<{
   clearHashtags: (id: string) => void;
 }>({
   spottedPlanes: [],
+  removeSpottedPlane: () => {},
   updateDescription: () => {},
   updateHashtags: () => {},
   updateNewFirstFlight: () => {},

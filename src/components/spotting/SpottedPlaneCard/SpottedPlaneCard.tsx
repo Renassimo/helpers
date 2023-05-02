@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
 
 import SelectableCard from '@/components/spotting/SelectableCard';
 import SpottedPlaneForm from '@/components/spotting/SpottedPlaneForm';
@@ -24,6 +25,8 @@ const SpottedPlaneCard = ({
   selectable?: boolean;
 }) => {
   const { id, name, photoUrl, planespottersUrl, description, hashtags } = data;
+
+  const { update } = useApplySpottedPlanes();
 
   const {
     selectedIds,
@@ -56,8 +59,8 @@ const SpottedPlaneCard = ({
     generateHashtags(id);
   };
 
-  const apply = () => {
-    console.log('Apply!');
+  const apply = async () => {
+    await update([data]);
   };
 
   const discard = () => {

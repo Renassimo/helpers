@@ -32,9 +32,13 @@ export interface SpottedPlaneDescriptionAttributes {
   groupHashtags?: string;
 }
 
-export interface SpottedPlaneDescription {
+export interface SpottedPlaneDescriptionData {
   id: string;
   attributes: SpottedPlaneDescriptionAttributes;
+}
+
+export interface UpdateSpottedPlaneData {
+  data: SpottedPlaneDescriptionData[];
 }
 
 type SpottedPlaneProviderDataAttributes = SpottedPlaneApiDataAttributes &

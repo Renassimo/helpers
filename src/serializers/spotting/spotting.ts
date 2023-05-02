@@ -1,6 +1,6 @@
 import { NotionResult } from '@/types/notion';
 import {
-  SpottedPlaneDescription,
+  SpottedPlaneDescriptionData,
   SpottedPlaneFirstFlight,
   SpottedPlaneGroup,
 } from '@/types/spotting';
@@ -40,8 +40,8 @@ export const deserializeSpottedPlanes = (
   });
 };
 
-export const serializeSpottedPlanes = (data: SpottedPlaneDescription[]) => {
-  return data.map((spottedPlane: SpottedPlaneDescription) => {
+export const serializeSpottedPlanes = (data: SpottedPlaneDescriptionData[]) => {
+  return data.map((spottedPlane: SpottedPlaneDescriptionData) => {
     const { id, attributes } = spottedPlane;
     const {
       description,
@@ -52,7 +52,7 @@ export const serializeSpottedPlanes = (data: SpottedPlaneDescription[]) => {
       groupHashtags,
     } = attributes;
 
-    const text = `${description}\n${hashtags}`;
+    const text = `${description}\n\n${hashtags}`;
 
     const group: SpottedPlaneGroup | Record<string, never> =
       groupName && groupDescription && groupHashtags
@@ -62,7 +62,7 @@ export const serializeSpottedPlanes = (data: SpottedPlaneDescription[]) => {
               type: 'rich_text',
               rich_text: [
                 {
-                  text: { content: `${groupDescription}\n${groupHashtags}` },
+                  text: { content: `${groupDescription}\n\n${groupHashtags}` },
                 },
               ],
             },

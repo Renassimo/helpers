@@ -81,6 +81,7 @@ describe('useSpottingData', () => {
   };
   const mockedData = [mockedPlane1, mockedPlane2, mockedPlane3];
   const expectedFunctions = {
+    removeSpottedPlane: expect.any(Function),
     updateDescription: expect.any(Function),
     updateHashtags: expect.any(Function),
     updateNewFirstFlight: expect.any(Function),
@@ -137,6 +138,35 @@ describe('useSpottingData', () => {
       };
       // Act
       const { result } = renderHook(() => useSpottingData(null));
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+    });
+  });
+
+  describe('when removes spotted plane', () => {
+    test('returns updated data', async () => {
+      // Arrange
+      const expectedResult = {
+        spottedPlanes: [
+          {
+            ...mockedPlane1.attributes,
+            id: mockedPlane1.id,
+            ...defaultDescriptionData,
+          },
+          {
+            ...mockedPlane3.attributes,
+            id: mockedPlane3.id,
+            ...defaultDescriptionData,
+          },
+        ],
+        selectedIds: [],
+        ...expectedFunctions,
+      };
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.removeSpottedPlane(mockedPlane2.id);
+      });
       // Assert
       expect(result.current).toEqual(expectedResult);
     });

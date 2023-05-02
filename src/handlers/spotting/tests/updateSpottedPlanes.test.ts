@@ -31,11 +31,17 @@ describe('updateSpottedPlanes', () => {
   const mockedRequestBody = JSON.stringify(mockedBody);
   const mockedRequestMultipleBody = JSON.stringify(mockedBodyMultiple);
   const mockedSerializedData = [
-    { id: mockedID1, body: 'some serialized body 1' },
+    {
+      id: mockedID1,
+      body: { properties: 'serialized properties 1', icon: 'icon 1' },
+    },
   ];
   const mockedSerializedMultipleData = [
     ...mockedSerializedData,
-    { id: mockedID2, body: 'some serialized body 2' },
+    {
+      id: mockedID2,
+      body: { properties: 'serialized properties 2', icon: 'icon 2' },
+    },
   ];
   const mockedErrorMessage = 'Not Authenticated';
   const mockedUpdatePage = jest.fn(async () => ({
@@ -82,7 +88,7 @@ describe('updateSpottedPlanes', () => {
       expect(serializeSpottedPlanes).toHaveBeenCalledWith(mockedBody.data);
       expect(mockedNotionService.updatePage).toHaveBeenCalledTimes(1);
       expect(mockedNotionService.updatePage).toHaveBeenCalledWith(mockedID1, {
-        properties: mockedSerializedData[0].body,
+        ...mockedSerializedData[0].body,
       });
     });
 
@@ -120,12 +126,12 @@ describe('updateSpottedPlanes', () => {
         expect(mockedNotionService.updatePage).toHaveBeenNthCalledWith(
           1,
           mockedID1,
-          { properties: mockedSerializedMultipleData[0].body }
+          { ...mockedSerializedMultipleData[0].body }
         );
         expect(mockedNotionService.updatePage).toHaveBeenNthCalledWith(
           2,
           mockedID2,
-          { properties: mockedSerializedMultipleData[1].body }
+          { ...mockedSerializedMultipleData[1].body }
         );
       });
     });
@@ -158,7 +164,7 @@ describe('updateSpottedPlanes', () => {
       expect(serializeSpottedPlanes).toHaveBeenCalledWith(mockedBody.data);
       expect(mockedNotionService.updatePage).toHaveBeenCalledTimes(1);
       expect(mockedNotionService.updatePage).toHaveBeenCalledWith(mockedID1, {
-        properties: mockedSerializedData[0].body,
+        ...mockedSerializedData[0].body,
       });
     });
   });
