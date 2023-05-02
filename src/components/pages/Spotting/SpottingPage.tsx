@@ -22,7 +22,6 @@ const SpottingPage = ({
   data: SpottedPlaneApiData[] | null;
   error: NotionError | null;
 }) => {
-  console.log({ data });
   const { createErrorAlert } = useAlerts();
 
   useEffect(() => {
