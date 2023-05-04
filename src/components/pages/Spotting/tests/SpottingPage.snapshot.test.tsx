@@ -1,8 +1,11 @@
 import renderWithTheme from '@/tests/helpers';
+
+import { NotionError } from '@/types/notion';
+
 import SpottingPage from '@/components/pages/Spotting';
 import SpottedPlanesList from '@/components/spotting/SpottedPlanesList';
+
 import MockedSpottedPlanesList from '@/components/spotting/SpottedPlanesList/mocks';
-import { NotionError } from '@/types/notion';
 
 jest.mock('@/components/spotting/SpottedPlanesList');
 

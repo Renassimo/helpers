@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpottedPlanesList renders successfully 1`] = `
+<div>
+  <div
+    class="css-zsqo3r"
+  >
+    <div>
+      Mocked Spotted Plane Card: selectable: 
+      , id: 
+      plane-id
+      , name:
+      name
+      , photoUrl; 
+      photoUrl
+      , planespottersUrl: 
+      planespottersUrl
+      , description: 
+      description
+      , hashtags: 
+      #hashtags
+    </div>
+  </div>
+</div>
+`;
