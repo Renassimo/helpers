@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import {
-  SpottedPlaneDescriptionData,
+  SpottedPlaneCreatedData,
   SpottedPlaneProviderData,
 } from '@/types/spotting';
 
@@ -18,7 +18,7 @@ const useApplySpottedPlanes = () => {
     async (spottedPlanes: SpottedPlaneProviderData[]) => {
       const data = spottedPlanes.reduce(
         (
-          result: SpottedPlaneDescriptionData[],
+          result: SpottedPlaneCreatedData[],
           spottedPlane: SpottedPlaneProviderData
         ) => {
           if (!spottedPlane) return result;

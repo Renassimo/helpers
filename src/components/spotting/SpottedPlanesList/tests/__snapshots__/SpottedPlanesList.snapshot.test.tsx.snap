@@ -6,7 +6,9 @@ exports[`SpottedPlanesList renders successfully 1`] = `
     class="css-zsqo3r"
   >
     <div>
-      Mocked Spotted Plane Card: selectable: 
+      Mocked Spotted Plane Card:
+       
+      selectable
       , id: 
       plane-id
       , name:

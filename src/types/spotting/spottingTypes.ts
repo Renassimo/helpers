@@ -23,7 +23,7 @@ export interface SpottedPlaneApiData {
   attributes: SpottedPlaneApiDataAttributes;
 }
 
-export interface SpottedPlaneDescriptionAttributes {
+export interface SpottedPlaneCreatedAttributes {
   description: string;
   hashtags: string;
   newFirstFlight?: string;
@@ -32,17 +32,17 @@ export interface SpottedPlaneDescriptionAttributes {
   groupHashtags?: string;
 }
 
-export interface SpottedPlaneDescriptionData {
+export interface SpottedPlaneCreatedData {
   id: string;
-  attributes: SpottedPlaneDescriptionAttributes;
+  attributes: SpottedPlaneCreatedAttributes;
 }
 
 export interface UpdateSpottedPlaneData {
-  data: SpottedPlaneDescriptionData[];
+  data: SpottedPlaneCreatedData[];
 }
 
 type SpottedPlaneProviderDataAttributes = SpottedPlaneApiDataAttributes &
-  SpottedPlaneDescriptionAttributes;
+  SpottedPlaneCreatedAttributes;
 
 export interface SpottedPlaneProviderData
   extends SpottedPlaneProviderDataAttributes {

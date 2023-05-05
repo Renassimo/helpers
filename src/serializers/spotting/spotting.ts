@@ -1,6 +1,6 @@
 import { NotionResult } from '@/types/notion';
 import {
-  SpottedPlaneDescriptionData,
+  SpottedPlaneCreatedData,
   SpottedPlaneFirstFlight,
   SpottedPlaneGroup,
 } from '@/types/spotting';
@@ -40,8 +40,8 @@ export const deserializeSpottedPlanes = (
   });
 };
 
-export const serializeSpottedPlanes = (data: SpottedPlaneDescriptionData[]) => {
-  return data.map((spottedPlane: SpottedPlaneDescriptionData) => {
+export const serializeSpottedPlanes = (data: SpottedPlaneCreatedData[]) => {
+  return data.map((spottedPlane: SpottedPlaneCreatedData) => {
     const { id, attributes } = spottedPlane;
     const {
       description,

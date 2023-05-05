@@ -4,7 +4,8 @@ const MockedSpottedPlaneCard = jest.fn(
       data;
     return (
       <div>
-        Mocked Spotted Plane Card: selectable: {selectable}, id: {id}, name:
+        Mocked Spotted Plane Card:{' '}
+        {selectable ? 'selectable' : 'not selectable'}, id: {id}, name:
         {name}, photoUrl; {photoUrl}, planespottersUrl: {planespottersUrl},
         description: {description}, hashtags: {hashtags}
       </div>
