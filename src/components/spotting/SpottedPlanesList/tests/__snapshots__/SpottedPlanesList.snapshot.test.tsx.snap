@@ -10,17 +10,17 @@ exports[`SpottedPlanesList renders successfully 1`] = `
        
       selectable
       , id: 
-      plane-id
+      id-truthy
       , name:
-      name
+      Qatar Airways A350-900 A7-ALB
       , photoUrl; 
-      photoUrl
+      https://file.notion.so/
       , planespottersUrl: 
-      planespottersUrl
+      https://www.planespotters.net/
       , description: 
-      description
+      description 1
       , hashtags: 
-      #hashtags
+      #hashtags1
     </div>
   </div>
 </div>

@@ -6,23 +6,14 @@ import SpottedPlanesList from '@/components/spotting/SpottedPlanesList';
 import SpottedPlaneCard from '@/components/spotting/SpottedPlaneCard';
 
 import MockedSpottedPlaneCard from '@/components/spotting/SpottedPlaneCard/mocks';
+import { mockedSpottedPlaneProviderDataTruthy } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
 jest.mock('@/hooks/spotting/useSpottedPlanes');
 jest.mock('@/components/spotting/SpottedPlaneCard');
 
 describe('SpottedPlanesList', () => {
-  const mockedSpottedPlanes = [
-    {
-      id: 'plane-id',
-      name: 'name',
-      photoUrl: 'photoUrl',
-      planespottersUrl: 'planespottersUrl',
-      description: 'description',
-      hashtags: '#hashtags',
-    },
-  ];
   const mockedUseSpottedPlanes = jest.fn(() => ({
-    spottedPlanes: mockedSpottedPlanes,
+    spottedPlanes: [mockedSpottedPlaneProviderDataTruthy],
   }));
 
   beforeEach(() => {
@@ -42,7 +33,7 @@ describe('SpottedPlanesList', () => {
     expect(container).toMatchSnapshot();
     expect(MockedSpottedPlaneCard).toHaveBeenCalledWith(
       {
-        data: mockedSpottedPlanes[0],
+        data: mockedSpottedPlaneProviderDataTruthy,
         selectable: true,
       },
       {}
