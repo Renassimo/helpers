@@ -54,7 +54,7 @@ exports[`SpottingPage when got data renders successfully 1`] = `
                 class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
               >
                 <img
-                  alt="Name"
+                  alt="Jesse Pinkman"
                   class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
                   src="https://pic.com"
                 />
@@ -136,7 +136,7 @@ exports[`SpottingPage when got error renders successfully 1`] = `
                 class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
               >
                 <img
-                  alt="Name"
+                  alt="Jesse Pinkman"
                   class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
                   src="https://pic.com"
                 />

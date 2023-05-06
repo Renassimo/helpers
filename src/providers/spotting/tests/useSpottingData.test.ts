@@ -9,76 +9,18 @@ import {
   getDescriptionLines,
   getHashtagLines,
 } from '@/utils/spotting';
+import {
+  mockedSpottedPlaneApiDataFalsy,
+  mockedSpottedPlaneApiDataNullish,
+  mockedSpottedPlaneApiDataTruthy,
+} from '@/types/spotting/mocks';
 
 jest.mock('@/utils/spotting');
 
 describe('useSpottingData', () => {
-  const mockedPlane1 = {
-    id: 'mocked-plane-1-id',
-    attributes: {
-      airplaneName: 'Airplane name 1',
-      cn: '1000',
-      carrier: 'Carrier 1',
-      firstFlight: '2011-01-01',
-      flown: false,
-      groupPost: false,
-      manufacturer: 'Manufacturer 1',
-      model: 'model 1',
-      modelled: false,
-      name: 'Name 1',
-      photosUrl: 'photosUrl1',
-      place: 'Place 1',
-      planespottersUrl: 'planespottersUrl',
-      registration: 'registration 1',
-      spottedDate: '2021-01-01',
-      url: 'url1',
-      photoUrl: 'photoUrl1',
-    },
-  };
-  const mockedPlane2 = {
-    id: 'mocked-plane-2-id',
-    attributes: {
-      airplaneName: 'Airplane name 2',
-      cn: '2000',
-      carrier: 'Carrier 2',
-      firstFlight: '2012-02-02',
-      flown: true,
-      groupPost: true,
-      manufacturer: 'Manufacturer 2',
-      model: 'model 2',
-      modelled: true,
-      name: 'Name 2',
-      photosUrl: 'photosUrl2',
-      place: 'Place 2',
-      planespottersUrl: 'planespottersUrl',
-      registration: 'registration 2',
-      spottedDate: '2022-02-02',
-      url: 'url2',
-      photoUrl: 'photoUrl2',
-    },
-  };
-  const mockedPlane3 = {
-    id: 'mocked-plane-3-id',
-    attributes: {
-      airplaneName: null,
-      cn: null,
-      carrier: null,
-      firstFlight: null,
-      flown: false,
-      groupPost: false,
-      manufacturer: null,
-      model: null,
-      modelled: false,
-      name: null,
-      photosUrl: null,
-      place: null,
-      planespottersUrl: null,
-      registration: null,
-      spottedDate: null,
-      url: 'url3',
-      photoUrl: null,
-    },
-  };
+  const mockedPlane1 = mockedSpottedPlaneApiDataFalsy;
+  const mockedPlane2 = mockedSpottedPlaneApiDataTruthy;
+  const mockedPlane3 = mockedSpottedPlaneApiDataNullish;
   const mockedData = [mockedPlane1, mockedPlane2, mockedPlane3];
   const expectedFunctions = {
     removeSpottedPlane: expect.any(Function),
