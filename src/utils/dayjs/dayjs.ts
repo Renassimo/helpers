@@ -13,3 +13,7 @@ export const getNextDayCode = (date?: Dayjs) =>
 export const getPrevDayCode = (date?: Dayjs) =>
   dayjs(date, dateFormat).subtract(1, 'day').format(dayCodeFormat);
 export const getDayText = (date?: Dayjs) => dayjs(date).format(dayTextFormat);
+export const formatFromNotionDate = (date: string | null) =>
+  dayjs(date).format('DD.MM.YYYY');
+export const formatToNotionDate = (date?: string | Dayjs | null) =>
+  dayjs(date).format('YYYY-MM-DD');

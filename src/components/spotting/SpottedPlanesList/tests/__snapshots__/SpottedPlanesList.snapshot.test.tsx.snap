@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpottedPlanesList renders successfully 1`] = `
+<div>
+  <div
+    class="css-zsqo3r"
+  >
+    <div>
+      Mocked Spotted Plane Card:
+       
+      selectable
+      , id: 
+      id-truthy
+      , name:
+      Qatar Airways A350-900 A7-ALB
+      , photoUrl; 
+      https://file.notion.so/
+      , planespottersUrl: 
+      https://www.planespotters.net/
+      , description: 
+      description 1
+      , hashtags: 
+      #hashtags1
+    </div>
+  </div>
+</div>
+`;

@@ -1,4 +1,6 @@
 import {
+  formatFromNotionDate,
+  formatToNotionDate,
   getDayCode,
   getDayText,
   getNextDayCode,
@@ -60,6 +62,28 @@ describe('DayJS', () => {
       const expectedResult = '11 February';
       // Act
       const result = getDayText(date);
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('formatFromNotionDate', () => {
+    test('returns formatted date', () => {
+      // Arrange
+      const expectedResult = '13.11.2000';
+      // Act
+      const result = formatFromNotionDate('2000-11-13');
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('formatToNotionDate', () => {
+    test('returns formatted date', () => {
+      // Arrange
+      const expectedResult = '2000-11-13';
+      // Act
+      const result = formatToNotionDate('13 Nov 2000');
       // Assert
       expect(result).toEqual(expectedResult);
     });

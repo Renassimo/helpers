@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpottedPlaneCard snapshots renders successfully 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiCardMedia-root css-80io7p-MuiCardMedia-root"
+      role="img"
+      style="background-image: url(https://file.notion.so/);"
+      title="Qatar Airways A350-900 A7-ALB"
+    />
+    <div
+      class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
+      >
+        Qatar Airways A350-900 A7-ALB
+        <a
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+          href="https://www.planespotters.net/"
+          rel="noreferrer"
+          tabindex="0"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            data-testid="OpenInNewIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </a>
+      </h2>
+      <div>
+        id: 
+        id-truthy
+        , description: 
+        description 1
+        , hashtags: 
+        #hashtags1
+      </div>
+    </div>
+    <div
+      class="MuiCardActions-root MuiCardActions-spacing css-118alpw-MuiCardActions-root"
+    >
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        Discard
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        Apply
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+     
+    selectable
+    ,
+    not selected
+    ,
+    not isAnySelected
+    ,
+    toggleSelect passed
+    .
+  </div>
+</div>
+`;
+
+exports[`SpottedPlaneCard snapshots when does not show description renders successfully 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiCardMedia-root css-80io7p-MuiCardMedia-root"
+      title=""
+    />
+    <div
+      class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
+      />
+    </div>
+    <div
+      class="MuiCardActions-root MuiCardActions-spacing css-118alpw-MuiCardActions-root"
+    >
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        Create description
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+     
+    selectable
+    ,
+    not selected
+    ,
+    not isAnySelected
+    ,
+    toggleSelect passed
+    .
+  </div>
+</div>
+`;
+
+exports[`SpottedPlaneCard snapshots when photo is selectable renders successfully 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiCardMedia-root css-1sirhbt-MuiCardMedia-root"
+      role="img"
+      style="background-image: url(https://file.notion.so/);"
+      title="Qatar Airways A350-900 A7-ALB"
+    />
+    <div
+      class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
+      >
+        Qatar Airways A350-900 A7-ALB
+        <a
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+          href="https://www.planespotters.net/"
+          rel="noreferrer"
+          tabindex="0"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            data-testid="OpenInNewIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </a>
+      </h2>
+      <div>
+        id: 
+        id-truthy
+        , description: 
+        description 1
+        , hashtags: 
+        #hashtags1
+      </div>
+    </div>
+    <div
+      class="MuiCardActions-root MuiCardActions-spacing css-118alpw-MuiCardActions-root"
+    >
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        Discard
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        Apply
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+     
+    selectable
+    ,
+    not selected
+    ,
+    isAnySelected
+    ,
+    toggleSelect passed
+    .
+  </div>
+</div>
+`;

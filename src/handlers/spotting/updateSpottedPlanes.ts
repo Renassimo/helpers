@@ -16,7 +16,7 @@ const updateSpottedPlanes = async (
   const firstSpottedPlaneResponse = await notionService.updatePage(
     `${firstSpottedPlane?.id}`,
     {
-      properties: firstSpottedPlane.body,
+      ...firstSpottedPlane.body,
     }
   );
   if (!firstSpottedPlaneResponse.ok)
@@ -29,7 +29,7 @@ const updateSpottedPlanes = async (
     followingSpottedPlanes.map(
       (spottedPlane: SpottedPlaneSerializedDescription) =>
         notionService.updatePage(`${spottedPlane?.id}`, {
-          properties: spottedPlane.body,
+          ...spottedPlane.body,
         })
     )
   );
