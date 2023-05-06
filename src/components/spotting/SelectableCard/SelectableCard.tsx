@@ -13,9 +13,7 @@ const UnselectedIcon = ({
   isAnySelected = false,
 }: {
   isAnySelected?: boolean;
-}) => {
-  return isAnySelected ? <RadioButtonUncheckedIcon /> : <CheckCircleIcon />;
-};
+}) => (isAnySelected ? <RadioButtonUncheckedIcon /> : <CheckCircleIcon />);
 
 const SelectIconButton = ({
   isAnySelected = false,
@@ -25,17 +23,15 @@ const SelectIconButton = ({
   isAnySelected?: boolean;
   selected?: boolean;
   onClick: () => void;
-}) => {
-  return (
-    <IconButton onClick={onClick}>
-      {selected ? (
-        <SelectedIcon />
-      ) : (
-        <UnselectedIcon isAnySelected={isAnySelected} />
-      )}
-    </IconButton>
-  );
-};
+}) => (
+  <IconButton onClick={onClick}>
+    {selected ? (
+      <SelectedIcon />
+    ) : (
+      <UnselectedIcon isAnySelected={isAnySelected} />
+    )}
+  </IconButton>
+);
 
 const CardChecker = ({
   isAnySelected = false,
