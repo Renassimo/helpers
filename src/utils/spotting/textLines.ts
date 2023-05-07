@@ -18,7 +18,7 @@ export const getDescriptionLines = (data: SpottedPlaneProviderData) => {
     manufacturer,
     model,
     carrier,
-    name,
+    airplaneName,
     registration,
     cn,
     firstFlight,
@@ -41,7 +41,7 @@ export const getDescriptionLines = (data: SpottedPlaneProviderData) => {
 
   return [
     [manufacturer, model, carrier],
-    [name],
+    [airplaneName],
     [registration, cn && `(cn ${cn})`],
     [
       acceptedFirstFlight
