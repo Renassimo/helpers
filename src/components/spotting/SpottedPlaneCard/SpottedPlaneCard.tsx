@@ -15,6 +15,7 @@ import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
 import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
 
 import SelectableCard from '@/components/spotting/SelectableCard';
+import NewFirstFlightForm from '@/components/spotting/NewFirstFlightForm';
 import SpottedPlaneForm from '@/components/spotting/SpottedPlaneForm';
 
 const SpottedPlaneCard = ({
@@ -24,7 +25,15 @@ const SpottedPlaneCard = ({
   data: SpottedPlaneProviderData;
   selectable?: boolean;
 }) => {
-  const { id, name, photoUrl, planespottersUrl, description, hashtags } = data;
+  const {
+    id,
+    name,
+    photoUrl,
+    planespottersUrl,
+    description,
+    hashtags,
+    firstFlight,
+  } = data;
 
   const { update } = useApplySpottedPlanes();
 
@@ -68,7 +77,7 @@ const SpottedPlaneCard = ({
     clearHashtags(id);
   };
 
-  const showDescription = description || hashtags;
+  const showDescription = !!(description || hashtags);
 
   return (
     <SelectableCard
@@ -99,6 +108,9 @@ const SpottedPlaneCard = ({
             </IconButton>
           )}
         </Typography>
+        {!firstFlight && (
+          <NewFirstFlightForm id={data.id} disabled={showDescription} />
+        )}
         {showDescription && <SpottedPlaneForm data={data} />}
       </CardContent>
       <CardActions sx={{ justifyContent: 'end' }}>

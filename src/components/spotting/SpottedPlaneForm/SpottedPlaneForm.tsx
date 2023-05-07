@@ -11,7 +11,7 @@ const SpottedPlaneForm = ({ data }: { data: SpottedPlaneProviderData }) => {
   const { updateDescription, updateHashtags } = useSpottedPlanes();
 
   const descriptionInputName = `description-${id}`;
-  const hashtagsInputName = `description-${id}`;
+  const hashtagsInputName = `hashtags-${id}`;
 
   const onDescriptionChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,30 +25,28 @@ const SpottedPlaneForm = ({ data }: { data: SpottedPlaneProviderData }) => {
   };
 
   return (
-    <div>
-      <form>
-        <TextField
-          id={descriptionInputName}
-          name={descriptionInputName}
-          value={description}
-          onChange={onDescriptionChange}
-          multiline
-          fullWidth
-          margin="dense"
-          variant="standard"
-        />
-        <TextField
-          id={hashtagsInputName}
-          name={hashtagsInputName}
-          value={hashtags}
-          onChange={onHashtagsChange}
-          multiline
-          fullWidth
-          margin="dense"
-          variant="standard"
-        />
-      </form>
-    </div>
+    <form>
+      <TextField
+        id={descriptionInputName}
+        name={descriptionInputName}
+        value={description}
+        onChange={onDescriptionChange}
+        multiline
+        fullWidth
+        margin="dense"
+        variant="standard"
+      />
+      <TextField
+        id={hashtagsInputName}
+        name={hashtagsInputName}
+        value={hashtags}
+        onChange={onHashtagsChange}
+        multiline
+        fullWidth
+        margin="dense"
+        variant="standard"
+      />
+    </form>
   );
 };
 
