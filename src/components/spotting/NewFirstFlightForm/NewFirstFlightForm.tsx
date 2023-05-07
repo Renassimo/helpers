@@ -28,7 +28,7 @@ const NewFirstFlightForm = ({
       id={newFirstFlightInputName}
       name={newFirstFlightInputName}
       onChange={onNewFirstFlightChange}
-      placeholder={'First flight (19 Apr 1992)'}
+      placeholder={'First flight (1 Sep 1999)'}
       disabled={disabled}
       fullWidth
       margin="dense"
