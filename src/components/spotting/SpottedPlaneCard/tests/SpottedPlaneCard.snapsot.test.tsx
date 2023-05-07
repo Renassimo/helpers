@@ -9,12 +9,15 @@ import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
 
 import SpottedPlaneCard from '@/components/spotting/SpottedPlaneCard';
 import SelectableCard from '@/components/spotting/SelectableCard';
+import NewFirstFlightForm from '@/components/spotting/NewFirstFlightForm';
 import SpottedPlaneForm from '@/components/spotting/SpottedPlaneForm';
 
 import MockedSelectableCard from '@/components/spotting/SelectableCard/mocks';
+import MockedNewFirstFlightForm from '@/components/spotting/NewFirstFlightForm/mocks';
 import MockedSpottedPlaneForm from '@/components/spotting/SpottedPlaneForm/mocks';
 
 jest.mock('@/components/spotting/SelectableCard');
+jest.mock('@/components/spotting/NewFirstFlightForm');
 jest.mock('@/components/spotting/SpottedPlaneForm');
 jest.mock('@/hooks/spotting/useSpottedPlanes');
 
@@ -22,6 +25,9 @@ describe('SpottedPlaneCard snapshots', () => {
   beforeEach(() => {
     (SelectableCard as unknown as jest.Mock).mockImplementation(
       MockedSelectableCard
+    );
+    (NewFirstFlightForm as unknown as jest.Mock).mockImplementation(
+      MockedNewFirstFlightForm
     );
     (SpottedPlaneForm as unknown as jest.Mock).mockImplementation(
       MockedSpottedPlaneForm
@@ -45,6 +51,7 @@ describe('SpottedPlaneCard snapshots', () => {
     );
     // Assert
     expect(container).toMatchSnapshot();
+    expect(MockedNewFirstFlightForm).not.toHaveBeenCalled();
     expect(MockedSpottedPlaneForm).toHaveBeenCalledWith(
       {
         data: mockedSpottedPlaneProviderDataTruthy,
@@ -62,6 +69,13 @@ describe('SpottedPlaneCard snapshots', () => {
       );
       // Assert
       expect(container).toMatchSnapshot();
+      expect(MockedNewFirstFlightForm).toHaveBeenCalledWith(
+        {
+          id: mockedSpottedPlaneProviderDataEmpty.id,
+          disabled: false,
+        },
+        {}
+      );
       expect(MockedSpottedPlaneForm).not.toHaveBeenCalled();
     });
   });
@@ -83,6 +97,7 @@ describe('SpottedPlaneCard snapshots', () => {
       );
       // Assert
       expect(container).toMatchSnapshot();
+      expect(MockedNewFirstFlightForm).not.toHaveBeenCalled();
       expect(MockedSpottedPlaneForm).toHaveBeenCalledWith(
         {
           data: mockedSpottedPlaneProviderDataTruthy,

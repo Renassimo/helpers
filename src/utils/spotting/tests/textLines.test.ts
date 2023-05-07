@@ -80,7 +80,7 @@ describe('Text lines', () => {
         // Arrange
         const expectedResult = [
           [mockedData.manufacturer, mockedData.model, mockedData.carrier],
-          [mockedData.name],
+          [mockedData.airplaneName],
           [mockedData.registration, `(cn ${mockedData.cn})`],
           [`First flight 01.01.2011`],
           [mockedData.place, '01.01.2021'],
@@ -102,7 +102,7 @@ describe('Text lines', () => {
         // Arrange
         const expectedResult = [
           [mockedData.manufacturer, mockedData.model, mockedData.carrier],
-          [mockedData.name],
+          [mockedData.airplaneName],
           [mockedData.registration, `(cn ${mockedData.cn})`],
           [`First flight 02.02.2012`],
           [mockedData.place, '02.02.2022'],

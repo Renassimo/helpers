@@ -98,6 +98,12 @@ exports[`SpottedPlaneCard snapshots when does not show description renders succe
       <h2
         class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
       />
+      <div>
+        MockedNewFirstFlightForm: id: 
+        id-empty
+        , 
+        enabled
+      </div>
     </div>
     <div
       class="MuiCardActions-root MuiCardActions-spacing css-118alpw-MuiCardActions-root"
