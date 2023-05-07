@@ -8,6 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
@@ -35,7 +36,7 @@ const SpottedPlaneCard = ({
     firstFlight,
   } = data;
 
-  const { update } = useApplySpottedPlanes();
+  const { update, loading } = useApplySpottedPlanes();
 
   const {
     selectedIds,
@@ -116,12 +117,12 @@ const SpottedPlaneCard = ({
       <CardActions sx={{ justifyContent: 'end' }}>
         {showDescription ? (
           <>
-            <Button size="small" onClick={discard}>
+            <Button size="small" onClick={discard} disabled={loading}>
               Discard
             </Button>
-            <Button size="small" onClick={apply}>
+            <LoadingButton size="small" onClick={apply} loading={loading}>
               Apply
-            </Button>
+            </LoadingButton>
           </>
         ) : (
           <Button size="small" onClick={createDescription}>
