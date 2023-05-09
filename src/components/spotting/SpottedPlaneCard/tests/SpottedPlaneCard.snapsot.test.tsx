@@ -79,7 +79,10 @@ describe('SpottedPlaneCard snapshots', () => {
       );
       // Act
       const { container } = renderWithTheme(
-        <SpottedPlaneCard data={mockedSpottedPlaneProviderDataTruthy} />
+        <SpottedPlaneCard
+          selectable
+          data={mockedSpottedPlaneProviderDataTruthy}
+        />
       );
       // Assert
       expect(container).toMatchSnapshot();

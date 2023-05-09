@@ -25,7 +25,7 @@ const SpottedPlaneForm = ({ data }: { data: SpottedPlaneProviderData }) => {
   };
 
   return (
-    <form>
+    <>
       <TextField
         id={descriptionInputName}
         name={descriptionInputName}
@@ -46,7 +46,7 @@ const SpottedPlaneForm = ({ data }: { data: SpottedPlaneProviderData }) => {
         margin="dense"
         variant="standard"
       />
-    </form>
+    </>
   );
 };
 

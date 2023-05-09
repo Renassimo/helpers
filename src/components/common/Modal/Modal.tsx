@@ -1,4 +1,4 @@
-import { FormEvent, ReactNode } from 'react';
+import { FormEvent, ReactNode, useCallback } from 'react';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { Breakpoint } from '@mui/material';
 
 const Modal = ({
   open,
@@ -18,6 +19,7 @@ const Modal = ({
   onSubmit,
   title,
   loading,
+  maxWidth = 'sm',
 }: {
   open: boolean;
   children: ReactNode;
@@ -25,19 +27,25 @@ const Modal = ({
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   title: string;
   loading: boolean;
+  maxWidth?: Breakpoint;
 }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onSubmit(event);
-  };
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      onSubmit(event);
+    },
+    [onSubmit]
+  );
+
   return (
     <Dialog
       fullScreen={fullScreen}
       open={open}
       onClose={onClose}
       aria-labelledby="responsive-modal"
+      maxWidth={maxWidth}
     >
       <DialogTitle id="responsive-modal">
         {title}

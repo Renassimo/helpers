@@ -83,7 +83,7 @@ const SpottedPlaneCard = ({
   return (
     <SelectableCard
       isAnySelected={isAnySelected}
-      selectable
+      selectable={selectable}
       selected={isSelected}
       toggleSelect={toggleSelect}
     >
@@ -120,9 +120,11 @@ const SpottedPlaneCard = ({
             <Button size="small" onClick={discard} disabled={loading}>
               Discard
             </Button>
-            <LoadingButton size="small" onClick={apply} loading={loading}>
-              Apply
-            </LoadingButton>
+            {selectable && (
+              <LoadingButton size="small" onClick={apply} loading={loading}>
+                Apply
+              </LoadingButton>
+            )}
           </>
         ) : (
           <Button size="small" onClick={createDescription}>

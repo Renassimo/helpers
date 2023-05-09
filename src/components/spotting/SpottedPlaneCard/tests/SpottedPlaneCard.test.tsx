@@ -64,7 +64,10 @@ describe('SpottedPlaneCard', () => {
     test('creates description', async () => {
       // Arrange
       const { getByText } = renderWithTheme(
-        <SpottedPlaneCard data={mockedSpottedPlaneProviderDataEmpty} />
+        <SpottedPlaneCard
+          selectable
+          data={mockedSpottedPlaneProviderDataEmpty}
+        />
       );
       // Act
       await userEvent.click(getByText('Create description'));
@@ -87,7 +90,10 @@ describe('SpottedPlaneCard', () => {
     test('updates data', async () => {
       // Arrange
       const { getByText } = renderWithTheme(
-        <SpottedPlaneCard data={mockedSpottedPlaneProviderDataTruthy} />
+        <SpottedPlaneCard
+          selectable
+          data={mockedSpottedPlaneProviderDataTruthy}
+        />
       );
       // Act
       await userEvent.click(getByText('Apply'));
@@ -108,7 +114,10 @@ describe('SpottedPlaneCard', () => {
     test('clears description and hashtags', async () => {
       // Arrange
       const { getByText } = renderWithTheme(
-        <SpottedPlaneCard data={mockedSpottedPlaneProviderDataTruthy} />
+        <SpottedPlaneCard
+          selectable
+          data={mockedSpottedPlaneProviderDataTruthy}
+        />
       );
       // Act
       await userEvent.click(getByText('Discard'));

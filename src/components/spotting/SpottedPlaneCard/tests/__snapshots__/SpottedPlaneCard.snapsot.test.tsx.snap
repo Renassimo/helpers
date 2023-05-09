@@ -61,20 +61,9 @@ exports[`SpottedPlaneCard snapshots renders successfully 1`] = `
           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
         />
       </button>
-      <button
-        class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-owonun-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-        id=":r0:"
-        tabindex="0"
-        type="button"
-      >
-        Apply
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
-      </button>
     </div>
      
-    selectable
+    not selectable
     ,
     not selected
     ,
@@ -121,7 +110,7 @@ exports[`SpottedPlaneCard snapshots when does not show description renders succe
       </button>
     </div>
      
-    selectable
+    not selectable
     ,
     not selected
     ,
@@ -195,7 +184,7 @@ exports[`SpottedPlaneCard snapshots when loading renders successfully 1`] = `
       <button
         class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall Mui-disabled MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-owonun-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
         disabled=""
-        id=":r1:"
+        id=":r0:"
         tabindex="-1"
         type="button"
       >
@@ -203,7 +192,7 @@ exports[`SpottedPlaneCard snapshots when loading renders successfully 1`] = `
           class="MuiLoadingButton-loadingIndicator MuiLoadingButton-loadingIndicatorCenter css-1yt7yx7-MuiLoadingButton-loadingIndicator"
         >
           <span
-            aria-labelledby=":r1:"
+            aria-labelledby=":r0:"
             class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorInherit css-62e83j-MuiCircularProgress-root"
             role="progressbar"
             style="width: 16px; height: 16px;"
@@ -302,7 +291,7 @@ exports[`SpottedPlaneCard snapshots when photo is selectable renders successfull
       </button>
       <button
         class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-owonun-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-        id=":r2:"
+        id=":r1:"
         tabindex="0"
         type="button"
       >

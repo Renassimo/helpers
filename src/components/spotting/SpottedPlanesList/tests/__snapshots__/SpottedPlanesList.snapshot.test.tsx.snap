@@ -22,6 +22,9 @@ exports[`SpottedPlanesList renders successfully 1`] = `
       , hashtags: 
       #hashtags1
     </div>
+    <div>
+      MockedGroupPlanesModal
+    </div>
   </div>
 </div>
 `;
