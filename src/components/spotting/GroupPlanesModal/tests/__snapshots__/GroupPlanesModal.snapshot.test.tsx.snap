@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GroupPlanesModal snapshot renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedGroupPlanesForm
+      </div>
+      <div
+        class="css-zsqo3r"
+      >
+        <div>
+          Mocked Spotted Plane Card:
+           
+          not selectable
+          , id: 
+          id-truthy
+          , name:
+          Qatar Airways A350-900 A7-ALB
+          , photoUrl; 
+          https://file.notion.so/
+          , planespottersUrl: 
+          https://www.planespotters.net/
+          , description: 
+          description 1
+          , hashtags: 
+          #hashtags1
+        </div>
+        <div>
+          Mocked Spotted Plane Card:
+           
+          not selectable
+          , id: 
+          id-falsy
+          , name:
+          LOT 787-8 SP-LRF
+          , photoUrl; 
+          https://file.notion.so/
+          , planespottersUrl: 
+          https://www.planespotters.net/
+          , description: 
+          description 2
+          , hashtags: 
+          #hashtags2
+        </div>
+      </div>
+      <div>
+        title: 
+        Create group post
+        ; maxWidth: 
+        xl
+        ;
+        open
+        ;
+        not loading
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`GroupPlanesModal snapshot when loading renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedGroupPlanesForm
+      </div>
+      <div
+        class="css-zsqo3r"
+      >
+        <div>
+          Mocked Spotted Plane Card:
+           
+          not selectable
+          , id: 
+          id-truthy
+          , name:
+          Qatar Airways A350-900 A7-ALB
+          , photoUrl; 
+          https://file.notion.so/
+          , planespottersUrl: 
+          https://www.planespotters.net/
+          , description: 
+          description 1
+          , hashtags: 
+          #hashtags1
+        </div>
+        <div>
+          Mocked Spotted Plane Card:
+           
+          not selectable
+          , id: 
+          id-falsy
+          , name:
+          LOT 787-8 SP-LRF
+          , photoUrl; 
+          https://file.notion.so/
+          , planespottersUrl: 
+          https://www.planespotters.net/
+          , description: 
+          description 2
+          , hashtags: 
+          #hashtags2
+        </div>
+      </div>
+      <div>
+        title: 
+        Create group post
+        ; maxWidth: 
+        xl
+        ;
+        open
+        ;
+        loading
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;

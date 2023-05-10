@@ -23,7 +23,10 @@ exports[`SpottedPlanesList renders successfully 1`] = `
       #hashtags1
     </div>
     <div>
-      MockedGroupPlanesModal
+      MockedGroupPlanesModal. isModalOpen: 
+      closed
+      ; setIsModalOpen: 
+      passed
     </div>
   </div>
 </div>

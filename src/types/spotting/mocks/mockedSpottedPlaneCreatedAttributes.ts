@@ -5,9 +5,6 @@ export const mockedSpottedPlaneCreatedAttributesFull: SpottedPlaneCreatedAttribu
     description: 'description 1',
     hashtags: '#hashtags1',
     newFirstFlight: '2012-03-04',
-    groupName: 'groupName 1',
-    groupDescription: 'groupDescription 1',
-    groupHashtags: '#groupHashtags1',
   };
 
 export const mockedSpottedPlaneCreatedAttributesRequired: SpottedPlaneCreatedAttributes =
@@ -21,9 +18,6 @@ export const mockedSpottedPlaneCreatedAttributesFullEmpty: SpottedPlaneCreatedAt
     description: '',
     hashtags: '',
     newFirstFlight: '',
-    groupName: '',
-    groupDescription: '',
-    groupHashtags: '',
   };
 
 export const mockedSpottedPlaneCreatedAttributesRequiredEmpty: SpottedPlaneCreatedAttributes =
@@ -37,9 +31,6 @@ export const mockedSpottedPlaneCreatedAttributesFullMixed: SpottedPlaneCreatedAt
     description: '',
     hashtags: '#hashtags5',
     newFirstFlight: '2022-03-04',
-    groupName: '',
-    groupDescription: 'groupDescription 5',
-    groupHashtags: '#groupHashtags1',
   };
 
 export const mockedSpottedPlaneCreatedAttributesRequiredMixed: SpottedPlaneCreatedAttributes =

@@ -1,17 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 
 import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
 import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
 import useAlerts from '@/hooks/alerts';
 
-import Button from '@mui/material/Button';
-
 import Modal from '@/components/common/Modal';
 import SpottedPlaneCard from '@/components/spotting/SpottedPlaneCard';
 import GroupPlanesForm from '@/components/spotting/GroupPlanesForm';
 import PlanesContainer from '@/components/spotting/PlanesContainer';
+import GroupPostInfoAlert from '@/components/spotting/GroupPostInfoAlert';
 
-const GroupPlanesModal = () => {
+const GroupPlanesModal = ({
+  isModalOpen,
+  setIsModalOpen,
+}: {
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const {
     spottedPlanes,
     selectedIds,
@@ -24,8 +29,6 @@ const GroupPlanesModal = () => {
   } = useSpottedPlanes();
   const { update, loading } = useApplySpottedPlanes();
   const { createInfoAlert, clearAll } = useAlerts();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onCloseModal = useCallback(() => {
     setIsModalOpen(false);
@@ -52,19 +55,17 @@ const GroupPlanesModal = () => {
   };
 
   useEffect(() => {
-    const selectedCount = selectedIds.length;
     clearAll();
+
+    const selectedCount = selectedIds.length;
+
     if (selectedCount > 1)
       createInfoAlert(
-        <span>
-          Create group post from {selectedCount} planes?{' '}
-          <Button type="button" onClick={onOpenModal}>
-            Create
-          </Button>
-          <Button type="button" onClick={clearSelectedIds}>
-            Cancel
-          </Button>
-        </span>,
+        <GroupPostInfoAlert
+          selectedCount={selectedCount}
+          onOpenModal={onOpenModal}
+          clearSelectedIds={clearSelectedIds}
+        />,
         0
       );
   }, [clearAll, createInfoAlert, onOpenModal, selectedIds, clearSelectedIds]);
