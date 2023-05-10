@@ -41,6 +41,23 @@ describe('Modal snapshot', () => {
       );
     });
 
+    describe('when maxWidth passed', () => {
+      test('renders successfully', () => {
+        // Arrange
+        // Act
+        const { baseElement } = renderWithTheme(
+          <Modal open loading={false} {...mockedProps} maxWidth="md">
+            Modal
+          </Modal>
+        );
+        // Assert
+        expect(baseElement).toMatchSnapshot();
+        expect(mockUseMediaQuery).toHaveBeenCalledWith(
+          '@media (max-width:899.95px)'
+        );
+      });
+    });
+
     describe('and is loading', () => {
       test('renders successfully', () => {
         // Arrange
@@ -94,6 +111,23 @@ describe('Modal snapshot', () => {
       expect(mockUseMediaQuery).toHaveBeenCalledWith(
         '@media (max-width:899.95px)'
       );
+    });
+
+    describe('when maxWidth passed', () => {
+      test('renders successfully', () => {
+        // Arrange
+        // Act
+        const { baseElement } = renderWithTheme(
+          <Modal open loading={false} {...mockedProps} maxWidth="xl">
+            Modal
+          </Modal>
+        );
+        // Assert
+        expect(baseElement).toMatchSnapshot();
+        expect(mockUseMediaQuery).toHaveBeenCalledWith(
+          '@media (max-width:899.95px)'
+        );
+      });
     });
 
     describe('and is loading', () => {

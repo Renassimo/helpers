@@ -33,13 +33,11 @@ const GroupPlanesModal = () => {
   }, [clearGroupData, setIsModalOpen]);
 
   const onOpenModal = useCallback(() => {
-    console.log('onOpenModal');
     generateGroupDescriptionAndHashtags();
     setIsModalOpen(true);
   }, [generateGroupDescriptionAndHashtags, setIsModalOpen]);
 
   const onSubmitModal = async () => {
-    console.log('Submit Modal');
     const data = spottedPlanes
       .filter((spottedPlane) => selectedIds.includes(spottedPlane.id))
       .map((spottedPlane) => ({
