@@ -177,7 +177,6 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
   const generateGroupDescriptionAndHashtags = useCallback(() => {
     selectedIds.forEach((id: string) => {
       const { description, hashtags } = spottingData[id];
-      console.log({ description, hashtags });
       const descriptionText = description || generateDescription(id);
       const hashtagsText = hashtags || generateHashtags(id);
       appendDescription(descriptionText);

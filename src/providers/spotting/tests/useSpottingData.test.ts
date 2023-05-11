@@ -8,6 +8,7 @@ import {
   convertLinesIntoText,
   getDescriptionLines,
   getHashtagLines,
+  putTheLine,
 } from '@/utils/spotting';
 import {
   mockedSpottedPlaneApiDataFalsy,
@@ -46,27 +47,27 @@ describe('useSpottingData', () => {
     clearGroupData: expect.any(Function),
     clearSelectedIds: expect.any(Function),
   };
+  const expectedPlane1 = {
+    ...mockedPlane1.attributes,
+    id: mockedPlane1.id,
+    ...defaultDescriptionData,
+  };
+  const expectedPlane2 = {
+    ...mockedPlane2.attributes,
+    id: mockedPlane2.id,
+    ...defaultDescriptionData,
+  };
+  const expectedPlane3 = {
+    ...mockedPlane3.attributes,
+    id: mockedPlane3.id,
+    ...defaultDescriptionData,
+  };
+  const expectedPlanes = [expectedPlane1, expectedPlane2, expectedPlane3];
 
   test('returns data', () => {
     // Arrange
     const expectedResult = {
-      spottedPlanes: [
-        {
-          ...mockedPlane1.attributes,
-          id: mockedPlane1.id,
-          ...defaultDescriptionData,
-        },
-        {
-          ...mockedPlane2.attributes,
-          id: mockedPlane2.id,
-          ...defaultDescriptionData,
-        },
-        {
-          ...mockedPlane3.attributes,
-          id: mockedPlane3.id,
-          ...defaultDescriptionData,
-        },
-      ],
+      spottedPlanes: expectedPlanes,
       ...expectedProviderData,
       ...expectedFunctions,
     };
@@ -96,18 +97,7 @@ describe('useSpottingData', () => {
     test('returns updated data', async () => {
       // Arrange
       const expectedResult = {
-        spottedPlanes: [
-          {
-            ...mockedPlane1.attributes,
-            id: mockedPlane1.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
-          },
-        ],
+        spottedPlanes: [expectedPlane1, expectedPlane3],
         ...expectedProviderData,
         ...expectedFunctions,
       };
@@ -131,21 +121,15 @@ describe('useSpottingData', () => {
       const expectedResult = {
         spottedPlanes: [
           {
-            ...mockedPlane1.attributes,
-            id: mockedPlane1.id,
-            ...defaultDescriptionData,
+            ...expectedPlane1,
             description,
           },
           {
-            ...mockedPlane2.attributes,
-            id: mockedPlane2.id,
-            ...defaultDescriptionData,
+            ...expectedPlane2,
             hashtags,
           },
           {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
+            ...expectedPlane3,
             newFirstFlight,
           },
         ],
@@ -168,23 +152,7 @@ describe('useSpottingData', () => {
     test('returns updated data', async () => {
       // Arrange
       const expectedResult = {
-        spottedPlanes: [
-          {
-            ...mockedPlane1.attributes,
-            id: mockedPlane1.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane2.attributes,
-            id: mockedPlane2.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
-          },
-        ],
+        spottedPlanes: expectedPlanes,
         ...expectedProviderData,
         selectedIds: [mockedPlane1.id],
         ...expectedFunctions,
@@ -203,23 +171,7 @@ describe('useSpottingData', () => {
     test('returns updated data', async () => {
       // Arrange
       const expectedResult = {
-        spottedPlanes: [
-          {
-            ...mockedPlane1.attributes,
-            id: mockedPlane1.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane2.attributes,
-            id: mockedPlane2.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
-          },
-        ],
+        spottedPlanes: expectedPlanes,
         ...expectedProviderData,
         selectedIds: [mockedPlane2.id],
         ...expectedFunctions,
@@ -261,17 +213,9 @@ describe('useSpottingData', () => {
       };
       const expectedResult = {
         spottedPlanes: [
-          { ...mockedSpottedPlane1, description: mockedText },
-          {
-            ...mockedPlane2.attributes,
-            id: mockedPlane2.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
-          },
+          { ...expectedPlane1, description: mockedText },
+          expectedPlane2,
+          expectedPlane3,
         ],
         ...expectedProviderData,
         ...expectedFunctions,
@@ -314,20 +258,12 @@ describe('useSpottingData', () => {
       };
       const expectedResult = {
         spottedPlanes: [
+          expectedPlane1,
           {
-            ...mockedPlane1.attributes,
-            id: mockedPlane1.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedSpottedPlane2,
+            ...expectedPlane2,
             hashtags: mockedText,
           },
-          {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
-          },
+          expectedPlane3,
         ],
         ...expectedProviderData,
         ...expectedFunctions,
@@ -349,23 +285,7 @@ describe('useSpottingData', () => {
     test('returns updated data', async () => {
       // Arrange
       const expectedResult = {
-        spottedPlanes: [
-          {
-            ...mockedPlane1.attributes,
-            id: mockedPlane1.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane2.attributes,
-            id: mockedPlane2.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
-          },
-        ],
+        spottedPlanes: expectedPlanes,
         ...expectedProviderData,
         ...expectedFunctions,
       };
@@ -384,23 +304,7 @@ describe('useSpottingData', () => {
     test('returns updated data', async () => {
       // Arrange
       const expectedResult = {
-        spottedPlanes: [
-          {
-            ...mockedPlane1.attributes,
-            id: mockedPlane1.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane2.attributes,
-            id: mockedPlane2.id,
-            ...defaultDescriptionData,
-          },
-          {
-            ...mockedPlane3.attributes,
-            id: mockedPlane3.id,
-            ...defaultDescriptionData,
-          },
-        ],
+        spottedPlanes: expectedPlanes,
         ...expectedProviderData,
         ...expectedFunctions,
       };
@@ -410,6 +314,140 @@ describe('useSpottingData', () => {
       await act(() => {
         result.current.generateHashtags(mockedPlane2.id);
         result.current.clearHashtags(mockedPlane2.id);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+    });
+  });
+
+  describe('when clears selected ids', () => {
+    test('returns updated data', async () => {
+      // Arrange
+      const expectedResult = {
+        spottedPlanes: expectedPlanes,
+        ...expectedProviderData,
+        ...expectedFunctions,
+      };
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.addSelectedId(mockedPlane1.id);
+        result.current.clearSelectedIds();
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+    });
+  });
+
+  describe('when sets group data', () => {
+    test('returns updated data', async () => {
+      // Arrange
+      const mockedGroupName = 'Group Name';
+      const mockedGroupDescription = 'Group description';
+      const mockedGroupHashtags = '#groupHashtags';
+      const expectedResult = {
+        spottedPlanes: expectedPlanes,
+        ...expectedProviderData,
+        ...expectedFunctions,
+        groupName: mockedGroupName,
+        groupDescription: mockedGroupDescription,
+        groupHashtags: mockedGroupHashtags,
+      };
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.setGroupName(mockedGroupName);
+        result.current.setGroupDescription(mockedGroupDescription);
+        result.current.setGroupHashtags(mockedGroupHashtags);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+    });
+  });
+
+  describe('when generates groupDescriptionAndHashtags', () => {
+    const mockedLines = [['line1'], ['line2']];
+    const mockedText = 'mockedText';
+    const mockedHashtags = '#mockedHashtags';
+    const mockedLine = 'descriptionLine\n\n';
+    const mockedPutTheLine = jest.fn(() => mockedLine);
+    const mockedGetDescriptionLines = jest.fn(() => mockedLines);
+    const mockedConvertLinesIntoText = jest.fn(() => mockedText);
+    const mockedConvertLinesIntoTextHashtags = jest.fn(() => mockedHashtags);
+
+    beforeEach(() => {
+      (putTheLine as unknown as jest.Mock).mockImplementation(mockedPutTheLine);
+      (getDescriptionLines as unknown as jest.Mock).mockImplementation(
+        mockedGetDescriptionLines
+      );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoTextHashtags
+      );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoTextHashtags
+      );
+    });
+
+    test('returns updated data', async () => {
+      // Arrange
+      const expectedResult = {
+        spottedPlanes: [
+          {
+            ...expectedPlane1,
+            description: mockedText,
+            hashtags: mockedHashtags,
+          },
+          {
+            ...expectedPlane2,
+            description: mockedText,
+            hashtags: mockedHashtags,
+          },
+          { ...expectedPlane3 },
+        ],
+        ...expectedProviderData,
+        ...expectedFunctions,
+        groupDescription: 'descriptionLine\n\n[]\nmockedText\n',
+        groupHashtags: '#renassimo_spotted #mockedHashtags',
+        selectedIds: [mockedPlane1.id, mockedPlane2.id],
+      };
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.addSelectedId(mockedPlane1.id);
+        result.current.addSelectedId(mockedPlane2.id);
+      });
+      await act(() => {
+        result.current.generateGroupDescriptionAndHashtags();
+      });
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+    });
+  });
+
+  describe('when clears group data', () => {
+    test('returns updated data', async () => {
+      // Arrange
+      const mockedGroupName = 'Group Name';
+      const mockedGroupDescription = 'Group description';
+      const mockedGroupHashtags = '#groupHashtags';
+      const expectedResult = {
+        spottedPlanes: expectedPlanes,
+        ...expectedProviderData,
+        ...expectedFunctions,
+      };
+      const { result } = renderHook(() => useSpottingData(mockedData));
+      // Act
+      await act(() => {
+        result.current.setGroupName(mockedGroupName);
+        result.current.setGroupDescription(mockedGroupDescription);
+        result.current.setGroupHashtags(mockedGroupHashtags);
+        result.current.clearGroupData();
       });
       // Assert
       expect(result.current).toEqual(expectedResult);
