@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 
 import { AlertColor } from '@mui/material';
 
@@ -20,7 +20,7 @@ const useAlertsProvider = () => {
 
   const createAlert = useCallback(
     (
-      text: string | number,
+      text: string | number | ReactNode,
       severity: AlertColor = 'info',
       lifetime?: number
     ) => {
@@ -36,25 +36,25 @@ const useAlertsProvider = () => {
   );
 
   const createErrorAlert = useCallback(
-    (text: string | number, lifetime?: number) =>
+    (text: string | number | ReactNode, lifetime?: number) =>
       createAlert(text, 'error', lifetime),
     [createAlert]
   );
 
   const createInfoAlert = useCallback(
-    (text: string | number, lifetime = DEFAULT_LIFETIME) =>
+    (text: string | number | ReactNode, lifetime = DEFAULT_LIFETIME) =>
       createAlert(text, 'info', lifetime),
     [createAlert]
   );
 
   const createWarnAlert = useCallback(
-    (text: string | number, lifetime = DEFAULT_LIFETIME) =>
+    (text: string | number | ReactNode, lifetime = DEFAULT_LIFETIME) =>
       createAlert(text, 'warning', lifetime),
     [createAlert]
   );
 
   const createSuccessAlert = useCallback(
-    (text: string | number, lifetime = DEFAULT_LIFETIME) =>
+    (text: string | number | ReactNode, lifetime = DEFAULT_LIFETIME) =>
       createAlert(text, 'success', lifetime),
     [createAlert]
   );

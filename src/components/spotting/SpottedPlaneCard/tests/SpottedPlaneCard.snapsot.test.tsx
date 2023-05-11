@@ -6,6 +6,7 @@ import {
 } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
 import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
 
 import SpottedPlaneCard from '@/components/spotting/SpottedPlaneCard';
 import SelectableCard from '@/components/spotting/SelectableCard';
@@ -20,6 +21,7 @@ jest.mock('@/components/spotting/SelectableCard');
 jest.mock('@/components/spotting/NewFirstFlightForm');
 jest.mock('@/components/spotting/SpottedPlaneForm');
 jest.mock('@/hooks/spotting/useSpottedPlanes');
+jest.mock('@/hooks/spotting/useApplySpottedPlanes');
 
 describe('SpottedPlaneCard snapshots', () => {
   beforeEach(() => {
@@ -35,6 +37,12 @@ describe('SpottedPlaneCard snapshots', () => {
     (useSpottedPlanes as unknown as jest.Mock).mockImplementation(
       jest.fn(() => ({
         selectedIds: [],
+      }))
+    );
+    (useApplySpottedPlanes as unknown as jest.Mock).mockImplementation(
+      jest.fn(() => ({
+        update: jest.fn(),
+        loading: false,
       }))
     );
   });
@@ -58,6 +66,34 @@ describe('SpottedPlaneCard snapshots', () => {
       },
       {}
     );
+  });
+
+  describe('when loading', () => {
+    test('renders successfully', () => {
+      // Arrange
+      (useApplySpottedPlanes as unknown as jest.Mock).mockImplementation(
+        jest.fn(() => ({
+          update: jest.fn(),
+          loading: true,
+        }))
+      );
+      // Act
+      const { container } = renderWithTheme(
+        <SpottedPlaneCard
+          selectable
+          data={mockedSpottedPlaneProviderDataTruthy}
+        />
+      );
+      // Assert
+      expect(container).toMatchSnapshot();
+      expect(MockedNewFirstFlightForm).not.toHaveBeenCalled();
+      expect(MockedSpottedPlaneForm).toHaveBeenCalledWith(
+        {
+          data: mockedSpottedPlaneProviderDataTruthy,
+        },
+        {}
+      );
+    });
   });
 
   describe('when does not show description', () => {

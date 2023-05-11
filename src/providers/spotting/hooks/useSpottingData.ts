@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import {
   SpottedPlaneApiData,
@@ -9,15 +9,13 @@ import {
   convertLinesIntoText,
   getDescriptionLines,
   getHashtagLines,
+  putTheLine,
 } from '@/utils/spotting';
 
 export const defaultDescriptionData = {
   description: '',
   hashtags: '',
   newFirstFlight: undefined,
-  groupName: undefined,
-  groupDescription: undefined,
-  groupHashtags: undefined,
 };
 
 const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
@@ -37,99 +35,161 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
       {}
     ) ?? {}
   );
+  const [groupName, setGroupName] = useState('');
+  const [groupDescription, setGroupDescription] = useState('');
+  const [groupHashtags, setGroupHashtags] = useState('');
 
-  const updateSpottedPlane = (id: string, payload: Record<string, string>) => {
-    setSpottingData((current) => {
-      const item = current[id];
-      if (item) {
-        return {
-          ...current,
-          [id]: {
-            ...item,
-            ...payload,
-          },
-        };
-      }
-      return current;
-    });
-  };
+  const updateSpottedPlane = useCallback(
+    (id: string, payload: Record<string, string>) => {
+      setSpottingData((current) => {
+        const item = current[id];
+        if (item) {
+          return {
+            ...current,
+            [id]: {
+              ...item,
+              ...payload,
+            },
+          };
+        }
+        return current;
+      });
+    },
+    [setSpottingData]
+  );
 
-  const removeSpottedPlane = (id: string) => {
-    setSpottingData((current) => {
-      const currentCopy = { ...current };
-      delete currentCopy[id];
-      return currentCopy;
-    });
-  };
+  const removeSpottedPlane = useCallback(
+    (id: string) => {
+      setSpottingData((current) => {
+        const currentCopy = { ...current };
+        delete currentCopy[id];
+        return currentCopy;
+      });
+    },
+    [setSpottingData]
+  );
 
-  const updateDescription = (id: string, description: string) =>
-    updateSpottedPlane(id, { description });
+  const updateDescription = useCallback(
+    (id: string, description: string) =>
+      updateSpottedPlane(id, { description }),
+    [updateSpottedPlane]
+  );
 
-  const updateHashtags = (id: string, hashtags: string) =>
-    updateSpottedPlane(id, { hashtags });
+  const updateHashtags = useCallback(
+    (id: string, hashtags: string) => updateSpottedPlane(id, { hashtags }),
+    [updateSpottedPlane]
+  );
 
-  const updateNewFirstFlight = (id: string, newFirstFlight: string) =>
-    updateSpottedPlane(id, { newFirstFlight });
-
-  const updateGroupName = (id: string, groupName: string) =>
-    updateSpottedPlane(id, { groupName });
-
-  const updateGroupDescription = (id: string, groupDescription: string) =>
-    updateSpottedPlane(id, { groupDescription });
-
-  const updateGroupHashtags = (id: string, groupHashtags: string) =>
-    updateSpottedPlane(id, { groupHashtags });
-
-  const filterPlanes = (ids: string[]) => {
-    setSpottingData((current: Record<string, SpottedPlaneProviderData>) =>
-      Object.values(current).reduce(
-        (result, item) =>
-          ids.includes(item.id) ? result : { [item.id]: item },
-        {}
-      )
-    );
-    removeSelectedIds(ids);
-  };
+  const updateNewFirstFlight = useCallback(
+    (id: string, newFirstFlight: string) =>
+      updateSpottedPlane(id, { newFirstFlight }),
+    [updateSpottedPlane]
+  );
 
   const spottedPlanes: SpottedPlaneProviderData[] = Object.values(spottingData);
 
-  const addSelectedId = (id: string) => {
-    setSelectedIds((current: string[]) => [...new Set(current).add(id)]);
-  };
+  const addSelectedId = useCallback(
+    (id: string) => {
+      setSelectedIds((current: string[]) => [...new Set(current).add(id)]);
+    },
+    [setSelectedIds]
+  );
 
-  const removeSelectedIds = (ids: string[]) => {
-    setSelectedIds((current) =>
-      current.filter((id: string) => !ids.includes(id))
-    );
-  };
+  const removeSelectedIds = useCallback(
+    (ids: string[]) => {
+      setSelectedIds((current) =>
+        current.filter((id: string) => !ids.includes(id))
+      );
+    },
+    [setSelectedIds]
+  );
 
-  const getUpdateFunctions = (id: string) => ({
-    updateDescription: (payload: string) => updateDescription(id, payload),
-    updateHashtags: (payload: string) => updateHashtags(id, payload),
-    updateNewFirstFlight: (payload: string) =>
-      updateNewFirstFlight(id, payload),
-    updateGroupName: (payload: string) => updateGroupName(id, payload),
-    updateGroupDescription: (payload: string) =>
-      updateGroupDescription(id, payload),
-    updateGroupHashtags: (payload: string) => updateGroupHashtags(id, payload),
-  });
+  const clearSelectedIds = useCallback(() => {
+    setSelectedIds([]);
+  }, [setSelectedIds]);
 
-  const generateDescription = (id: string) => {
-    const lines = getDescriptionLines(spottingData[id]);
-    const text = convertLinesIntoText(lines);
+  const generateDescription = useCallback(
+    (id: string) => {
+      const lines = getDescriptionLines(spottingData[id]);
+      const text = convertLinesIntoText(lines);
 
-    updateDescription(id, text);
-  };
+      updateDescription(id, text);
+      return text;
+    },
+    [spottingData, updateDescription]
+  );
 
-  const generateHashtags = (id: string) => {
-    const lines = getHashtagLines(spottingData[id]);
-    const text = convertLinesIntoText(lines);
+  const generateHashtags = useCallback(
+    (id: string) => {
+      const lines = getHashtagLines(spottingData[id]);
+      const text = convertLinesIntoText(lines);
 
-    updateHashtags(id, text);
-  };
+      updateHashtags(id, text);
+      return text;
+    },
+    [spottingData, updateHashtags]
+  );
 
-  const clearDescription = (id: string) => updateDescription(id, '');
-  const clearHashtags = (id: string) => updateHashtags(id, '');
+  const clearDescription = useCallback(
+    (id: string) => updateDescription(id, ''),
+    [updateDescription]
+  );
+  const clearHashtags = useCallback(
+    (id: string) => updateHashtags(id, ''),
+    [updateHashtags]
+  );
+
+  const appendDescription = useCallback(
+    (description: string) => {
+      setGroupDescription(
+        (currentGroupDescription) =>
+          `${putTheLine(currentGroupDescription)}[]\n${description}\n`
+      );
+    },
+    [setGroupDescription]
+  );
+
+  const appendHashtags = useCallback(
+    (hashtags: string) => {
+      setGroupHashtags((currentGroupHashtags) =>
+        [
+          ...new Set(
+            `#renassimo_spotted${currentGroupHashtags}${
+              hashtags.split('#renassimo_spotted')[0]
+            }`
+              .split('#')
+              .map((item) => item.trim())
+              .filter((item) => item)
+              .map((item) => `#${item}`)
+          ),
+        ].join(' ')
+      );
+    },
+    [setGroupHashtags]
+  );
+
+  const clearGroupData = useCallback(() => {
+    setGroupName('');
+    setGroupDescription('');
+    setGroupHashtags('');
+  }, []);
+
+  const generateGroupDescriptionAndHashtags = useCallback(() => {
+    selectedIds.forEach((id: string) => {
+      const { description, hashtags } = spottingData[id];
+      const descriptionText = description || generateDescription(id);
+      const hashtagsText = hashtags || generateHashtags(id);
+      appendDescription(descriptionText);
+      appendHashtags(hashtagsText);
+    });
+  }, [
+    appendDescription,
+    appendHashtags,
+    generateDescription,
+    generateHashtags,
+    selectedIds,
+    spottingData,
+  ]);
 
   return {
     spottedPlanes,
@@ -137,11 +197,6 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
     updateDescription,
     updateHashtags,
     updateNewFirstFlight,
-    updateGroupName,
-    updateGroupDescription,
-    updateGroupHashtags,
-    getUpdateFunctions,
-    filterPlanes,
     selectedIds,
     addSelectedId,
     removeSelectedIds,
@@ -149,6 +204,15 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
     generateHashtags,
     clearDescription,
     clearHashtags,
+    groupDescription,
+    groupHashtags,
+    groupName,
+    setGroupDescription,
+    setGroupHashtags,
+    setGroupName,
+    generateGroupDescriptionAndHashtags,
+    clearGroupData,
+    clearSelectedIds,
   };
 };
 

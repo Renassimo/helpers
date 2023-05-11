@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlanesContainer snapshot renders successfully 1`] = `
+<div>
+  <div
+    class="css-zsqo3r"
+  >
+    Children
+  </div>
+</div>
+`;

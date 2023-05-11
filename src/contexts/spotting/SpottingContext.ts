@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
 import { SpottedPlaneProviderData } from '@/types/spotting';
 
 const SpottingContext = createContext<{
@@ -7,43 +7,44 @@ const SpottingContext = createContext<{
   updateDescription: (id: string, description: string) => void;
   updateHashtags: (id: string, hashtags: string) => void;
   updateNewFirstFlight: (id: string, newFirstFlight: string) => void;
-  updateGroupName: (id: string, groupName: string) => void;
-  updateGroupDescription: (id: string, groupDescription: string) => void;
-  updateGroupHashtags: (id: string, groupHashtags: string) => void;
-  getUpdateFunctions: (id: string) => Record<string, (payload: string) => void>;
-  filterPlanes: (ids: string[]) => void;
   selectedIds: string[];
   addSelectedId: (id: string) => void;
   removeSelectedIds: (ids: string[]) => void;
-  generateDescription: (id: string) => void;
-  generateHashtags: (id: string) => void;
+  generateDescription: (id: string) => string;
+  generateHashtags: (id: string) => string;
   clearDescription: (id: string) => void;
   clearHashtags: (id: string) => void;
+  groupDescription: string;
+  groupHashtags: string;
+  groupName: string;
+  setGroupDescription: Dispatch<SetStateAction<string>>;
+  setGroupHashtags: Dispatch<SetStateAction<string>>;
+  setGroupName: Dispatch<SetStateAction<string>>;
+  generateGroupDescriptionAndHashtags: () => void;
+  clearGroupData: () => void;
+  clearSelectedIds: () => void;
 }>({
   spottedPlanes: [],
   removeSpottedPlane: () => {},
   updateDescription: () => {},
   updateHashtags: () => {},
   updateNewFirstFlight: () => {},
-  updateGroupName: () => {},
-  updateGroupDescription: () => {},
-  updateGroupHashtags: () => {},
-  getUpdateFunctions: () => ({
-    updateDescription: () => {},
-    updateHashtags: () => {},
-    updateNewFirstFlight: () => {},
-    updateGroupName: () => {},
-    updateGroupDescription: () => {},
-    updateGroupHashtags: () => {},
-  }),
-  filterPlanes: () => {},
   selectedIds: [],
   addSelectedId: () => {},
   removeSelectedIds: () => {},
-  generateDescription: () => {},
-  generateHashtags: () => {},
+  generateDescription: () => '',
+  generateHashtags: () => '',
   clearDescription: () => {},
   clearHashtags: () => {},
+  groupDescription: '',
+  groupHashtags: '',
+  groupName: '',
+  setGroupDescription: () => {},
+  setGroupHashtags: () => {},
+  setGroupName: () => {},
+  generateGroupDescriptionAndHashtags: () => {},
+  clearGroupData: () => {},
+  clearSelectedIds: () => {},
 });
 
 export default SpottingContext;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpottedPlaneForm snapshot renders successfully 1`] = `
+exports[`GroupPlanesForm should rendered successfully 1`] = `
 <div>
   <div
     class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
@@ -11,12 +11,11 @@ exports[`SpottedPlaneForm snapshot renders successfully 1`] = `
       <textarea
         aria-invalid="false"
         class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-        id="description-id-truthy"
-        name="description-id-truthy"
+        id="group-description"
+        name="group-description"
+        placeholder="Description"
         style="height: 0px; overflow: hidden;"
-      >
-        description 1
-      </textarea>
+      />
       <textarea
         aria-hidden="true"
         class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
@@ -26,6 +25,12 @@ exports[`SpottedPlaneForm snapshot renders successfully 1`] = `
       />
     </div>
   </div>
+  <span
+    class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+  >
+    Hashtags: 
+    0
+  </span>
   <div
     class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
   >
@@ -35,12 +40,11 @@ exports[`SpottedPlaneForm snapshot renders successfully 1`] = `
       <textarea
         aria-invalid="false"
         class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-        id="hashtags-id-truthy"
-        name="hashtags-id-truthy"
+        id="group-hashtags"
+        name="group-hashtags"
+        placeholder="Hashtags"
         style="height: 0px; overflow: hidden;"
-      >
-        #hashtags1
-      </textarea>
+      />
       <textarea
         aria-hidden="true"
         class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
@@ -48,6 +52,33 @@ exports[`SpottedPlaneForm snapshot renders successfully 1`] = `
         style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
         tabindex="-1"
       />
+    </div>
+  </div>
+  <span
+    class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+  >
+    Hashtags: 
+    0
+  </span>
+  <div
+    class="MuiBox-root css-1bvc4cc"
+  >
+    <div
+      class="MuiFormControl-root MuiFormControl-marginDense MuiTextField-root css-4mzek5-MuiFormControl-root-MuiTextField-root"
+    >
+      <div
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-v4u5dn-MuiInputBase-root-MuiInput-root"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          id="group-name"
+          name="group-name"
+          placeholder="Group name"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>

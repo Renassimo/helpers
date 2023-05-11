@@ -8,8 +8,11 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import CollectionsIcon from '@mui/icons-material/Collections';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
 import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
 import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
@@ -33,9 +36,11 @@ const SpottedPlaneCard = ({
     description,
     hashtags,
     firstFlight,
+    photosUrl,
+    url,
   } = data;
 
-  const { update } = useApplySpottedPlanes();
+  const { update, loading } = useApplySpottedPlanes();
 
   const {
     selectedIds,
@@ -82,7 +87,7 @@ const SpottedPlaneCard = ({
   return (
     <SelectableCard
       isAnySelected={isAnySelected}
-      selectable
+      selectable={selectable}
       selected={isSelected}
       toggleSelect={toggleSelect}
     >
@@ -97,6 +102,19 @@ const SpottedPlaneCard = ({
       <CardContent>
         <Typography gutterBottom variant="h6" component="h2">
           {name}
+          <IconButton size="small" href={url} target="_blank" rel="noreferrer">
+            <ContentPasteIcon fontSize="small" />
+          </IconButton>
+          {photosUrl && (
+            <IconButton
+              size="small"
+              href={photosUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <CollectionsIcon fontSize="small" />
+            </IconButton>
+          )}
           {planespottersUrl && (
             <IconButton
               size="small"
@@ -116,12 +134,14 @@ const SpottedPlaneCard = ({
       <CardActions sx={{ justifyContent: 'end' }}>
         {showDescription ? (
           <>
-            <Button size="small" onClick={discard}>
+            <Button size="small" onClick={discard} disabled={loading}>
               Discard
             </Button>
-            <Button size="small" onClick={apply}>
-              Apply
-            </Button>
+            {selectable && (
+              <LoadingButton size="small" onClick={apply} loading={loading}>
+                Apply
+              </LoadingButton>
+            )}
           </>
         ) : (
           <Button size="small" onClick={createDescription}>
