@@ -11,6 +11,8 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import CollectionsIcon from '@mui/icons-material/Collections';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
 import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
 import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
@@ -34,6 +36,8 @@ const SpottedPlaneCard = ({
     description,
     hashtags,
     firstFlight,
+    photosUrl,
+    url,
   } = data;
 
   const { update, loading } = useApplySpottedPlanes();
@@ -98,6 +102,19 @@ const SpottedPlaneCard = ({
       <CardContent>
         <Typography gutterBottom variant="h6" component="h2">
           {name}
+          <IconButton size="small" href={url} target="_blank" rel="noreferrer">
+            <ContentPasteIcon fontSize="small" />
+          </IconButton>
+          {photosUrl && (
+            <IconButton
+              size="small"
+              href={photosUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <CollectionsIcon fontSize="small" />
+            </IconButton>
+          )}
           {planespottersUrl && (
             <IconButton
               size="small"

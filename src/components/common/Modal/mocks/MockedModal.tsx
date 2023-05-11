@@ -9,6 +9,7 @@ const MockedModal = jest.fn(
     onSubmit,
     title,
     loading,
+    disabled,
     maxWidth = 'sm',
   }: {
     open: boolean;
@@ -17,13 +18,15 @@ const MockedModal = jest.fn(
     onSubmit: (event: FormEvent<HTMLFormElement>) => void;
     title: string;
     loading: boolean;
+    disabled?: boolean;
     maxWidth?: Breakpoint;
   }) => (
     <div>
       {children}
       <div>
         title: {title}; maxWidth: {maxWidth};{open ? 'open' : 'closed'};
-        {loading ? 'loading' : 'not loading'}; onClose{' '}
+        {loading ? 'loading' : 'not loading'};
+        {disabled ? 'disabled' : 'not disabled'}; onClose{' '}
         {!!onClose ? 'passed' : 'did not passed'}; onSubmit{' '}
         {!!onSubmit ? 'passed' : 'did not passed'};
       </div>

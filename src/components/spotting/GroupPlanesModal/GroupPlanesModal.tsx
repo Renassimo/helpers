@@ -78,6 +78,7 @@ const GroupPlanesModal = ({
         onSubmit={onSubmitModal}
         title="Create group post"
         loading={loading}
+        disabled={!groupName}
         maxWidth={'xl'}
       >
         <GroupPlanesForm />

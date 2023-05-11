@@ -75,6 +75,23 @@ describe('Modal snapshot', () => {
       });
     });
 
+    describe('and disabled', () => {
+      test('renders successfully', () => {
+        // Arrange
+        // Act
+        const { baseElement } = renderWithTheme(
+          <Modal open disabled loading={false} {...mockedProps}>
+            Modal
+          </Modal>
+        );
+        // Assert
+        expect(baseElement).toMatchSnapshot();
+        expect(mockUseMediaQuery).toHaveBeenCalledWith(
+          '@media (max-width:899.95px)'
+        );
+      });
+    });
+
     describe('and is closed', () => {
       test('renders successfully', () => {
         // Arrange
@@ -136,6 +153,23 @@ describe('Modal snapshot', () => {
         // Act
         const { baseElement } = renderWithTheme(
           <Modal open loading {...mockedProps}>
+            Modal
+          </Modal>
+        );
+        // Assert
+        expect(baseElement).toMatchSnapshot();
+        expect(mockUseMediaQuery).toHaveBeenCalledWith(
+          '@media (max-width:899.95px)'
+        );
+      });
+    });
+
+    describe('and disabled', () => {
+      test('renders successfully', () => {
+        // Arrange
+        // Act
+        const { baseElement } = renderWithTheme(
+          <Modal open disabled loading {...mockedProps}>
             Modal
           </Modal>
         );

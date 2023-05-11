@@ -45,6 +45,7 @@ describe('GroupPlanesModal snapshot', () => {
       spottedPlanes: mockedSpottedPlanes,
       selectedIds: mockedSelectedIds,
       generateGroupDescriptionAndHashtags: jest.fn(),
+      groupName: 'groupName',
       clearGroupData: jest.fn(),
       clearSelectedIds: jest.fn(),
     }));
@@ -78,6 +79,30 @@ describe('GroupPlanesModal snapshot', () => {
     test('renders successfully', () => {
       // Arrange
       loading = true;
+      // Act
+      const { baseElement } = renderWithTheme(
+        <GroupPlanesModal isModalOpen setIsModalOpen={mockedSetIsModalOpen} />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
+  describe('when no group name', () => {
+    beforeEach(() => {
+      (useSpottedPlanes as unknown as jest.Mock).mockImplementation(() => ({
+        spottedPlanes: mockedSpottedPlanes,
+        selectedIds: mockedSelectedIds,
+        generateGroupDescriptionAndHashtags: jest.fn(),
+        clearGroupData: jest.fn(),
+        clearSelectedIds: jest.fn(),
+        groupName: '',
+      }));
+    });
+
+    test('renders successfully', () => {
+      // Arrange
+      loading = false;
       // Act
       const { baseElement } = renderWithTheme(
         <GroupPlanesModal isModalOpen setIsModalOpen={mockedSetIsModalOpen} />

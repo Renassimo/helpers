@@ -19,6 +19,7 @@ const Modal = ({
   onSubmit,
   title,
   loading,
+  disabled = false,
   maxWidth = 'sm',
 }: {
   open: boolean;
@@ -27,6 +28,7 @@ const Modal = ({
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   title: string;
   loading: boolean;
+  disabled?: boolean;
   maxWidth?: Breakpoint;
 }) => {
   const theme = useTheme();
@@ -67,7 +69,7 @@ const Modal = ({
       <form onSubmit={handleSubmit}>
         <DialogContent>{children}</DialogContent>
         <DialogActions>
-          <LoadingButton loading={loading} type="submit">
+          <LoadingButton loading={loading} disabled={disabled} type="submit">
             Save
           </LoadingButton>
         </DialogActions>
