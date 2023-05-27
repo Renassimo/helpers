@@ -1,10 +1,9 @@
 import { LineWord } from '@/types/spotting';
 
-export const convertName = (name: string | null) =>
-  name?.split('-').join('').split(' ').join('') ?? null;
+const splitRegexp = / |\/|-|\./;
 
-export const convertPlace = (place: string | null) =>
-  place?.split('/').join('_') ?? null;
+export const convertText = (name: string | null, joiner = '') =>
+  name?.split(splitRegexp).join(joiner) ?? null;
 
 export const putTheLine = (line: string) => (line.trim() ? `${line}\n` : '');
 

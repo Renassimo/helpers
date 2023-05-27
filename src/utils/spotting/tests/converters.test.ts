@@ -1,39 +1,43 @@
 import {
   convertLinesIntoText,
-  convertName,
-  convertPlace,
+  convertText,
   getTextLine,
 } from '@/utils/spotting';
 
 describe('Converters', () => {
-  describe('convertName', () => {
+  describe('convertText', () => {
     test('converts name', () => {
       // Arrange
       const expectedResult = 'AirbusA320200';
       // Act
-      const result = convertName('Airbus A320-200');
+      const result = convertText('Airbus A320-200');
       // Assert
       expect(result).toEqual(expectedResult);
     });
 
-    describe('when passed null', () => {
-      test('returns null', () => {
-        // Arrange
-        const expectedResult = null;
-        // Act
-        const result = convertName(null);
-        // Assert
-        expect(result).toEqual(expectedResult);
-      });
-    });
-  });
-
-  describe('convertPlace', () => {
     test('converts place', () => {
       // Arrange
       const expectedResult = 'WAW_EPWA';
       // Act
-      const result = convertPlace('WAW/EPWA');
+      const result = convertText('WAW/EPWA', '_');
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+
+    test('converts museum place', () => {
+      // Arrange
+      const expectedResult = 'Swiss_Museum_of_Transport';
+      // Act
+      const result = convertText('Swiss Museum of Transport', '_');
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+
+    test('converts cn with dots', () => {
+      // Arrange
+      const expectedResult = 'c101';
+      // Act
+      const result = convertText('c.101');
       // Assert
       expect(result).toEqual(expectedResult);
     });
@@ -43,7 +47,7 @@ describe('Converters', () => {
         // Arrange
         const expectedResult = null;
         // Act
-        const result = convertPlace(null);
+        const result = convertText(null);
         // Assert
         expect(result).toEqual(expectedResult);
       });

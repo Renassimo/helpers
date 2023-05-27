@@ -1,8 +1,7 @@
 import { LineWord, SpottedPlaneProviderData } from '@/types/spotting';
 
 import {
-  convertName,
-  convertPlace,
+  convertText,
   insHash,
   insRHash,
   freighters,
@@ -29,8 +28,8 @@ export const getDescriptionLines = (data: SpottedPlaneProviderData) => {
   } = data;
 
   const acceptedFirstFlight = firstFlight ?? newFirstFlight;
-  const modelConverted = model && convertName(model);
-  const cnConverted = cn && convertName(cn);
+  const modelConverted = model && convertText(model);
+  const cnConverted = cn && convertText(cn);
   const modelCnHashTag =
     modelConverted &&
     cnConverted &&
@@ -58,10 +57,10 @@ export const getDescriptionLines = (data: SpottedPlaneProviderData) => {
 export const getHashtagLines = (data: SpottedPlaneProviderData) => {
   const { manufacturer, model, carrier, place, spottedDate, modelled } = data;
 
-  const convertedManufacturer = convertName(manufacturer);
-  const convertedModel = convertName(model);
-  const convertedCarrier = convertName(carrier);
-  const convertedPlace = convertPlace(place);
+  const convertedManufacturer = convertText(manufacturer);
+  const convertedModel = convertText(model);
+  const convertedCarrier = convertText(carrier);
+  const convertedPlace = convertText(place, '_');
 
   const isSpotted = spottedDate || place;
 
