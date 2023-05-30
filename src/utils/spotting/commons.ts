@@ -24,12 +24,11 @@ export const getCommons = (
   const isCommonPlace = isCommon('place', data);
   const isCommonSpottedDate = isCommon('spottedDate', data);
 
+  const isCommonCarrierModel =
+    isCommonManufacturer && isCommonModel && isCommonCarrier;
   const isCommonPlane =
-    isCommonManufacturer &&
-    isCommonModel &&
-    isCommonCarrier &&
-    isCommonRegistration &&
-    isCommonCn;
+    isCommonCarrierModel && isCommonRegistration && isCommonCn;
+  const isCommonPlaceAndDate = isCommonPlace && isCommonSpottedDate;
 
   return {
     isCommonManufacturer,
@@ -39,6 +38,8 @@ export const getCommons = (
     isCommonCn,
     isCommonPlace,
     isCommonSpottedDate,
+    isCommonCarrierModel,
     isCommonPlane,
+    isCommonPlaceAndDate,
   };
 };

@@ -34,7 +34,9 @@ describe('Commons', () => {
         isCommonCn: false,
         isCommonPlace: false,
         isCommonSpottedDate: false,
+        isCommonCarrierModel: false,
         isCommonPlane: false,
+        isCommonPlaceAndDate: false,
       };
       // Act
       const result = getCommons(mockedSelectedIds, mockedSpottingData);
@@ -67,7 +69,9 @@ describe('Commons', () => {
         isCommonCn: false,
         isCommonPlace: false,
         isCommonSpottedDate: false,
+        isCommonCarrierModel: false,
         isCommonPlane: false,
+        isCommonPlaceAndDate: false,
       };
       // Act
       const result = getCommons(mockedSelectedIds, mockedSpottingData);
@@ -103,7 +107,9 @@ describe('Commons', () => {
         isCommonCn: true,
         isCommonPlace: true,
         isCommonSpottedDate: true,
+        isCommonCarrierModel: true,
         isCommonPlane: true,
+        isCommonPlaceAndDate: true,
       };
       // Act
       const result = getCommons(mockedSelectedIds, mockedSpottingData);
@@ -145,7 +151,9 @@ describe('Commons', () => {
         isCommonCn: true,
         isCommonPlace: false,
         isCommonSpottedDate: false,
+        isCommonCarrierModel: true,
         isCommonPlane: true,
+        isCommonPlaceAndDate: false,
       };
       // Act
       const result = getCommons(mockedSelectedIds, mockedSpottingData);
