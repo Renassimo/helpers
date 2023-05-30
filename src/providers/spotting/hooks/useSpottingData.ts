@@ -187,7 +187,7 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
       descriptionLines,
       commons
     );
-    setGroupDescription(convertLinesIntoText(updatedDescriptionLines));
+    setGroupDescription(`${convertLinesIntoText(updatedDescriptionLines)}\n`);
 
     selectedIds.forEach((id: string) => {
       const { lines: descriptionLines } = generateDescription(id);
