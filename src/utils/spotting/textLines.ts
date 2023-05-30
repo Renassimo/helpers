@@ -8,6 +8,7 @@ import {
   specialHashTags,
 } from '@/utils/spotting';
 import { formatFromNotionDate } from '@/utils/dayjs';
+import { Commons } from '@/utils/spotting/commons';
 
 const withEnter = (words: LineWord[]) =>
   words.find((word: LineWord) => !!word) ? [...words, '\n'] : words;
@@ -114,4 +115,73 @@ export const getHashtagLines = (data: SpottedPlaneProviderData) => {
     ]),
     [commonTags, isSpottedCommonTags, modelledCommonTags],
   ];
+};
+
+export const getFirstSelectedDescriptionLines = (
+  descriptionLines: (string | false | null)[][],
+  commons: Commons
+) => {
+  const { isCommonCarrierModel, isCommonPlane, isCommonPlaceAndDate } = commons;
+  const [
+    carrierModelLine,
+    airplaneNameLine,
+    registrationLine,
+    firstFlightLine,
+    placeDateLine,
+    ...planeHashtagLines
+  ] = descriptionLines;
+
+  const updatedDescriptionLines: (string | false | null)[][] = [];
+
+  if (isCommonCarrierModel && !isCommonPlane) {
+    updatedDescriptionLines.push(carrierModelLine);
+  }
+  if (isCommonPlane) {
+    updatedDescriptionLines.push(carrierModelLine);
+    updatedDescriptionLines.push(airplaneNameLine);
+    updatedDescriptionLines.push(registrationLine);
+    updatedDescriptionLines.push(firstFlightLine);
+  }
+  if (isCommonPlaceAndDate) {
+    updatedDescriptionLines.push(placeDateLine);
+  }
+  if (isCommonPlane) {
+    planeHashtagLines.forEach((line) => updatedDescriptionLines.push(line));
+  }
+
+  return updatedDescriptionLines;
+};
+
+export const getNextSelectedDescriptionLines = (
+  descriptionLines: (string | false | null)[][],
+  commons: Commons
+) => {
+  const { isCommonCarrierModel, isCommonPlane, isCommonPlaceAndDate } = commons;
+  const [
+    carrierModelLine,
+    airplaneNameLine,
+    registrationLine,
+    firstFlightLine,
+    placeDateLine,
+    ...planeHashtagLines
+  ] = descriptionLines;
+
+  const updatedDescriptionLines: (string | false | null)[][] = [];
+
+  if (!isCommonCarrierModel) {
+    updatedDescriptionLines.push(carrierModelLine);
+  }
+  if (!isCommonPlane) {
+    updatedDescriptionLines.push(airplaneNameLine);
+    updatedDescriptionLines.push(registrationLine);
+    updatedDescriptionLines.push(firstFlightLine);
+  }
+  if (!isCommonPlaceAndDate) {
+    updatedDescriptionLines.push(placeDateLine);
+  }
+  if (!isCommonPlane) {
+    planeHashtagLines.forEach((line) => updatedDescriptionLines.push(line));
+  }
+
+  return updatedDescriptionLines;
 };

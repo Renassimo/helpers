@@ -8,9 +8,12 @@ import {
 import {
   convertLinesIntoText,
   getDescriptionLines,
+  getFirstSelectedDescriptionLines,
   getHashtagLines,
+  getNextSelectedDescriptionLines,
   putTheLine,
 } from '@/utils/spotting';
+import { getCommons } from '@/utils/spotting/commons';
 
 export const defaultDescriptionData = {
   description: '',
@@ -114,7 +117,7 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
       const text = convertLinesIntoText(lines);
 
       updateDescription(id, text);
-      return text;
+      return { text, lines };
     },
     [spottingData, updateDescription]
   );
@@ -175,11 +178,27 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
   }, []);
 
   const generateGroupDescriptionAndHashtags = useCallback(() => {
+    const commons = getCommons(selectedIds, spottingData);
+
+    const [firstSelectedId] = selectedIds;
+
+    const { lines: descriptionLines } = generateDescription(firstSelectedId);
+    const updatedDescriptionLines = getFirstSelectedDescriptionLines(
+      descriptionLines,
+      commons
+    );
+    setGroupDescription(convertLinesIntoText(updatedDescriptionLines));
+
     selectedIds.forEach((id: string) => {
-      const { description, hashtags } = spottingData[id];
-      const descriptionText = description || generateDescription(id);
+      const { lines: descriptionLines } = generateDescription(id);
+      const updatedDescriptionLines = getNextSelectedDescriptionLines(
+        descriptionLines,
+        commons
+      );
+      appendDescription(convertLinesIntoText(updatedDescriptionLines));
+
+      const { hashtags } = spottingData[id];
       const hashtagsText = hashtags || generateHashtags(id);
-      appendDescription(descriptionText);
       appendHashtags(hashtagsText);
     });
   }, [

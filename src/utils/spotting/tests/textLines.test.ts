@@ -1,80 +1,29 @@
-import { getDescriptionLines, getHashtagLines } from '@/utils/spotting';
+import {
+  getDescriptionLines,
+  getFirstSelectedDescriptionLines,
+  getHashtagLines,
+  getNextSelectedDescriptionLines,
+} from '@/utils/spotting';
+
+import {
+  mockedSpottedPlaneProviderDataFalsy,
+  mockedSpottedPlaneProviderDataNullish,
+  mockedSpottedPlaneProviderDataTruthy,
+} from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+
+import { SpottedPlaneProviderData } from '@/types/spotting';
 
 describe('Text lines', () => {
-  const mockedPlane1 = {
-    id: 'mocked-plane-1-id',
-    airplaneName: 'Airplane name 1',
-    cn: '1000',
-    carrier: 'AirAsia Japan',
-    firstFlight: '2011-01-01',
-    flown: false,
-    groupPost: false,
-    manufacturer: 'Boeing',
-    model: '737-500',
-    modelled: false,
-    name: 'Name 1',
-    photosUrl: 'photosUrl1',
-    place: 'KZN/UWKD',
-    planespottersUrl: 'planespottersUrl',
-    registration: 'registration 1',
-    spottedDate: '2021-01-01',
-    url: 'url1',
-    photoUrl: 'photoUrl1',
-    description: '',
-    hashtags: '',
-  };
-  const mockedPlane2 = {
-    id: 'mocked-plane-2-id',
-    airplaneName: 'Airplane name 2',
-    cn: '2000',
-    carrier: 'AirBridge Cargo',
-    firstFlight: null,
-    flown: true,
-    groupPost: true,
-    manufacturer: 'Boeing',
-    model: '737-800F',
-    modelled: true,
-    name: 'Name 2',
-    photosUrl: 'photosUrl2',
-    place: 'KZN/UWKD',
-    planespottersUrl: 'planespottersUrl',
-    registration: 'registration 2',
-    spottedDate: '2022-02-02',
-    url: 'url2',
-    photoUrl: 'photoUrl2',
-    description: '',
-    hashtags: '',
-    newFirstFlight: '2012-02-02',
-    groupName: 'groupName1',
-    groupDescription: 'groupDescription1',
-    groupHashtags: '#groupHashtag1',
-  };
-  const mockedPlane3 = {
-    id: 'mocked-plane-3-id',
-    airplaneName: null,
-    cn: null,
-    carrier: null,
-    firstFlight: null,
-    flown: false,
-    groupPost: false,
-    manufacturer: null,
-    model: null,
-    modelled: false,
-    name: null,
-    photosUrl: null,
-    place: null,
-    planespottersUrl: null,
-    registration: null,
-    spottedDate: null,
-    url: 'url3',
-    photoUrl: null,
-    description: '',
-    hashtags: '',
-  };
+  const mockedPlane1: SpottedPlaneProviderData =
+    mockedSpottedPlaneProviderDataFalsy;
+  const mockedPlane2: SpottedPlaneProviderData =
+    mockedSpottedPlaneProviderDataTruthy;
+  const mockedPlane3: SpottedPlaneProviderData =
+    mockedSpottedPlaneProviderDataNullish;
 
   describe('getDescriptionLines', () => {
     describe('when got data with false booleans', () => {
-      const mockedData = mockedPlane1;
+      const mockedData: SpottedPlaneProviderData = mockedPlane1;
 
       test('returns text lines', () => {
         // Arrange
@@ -82,9 +31,9 @@ describe('Text lines', () => {
           [mockedData.manufacturer, mockedData.model, mockedData.carrier],
           [mockedData.airplaneName],
           [mockedData.registration, `(cn ${mockedData.cn})`],
-          [`First flight 01.01.2011`],
-          [mockedData.place, '01.01.2021'],
-          ['#737500_1000'],
+          [`First flight 10.03.2014`],
+          [mockedData.place, '02.02.2022'],
+          ['#7878_35942'],
           [undefined],
           [false],
         ];
@@ -96,7 +45,10 @@ describe('Text lines', () => {
     });
 
     describe('when got data with true booleans', () => {
-      const mockedData = mockedPlane2;
+      const mockedData: SpottedPlaneProviderData = {
+        ...mockedPlane2,
+        model: '737800F',
+      };
 
       test('returns text lines', () => {
         // Arrange
@@ -104,10 +56,10 @@ describe('Text lines', () => {
           [mockedData.manufacturer, mockedData.model, mockedData.carrier],
           [mockedData.airplaneName],
           [mockedData.registration, `(cn ${mockedData.cn})`],
-          [`First flight 02.02.2012`],
-          [mockedData.place, '02.02.2022'],
-          ['#737800F_2000'],
-          ['#737800_2000'],
+          [`First flight 21.01.2015`],
+          [mockedData.place, '27.12.2015'],
+          ['#737800F_007'],
+          ['#737800_007'],
           ['#renassimo_flown'],
         ];
         // Act
@@ -142,7 +94,11 @@ describe('Text lines', () => {
 
   describe('getHashtagLines', () => {
     describe('when got data with false booleans', () => {
-      const mockedData = mockedPlane1;
+      const mockedData: SpottedPlaneProviderData = {
+        ...mockedPlane1,
+        model: '737500',
+        carrier: 'AirAsiaJapan',
+      };
 
       test('returns text lines', () => {
         // Arrange
@@ -153,7 +109,7 @@ describe('Text lines', () => {
             '#avr_737family #avr_737classic',
             '#avr_AirAsia',
             '#avr_AirAsiaJapan',
-            '#avr_KZN_UWKD',
+            '#avr_WAW_EPWA',
             '\n',
           ],
           ['#renassimo_spotted', '\n'],
@@ -180,28 +136,31 @@ describe('Text lines', () => {
     });
 
     describe('when got data with true booleans', () => {
-      const mockedData = mockedPlane2;
+      const mockedData: SpottedPlaneProviderData = {
+        ...mockedPlane2,
+        model: '737800F',
+      };
 
       test('returns text lines', () => {
         // Arrange
         const expectedResult = [
           [
             '#avr_737800F',
-            '#avr_Boeing',
+            '#avr_Airbus',
             '#avr_737family #avr_737ng #avr_737freighter #avr_freighter',
             null,
-            '#avr_AirBridgeCargo',
-            '#avr_KZN_UWKD',
+            '#avr_QatarAirways',
+            '#avr_DOH_OTHH',
             '\n',
           ],
           ['#renassimo_spotted', '\n'],
           ['#renassimo_modelled', '\n'],
           [
-            '#Boeing',
+            '#Airbus',
             '#737800F',
             '#737family #737ng',
             null,
-            '#AirBridgeCargo',
+            '#QatarAirways',
             '\n',
           ],
           [
@@ -237,6 +196,151 @@ describe('Text lines', () => {
         const result = getHashtagLines(mockedData);
         // Assert
         expect(result).toEqual(expectedResult);
+      });
+    });
+  });
+
+  describe('Group Description lines', () => {
+    const manufacturerModelCarrierLine = ['Airbus', 'A220-300', 'Swiss'];
+    const airplaneNameLine = ['Helvetic'];
+    const registrationLine = ['HS-DBU'];
+    const firstFlightLine = ['First Flight 1'];
+    const placeDateLine = ['WAW 2021'];
+    const planeHashtagLines = [
+      ['#hashtag1_1'],
+      ['#hashtag1_2'],
+      ['#hashtag1_3'],
+    ];
+    const lines = [
+      manufacturerModelCarrierLine,
+      airplaneNameLine,
+      registrationLine,
+      firstFlightLine,
+      placeDateLine,
+      ...planeHashtagLines,
+    ];
+
+    describe('getFirstSelectedDescriptionLines', () => {
+      describe('when got same planes', () => {
+        const mockedCommons = {
+          isCommonCarrierModel: true,
+          isCommonPlane: true,
+          isCommonPlaceAndDate: false,
+        };
+
+        test('return updated lines', () => {
+          // Arrange
+          const expectedResult = [
+            manufacturerModelCarrierLine,
+            airplaneNameLine,
+            registrationLine,
+            firstFlightLine,
+            ...planeHashtagLines,
+          ];
+          // Act
+          const result = getFirstSelectedDescriptionLines(lines, mockedCommons);
+          // Assert
+          expect(result).toEqual(expectedResult);
+        });
+      });
+
+      describe('when got same carrier model', () => {
+        const mockedCommons = {
+          isCommonCarrierModel: true,
+          isCommonPlane: false,
+          isCommonPlaceAndDate: false,
+        };
+
+        test('return updated lines', () => {
+          // Arrange
+          const expectedResult = [manufacturerModelCarrierLine];
+          // Act
+          const result = getFirstSelectedDescriptionLines(lines, mockedCommons);
+          // Assert
+          expect(result).toEqual(expectedResult);
+        });
+      });
+
+      describe('when got place and date', () => {
+        const mockedCommons = {
+          isCommonCarrierModel: false,
+          isCommonPlane: false,
+          isCommonPlaceAndDate: true,
+        };
+
+        test('return updated lines', () => {
+          // Arrange
+          const expectedResult = [placeDateLine];
+          // Act
+          const result = getFirstSelectedDescriptionLines(lines, mockedCommons);
+          // Assert
+          expect(result).toEqual(expectedResult);
+        });
+      });
+    });
+
+    describe('getNextSelectedDescriptionLines', () => {
+      describe('when got same planes', () => {
+        const mockedCommons = {
+          isCommonCarrierModel: true,
+          isCommonPlane: true,
+          isCommonPlaceAndDate: false,
+        };
+
+        test('return updated lines', () => {
+          // Arrange
+          const expectedResult = [placeDateLine];
+          // Act
+          const result = getNextSelectedDescriptionLines(lines, mockedCommons);
+          // Assert
+          expect(result).toEqual(expectedResult);
+        });
+      });
+
+      describe('when got same carrier model', () => {
+        const mockedCommons = {
+          isCommonCarrierModel: true,
+          isCommonPlane: false,
+          isCommonPlaceAndDate: false,
+        };
+
+        test('return updated lines', () => {
+          // Arrange
+          const expectedResult = [
+            airplaneNameLine,
+            registrationLine,
+            firstFlightLine,
+            placeDateLine,
+            ...planeHashtagLines,
+          ];
+          // Act
+          const result = getNextSelectedDescriptionLines(lines, mockedCommons);
+          // Assert
+          expect(result).toEqual(expectedResult);
+        });
+      });
+
+      describe('when got place and date', () => {
+        const mockedCommons = {
+          isCommonCarrierModel: false,
+          isCommonPlane: false,
+          isCommonPlaceAndDate: true,
+        };
+
+        test('return updated lines', () => {
+          // Arrange
+          const expectedResult = [
+            manufacturerModelCarrierLine,
+            airplaneNameLine,
+            registrationLine,
+            firstFlightLine,
+            ...planeHashtagLines,
+          ];
+          // Act
+          const result = getNextSelectedDescriptionLines(lines, mockedCommons);
+          // Assert
+          expect(result).toEqual(expectedResult);
+        });
       });
     });
   });

@@ -10,10 +10,16 @@ const isCommon = (
   );
 };
 
+export interface Commons {
+  isCommonCarrierModel: boolean;
+  isCommonPlane: boolean;
+  isCommonPlaceAndDate: boolean;
+}
+
 export const getCommons = (
   selectedIds: string[],
   spottingData: Record<string, SpottedPlaneProviderData>
-) => {
+): Commons => {
   const data = selectedIds.map((id) => spottingData[id]);
 
   const isCommonManufacturer = isCommon('manufacturer', data);
@@ -31,13 +37,6 @@ export const getCommons = (
   const isCommonPlaceAndDate = isCommonPlace && isCommonSpottedDate;
 
   return {
-    isCommonManufacturer,
-    isCommonModel,
-    isCommonCarrier,
-    isCommonRegistration,
-    isCommonCn,
-    isCommonPlace,
-    isCommonSpottedDate,
     isCommonCarrierModel,
     isCommonPlane,
     isCommonPlaceAndDate,

@@ -27,13 +27,6 @@ describe('Commons', () => {
           mockedSpottedPlaneProviderDataNullish,
       };
       const expectedResult = {
-        isCommonManufacturer: false,
-        isCommonModel: false,
-        isCommonCarrier: false,
-        isCommonRegistration: false,
-        isCommonCn: false,
-        isCommonPlace: false,
-        isCommonSpottedDate: false,
         isCommonCarrierModel: false,
         isCommonPlane: false,
         isCommonPlaceAndDate: false,
@@ -62,13 +55,6 @@ describe('Commons', () => {
           mockedSpottedPlaneProviderDataNullish,
       };
       const expectedResult = {
-        isCommonManufacturer: false,
-        isCommonModel: false,
-        isCommonCarrier: false,
-        isCommonRegistration: false,
-        isCommonCn: false,
-        isCommonPlace: false,
-        isCommonSpottedDate: false,
         isCommonCarrierModel: false,
         isCommonPlane: false,
         isCommonPlaceAndDate: false,
@@ -100,13 +86,6 @@ describe('Commons', () => {
           mockedSpottedPlaneProviderDataNullish,
       };
       const expectedResult = {
-        isCommonManufacturer: true,
-        isCommonModel: true,
-        isCommonCarrier: true,
-        isCommonRegistration: true,
-        isCommonCn: true,
-        isCommonPlace: true,
-        isCommonSpottedDate: true,
         isCommonCarrierModel: true,
         isCommonPlane: true,
         isCommonPlaceAndDate: true,
@@ -144,13 +123,6 @@ describe('Commons', () => {
           mockedSpottedPlaneProviderDataNullish,
       };
       const expectedResult = {
-        isCommonManufacturer: true,
-        isCommonModel: true,
-        isCommonCarrier: true,
-        isCommonRegistration: true,
-        isCommonCn: true,
-        isCommonPlace: false,
-        isCommonSpottedDate: false,
         isCommonCarrierModel: true,
         isCommonPlane: true,
         isCommonPlaceAndDate: false,
