@@ -10,7 +10,10 @@ const SpottingContext = createContext<{
   selectedIds: string[];
   addSelectedId: (id: string) => void;
   removeSelectedIds: (ids: string[]) => void;
-  generateDescription: (id: string) => string;
+  generateDescription: (id: string) => {
+    text: string;
+    lines: (string | false | null)[][];
+  };
   generateHashtags: (id: string) => string;
   clearDescription: (id: string) => void;
   clearHashtags: (id: string) => void;
@@ -32,7 +35,7 @@ const SpottingContext = createContext<{
   selectedIds: [],
   addSelectedId: () => {},
   removeSelectedIds: () => {},
-  generateDescription: () => '',
+  generateDescription: () => ({ text: '', lines: [] }),
   generateHashtags: () => '',
   clearDescription: () => {},
   clearHashtags: () => {},

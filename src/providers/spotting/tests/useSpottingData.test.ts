@@ -380,15 +380,32 @@ describe('useSpottingData', () => {
       (getDescriptionLines as unknown as jest.Mock).mockImplementation(
         mockedGetDescriptionLines
       );
+
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
         mockedConvertLinesIntoText
       );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
         mockedConvertLinesIntoTextHashtags
       );
+
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
         mockedConvertLinesIntoText
       );
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoText
+      );
+
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
         mockedConvertLinesIntoTextHashtags
       );

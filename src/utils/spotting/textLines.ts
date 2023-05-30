@@ -8,6 +8,7 @@ import {
   specialHashTags,
 } from '@/utils/spotting';
 import { formatFromNotionDate } from '@/utils/dayjs';
+import { Commons } from '@/utils/spotting/commons';
 
 const withEnter = (words: LineWord[]) =>
   words.find((word: LineWord) => !!word) ? [...words, '\n'] : words;
@@ -38,19 +39,24 @@ export const getDescriptionLines = (data: SpottedPlaneProviderData) => {
   const freighterHashtag =
     freighter && cnConverted && insHash(`${freighter}_${cnConverted}`);
 
+  const formattedCn = cn && `(cn ${cn})`;
+  const formattedFirstFlight = acceptedFirstFlight
+    ? `First flight ${formatFromNotionDate(acceptedFirstFlight)}`
+    : null;
+  const formattedSpottedDate = spottedDate
+    ? formatFromNotionDate(spottedDate)
+    : null;
+  const flownHashtag = flown && insHash('renassimo_flown');
+
   return [
     [manufacturer, model, carrier],
     [airplaneName],
-    [registration, cn && `(cn ${cn})`],
-    [
-      acceptedFirstFlight
-        ? `First flight ${formatFromNotionDate(acceptedFirstFlight)}`
-        : null,
-    ],
-    [place, spottedDate ? formatFromNotionDate(spottedDate) : null],
+    [registration, formattedCn],
+    [formattedFirstFlight],
+    [place, formattedSpottedDate],
     [modelCnHashTag],
     [freighterHashtag],
-    [flown && insHash('renassimo_flown')],
+    [flownHashtag],
   ];
 };
 
@@ -69,29 +75,113 @@ export const getHashtagLines = (data: SpottedPlaneProviderData) => {
   const { avrTag: avrCarrierTag = null, commonTag: commonCarrierTag = null } =
     convertedCarrier ? specialHashTags[convertedCarrier] ?? {} : {};
 
+  const convertedModelRTag = insRHash(convertedModel);
+  const convertedManufacturerRTag = insRHash(convertedManufacturer);
+  const convertedCarrierRTag = insRHash(convertedCarrier);
+  const convertedPlaceRTag = insRHash(convertedPlace);
+
+  const isSpottedTag = isSpotted ? insHash('renassimo_spotted') : null;
+  const modelledTag = modelled ? insHash('renassimo_modelled') : null;
+
+  const convertedManufacturerTag = insHash(convertedManufacturer);
+  const convertedModelTag = insHash(convertedModel);
+  const convertedCarrierTag = insHash(convertedCarrier);
+
+  const commonTags =
+    '#spotting #aviation #avgeek #flywithme #planes #jets #jetlovers';
+  const isSpottedCommonTags =
+    isSpotted && '#kznspotting #waw #epwa #wawspotting #warsawspotting';
+  const modelledCommonTags =
+    modelled &&
+    '#aviamodel #aviamodelling #modelkit #scalemodel #plasticmodel #revell #zvezdamodels';
+
   return [
     withEnter([
-      insRHash(convertedModel),
-      insRHash(convertedManufacturer),
+      convertedModelRTag,
+      convertedManufacturerRTag,
       avrModelTag,
       avrCarrierTag,
-      insRHash(convertedCarrier),
-      insRHash(convertedPlace),
+      convertedCarrierRTag,
+      convertedPlaceRTag,
     ]),
-    withEnter([isSpotted ? insHash('renassimo_spotted') : null]),
-    withEnter([modelled ? insHash('renassimo_modelled') : null]),
+    withEnter([isSpottedTag]),
+    withEnter([modelledTag]),
     withEnter([
-      insHash(convertedManufacturer),
-      insHash(convertedModel),
+      convertedManufacturerTag,
+      convertedModelTag,
       commonModelTag,
       commonCarrierTag,
-      insHash(convertedCarrier),
+      convertedCarrierTag,
     ]),
-    [
-      '#spotting #aviation #avgeek #flywithme #planes #jets #jetlovers',
-      isSpotted && '#kznspotting #waw #epwa #wawspotting #warsawspotting',
-      modelled &&
-        '#aviamodel #aviamodelling #modelkit #scalemodel #plasticmodel #revell #zvezdamodels',
-    ],
+    [commonTags, isSpottedCommonTags, modelledCommonTags],
   ];
+};
+
+export const getFirstSelectedDescriptionLines = (
+  descriptionLines: (string | false | null)[][],
+  commons: Commons
+) => {
+  const { isCommonCarrierModel, isCommonPlane, isCommonPlaceAndDate } = commons;
+  const [
+    carrierModelLine,
+    airplaneNameLine,
+    registrationLine,
+    firstFlightLine,
+    placeDateLine,
+    ...planeHashtagLines
+  ] = descriptionLines;
+
+  const updatedDescriptionLines: (string | false | null)[][] = [];
+
+  if (isCommonCarrierModel && !isCommonPlane) {
+    updatedDescriptionLines.push(carrierModelLine);
+  }
+  if (isCommonPlane) {
+    updatedDescriptionLines.push(carrierModelLine);
+    updatedDescriptionLines.push(airplaneNameLine);
+    updatedDescriptionLines.push(registrationLine);
+    updatedDescriptionLines.push(firstFlightLine);
+  }
+  if (isCommonPlaceAndDate) {
+    updatedDescriptionLines.push(placeDateLine);
+  }
+  if (isCommonPlane) {
+    planeHashtagLines.forEach((line) => updatedDescriptionLines.push(line));
+  }
+
+  return updatedDescriptionLines;
+};
+
+export const getNextSelectedDescriptionLines = (
+  descriptionLines: (string | false | null)[][],
+  commons: Commons
+) => {
+  const { isCommonCarrierModel, isCommonPlane, isCommonPlaceAndDate } = commons;
+  const [
+    carrierModelLine,
+    airplaneNameLine,
+    registrationLine,
+    firstFlightLine,
+    placeDateLine,
+    ...planeHashtagLines
+  ] = descriptionLines;
+
+  const updatedDescriptionLines: (string | false | null)[][] = [];
+
+  if (!isCommonCarrierModel) {
+    updatedDescriptionLines.push(carrierModelLine);
+  }
+  if (!isCommonPlane) {
+    updatedDescriptionLines.push(airplaneNameLine);
+    updatedDescriptionLines.push(registrationLine);
+    updatedDescriptionLines.push(firstFlightLine);
+  }
+  if (!isCommonPlaceAndDate) {
+    updatedDescriptionLines.push(placeDateLine);
+  }
+  if (!isCommonPlane) {
+    planeHashtagLines.forEach((line) => updatedDescriptionLines.push(line));
+  }
+
+  return updatedDescriptionLines;
 };
