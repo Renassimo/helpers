@@ -5,6 +5,7 @@ import useSpottingData, {
 } from '@/providers/spotting/hooks/useSpottingData';
 
 import {
+  appendEmptyLines,
   convertLinesIntoText,
   getDescriptionLines,
   getHashtagLines,
@@ -368,17 +369,25 @@ describe('useSpottingData', () => {
   describe('when generates groupDescriptionAndHashtags', () => {
     const mockedLines = [['line1'], ['line2']];
     const mockedText = 'mockedText';
-    const mockedHashtags = '#mockedHashtags';
+    const mockedHashtags = '#renassimo_spotted #mockedHashtags';
     const mockedLine = 'descriptionLine\n\n';
+    const mockedGetHashtagLines = jest.fn(() => mockedLines);
     const mockedPutTheLine = jest.fn(() => mockedLine);
     const mockedGetDescriptionLines = jest.fn(() => mockedLines);
     const mockedConvertLinesIntoText = jest.fn(() => mockedText);
     const mockedConvertLinesIntoTextHashtags = jest.fn(() => mockedHashtags);
+    const mockedAppendEmptyLines = jest.fn(() => mockedHashtags);
 
     beforeEach(() => {
       (putTheLine as unknown as jest.Mock).mockImplementation(mockedPutTheLine);
       (getDescriptionLines as unknown as jest.Mock).mockImplementation(
         mockedGetDescriptionLines
+      );
+      (getHashtagLines as unknown as jest.Mock).mockImplementation(
+        mockedGetHashtagLines
+      );
+      (appendEmptyLines as unknown as jest.Mock).mockImplementation(
+        mockedAppendEmptyLines
       );
 
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
@@ -404,6 +413,10 @@ describe('useSpottingData', () => {
       );
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
         mockedConvertLinesIntoText
+      );
+
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoTextHashtags
       );
 
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
@@ -444,6 +457,7 @@ describe('useSpottingData', () => {
       });
       // Assert
       expect(result.current).toEqual(expectedResult);
+      expect(mockedAppendEmptyLines).toHaveBeenCalledWith(mockedHashtags);
     });
   });
 

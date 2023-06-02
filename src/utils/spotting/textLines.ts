@@ -118,7 +118,7 @@ export const getHashtagLines = (data: SpottedPlaneProviderData) => {
 };
 
 export const getFirstSelectedDescriptionLines = (
-  descriptionLines: (string | false | null)[][],
+  descriptionLines: LineWord[][],
   commons: Commons
 ) => {
   const { isCommonCarrierModel, isCommonPlane, isCommonPlaceAndDate } = commons;
@@ -131,7 +131,7 @@ export const getFirstSelectedDescriptionLines = (
     ...planeHashtagLines
   ] = descriptionLines;
 
-  const updatedDescriptionLines: (string | false | null)[][] = [];
+  const updatedDescriptionLines: LineWord[][] = [];
 
   if (isCommonCarrierModel && !isCommonPlane) {
     updatedDescriptionLines.push(carrierModelLine);
@@ -185,3 +185,6 @@ export const getNextSelectedDescriptionLines = (
 
   return updatedDescriptionLines;
 };
+
+export const mergeLines = (line1: LineWord[], line2: LineWord[]): LineWord[] =>
+  [...new Set([...line1, ...line2])].filter((word) => word !== '\n');

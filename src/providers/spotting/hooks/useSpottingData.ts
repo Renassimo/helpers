@@ -1,16 +1,19 @@
 import { useCallback, useState } from 'react';
 
 import {
+  LineWord,
   SpottedPlaneApiData,
   SpottedPlaneProviderData,
 } from '@/types/spotting';
 
 import {
+  appendEmptyLines,
   convertLinesIntoText,
   getDescriptionLines,
   getFirstSelectedDescriptionLines,
   getHashtagLines,
   getNextSelectedDescriptionLines,
+  mergeLines,
   putTheLine,
 } from '@/utils/spotting';
 import { getCommons } from '@/utils/spotting/commons';
@@ -128,7 +131,7 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
       const text = convertLinesIntoText(lines);
 
       updateHashtags(id, text);
-      return text;
+      return { text, lines };
     },
     [spottingData, updateHashtags]
   );
@@ -152,25 +155,6 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
     [setGroupDescription]
   );
 
-  const appendHashtags = useCallback(
-    (hashtags: string) => {
-      setGroupHashtags((currentGroupHashtags) =>
-        [
-          ...new Set(
-            `#renassimo_spotted${currentGroupHashtags}${
-              hashtags.split('#renassimo_spotted')[0]
-            }`
-              .split('#')
-              .map((item) => item.trim())
-              .filter((item) => item)
-              .map((item) => `#${item}`)
-          ),
-        ].join(' ')
-      );
-    },
-    [setGroupHashtags]
-  );
-
   const clearGroupData = useCallback(() => {
     setGroupName('');
     setGroupDescription('');
@@ -189,6 +173,8 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
     );
     setGroupDescription(`${convertLinesIntoText(updatedDescriptionLines)}\n`);
 
+    const updatedHashtagLines: LineWord[][] = [];
+
     selectedIds.forEach((id: string) => {
       const { lines: descriptionLines } = generateDescription(id);
       const updatedDescriptionLines = getNextSelectedDescriptionLines(
@@ -197,13 +183,19 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
       );
       appendDescription(convertLinesIntoText(updatedDescriptionLines));
 
-      const { hashtags } = spottingData[id];
-      const hashtagsText = hashtags || generateHashtags(id);
-      appendHashtags(hashtagsText);
+      const { lines: hashtagLines } = generateHashtags(id);
+      hashtagLines.forEach((line, index) => {
+        const currentLine = updatedHashtagLines[index] ?? [];
+        updatedHashtagLines[index] = mergeLines(currentLine, line);
+      });
     });
+
+    const hashtagsText = appendEmptyLines(
+      convertLinesIntoText(updatedHashtagLines)
+    );
+    setGroupHashtags(hashtagsText);
   }, [
     appendDescription,
-    appendHashtags,
     generateDescription,
     generateHashtags,
     selectedIds,
