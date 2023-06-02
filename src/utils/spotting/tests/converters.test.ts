@@ -1,4 +1,5 @@
 import {
+  appendEmptyLines,
   convertLinesIntoText,
   convertText,
   getTextLine,
@@ -76,6 +77,17 @@ describe('Converters', () => {
         [],
         ['Word3', 'Word4'],
       ]);
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('appendEmptyLines', () => {
+    test('returns text with added empty lines', () => {
+      // Arrange
+      const expectedResult = 'Hello world!\n\nYo\n\nIt is me!';
+      // Act
+      const result = appendEmptyLines('Hello world!\nYo\n\nIt is me!');
       // Assert
       expect(result).toEqual(expectedResult);
     });

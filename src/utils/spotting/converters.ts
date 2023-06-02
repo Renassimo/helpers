@@ -25,3 +25,9 @@ export const convertLinesIntoText = (lines: LineWord[][]) =>
 
     return `${result}${divider}${textLine}`;
   }, '');
+
+export const appendEmptyLines = (text: string) =>
+  text
+    .split('\n')
+    .filter((line) => line)
+    .join('\n\n');

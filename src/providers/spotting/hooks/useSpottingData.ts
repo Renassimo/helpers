@@ -7,6 +7,7 @@ import {
 } from '@/types/spotting';
 
 import {
+  appendEmptyLines,
   convertLinesIntoText,
   getDescriptionLines,
   getFirstSelectedDescriptionLines,
@@ -189,7 +190,9 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
       });
     });
 
-    const hashtagsText = convertLinesIntoText(updatedHashtagLines);
+    const hashtagsText = appendEmptyLines(
+      convertLinesIntoText(updatedHashtagLines)
+    );
     setGroupHashtags(hashtagsText);
   }, [
     appendDescription,

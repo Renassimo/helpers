@@ -5,6 +5,7 @@ import useSpottingData, {
 } from '@/providers/spotting/hooks/useSpottingData';
 
 import {
+  appendEmptyLines,
   convertLinesIntoText,
   getDescriptionLines,
   getHashtagLines,
@@ -375,6 +376,7 @@ describe('useSpottingData', () => {
     const mockedGetDescriptionLines = jest.fn(() => mockedLines);
     const mockedConvertLinesIntoText = jest.fn(() => mockedText);
     const mockedConvertLinesIntoTextHashtags = jest.fn(() => mockedHashtags);
+    const mockedAppendEmptyLines = jest.fn(() => mockedHashtags);
 
     beforeEach(() => {
       (putTheLine as unknown as jest.Mock).mockImplementation(mockedPutTheLine);
@@ -383,6 +385,9 @@ describe('useSpottingData', () => {
       );
       (getHashtagLines as unknown as jest.Mock).mockImplementation(
         mockedGetHashtagLines
+      );
+      (appendEmptyLines as unknown as jest.Mock).mockImplementation(
+        mockedAppendEmptyLines
       );
 
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
@@ -452,6 +457,7 @@ describe('useSpottingData', () => {
       });
       // Assert
       expect(result.current).toEqual(expectedResult);
+      expect(mockedAppendEmptyLines).toHaveBeenCalledWith(mockedHashtags);
     });
   });
 

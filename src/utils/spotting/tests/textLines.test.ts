@@ -349,7 +349,14 @@ describe('Text lines', () => {
   describe('mergeLines', () => {
     test('returns merged lines', () => {
       // Arrange
-      const line1: LineWord[] = ['text1', 'text2', null, undefined, false];
+      const line1: LineWord[] = [
+        'text1',
+        'text2',
+        null,
+        undefined,
+        false,
+        '\n',
+      ];
       const line2: LineWord[] = [
         'text1',
         'text2',

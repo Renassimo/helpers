@@ -186,7 +186,5 @@ export const getNextSelectedDescriptionLines = (
   return updatedDescriptionLines;
 };
 
-export const mergeLines = (
-  line1: LineWord[],
-  line2: LineWord[]
-): LineWord[] => [...new Set([...line1, ...line2])];
+export const mergeLines = (line1: LineWord[], line2: LineWord[]): LineWord[] =>
+  [...new Set([...line1, ...line2])].filter((word) => word !== '\n');
