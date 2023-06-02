@@ -3,6 +3,7 @@ import {
   getFirstSelectedDescriptionLines,
   getHashtagLines,
   getNextSelectedDescriptionLines,
+  mergeLines,
 } from '@/utils/spotting';
 
 import {
@@ -11,7 +12,7 @@ import {
   mockedSpottedPlaneProviderDataTruthy,
 } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { LineWord, SpottedPlaneProviderData } from '@/types/spotting';
 
 describe('Text lines', () => {
   const mockedPlane1: SpottedPlaneProviderData =
@@ -342,6 +343,33 @@ describe('Text lines', () => {
           expect(result).toEqual(expectedResult);
         });
       });
+    });
+  });
+
+  describe('mergeLines', () => {
+    test('returns merged lines', () => {
+      // Arrange
+      const line1: LineWord[] = ['text1', 'text2', null, undefined, false];
+      const line2: LineWord[] = [
+        'text1',
+        'text2',
+        'text3',
+        null,
+        undefined,
+        false,
+      ];
+      const expectedResult = [
+        'text1',
+        'text2',
+        null,
+        undefined,
+        false,
+        'text3',
+      ];
+      // Act
+      const result = mergeLines(line1, line2);
+      // Assert
+      expect(result).toEqual(expectedResult);
     });
   });
 });

@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { LineWord, SpottedPlaneProviderData } from '@/types/spotting';
 
 const SpottingContext = createContext<{
   spottedPlanes: SpottedPlaneProviderData[];
@@ -12,9 +12,12 @@ const SpottingContext = createContext<{
   removeSelectedIds: (ids: string[]) => void;
   generateDescription: (id: string) => {
     text: string;
-    lines: (string | false | null)[][];
+    lines: LineWord[][];
   };
-  generateHashtags: (id: string) => string;
+  generateHashtags: (id: string) => {
+    text: string;
+    lines: LineWord[][];
+  };
   clearDescription: (id: string) => void;
   clearHashtags: (id: string) => void;
   groupDescription: string;
@@ -36,7 +39,7 @@ const SpottingContext = createContext<{
   addSelectedId: () => {},
   removeSelectedIds: () => {},
   generateDescription: () => ({ text: '', lines: [] }),
-  generateHashtags: () => '',
+  generateHashtags: () => ({ text: '', lines: [] }),
   clearDescription: () => {},
   clearHashtags: () => {},
   groupDescription: '',

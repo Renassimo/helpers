@@ -368,8 +368,9 @@ describe('useSpottingData', () => {
   describe('when generates groupDescriptionAndHashtags', () => {
     const mockedLines = [['line1'], ['line2']];
     const mockedText = 'mockedText';
-    const mockedHashtags = '#mockedHashtags';
+    const mockedHashtags = '#renassimo_spotted #mockedHashtags';
     const mockedLine = 'descriptionLine\n\n';
+    const mockedGetHashtagLines = jest.fn(() => mockedLines);
     const mockedPutTheLine = jest.fn(() => mockedLine);
     const mockedGetDescriptionLines = jest.fn(() => mockedLines);
     const mockedConvertLinesIntoText = jest.fn(() => mockedText);
@@ -379,6 +380,9 @@ describe('useSpottingData', () => {
       (putTheLine as unknown as jest.Mock).mockImplementation(mockedPutTheLine);
       (getDescriptionLines as unknown as jest.Mock).mockImplementation(
         mockedGetDescriptionLines
+      );
+      (getHashtagLines as unknown as jest.Mock).mockImplementation(
+        mockedGetHashtagLines
       );
 
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
@@ -404,6 +408,10 @@ describe('useSpottingData', () => {
       );
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
         mockedConvertLinesIntoText
+      );
+
+      (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
+        mockedConvertLinesIntoTextHashtags
       );
 
       (convertLinesIntoText as unknown as jest.Mock).mockImplementationOnce(
