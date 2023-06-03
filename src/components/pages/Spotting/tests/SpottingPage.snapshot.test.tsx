@@ -5,17 +5,23 @@ import SpottedPlanesList from '@/components/spotting/SpottedPlanesList';
 
 import MockedSpottedPlanesList from '@/components/spotting/SpottedPlanesList/mocks';
 
+import useRefresh from '@/hooks/useRefresh';
+
 import { mockedSpottedPlaneApiDataTruthy } from '@/types/spotting/mocks';
 import { mockedPageInfos, mockedUser } from '@/types/auth/mocks';
 import { mockedNotionError418 } from '@/types/notion/mocks';
 
 jest.mock('@/components/spotting/SpottedPlanesList');
+jest.mock('@/hooks/useRefresh');
 
 describe('SpottingPage', () => {
   beforeEach(() => {
     (SpottedPlanesList as unknown as jest.Mock).mockImplementationOnce(
       MockedSpottedPlanesList
     );
+    (useRefresh as unknown as jest.Mock).mockImplementation(() => ({
+      refreshData: () => jest.fn(),
+    }));
   });
 
   afterEach(() => {

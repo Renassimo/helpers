@@ -339,6 +339,20 @@ exports[`NavBar When menu is open renders successfully 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
           >
+            Refresh data
+          </p>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </li>
+        <li
+          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+          >
             Sign Out
           </p>
           <span
@@ -480,6 +494,20 @@ exports[`NavBar When sign out renders successfully 1`] = `
             class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
         </div>
+        <li
+          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+          >
+            Refresh data
+          </p>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </li>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -637,6 +665,20 @@ exports[`NavBar When sign out renders successfully 2`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
           >
+            Refresh data
+          </p>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </li>
+        <li
+          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+          >
             Sign Out
           </p>
           <span
@@ -778,6 +820,20 @@ exports[`NavBar When sign out renders successfully 3`] = `
             class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
         </div>
+        <li
+          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+          >
+            Refresh data
+          </p>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </li>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"
@@ -936,6 +992,20 @@ exports[`NavBar When sign out renders successfully 4`] = `
             class="MuiDivider-root MuiDivider-middle css-ft4jij-MuiDivider-root"
           />
         </div>
+        <li
+          class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+          >
+            Refresh data
+          </p>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </li>
         <li
           class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
           role="menuitem"

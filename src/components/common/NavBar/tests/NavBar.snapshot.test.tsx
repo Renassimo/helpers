@@ -3,10 +3,12 @@ import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers';
 
 import useAuth from '@/hooks/useAuth';
+import useRefresh from '@/hooks/useRefresh';
 
 import NavBar from '../NavBar';
 
 jest.mock('@/hooks/useAuth');
+jest.mock('@/hooks/useRefresh');
 
 describe('NavBar', () => {
   const user = {
@@ -29,6 +31,9 @@ describe('NavBar', () => {
 
   beforeEach(() => {
     (useAuth as unknown as jest.Mock).mockImplementation(mockedUseAuth);
+    (useRefresh as unknown as jest.Mock).mockImplementation(() => ({
+      refreshData: () => jest.fn(),
+    }));
   });
 
   afterEach(() => {
