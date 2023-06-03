@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GroupPlanesForm should rendered successfully 1`] = `
+exports[`GroupPlanesForm When exceeded hashtags should rendered successfully 1`] = `
 <div>
   <div
     class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
@@ -15,7 +15,9 @@ exports[`GroupPlanesForm should rendered successfully 1`] = `
         name="group-description"
         placeholder="Description"
         style="height: 0px; overflow: hidden;"
-      />
+      >
+        Group description #descriptionHashtag
+      </textarea>
       <textarea
         aria-hidden="true"
         class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
@@ -26,10 +28,10 @@ exports[`GroupPlanesForm should rendered successfully 1`] = `
     </div>
   </div>
   <span
-    class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-caption css-1nr2uw6-MuiTypography-root"
   >
     Hashtags: 
-    0
+    1
   </span>
   <div
     class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
@@ -44,7 +46,9 @@ exports[`GroupPlanesForm should rendered successfully 1`] = `
         name="group-hashtags"
         placeholder="Hashtags"
         style="height: 0px; overflow: hidden;"
-      />
+      >
+        #GroupHashtags #hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag#hashtag
+      </textarea>
       <textarea
         aria-hidden="true"
         class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
@@ -55,10 +59,10 @@ exports[`GroupPlanesForm should rendered successfully 1`] = `
     </div>
   </div>
   <span
-    class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-caption css-1nr2uw6-MuiTypography-root"
   >
     Hashtags: 
-    0
+    30
   </span>
   <div
     class="MuiBox-root css-1bvc4cc"
@@ -76,7 +80,95 @@ exports[`GroupPlanesForm should rendered successfully 1`] = `
           name="group-name"
           placeholder="Group name"
           type="text"
-          value=""
+          value="Group name"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GroupPlanesForm should rendered successfully 1`] = `
+<div>
+  <div
+    class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+  >
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
+    >
+      <textarea
+        aria-invalid="false"
+        class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+        id="group-description"
+        name="group-description"
+        placeholder="Description"
+        style="height: 0px; overflow: hidden;"
+      >
+        Group description #descriptionHashtag
+      </textarea>
+      <textarea
+        aria-hidden="true"
+        class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+        readonly=""
+        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+  <span
+    class="MuiTypography-root MuiTypography-caption css-1d9s20a-MuiTypography-root"
+  >
+    Hashtags: 
+    1
+  </span>
+  <div
+    class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+  >
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
+    >
+      <textarea
+        aria-invalid="false"
+        class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+        id="group-hashtags"
+        name="group-hashtags"
+        placeholder="Hashtags"
+        style="height: 0px; overflow: hidden;"
+      >
+        #GroupHashtags
+      </textarea>
+      <textarea
+        aria-hidden="true"
+        class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+        readonly=""
+        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+  <span
+    class="MuiTypography-root MuiTypography-caption css-1d9s20a-MuiTypography-root"
+  >
+    Hashtags: 
+    1
+  </span>
+  <div
+    class="MuiBox-root css-1bvc4cc"
+  >
+    <div
+      class="MuiFormControl-root MuiFormControl-marginDense MuiTextField-root css-4mzek5-MuiFormControl-root-MuiTextField-root"
+    >
+      <div
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-v4u5dn-MuiInputBase-root-MuiInput-root"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          id="group-name"
+          name="group-name"
+          placeholder="Group name"
+          type="text"
+          value="Group name"
         />
       </div>
     </div>

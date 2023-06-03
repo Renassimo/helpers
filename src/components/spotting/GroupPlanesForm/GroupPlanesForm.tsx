@@ -1,10 +1,14 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useMemo } from 'react';
 
 import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+
+import { useTheme } from '@mui/material/styles';
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+
+const HASHTAG_LIMIT = 30;
 
 const GroupPlanesForm = () => {
   const {
@@ -36,6 +40,31 @@ const GroupPlanesForm = () => {
     setGroupName(event.target.value);
   };
 
+  const theme = useTheme();
+  const descriptionHashtagsCount = useMemo(
+    () => groupDescription.split('#').length - 1,
+    [groupDescription]
+  );
+  const hashtagsCount = useMemo(
+    () => groupHashtags.split('#').length - 1,
+    [groupHashtags]
+  );
+  const totalHashTags = useMemo(
+    () => descriptionHashtagsCount + hashtagsCount,
+    [descriptionHashtagsCount, hashtagsCount]
+  );
+  const hashtagsExceeded = useMemo(
+    () => totalHashTags > HASHTAG_LIMIT,
+    [totalHashTags]
+  );
+  const hashtagColor = useMemo(
+    () =>
+      hashtagsExceeded
+        ? theme.palette.warning.main
+        : theme.palette.primary.main,
+    [hashtagsExceeded, theme.palette.primary]
+  );
+
   return (
     <>
       <TextField
@@ -49,8 +78,8 @@ const GroupPlanesForm = () => {
         variant="standard"
         placeholder="Description"
       />
-      <Typography variant="caption">
-        Hashtags: {groupDescription.split('#').length - 1}
+      <Typography variant="caption" color={hashtagColor}>
+        Hashtags: {descriptionHashtagsCount}
       </Typography>
       <TextField
         id={hashtagsInputName}
@@ -63,8 +92,8 @@ const GroupPlanesForm = () => {
         variant="standard"
         placeholder="Hashtags"
       />
-      <Typography variant="caption">
-        Hashtags: {groupHashtags.split('#').length - 1}
+      <Typography variant="caption" color={hashtagColor}>
+        Hashtags: {hashtagsCount}
       </Typography>
       <Box display="flex" justifyContent="flex-end">
         <TextField
