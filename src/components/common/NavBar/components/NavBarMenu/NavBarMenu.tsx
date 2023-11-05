@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
+import useRefresh from '@/hooks/useRefresh';
+
 const NavBarMenu = ({
   anchor,
   onClose,
@@ -21,6 +23,8 @@ const NavBarMenu = ({
   signOut: () => void;
   withMain?: boolean;
 }) => {
+  const { refreshData } = useRefresh();
+
   return (
     <Menu id="menu-appbar" anchorEl={anchor} onClose={onClose} open={!!anchor}>
       {withMain && (
@@ -45,6 +49,9 @@ const NavBarMenu = ({
           <Divider variant="middle" />
         </Box>
       )}
+      <MenuItem key="refresh-data" onClick={refreshData}>
+        <Typography textAlign="center">Refresh data</Typography>
+      </MenuItem>
       <MenuItem key="sign-out" onClick={signOut}>
         <Typography textAlign="center">Sign Out</Typography>
       </MenuItem>

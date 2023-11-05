@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import {
   LineWord,
@@ -28,22 +28,26 @@ const useSpottingData = (data: SpottedPlaneApiData[] | null) => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [spottingData, setSpottingData] = useState<
     Record<string, SpottedPlaneProviderData>
-  >(
-    data?.reduce(
-      (result, { id, attributes }: SpottedPlaneApiData) => ({
-        ...result,
-        [id]: {
-          id,
-          ...attributes,
-          ...defaultDescriptionData,
-        },
-      }),
-      {}
-    ) ?? {}
-  );
+  >({});
   const [groupName, setGroupName] = useState('');
   const [groupDescription, setGroupDescription] = useState('');
   const [groupHashtags, setGroupHashtags] = useState('');
+
+  useEffect(() => {
+    setSpottingData(
+      data?.reduce(
+        (result, { id, attributes }: SpottedPlaneApiData) => ({
+          ...result,
+          [id]: {
+            id,
+            ...attributes,
+            ...defaultDescriptionData,
+          },
+        }),
+        {}
+      ) ?? {}
+    );
+  }, [data]);
 
   const updateSpottedPlane = useCallback(
     (id: string, payload: Record<string, string>) => {
