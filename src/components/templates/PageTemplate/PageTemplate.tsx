@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 
 import NavBar from '@/components/common/NavBar';
 import PageWrapper from '@/components/common/PageWrapper';
+import StaticNavBar from '@/components/common/StaticNavBar';
 
 import { PageInfo, User } from '@/types/auth';
 
@@ -34,13 +35,13 @@ const ContainerWrapper = styled.div(
 const PageTemplate = ({
   title,
   user,
-  pages,
+  pages = [],
   children,
   navBarChildren,
 }: {
   title: string;
-  user: User;
-  pages: PageInfo[];
+  user?: User;
+  pages?: PageInfo[];
   children: ReactNode;
   navBarChildren?: ReactNode;
 }) => {
@@ -51,9 +52,13 @@ const PageTemplate = ({
       </Head>
       <PageWrapper>
         <NavBarWrapper>
-          <NavBar serverSideUser={user} pages={pages}>
-            {navBarChildren}
-          </NavBar>
+          {user ? (
+            <NavBar serverSideUser={user} pages={pages}>
+              {navBarChildren}
+            </NavBar>
+          ) : (
+            <StaticNavBar pages={pages}>{navBarChildren}</StaticNavBar>
+          )}
         </NavBarWrapper>
         <ContainerWrapper>
           <Container fixed>{children}</Container>

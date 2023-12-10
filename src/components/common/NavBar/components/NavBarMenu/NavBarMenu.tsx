@@ -18,7 +18,7 @@ const NavBarMenu = ({
   anchor: HTMLElement | null;
   onClose: () => void;
   pages: PageInfo[];
-  signOut: () => void;
+  signOut?: () => void;
   withMain?: boolean;
 }) => {
   return (
@@ -45,9 +45,11 @@ const NavBarMenu = ({
           <Divider variant="middle" />
         </Box>
       )}
-      <MenuItem key="sign-out" onClick={signOut}>
-        <Typography textAlign="center">Sign Out</Typography>
-      </MenuItem>
+      {signOut && (
+        <MenuItem key="sign-out" onClick={signOut}>
+          <Typography textAlign="center">Sign Out</Typography>
+        </MenuItem>
+      )}
     </Menu>
   );
 };
