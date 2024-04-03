@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 
 const PollForm = () => {
   const { isStarted, isFinished, currentQuestion } = useMotivationPoll();
+
   return (
     <Box>
       {!isFinished && <Description />}
