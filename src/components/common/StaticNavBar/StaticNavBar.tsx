@@ -12,10 +12,10 @@ import NavBarMenu from '@/components/common/NavBar/components/NavBarMenu';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const StaticNavBar = ({
-  pages,
+  pages = [],
   children,
 }: {
-  pages: PageInfo[];
+  pages?: PageInfo[];
   children?: ReactNode;
 }) => {
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
