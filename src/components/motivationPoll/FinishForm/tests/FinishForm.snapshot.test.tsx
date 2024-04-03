@@ -1,15 +1,20 @@
 import renderWithTheme from '@/tests/helpers';
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
-import Description from '../Description';
+
+import FinishForm from '../FinishForm';
 
 jest.mock('@/hooks/motivationPoll/useMotivationPoll');
 
-describe('Description snapshot', () => {
-  const mockedDescription = 'Mocked description';
+describe('FinishForm snapshot', () => {
+  const mockedName = 'Mocked description';
+  const mockedSetName = jest.fn();
+  const mockedPrepareResults = jest.fn();
 
   beforeEach(() => {
     (useMotivationPoll as jest.Mock).mockImplementation(() => ({
-      description: mockedDescription,
+      name: mockedName,
+      setName: mockedSetName,
+      prepareResults: mockedPrepareResults,
     }));
   });
 
@@ -17,10 +22,10 @@ describe('Description snapshot', () => {
     jest.clearAllMocks();
   });
 
-  test('renders successfully', () => {
+  test('Renders successfully', async () => {
     // Arange
     // Act
-    const { baseElement } = renderWithTheme(<Description />);
+    const { baseElement } = renderWithTheme(<FinishForm />);
     // Assert
     expect(baseElement).toMatchSnapshot();
   });

@@ -32,7 +32,13 @@ const FinishForm = () => {
         gridTemplateColumns="1fr 1fr"
         gap="8px"
       >
-        <TextField name="name" value={name || ''} onChange={onNameChange} />
+        <TextField
+          aria-label="name"
+          inputProps={{ 'data-testid': 'name-input' }}
+          name="name"
+          value={name || ''}
+          onChange={onNameChange}
+        />
         <Button
           disabled={!name}
           type="button"

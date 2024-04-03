@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StaicNavBar Renders successfully 1`] = `
+exports[`StaicNavBar snapshot Renders successfully 1`] = `
 <body>
   <div>
     <header
@@ -26,7 +26,7 @@ exports[`StaicNavBar Renders successfully 1`] = `
 </body>
 `;
 
-exports[`StaicNavBar when gets pages Renders successfully 1`] = `
+exports[`StaicNavBar snapshot when gets pages Renders successfully 1`] = `
 <body>
   <div>
     <header
@@ -75,7 +75,7 @@ exports[`StaicNavBar when gets pages Renders successfully 1`] = `
 </body>
 `;
 
-exports[`StaicNavBar when gets pages when opens menu successfully renders menu items 1`] = `
+exports[`StaicNavBar snapshot when gets pages when opens menu successfully renders menu items 1`] = `
 <body
   style="padding-right: 1024px; overflow: hidden;"
 >

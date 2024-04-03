@@ -2,7 +2,7 @@ import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 import StaticNavBar from '../StaticNavBar';
 
-describe('StaicNavBar', () => {
+describe('StaicNavBar snapshot', () => {
   test('Renders successfully', () => {
     // Arange
     // Act
