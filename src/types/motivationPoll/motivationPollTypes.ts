@@ -52,8 +52,10 @@ export interface AnswersState {
     remainingPoints: number;
     answers: {
       [key: number]: {
+        id: number;
         points: number;
         demandId: number;
+        text: string;
       };
     };
   };
