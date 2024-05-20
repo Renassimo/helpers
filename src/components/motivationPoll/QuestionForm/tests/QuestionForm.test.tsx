@@ -1,8 +1,9 @@
+import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers/renderWithTheme';
 
-import QuestionForm from '../QuestionForm';
-
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+
+import QuestionForm from '../QuestionForm';
 
 import {
   mockedAnswerState,
@@ -10,7 +11,6 @@ import {
   mockedCurrentQuestion3,
   mockedQuestionsCount,
 } from '@/types/motivationPoll/mocks';
-import userEvent from '@testing-library/user-event';
 
 jest.mock('@/hooks/motivationPoll/useMotivationPoll');
 
