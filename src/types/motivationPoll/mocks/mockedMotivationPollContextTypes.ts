@@ -1,4 +1,4 @@
-import { AnswersState, QuestionData } from '../motivationPollTypes';
+import { AnswersState, DemandData, QuestionData } from '../motivationPollTypes';
 
 export const mockedCurrentQuestion1: QuestionData = {
   id: 0,
@@ -129,3 +129,24 @@ export const mockedAnswerState: AnswersState = {
 };
 
 export const mockedQuestionsCount = 3;
+
+export const mockedresults: DemandData[] = [
+  {
+    id: 1,
+    text: 'First',
+    medianValue: 2,
+    points: 3,
+  },
+  {
+    id: 2,
+    text: 'Second',
+    medianValue: 4,
+    points: 6,
+  },
+  {
+    id: 3,
+    text: 'Third',
+    medianValue: 6,
+    points: 9,
+  },
+];
