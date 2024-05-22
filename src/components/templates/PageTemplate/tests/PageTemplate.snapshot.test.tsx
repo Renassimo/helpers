@@ -1,12 +1,15 @@
 import renderWithTheme from '@/tests/helpers';
 
 import NavBar from '@/components/common/NavBar';
+import StaticNavBar from '@/components/common/StaticNavBar';
 
 import MockedNavBar from '@/components/common/NavBar/mocks';
+import MockedStaticNavBar from '@/components/common/StaticNavBar/mocks';
 
 import PageTemplate from '../PageTemplate';
 
 jest.mock('@/components/common/NavBar');
+jest.mock('@/components/common/StaticNavBar');
 
 describe('PageTemplate', () => {
   const title = 'Page';
@@ -23,9 +26,8 @@ describe('PageTemplate', () => {
     },
   ];
 
-  test('renders successfully', () => {
+  test('renders successfully with NavBar', () => {
     // Arrange
-
     (NavBar as unknown as jest.Mock).mockImplementationOnce(MockedNavBar);
     // Act
     const { container } = renderWithTheme(
@@ -44,10 +46,33 @@ describe('PageTemplate', () => {
     );
   });
 
+  describe('when user is not passed', () => {
+    test('renders successfully with StaticNavBar ', () => {
+      // Arange
+      (StaticNavBar as unknown as jest.Mock).mockImplementationOnce(
+        MockedStaticNavBar
+      );
+      // Act
+      const { container } = renderWithTheme(
+        <PageTemplate title={title} pages={pages}>
+          Children
+        </PageTemplate>
+      );
+      // Assert
+      expect(container).toMatchSnapshot();
+      expect(MockedStaticNavBar).toHaveBeenCalledWith(
+        {
+          pages,
+        },
+        {}
+      );
+    });
+  });
+
   describe('when navBarChildren passed', () => {
-    test('renders successfully', () => {
+    const navBarChildren = <div>Nav bar children</div>;
+    test('renders successfully with NavBar', () => {
       // Arrange
-      const navBarChildren = <div>Nav bar children</div>;
       (NavBar as unknown as jest.Mock).mockImplementationOnce(MockedNavBar);
       // Act
       const { container } = renderWithTheme(
@@ -70,6 +95,34 @@ describe('PageTemplate', () => {
         },
         {}
       );
+    });
+
+    describe('when user is not passed', () => {
+      test('renders successfully with StaticNavBar ', () => {
+        // Arange
+        (StaticNavBar as unknown as jest.Mock).mockImplementationOnce(
+          MockedStaticNavBar
+        );
+        // Act
+        const { container } = renderWithTheme(
+          <PageTemplate
+            title={title}
+            pages={pages}
+            navBarChildren={navBarChildren}
+          >
+            Children
+          </PageTemplate>
+        );
+        // Assert
+        expect(container).toMatchSnapshot();
+        expect(MockedStaticNavBar).toHaveBeenCalledWith(
+          {
+            children: navBarChildren,
+            pages,
+          },
+          {}
+        );
+      });
     });
   });
 });
