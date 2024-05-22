@@ -4,6 +4,7 @@ import {
   AnswersState,
   DemandData,
   MotivationPollApiData,
+  MotivationPollContextData,
   QuestionData,
 } from 'src/types/motivationPoll';
 
@@ -30,7 +31,9 @@ const setInitialAnswersState = (questions: QuestionData[]): AnswersState => {
   );
 };
 
-const useMotivationPollData = (apiData: MotivationPollApiData) => {
+const useMotivationPollData = (
+  apiData: MotivationPollApiData
+): MotivationPollContextData => {
   const { demands, description, questions } = apiData;
 
   const [isStarted, setIsStarted] = useState<boolean>(false);

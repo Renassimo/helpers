@@ -1,4 +1,9 @@
-import { AnswersState, DemandData, QuestionData } from '../motivationPollTypes';
+import {
+  AnswersState,
+  DemandData,
+  MotivationPollApiData,
+  QuestionData,
+} from '../motivationPollTypes';
 
 export const mockedCurrentQuestion1: QuestionData = {
   id: 0,
@@ -150,3 +155,203 @@ export const mockedresults: DemandData[] = [
     points: 9,
   },
 ];
+
+export const mockedApiData: MotivationPollApiData = {
+  language: 'en',
+  description: 'Description',
+  questions: [
+    {
+      id: 0,
+      text: 'Question 1',
+      answers: [
+        {
+          id: 0,
+          text: 'Q1 A1',
+          demandId: 0,
+        },
+        {
+          id: 1,
+          text: 'Q1 A2',
+          demandId: 1,
+        },
+        {
+          id: 2,
+          text: 'Q1 A3',
+          demandId: 2,
+        },
+        {
+          id: 3,
+          text: 'Q1 A4',
+          demandId: 3,
+        },
+      ],
+    },
+    {
+      id: 1,
+      text: 'Question 2',
+      answers: [
+        {
+          id: 0,
+          text: 'Q2 A1',
+          demandId: 0,
+        },
+        {
+          id: 1,
+          text: 'Q2 A2',
+          demandId: 2,
+        },
+        {
+          id: 2,
+          text: 'Q2 A3',
+          demandId: 1,
+        },
+        {
+          id: 3,
+          text: 'Q2 A4',
+          demandId: 3,
+        },
+      ],
+    },
+    {
+      id: 2,
+      text: 'Question 3',
+      answers: [
+        {
+          id: 0,
+          text: 'Q3 A1',
+          demandId: 3,
+        },
+        {
+          id: 1,
+          text: 'Q3 A2',
+          demandId: 2,
+        },
+        {
+          id: 2,
+          text: 'Q3 A3',
+          demandId: 1,
+        },
+        {
+          id: 3,
+          text: 'Q3 A4',
+          demandId: 0,
+        },
+      ],
+    },
+  ],
+  demands: [
+    {
+      id: 0,
+      text: 'Demand 1',
+      medianValue: 5,
+    },
+    {
+      id: 1,
+      text: 'Demand 2',
+      medianValue: 10,
+    },
+    {
+      id: 2,
+      text: 'Demand 3',
+      medianValue: 20,
+    },
+    {
+      id: 3,
+      text: 'Demand 4',
+      medianValue: 40,
+    },
+  ],
+};
+
+export const mockedDefaultAnswerState: AnswersState = {
+  0: {
+    completed: false,
+    remainingPoints: 11,
+    answers: {
+      0: {
+        id: 0,
+        points: 0,
+        demandId: 0,
+        text: 'Q1 A1',
+      },
+      1: {
+        id: 1,
+        points: 0,
+        demandId: 1,
+        text: 'Q1 A2',
+      },
+      2: {
+        id: 2,
+        points: 0,
+        demandId: 2,
+        text: 'Q1 A3',
+      },
+      3: {
+        id: 3,
+        points: 0,
+        demandId: 3,
+        text: 'Q1 A4',
+      },
+    },
+  },
+  1: {
+    completed: false,
+    remainingPoints: 11,
+    answers: {
+      0: {
+        id: 0,
+        points: 0,
+        demandId: 0,
+        text: 'Q2 A1',
+      },
+      1: {
+        id: 1,
+        points: 0,
+        demandId: 2,
+        text: 'Q2 A2',
+      },
+      2: {
+        id: 2,
+        points: 0,
+        demandId: 1,
+        text: 'Q2 A3',
+      },
+      3: {
+        id: 3,
+        points: 0,
+        demandId: 3,
+        text: 'Q2 A4',
+      },
+    },
+  },
+  2: {
+    completed: false,
+    remainingPoints: 11,
+    answers: {
+      0: {
+        id: 0,
+        points: 0,
+        demandId: 3,
+        text: 'Q3 A1',
+      },
+      1: {
+        id: 1,
+        points: 0,
+        demandId: 2,
+        text: 'Q3 A2',
+      },
+      2: {
+        id: 2,
+        points: 0,
+        demandId: 1,
+        text: 'Q3 A3',
+      },
+      3: {
+        id: 3,
+        points: 0,
+        demandId: 0,
+        text: 'Q3 A4',
+      },
+    },
+  },
+};

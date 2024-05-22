@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface DemandData {
   id: number;
   text: string;
@@ -60,3 +62,39 @@ export interface AnswersState {
     };
   };
 }
+
+export interface MotivationPollContextData {
+  description: string;
+  isStarted: boolean;
+  isFinished: boolean;
+  startTest: () => void;
+  currentQuestionNumber: null | number;
+  currentQuestion: QuestionData | null;
+  onChangeAnswer: (questionId: number, answerId: number, value: number) => void;
+  answersState: AnswersState;
+  questionsCount: number;
+  setToNextQuestion: () => void;
+  setToPrevQuestion: () => void;
+  name: null | string;
+  setName: Dispatch<SetStateAction<string | null>>;
+  prepareResults: () => void;
+  results: null | DemandData[];
+}
+
+export const MotivationPollDefaultContextData = {
+  description: '',
+  isStarted: false,
+  isFinished: false,
+  startTest: () => {},
+  currentQuestionNumber: null,
+  currentQuestion: null,
+  onChangeAnswer: () => {},
+  answersState: {},
+  questionsCount: 0,
+  setToNextQuestion: () => {},
+  setToPrevQuestion: () => {},
+  name: null,
+  setName: () => {},
+  prepareResults: () => {},
+  results: null,
+};
