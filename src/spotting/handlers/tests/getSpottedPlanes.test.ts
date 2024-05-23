@@ -1,34 +1,52 @@
-import getDay from '@/handlers/fiveBook/getDay';
-import { deserializeDay } from '@/serializers/fiveBook';
 import NotionService from '@/services/notion';
 
-jest.mock('@/serializers/fiveBook');
+import getSpottedPlanes from '@/spotting/handlers/getSpottedPlanes';
+
+import { deserializeSpottedPlanes } from '@/serializers/spotting';
+
+jest.mock('@/serializers/spotting');
 jest.mock('@/services/notion');
 
-describe('getDay', () => {
+describe('getSpottedPlanes', () => {
   let mockedOk: boolean;
   let mockedData: object;
+  let mockedChildrenData: object;
 
   const mockedDataBaseID = 'mocked_data_base_id';
-  const mockedDayCode = '10101';
   const mockedToken = 'mocked_token';
   const mockedDeserializedData = { data: 'some deserialized data' };
   const mockedDataToDeserialize = { data: 'some data to deserialize' };
-  const expectedQueryDatabaseArgs = [
-    mockedDataBaseID,
-    {
-      filter: {
-        and: [{ property: 'Day code', number: { equals: +mockedDayCode } }],
-      },
+  const mockedChildrenDataToDeserialize = {
+    type: 'image',
+    parent: {
+      page_id: 'page_id',
     },
-  ];
+    image: {
+      file: { url: 'url' },
+    },
+  };
   const mockedQueryDatabase = jest.fn(async () => ({
     ok: mockedOk,
     data: mockedData,
   }));
+  const mockedRetrieveBlockChildren = jest.fn(async () => ({
+    ok: mockedOk,
+    data: mockedChildrenData,
+  }));
+  const expectedQueryDatabaseArgs = [
+    mockedDataBaseID,
+    {
+      filter: {
+        and: [
+          { property: 'Info Ready', checkbox: { equals: true } },
+          { property: 'Ready to publish', checkbox: { equals: false } },
+        ],
+      },
+    },
+  ];
 
   beforeAll(() => {
-    (deserializeDay as unknown as jest.Mock).mockImplementation(
+    (deserializeSpottedPlanes as unknown as jest.Mock).mockImplementation(
       jest.fn(() => mockedDeserializedData)
     );
   });
@@ -42,24 +60,28 @@ describe('getDay', () => {
       mockedOk = true;
       (NotionService as unknown as jest.Mock).mockImplementationOnce(() => ({
         queryDatabase: mockedQueryDatabase,
+        retrieveBlockChildren: mockedRetrieveBlockChildren,
       }));
     });
 
-    describe('and has result', () => {
+    describe('and has results', () => {
       test('returns data', async () => {
         // Arrange
         mockedData = { results: [mockedDataToDeserialize] };
+        mockedChildrenData = { results: [mockedChildrenDataToDeserialize] };
         const mockedNotionService = new NotionService(mockedToken);
         const expectedResult = { data: mockedDeserializedData };
         // Act
-        const result = await getDay(
+        const result = await getSpottedPlanes(
           mockedNotionService,
-          mockedDataBaseID,
-          mockedDayCode
+          mockedDataBaseID
         );
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(deserializeDay).toHaveBeenCalledWith(mockedDataToDeserialize);
+        expect(deserializeSpottedPlanes).toHaveBeenCalledWith(
+          [mockedDataToDeserialize],
+          { page_id: 'url' }
+        );
         expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
           expectedQueryDatabaseArgs[0],
           expectedQueryDatabaseArgs[1]
@@ -67,21 +89,21 @@ describe('getDay', () => {
       });
     });
 
-    describe('and has no result', () => {
-      test('returns 404 error', async () => {
+    describe('and results are empty', () => {
+      test('returns empty data', async () => {
         // Arrange
         mockedData = { results: [] };
+        mockedChildrenData = { results: [] };
         const mockedNotionService = new NotionService(mockedToken);
-        const expectedResult = { error: { status: 404 } };
+        const expectedResult = { data: mockedDeserializedData };
         // Act
-        const result = await getDay(
+        const result = await getSpottedPlanes(
           mockedNotionService,
-          mockedDataBaseID,
-          mockedDayCode
+          mockedDataBaseID
         );
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(deserializeDay).not.toHaveBeenCalled();
+        expect(deserializeSpottedPlanes).toHaveBeenCalledWith([], {});
         expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
           expectedQueryDatabaseArgs[0],
           expectedQueryDatabaseArgs[1]
@@ -89,7 +111,6 @@ describe('getDay', () => {
       });
     });
   });
-
   describe('when response is not ok', () => {
     beforeEach(() => {
       mockedOk = false;
@@ -109,14 +130,13 @@ describe('getDay', () => {
       const mockedNotionService = new NotionService(mockedToken);
       const expectedResult = { error: mockedData };
       // Act
-      const result = await getDay(
+      const result = await getSpottedPlanes(
         mockedNotionService,
-        mockedDataBaseID,
-        mockedDayCode
+        mockedDataBaseID
       );
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(deserializeDay).not.toHaveBeenCalled();
+      expect(deserializeSpottedPlanes).not.toHaveBeenCalled();
       expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
         expectedQueryDatabaseArgs[0],
         expectedQueryDatabaseArgs[1]

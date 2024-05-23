@@ -2,7 +2,7 @@ import { getDayCode } from '@/utils/dayjs';
 
 import NotionService from '@/services/notion';
 
-import { getDay } from '@/handlers/fiveBook';
+import { getDay } from '@/fiveBook/handlers';
 
 import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
@@ -12,7 +12,7 @@ jest.mock('@/services/notion', () => jest.fn());
 jest.mock('@/utils/dayjs', () => ({
   getDayCode: jest.fn(),
 }));
-jest.mock('@/handlers/fiveBook/getDay');
+jest.mock('@/fiveBook/handlers/getDay');
 jest.mock('@/lib/firebase/auth', jest.fn());
 jest.mock('@/lib/firebase/firestore', jest.fn());
 

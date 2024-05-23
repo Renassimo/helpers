@@ -1,13 +1,13 @@
 import NotionService from '@/services/notion';
 
-import { getSpottedPlanes } from '@/handlers/spotting';
+import { getSpottedPlanes } from '@/spotting/handlers';
 
 import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
 import getServerSideProps from '../getServerSideProps';
 
 jest.mock('@/services/notion', () => jest.fn());
-jest.mock('@/handlers/spotting/getSpottedPlanes');
+jest.mock('@/spotting/handlers/getSpottedPlanes');
 jest.mock('@/lib/firebase/auth', jest.fn());
 jest.mock('@/lib/firebase/firestore', jest.fn());
 

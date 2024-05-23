@@ -8,7 +8,7 @@ import { NextApiRequestWithAuth } from '@/types/auth';
 
 import NotionService from '@/services/notion';
 
-import { updateDay } from '@/handlers/fiveBook';
+import { updateDay } from '@/fiveBook/handlers';
 
 const handler = async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
   if (req.method === 'PATCH') {

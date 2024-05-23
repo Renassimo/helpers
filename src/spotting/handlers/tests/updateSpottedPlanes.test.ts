@@ -1,4 +1,4 @@
-import updateSpottedPlanes from '@/handlers/spotting/updateSpottedPlanes';
+import updateSpottedPlanes from '@/spotting/handlers/updateSpottedPlanes';
 import NotionService from '@/services/notion';
 import { serializeSpottedPlanes } from '@/serializers/spotting';
 

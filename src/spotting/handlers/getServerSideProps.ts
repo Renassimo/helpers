@@ -4,7 +4,7 @@ import NotionService from '@/services/notion';
 
 import { showNotFound } from '@/utils/serverSideRenderProps';
 
-import getSpottedPlanes from '@/handlers/spotting/getSpottedPlanes';
+import getSpottedPlanes from '@/spotting/handlers/getSpottedPlanes';
 
 const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
   const { user, notionHelperData, pages } = ctx;

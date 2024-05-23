@@ -8,7 +8,7 @@ import { NextApiRequestWithAuth } from '@/types/auth';
 
 import NotionService from '@/services/notion';
 
-import { updateSpottedPlanes } from '@/handlers/spotting';
+import { updateSpottedPlanes } from '@/spotting/handlers';
 
 const handler = async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
   if (req.method === 'PATCH') {
