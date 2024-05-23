@@ -3,7 +3,7 @@ import {
   convertLinesIntoText,
   convertText,
   getTextLine,
-} from '@/utils/spotting';
+} from '@/spotting/utils';
 
 describe('Converters', () => {
   describe('convertText', () => {

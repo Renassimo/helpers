@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Dayjs } from 'dayjs';
 import { useRouter } from 'next/router';
 
-import { getDayCode } from '@/utils/dayjs';
+import { getDayCode } from '@/common/utils/dayjs';
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';

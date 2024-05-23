@@ -2,7 +2,7 @@ import renderWithTheme from '@/tests/helpers';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import getTurboModeAnswers from '@/utils/fiveBook/getTurboModeAnswers';
+import getTurboModeAnswers from '@/fiveBook/utils/getTurboModeAnswers';
 
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
@@ -13,7 +13,7 @@ import CreateAnswerForm from '../CreateAnswerForm';
 jest.mock('@/common/hooks/alerts');
 jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('@/fiveBook/hooks/useUpdateAnswers');
-jest.mock('@/utils/fiveBook/getTurboModeAnswers');
+jest.mock('@/fiveBook/utils/getTurboModeAnswers');
 jest.mock('next/router', () => ({
   useRouter: () => ({ push: jest.fn() }),
 }));

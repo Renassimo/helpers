@@ -1,4 +1,4 @@
-import getChangedAnswers from '@/utils/fiveBook/getChangedAnswers';
+import getChangedAnswers from '@/fiveBook/utils/getChangedAnswers';
 
 describe('getChangedAnswers', () => {
   const original = [

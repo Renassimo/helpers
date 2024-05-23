@@ -1,8 +1,8 @@
 import withAuthServerSideProps from '../withAuthServerSideProps';
 import { GetServerSidePropsContext } from 'next';
-import getServerSideUserData from '@/utils/serverSideUserData';
+import getServerSideUserData from '@/common/utils/serverSideUserData';
 
-jest.mock('@/utils/serverSideUserData');
+jest.mock('@/common/utils/serverSideUserData');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
 jest.mock('@/common/lib/firebase/firestore', jest.fn());
 

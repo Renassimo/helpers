@@ -1,7 +1,7 @@
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 import useUpdateDay from '@/fiveBook/hooks/useUpdateDay';
 
-import { getChangedAnswers } from '@/utils/fiveBook';
+import { getChangedAnswers } from '@/fiveBook/utils';
 import { useCallback } from 'react';
 
 const useUpdateAnswers = (onlyCreate = true) => {

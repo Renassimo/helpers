@@ -12,7 +12,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
 
-import { getTurboModeAnswers } from '@/utils/fiveBook';
+import { getTurboModeAnswers } from '@/fiveBook/utils';
 import useAlerts from '@/common/hooks/alerts';
 
 const CreateAnswerForm = () => {

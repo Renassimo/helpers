@@ -1,6 +1,6 @@
 import { GetStaticPropsContext } from 'next';
 
-import { getDataForApi } from '@/utils/motivationPoll/dataHandler';
+import { getDataForApi } from '@/motivationPoll/utils/dataHandler';
 import {
   isMotivationPollLocale,
   MotivationPollLocale,

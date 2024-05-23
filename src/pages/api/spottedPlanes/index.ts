@@ -2,7 +2,7 @@ import { NextApiResponse } from 'next';
 
 import { withAuthApi } from '@/common/lib/middlewares/withAuth';
 
-import { getError } from '@/utils/errors';
+import { getError } from '@/common/utils/errors';
 
 import { NextApiRequestWithAuth } from '@/types/auth';
 

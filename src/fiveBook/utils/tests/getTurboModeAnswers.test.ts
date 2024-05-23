@@ -1,4 +1,4 @@
-import getTurboModeAnswers from '@/utils/fiveBook/getTurboModeAnswers';
+import getTurboModeAnswers from '@/fiveBook/utils/getTurboModeAnswers';
 
 describe('getTurboModeAnswers', () => {
   test('returns split answers', () => {

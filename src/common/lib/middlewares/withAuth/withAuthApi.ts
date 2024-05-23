@@ -1,8 +1,8 @@
 import auth from '@/common/lib/firebase/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/types/auth';
-import { getError } from '@/utils/errors';
-import getUserNotionData from '@/utils/userNotinData';
+import { getError } from '@/common/utils/errors';
+import getUserNotionData from '@/common/utils/userNotinData';
 
 const withAuthApi = (
   handler: (req: NextApiRequest, res: NextApiResponse) => void,

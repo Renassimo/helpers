@@ -1,4 +1,4 @@
-import { getHashtags, insertHashes, insHash, insRHash } from '@/utils/spotting';
+import { getHashtags, insertHashes, insHash, insRHash } from '@/spotting/utils';
 
 describe('Hashtags', () => {
   describe('insHash', () => {

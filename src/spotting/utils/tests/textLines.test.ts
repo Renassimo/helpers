@@ -4,7 +4,7 @@ import {
   getHashtagLines,
   getNextSelectedDescriptionLines,
   mergeLines,
-} from '@/utils/spotting';
+} from '@/spotting/utils';
 
 import {
   mockedSpottedPlaneProviderDataFalsy,

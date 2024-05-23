@@ -6,9 +6,9 @@ import {
   insRHash,
   freighters,
   specialHashTags,
-} from '@/utils/spotting';
-import { formatFromNotionDate } from '@/utils/dayjs';
-import { Commons } from '@/utils/spotting/commons';
+} from '@/spotting/utils';
+import { formatFromNotionDate } from '@/common/utils/dayjs';
+import { Commons } from '@/spotting/utils/commons';
 
 const withEnter = (words: LineWord[]) =>
   words.find((word: LineWord) => !!word) ? [...words, '\n'] : words;

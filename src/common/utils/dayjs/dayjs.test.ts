@@ -6,7 +6,7 @@ import {
   getNextDayCode,
   getPrevDayCode,
   getYear,
-} from '@/utils/dayjs/dayjs';
+} from '@/common/utils/dayjs/dayjs';
 import dayjs from 'dayjs';
 
 describe('DayJS', () => {

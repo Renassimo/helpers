@@ -1,4 +1,4 @@
-import getUserNotionData from '@/utils/userNotinData';
+import getUserNotionData from '@/common/utils/userNotinData';
 
 let withError: boolean;
 let notionData: unknown;

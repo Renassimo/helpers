@@ -5,13 +5,13 @@ import {
   getNextDayCode,
   getPrevDayCode,
   getYear,
-} from '@/utils/dayjs';
+} from '@/common/utils/dayjs';
 import { renderHook } from '@testing-library/react';
-import { getIsoMonthDayFromDayCode } from '@/utils/fiveBook';
+import { getIsoMonthDayFromDayCode } from '@/fiveBook/utils';
 import dayjs from 'dayjs';
 
-jest.mock('@/utils/dayjs');
-jest.mock('@/utils/fiveBook');
+jest.mock('@/common/utils/dayjs');
+jest.mock('@/fiveBook/utils');
 
 describe('useFiveBookData', () => {
   const mockedCurrentYear = '2022';

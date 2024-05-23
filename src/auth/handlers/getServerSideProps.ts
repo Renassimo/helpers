@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 
-import getServerSideUserData from '@/utils/serverSideUserData';
-import { redirectToMain } from '@/utils/serverSideRenderProps';
+import getServerSideUserData from '@/common/utils/serverSideUserData';
+import { redirectToMain } from '@/common/utils/serverSideRenderProps';
 
 const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { user } = await getServerSideUserData(ctx);

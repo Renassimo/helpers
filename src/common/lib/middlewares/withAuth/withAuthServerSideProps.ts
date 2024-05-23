@@ -1,8 +1,11 @@
 import { GetServerSidePropsContext } from 'next';
 import sortBy from 'lodash/sortBy';
 
-import getServerSideUserData from '@/utils/serverSideUserData';
-import { redirectToSignIn, showNotFound } from '@/utils/serverSideRenderProps';
+import getServerSideUserData from '@/common/utils/serverSideUserData';
+import {
+  redirectToSignIn,
+  showNotFound,
+} from '@/common/utils/serverSideRenderProps';
 
 import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 import { NotionData } from '@/types/notion';

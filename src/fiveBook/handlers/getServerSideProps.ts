@@ -1,5 +1,5 @@
-import { showNotFound } from '@/utils/serverSideRenderProps';
-import { getDayCode } from '@/utils/dayjs';
+import { showNotFound } from '@/common/utils/serverSideRenderProps';
+import { getDayCode } from '@/common/utils/dayjs';
 
 import NotionService from '@/common/services/notion';
 

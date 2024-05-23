@@ -4,9 +4,9 @@ import {
   getNextDayCode,
   getPrevDayCode,
   getYear,
-} from '@/utils/dayjs';
+} from '@/common/utils/dayjs';
 import dayjs from 'dayjs';
-import { getIsoMonthDayFromDayCode } from '@/utils/fiveBook';
+import { getIsoMonthDayFromDayCode } from '@/fiveBook/utils';
 import { FiveBookData } from '@/types/fiveBook';
 
 const useFiveBookData = (data: FiveBookData | null) => {

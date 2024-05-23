@@ -1,4 +1,4 @@
-import getIsoMonthDayFromDayCode from '@/utils/fiveBook/getIsoMonthDayFromDayCode';
+import getIsoMonthDayFromDayCode from '@/fiveBook/utils/getIsoMonthDayFromDayCode';
 
 describe('getIsoMonthDayFromDayCode', () => {
   describe('when got 3 digits dayCode', () => {

@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-import { formatToNotionDate } from '@/utils/dayjs';
+import { formatToNotionDate } from '@/common/utils/dayjs';
 
 import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 

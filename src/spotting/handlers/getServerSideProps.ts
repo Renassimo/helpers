@@ -2,7 +2,7 @@ import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
 import NotionService from '@/common/services/notion';
 
-import { showNotFound } from '@/utils/serverSideRenderProps';
+import { showNotFound } from '@/common/utils/serverSideRenderProps';
 
 import getSpottedPlanes from '@/spotting/handlers/getSpottedPlanes';
 

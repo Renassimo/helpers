@@ -1,14 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import withAuthApi from '../withAuthApi';
-import { getError } from '@/utils/errors';
-import getUserNotionData from '@/utils/userNotinData';
+import { getError } from '@/common/utils/errors';
+import getUserNotionData from '@/common/utils/userNotinData';
 
 let withoutError: boolean;
 let userData: unknown;
 let mockedErrorCode: unknown;
 
-jest.mock('@/utils/errors');
-jest.mock('@/utils/userNotinData');
+jest.mock('@/common/utils/errors');
+jest.mock('@/common/utils/userNotinData');
 jest.mock('@/common/lib/firebase/firestore', jest.fn());
 jest.mock(
   '@/common/lib/firebase/auth',

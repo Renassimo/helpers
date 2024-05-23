@@ -4,7 +4,7 @@ import {
   mockedSpottedPlaneProviderDataNullish,
   mockedSpottedPlaneProviderDataTruthy,
 } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
-import { getCommons } from '@/utils/spotting/commons';
+import { getCommons } from '@/spotting/utils/commons';
 
 describe('Commons', () => {
   const mockedSelectedIds = [

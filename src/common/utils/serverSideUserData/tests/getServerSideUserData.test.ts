@@ -1,5 +1,5 @@
-import getUserUserData from '@/utils/serverSideUserData';
-import getUserNotionData from '@/utils/userNotinData';
+import getUserUserData from '@/common/utils/serverSideUserData';
+import getUserNotionData from '@/common/utils/userNotinData';
 import { GetServerSidePropsContext } from 'next';
 
 let withError: boolean;
@@ -17,7 +17,7 @@ jest.mock(
   }))
 );
 jest.mock('@/common/lib/firebase/firestore', jest.fn());
-jest.mock('@/utils/userNotinData');
+jest.mock('@/common/utils/userNotinData');
 
 describe('getServerSideUserData', () => {
   const mockedContext = {

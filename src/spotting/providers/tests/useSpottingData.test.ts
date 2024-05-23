@@ -10,14 +10,14 @@ import {
   getDescriptionLines,
   getHashtagLines,
   putTheLine,
-} from '@/utils/spotting';
+} from '@/spotting/utils';
 import {
   mockedSpottedPlaneApiDataFalsy,
   mockedSpottedPlaneApiDataNullish,
   mockedSpottedPlaneApiDataTruthy,
 } from '@/types/spotting/mocks';
 
-jest.mock('@/utils/spotting');
+jest.mock('@/spotting/utils');
 
 describe('useSpottingData', () => {
   const mockedPlane1 = mockedSpottedPlaneApiDataFalsy;

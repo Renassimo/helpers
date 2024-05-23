@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { getChangedAnswers } from '@/utils/fiveBook';
+import { getChangedAnswers } from '@/fiveBook/utils';
 
 import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
@@ -8,7 +8,7 @@ import useUpdateDay from '@/fiveBook/hooks/useUpdateDay';
 
 jest.mock('@/fiveBook/hooks/useUpdateDay');
 jest.mock('@/fiveBook/hooks/useFiveBook');
-jest.mock('@/utils/fiveBook');
+jest.mock('@/fiveBook/utils');
 
 describe('useUpdateAnswers', () => {
   afterEach(() => {

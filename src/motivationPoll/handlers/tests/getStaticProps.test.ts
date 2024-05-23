@@ -1,10 +1,10 @@
 import { GetStaticPropsContext } from 'next';
 
-import { getDataForApi } from '@/utils/motivationPoll/dataHandler';
+import { getDataForApi } from '@/motivationPoll/utils/dataHandler';
 
 import getStaticProps from '../getStaticProps';
 
-jest.mock('@/utils/motivationPoll/dataHandler');
+jest.mock('@/motivationPoll/utils/dataHandler');
 
 describe('getStaticProps', () => {
   const mockedGetDataForApi = jest.fn(() => 'mockedData');

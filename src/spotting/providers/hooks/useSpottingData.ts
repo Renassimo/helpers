@@ -15,8 +15,8 @@ import {
   getNextSelectedDescriptionLines,
   mergeLines,
   putTheLine,
-} from '@/utils/spotting';
-import { getCommons } from '@/utils/spotting/commons';
+} from '@/spotting/utils';
+import { getCommons } from '@/spotting/utils/commons';
 
 export const defaultDescriptionData = {
   description: '',
