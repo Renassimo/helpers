@@ -1,3 +1,3 @@
 export { getServerSideProps } from '@/handlers/main';
 
-export { default } from '@/components/pages/Main';
+export { default } from '@/main/pages/Main';

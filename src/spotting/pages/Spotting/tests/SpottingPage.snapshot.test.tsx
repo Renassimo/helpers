@@ -1,6 +1,6 @@
 import renderWithTheme from '@/tests/helpers';
 
-import SpottingPage from '@/components/pages/Spotting';
+import SpottingPage from '@/spotting/pages/Spotting';
 import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';
 
 import MockedSpottedPlanesList from '@/spotting/components/SpottedPlanesList/mocks';

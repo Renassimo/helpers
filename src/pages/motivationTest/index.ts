@@ -1,3 +1,3 @@
 export { getStaticProps } from 'src/handlers/motivationPoll';
 
-export { default } from 'src/components/pages/MotivationPoll';
+export { default } from '@/motivationPoll/pages/MotivationPoll';

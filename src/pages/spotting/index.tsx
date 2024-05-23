@@ -1,3 +1,3 @@
 export { getServerSideProps } from '@/handlers/spotting';
 
-export { default } from '@/components/pages/Spotting';
+export { default } from '@/spotting/pages/Spotting';
