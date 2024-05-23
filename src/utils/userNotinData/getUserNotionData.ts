@@ -1,4 +1,4 @@
-import firestore from '@/lib/firebase/firestore';
+import firestore from '@/common/lib/firebase/firestore';
 
 const getUserNotionData = async (uid: string) => {
   try {

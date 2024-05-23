@@ -3,7 +3,7 @@ import useRefreshToken from '../hooks/useRefreshToken';
 import refreshTokenInInterval from '../utils/refreshTokenInInterval';
 
 jest.mock('../utils/refreshTokenInInterval');
-jest.mock('@/lib/firebase/client', jest.fn());
+jest.mock('@/common/lib/firebase/client', jest.fn());
 
 describe('UseRefreshToken', () => {
   afterEach(() => {

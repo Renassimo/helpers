@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 
-import { withAuthApi } from '@/lib/middlewares/withAuth';
+import { withAuthApi } from '@/common/lib/middlewares/withAuth';
 
 import { getError } from '@/utils/errors';
 

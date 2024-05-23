@@ -1,5 +1,5 @@
 import getServerSideProps from './getServerSideProps';
-import { withAuthServerSideProps } from '@/lib/middlewares/withAuth';
+import { withAuthServerSideProps } from '@/common/lib/middlewares/withAuth';
 
 const getServerSidePropsWithAuth = withAuthServerSideProps(getServerSideProps);
 

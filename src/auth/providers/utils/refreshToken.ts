@@ -1,4 +1,4 @@
-import firebase from '@/lib/firebase/client';
+import firebase from '@/common/lib/firebase/client';
 
 const refreshToken = async () => {
   const user = firebase.auth().currentUser;

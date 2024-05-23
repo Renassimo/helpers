@@ -4,7 +4,7 @@ let withError: boolean;
 let notionData: unknown;
 let id: unknown;
 
-jest.mock('@/lib/firebase/firestore', () => ({
+jest.mock('@/common/lib/firebase/firestore', () => ({
   collection: () => ({
     doc: () => ({
       get: () => {

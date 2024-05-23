@@ -15,8 +15,8 @@ jest.mock('../hooks/useRefreshToken');
 jest.mock('../hooks/useSignIn');
 jest.mock('../hooks/useSignOut');
 jest.mock('../hooks/useUser');
-jest.mock('@/lib/firebase/client', jest.fn());
-jest.mock('@/lib/firebase/google', jest.fn());
+jest.mock('@/common/lib/firebase/client', jest.fn());
+jest.mock('@/common/lib/firebase/google', jest.fn());
 
 const TestingComponent = () => {
   const { user, signIn, signOut } = useContext(AuthContext);

@@ -12,12 +12,12 @@ jest.mock('@/common/hooks/alerts');
 jest.mock('next/router', () => ({
   push: jest.fn(),
 }));
-jest.mock('@/lib/firebase/google', () => {
+jest.mock('@/common/lib/firebase/google', () => {
   return jest.fn().mockImplementation(() => ({
     googleAuthProviderMethod: googleAuthProviderMockedMethod,
   }));
 });
-jest.mock('@/lib/firebase/client', () => ({
+jest.mock('@/common/lib/firebase/client', () => ({
   auth: () => ({
     signInWithPopup: mockedSignInWithPopup,
   }),

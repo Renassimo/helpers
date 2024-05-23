@@ -3,8 +3,8 @@ import { GetServerSidePropsContext } from 'next';
 import getServerSideUserData from '@/utils/serverSideUserData';
 
 jest.mock('@/utils/serverSideUserData');
-jest.mock('@/lib/firebase/auth', jest.fn());
-jest.mock('@/lib/firebase/firestore', jest.fn());
+jest.mock('@/common/lib/firebase/auth', jest.fn());
+jest.mock('@/common/lib/firebase/firestore', jest.fn());
 
 describe('withAuthServerSideProps', () => {
   const helperName = 'fiveBook';

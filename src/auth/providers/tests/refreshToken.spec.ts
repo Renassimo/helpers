@@ -3,7 +3,7 @@ import refreshToken from '@/auth/providers/utils/refreshToken';
 const mockGetIdToken = jest.fn();
 let withCurrentUser = true;
 
-jest.mock('@/lib/firebase/client', () => ({
+jest.mock('@/common/lib/firebase/client', () => ({
   auth: () => ({
     currentUser: withCurrentUser
       ? {

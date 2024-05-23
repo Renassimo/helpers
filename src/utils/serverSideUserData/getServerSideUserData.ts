@@ -2,7 +2,7 @@ import nookies from 'nookies';
 
 import { GetServerSidePropsContext } from 'next';
 
-import auth from '@/lib/firebase/auth';
+import auth from '@/common/lib/firebase/auth';
 
 import getUserNotionData from '@/utils/userNotinData';
 

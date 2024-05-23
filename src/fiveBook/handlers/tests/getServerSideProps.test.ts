@@ -13,8 +13,8 @@ jest.mock('@/utils/dayjs', () => ({
   getDayCode: jest.fn(),
 }));
 jest.mock('@/fiveBook/handlers/getDay');
-jest.mock('@/lib/firebase/auth', jest.fn());
-jest.mock('@/lib/firebase/firestore', jest.fn());
+jest.mock('@/common/lib/firebase/auth', jest.fn());
+jest.mock('@/common/lib/firebase/firestore', jest.fn());
 
 describe('getServerSideProps', () => {
   const mockedDayCode = '10101';

@@ -8,8 +8,8 @@ import getServerSideProps from '../getServerSideProps';
 
 jest.mock('@/common/services/notion', () => jest.fn());
 jest.mock('@/spotting/handlers/getSpottedPlanes');
-jest.mock('@/lib/firebase/auth', jest.fn());
-jest.mock('@/lib/firebase/firestore', jest.fn());
+jest.mock('@/common/lib/firebase/auth', jest.fn());
+jest.mock('@/common/lib/firebase/firestore', jest.fn());
 
 describe('getServerSideProps', () => {
   const mockedDataBaseID = 'data-base-id';

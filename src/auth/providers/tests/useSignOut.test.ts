@@ -11,7 +11,7 @@ jest.mock('@/common/hooks/alerts');
 jest.mock('next/router', () => ({
   reload: jest.fn(),
 }));
-jest.mock('@/lib/firebase/client', () => ({
+jest.mock('@/common/lib/firebase/client', () => ({
   auth: () => ({
     signOut: mockSignOut,
   }),

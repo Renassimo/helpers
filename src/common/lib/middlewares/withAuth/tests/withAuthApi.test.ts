@@ -9,9 +9,9 @@ let mockedErrorCode: unknown;
 
 jest.mock('@/utils/errors');
 jest.mock('@/utils/userNotinData');
-jest.mock('@/lib/firebase/firestore', jest.fn());
+jest.mock('@/common/lib/firebase/firestore', jest.fn());
 jest.mock(
-  '@/lib/firebase/auth',
+  '@/common/lib/firebase/auth',
   jest.fn(() => ({
     verifyIdToken: () => {
       if (!withoutError) {

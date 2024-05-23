@@ -11,12 +11,12 @@ const userData = {
 };
 
 jest.mock(
-  '@/lib/firebase/auth',
+  '@/common/lib/firebase/auth',
   jest.fn(() => ({
     verifyIdToken: () => !withError && userData,
   }))
 );
-jest.mock('@/lib/firebase/firestore', jest.fn());
+jest.mock('@/common/lib/firebase/firestore', jest.fn());
 jest.mock('@/utils/userNotinData');
 
 describe('getServerSideUserData', () => {

@@ -3,8 +3,8 @@ import Router from 'next/router';
 
 import { UrlObject } from 'url';
 
-import firebase from '@/lib/firebase/client';
-import GoogleAuthProvider from '@/lib/firebase/google';
+import firebase from '@/common/lib/firebase/client';
+import GoogleAuthProvider from '@/common/lib/firebase/google';
 
 import useAlerts from '@/common/hooks/alerts';
 

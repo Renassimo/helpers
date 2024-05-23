@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { User } from '@/types/auth';
 
-import firebase from '@/lib/firebase/client';
+import firebase from '@/common/lib/firebase/client';
 
 import getIdTokenChangedCallback from '../utils/getIdTokenChangedCallback';
 

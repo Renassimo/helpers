@@ -4,7 +4,7 @@ import getIdTokenChangedCallback from '../utils/getIdTokenChangedCallback';
 
 const mockOnIdTokenChanged = jest.fn();
 
-jest.mock('@/lib/firebase/client', () => ({
+jest.mock('@/common/lib/firebase/client', () => ({
   auth: () => ({
     onIdTokenChanged: mockOnIdTokenChanged,
   }),
