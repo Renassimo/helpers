@@ -8,7 +8,7 @@ import FiveBookCard from '@/fiveBook/components/FiveBookCard';
 import DatePicker from '@/fiveBook/components/DatePicker';
 import CreateAnswerForm from '@/fiveBook/components/CreateAnswerForm';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 const CreateAnswerCard = () => {
   const { fiveBookDayText, emoji } = useFiveBook();

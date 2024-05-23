@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography';
 
 import Modal from '@/common/components/Modal';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
-import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
-import useAlerts from '@/hooks/alerts';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
+import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
+import useAlerts from '@/common/hooks/alerts';
 
 const UpdateAnswer = () => {
   const { answers, question } = useFiveBook();

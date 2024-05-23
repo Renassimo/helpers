@@ -1,13 +1,13 @@
 import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import SpottedPlaneForm from '@/spotting/components/SpottedPlaneForm';
 
 import { mockedSpottedPlaneProviderDataTruthy } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
-jest.mock('@/hooks/spotting/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
 
 describe('SpottedPlaneForm', () => {
   const mockedUpdateDescription = jest.fn();

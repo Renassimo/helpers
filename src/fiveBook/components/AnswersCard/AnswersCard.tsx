@@ -10,7 +10,7 @@ import Link from '@mui/material/Link';
 import FiveBookCard from '@/fiveBook/components/FiveBookCard';
 import UpdateAnswer from '@/fiveBook/components/UpdateAnswer';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 const AnswersCard = () => {
   const { answers, question } = useFiveBook();

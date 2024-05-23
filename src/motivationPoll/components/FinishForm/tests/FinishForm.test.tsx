@@ -1,10 +1,10 @@
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers';
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import FinishForm from '../FinishForm';
 
-jest.mock('@/hooks/motivationPoll/useMotivationPoll');
+jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 
 describe('FinishForm', () => {
   const mockedName = 'Mocked description';

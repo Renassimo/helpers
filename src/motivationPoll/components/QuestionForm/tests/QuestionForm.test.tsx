@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers/renderWithTheme';
 
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import QuestionForm from '../QuestionForm';
 
@@ -12,7 +12,7 @@ import {
   mockedQuestionsCount,
 } from '@/types/motivationPoll/mocks';
 
-jest.mock('@/hooks/motivationPoll/useMotivationPoll');
+jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 
 describe('QuestionForm', () => {
   const mockedOnChangeAnswer = jest.fn();

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/auth/hooks/useAuth';
 
 jest.mock('react');
 jest.mock('@/auth/contexts/AuthContext');

@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 
 import { PageInfo, User } from '@/types/auth';
 
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/auth/hooks/useAuth';
 
 import NavBarMenu from '@/common/components/NavBar/components/NavBarMenu';
 

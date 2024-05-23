@@ -2,14 +2,14 @@ import { renderHook } from '@testing-library/react';
 
 import { SpottedPlaneProviderData } from '@/types/spotting';
 
-import useAlerts from '@/hooks/alerts';
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
-import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
-import useUpdateSpottedPlanes from '@/hooks/spotting/useUpdateSpottedPlanes';
+import useAlerts from '@/common/hooks/alerts';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
+import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';
+import useUpdateSpottedPlanes from '@/spotting/hooks/useUpdateSpottedPlanes';
 
-jest.mock('@/hooks/alerts');
-jest.mock('@/hooks/spotting/useSpottedPlanes');
-jest.mock('@/hooks/spotting/useUpdateSpottedPlanes');
+jest.mock('@/common/hooks/alerts');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useUpdateSpottedPlanes');
 
 describe('useApplySpottedPlanes', () => {
   const plane1 = {

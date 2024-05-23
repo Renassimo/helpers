@@ -6,7 +6,7 @@ import { SpottedPlaneApiData } from '@/types/spotting';
 
 import SpottingProvider from '@/providers/spotting/SpottingProvider';
 
-import useAlerts from '@/hooks/alerts';
+import useAlerts from '@/common/hooks/alerts';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';

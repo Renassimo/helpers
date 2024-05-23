@@ -5,7 +5,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Button from '@mui/material/Button';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 const StyledLink = styled(Link)`
   display: flex;

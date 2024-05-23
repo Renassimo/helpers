@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
-import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
-import useAlerts from '@/hooks/alerts';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
+import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';
+import useAlerts from '@/common/hooks/alerts';
 
 import Modal from '@/common/components/Modal';
 import SpottedPlaneCard from '@/spotting/components/SpottedPlaneCard';

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import AlertsProvider from '@/providers/alerts';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import GroupPlanesModal from '@/spotting/components/GroupPlanesModal';
 import GroupPlanesForm from '@/spotting/components/GroupPlanesForm';
@@ -16,7 +16,7 @@ import {
   mockedSpottedPlaneProviderDataTruthy,
 } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
-jest.mock('@/hooks/spotting/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
 jest.mock('@/spotting/components/GroupPlanesForm');
 
 describe('GroupPlanesModal extra', () => {

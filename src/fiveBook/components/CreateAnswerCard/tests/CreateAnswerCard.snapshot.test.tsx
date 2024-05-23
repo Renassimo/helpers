@@ -9,9 +9,9 @@ import MockedDatePicker from '@/fiveBook/components/DatePicker/mocks';
 import MockedCreateAnswerForm from '@/fiveBook/components/CreateAnswerForm/mocks';
 
 import CreateAnswerCard from '../CreateAnswerCard';
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
-jest.mock('@/hooks/fiveBook/useFiveBook');
+jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('@mui/material/useMediaQuery');
 jest.mock('@/fiveBook/components/DatePicker');
 jest.mock('@/fiveBook/components/CreateAnswerForm');

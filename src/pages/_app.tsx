@@ -9,7 +9,7 @@ import AuthProvider from '@/providers/auth';
 import ThemeProvider from '@/providers/theme';
 import AlertsProvider from '@/providers/alerts';
 
-import useAppLoading from '@/hooks/useAppLoading';
+import useAppLoading from '@/common/hooks/useAppLoading';
 
 import Loader from '@/common/components/Loader';
 

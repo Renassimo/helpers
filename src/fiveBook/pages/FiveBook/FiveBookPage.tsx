@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import useAlerts from '@/hooks/alerts';
+import useAlerts from '@/common/hooks/alerts';
 import { useEffect } from 'react';
 
 const Wrapper = styled.div(

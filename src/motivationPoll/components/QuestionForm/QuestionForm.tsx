@@ -1,4 +1,4 @@
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

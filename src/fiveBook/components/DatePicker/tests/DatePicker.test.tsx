@@ -3,13 +3,13 @@ import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 import DatePicker from '../DatePicker';
 
 const mockedPush = jest.fn();
 
-jest.mock('@/hooks/fiveBook/useFiveBook');
+jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('next/router', () => ({
   useRouter: () => ({
     push: mockedPush,

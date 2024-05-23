@@ -6,8 +6,8 @@ import {
   mockedSpottedPlaneProviderDataTruthy,
 } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
-import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import SpottedPlaneCard from '@/spotting/components/SpottedPlaneCard';
 import SelectableCard from '@/spotting/components/SelectableCard';
@@ -18,8 +18,8 @@ import MockedSpottedPlaneForm from '@/spotting/components/SpottedPlaneForm/mocks
 
 jest.mock('@/spotting/components/SelectableCard');
 jest.mock('@/spotting/components/SpottedPlaneForm');
-jest.mock('@/hooks/spotting/useApplySpottedPlanes');
-jest.mock('@/hooks/spotting/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useApplySpottedPlanes');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
 
 describe('SpottedPlaneCard', () => {
   const mockedUpdate = jest.fn();

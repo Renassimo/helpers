@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback } from 'react';
 
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';

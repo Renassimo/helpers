@@ -14,8 +14,8 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
-import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
+import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';
 
 import SelectableCard from '@/spotting/components/SelectableCard';
 import NewFirstFlightForm from '@/spotting/components/NewFirstFlightForm';

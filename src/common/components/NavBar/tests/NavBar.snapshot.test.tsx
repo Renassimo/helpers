@@ -2,11 +2,11 @@ import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers';
 
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/auth/hooks/useAuth';
 
 import NavBar from '../NavBar';
 
-jest.mock('@/hooks/useAuth');
+jest.mock('@/auth/hooks/useAuth');
 
 describe('NavBar', () => {
   const user = {

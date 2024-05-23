@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
-import useUpdateDay from '@/hooks/fiveBook/useUpdateDay';
+import useUpdateDay from '@/fiveBook/hooks/useUpdateDay';
 
 describe('useUpdateDay', () => {
   test('updates day', async () => {

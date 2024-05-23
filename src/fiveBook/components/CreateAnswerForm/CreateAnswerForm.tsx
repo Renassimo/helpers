@@ -9,11 +9,11 @@ import Switch from '@mui/material/Switch';
 import MenuItem from '@mui/material/MenuItem';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
-import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
+import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
 
 import { getTurboModeAnswers } from '@/utils/fiveBook';
-import useAlerts from '@/hooks/alerts';
+import useAlerts from '@/common/hooks/alerts';
 
 const CreateAnswerForm = () => {
   const { yearOptions, nextFiveBookDayCode, currentYear } = useFiveBook();

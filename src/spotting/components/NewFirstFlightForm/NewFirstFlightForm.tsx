@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 
 import { formatToNotionDate } from '@/utils/dayjs';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import TextField from '@mui/material/TextField';
 

@@ -1,11 +1,11 @@
 import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/auth/hooks/useAuth';
 
 import SignInPage from '../SignInPage';
 
-jest.mock('@/hooks/useAuth');
+jest.mock('@/auth/hooks/useAuth');
 
 describe('SignInPage', () => {
   test('calls sign in', async () => {

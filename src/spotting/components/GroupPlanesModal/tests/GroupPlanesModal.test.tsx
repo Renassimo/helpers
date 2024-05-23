@@ -1,9 +1,9 @@
 import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
-import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
-import useAlerts from '@/hooks/alerts';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
+import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';
+import useAlerts from '@/common/hooks/alerts';
 
 import GroupPlanesModal from '@/spotting/components/GroupPlanesModal';
 import GroupPlanesForm from '@/spotting/components/GroupPlanesForm';
@@ -16,9 +16,9 @@ import {
   mockedSpottedPlaneProviderDataTruthy,
 } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
-jest.mock('@/hooks/spotting/useSpottedPlanes');
-jest.mock('@/hooks/spotting/useApplySpottedPlanes');
-jest.mock('@/hooks/alerts');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useApplySpottedPlanes');
+jest.mock('@/common/hooks/alerts');
 jest.mock('@/spotting/components/GroupPlanesForm');
 
 describe('GroupPlanesModal', () => {

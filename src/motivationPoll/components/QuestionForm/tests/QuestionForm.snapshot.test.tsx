@@ -2,7 +2,7 @@ import renderWithTheme from '@/tests/helpers/renderWithTheme';
 
 import QuestionForm from '../QuestionForm';
 
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import {
   mockedAnswerState,
@@ -12,7 +12,7 @@ import {
   mockedQuestionsCount,
 } from '@/types/motivationPoll/mocks';
 
-jest.mock('@/hooks/motivationPoll/useMotivationPoll');
+jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 
 describe('QuestionForm Snapshot', () => {
   const mockedOnChangeAnswer = jest.fn();

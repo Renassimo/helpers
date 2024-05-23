@@ -2,18 +2,18 @@ import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
-import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
-import useAlerts from '@/hooks/alerts';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
+import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
+import useAlerts from '@/common/hooks/alerts';
 
 import UpdateAnswer from '../UpdateAnswer';
 
 const mockedUpdateYear = '2022';
 const mockedReplace = jest.fn();
 
-jest.mock('@/hooks/fiveBook/useFiveBook');
-jest.mock('@/hooks/fiveBook/useUpdateAnswers');
-jest.mock('@/hooks/alerts');
+jest.mock('@/fiveBook/hooks/useFiveBook');
+jest.mock('@/fiveBook/hooks/useUpdateAnswers');
+jest.mock('@/common/hooks/alerts');
 jest.mock('next/router', () => ({
   useRouter: () => ({
     replace: mockedReplace,

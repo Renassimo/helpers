@@ -1,6 +1,6 @@
 import renderWithTheme from '@/tests/helpers/renderWithTheme';
 
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import ResultsTable from '@/motivationPoll/components/ResultsTable';
 import ResultsChart from '@/motivationPoll/components/ResultsChart';
@@ -10,7 +10,7 @@ import MockedResultsChart from '@/motivationPoll/components/ResultsChart/mocks/M
 
 import Results from '../Results';
 
-jest.mock('@/hooks/motivationPoll/useMotivationPoll');
+jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 jest.mock('@/motivationPoll/components/ResultsTable');
 jest.mock('@/motivationPoll/components/ResultsChart');
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import PlanesContainer from '@/spotting/components/PlanesContainer';
 import SpottedPlaneCard from '@/spotting/components/SpottedPlaneCard';

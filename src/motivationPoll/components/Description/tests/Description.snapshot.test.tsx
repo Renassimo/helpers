@@ -1,8 +1,8 @@
 import renderWithTheme from '@/tests/helpers';
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 import Description from '../Description';
 
-jest.mock('@/hooks/motivationPoll/useMotivationPoll');
+jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 
 describe('Description snapshot', () => {
   const mockedDescription = 'Mocked description';

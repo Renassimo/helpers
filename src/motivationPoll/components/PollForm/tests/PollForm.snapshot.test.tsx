@@ -1,6 +1,6 @@
 import renderWithTheme from '@/tests/helpers';
 
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import Description from '@/motivationPoll/components/Description';
 import StarterForm from '@/motivationPoll/components/StarterForm';
@@ -13,7 +13,7 @@ import MockedQuestionForm from '@/motivationPoll/components/QuestionForm/mocks';
 import MockedFinishForm from '@/motivationPoll/components/FinishForm/mocks';
 import PollForm from '../PollForm';
 
-jest.mock('@/hooks/motivationPoll/useMotivationPoll');
+jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 jest.mock('@/motivationPoll/components/StarterForm');
 jest.mock('@/motivationPoll/components/Description');
 jest.mock('@/motivationPoll/components/QuestionForm');

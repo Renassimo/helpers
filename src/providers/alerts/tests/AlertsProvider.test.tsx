@@ -1,7 +1,7 @@
 import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
-import useAlerts from '@/hooks/alerts';
+import useAlerts from '@/common/hooks/alerts';
 
 import AlertsProvider from '@/providers/alerts';
 

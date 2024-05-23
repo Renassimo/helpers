@@ -1,4 +1,4 @@
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import ResultsTable from '@/motivationPoll/components/ResultsTable';
 import ResultsChart from '@/motivationPoll/components/ResultsChart';

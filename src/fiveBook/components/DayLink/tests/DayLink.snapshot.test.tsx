@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 import DayLink from '../DayLink';
 
-jest.mock('@/hooks/fiveBook/useFiveBook');
+jest.mock('@/fiveBook/hooks/useFiveBook');
 
 describe('DayLink', () => {
   test('renders successfully', () => {

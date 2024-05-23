@@ -2,7 +2,7 @@ import renderWithTheme from '@/tests/helpers';
 
 import UpdateAnswer from '@/fiveBook/components/UpdateAnswer';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 import MockedUpdateAnswer from '@/fiveBook/components/UpdateAnswer/mocks';
 import userEvent from '@testing-library/user-event';
@@ -11,7 +11,7 @@ const mockedReplace = jest.fn();
 
 import AnswersCard from '../AnswersCard';
 
-jest.mock('@/hooks/fiveBook/useFiveBook');
+jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('@/fiveBook/components/UpdateAnswer');
 jest.mock('next/router', () => ({
   useRouter: () => ({

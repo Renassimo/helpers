@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styled from '@emotion/styled';
 
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/auth/hooks/useAuth';
 
 import GoogleIcon from '@mui/icons-material/Google';
 import Button from '@mui/material/Button';

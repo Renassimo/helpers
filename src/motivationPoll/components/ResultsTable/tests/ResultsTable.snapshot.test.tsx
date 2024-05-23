@@ -1,11 +1,11 @@
 import renderWithTheme from '@/tests/helpers/renderWithTheme';
 
-import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
+import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import ResultsTable from '../ResultsTable';
 import { mockedresults } from '@/types/motivationPoll/mocks';
 
-jest.mock('@/hooks/motivationPoll/useMotivationPoll');
+jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 
 describe('ResultsTable snapshots', () => {
   beforeEach(() => {

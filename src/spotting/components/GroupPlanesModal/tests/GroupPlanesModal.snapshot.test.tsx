@@ -1,7 +1,7 @@
 import renderWithTheme from '@/tests/helpers';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
-import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
+import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';
 
 import Modal from '@/common/components/Modal';
 import GroupPlanesModal from '@/spotting/components/GroupPlanesModal';
@@ -19,8 +19,8 @@ import {
 } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
 
 jest.mock('@/common/components/Modal');
-jest.mock('@/hooks/spotting/useSpottedPlanes');
-jest.mock('@/hooks/spotting/useApplySpottedPlanes');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useApplySpottedPlanes');
 jest.mock('@/spotting/components/GroupPlanesForm');
 jest.mock('@/spotting/components/SpottedPlaneCard');
 

@@ -2,12 +2,12 @@ import { renderHook } from '@testing-library/react';
 
 import { getChangedAnswers } from '@/utils/fiveBook';
 
-import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
-import useUpdateDay from '@/hooks/fiveBook/useUpdateDay';
+import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
+import useUpdateDay from '@/fiveBook/hooks/useUpdateDay';
 
-jest.mock('@/hooks/fiveBook/useUpdateDay');
-jest.mock('@/hooks/fiveBook/useFiveBook');
+jest.mock('@/fiveBook/hooks/useUpdateDay');
+jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('@/utils/fiveBook');
 
 describe('useUpdateAnswers', () => {

@@ -4,15 +4,15 @@ import userEvent from '@testing-library/user-event';
 
 import getTurboModeAnswers from '@/utils/fiveBook/getTurboModeAnswers';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
-import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
-import useAlerts from '@/hooks/alerts';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
+import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';
+import useAlerts from '@/common/hooks/alerts';
 
 import CreateAnswerForm from '../CreateAnswerForm';
 
-jest.mock('@/hooks/alerts');
-jest.mock('@/hooks/fiveBook/useFiveBook');
-jest.mock('@/hooks/fiveBook/useUpdateAnswers');
+jest.mock('@/common/hooks/alerts');
+jest.mock('@/fiveBook/hooks/useFiveBook');
+jest.mock('@/fiveBook/hooks/useUpdateAnswers');
 jest.mock('@/utils/fiveBook/getTurboModeAnswers');
 jest.mock('next/router', () => ({
   useRouter: () => ({ push: jest.fn() }),

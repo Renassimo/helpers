@@ -1,10 +1,10 @@
 import renderWithTheme from '@/tests/helpers';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import GroupPlanesForm from '@/spotting/components/GroupPlanesForm';
 
-jest.mock('@/hooks/spotting/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
 
 describe('GroupPlanesForm', () => {
   const mockedGroupDescription = 'Group description #descriptionHashtag';

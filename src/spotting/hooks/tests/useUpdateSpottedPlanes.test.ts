@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react';
 
 import fetchMock from 'fetch-mock';
 
-import useUpdateSpottedPlanes from '@/hooks/spotting/useUpdateSpottedPlanes';
+import useUpdateSpottedPlanes from '@/spotting/hooks/useUpdateSpottedPlanes';
 
 describe('useUpdateSpottedPlanes', () => {
   test('updates spotted planes', async () => {

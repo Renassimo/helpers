@@ -2,11 +2,11 @@ import dayjs from 'dayjs';
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers';
 
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 import DatePicker from '../DatePicker';
 
-jest.mock('@/hooks/fiveBook/useFiveBook');
+jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('next/router', () => ({
   useRouter: () => ({ push: jest.fn() }),
 }));

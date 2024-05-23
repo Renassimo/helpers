@@ -1,10 +1,10 @@
 import renderWithTheme from '@/tests/helpers';
 
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/auth/hooks/useAuth';
 
 import SignInPage from '../SignInPage';
 
-jest.mock('@/hooks/useAuth');
+jest.mock('@/auth/hooks/useAuth');
 
 describe('SignInPage snapshots', () => {
   test('renders successfully', () => {

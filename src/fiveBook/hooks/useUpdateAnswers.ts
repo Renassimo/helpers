@@ -1,5 +1,5 @@
-import useFiveBook from '@/hooks/fiveBook/useFiveBook';
-import useUpdateDay from '@/hooks/fiveBook/useUpdateDay';
+import useFiveBook from '@/fiveBook/hooks/useFiveBook';
+import useUpdateDay from '@/fiveBook/hooks/useUpdateDay';
 
 import { getChangedAnswers } from '@/utils/fiveBook';
 import { useCallback } from 'react';

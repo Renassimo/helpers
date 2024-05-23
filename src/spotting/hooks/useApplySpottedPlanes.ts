@@ -5,9 +5,9 @@ import {
   SpottedPlaneProviderData,
 } from '@/types/spotting';
 
-import useAlerts from '@/hooks/alerts';
-import useUpdateSpottedPlanes from '@/hooks/spotting/useUpdateSpottedPlanes';
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useAlerts from '@/common/hooks/alerts';
+import useUpdateSpottedPlanes from '@/spotting/hooks/useUpdateSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 const useApplySpottedPlanes = () => {
   const { update: updatePlanes, loading } = useUpdateSpottedPlanes();

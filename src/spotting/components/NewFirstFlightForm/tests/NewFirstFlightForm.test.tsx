@@ -1,11 +1,11 @@
 import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import NewFirstFlightForm from '@/spotting/components/NewFirstFlightForm';
 
-jest.mock('@/hooks/spotting/useSpottedPlanes');
+jest.mock('@/spotting/hooks/useSpottedPlanes');
 
 describe('NewFirstFlightForm', () => {
   const mockedUpdateNewFirstFlight = jest.fn();

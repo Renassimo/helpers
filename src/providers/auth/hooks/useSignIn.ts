@@ -6,7 +6,7 @@ import { UrlObject } from 'url';
 import firebase from '@/lib/firebase/client';
 import GoogleAuthProvider from '@/lib/firebase/google';
 
-import useAlerts from '@/hooks/alerts';
+import useAlerts from '@/common/hooks/alerts';
 
 const useSignIn = () => {
   const { createErrorAlert } = useAlerts();

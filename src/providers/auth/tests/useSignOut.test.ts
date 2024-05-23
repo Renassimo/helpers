@@ -1,13 +1,13 @@
 import Router from 'next/router';
 import { renderHook, cleanup, act } from '@testing-library/react';
 
-import useAlerts from '@/hooks/alerts';
+import useAlerts from '@/common/hooks/alerts';
 
 import useSignOut from '../hooks/useSignOut';
 
 let mockSignOut: () => void = jest.fn();
 
-jest.mock('@/hooks/alerts');
+jest.mock('@/common/hooks/alerts');
 jest.mock('next/router', () => ({
   reload: jest.fn(),
 }));

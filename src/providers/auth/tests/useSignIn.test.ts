@@ -1,14 +1,14 @@
 import Router from 'next/router';
 import { renderHook, cleanup, act } from '@testing-library/react';
 
-import useAlerts from '@/hooks/alerts';
+import useAlerts from '@/common/hooks/alerts';
 
 import useSignIn from '../hooks/useSignIn';
 
 let mockedSignInWithPopup: () => void = jest.fn();
 const googleAuthProviderMockedMethod = jest.fn();
 
-jest.mock('@/hooks/alerts');
+jest.mock('@/common/hooks/alerts');
 jest.mock('next/router', () => ({
   push: jest.fn(),
 }));

@@ -11,7 +11,7 @@ import { mockedApiData } from '@/types/motivationPoll/mocks';
 
 import MotivationPollPage from '../MotivationPollPage';
 
-jest.mock('@/hooks/common/usePdfDownload');
+jest.mock('@/common/hooks/usePdfDownload');
 jest.mock('@/common/components/LocaleLinks');
 jest.mock('@/motivationPoll/components/MotivationPoll');
 

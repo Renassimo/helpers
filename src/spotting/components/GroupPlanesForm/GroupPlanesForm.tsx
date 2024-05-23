@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useMemo } from 'react';
 
-import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
+import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import { useTheme } from '@mui/material/styles';
 
