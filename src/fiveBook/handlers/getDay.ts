@@ -1,4 +1,4 @@
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 import { deserializeDay } from '@/fiveBook/serializers';
 
 const getDay = async (

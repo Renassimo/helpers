@@ -1,6 +1,6 @@
 import { getDayCode } from '@/utils/dayjs';
 
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 
 import { getDay } from '@/fiveBook/handlers';
 
@@ -8,7 +8,7 @@ import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
 import getServerSideProps from '../getServerSideProps';
 
-jest.mock('@/services/notion', () => jest.fn());
+jest.mock('@/common/services/notion', () => jest.fn());
 jest.mock('@/utils/dayjs', () => ({
   getDayCode: jest.fn(),
 }));

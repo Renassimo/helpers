@@ -1,4 +1,4 @@
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 import fetchMock from 'fetch-mock';
 
 describe('Notion service', () => {

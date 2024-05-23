@@ -1,6 +1,6 @@
 import { GetServerSidePropsContextWithAuth } from '@/types/auth';
 
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 
 import { showNotFound } from '@/utils/serverSideRenderProps';
 

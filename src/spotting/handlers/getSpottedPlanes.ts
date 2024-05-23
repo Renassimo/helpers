@@ -1,6 +1,6 @@
 import { NotionBlockChildrenResult, NotionResult } from '@/types/notion';
 
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 
 import { deserializeSpottedPlanes } from '@/spotting/serializers';
 

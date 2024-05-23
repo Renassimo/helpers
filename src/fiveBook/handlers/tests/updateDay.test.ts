@@ -1,9 +1,9 @@
 import updateDay from '@/fiveBook/handlers/updateDay';
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 import { deserializeDay, serializeDay } from '@/fiveBook/serializers';
 
 jest.mock('@/fiveBook/serializers');
-jest.mock('@/services/notion');
+jest.mock('@/common/services/notion');
 
 describe('updateDay', () => {
   let mockedOk: boolean;

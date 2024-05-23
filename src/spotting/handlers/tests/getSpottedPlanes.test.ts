@@ -1,11 +1,11 @@
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 
 import getSpottedPlanes from '@/spotting/handlers/getSpottedPlanes';
 
 import { deserializeSpottedPlanes } from '@/spotting/serializers';
 
 jest.mock('@/spotting/serializers');
-jest.mock('@/services/notion');
+jest.mock('@/common/services/notion');
 
 describe('getSpottedPlanes', () => {
   let mockedOk: boolean;

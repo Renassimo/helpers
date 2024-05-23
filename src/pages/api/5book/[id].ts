@@ -6,7 +6,7 @@ import { getError } from '@/utils/errors';
 
 import { NextApiRequestWithAuth } from '@/types/auth';
 
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 
 import { updateDay } from '@/fiveBook/handlers';
 

@@ -1,7 +1,7 @@
 import { showNotFound } from '@/utils/serverSideRenderProps';
 import { getDayCode } from '@/utils/dayjs';
 
-import NotionService from '@/services/notion';
+import NotionService from '@/common/services/notion';
 
 import { getDay } from '@/fiveBook/handlers';
 
