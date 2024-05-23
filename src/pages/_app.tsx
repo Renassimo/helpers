@@ -2,16 +2,16 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 
 import { Global } from '@emotion/react';
-import globalStyles from '@/styles/globalStyles';
-import theme from '@/styles/themes/main';
+import globalStyles from '@/common/styles/globalStyles';
+import theme from '@/common/styles/themes/main';
 
-import AuthProvider from '@/providers/auth';
-import ThemeProvider from '@/providers/theme';
-import AlertsProvider from '@/providers/alerts';
+import AuthProvider from '@/auth/providers';
+import ThemeProvider from '@/common/providers/theme';
+import AlertsProvider from '@/common/providers/alerts';
 
-import useAppLoading from '@/hooks/useAppLoading';
+import useAppLoading from '@/common/hooks/useAppLoading';
 
-import Loader from '@/components/common/Loader';
+import Loader from '@/common/components/Loader';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { loading } = useAppLoading();

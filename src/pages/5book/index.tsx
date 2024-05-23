@@ -1,4 +1,4 @@
-import { getDayCode } from '@/utils/dayjs';
+import { getDayCode } from '@/common/utils/dayjs';
 
 const FiveBook = () => <></>;
 

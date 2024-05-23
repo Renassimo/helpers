@@ -1,3 +1,3 @@
-export { getServerSideProps } from '@/handlers/fiveBook';
+export { getServerSideProps } from '@/fiveBook/handlers';
 
-export { default } from '@/components/pages/FiveBook';
+export { default } from '@/fiveBook/pages/FiveBook';
