@@ -6,7 +6,7 @@ import { MotivationPollApiData } from '@/types/motivationPoll';
 
 import PageTemplate from '@/components/templates/PageTemplate';
 import MotivationPoll from '@/components/motivationPoll/MotivationPoll';
-import LocaleLinks from '@/components/common/LocaleLinks';
+import LocaleLinks from '@/common/components/LocaleLinks';
 
 const MotivationPollPage = ({
   data,

@@ -5,9 +5,9 @@ import { css } from '@emotion/react';
 
 import Container from '@mui/material/Container';
 
-import NavBar from '@/components/common/NavBar';
-import PageWrapper from '@/components/common/PageWrapper';
-import StaticNavBar from '@/components/common/StaticNavBar';
+import NavBar from '@/common/components/NavBar';
+import PageWrapper from '@/common/components/PageWrapper';
+import StaticNavBar from '@/common/components/StaticNavBar';
 
 import { PageInfo, User } from '@/types/auth';
 

@@ -12,7 +12,7 @@ import { PageInfo, User } from '@/types/auth';
 
 import useAuth from '@/hooks/useAuth';
 
-import NavBarMenu from '@/components/common/NavBar/components/NavBarMenu';
+import NavBarMenu from '@/common/components/NavBar/components/NavBarMenu';
 
 const NavBar = ({
   serverSideUser,

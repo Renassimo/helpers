@@ -1,8 +1,9 @@
 import renderWithTheme from '@/tests/helpers';
+import userEvent from '@testing-library/user-event';
 
 import { Alert } from '@/types/alerts';
 
-import Alerts from '@/components/common/Alerts';
+import Alerts from '@/common/components/Alerts';
 
 describe('Alerts snapshot', () => {
   const mockedAlerts: Alert[] = [
@@ -13,13 +14,14 @@ describe('Alerts snapshot', () => {
   ];
   const mockedRemoveAlert = jest.fn();
 
-  test('renders successfully', () => {
+  test('renders successfully', async () => {
     // Arrange
-    // Act
-    const { baseElement } = renderWithTheme(
+    const { getAllByRole } = renderWithTheme(
       <Alerts alerts={mockedAlerts} removeAlert={mockedRemoveAlert} />
     );
+    // Act
+    await userEvent.click(getAllByRole('button')[2]);
     // Assert
-    expect(baseElement).toMatchSnapshot();
+    expect(mockedRemoveAlert).toHaveBeenCalledWith(mockedAlerts[2].id);
   });
 });

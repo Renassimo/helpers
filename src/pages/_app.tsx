@@ -11,7 +11,7 @@ import AlertsProvider from '@/providers/alerts';
 
 import useAppLoading from '@/hooks/useAppLoading';
 
-import Loader from '@/components/common/Loader';
+import Loader from '@/common/components/Loader';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { loading } = useAppLoading();

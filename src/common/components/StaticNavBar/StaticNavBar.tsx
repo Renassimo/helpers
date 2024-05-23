@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 
 import { PageInfo } from '@/types/auth';
 
-import NavBarMenu from '@/components/common/NavBar/components/NavBarMenu';
+import NavBarMenu from '@/common/components/NavBar/components/NavBarMenu';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const StaticNavBar = ({

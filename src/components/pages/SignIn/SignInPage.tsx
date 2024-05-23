@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import PageWrapper from '@/components/common/PageWrapper';
+import PageWrapper from '@/common/components/PageWrapper';
 
 const Img = styled.img`
   width: 150px;

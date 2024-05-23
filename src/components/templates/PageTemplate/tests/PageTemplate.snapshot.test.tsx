@@ -1,15 +1,15 @@
 import renderWithTheme from '@/tests/helpers';
 
-import NavBar from '@/components/common/NavBar';
-import StaticNavBar from '@/components/common/StaticNavBar';
+import NavBar from '@/common/components/NavBar';
+import StaticNavBar from '@/common/components/StaticNavBar';
 
-import MockedNavBar from '@/components/common/NavBar/mocks';
-import MockedStaticNavBar from '@/components/common/StaticNavBar/mocks';
+import MockedNavBar from '@/common/components/NavBar/mocks';
+import MockedStaticNavBar from '@/common/components/StaticNavBar/mocks';
 
 import PageTemplate from '../PageTemplate';
 
-jest.mock('@/components/common/NavBar');
-jest.mock('@/components/common/StaticNavBar');
+jest.mock('@/common/components/NavBar');
+jest.mock('@/common/components/StaticNavBar');
 
 describe('PageTemplate', () => {
   const title = 'Page';

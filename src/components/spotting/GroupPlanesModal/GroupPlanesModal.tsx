@@ -4,7 +4,7 @@ import useSpottedPlanes from '@/hooks/spotting/useSpottedPlanes';
 import useApplySpottedPlanes from '@/hooks/spotting/useApplySpottedPlanes';
 import useAlerts from '@/hooks/alerts';
 
-import Modal from '@/components/common/Modal';
+import Modal from '@/common/components/Modal';
 import SpottedPlaneCard from '@/components/spotting/SpottedPlaneCard';
 import GroupPlanesForm from '@/components/spotting/GroupPlanesForm';
 import PlanesContainer from '@/components/spotting/PlanesContainer';

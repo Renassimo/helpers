@@ -4,15 +4,15 @@ import usePdfDownload from '@/hooks/common/usePdfDownload';
 
 import MotivationPoll from '@/components/motivationPoll/MotivationPoll';
 import MockedMotivationPoll from '@/components/motivationPoll/MotivationPoll/mocks/MockedMotivationPoll';
-import LocaleLinks from '@/components/common/LocaleLinks';
-import MockedLocaleLinks from '@/components/common/LocaleLinks/mocks/MockedLocaleLinks';
+import LocaleLinks from '@/common/components/LocaleLinks';
+import MockedLocaleLinks from '@/common/components/LocaleLinks/mocks/MockedLocaleLinks';
 
 import { mockedApiData } from '@/types/motivationPoll/mocks';
 
 import MotivationPollPage from '../MotivationPollPage';
 
 jest.mock('@/hooks/common/usePdfDownload');
-jest.mock('@/components/common/LocaleLinks');
+jest.mock('@/common/components/LocaleLinks');
 jest.mock('@/components/motivationPoll/MotivationPoll');
 
 describe('MotivationPollPage snapshot', () => {

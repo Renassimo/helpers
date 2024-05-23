@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import AlertsContext from '@/contexts/alerts';
 
-import Alerts from '@/components/common/Alerts';
+import Alerts from '@/common/components/Alerts';
 
 import useAlertsProvider from './hooks/useAlertsProvider';
 

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import Modal from '@/components/common/Modal';
+import Modal from '@/common/components/Modal';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 import useUpdateAnswers from '@/hooks/fiveBook/useUpdateAnswers';
