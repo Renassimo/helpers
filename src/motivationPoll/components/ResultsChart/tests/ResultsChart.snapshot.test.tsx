@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers/renderWithTheme';
+import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 

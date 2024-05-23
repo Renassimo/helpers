@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import FinishForm from '../FinishForm';

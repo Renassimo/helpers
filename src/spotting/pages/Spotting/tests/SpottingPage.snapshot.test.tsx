@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 
 import SpottingPage from '@/spotting/pages/Spotting';
 import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';

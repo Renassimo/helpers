@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 
 import NavBar from '@/common/components/NavBar';
 import StaticNavBar from '@/common/components/StaticNavBar';

@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 
 import SpottedPlaneForm from '@/spotting/components/SpottedPlaneForm';
 

@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 import useUpdateAnswers from '@/fiveBook/hooks/useUpdateAnswers';

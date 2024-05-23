@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers/renderWithTheme';
+import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import LocaleLinks from '../LocaleLinks';
 
 describe('LocaleLinks', () => {

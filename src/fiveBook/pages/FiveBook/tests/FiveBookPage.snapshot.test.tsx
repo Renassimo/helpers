@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 import CreateAnswerCard from '@/fiveBook/components/CreateAnswerCard';

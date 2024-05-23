@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 
 import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';

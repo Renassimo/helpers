@@ -1,4 +1,4 @@
-import renderWithTheme from '@/tests/helpers';
+import renderWithTheme from '@/common/tests/helpers';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
