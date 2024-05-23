@@ -2,7 +2,7 @@ import { renderHook, act } from '@testing-library/react';
 
 import useSpottingData, {
   defaultDescriptionData,
-} from '@/providers/spotting/hooks/useSpottingData';
+} from '@/spotting/providers/hooks/useSpottingData';
 
 import {
   appendEmptyLines,

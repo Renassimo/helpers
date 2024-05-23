@@ -1,4 +1,4 @@
-import useFiveBookData from '@/providers/fiveBook/hooks/useFiveBookData';
+import useFiveBookData from '@/fiveBook/providers/hooks/useFiveBookData';
 import { FiveBookData } from '@/types/fiveBook';
 import {
   getDayText,

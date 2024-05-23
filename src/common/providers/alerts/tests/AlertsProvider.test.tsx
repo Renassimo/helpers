@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import useAlerts from '@/common/hooks/alerts';
 
-import AlertsProvider from '@/providers/alerts';
+import AlertsProvider from '@/common/providers/alerts';
 
 const TestingComponent = () => {
   const {

@@ -4,7 +4,7 @@ import { SpottedPlaneApiData } from '@/types/spotting';
 
 import SpottingContext from '@/spotting/contexts/SpottingContext';
 
-import useSpottingData from '@/providers/spotting/hooks/useSpottingData';
+import useSpottingData from '@/spotting/providers/hooks/useSpottingData';
 
 const SpottingProvider = ({
   children,

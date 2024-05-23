@@ -4,7 +4,7 @@ import { PageInfo, User } from '@/types/auth';
 import { NotionError } from '@/types/notion';
 import { SpottedPlaneApiData } from '@/types/spotting';
 
-import SpottingProvider from '@/providers/spotting/SpottingProvider';
+import SpottingProvider from '@/spotting/providers/SpottingProvider';
 
 import useAlerts from '@/common/hooks/alerts';
 

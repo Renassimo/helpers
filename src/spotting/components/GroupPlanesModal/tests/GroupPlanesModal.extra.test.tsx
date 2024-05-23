@@ -1,7 +1,7 @@
 import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
-import AlertsProvider from '@/providers/alerts';
+import AlertsProvider from '@/common/providers/alerts';
 
 import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 

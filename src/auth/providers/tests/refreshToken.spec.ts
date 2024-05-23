@@ -1,4 +1,4 @@
-import refreshToken from '@/providers/auth/utils/refreshToken';
+import refreshToken from '@/auth/providers/utils/refreshToken';
 
 const mockGetIdToken = jest.fn();
 let withCurrentUser = true;

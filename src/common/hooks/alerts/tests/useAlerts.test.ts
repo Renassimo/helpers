@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import useAlertsProvider from '@/providers/alerts/hooks/useAlertsProvider';
+import useAlertsProvider from '@/common/providers/alerts/hooks/useAlertsProvider';
 
 import { Alert } from '@/types/alerts';
 

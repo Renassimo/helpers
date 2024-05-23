@@ -1,4 +1,4 @@
-import MotivationPollProvider from '@/providers/motivationPoll/MotivationPollProvider';
+import MotivationPollProvider from '@/motivationPoll/providers/MotivationPollProvider';
 
 import usePdfDownload from '@/common/hooks/usePdfDownload';
 

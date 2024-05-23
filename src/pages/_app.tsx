@@ -5,9 +5,9 @@ import { Global } from '@emotion/react';
 import globalStyles from '@/styles/globalStyles';
 import theme from '@/styles/themes/main';
 
-import AuthProvider from '@/providers/auth';
-import ThemeProvider from '@/providers/theme';
-import AlertsProvider from '@/providers/alerts';
+import AuthProvider from '@/auth/providers';
+import ThemeProvider from '@/common/providers/theme';
+import AlertsProvider from '@/common/providers/alerts';
 
 import useAppLoading from '@/common/hooks/useAppLoading';
 

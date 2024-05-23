@@ -4,7 +4,7 @@ import FiveBookContext from '@/fiveBook/contexts/FiveBookContext';
 
 import { FiveBookData } from '@/types/fiveBook';
 
-import useFiveBookData from '@/providers/fiveBook/hooks/useFiveBookData';
+import useFiveBookData from '@/fiveBook/providers/hooks/useFiveBookData';
 
 const FiveBookProvider = ({
   children,

@@ -5,7 +5,7 @@ import { FiveBookData } from '@/types/fiveBook';
 import { NotionError } from '@/types/notion';
 import { PageInfo, User } from '@/types/auth';
 
-import FiveBookProvider from '@/providers/fiveBook/FiveBookProvider';
+import FiveBookProvider from '@/fiveBook/providers/FiveBookProvider';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 import CreateAnswerCard from '@/fiveBook/components/CreateAnswerCard';
