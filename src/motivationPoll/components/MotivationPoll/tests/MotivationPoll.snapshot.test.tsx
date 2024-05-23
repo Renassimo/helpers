@@ -2,17 +2,17 @@ import renderWithTheme from '@/tests/helpers';
 
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
 
-import PollForm from '@/components/motivationPoll/PollForm';
-import Results from '@/components/motivationPoll/Results';
+import PollForm from '@/motivationPoll/components/PollForm';
+import Results from '@/motivationPoll/components/Results';
 
-import MockedPollForm from '@/components/motivationPoll/PollForm/mocks';
-import MockedResults from '@/components/motivationPoll/Results/mocks';
+import MockedPollForm from '@/motivationPoll/components/PollForm/mocks';
+import MockedResults from '@/motivationPoll/components/Results/mocks';
 
 import MotivationPoll from '../MotivationPoll';
 
 jest.mock('@/hooks/motivationPoll/useMotivationPoll');
-jest.mock('@/components/motivationPoll/PollForm');
-jest.mock('@/components/motivationPoll/Results');
+jest.mock('@/motivationPoll/components/PollForm');
+jest.mock('@/motivationPoll/components/Results');
 
 describe('MotivationPoll snapshot', () => {
   const mockedOnDownloadPdf = jest.fn();

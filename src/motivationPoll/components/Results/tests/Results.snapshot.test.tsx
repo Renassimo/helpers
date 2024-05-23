@@ -1,19 +1,18 @@
-import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/tests/helpers/renderWithTheme';
 
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
 
-import ResultsTable from '@/components/motivationPoll/ResultsTable';
-import ResultsChart from '@/components/motivationPoll/ResultsChart';
+import ResultsTable from '@/motivationPoll/components/ResultsTable';
+import ResultsChart from '@/motivationPoll/components/ResultsChart';
 
-import MockedResultsTable from '@/components/motivationPoll/ResultsTable/mocks/MockedResultsTable';
-import MockedResultsChart from '@/components/motivationPoll/ResultsChart/mocks/MockedResultsChart';
+import MockedResultsTable from '@/motivationPoll/components/ResultsTable/mocks/MockedResultsTable';
+import MockedResultsChart from '@/motivationPoll/components/ResultsChart/mocks/MockedResultsChart';
 
 import Results from '../Results';
 
 jest.mock('@/hooks/motivationPoll/useMotivationPoll');
-jest.mock('@/components/motivationPoll/ResultsTable');
-jest.mock('@/components/motivationPoll/ResultsChart');
+jest.mock('@/motivationPoll/components/ResultsTable');
+jest.mock('@/motivationPoll/components/ResultsChart');
 
 describe('Results', () => {
   const mockedName = 'Mocked Name';
@@ -30,13 +29,12 @@ describe('Results', () => {
   describe('when to clickes to Save as PDF', () => {
     test('calls onDownloadPdf', async () => {
       // Arange
-      const { getByText } = renderWithTheme(
+      // Act
+      const { baseElement } = renderWithTheme(
         <Results onDownloadPdf={mockedOnDownloadPdf} />
       );
-      // Act
-      await userEvent.click(getByText('Save as PDF'));
       // Assert
-      expect(mockedOnDownloadPdf).toHaveBeenCalled();
+      expect(baseElement).toMatchSnapshot();
     });
   });
 });

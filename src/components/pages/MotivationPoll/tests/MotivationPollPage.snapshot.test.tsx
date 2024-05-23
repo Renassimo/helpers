@@ -2,8 +2,8 @@ import renderWithTheme from '@/tests/helpers';
 
 import usePdfDownload from '@/hooks/common/usePdfDownload';
 
-import MotivationPoll from '@/components/motivationPoll/MotivationPoll';
-import MockedMotivationPoll from '@/components/motivationPoll/MotivationPoll/mocks/MockedMotivationPoll';
+import MotivationPoll from '@/motivationPoll/components/MotivationPoll';
+import MockedMotivationPoll from '@/motivationPoll/components/MotivationPoll/mocks/MockedMotivationPoll';
 import LocaleLinks from '@/common/components/LocaleLinks';
 import MockedLocaleLinks from '@/common/components/LocaleLinks/mocks/MockedLocaleLinks';
 
@@ -13,7 +13,7 @@ import MotivationPollPage from '../MotivationPollPage';
 
 jest.mock('@/hooks/common/usePdfDownload');
 jest.mock('@/common/components/LocaleLinks');
-jest.mock('@/components/motivationPoll/MotivationPoll');
+jest.mock('@/motivationPoll/components/MotivationPoll');
 
 describe('MotivationPollPage snapshot', () => {
   const mockedOnDownloadPdf = jest.fn();

@@ -1,7 +1,7 @@
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
 
-import ResultsTable from '@/components/motivationPoll/ResultsTable';
-import ResultsChart from '@/components/motivationPoll/ResultsChart';
+import ResultsTable from '@/motivationPoll/components/ResultsTable';
+import ResultsChart from '@/motivationPoll/components/ResultsChart';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

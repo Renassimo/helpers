@@ -1,7 +1,7 @@
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
 
-import PollForm from '@/components/motivationPoll/PollForm';
-import Results from '@/components/motivationPoll/Results';
+import PollForm from '@/motivationPoll/components/PollForm';
+import Results from '@/motivationPoll/components/Results';
 
 import Box from '@mui/material/Box';
 

@@ -2,22 +2,22 @@ import renderWithTheme from '@/tests/helpers';
 
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
 
-import Description from '@/components/motivationPoll/Description';
-import StarterForm from '@/components/motivationPoll/StarterForm';
-import QuestionForm from '@/components/motivationPoll/QuestionForm';
-import FinishForm from '@/components/motivationPoll/FinishForm';
+import Description from '@/motivationPoll/components/Description';
+import StarterForm from '@/motivationPoll/components/StarterForm';
+import QuestionForm from '@/motivationPoll/components/QuestionForm';
+import FinishForm from '@/motivationPoll/components/FinishForm';
 
-import MockedDescription from '@/components/motivationPoll/Description/mocks';
-import MockedStarterForm from '@/components/motivationPoll/StarterForm/mocks';
-import MockedQuestionForm from '@/components/motivationPoll/QuestionForm/mocks';
-import MockedFinishForm from '@/components/motivationPoll/FinishForm/mocks';
+import MockedDescription from '@/motivationPoll/components/Description/mocks';
+import MockedStarterForm from '@/motivationPoll/components/StarterForm/mocks';
+import MockedQuestionForm from '@/motivationPoll/components/QuestionForm/mocks';
+import MockedFinishForm from '@/motivationPoll/components/FinishForm/mocks';
 import PollForm from '../PollForm';
 
 jest.mock('@/hooks/motivationPoll/useMotivationPoll');
-jest.mock('@/components/motivationPoll/StarterForm');
-jest.mock('@/components/motivationPoll/Description');
-jest.mock('@/components/motivationPoll/QuestionForm');
-jest.mock('@/components/motivationPoll/FinishForm');
+jest.mock('@/motivationPoll/components/StarterForm');
+jest.mock('@/motivationPoll/components/Description');
+jest.mock('@/motivationPoll/components/QuestionForm');
+jest.mock('@/motivationPoll/components/FinishForm');
 
 describe('PollForm snapshot', () => {
   beforeEach(() => {

@@ -1,9 +1,9 @@
 import useMotivationPoll from '@/hooks/motivationPoll/useMotivationPoll';
 
-import Description from '@/components/motivationPoll/Description';
-import StarterForm from '@/components/motivationPoll/StarterForm';
-import QuestionForm from '@/components/motivationPoll/QuestionForm';
-import FinishForm from '@/components/motivationPoll/FinishForm';
+import Description from '@/motivationPoll/components/Description';
+import StarterForm from '@/motivationPoll/components/StarterForm';
+import QuestionForm from '@/motivationPoll/components/QuestionForm';
+import FinishForm from '@/motivationPoll/components/FinishForm';
 
 import Box from '@mui/material/Box';
 
