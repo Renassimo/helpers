@@ -8,11 +8,11 @@ import {
   QuestionLocalizationData,
 } from 'src/types/motivationPoll';
 
-import answersToDemands from '@/static/motivationPoll/answersToDemands';
-import demandMedianValues from '@/static/motivationPoll/demandMedianValues';
+import answersToDemands from '@/motivationPoll/static/answersToDemands';
+import demandMedianValues from '@/motivationPoll/static/demandMedianValues';
 
-import en from '@/static/motivationPoll/translations/en';
-import ru from '@/static/motivationPoll/translations/ru';
+import en from '@/motivationPoll/static/translations/en';
+import ru from '@/motivationPoll/static/translations/ru';
 
 const locales: MotivationPollLocalizations = {
   en,
