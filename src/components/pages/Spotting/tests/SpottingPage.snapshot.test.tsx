@@ -1,15 +1,15 @@
 import renderWithTheme from '@/tests/helpers';
 
 import SpottingPage from '@/components/pages/Spotting';
-import SpottedPlanesList from '@/components/spotting/SpottedPlanesList';
+import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';
 
-import MockedSpottedPlanesList from '@/components/spotting/SpottedPlanesList/mocks';
+import MockedSpottedPlanesList from '@/spotting/components/SpottedPlanesList/mocks';
 
 import { mockedSpottedPlaneApiDataTruthy } from '@/types/spotting/mocks';
 import { mockedPageInfos, mockedUser } from '@/types/auth/mocks';
 import { mockedNotionError418 } from '@/types/notion/mocks';
 
-jest.mock('@/components/spotting/SpottedPlanesList');
+jest.mock('@/spotting/components/SpottedPlanesList');
 
 describe('SpottingPage', () => {
   beforeEach(() => {
