@@ -1,12 +1,18 @@
 import renderWithTheme from '@/tests/helpers';
 
 import usePdfDownload from '@/hooks/common/usePdfDownload';
+
 import MotivationPoll from '@/components/motivationPoll/MotivationPoll';
-import MotivationPollPage from '../MotivationPollPage';
-import { mockedApiData } from '@/types/motivationPoll/mocks';
 import MockedMotivationPoll from '@/components/motivationPoll/MotivationPoll/mocks/MockedMotivationPoll';
+import LocaleLinks from '@/components/common/LocaleLinks';
+import MockedLocaleLinks from '@/components/common/LocaleLinks/mocks/MockedLocaleLinks';
+
+import { mockedApiData } from '@/types/motivationPoll/mocks';
+
+import MotivationPollPage from '../MotivationPollPage';
 
 jest.mock('@/hooks/common/usePdfDownload');
+jest.mock('@/components/common/LocaleLinks');
 jest.mock('@/components/motivationPoll/MotivationPoll');
 
 describe('MotivationPollPage snapshot', () => {
@@ -16,17 +22,24 @@ describe('MotivationPollPage snapshot', () => {
     pdfRef: mockedPdfRef,
     onDownloadPdf: mockedOnDownloadPdf,
   }));
+  const mockedLocales = ['ru', 'en'];
+  const mockedLocale = 'en';
 
   beforeEach(() => {
     (usePdfDownload as jest.Mock).mockImplementation(mockedUsePdfDownload);
     (MotivationPoll as jest.Mock).mockImplementation(MockedMotivationPoll);
+    (LocaleLinks as jest.Mock).mockImplementation(MockedLocaleLinks);
   });
 
   test('renders successfully', () => {
     // Arange
     // Act
     const { container } = renderWithTheme(
-      <MotivationPollPage data={mockedApiData} />
+      <MotivationPollPage
+        data={mockedApiData}
+        locale={mockedLocale}
+        locales={mockedLocales}
+      />
     );
     // Assert
     expect(mockedUsePdfDownload).toHaveBeenCalledWith(

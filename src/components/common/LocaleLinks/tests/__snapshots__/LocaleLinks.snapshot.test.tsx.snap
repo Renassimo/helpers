@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocaleLinks renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-14h3iqr"
+    >
+      <div
+        class="MuiBox-root css-gajhq5"
+      >
+        <a
+          href="/page"
+        >
+          <span
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+          >
+            ru
+          </span>
+        </a>
+      </div>
+      <div
+        class="MuiBox-root css-gajhq5"
+      >
+        <a
+          href="/page"
+        >
+          <span
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+          >
+            tt
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+`;

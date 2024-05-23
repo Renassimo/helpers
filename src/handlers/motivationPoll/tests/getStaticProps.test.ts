@@ -19,9 +19,12 @@ describe('getStaticProps', () => {
 
   test('returns default locale data', async () => {
     // Arange
-    const expectedResult = { props: { data: 'mockedData' } };
+    const expectedResult = {
+      props: { data: 'mockedData', locales: ['ru', 'en', 'tt'], locale: 'en' },
+    };
     const mockedCtx: GetStaticPropsContext = {
       defaultLocale: 'en',
+      locales: ['ru', 'en', 'tt'],
     };
     // Act
     const result = await getStaticProps(mockedCtx);
@@ -33,10 +36,17 @@ describe('getStaticProps', () => {
   describe('when locale specified', () => {
     test('returns specified locale data', async () => {
       // Arange
-      const expectedResult = { props: { data: 'mockedData' } };
+      const expectedResult = {
+        props: {
+          data: 'mockedData',
+          locales: ['ru', 'en', 'tt'],
+          locale: 'ru',
+        },
+      };
       const mockedCtx: GetStaticPropsContext = {
         locale: 'ru',
         defaultLocale: 'en',
+        locales: ['ru', 'en', 'tt'],
       };
       // Act
       const result = await getStaticProps(mockedCtx);
@@ -49,10 +59,17 @@ describe('getStaticProps', () => {
   describe('when specified locale is wrong', () => {
     test('returns default locale data', async () => {
       // Arange
-      const expectedResult = { props: { data: 'mockedData' } };
+      const expectedResult = {
+        props: {
+          data: 'mockedData',
+          locales: ['ru', 'en', 'tt'],
+          locale: 'en',
+        },
+      };
       const mockedCtx: GetStaticPropsContext = {
         locale: 'ua',
         defaultLocale: 'en',
+        locales: ['ru', 'en', 'tt'],
       };
       // Act
       const result = await getStaticProps(mockedCtx);

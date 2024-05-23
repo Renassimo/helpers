@@ -6,8 +6,7 @@ const usePdfDownload = (fileName = 'file') => {
   const pdfRef = useRef(null);
 
   const onDownloadPdf = useCallback(() => {
-    const input = pdfRef?.current;
-    // @ts-ignore
+    const input = pdfRef?.current as unknown as HTMLElement;
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4', true);

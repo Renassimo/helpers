@@ -33,6 +33,23 @@ exports[`MotivationPollPage snapshot renders successfully 1`] = `
           <div>
             MockedMotivationPoll
           </div>
+          <div>
+            Mocked Locale Links:
+            <span>
+              en
+               -
+               
+              <span>
+                ru
+              </span>
+              <span>
+                en
+              </span>
+               
+              - 
+              /motivationTest
+            </span>
+          </div>
         </div>
       </div>
     </main>
