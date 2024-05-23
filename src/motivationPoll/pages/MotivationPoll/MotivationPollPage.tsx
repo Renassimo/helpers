@@ -1,6 +1,6 @@
 import MotivationPollProvider from '@/providers/motivationPoll/MotivationPollProvider';
 
-import usePdfDownload from '@/hooks/common/usePdfDownload';
+import usePdfDownload from '@/common/hooks/usePdfDownload';
 
 import { MotivationPollApiData } from '@/types/motivationPoll';
 

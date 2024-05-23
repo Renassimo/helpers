@@ -1,6 +1,6 @@
 import renderWithTheme from '@/tests/helpers';
 
-import usePdfDownload from '@/hooks/common/usePdfDownload';
+import usePdfDownload from '@/common/hooks/usePdfDownload';
 
 import MotivationPoll from '@/motivationPoll/components/MotivationPoll';
 import MockedMotivationPoll from '@/motivationPoll/components/MotivationPoll/mocks/MockedMotivationPoll';
