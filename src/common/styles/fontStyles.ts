@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 
-import RobotoLatin300Normal from '@/styles/fonts/RobotoLatin300Normal';
-import RobotoLatin400Normal from '@/styles/fonts/RobotoLatin400Normal';
-import RobotoLatin500Normal from '@/styles/fonts/RobotoLatin500Normal';
-import RobotoLatin700Normal from '@/styles/fonts/RobotoLatin700Normal';
+import RobotoLatin300Normal from '@/common/styles/fonts/RobotoLatin300Normal';
+import RobotoLatin400Normal from '@/common/styles/fonts/RobotoLatin400Normal';
+import RobotoLatin500Normal from '@/common/styles/fonts/RobotoLatin500Normal';
+import RobotoLatin700Normal from '@/common/styles/fonts/RobotoLatin700Normal';
 
 export const Roboto = css`
   /* latin */

@@ -2,8 +2,8 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 
 import { Global } from '@emotion/react';
-import globalStyles from '@/styles/globalStyles';
-import theme from '@/styles/themes/main';
+import globalStyles from '@/common/styles/globalStyles';
+import theme from '@/common/styles/themes/main';
 
 import AuthProvider from '@/auth/providers';
 import ThemeProvider from '@/common/providers/theme';

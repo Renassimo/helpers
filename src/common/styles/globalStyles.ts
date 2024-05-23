@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Roboto } from '@/styles/fontStyles';
+import { Roboto } from '@/common/styles/fontStyles';
 
 const styles = css`
   ${Roboto}
