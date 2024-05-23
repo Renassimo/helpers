@@ -4,9 +4,9 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import FiveBookCard from '@/components/fiveBook/FiveBookCard';
-import DatePicker from '@/components/fiveBook/DatePicker';
-import CreateAnswerForm from '@/components/fiveBook/CreateAnswerForm';
+import FiveBookCard from '@/fiveBook/components/FiveBookCard';
+import DatePicker from '@/fiveBook/components/DatePicker';
+import CreateAnswerForm from '@/fiveBook/components/CreateAnswerForm';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 

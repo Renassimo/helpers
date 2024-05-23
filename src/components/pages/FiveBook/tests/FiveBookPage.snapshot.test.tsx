@@ -1,25 +1,25 @@
 import renderWithTheme from '@/tests/helpers';
 
-import PageTemplate from '@/components/templates/PageTemplate';
-import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
-import AnswersCard from '@/components/fiveBook/AnswersCard';
-import DayLink from '@/components/fiveBook/DayLink';
+import PageTemplate from '@/common/templates/PageTemplate';
+import CreateAnswerCard from '@/fiveBook/components/CreateAnswerCard';
+import AnswersCard from '@/fiveBook/components/AnswersCard';
+import DayLink from '@/fiveBook/components/DayLink';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import MockedPageTemplate from '@/components/templates/PageTemplate/mocks';
-import MockedCreateAnswerCard from '@/components/fiveBook/CreateAnswerCard/mocks';
-import MockedAnswerCard from '@/components/fiveBook/AnswersCard/mocks';
-import MockedDayLink from '@/components/fiveBook/DayLink/mocks';
+import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
+import MockedCreateAnswerCard from '@/fiveBook/components/CreateAnswerCard/mocks';
+import MockedAnswerCard from '@/fiveBook/components/AnswersCard/mocks';
+import MockedDayLink from '@/fiveBook/components/DayLink/mocks';
 
 import FiveBookPage from '../FiveBookPage';
 
 import { NotionError } from '@/types/notion';
 
-jest.mock('@/components/templates/PageTemplate');
-jest.mock('@/components/fiveBook/CreateAnswerCard');
-jest.mock('@/components/fiveBook/AnswersCard');
-jest.mock('@/components/fiveBook/DayLink');
+jest.mock('@/common/templates/PageTemplate');
+jest.mock('@/fiveBook/components/CreateAnswerCard');
+jest.mock('@/fiveBook/components/AnswersCard');
+jest.mock('@/fiveBook/components/DayLink');
 jest.mock('@mui/material/useMediaQuery');
 
 describe('FiveBookPage', () => {

@@ -8,7 +8,7 @@ import SpottingProvider from '@/providers/spotting/SpottingProvider';
 
 import useAlerts from '@/hooks/alerts';
 
-import PageTemplate from '@/components/templates/PageTemplate';
+import PageTemplate from '@/common/templates/PageTemplate';
 import SpottedPlanesList from '@/components/spotting/SpottedPlanesList';
 
 const SpottingPage = ({

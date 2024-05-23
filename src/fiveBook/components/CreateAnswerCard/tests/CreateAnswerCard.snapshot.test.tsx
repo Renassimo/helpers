@@ -2,19 +2,19 @@ import renderWithTheme from '@/tests/helpers';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import DatePicker from '@/components/fiveBook/DatePicker';
-import CreateAnswerForm from '@/components/fiveBook/CreateAnswerForm';
+import DatePicker from '@/fiveBook/components/DatePicker';
+import CreateAnswerForm from '@/fiveBook/components/CreateAnswerForm';
 
-import MockedDatePicker from '@/components/fiveBook/DatePicker/mocks';
-import MockedCreateAnswerForm from '@/components/fiveBook/CreateAnswerForm/mocks';
+import MockedDatePicker from '@/fiveBook/components/DatePicker/mocks';
+import MockedCreateAnswerForm from '@/fiveBook/components/CreateAnswerForm/mocks';
 
 import CreateAnswerCard from '../CreateAnswerCard';
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 
 jest.mock('@/hooks/fiveBook/useFiveBook');
 jest.mock('@mui/material/useMediaQuery');
-jest.mock('@/components/fiveBook/DatePicker');
-jest.mock('@/components/fiveBook/CreateAnswerForm');
+jest.mock('@/fiveBook/components/DatePicker');
+jest.mock('@/fiveBook/components/CreateAnswerForm');
 
 describe('CreateAnswerCard snapshot', () => {
   let mockedIsLowerThanMd = true;

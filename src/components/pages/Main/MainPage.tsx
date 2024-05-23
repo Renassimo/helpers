@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import PageTemplate from '@/components/templates/PageTemplate';
+import PageTemplate from '@/common/templates/PageTemplate';
 
 const MainPage = ({ user, pages }: { user: User; pages: PageInfo[] }) => (
   <>

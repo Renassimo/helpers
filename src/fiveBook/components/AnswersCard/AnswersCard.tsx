@@ -7,8 +7,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link';
 
-import FiveBookCard from '@/components/fiveBook/FiveBookCard';
-import UpdateAnswer from '@/components/fiveBook/UpdateAnswer';
+import FiveBookCard from '@/fiveBook/components/FiveBookCard';
+import UpdateAnswer from '@/fiveBook/components/UpdateAnswer';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 

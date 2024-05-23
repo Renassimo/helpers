@@ -4,7 +4,7 @@ import usePdfDownload from '@/hooks/common/usePdfDownload';
 
 import { MotivationPollApiData } from '@/types/motivationPoll';
 
-import PageTemplate from '@/components/templates/PageTemplate';
+import PageTemplate from '@/common/templates/PageTemplate';
 import MotivationPoll from '@/components/motivationPoll/MotivationPoll';
 import LocaleLinks from '@/common/components/LocaleLinks';
 

@@ -7,11 +7,11 @@ import { PageInfo, User } from '@/types/auth';
 
 import FiveBookProvider from '@/providers/fiveBook/FiveBookProvider';
 
-import PageTemplate from '@/components/templates/PageTemplate';
-import CreateAnswerCard from '@/components/fiveBook/CreateAnswerCard';
-import AnswersCard from '@/components/fiveBook/AnswersCard';
-import DayLink from '@/components/fiveBook/DayLink';
-import DatePicker from '@/components/fiveBook/DatePicker';
+import PageTemplate from '@/common/templates/PageTemplate';
+import CreateAnswerCard from '@/fiveBook/components/CreateAnswerCard';
+import AnswersCard from '@/fiveBook/components/AnswersCard';
+import DayLink from '@/fiveBook/components/DayLink';
+import DatePicker from '@/fiveBook/components/DatePicker';
 
 import Box from '@mui/material/Box';
 

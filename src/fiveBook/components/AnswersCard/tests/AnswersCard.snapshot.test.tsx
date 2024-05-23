@@ -1,15 +1,15 @@
 import renderWithTheme from '@/tests/helpers';
 
-import UpdateAnswer from '@/components/fiveBook/UpdateAnswer';
+import UpdateAnswer from '@/fiveBook/components/UpdateAnswer';
 
 import useFiveBook from '@/hooks/fiveBook/useFiveBook';
 
-import MockedUpdateAnswer from '@/components/fiveBook/UpdateAnswer/mocks';
+import MockedUpdateAnswer from '@/fiveBook/components/UpdateAnswer/mocks';
 
 import AnswersCard from '../AnswersCard';
 
 jest.mock('@/hooks/fiveBook/useFiveBook');
-jest.mock('@/components/fiveBook/UpdateAnswer');
+jest.mock('@/fiveBook/components/UpdateAnswer');
 jest.mock('next/router', () => ({
   useRouter: () => ({
     replace: jest.fn(),

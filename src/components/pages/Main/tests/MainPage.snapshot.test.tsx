@@ -2,13 +2,13 @@ import { render } from '@testing-library/react';
 
 import { PageInfo } from '@/types/auth';
 
-import PageTemplate from '@/components/templates/PageTemplate';
+import PageTemplate from '@/common/templates/PageTemplate';
 
-import MockedPageTemplate from '@/components/templates/PageTemplate/mocks';
+import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
 
 import MainPage from '../MainPage';
 
-jest.mock('@/components/templates/PageTemplate');
+jest.mock('@/common/templates/PageTemplate');
 
 describe('MainPage', () => {
   const user = {
