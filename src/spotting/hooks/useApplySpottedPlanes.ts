@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import {
   SpottedPlaneCreatedData,
   SpottedPlaneProviderData,
-} from '@/types/spotting';
+} from '@/spotting/types';
 
 import useAlerts from '@/common/hooks/alerts';
 import useUpdateSpottedPlanes from '@/spotting/hooks/useUpdateSpottedPlanes';

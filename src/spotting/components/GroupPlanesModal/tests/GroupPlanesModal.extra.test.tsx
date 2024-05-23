@@ -14,7 +14,7 @@ import {
   mockedSpottedPlaneProviderDataFalsy,
   mockedSpottedPlaneProviderDataMixed,
   mockedSpottedPlaneProviderDataTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+} from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
 jest.mock('@/spotting/hooks/useSpottedPlanes');
 jest.mock('@/spotting/components/GroupPlanesForm');

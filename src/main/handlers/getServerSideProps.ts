@@ -1,4 +1,4 @@
-import { GetServerSidePropsContextWithAuth } from '@/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
 
 const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
   const { user, pages } = ctx;

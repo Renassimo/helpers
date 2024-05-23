@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { RemoveSpecificAlertFunction } from '@/types/alerts';
+import { RemoveSpecificAlertFunction } from '@/common/types/alerts';
 
 const AlertsContext = createContext<{
   clearAll: () => void;

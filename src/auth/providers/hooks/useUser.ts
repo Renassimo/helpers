@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { User } from '@/types/auth';
+import { User } from '@/common/types/auth';
 
 import firebase from '@/common/lib/firebase/client';
 

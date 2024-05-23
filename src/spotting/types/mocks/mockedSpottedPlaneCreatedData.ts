@@ -1,4 +1,4 @@
-import { SpottedPlaneCreatedData } from '@/types/spotting';
+import { SpottedPlaneCreatedData } from '@/spotting/types';
 
 import {
   mockedSpottedPlaneCreatedAttributesFull,
@@ -7,7 +7,7 @@ import {
   mockedSpottedPlaneCreatedAttributesRequired,
   mockedSpottedPlaneCreatedAttributesRequiredEmpty,
   mockedSpottedPlaneCreatedAttributesRequiredMixed,
-} from '@/types/spotting/mocks/mockedSpottedPlaneCreatedAttributes';
+} from '@/spotting/types/mocks/mockedSpottedPlaneCreatedAttributes';
 
 export const mockedSpottedPlaneCreatedDataFull: SpottedPlaneCreatedData = {
   id: 'id-full',

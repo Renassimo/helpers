@@ -15,7 +15,7 @@ import {
   mockedSpottedPlaneApiDataFalsy,
   mockedSpottedPlaneApiDataNullish,
   mockedSpottedPlaneApiDataTruthy,
-} from '@/types/spotting/mocks';
+} from '@/spotting/types/mocks';
 
 jest.mock('@/spotting/utils');
 

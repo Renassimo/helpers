@@ -4,7 +4,7 @@ import NotionService from '@/common/services/notion';
 
 import { getDay } from '@/fiveBook/handlers';
 
-import { GetServerSidePropsContextWithAuth } from '@/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
 
 import getServerSideProps from '../getServerSideProps';
 

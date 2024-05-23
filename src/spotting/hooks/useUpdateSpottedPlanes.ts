@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { UpdateSpottedPlaneData } from '@/types/spotting';
+import { UpdateSpottedPlaneData } from '@/spotting/types';
 
 const useUpdateSpottedPlanes = () => {
   const [loading, setLoading] = useState(false);

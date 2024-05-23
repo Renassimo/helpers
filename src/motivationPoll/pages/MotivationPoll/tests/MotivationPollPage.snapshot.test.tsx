@@ -7,7 +7,7 @@ import MockedMotivationPoll from '@/motivationPoll/components/MotivationPoll/moc
 import LocaleLinks from '@/common/components/LocaleLinks';
 import MockedLocaleLinks from '@/common/components/LocaleLinks/mocks/MockedLocaleLinks';
 
-import { mockedApiData } from '@/types/motivationPoll/mocks';
+import { mockedApiData } from '@/motivationPoll/types/mocks';
 
 import MotivationPollPage from '../MotivationPollPage';
 

@@ -1,5 +1,5 @@
 import { NextApiRequest, GetServerSidePropsContext } from 'next';
-import { NotionData, NotionHelperData } from '@/types/notion';
+import { NotionData, NotionHelperData } from '@/common/types/notion';
 
 export interface User {
   email: string;

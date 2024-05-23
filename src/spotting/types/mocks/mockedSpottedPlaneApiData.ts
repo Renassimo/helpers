@@ -1,4 +1,4 @@
-import { SpottedPlaneApiData } from '@/types/spotting';
+import { SpottedPlaneApiData } from '@/spotting/types';
 
 import {
   mockedSpottedPlaneApiDataAttributesEmpty,
@@ -6,7 +6,7 @@ import {
   mockedSpottedPlaneApiDataAttributesMixed,
   mockedSpottedPlaneApiDataAttributesNullish,
   mockedSpottedPlaneApiDataAttributesTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneApiDataAttributes';
+} from '@/spotting/types/mocks/mockedSpottedPlaneApiDataAttributes';
 
 export const mockedSpottedPlaneApiDataNullish: SpottedPlaneApiData = {
   id: 'id-nullish',

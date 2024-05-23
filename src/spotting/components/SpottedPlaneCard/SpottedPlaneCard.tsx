@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { SpottedPlaneProviderData } from '@/spotting/types';
 
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';

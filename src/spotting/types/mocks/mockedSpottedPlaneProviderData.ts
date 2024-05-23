@@ -1,4 +1,4 @@
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { SpottedPlaneProviderData } from '@/spotting/types';
 
 import {
   mockedSpottedPlaneApiDataAttributesEmpty,
@@ -6,14 +6,14 @@ import {
   mockedSpottedPlaneApiDataAttributesMixed,
   mockedSpottedPlaneApiDataAttributesNullish,
   mockedSpottedPlaneApiDataAttributesTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneApiDataAttributes';
+} from '@/spotting/types/mocks/mockedSpottedPlaneApiDataAttributes';
 import {
   mockedSpottedPlaneCreatedAttributesFull,
   mockedSpottedPlaneCreatedAttributesFullEmpty,
   mockedSpottedPlaneCreatedAttributesFullMixed,
   mockedSpottedPlaneCreatedAttributesRequired,
   mockedSpottedPlaneCreatedAttributesRequiredEmpty,
-} from '@/types/spotting/mocks/mockedSpottedPlaneCreatedAttributes';
+} from '@/spotting/types/mocks/mockedSpottedPlaneCreatedAttributes';
 
 export const mockedSpottedPlaneProviderDataNullish: SpottedPlaneProviderData = {
   id: 'id-nullish',

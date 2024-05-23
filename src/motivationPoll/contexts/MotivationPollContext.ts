@@ -3,7 +3,7 @@ import { createContext } from 'react';
 import {
   MotivationPollContextData,
   MotivationPollDefaultContextData,
-} from '@/types/motivationPoll';
+} from '@/motivationPoll/types';
 
 const MotivationPollContext = createContext<MotivationPollContextData>(
   MotivationPollDefaultContextData

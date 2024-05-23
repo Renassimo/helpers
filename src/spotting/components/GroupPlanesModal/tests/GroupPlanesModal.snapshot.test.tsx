@@ -16,7 +16,7 @@ import {
   mockedSpottedPlaneProviderDataFalsy,
   mockedSpottedPlaneProviderDataMixed,
   mockedSpottedPlaneProviderDataTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+} from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
 jest.mock('@/common/components/Modal');
 jest.mock('@/spotting/hooks/useSpottedPlanes');

@@ -3,7 +3,7 @@ import renderWithTheme from '@/tests/helpers';
 import {
   mockedSpottedPlaneProviderDataEmpty,
   mockedSpottedPlaneProviderDataTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+} from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
 import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';

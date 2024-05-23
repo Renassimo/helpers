@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 import { Dayjs } from 'dayjs';
 
-import { ClientAnswer, FiveBookData } from '@/types/fiveBook';
+import { ClientAnswer, FiveBookData } from '@/fiveBook/types';
 
 const FiveBookContext = createContext<{
   currentYear: string | null;

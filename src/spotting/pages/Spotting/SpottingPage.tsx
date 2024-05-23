@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import { PageInfo, User } from '@/types/auth';
-import { NotionError } from '@/types/notion';
-import { SpottedPlaneApiData } from '@/types/spotting';
+import { PageInfo, User } from '@/common/types/auth';
+import { NotionError } from '@/common/types/notion';
+import { SpottedPlaneApiData } from '@/spotting/types';
 
 import SpottingProvider from '@/spotting/providers/SpottingProvider';
 

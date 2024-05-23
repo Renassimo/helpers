@@ -1,6 +1,6 @@
 import renderWithTheme from '@/tests/helpers';
 
-import { Alert } from '@/types/alerts';
+import { Alert } from '@/common/types/alerts';
 
 import Alerts from '@/common/components/Alerts';
 

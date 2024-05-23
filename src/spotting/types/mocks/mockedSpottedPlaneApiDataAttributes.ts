@@ -1,4 +1,4 @@
-import { SpottedPlaneApiDataAttributes } from '@/types/spotting';
+import { SpottedPlaneApiDataAttributes } from '@/spotting/types';
 
 export const mockedSpottedPlaneApiDataAttributesNullish: SpottedPlaneApiDataAttributes =
   {

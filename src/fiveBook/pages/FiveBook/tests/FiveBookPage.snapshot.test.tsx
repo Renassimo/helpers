@@ -14,7 +14,7 @@ import MockedDayLink from '@/fiveBook/components/DayLink/mocks';
 
 import FiveBookPage from '../FiveBookPage';
 
-import { NotionError } from '@/types/notion';
+import { NotionError } from '@/common/types/notion';
 
 jest.mock('@/common/templates/PageTemplate');
 jest.mock('@/fiveBook/components/CreateAnswerCard');

@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { SpottedPlaneProviderData } from '@/spotting/types';
 
 import useAlerts from '@/common/hooks/alerts';
 import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';

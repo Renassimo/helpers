@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { SpottedPlaneProviderData } from '@/spotting/types';
 
 import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import MUIAlert from '@mui/material/Alert';
-import { Alert } from '@/types/alerts';
+import { Alert } from '@/common/types/alerts';
 
 const AlertsContainer = styled.div`
   position: absolute;

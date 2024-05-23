@@ -1,6 +1,6 @@
 import auth from '@/common/lib/firebase/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { NextApiRequestWithAuth } from '@/types/auth';
+import { NextApiRequestWithAuth } from '@/common/types/auth';
 import { getError } from '@/common/utils/errors';
 import getUserNotionData from '@/common/utils/userNotinData';
 

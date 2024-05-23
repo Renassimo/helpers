@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 
 import FiveBookContext from '@/fiveBook/contexts/FiveBookContext';
 
-import { FiveBookData } from '@/types/fiveBook';
+import { FiveBookData } from '@/fiveBook/types';
 
 import useFiveBookData from '@/fiveBook/providers/hooks/useFiveBookData';
 

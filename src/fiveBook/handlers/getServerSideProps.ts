@@ -5,7 +5,7 @@ import NotionService from '@/common/services/notion';
 
 import { getDay } from '@/fiveBook/handlers';
 
-import { GetServerSidePropsContextWithAuth } from '@/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
 
 const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
   const { user, notionHelperData, pages } = ctx;

@@ -1,4 +1,4 @@
-import { SpottedPlaneCreatedAttributes } from '@/types/spotting';
+import { SpottedPlaneCreatedAttributes } from '@/spotting/types';
 
 export const mockedSpottedPlaneCreatedAttributesFull: SpottedPlaneCreatedAttributes =
   {

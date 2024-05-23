@@ -2,7 +2,7 @@ import NotionService from '@/common/services/notion';
 
 import { serializeSpottedPlanes } from '@/spotting/serializers';
 
-import { SpottedPlaneSerializedDescription } from '@/types/spotting';
+import { SpottedPlaneSerializedDescription } from '@/spotting/types';
 
 const updateSpottedPlanes = async (
   notionService: NotionService,

@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 
-import { PageInfo, User } from '@/types/auth';
+import { PageInfo, User } from '@/common/types/auth';
 
 import useAuth from '@/auth/hooks/useAuth';
 

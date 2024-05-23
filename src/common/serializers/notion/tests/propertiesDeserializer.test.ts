@@ -1,4 +1,4 @@
-import { NotionResult } from '@/types/notion';
+import { NotionResult } from '@/common/types/notion';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
 

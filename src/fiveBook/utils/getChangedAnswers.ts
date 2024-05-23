@@ -1,4 +1,4 @@
-import { ClientAnswer } from '@/types/fiveBook';
+import { ClientAnswer } from '@/fiveBook/types';
 
 const getChangedAnswers = (
   original: ClientAnswer[] = [],

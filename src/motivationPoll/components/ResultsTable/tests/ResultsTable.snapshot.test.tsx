@@ -3,7 +3,7 @@ import renderWithTheme from '@/tests/helpers/renderWithTheme';
 import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
 import ResultsTable from '../ResultsTable';
-import { mockedresults } from '@/types/motivationPoll/mocks';
+import { mockedresults } from '@/motivationPoll/types/mocks';
 
 jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 

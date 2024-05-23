@@ -8,7 +8,7 @@ import GroupPlanesModal from '@/spotting/components/GroupPlanesModal';
 
 import MockedSpottedPlaneCard from '@/spotting/components/SpottedPlaneCard/mocks';
 import MockedGroupPlanesModal from '@/spotting/components/GroupPlanesModal/mocks';
-import { mockedSpottedPlaneProviderDataTruthy } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+import { mockedSpottedPlaneProviderDataTruthy } from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
 jest.mock('@/spotting/hooks/useSpottedPlanes');
 jest.mock('@/spotting/components/SpottedPlaneCard');

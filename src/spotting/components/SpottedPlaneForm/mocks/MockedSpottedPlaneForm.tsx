@@ -1,4 +1,4 @@
-import { SpottedPlaneProviderData } from '@/types/spotting';
+import { SpottedPlaneProviderData } from '@/spotting/types';
 
 const MockedSpottedPlaneForm = jest.fn(
   ({ data }: { data: SpottedPlaneProviderData }) => {

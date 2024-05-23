@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { SpottedPlaneApiData } from '@/types/spotting';
+import { SpottedPlaneApiData } from '@/spotting/types';
 
 import SpottingContext from '@/spotting/contexts/SpottingContext';
 

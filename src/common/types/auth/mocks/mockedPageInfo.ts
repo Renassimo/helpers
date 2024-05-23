@@ -1,4 +1,4 @@
-import { PageInfo } from '@/types/auth';
+import { PageInfo } from '@/common/types/auth';
 
 export const mockedPageInfo5Book: PageInfo = {
   title: '5book',

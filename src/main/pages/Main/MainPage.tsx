@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { PageInfo, User } from '@/types/auth';
+import { PageInfo, User } from '@/common/types/auth';
 
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';

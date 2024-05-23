@@ -1,7 +1,7 @@
 import {
   MotivationPollLocalizationData,
   QuestionLocalizationData,
-} from 'src/types/motivationPoll';
+} from '@/motivationPoll/types';
 
 export const description =
   'Distribute the 11 points among the answers that most accurately reflect you. Use all of 11 points on each question.';

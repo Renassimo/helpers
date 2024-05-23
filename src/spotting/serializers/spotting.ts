@@ -1,9 +1,9 @@
-import { NotionResult } from '@/types/notion';
+import { NotionResult } from '@/common/types/notion';
 import {
   SpottedPlaneCreatedData,
   SpottedPlaneFirstFlight,
   SpottedPlaneGroup,
-} from '@/types/spotting';
+} from '@/spotting/types';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
 

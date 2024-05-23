@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 
-import { PageInfo } from '@/types/auth';
+import { PageInfo } from '@/common/types/auth';
 
 import NavBarMenu from '@/common/components/NavBar/components/NavBarMenu';
 import MenuIcon from '@mui/icons-material/Menu';

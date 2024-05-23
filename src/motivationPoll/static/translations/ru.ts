@@ -1,7 +1,7 @@
 import {
   MotivationPollLocalizationData,
   QuestionLocalizationData,
-} from 'src/types/motivationPoll';
+} from '@/motivationPoll/types';
 
 export const description =
   'Для оценки каждого из вариантов в рамках приведенных утверждений, используйте все 11 баллов. Распределите 11 баллов между теми ответами, которые больше всего характеризуют Вас.';

@@ -1,5 +1,5 @@
-import { NotionResult } from '@/types/notion';
-import { FiveBookData } from '@/types/fiveBook';
+import { NotionResult } from '@/common/types/notion';
+import { FiveBookData } from '@/fiveBook/types';
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
 
 export const deserializeDay = (result: NotionResult) => {

@@ -6,7 +6,7 @@ import {
   MotivationPollLocalizations,
   QuestionData,
   QuestionLocalizationData,
-} from 'src/types/motivationPoll';
+} from '@/motivationPoll/types';
 
 import answersToDemands from '@/motivationPoll/static/answersToDemands';
 import demandMedianValues from '@/motivationPoll/static/demandMedianValues';

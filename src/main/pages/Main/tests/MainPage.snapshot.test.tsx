@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { PageInfo } from '@/types/auth';
+import { PageInfo } from '@/common/types/auth';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 

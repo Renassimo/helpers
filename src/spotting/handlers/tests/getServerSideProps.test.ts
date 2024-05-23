@@ -2,7 +2,7 @@ import NotionService from '@/common/services/notion';
 
 import { getSpottedPlanes } from '@/spotting/handlers';
 
-import { GetServerSidePropsContextWithAuth } from '@/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
 
 import getServerSideProps from '../getServerSideProps';
 

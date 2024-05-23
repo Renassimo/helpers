@@ -1,7 +1,7 @@
 import renderWithTheme from '@/tests/helpers';
 import userEvent from '@testing-library/user-event';
 
-import { Alert } from '@/types/alerts';
+import { Alert } from '@/common/types/alerts';
 
 import Alerts from '@/common/components/Alerts';
 

@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 
 import useAlertsProvider from '@/common/providers/alerts/hooks/useAlertsProvider';
 
-import { Alert } from '@/types/alerts';
+import { Alert } from '@/common/types/alerts';
 
 describe('useAlerts', () => {
   const errorText = 'new error';

@@ -1,4 +1,4 @@
-import { NotionBlockChildrenResult, NotionResult } from '@/types/notion';
+import { NotionBlockChildrenResult, NotionResult } from '@/common/types/notion';
 
 import NotionService from '@/common/services/notion';
 

@@ -3,7 +3,7 @@ import {
   mockedSpottedPlaneProviderDataMixed,
   mockedSpottedPlaneProviderDataNullish,
   mockedSpottedPlaneProviderDataTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+} from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 import { getCommons } from '@/spotting/utils/commons';
 
 describe('Commons', () => {

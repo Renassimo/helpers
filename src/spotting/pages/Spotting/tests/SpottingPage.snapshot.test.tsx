@@ -5,9 +5,9 @@ import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';
 
 import MockedSpottedPlanesList from '@/spotting/components/SpottedPlanesList/mocks';
 
-import { mockedSpottedPlaneApiDataTruthy } from '@/types/spotting/mocks';
-import { mockedPageInfos, mockedUser } from '@/types/auth/mocks';
-import { mockedNotionError418 } from '@/types/notion/mocks';
+import { mockedSpottedPlaneApiDataTruthy } from '@/spotting/types/mocks';
+import { mockedPageInfos, mockedUser } from '@/common/types/auth/mocks';
+import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
 jest.mock('@/spotting/components/SpottedPlanesList');
 

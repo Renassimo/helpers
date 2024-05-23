@@ -2,11 +2,11 @@ import renderWithTheme from '@/tests/helpers/renderWithTheme';
 
 import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 
-import { mockedresults } from '@/types/motivationPoll/mocks';
+import { mockedresults } from '@/motivationPoll/types/mocks';
 
 import ResultsChart from '../ResultsChart';
 import { ReactNode } from 'react';
-import { DemandData } from '@/types/motivationPoll';
+import { DemandData } from '@/motivationPoll/types';
 
 jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 jest.mock('recharts', () => ({

@@ -9,7 +9,7 @@ import NavBar from '@/common/components/NavBar';
 import PageWrapper from '@/common/components/PageWrapper';
 import StaticNavBar from '@/common/components/StaticNavBar';
 
-import { PageInfo, User } from '@/types/auth';
+import { PageInfo, User } from '@/common/types/auth';
 
 const NavBarWrapper = styled.div(
   ({ theme }) => css`

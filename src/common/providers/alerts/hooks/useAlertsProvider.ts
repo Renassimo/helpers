@@ -2,7 +2,7 @@ import { ReactNode, useCallback, useState } from 'react';
 
 import { AlertColor } from '@mui/material';
 
-import { Alert } from '@/types/alerts';
+import { Alert } from '@/common/types/alerts';
 
 const DEFAULT_LIFETIME = 5000;
 

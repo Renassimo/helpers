@@ -1,4 +1,4 @@
-import { NotionError } from '@/types/notion';
+import { NotionError } from '@/common/types/notion';
 
 export const mockedNotionError418: NotionError = {
   code: 'i_am_teapot',

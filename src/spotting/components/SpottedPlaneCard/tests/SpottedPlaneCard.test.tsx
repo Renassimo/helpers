@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import {
   mockedSpottedPlaneProviderDataEmpty,
   mockedSpottedPlaneProviderDataTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+} from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
 import useApplySpottedPlanes from '@/spotting/hooks/useApplySpottedPlanes';
 import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';

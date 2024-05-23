@@ -6,7 +6,7 @@ import {
   MotivationPollApiData,
   MotivationPollContextData,
   QuestionData,
-} from 'src/types/motivationPoll';
+} from '@/motivationPoll/types';
 
 const setInitialAnswersState = (questions: QuestionData[]): AnswersState => {
   return questions.reduce(

@@ -2,7 +2,7 @@ import MotivationPollProvider from '@/motivationPoll/providers/MotivationPollPro
 
 import usePdfDownload from '@/common/hooks/usePdfDownload';
 
-import { MotivationPollApiData } from '@/types/motivationPoll';
+import { MotivationPollApiData } from '@/motivationPoll/types';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 import MotivationPoll from '@/motivationPoll/components/MotivationPoll';

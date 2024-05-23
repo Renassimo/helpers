@@ -4,7 +4,7 @@ import {
   LineWord,
   SpottedPlaneApiData,
   SpottedPlaneProviderData,
-} from '@/types/spotting';
+} from '@/spotting/types';
 
 import {
   appendEmptyLines,

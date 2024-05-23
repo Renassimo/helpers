@@ -2,9 +2,9 @@ import { renderHook, act, cleanup } from '@testing-library/react';
 import {
   mockedApiData,
   mockedDefaultAnswerState,
-} from '@/types/motivationPoll/mocks';
+} from '@/motivationPoll/types/mocks';
 import useMotivationPollData from '../hooks/useMotivationPollData';
-import { MotivationPollContextData } from '@/types/motivationPoll';
+import { MotivationPollContextData } from '@/motivationPoll/types';
 
 describe('useMotivationPollData', () => {
   const expectedFunctions = {

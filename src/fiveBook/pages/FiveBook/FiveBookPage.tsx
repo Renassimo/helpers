@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-import { FiveBookData } from '@/types/fiveBook';
-import { NotionError } from '@/types/notion';
-import { PageInfo, User } from '@/types/auth';
+import { FiveBookData } from '@/fiveBook/types';
+import { NotionError } from '@/common/types/notion';
+import { PageInfo, User } from '@/common/types/auth';
 
 import FiveBookProvider from '@/fiveBook/providers/FiveBookProvider';
 

@@ -1,4 +1,4 @@
-import { LineWord, SpottedPlaneProviderData } from '@/types/spotting';
+import { LineWord, SpottedPlaneProviderData } from '@/spotting/types';
 
 import {
   convertText,

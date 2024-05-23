@@ -1,4 +1,4 @@
-import { LineWord } from '@/types/spotting';
+import { LineWord } from '@/spotting/types';
 
 const splitRegexp = / |\/|-|\./;
 

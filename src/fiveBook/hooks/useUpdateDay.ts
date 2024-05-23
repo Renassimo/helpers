@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { UpdateFiveBookData } from '@/types/fiveBook';
+import { UpdateFiveBookData } from '@/fiveBook/types';
 
 const useUpdateDay = () => {
   const [loading, setLoading] = useState(false);

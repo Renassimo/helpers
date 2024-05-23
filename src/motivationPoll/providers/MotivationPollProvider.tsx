@@ -4,7 +4,7 @@ import useMotivationPollData from '@/motivationPoll/providers/hooks/useMotivatio
 
 import MotivationPollContext from '@/motivationPoll/contexts/MotivationPollContext';
 
-import { MotivationPollApiData } from '@/types/motivationPoll';
+import { MotivationPollApiData } from '@/motivationPoll/types';
 
 const MotivationPollProvider = ({
   children,

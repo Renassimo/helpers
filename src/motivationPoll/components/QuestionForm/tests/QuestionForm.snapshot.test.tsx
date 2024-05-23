@@ -10,7 +10,7 @@ import {
   mockedCurrentQuestion2,
   mockedCurrentQuestion3,
   mockedQuestionsCount,
-} from '@/types/motivationPoll/mocks';
+} from '@/motivationPoll/types/mocks';
 
 jest.mock('@/motivationPoll/hooks/useMotivationPoll');
 

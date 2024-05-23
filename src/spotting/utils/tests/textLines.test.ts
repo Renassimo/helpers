@@ -10,9 +10,9 @@ import {
   mockedSpottedPlaneProviderDataFalsy,
   mockedSpottedPlaneProviderDataNullish,
   mockedSpottedPlaneProviderDataTruthy,
-} from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+} from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
-import { LineWord, SpottedPlaneProviderData } from '@/types/spotting';
+import { LineWord, SpottedPlaneProviderData } from '@/spotting/types';
 
 describe('Text lines', () => {
   const mockedPlane1: SpottedPlaneProviderData =

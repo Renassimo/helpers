@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { LineWord, SpottedPlaneProviderData } from '@/types/spotting';
+import { LineWord, SpottedPlaneProviderData } from '@/spotting/types';
 
 const SpottingContext = createContext<{
   spottedPlanes: SpottedPlaneProviderData[];

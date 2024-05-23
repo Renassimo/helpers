@@ -1,6 +1,6 @@
 import { deserializeDay, serializeDay } from '@/fiveBook/serializers';
-import { NotionResult } from '@/types/notion';
-import { FiveBookData } from '@/types/fiveBook';
+import { NotionResult } from '@/common/types/notion';
+import { FiveBookData } from '@/fiveBook/types';
 
 describe('Five book serializers', () => {
   describe('deserializeDay', () => {

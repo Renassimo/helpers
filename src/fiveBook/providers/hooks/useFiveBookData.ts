@@ -7,7 +7,7 @@ import {
 } from '@/common/utils/dayjs';
 import dayjs from 'dayjs';
 import { getIsoMonthDayFromDayCode } from '@/fiveBook/utils';
-import { FiveBookData } from '@/types/fiveBook';
+import { FiveBookData } from '@/fiveBook/types';
 
 const useFiveBookData = (data: FiveBookData | null) => {
   const currentYear = useMemo(() => getYear(), []);

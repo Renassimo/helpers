@@ -5,7 +5,7 @@ import useSpottedPlanes from '@/spotting/hooks/useSpottedPlanes';
 
 import SpottedPlaneForm from '@/spotting/components/SpottedPlaneForm';
 
-import { mockedSpottedPlaneProviderDataTruthy } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+import { mockedSpottedPlaneProviderDataTruthy } from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
 jest.mock('@/spotting/hooks/useSpottedPlanes');
 

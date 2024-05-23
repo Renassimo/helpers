@@ -4,7 +4,7 @@ import { getDataForApi } from '@/motivationPoll/utils/dataHandler';
 import {
   isMotivationPollLocale,
   MotivationPollLocale,
-} from '@/types/motivationPoll';
+} from '@/motivationPoll/types';
 
 const getStaticProps = async (ctx: GetStaticPropsContext) => {
   const { locale: currentLocale, defaultLocale, locales } = ctx;

@@ -2,7 +2,7 @@ import renderWithTheme from '@/tests/helpers';
 
 import SpottedPlaneForm from '@/spotting/components/SpottedPlaneForm';
 
-import { mockedSpottedPlaneProviderDataTruthy } from '@/types/spotting/mocks/mockedSpottedPlaneProviderData';
+import { mockedSpottedPlaneProviderDataTruthy } from '@/spotting/types/mocks/mockedSpottedPlaneProviderData';
 
 describe('SpottedPlaneForm snapshot', () => {
   test('renders successfully', () => {

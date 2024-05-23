@@ -7,8 +7,8 @@ import {
   showNotFound,
 } from '@/common/utils/serverSideRenderProps';
 
-import { GetServerSidePropsContextWithAuth } from '@/types/auth';
-import { NotionData } from '@/types/notion';
+import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { NotionData } from '@/common/types/notion';
 import { capitalCase } from 'change-case';
 
 // todo use as separate module
