@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsChart snapshot Renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-q974hr"
+    >
+      <div>
+        ResponsiveContainer 
+        100%
+        100%
+        <div>
+          RadarChart 
+          50%
+          50%
+          80%
+          <div>
+            PolarGrid
+          </div>
+          <div>
+            PolarAngleAxis
+            text
+          </div>
+          <div>
+            PolarRadiusAxis
+          </div>
+          <div>
+            Radar
+            Mocked Name
+            points
+            #8884d8
+            #8884d8
+            0.7
+          </div>
+          <div>
+            Radar
+            Median
+            medianValue
+            #82ca9d
+            #82ca9d
+            0.1
+          </div>
+          <div>
+            Legend
+          </div>
+          [{"id":1,"text":"First","medianValue":2,"points":3},{"id":2,"text":"Second","medianValue":4,"points":6},{"id":3,"text":"Third","medianValue":6,"points":9}]
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

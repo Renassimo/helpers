@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MotivationPoll snapshot renders PollForm 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Poll Form
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MotivationPoll snapshot when has results renders Results 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Results, onDownloadPdf: 
+      </div>
+    </div>
+  </div>
+</body>
+`;

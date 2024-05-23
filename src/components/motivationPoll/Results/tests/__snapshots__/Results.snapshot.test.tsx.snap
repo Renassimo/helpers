@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Results when to clickes to Save as PDF calls onDownloadPdf 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-h5 css-1gffg9o-MuiTypography-root"
+      >
+        Motivation Test Results for 
+        Mocked Name
+        :
+         
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save as PDF
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </h1>
+      <div>
+        Mocked Results Table
+      </div>
+      <div>
+        Mocked Results Chart
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MotivationPollPage snapshot renders successfully 1`] = `
+<div>
+  <div>
+    <main
+      class="css-3wo33r"
+    >
+      <div
+        class="css-5aiikd"
+      >
+        <header
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
+        >
+          <div
+            class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
+          >
+            <div
+              class="MuiBox-root css-0"
+            />
+            <div
+              class="MuiBox-root css-0"
+            />
+          </div>
+        </header>
+      </div>
+      <div
+        class="css-16cpvj6"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+        >
+          <div>
+            MockedMotivationPoll
+          </div>
+          <div>
+            Mocked Locale Links:
+            <span>
+              en
+               -
+               
+              <span>
+                ru
+              </span>
+              <span>
+                en
+              </span>
+               
+              - 
+              /motivationTest
+            </span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+`;

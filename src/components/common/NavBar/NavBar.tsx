@@ -62,6 +62,7 @@ const NavBar = ({
             onClose={handleCloseMenu}
             pages={pages}
             signOut={signOut}
+            withMain
           />
         </Box>
       </Toolbar>

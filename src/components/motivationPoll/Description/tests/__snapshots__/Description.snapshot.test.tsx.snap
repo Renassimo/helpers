@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Description snapshot renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-h4 css-1nxg358-MuiTypography-root"
+      >
+        Motivation Test
+      </h1>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1jmylmz-MuiTypography-root"
+      >
+        Mocked description
+      </p>
+    </div>
+  </div>
+</body>
+`;

@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PollForm snapshot renders FinishFrom 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Finish Form
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PollForm snapshot when pol is not started and when has current question renders with QuestionForm 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Starter Form
+      </div>
+      <div>
+        Mocked Question Form
+      </div>
+      <div>
+        Mocked Finish Form
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PollForm snapshot when pol is not started renders with StarterForm 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Starter Form
+      </div>
+      <div>
+        Mocked Finish Form
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PollForm snapshot when poll is not finished and when pol is not started and when has current question renders with QuestionForm 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Description
+      </div>
+      <div>
+        Mocked Starter Form
+      </div>
+      <div>
+        Mocked Question Form
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PollForm snapshot when poll is not finished and when pol is not started renders with StarterForm 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Description
+      </div>
+      <div>
+        Mocked Starter Form
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PollForm snapshot when poll is not finished renders with description 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        Mocked Description
+      </div>
+    </div>
+  </div>
+</body>
+`;

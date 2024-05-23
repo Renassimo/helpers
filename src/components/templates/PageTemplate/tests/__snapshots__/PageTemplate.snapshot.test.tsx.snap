@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageTemplate renders successfully 1`] = `
+exports[`PageTemplate renders successfully with NavBar 1`] = `
 <div>
   <main
     class="css-3wo33r"
@@ -30,7 +30,7 @@ exports[`PageTemplate renders successfully 1`] = `
 </div>
 `;
 
-exports[`PageTemplate when navBarChildren passed renders successfully 1`] = `
+exports[`PageTemplate when navBarChildren passed renders successfully with NavBar 1`] = `
 <div>
   <main
     class="css-3wo33r"
@@ -43,6 +43,62 @@ exports[`PageTemplate when navBarChildren passed renders successfully 1`] = `
         <span>
           Name
            - 
+          title
+        </span>
+      </div>
+    </div>
+    <div
+      class="css-16cpvj6"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+      >
+        Children
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`PageTemplate when navBarChildren passed when user is not passed renders successfully with StaticNavBar  1`] = `
+<div>
+  <main
+    class="css-3wo33r"
+  >
+    <div
+      class="css-5aiikd"
+    >
+      <div>
+        Mocked Static Nav Bar:
+        <span>
+          title
+        </span>
+      </div>
+    </div>
+    <div
+      class="css-16cpvj6"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+      >
+        Children
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`PageTemplate when user is not passed renders successfully with StaticNavBar  1`] = `
+<div>
+  <main
+    class="css-3wo33r"
+  >
+    <div
+      class="css-5aiikd"
+    >
+      <div>
+        Mocked Static Nav Bar:
+        <span>
           title
         </span>
       </div>
