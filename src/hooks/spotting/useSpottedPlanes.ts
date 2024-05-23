@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import SpottingContext from '@/contexts/spotting';
+import SpottingContext from '@/spotting/contexts/SpottingContext';
 
 const useSpottedPlanes = () => useContext(SpottingContext);
 

@@ -1,3 +1,3 @@
 export { getServerSideProps } from '@/handlers/signIn';
 
-export { default } from '@/signIn/pages/SignIn';
+export { default } from '@/auth/pages/SignIn';

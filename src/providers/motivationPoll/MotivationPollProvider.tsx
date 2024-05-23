@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import useMotivationPollData from '@/providers/motivationPoll/hooks/useMotivationPollData';
 
-import MotivationPollContext from '@/contexts/motivationPoll';
+import MotivationPollContext from '@/motivationPoll/contexts/MotivationPollContext';
 
 import { MotivationPollApiData } from '@/types/motivationPoll';
 

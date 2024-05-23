@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import AlertsContext from '@/contexts/alerts';
+import AlertsContext from '@/common/contexts/AlertsContext';
 
 import Alerts from '@/common/components/Alerts';
 

@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { render } from '@testing-library/react';
 
 import AuthProvider from '@/providers/auth';
-import AuthContext from '@/contexts/auth';
+import AuthContext from '@/auth/contexts/AuthContext';
 
 import useUser from '../hooks/useUser';
 import useSignIn from '../hooks/useSignIn';

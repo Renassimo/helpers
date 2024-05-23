@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import AuthContext from '@/contexts/auth';
+import AuthContext from '@/auth/contexts/AuthContext';
 
 import useSignIn from './hooks/useSignIn';
 import useSignOut from './hooks/useSignOut';

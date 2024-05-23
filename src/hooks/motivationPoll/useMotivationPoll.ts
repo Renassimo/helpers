@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import MotivationPollContext from 'src/contexts/motivationPoll';
+import MotivationPollContext from '@/motivationPoll/contexts/MotivationPollContext';
 
 const useMotivationPoll = () => useContext(MotivationPollContext);
 

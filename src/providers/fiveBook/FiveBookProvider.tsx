@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 
-import FiveBookContext from '@/contexts/fiveBook';
+import FiveBookContext from '@/fiveBook/contexts/FiveBookContext';
 
 import { FiveBookData } from '@/types/fiveBook';
 

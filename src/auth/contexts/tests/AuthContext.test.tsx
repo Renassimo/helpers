@@ -1,4 +1,4 @@
-import AuthContext from '@/contexts/auth';
+import AuthContext from '@/auth/contexts/AuthContext';
 import { useContext, useEffect } from 'react';
 import { render } from '@testing-library/react';
 

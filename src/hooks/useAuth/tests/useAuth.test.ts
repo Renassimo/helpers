@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import useAuth from '@/hooks/useAuth';
 
 jest.mock('react');
-jest.mock('@/contexts/auth');
+jest.mock('@/auth/contexts/AuthContext');
 
 describe('useAuth', () => {
   const signIn = () => jest.fn();

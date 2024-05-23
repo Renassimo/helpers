@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { SpottedPlaneApiData } from '@/types/spotting';
 
-import SpottingContext from '@/contexts/spotting';
+import SpottingContext from '@/spotting/contexts/SpottingContext';
 
 import useSpottingData from '@/providers/spotting/hooks/useSpottingData';
 
