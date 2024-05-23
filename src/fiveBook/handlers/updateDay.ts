@@ -1,6 +1,6 @@
 import NotionService from '@/services/notion';
 
-import { deserializeDay, serializeDay } from '@/serializers/fiveBook';
+import { deserializeDay, serializeDay } from '@/fiveBook/serializers';
 
 const updateDay = async (notionService: NotionService, requestBody: string) => {
   const body = JSON.parse(requestBody);

@@ -2,7 +2,7 @@ import { NotionBlockChildrenResult, NotionResult } from '@/types/notion';
 
 import NotionService from '@/services/notion';
 
-import { deserializeSpottedPlanes } from '@/serializers/spotting';
+import { deserializeSpottedPlanes } from '@/spotting/serializers';
 
 const getSpottedPlanes = async (
   notionService: NotionService,

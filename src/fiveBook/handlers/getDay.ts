@@ -1,5 +1,5 @@
 import NotionService from '@/services/notion';
-import { deserializeDay } from '@/serializers/fiveBook';
+import { deserializeDay } from '@/fiveBook/serializers';
 
 const getDay = async (
   notionService: NotionService,

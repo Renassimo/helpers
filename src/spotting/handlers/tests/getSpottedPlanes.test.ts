@@ -2,9 +2,9 @@ import NotionService from '@/services/notion';
 
 import getSpottedPlanes from '@/spotting/handlers/getSpottedPlanes';
 
-import { deserializeSpottedPlanes } from '@/serializers/spotting';
+import { deserializeSpottedPlanes } from '@/spotting/serializers';
 
-jest.mock('@/serializers/spotting');
+jest.mock('@/spotting/serializers');
 jest.mock('@/services/notion');
 
 describe('getSpottedPlanes', () => {

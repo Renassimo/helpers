@@ -1,6 +1,6 @@
 import { NotionResult } from '@/types/notion';
 
-import NotionPropertiesDeserializer from '@/serializers/notion';
+import NotionPropertiesDeserializer from '@/common/serializers/notion';
 
 describe('NotionPropertiesDeserializer', () => {
   const mockedResult = {

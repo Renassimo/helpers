@@ -1,6 +1,6 @@
 import NotionService from '@/services/notion';
 
-import { serializeSpottedPlanes } from '@/serializers/spotting';
+import { serializeSpottedPlanes } from '@/spotting/serializers';
 
 import { SpottedPlaneSerializedDescription } from '@/types/spotting';
 

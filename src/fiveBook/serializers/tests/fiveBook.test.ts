@@ -1,4 +1,4 @@
-import { deserializeDay, serializeDay } from '@/serializers/fiveBook';
+import { deserializeDay, serializeDay } from '@/fiveBook/serializers';
 import { NotionResult } from '@/types/notion';
 import { FiveBookData } from '@/types/fiveBook';
 

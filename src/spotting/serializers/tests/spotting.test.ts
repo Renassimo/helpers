@@ -1,12 +1,12 @@
 import { NotionResult } from '@/types/notion';
 
-import NotionPropertiesDeserializer from '@/serializers/notion';
+import NotionPropertiesDeserializer from '@/common/serializers/notion';
 import {
   deserializeSpottedPlanes,
   serializeSpottedPlanes,
-} from '@/serializers/spotting';
+} from '@/spotting/serializers';
 
-jest.mock('@/serializers/notion');
+jest.mock('@/common/serializers/notion');
 
 describe('Spotting serializers', () => {
   describe('deserializeSpottedPlanes ', () => {

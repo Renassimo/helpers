@@ -5,7 +5,7 @@ import {
   SpottedPlaneGroup,
 } from '@/types/spotting';
 
-import NotionPropertiesDeserializer from '@/serializers/notion';
+import NotionPropertiesDeserializer from '@/common/serializers/notion';
 
 export const deserializeSpottedPlanes = (
   results: NotionResult[],

@@ -1,8 +1,8 @@
 import updateSpottedPlanes from '@/spotting/handlers/updateSpottedPlanes';
 import NotionService from '@/services/notion';
-import { serializeSpottedPlanes } from '@/serializers/spotting';
+import { serializeSpottedPlanes } from '@/spotting/serializers';
 
-jest.mock('@/serializers/spotting');
+jest.mock('@/spotting/serializers');
 jest.mock('@/services/notion');
 
 describe('updateSpottedPlanes', () => {
