@@ -1,7 +1,7 @@
-import getUserNotionData from '@/common/utils/userNotinData';
+import getUserHelpersData from '@/common/utils/userHelpersData';
 
 let withError: boolean;
-let notionData: unknown;
+let helpersData: unknown;
 let id: unknown;
 
 jest.mock('@/common/lib/firebase/firestore', () => ({
@@ -11,7 +11,7 @@ jest.mock('@/common/lib/firebase/firestore', () => ({
         return !withError
           ? {
               data: () => ({
-                notionData,
+                helpersData,
               }),
               id,
             }
@@ -21,11 +21,18 @@ jest.mock('@/common/lib/firebase/firestore', () => ({
   }),
 }));
 
-describe('getUserNotionData', () => {
+describe('getUserHelpersData', () => {
   describe('when got no error', () => {
     const mockedUid = 'uid';
-    const mockedNotionData = {
-      fiveBook: { dataBaseId: 'data-base-id', token: 'token' },
+    const mockedHelpersData = {
+      fiveBook: {
+        notionData: {
+          dataBaseId: 'data-base-id',
+          token: 'token',
+          path: '/5book',
+          title: '5book',
+        },
+      },
     };
 
     beforeEach(() => {
@@ -37,37 +44,37 @@ describe('getUserNotionData', () => {
         id = mockedUid;
       });
 
-      describe('and got notion data', () => {
+      describe('and got helpers data', () => {
         beforeEach(() => {
-          notionData = mockedNotionData;
+          helpersData = mockedHelpersData;
         });
 
-        test('returns notion data', async () => {
+        test('returns helpers data', async () => {
           // Arrange
           const expectedResult = {
             id: mockedUid,
-            notionData: mockedNotionData,
+            helpersData: mockedHelpersData,
           };
           // Act
-          const result = await getUserNotionData(mockedUid);
+          const result = await getUserHelpersData(mockedUid);
           // Assert
           expect(result).toEqual(expectedResult);
         });
       });
 
-      describe('and did not get notion data', () => {
+      describe('and did not get helpers data', () => {
         beforeEach(() => {
-          notionData = undefined;
+          helpersData = undefined;
         });
 
-        test('returns notion data', async () => {
+        test('returns helpers data', async () => {
           // Arrange
           const expectedResult = {
             id: mockedUid,
-            notionData: null,
+            helpersData: null,
           };
           // Act
-          const result = await getUserNotionData(mockedUid);
+          const result = await getUserHelpersData(mockedUid);
           // Assert
           expect(result).toEqual(expectedResult);
         });
@@ -82,14 +89,14 @@ describe('getUserNotionData', () => {
       withError = true;
     });
 
-    test('returns notion as null', async () => {
+    test('returns helpers as null', async () => {
       // Arrange
       const expectedResult = {
         id: mockedUid,
-        notionData: null,
+        helpersData: null,
       };
       // Act
-      const result = await getUserNotionData(mockedUid);
+      const result = await getUserHelpersData(mockedUid);
       // Assert
       expect(result).toEqual(expectedResult);
     });

@@ -4,13 +4,16 @@ import { GetServerSidePropsContext } from 'next';
 
 import auth from '@/common/lib/firebase/auth';
 
-import getUserNotionData from '@/common/utils/userNotinData';
+import getUserHelpersData from '@/common/utils/userHelpersData';
+import { ServerSideUserData } from '@/common/types/auth';
 
-const getServerSideUserData = async (ctx: GetServerSidePropsContext) => {
+const getServerSideUserData = async (
+  ctx: GetServerSidePropsContext
+): Promise<ServerSideUserData> => {
   const cookies = nookies.get(ctx);
   const { token } = cookies;
 
-  if (!token) return { user: null, notionData: null };
+  if (!token) return { user: null, helpersData: null };
 
   try {
     const {
@@ -21,11 +24,11 @@ const getServerSideUserData = async (ctx: GetServerSidePropsContext) => {
     } = (await auth.verifyIdToken(cookies.token)) ?? {
       name: '',
     };
-    const { notionData } = await getUserNotionData(uid);
+    const { helpersData } = await getUserHelpersData(uid);
 
-    return { user: { email, name, picture, uid }, notionData };
+    return { user: { email, name, picture, uid }, helpersData };
   } catch (error) {
-    return { user: null, notionData: null };
+    return { user: null, helpersData: null };
   }
 };
 

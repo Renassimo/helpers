@@ -1,5 +1,5 @@
 import getUserUserData from '@/common/utils/serverSideUserData';
-import getUserNotionData from '@/common/utils/userNotinData';
+import getUserHelpersData from '@/common/utils/userHelpersData';
 import { GetServerSidePropsContext } from 'next';
 
 let withError: boolean;
@@ -17,7 +17,7 @@ jest.mock(
   }))
 );
 jest.mock('@/common/lib/firebase/firestore', jest.fn());
-jest.mock('@/common/utils/userNotinData');
+jest.mock('@/common/utils/userHelpersData');
 
 describe('getServerSideUserData', () => {
   const mockedContext = {
@@ -29,8 +29,10 @@ describe('getServerSideUserData', () => {
   };
 
   describe('when got no error', () => {
-    const mockedNotionData = {
-      fivebook: { dataBaseID: 'data-base-id', token: 'notion-token' },
+    const mockedHelpersData = {
+      fivebook: {
+        notionData: { dataBaseID: 'data-base-id', token: 'notion-token' },
+      },
     };
 
     beforeEach(() => {
@@ -40,9 +42,12 @@ describe('getServerSideUserData', () => {
     describe('when verified token', () => {
       test('returns user and notion data', async () => {
         // Arrange
-        const expectedResult = { user: userData, notionData: mockedNotionData };
-        (getUserNotionData as unknown as jest.Mock).mockImplementationOnce(
-          () => ({ notionData: mockedNotionData })
+        const expectedResult = {
+          user: userData,
+          helpersData: mockedHelpersData,
+        };
+        (getUserHelpersData as unknown as jest.Mock).mockImplementationOnce(
+          () => ({ helpersData: mockedHelpersData })
         );
         // Act
         const result = await getUserUserData(
@@ -50,7 +55,7 @@ describe('getServerSideUserData', () => {
         );
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(getUserNotionData).toHaveBeenCalledWith(userData.uid);
+        expect(getUserHelpersData).toHaveBeenCalledWith(userData.uid);
       });
     });
   });
@@ -59,18 +64,15 @@ describe('getServerSideUserData', () => {
     beforeEach(() => {
       withError = true;
     });
-
-    describe('when got error', () => {
-      test('returns notion data', async () => {
-        // Arrange
-        const expectedResult = { user: null, notionData: null };
-        // Act
-        const result = await getUserUserData(
-          mockedContext as unknown as GetServerSidePropsContext
-        );
-        // Assert
-        expect(result).toEqual(expectedResult);
-      });
+    test('returns notion data', async () => {
+      // Arrange
+      const expectedResult = { user: null, helpersData: null };
+      // Act
+      const result = await getUserUserData(
+        mockedContext as unknown as GetServerSidePropsContext
+      );
+      // Assert
+      expect(result).toEqual(expectedResult);
     });
   });
 });

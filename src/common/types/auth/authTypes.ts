@@ -1,5 +1,6 @@
 import { NextApiRequest, GetServerSidePropsContext } from 'next';
-import { NotionData, NotionHelperData } from '@/common/types/notion';
+import { NotionHelperData } from '@/common/types/notion';
+import { HelpersData } from '../helpers';
 
 export interface User {
   email: string;
@@ -10,14 +11,14 @@ export interface User {
 
 export interface NextApiRequestWithAuth extends NextApiRequest {
   uid?: string;
-  notionData?: NotionData;
+  helpersData?: HelpersData;
   notionHelperData?: NotionHelperData;
 }
 
 export interface GetServerSidePropsContextWithAuth
   extends GetServerSidePropsContext {
   user: User | null;
-  notionData?: NotionData;
+  helpersData?: HelpersData;
   notionHelperData?: NotionHelperData;
   pages: PageInfo[];
 }
@@ -25,4 +26,9 @@ export interface GetServerSidePropsContextWithAuth
 export interface PageInfo {
   title: string;
   path: string;
+}
+
+export interface ServerSideUserData {
+  user: User | null;
+  helpersData: HelpersData | null;
 }

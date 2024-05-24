@@ -2,7 +2,7 @@ import auth from '@/common/lib/firebase/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/common/types/auth';
 import { getError } from '@/common/utils/errors';
-import getUserNotionData from '@/common/utils/userNotinData';
+import getUserHelpersData from '@/common/utils/userHelpersData';
 
 const withAuthApi = (
   handler: (req: NextApiRequest, res: NextApiResponse) => void,
@@ -20,22 +20,23 @@ const withAuthApi = (
         return res.status(401).json(getError(401));
       req.uid = uid;
 
-      const { notionData } = await getUserNotionData(`${uid}`);
-      if (!notionData)
-        return res.status(403).json(getError(403, 'No Notion data'));
+      const { helpersData } = await getUserHelpersData(`${uid}`);
+      if (!helpersData)
+        return res.status(403).json(getError(403, 'No Helpers data'));
 
       if (helperName) {
-        const helperData = notionData[helperName];
+        const helperData = helpersData[helperName];
         if (!helperData)
-          return res.status(403).json(getError(403, 'No Notion helper data'));
+          return res.status(403).json(getError(403, 'No Helper data'));
 
-        const { token: notionToken } = helperData;
+        const { notionData } = helperData;
+        const { token: notionToken } = helperData.notionData ?? {};
         if (!notionToken)
           return res.status(403).json(getError(403, 'No Notion token'));
 
-        req.notionHelperData = helperData;
+        req.notionHelperData = notionData;
       } else {
-        req.notionData = notionData;
+        req.helpersData = helpersData;
       }
     } catch (error: any) {
       console.error(error);
