@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GamesPage snapshot renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      Mocked Page Template (
+      Game Maps
+      ):
+      <span>
+        Jesse Pinkman
+         - 
+        Page 1
+      </span>
+      <h1
+        class="MuiTypography-root MuiTypography-h5 css-1uxccsd-MuiTypography-root"
+      >
+        Games Page
+      </h1>
+      <div>
+        <a
+          href="/gameMaps/games/1"
+        >
+          Game 1
+        </a>
+        <a
+          href="/gameMaps/games/2"
+        >
+          Game 2
+        </a>
+        <a
+          href="/gameMaps/games/new"
+        >
+          + Add New Game
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+`;

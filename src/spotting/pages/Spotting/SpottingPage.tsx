@@ -30,7 +30,7 @@ const SpottingPage = ({
 
   return (
     <SpottingProvider data={data}>
-      <PageTemplate title="5book" user={user} pages={pages}>
+      <PageTemplate title="Spotting" user={user} pages={pages}>
         <SpottedPlanesList />
       </PageTemplate>
     </SpottingProvider>

@@ -2,164 +2,36 @@
 
 exports[`SpottingPage when got data renders successfully 1`] = `
 <div>
-  <main
-    class="css-3wo33r"
-  >
-    <div
-      class="css-5aiikd"
-    >
-      <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
-      >
-        <div
-          class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
-        >
-          <div
-            class="MuiBox-root css-0"
-          >
-            <a
-              href="/"
-            >
-              <button
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <div
-                  class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
-                >
-                  <img
-                    alt="Main page"
-                    class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                    src="/favicon.ico"
-                  />
-                </div>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </a>
-          </div>
-          <div
-            class="MuiBox-root css-0"
-          >
-            <button
-              aria-label="Open settings"
-              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-              data-mui-internal-clone-element="true"
-              tabindex="0"
-              type="button"
-            >
-              <div
-                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
-              >
-                <img
-                  alt="Jesse Pinkman"
-                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                  src="https://pic.com"
-                />
-              </div>
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-        </div>
-      </header>
+  <div>
+    Mocked Page Template (
+    Spotting
+    ):
+    <span>
+      Jesse Pinkman
+       - 
+      5book
+    </span>
+    <div>
+      Mocked Spotted Planes List:
     </div>
-    <div
-      class="css-16cpvj6"
-    >
-      <div
-        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
-      >
-        <div>
-          Mocked Spotted Planes List:
-        </div>
-      </div>
-    </div>
-  </main>
+  </div>
 </div>
 `;
 
 exports[`SpottingPage when got error renders successfully 1`] = `
 <div>
-  <main
-    class="css-3wo33r"
-  >
-    <div
-      class="css-5aiikd"
-    >
-      <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionStatic css-s31e50-MuiPaper-root-MuiAppBar-root"
-      >
-        <div
-          class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-9kk78p-MuiToolbar-root"
-        >
-          <div
-            class="MuiBox-root css-0"
-          >
-            <a
-              href="/"
-            >
-              <button
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <div
-                  class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
-                >
-                  <img
-                    alt="Main page"
-                    class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                    src="/favicon.ico"
-                  />
-                </div>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </a>
-          </div>
-          <div
-            class="MuiBox-root css-0"
-          >
-            <button
-              aria-label="Open settings"
-              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-              data-mui-internal-clone-element="true"
-              tabindex="0"
-              type="button"
-            >
-              <div
-                class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
-              >
-                <img
-                  alt="Jesse Pinkman"
-                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                  src="https://pic.com"
-                />
-              </div>
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-        </div>
-      </header>
+  <div>
+    Mocked Page Template (
+    Spotting
+    ):
+    <span>
+      Jesse Pinkman
+       - 
+      5book
+    </span>
+    <div>
+      Mocked Spotted Planes List:
     </div>
-    <div
-      class="css-16cpvj6"
-    >
-      <div
-        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
-      >
-        <div>
-          Mocked Spotted Planes List:
-        </div>
-      </div>
-    </div>
-  </main>
+  </div>
 </div>
 `;

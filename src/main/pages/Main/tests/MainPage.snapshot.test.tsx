@@ -3,12 +3,15 @@ import { render } from '@testing-library/react';
 import { PageInfo } from '@/common/types/auth';
 
 import PageTemplate from '@/common/templates/PageTemplate';
-
-import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
+import PagesList from '@/common/components/PagesList';
 
 import MainPage from '../MainPage';
 
+import MockedPagesList from '@/common/components/PagesList/mocks';
+import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
+
 jest.mock('@/common/templates/PageTemplate');
+jest.mock('@/common/components/PagesList');
 
 describe('MainPage', () => {
   const user = {
@@ -22,6 +25,7 @@ describe('MainPage', () => {
     (PageTemplate as unknown as jest.Mock).mockImplementationOnce(
       MockedPageTemplate
     );
+    (PagesList as unknown as jest.Mock).mockImplementationOnce(MockedPagesList);
   });
 
   test('renders successfully', () => {

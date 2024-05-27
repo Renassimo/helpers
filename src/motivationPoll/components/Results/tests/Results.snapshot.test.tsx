@@ -5,8 +5,8 @@ import useMotivationPoll from '@/motivationPoll/hooks/useMotivationPoll';
 import ResultsTable from '@/motivationPoll/components/ResultsTable';
 import ResultsChart from '@/motivationPoll/components/ResultsChart';
 
-import MockedResultsTable from '@/motivationPoll/components/ResultsTable/mocks/MockedResultsTable';
-import MockedResultsChart from '@/motivationPoll/components/ResultsChart/mocks/MockedResultsChart';
+import MockedResultsTable from '@/motivationPoll/components/ResultsTable/mocks';
+import MockedResultsChart from '@/motivationPoll/components/ResultsChart/mocks';
 
 import Results from '../Results';
 

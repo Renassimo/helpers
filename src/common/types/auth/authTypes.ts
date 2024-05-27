@@ -17,7 +17,7 @@ export interface NextApiRequestWithAuth extends NextApiRequest {
 
 export interface GetServerSidePropsContextWithAuth
   extends GetServerSidePropsContext {
-  user: User | null;
+  user: User;
   helpersData?: HelpersData;
   notionHelperData?: NotionHelperData;
   pages: PageInfo[];

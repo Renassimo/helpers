@@ -40,7 +40,7 @@ const PageTemplate = ({
   navBarChildren,
 }: {
   title: string;
-  user?: User;
+  user?: User | null;
   pages?: PageInfo[];
   children: ReactNode;
   navBarChildren?: ReactNode;
