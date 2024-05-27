@@ -1,4 +1,6 @@
 import { NextApiRequest, GetServerSidePropsContext } from 'next';
+import { Firestore } from '@/common/lib/firebase/types';
+
 import { NotionHelperData } from '@/common/types/notion';
 import { HelpersData } from '@/common/types/helpers';
 
@@ -21,6 +23,7 @@ export interface GetServerSidePropsContextWithAuth
   helpersData?: HelpersData;
   notionHelperData?: NotionHelperData;
   pages: PageInfo[];
+  db: Firestore;
 }
 
 export interface PageInfo {

@@ -45,10 +45,11 @@ const PageTemplate = ({
   children: ReactNode;
   navBarChildren?: ReactNode;
 }) => {
+  const titleText = `Helpers - ${title}`;
   return (
     <>
       <Head>
-        <title>Helpers - {title}</title>
+        <title>{titleText}</title>
       </Head>
       <PageWrapper>
         <NavBarWrapper>

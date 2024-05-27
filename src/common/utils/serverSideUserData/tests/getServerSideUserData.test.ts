@@ -1,6 +1,7 @@
 import getUserUserData from '@/common/utils/serverSideUserData';
 import getUserHelpersData from '@/common/utils/userHelpersData';
 import { GetServerSidePropsContext } from 'next';
+import { Firestore } from '@/common/lib/firebase/types';
 
 let withError: boolean;
 const userData = {
@@ -16,7 +17,6 @@ jest.mock(
     verifyIdToken: () => !withError && userData,
   }))
 );
-jest.mock('@/common/lib/firebase/firestore', jest.fn());
 jest.mock('@/common/utils/userHelpersData');
 
 describe('getServerSideUserData', () => {
@@ -26,7 +26,8 @@ describe('getServerSideUserData', () => {
         cookie: 'token=token',
       },
     },
-  };
+  } as unknown as GetServerSidePropsContext;
+  const mockedDb = 'mockedDb' as unknown as Firestore;
 
   describe('when got no error', () => {
     const mockedHelpersData = {
@@ -50,12 +51,10 @@ describe('getServerSideUserData', () => {
           () => ({ helpersData: mockedHelpersData })
         );
         // Act
-        const result = await getUserUserData(
-          mockedContext as unknown as GetServerSidePropsContext
-        );
+        const result = await getUserUserData(mockedContext, mockedDb);
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(getUserHelpersData).toHaveBeenCalledWith(userData.uid);
+        expect(getUserHelpersData).toHaveBeenCalledWith(userData.uid, mockedDb);
       });
     });
   });
@@ -68,9 +67,7 @@ describe('getServerSideUserData', () => {
       // Arrange
       const expectedResult = { user: null, helpersData: null };
       // Act
-      const result = await getUserUserData(
-        mockedContext as unknown as GetServerSidePropsContext
-      );
+      const result = await getUserUserData(mockedContext, mockedDb);
       // Assert
       expect(result).toEqual(expectedResult);
     });

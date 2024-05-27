@@ -1,11 +1,15 @@
 import auth from '@/common/lib/firebase/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
+
 import { NextApiRequestWithAuth } from '@/auth/types';
+import { Firestore } from '@/common/lib/firebase/types';
+
 import { getError } from '@/common/utils/errors';
 import getUserHelpersData from '@/common/utils/userHelpersData';
 
 const withAuthApi = (
   handler: (req: NextApiRequest, res: NextApiResponse) => void,
+  db: Firestore,
   helperName?: string
 ) => {
   return async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
@@ -20,7 +24,8 @@ const withAuthApi = (
         return res.status(401).json(getError(401));
       req.uid = uid;
 
-      const { helpersData } = await getUserHelpersData(`${uid}`);
+      // req.db = db;
+      const { helpersData } = await getUserHelpersData(`${uid}`, db);
       if (!helpersData)
         return res.status(403).json(getError(403, 'No Helpers data'));
 

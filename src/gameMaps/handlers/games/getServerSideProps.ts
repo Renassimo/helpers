@@ -1,5 +1,3 @@
-import { getFirestore } from 'firebase-admin/firestore';
-
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { GamesServerSideProps } from '@/gameMaps/types';
 
@@ -11,7 +9,7 @@ const getServerSideProps = async (
   const { user, pages } = ctx;
   const { uid } = user;
 
-  const gamesService = GamesService.getInstance(getFirestore());
+  const gamesService = GamesService.getInstance(ctx.db);
   const { data, error } = await gamesService.getAll(uid);
 
   return {

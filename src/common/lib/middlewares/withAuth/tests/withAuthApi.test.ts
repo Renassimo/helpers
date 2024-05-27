@@ -1,7 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import withAuthApi from '../withAuthApi';
+import { Firestore } from '@/common/lib/firebase/types';
+
 import { getError } from '@/common/utils/errors';
 import getUserHelpersData from '@/common/utils/userHelpersData';
+
+import withAuthApi from '../withAuthApi';
 
 let withoutError: boolean;
 let userData: unknown;
@@ -28,6 +31,7 @@ jest.mock(
 );
 
 describe('withAuthApi', () => {
+  const mockedDb = 'mockedDb' as unknown as Firestore;
   const mockedHandler = jest.fn();
   const mockedJson = jest.fn();
   const mockedStatus = jest.fn(() => ({
@@ -86,7 +90,7 @@ describe('withAuthApi', () => {
       };
 
       // Act
-      await withAuthApi(mockedHandler)(
+      await withAuthApi(mockedHandler, mockedDb)(
         mockedReq as unknown as NextApiRequest,
         mockedRes as unknown as NextApiResponse
       );
@@ -110,7 +114,7 @@ describe('withAuthApi', () => {
         const expectedStatus = 401;
 
         // Act
-        await withAuthApi(mockedHandler)(
+        await withAuthApi(mockedHandler, mockedDb)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -138,7 +142,7 @@ describe('withAuthApi', () => {
         const expectedStatus = 401;
 
         // Act
-        await withAuthApi(mockedHandler)(
+        await withAuthApi(mockedHandler, mockedDb)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -170,7 +174,7 @@ describe('withAuthApi', () => {
         const expectedStatus = 401;
 
         // Act
-        await withAuthApi(mockedHandler)(
+        await withAuthApi(mockedHandler, mockedDb)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -204,7 +208,7 @@ describe('withAuthApi', () => {
         const expectedStatus = 403;
 
         // Act
-        await withAuthApi(mockedHandler)(
+        await withAuthApi(mockedHandler, mockedDb)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -249,7 +253,11 @@ describe('withAuthApi', () => {
         };
 
         // Act
-        await withAuthApi(mockedHandler, helperName)(
+        await withAuthApi(
+          mockedHandler,
+          mockedDb,
+          helperName
+        )(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );
@@ -281,7 +289,11 @@ describe('withAuthApi', () => {
           const expectedStatus = 403;
 
           // Act
-          await withAuthApi(mockedHandler, helperName)(
+          await withAuthApi(
+            mockedHandler,
+            mockedDb,
+            helperName
+          )(
             mockedReq as unknown as NextApiRequest,
             mockedRes as unknown as NextApiResponse
           );
@@ -320,7 +332,11 @@ describe('withAuthApi', () => {
           const expectedStatus = 403;
 
           // Act
-          await withAuthApi(mockedHandler, helperName)(
+          await withAuthApi(
+            mockedHandler,
+            mockedDb,
+            helperName
+          )(
             mockedReq as unknown as NextApiRequest,
             mockedRes as unknown as NextApiResponse
           );
@@ -362,7 +378,7 @@ describe('withAuthApi', () => {
       const expectedStatus = 401;
 
       // Act
-      await withAuthApi(mockedHandler)(
+      await withAuthApi(mockedHandler, mockedDb)(
         mockedReq as unknown as NextApiRequest,
         mockedRes as unknown as NextApiResponse
       );
@@ -384,7 +400,7 @@ describe('withAuthApi', () => {
         mockedErrorCode = 'auth/internal-error';
 
         // Act
-        await withAuthApi(mockedHandler)(
+        await withAuthApi(mockedHandler, mockedDb)(
           mockedReq as unknown as NextApiRequest,
           mockedRes as unknown as NextApiResponse
         );

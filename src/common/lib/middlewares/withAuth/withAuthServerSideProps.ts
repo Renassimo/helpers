@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import sortBy from 'lodash/sortBy';
+import { capitalCase } from 'change-case';
 
 import getServerSideUserData from '@/common/utils/serverSideUserData';
 import {
@@ -9,7 +10,7 @@ import {
 
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { HelpersData } from '@/common/types/helpers';
-import { capitalCase } from 'change-case';
+import { Firestore } from '@/common/lib/firebase/types';
 
 // todo use as separate module
 const getPages = (helpersData: HelpersData) =>
@@ -23,10 +24,11 @@ const getPages = (helpersData: HelpersData) =>
 
 const withAuthServerSideProps = (
   handler: (ctx: GetServerSidePropsContextWithAuth) => object,
+  db: Firestore,
   helperName?: string
 ) => {
   return async (ctx: GetServerSidePropsContext) => {
-    const { user, helpersData } = await getServerSideUserData(ctx);
+    const { user, helpersData } = await getServerSideUserData(ctx, db);
     if (!user) return redirectToSignIn;
 
     const pages = getPages(helpersData ?? {});
@@ -37,10 +39,10 @@ const withAuthServerSideProps = (
       const { dataBaseID = null, token = null } = notionData ?? {};
 
       if (!dataBaseID || !token) return showNotFound;
-      return handler({ ...ctx, user, notionHelperData: notionData, pages });
+      return handler({ ...ctx, user, notionHelperData: notionData, pages, db });
     } else {
       if (!helpersData) return showNotFound;
-      return handler({ ...ctx, user, helpersData, pages });
+      return handler({ ...ctx, user, helpersData, pages, db });
     }
   };
 };

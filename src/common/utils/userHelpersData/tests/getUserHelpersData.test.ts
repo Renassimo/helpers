@@ -1,27 +1,29 @@
-import getUserHelpersData from '@/common/utils/userHelpersData';
+import { Firestore } from '@/common/lib/firebase/types';
 
-let withError: boolean;
-let helpersData: unknown;
-let id: unknown;
-
-jest.mock('@/common/lib/firebase/firestore', () => ({
-  collection: () => ({
-    doc: () => ({
-      get: () => {
-        return !withError
-          ? {
-              data: () => ({
-                helpersData,
-              }),
-              id,
-            }
-          : {};
-      },
-    }),
-  }),
-}));
+import getUserHelpersData from '../getUserHelpersData';
 
 describe('getUserHelpersData', () => {
+  let withError: boolean;
+  let helpersData: unknown;
+  let id: unknown;
+
+  const mockedDb = {
+    collection: () => ({
+      doc: () => ({
+        get: () => {
+          return !withError
+            ? {
+                data: () => ({
+                  helpersData,
+                }),
+                id,
+              }
+            : {};
+        },
+      }),
+    }),
+  } as unknown as Firestore;
+
   describe('when got no error', () => {
     const mockedUid = 'uid';
     const mockedHelpersData = {
@@ -56,7 +58,7 @@ describe('getUserHelpersData', () => {
             helpersData: mockedHelpersData,
           };
           // Act
-          const result = await getUserHelpersData(mockedUid);
+          const result = await getUserHelpersData(mockedUid, mockedDb);
           // Assert
           expect(result).toEqual(expectedResult);
         });
@@ -74,7 +76,7 @@ describe('getUserHelpersData', () => {
             helpersData: null,
           };
           // Act
-          const result = await getUserHelpersData(mockedUid);
+          const result = await getUserHelpersData(mockedUid, mockedDb);
           // Assert
           expect(result).toEqual(expectedResult);
         });
@@ -96,7 +98,7 @@ describe('getUserHelpersData', () => {
         helpersData: null,
       };
       // Act
-      const result = await getUserHelpersData(mockedUid);
+      const result = await getUserHelpersData(mockedUid, mockedDb);
       // Assert
       expect(result).toEqual(expectedResult);
     });

@@ -1,6 +1,5 @@
-import { getFirestore } from 'firebase-admin/firestore';
-
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
+import { Firestore } from '@/common/lib/firebase/types';
 
 import GamesService from '@/gameMaps/services/games';
 
@@ -9,7 +8,6 @@ import getServerSideProps from '../getServerSideProps';
 import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
 import { mockedGames } from '@/gameMaps/types/mocks';
 
-jest.mock('firebase-admin/firestore');
 jest.mock('@/gameMaps/services/games');
 
 describe('getServerSideProps', () => {
@@ -18,7 +16,12 @@ describe('getServerSideProps', () => {
   });
 
   describe('getAll', () => {
-    const mockedContext = { user: mockedUser, pages: mockedPageInfos };
+    const mockedDb = 'mockedDb' as unknown as Firestore;
+    const mockedContext = {
+      user: mockedUser,
+      pages: mockedPageInfos,
+      db: mockedDb,
+    };
     const mockedData = { data: mockedGames, error: null };
 
     test('returns data', async () => {
@@ -29,11 +32,6 @@ describe('getServerSideProps', () => {
       }));
       (GamesService.getInstance as unknown as jest.Mock).mockImplementationOnce(
         mockedGetInstance
-      );
-      const mockedFirestore = 'mockedFirestore';
-      const mockedGetFirestore = jest.fn(() => mockedFirestore);
-      (getFirestore as unknown as jest.Mock).mockImplementationOnce(
-        mockedGetFirestore
       );
       const expectedResult = {
         props: {
@@ -52,8 +50,7 @@ describe('getServerSideProps', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(mockedGetAll).toHaveBeenCalledWith(mockedUser.uid);
-      expect(mockedGetInstance).toHaveBeenCalledWith(mockedFirestore);
-      expect(mockedGetFirestore).toHaveBeenCalledTimes(1);
+      expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
     });
   });
 });

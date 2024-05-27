@@ -3,7 +3,7 @@ import { getDayCode } from '@/common/utils/dayjs';
 
 import NotionService from '@/common/services/notion';
 
-import { getDay } from '@/fiveBook/handlers';
+import getDay from '@/fiveBook/handlers/getDay';
 
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 

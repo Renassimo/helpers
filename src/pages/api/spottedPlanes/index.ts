@@ -1,4 +1,5 @@
 import { NextApiResponse } from 'next';
+import { getFirestore } from 'firebase-admin/firestore';
 
 import { withAuthApi } from '@/common/lib/middlewares/withAuth';
 
@@ -29,4 +30,4 @@ const handler = async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
   }
 };
 
-export default withAuthApi(handler, 'spotting');
+export default withAuthApi(handler, getFirestore(), 'spotting');

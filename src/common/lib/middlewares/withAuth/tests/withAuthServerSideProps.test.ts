@@ -1,12 +1,15 @@
 import withAuthServerSideProps from '../withAuthServerSideProps';
 import { GetServerSidePropsContext } from 'next';
+
 import getServerSideUserData from '@/common/utils/serverSideUserData';
+
+import { Firestore } from '@/common/lib/firebase/types';
 
 jest.mock('@/common/utils/serverSideUserData');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
-jest.mock('@/common/lib/firebase/firestore', jest.fn());
 
 describe('withAuthServerSideProps', () => {
+  const mockedDb = 'mockedDb' as unknown as Firestore;
   const helperName = 'fiveBook';
   const handlerResult = { result: 'handler result' };
   const mockedHandler = jest.fn(() => handlerResult);
@@ -63,16 +66,18 @@ describe('withAuthServerSideProps', () => {
     ];
     const expectedResult = handlerResult;
     // Act
-    const result = await withAuthServerSideProps(mockedHandler)(
-      mockedContext as unknown as GetServerSidePropsContext
-    );
+    const result = await withAuthServerSideProps(
+      mockedHandler,
+      mockedDb
+    )(mockedContext as unknown as GetServerSidePropsContext);
     // Assert
-    expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+    expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext, mockedDb);
     expect(mockedHandler).toHaveBeenCalledWith({
       ...mockedContext,
       helpersData: mockedHelpersData,
       user: mockedUser,
       pages: expectedPages,
+      db: mockedDb,
     });
     expect(result).toEqual(expectedResult);
   });
@@ -88,11 +93,15 @@ describe('withAuthServerSideProps', () => {
         },
       };
       // Act
-      const result = await withAuthServerSideProps(mockedHandler)(
-        mockedContext as unknown as GetServerSidePropsContext
-      );
+      const result = await withAuthServerSideProps(
+        mockedHandler,
+        mockedDb
+      )(mockedContext as unknown as GetServerSidePropsContext);
       // Assert
-      expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+      expect(getServerSideUserData).toHaveBeenCalledWith(
+        mockedContext,
+        mockedDb
+      );
       expect(mockedHandler).not.toHaveBeenCalled();
       expect(result).toEqual(expectedResult);
     });
@@ -107,11 +116,15 @@ describe('withAuthServerSideProps', () => {
       };
       const expectedResult = { notFound: true };
       // Act
-      const result = await withAuthServerSideProps(mockedHandler)(
-        mockedContext as unknown as GetServerSidePropsContext
-      );
+      const result = await withAuthServerSideProps(
+        mockedHandler,
+        mockedDb
+      )(mockedContext as unknown as GetServerSidePropsContext);
       // Assert
-      expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+      expect(getServerSideUserData).toHaveBeenCalledWith(
+        mockedContext,
+        mockedDb
+      );
       expect(mockedHandler).not.toHaveBeenCalled();
       expect(result).toEqual(expectedResult);
     });
@@ -144,10 +157,14 @@ describe('withAuthServerSideProps', () => {
       // Act
       const result = await withAuthServerSideProps(
         mockedHandler,
+        mockedDb,
         helperName
       )(mockedContext as unknown as GetServerSidePropsContext);
       // Assert
-      expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+      expect(getServerSideUserData).toHaveBeenCalledWith(
+        mockedContext,
+        mockedDb
+      );
       expect(mockedHandler).toHaveBeenCalledWith({
         ...mockedContext,
         notionHelperData: {
@@ -156,6 +173,7 @@ describe('withAuthServerSideProps', () => {
         },
         user: mockedUser,
         pages: expectedPages,
+        db: mockedDb,
       });
       expect(result).toEqual(expectedResult);
     });
@@ -168,10 +186,14 @@ describe('withAuthServerSideProps', () => {
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });
@@ -185,10 +207,14 @@ describe('withAuthServerSideProps', () => {
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });
@@ -208,10 +234,14 @@ describe('withAuthServerSideProps', () => {
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });
@@ -231,10 +261,14 @@ describe('withAuthServerSideProps', () => {
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });
