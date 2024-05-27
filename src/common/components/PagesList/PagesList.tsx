@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import { PageInfo } from '@/common/types/auth';
+import { PageInfo } from '@/auth/types';
 
 const PagesList = ({ pages }: { pages: PageInfo[] }) => {
   return (

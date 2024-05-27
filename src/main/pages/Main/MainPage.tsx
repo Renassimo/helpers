@@ -1,4 +1,4 @@
-import { PageInfo, User } from '@/common/types/auth';
+import { PageInfo, User } from '@/auth/types';
 
 import Typography from '@mui/material/Typography';
 

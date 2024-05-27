@@ -1,4 +1,4 @@
-import { PageInfo } from '@/common/types/auth';
+import { PageInfo } from '@/auth/types';
 
 const MockedPagesList = jest.fn(({ pages }: { pages: PageInfo[] }) => {
   return (

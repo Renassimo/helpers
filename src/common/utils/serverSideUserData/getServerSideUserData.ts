@@ -5,7 +5,7 @@ import { GetServerSidePropsContext } from 'next';
 import auth from '@/common/lib/firebase/auth';
 
 import getUserHelpersData from '@/common/utils/userHelpersData';
-import { ServerSideUserData } from '@/common/types/auth';
+import { ServerSideUserData } from '@/auth/types';
 
 const getServerSideUserData = async (
   ctx: GetServerSidePropsContext

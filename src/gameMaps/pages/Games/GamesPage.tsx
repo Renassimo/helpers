@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 
 import { GamesPageProps } from '@/gameMaps/types';
-import { PageInfo } from '@/common/types/auth';
+import { PageInfo } from '@/auth/types';
 
 import { useErrorAlert } from '@/common/hooks/alerts';
 

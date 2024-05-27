@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { PageInfo, User } from '@/common/types/auth';
+import { PageInfo, User } from '@/auth/types';
 import { NotionError } from '@/common/types/notion';
 import { SpottedPlaneApiData } from '@/spotting/types';
 

@@ -4,7 +4,7 @@ import { withAuthApi } from '@/common/lib/middlewares/withAuth';
 
 import { getError } from '@/common/utils/errors';
 
-import { NextApiRequestWithAuth } from '@/common/types/auth';
+import { NextApiRequestWithAuth } from '@/auth/types';
 
 import NotionService from '@/common/services/notion';
 

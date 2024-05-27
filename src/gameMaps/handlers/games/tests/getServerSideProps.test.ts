@@ -1,12 +1,12 @@
 import { getFirestore } from 'firebase-admin/firestore';
 
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 
 import GamesService from '@/gameMaps/services/games';
 
 import getServerSideProps from '../getServerSideProps';
 
-import { mockedPageInfos, mockedUser } from '@/common/types/auth/mocks';
+import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
 import { mockedGames } from '@/gameMaps/types/mocks';
 
 jest.mock('firebase-admin/firestore');

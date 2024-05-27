@@ -1,4 +1,4 @@
-import { User } from '@/common/types/auth';
+import { User } from '@/auth/types';
 
 export const mockedUser: User = {
   email: 'email@example.com',

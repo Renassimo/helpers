@@ -1,6 +1,6 @@
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
-import { PageInfo } from '@/common/types/auth';
+import { PageInfo } from '@/auth/types';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 import PagesList from '@/common/components/PagesList';
@@ -9,7 +9,7 @@ import GamesPage from '../GamesPage';
 
 import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
 import MockedPagesList from '@/common/components/PagesList/mocks';
-import { mockedUser } from '@/common/types/auth/mocks';
+import { mockedUser } from '@/auth/types/mocks';
 import { mockedGames } from '@/gameMaps/types/mocks';
 
 jest.mock('@/common/templates/PageTemplate');

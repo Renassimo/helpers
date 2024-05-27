@@ -7,7 +7,7 @@ import {
   showNotFound,
 } from '@/common/utils/serverSideRenderProps';
 
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { HelpersData } from '@/common/types/helpers';
 import { capitalCase } from 'change-case';
 

@@ -1,6 +1,6 @@
 import { getFirestore } from 'firebase-admin/firestore';
 
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { GamesServerSideProps } from '@/gameMaps/types';
 
 import GamesService from '@/gameMaps/services/games';

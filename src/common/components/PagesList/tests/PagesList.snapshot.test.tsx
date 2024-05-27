@@ -1,6 +1,6 @@
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
-import { PageInfo } from '@/common/types/auth';
+import { PageInfo } from '@/auth/types';
 
 import PagesList from '../PagesList';
 

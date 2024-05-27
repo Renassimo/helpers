@@ -7,7 +7,7 @@ import PageTemplate from '@/common/templates/PageTemplate';
 import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
 import MockedSpottedPlanesList from '@/spotting/components/SpottedPlanesList/mocks';
 import { mockedSpottedPlaneApiDataTruthy } from '@/spotting/types/mocks';
-import { mockedPageInfos, mockedUser } from '@/common/types/auth/mocks';
+import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
 import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
 jest.mock('@/spotting/components/SpottedPlanesList');
