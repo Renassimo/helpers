@@ -1,4 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
+import { NextApiRequestWithAuth } from '@/auth/types';
 import { Firestore } from '@/common/lib/firebase/types';
 
 import { getError } from '@/common/utils/errors';
@@ -87,11 +88,12 @@ describe('withAuthApi', () => {
         ...mockedReq,
         uid: mockedUid,
         helpersData: mockedHelpersData,
+        db: mockedDb,
       };
 
       // Act
       await withAuthApi(mockedHandler, mockedDb)(
-        mockedReq as unknown as NextApiRequest,
+        mockedReq as unknown as NextApiRequestWithAuth,
         mockedRes as unknown as NextApiResponse
       );
       // Assert
@@ -115,7 +117,7 @@ describe('withAuthApi', () => {
 
         // Act
         await withAuthApi(mockedHandler, mockedDb)(
-          mockedReq as unknown as NextApiRequest,
+          mockedReq as unknown as NextApiRequestWithAuth,
           mockedRes as unknown as NextApiResponse
         );
 
@@ -143,7 +145,7 @@ describe('withAuthApi', () => {
 
         // Act
         await withAuthApi(mockedHandler, mockedDb)(
-          mockedReq as unknown as NextApiRequest,
+          mockedReq as unknown as NextApiRequestWithAuth,
           mockedRes as unknown as NextApiResponse
         );
 
@@ -175,7 +177,7 @@ describe('withAuthApi', () => {
 
         // Act
         await withAuthApi(mockedHandler, mockedDb)(
-          mockedReq as unknown as NextApiRequest,
+          mockedReq as unknown as NextApiRequestWithAuth,
           mockedRes as unknown as NextApiResponse
         );
 
@@ -204,12 +206,13 @@ describe('withAuthApi', () => {
         const expectedReq = {
           ...mockedReq,
           uid: mockedUid,
+          db: mockedDb,
         };
         const expectedStatus = 403;
 
         // Act
         await withAuthApi(mockedHandler, mockedDb)(
-          mockedReq as unknown as NextApiRequest,
+          mockedReq as unknown as NextApiRequestWithAuth,
           mockedRes as unknown as NextApiResponse
         );
 
@@ -250,6 +253,7 @@ describe('withAuthApi', () => {
           notionHelperData: {
             token: notionToken,
           },
+          db: mockedDb,
         };
 
         // Act
@@ -258,7 +262,7 @@ describe('withAuthApi', () => {
           mockedDb,
           helperName
         )(
-          mockedReq as unknown as NextApiRequest,
+          mockedReq as unknown as NextApiRequestWithAuth,
           mockedRes as unknown as NextApiResponse
         );
         // Assert
@@ -285,6 +289,7 @@ describe('withAuthApi', () => {
           const expectedReq = {
             ...mockedReq,
             uid: mockedUid,
+            db: mockedDb,
           };
           const expectedStatus = 403;
 
@@ -294,7 +299,7 @@ describe('withAuthApi', () => {
             mockedDb,
             helperName
           )(
-            mockedReq as unknown as NextApiRequest,
+            mockedReq as unknown as NextApiRequestWithAuth,
             mockedRes as unknown as NextApiResponse
           );
 
@@ -328,6 +333,7 @@ describe('withAuthApi', () => {
           const expectedReq = {
             ...mockedReq,
             uid: mockedUid,
+            db: mockedDb,
           };
           const expectedStatus = 403;
 
@@ -337,7 +343,7 @@ describe('withAuthApi', () => {
             mockedDb,
             helperName
           )(
-            mockedReq as unknown as NextApiRequest,
+            mockedReq as unknown as NextApiRequestWithAuth,
             mockedRes as unknown as NextApiResponse
           );
 
@@ -379,7 +385,7 @@ describe('withAuthApi', () => {
 
       // Act
       await withAuthApi(mockedHandler, mockedDb)(
-        mockedReq as unknown as NextApiRequest,
+        mockedReq as unknown as NextApiRequestWithAuth,
         mockedRes as unknown as NextApiResponse
       );
 
@@ -401,7 +407,7 @@ describe('withAuthApi', () => {
 
         // Act
         await withAuthApi(mockedHandler, mockedDb)(
-          mockedReq as unknown as NextApiRequest,
+          mockedReq as unknown as NextApiRequestWithAuth,
           mockedRes as unknown as NextApiResponse
         );
 

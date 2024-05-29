@@ -11,6 +11,11 @@ export interface FirestoreDesrializedDoc {
 }
 
 export interface FirestoreApiData {
+  data?: FirestoreDesrializedDoc | FirestoreDesrializedDoc[];
+  error?: CommonError;
+}
+
+export interface FirestoreServerSideData {
   data: FirestoreDesrializedDoc | FirestoreDesrializedDoc[] | null;
   error: CommonError | null;
 }

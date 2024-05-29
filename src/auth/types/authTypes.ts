@@ -12,9 +12,10 @@ export interface User {
 }
 
 export interface NextApiRequestWithAuth extends NextApiRequest {
-  uid?: string;
+  uid: string;
   helpersData?: HelpersData;
   notionHelperData?: NotionHelperData;
+  db: Firestore;
 }
 
 export interface GetServerSidePropsContextWithAuth
