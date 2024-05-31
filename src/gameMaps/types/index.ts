@@ -1,1 +1,2 @@
-export * from './gameMapsTypes';
+export * from './gameTypes';
+export * from './playTypes';

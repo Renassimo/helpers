@@ -1,4 +1,4 @@
-import { GameData } from '../gameMapsTypes';
+import { GameData } from '../gameTypes';
 
 export const mockedGame1: GameData = {
   id: '1',
