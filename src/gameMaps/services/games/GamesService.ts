@@ -34,7 +34,6 @@ class GamesService extends FirestoreService {
       );
       return { data, error: null };
     } catch (error: unknown) {
-      console.error(error);
       return { data: null, error: this.deserializeError(error) };
     }
   }
@@ -50,7 +49,6 @@ class GamesService extends FirestoreService {
       const data: GameData = this.deserializeDoc({ docData });
       return { data, error: null };
     } catch (error: unknown) {
-      console.error(error);
       return { data: null, error: this.deserializeError(error) };
     }
   }

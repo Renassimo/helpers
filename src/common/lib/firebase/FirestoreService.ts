@@ -25,14 +25,12 @@ abstract class FirestoreService {
     id,
   }: {
     docData?: FirestoreDocData;
-    updatedAttributes?: object;
     id?: string;
+    updatedAttributes?: object;
   }) {
     return <T>{
       id: id ?? docData?.id,
-      attributes: docData
-        ? { ...docData?.data(), ...updatedAttributes }
-        : updatedAttributes,
+      attributes: docData?.data() ?? updatedAttributes,
     };
   }
 
