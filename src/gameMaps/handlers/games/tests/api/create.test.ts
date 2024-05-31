@@ -17,7 +17,7 @@ describe('create', () => {
   const mockedAttributes = mockedGame.attributes;
   const mockedBody = { data: { attributes: mockedAttributes } };
   const mockedDb = 'mockedDb';
-  const mockedData = { data: mockedGame };
+  const mockedData = { ...mockedGame };
   const mockedJson = jest.fn();
   const mockedStatus = jest.fn(() => ({
     json: mockedJson,
@@ -56,7 +56,7 @@ describe('create', () => {
     expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
     expect(mockedCreate).toHaveBeenCalledWith(mockedUid, mockedAttributes);
     expect(mockedStatus).toHaveBeenCalledWith(201);
-    expect(mockedJson).toHaveBeenCalledWith(mockedData);
+    expect(mockedJson).toHaveBeenCalledWith({ data: mockedData });
   });
 
   describe('when get error', () => {

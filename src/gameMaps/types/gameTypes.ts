@@ -6,33 +6,11 @@ export interface GameData {
   attributes: GameAttributes;
 }
 
-export interface GameAttributesPartial {
-  backgroundColor?: string;
-  description?: string;
-  mapImageUrl?: string;
-  title?: string;
-}
-
-export interface GameAttributes extends GameAttributesPartial {
+export interface GameAttributes {
   backgroundColor: string;
   description: string;
   mapImageUrl: string;
   title: string;
-}
-
-export interface GamesServerSideData {
-  data: GameData[] | null;
-  error: CommonError | null;
-}
-
-export interface GameApiData {
-  data?: GameData;
-  error?: CommonError;
-}
-
-export interface GameServerSideData {
-  data: GameData | null;
-  error: CommonError | null;
 }
 
 export interface GamesPageProps {

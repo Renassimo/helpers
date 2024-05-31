@@ -24,10 +24,7 @@ describe('GamesService', () => {
       const gamesService = GamesService.getInstance(
         mockedDb as unknown as Firestore
       );
-      const expectedResult = {
-        data: [{ id: '1', attributes: { title: 'doc 1' } }],
-        error: null,
-      };
+      const expectedResult = [{ id: '1', attributes: { title: 'doc 1' } }];
       // Act
       const result = await gamesService.getAll('uid');
       // Assert
@@ -42,21 +39,18 @@ describe('GamesService', () => {
         // Arrange
         const [mockedDb] = mockDBCallStack('collection()', {
           doc: () => {
-            throw Error('Error happend');
+            throw Error('Error happened');
           },
         });
 
         const gamesService = GamesService.getInstance(
           mockedDb as unknown as Firestore
         );
-        const expectedResult = {
-          data: null,
-          error: { message: 'Error happend' },
-        };
         // Act
-        const result = await gamesService.getAll('uid');
         // Assert
-        expect(result).toEqual(expectedResult);
+        expect(async () => {
+          await gamesService.getAll('uid');
+        }).rejects.toThrowError('Error happened');
       });
     });
   });
@@ -77,10 +71,7 @@ describe('GamesService', () => {
       const gamesService = GamesService.getInstance(
         mockedDb as unknown as Firestore
       );
-      const expectedResult = {
-        data: { id: '1', attributes: { title: 'doc 1' } },
-        error: null,
-      };
+      const expectedResult = { id: '1', attributes: { title: 'doc 1' } };
       // Act
       const result = await gamesService.getOne('uid', 'id');
       // Assert
@@ -92,23 +83,20 @@ describe('GamesService', () => {
     });
 
     describe('when receives error', () => {
-      test('returns error', async () => {
+      test('throws error', async () => {
         // Arrange
         const mockedDb = {
           collection: () => {
-            throw Error('Error happend');
+            throw Error('Error happened');
           },
         } as unknown as Firestore;
 
         const gamesService = GamesService.getInstance(mockedDb);
-        const expectedResult = {
-          data: null,
-          error: { message: 'Error happend' },
-        };
         // Act
-        const result = await gamesService.getOne('uid', 'id');
         // Assert
-        expect(result).toEqual(expectedResult);
+        expect(async () => {
+          await gamesService.getOne('uid', 'id');
+        }).rejects.toThrowError('Error happened');
       });
     });
   });
@@ -129,7 +117,7 @@ describe('GamesService', () => {
         mockedDb as unknown as Firestore
       );
       const expectedResult = {
-        data: mockedGame,
+        ...mockedGame,
       };
       // Act
       const result = await gamesService.create('uid', mockedGame.attributes);
@@ -185,10 +173,8 @@ describe('GamesService', () => {
         mockedDb as unknown as Firestore
       );
       const expectedResult = {
-        data: {
-          ...mockedGame,
-          attributes: updatedAttributes,
-        },
+        ...mockedGame,
+        attributes: updatedAttributes,
       };
       // Act
       const result = await gamesService.update('uid', 'id', {

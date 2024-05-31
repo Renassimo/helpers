@@ -29,7 +29,7 @@ const handler = async (
         body.data.attributes
       );
 
-      res.status(200).json(data);
+      res.status(200).json({ data });
     } else if (method === DELETE) {
       await gamesService.delete(uid, query.id as string);
 

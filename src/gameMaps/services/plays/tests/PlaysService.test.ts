@@ -26,10 +26,7 @@ describe('PlaysService', () => {
       const playsService = PlaysService.getInstance(
         mockedDb as unknown as Firestore
       );
-      const expectedResult = {
-        data: [{ id: '1', attributes: { title: 'doc 1' } }],
-        error: null,
-      };
+      const expectedResult = [{ id: '1', attributes: { title: 'doc 1' } }];
       // Act
       const result = await playsService.getAll('uid', mockedGameId);
       // Assert
@@ -46,21 +43,18 @@ describe('PlaysService', () => {
         const mockedGameId = 'game1';
         const [mockedDb] = mockDBCallStack('collection()', {
           doc: () => {
-            throw Error('Error happend');
+            throw Error('Error happened');
           },
         });
 
         const playsService = PlaysService.getInstance(
           mockedDb as unknown as Firestore
         );
-        const expectedResult = {
-          data: null,
-          error: { message: 'Error happend' },
-        };
         // Act
-        const result = await playsService.getAll('uid', mockedGameId);
         // Assert
-        expect(result).toEqual(expectedResult);
+        expect(async () => {
+          await playsService.getAll('uid', mockedGameId);
+        }).rejects.toThrowError('Error happened');
       });
     });
   });
@@ -81,10 +75,7 @@ describe('PlaysService', () => {
       const playsService = PlaysService.getInstance(
         mockedDb as unknown as Firestore
       );
-      const expectedResult = {
-        data: { id: '1', attributes: { title: 'doc 1' } },
-        error: null,
-      };
+      const expectedResult = { id: '1', attributes: { title: 'doc 1' } };
       // Act
       const result = await playsService.getOne('uid', 'id');
       // Assert
@@ -100,19 +91,16 @@ describe('PlaysService', () => {
         // Arrange
         const mockedDb = {
           collection: () => {
-            throw Error('Error happend');
+            throw Error('Error happened');
           },
         } as unknown as Firestore;
 
         const playsService = PlaysService.getInstance(mockedDb);
-        const expectedResult = {
-          data: null,
-          error: { message: 'Error happend' },
-        };
         // Act
-        const result = await playsService.getOne('uid', 'id');
         // Assert
-        expect(result).toEqual(expectedResult);
+        expect(async () => {
+          await playsService.getOne('uid', 'id');
+        }).rejects.toThrowError('Error happened');
       });
     });
   });
@@ -133,7 +121,7 @@ describe('PlaysService', () => {
         mockedDb as unknown as Firestore
       );
       const expectedResult = {
-        data: mockedPlay,
+        ...mockedPlay,
       };
       // Act
       const result = await playsService.create('uid', mockedPlay.attributes);
@@ -189,10 +177,8 @@ describe('PlaysService', () => {
         mockedDb as unknown as Firestore
       );
       const expectedResult = {
-        data: {
-          ...mockedPlay,
-          attributes: updatedAttributes,
-        },
+        ...mockedPlay,
+        attributes: updatedAttributes,
       };
       // Act
       const result = await playsService.update('uid', 'id', {

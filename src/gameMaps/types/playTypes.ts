@@ -6,35 +6,12 @@ export interface PlayData {
   attributes: PlayAttributes;
 }
 
-export interface PlayAttributesPartial {
-  title?: string;
-  description?: string;
-  gameId?: string;
-  lastUpdateDate?: string;
-  startDate?: string;
-}
-
-export interface PlayAttributes extends PlayAttributesPartial {
+export interface PlayAttributes {
   title: string;
   description: string;
   gameId: string;
   lastUpdateDate: string;
   startDate: string;
-}
-
-export interface PlaysServerSideData {
-  data: PlayData[] | null;
-  error: CommonError | null;
-}
-
-export interface PlayApiData {
-  data?: PlayData;
-  error?: CommonError;
-}
-
-export interface PlayServerSideData {
-  data: PlayData | null;
-  error: CommonError | null;
 }
 
 export interface PlaysPageProps {

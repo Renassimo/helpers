@@ -1,19 +1,12 @@
 import { CommonError } from '@/common/types/errors';
-import {
-  Firestore,
-  FirestoreApiData,
-  FirestoreDocData,
-  FirestoreServerSideData,
-} from './types';
+import { Firestore, FirestoreDesrializedDoc, FirestoreDocData } from './types';
 
 interface FirestoreService {
-  // server side methods
-  getAll?(...args: string[]): Promise<FirestoreServerSideData>;
-  getOne?(...args: string[]): Promise<FirestoreServerSideData>;
-  // api methods
-  create?(...args: (string | object)[]): Promise<FirestoreApiData>;
-  update?(...args: (string | object)[]): Promise<FirestoreApiData>;
-  delete?(...args: string[]): Promise<FirestoreApiData>;
+  getAll?(...args: string[]): Promise<FirestoreDesrializedDoc[]>;
+  getOne?(...args: string[]): Promise<FirestoreDesrializedDoc>;
+  create?(...args: (string | object)[]): Promise<FirestoreDesrializedDoc>;
+  update?(...args: (string | object)[]): Promise<FirestoreDesrializedDoc>;
+  delete?(...args: string[]): Promise<Record<string, never>>;
 }
 
 abstract class FirestoreService {
@@ -34,7 +27,7 @@ abstract class FirestoreService {
     };
   }
 
-  protected deserializeError(error: unknown) {
+  deserializeError(error: unknown) {
     const message = (error as CommonError)?.message ?? null;
     return { message };
   }

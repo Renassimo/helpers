@@ -18,7 +18,7 @@ describe('updateDelete', () => {
   const mockedBody = { data: { attributes: mockedAttributes } };
   const mockedQuery = { id: mockedGame.id };
   const mockedDb = 'mockedDb';
-  const mockedData = { data: mockedGame };
+  const mockedData = { ...mockedGame };
   const mockedJson = jest.fn();
   const mockedStatus = jest.fn(() => ({
     json: mockedJson,
@@ -65,7 +65,7 @@ describe('updateDelete', () => {
         mockedAttributes
       );
       expect(mockedStatus).toHaveBeenCalledWith(200);
-      expect(mockedJson).toHaveBeenCalledWith(mockedData);
+      expect(mockedJson).toHaveBeenCalledWith({ data: mockedData });
     });
   });
 

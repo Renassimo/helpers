@@ -16,7 +16,7 @@ const handler = async (
       const gamesService = GamesService.getInstance(db);
       const data = await gamesService.create(uid, body.data.attributes);
 
-      res.status(201).json(data);
+      res.status(201).json({ data });
     } catch (error: any) {
       res.status(500).json(getError(500, error?.message));
     }

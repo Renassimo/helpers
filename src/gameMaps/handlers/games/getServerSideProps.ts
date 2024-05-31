@@ -9,8 +9,16 @@ const getServerSideProps = async (
   const { user, pages } = ctx;
   const { uid } = user;
 
+  let data = null;
+  let error = null;
+
   const gamesService = GamesService.getInstance(ctx.db);
-  const { data, error } = await gamesService.getAll(uid);
+
+  try {
+    data = await gamesService.getAll(uid);
+  } catch (err: any) {
+    error = gamesService.deserializeError(err);
+  }
 
   return {
     props: {

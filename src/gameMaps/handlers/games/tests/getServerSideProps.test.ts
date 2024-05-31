@@ -22,7 +22,7 @@ describe('getServerSideProps', () => {
       pages: mockedPageInfos,
       db: mockedDb,
     };
-    const mockedData = { data: mockedGames, error: null };
+    const mockedData = [...mockedGames];
 
     test('returns data', async () => {
       // Arange
