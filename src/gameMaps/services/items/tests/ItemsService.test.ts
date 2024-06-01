@@ -11,6 +11,7 @@ describe('ItemsService', () => {
   });
   const mockedGameId = 'gm1';
   const mockedPlayId = 'pl1';
+  const mockedCategoryId = 'cat1';
 
   describe('getAll', () => {
     test('returns data', async () => {
@@ -48,6 +49,50 @@ describe('ItemsService', () => {
       expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
       expect(mockedCollection3).toHaveBeenCalledWith('items');
       expect(mockedWhere).toHaveBeenCalledWith('playId', '==', mockedPlayId);
+    });
+
+    describe('when filters by category', () => {
+      test('returns data', async () => {
+        // Arrange
+        const [mockedDb, mockedDbFuncs] = mockDBCallStack(
+          'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(items).where(query).get()',
+          {
+            docs: [{ id: 'it1', data: () => ({ title: 'doc 1' }) }],
+          }
+        );
+        const [
+          mockedCollection1,
+          mockedDoc1,
+          mockedCollection2,
+          mockedDoc2,
+          mockedCollection3,
+          mockedWhere,
+        ] = mockedDbFuncs;
+
+        const categorieService = ItemsService.getInstance(
+          mockedDb as unknown as Firestore
+        );
+        const expectedResult = [{ id: 'it1', attributes: { title: 'doc 1' } }];
+        // Act
+        const result = await categorieService.getAll(
+          'uid',
+          mockedGameId,
+          mockedCategoryId,
+          'categoryId'
+        );
+        // Assert
+        expect(result).toEqual(expectedResult);
+        expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
+        expect(mockedDoc1).toHaveBeenCalledWith('uid');
+        expect(mockedCollection2).toHaveBeenCalledWith('games');
+        expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
+        expect(mockedCollection3).toHaveBeenCalledWith('items');
+        expect(mockedWhere).toHaveBeenCalledWith(
+          'categoryId',
+          '==',
+          mockedCategoryId
+        );
+      });
     });
 
     describe('when receives error', () => {

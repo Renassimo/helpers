@@ -19,7 +19,8 @@ class ItemsService extends FirestoreService {
   async getAll(
     uid: string,
     gameId: string,
-    playId: string
+    filterById: string,
+    filterBy = 'playId'
   ): Promise<ItemData[]> {
     const plays = await this.db
       .collection(this.GAME_MAPS)
@@ -27,7 +28,7 @@ class ItemsService extends FirestoreService {
       .collection(this.GAMES)
       .doc(gameId)
       .collection(this.ITEMS)
-      .where('playId', '==', playId)
+      .where(filterBy, '==', filterById)
       .get();
     return plays.docs.map((doc) => this.deserializeDoc({ docData: doc }));
   }
