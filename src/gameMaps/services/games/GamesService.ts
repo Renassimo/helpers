@@ -56,15 +56,7 @@ class GamesService extends FirestoreService {
       .collection(this.GAMES)
       .doc(id)
       .update({ ...attributes });
-    const docData = await this.db
-      .collection(this.GAME_MAPS)
-      .doc(uid)
-      .collection(this.GAMES)
-      .doc(id)
-      .get();
-    return this.deserializeDoc({
-      docData: docData,
-    });
+    return this.getOne(uid, id);
   }
 
   async delete(uid: string, id: string): Promise<Record<string, never>> {

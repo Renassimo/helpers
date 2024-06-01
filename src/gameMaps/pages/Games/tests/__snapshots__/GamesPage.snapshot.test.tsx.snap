@@ -19,12 +19,12 @@ exports[`GamesPage snapshot renders successfully 1`] = `
       </h1>
       <div>
         <a
-          href="/gameMaps/games/1"
+          href="/gameMaps/games/gm1"
         >
           Game 1
         </a>
         <a
-          href="/gameMaps/games/2"
+          href="/gameMaps/games/gm2"
         >
           Game 2
         </a>

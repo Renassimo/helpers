@@ -1,7 +1,7 @@
 import { GameData } from '../gameTypes';
 
 export const mockedGame1: GameData = {
-  id: '1',
+  id: 'gm1',
   attributes: {
     title: 'Game 1',
     backgroundColor: '#fff',
@@ -11,7 +11,7 @@ export const mockedGame1: GameData = {
 };
 
 export const mockedGame2: GameData = {
-  id: '2',
+  id: 'gm2',
   attributes: {
     title: 'Game 2',
     backgroundColor: '#888',

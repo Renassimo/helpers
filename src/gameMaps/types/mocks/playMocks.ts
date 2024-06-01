@@ -1,22 +1,22 @@
 import { PlayData } from '../playTypes';
 
 export const mockedPlay1: PlayData = {
-  id: '1',
+  id: 'pl1',
   attributes: {
     title: 'Play 1',
     description: 'Play 1 description',
-    gameId: 'Game 1 id',
+    gameId: 'gm1',
     lastUpdateDate: '11-11',
     startDate: '10-10',
   },
 };
 
 export const mockedPlay2: PlayData = {
-  id: '2',
+  id: 'pl2',
   attributes: {
     title: 'Play 2',
     description: 'Play 2 description',
-    gameId: 'Game 2 id',
+    gameId: 'gm2',
     lastUpdateDate: '22-22',
     startDate: '20-20',
   },

@@ -1,44 +1,47 @@
 import FirestoreService from '@/common/lib/firebase/FirestoreService';
 
 import { Firestore } from '@/common/lib/firebase/types';
-import { PlayAttributes, PlayData } from '@/gameMaps/types';
+import { CategoryAttributes, CategoryData } from '@/gameMaps/types';
 
-class PlaysService extends FirestoreService {
-  private static instance: PlaysService | null;
+class CategoriesService extends FirestoreService {
+  private static instance: CategoriesService | null;
   private GAME_MAPS: 'gameMaps';
-  private PLAYS: 'plays';
+  private CATEGORIES: 'categories';
 
   private constructor(db: Firestore) {
     super(db);
     this.GAME_MAPS = 'gameMaps';
-    this.PLAYS = 'plays';
+    this.CATEGORIES = 'categories';
   }
 
-  async getAll(uid: string, gameId: string): Promise<PlayData[]> {
+  async getAll(uid: string, gameId: string): Promise<CategoryData[]> {
     const plays = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
-      .collection(this.PLAYS)
+      .collection(this.CATEGORIES)
       .where('gameId', '==', gameId)
       .get();
     return plays.docs.map((doc) => this.deserializeDoc({ docData: doc }));
   }
 
-  async getOne(uid: string, id: string): Promise<PlayData> {
+  async getOne(uid: string, id: string): Promise<CategoryData> {
     const docData = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
-      .collection(this.PLAYS)
+      .collection(this.CATEGORIES)
       .doc(id)
       .get();
     return this.deserializeDoc({ docData });
   }
 
-  async create(uid: string, attributes: PlayAttributes): Promise<PlayData> {
+  async create(
+    uid: string,
+    attributes: CategoryAttributes
+  ): Promise<CategoryData> {
     const game = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
-      .collection(this.PLAYS)
+      .collection(this.CATEGORIES)
       .add(attributes);
     return this.deserializeDoc({
       id: game.id,
@@ -49,12 +52,12 @@ class PlaysService extends FirestoreService {
   async update(
     uid: string,
     id: string,
-    attributes: Partial<PlayAttributes>
-  ): Promise<PlayData> {
+    attributes: Partial<CategoryAttributes>
+  ): Promise<CategoryData> {
     await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
-      .collection(this.PLAYS)
+      .collection(this.CATEGORIES)
       .doc(id)
       .update({ ...attributes });
     return this.getOne(uid, id);
@@ -64,14 +67,14 @@ class PlaysService extends FirestoreService {
     await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
-      .collection(this.PLAYS)
+      .collection(this.CATEGORIES)
       .doc(id)
       .delete();
     return {};
   }
 
-  static getInstance(db: Firestore): PlaysService {
-    if (!this.instance) this.instance = new PlaysService(db);
+  static getInstance(db: Firestore): CategoriesService {
+    if (!this.instance) this.instance = new CategoriesService(db);
     return this.instance;
   }
 
@@ -80,4 +83,4 @@ class PlaysService extends FirestoreService {
   }
 }
 
-export default PlaysService;
+export default CategoriesService;
