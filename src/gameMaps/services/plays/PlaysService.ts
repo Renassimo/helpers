@@ -6,11 +6,13 @@ import { PlayAttributes, PlayData } from '@/gameMaps/types';
 class PlaysService extends FirestoreService {
   private static instance: PlaysService | null;
   private GAME_MAPS: 'gameMaps';
+  private GAMES: 'games';
   private PLAYS: 'plays';
 
   private constructor(db: Firestore) {
     super(db);
     this.GAME_MAPS = 'gameMaps';
+    this.GAMES = 'games';
     this.PLAYS = 'plays';
   }
 
@@ -18,26 +20,35 @@ class PlaysService extends FirestoreService {
     const plays = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
+      .collection(this.GAMES)
+      .doc(gameId)
       .collection(this.PLAYS)
-      .where('gameId', '==', gameId)
       .get();
     return plays.docs.map((doc) => this.deserializeDoc({ docData: doc }));
   }
 
-  async getOne(uid: string, id: string): Promise<PlayData> {
+  async getOne(uid: string, gameId: string, id: string): Promise<PlayData> {
     const docData = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
+      .collection(this.GAMES)
+      .doc(gameId)
       .collection(this.PLAYS)
       .doc(id)
       .get();
     return this.deserializeDoc({ docData });
   }
 
-  async create(uid: string, attributes: PlayAttributes): Promise<PlayData> {
+  async create(
+    uid: string,
+    gameId: string,
+    attributes: PlayAttributes
+  ): Promise<PlayData> {
     const game = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
+      .collection(this.GAMES)
+      .doc(gameId)
       .collection(this.PLAYS)
       .add(attributes);
     return this.deserializeDoc({
@@ -48,22 +59,31 @@ class PlaysService extends FirestoreService {
 
   async update(
     uid: string,
+    gameId: string,
     id: string,
     attributes: Partial<PlayAttributes>
   ): Promise<PlayData> {
     await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
+      .collection(this.GAMES)
+      .doc(gameId)
       .collection(this.PLAYS)
       .doc(id)
       .update({ ...attributes });
-    return this.getOne(uid, id);
+    return this.getOne(uid, gameId, id);
   }
 
-  async delete(uid: string, id: string): Promise<Record<string, never>> {
+  async delete(
+    uid: string,
+    gameId: string,
+    id: string
+  ): Promise<Record<string, never>> {
     await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
+      .collection(this.GAMES)
+      .doc(gameId)
       .collection(this.PLAYS)
       .doc(id)
       .delete();

@@ -11,7 +11,6 @@ export interface CategoryAttributes {
   description: string;
   title: string;
   itemsAmount: number;
-  // gameId: string;
 }
 
 export interface CategoriesPageProps {

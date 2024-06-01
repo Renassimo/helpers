@@ -7,7 +7,6 @@ export const mockedCategory1: CategoryData = {
     description: 'Category 1 description',
     title: 'Category 1',
     itemsAmount: 50,
-    // gameId: 'gm1',
   },
 };
 
@@ -18,7 +17,6 @@ export const mockedCategory2: CategoryData = {
     description: 'Category 2 description',
     title: 'Category 2',
     itemsAmount: 35,
-    // gameId: 'gm2',
   },
 };
 

@@ -9,7 +9,6 @@ export interface PlayData {
 export interface PlayAttributes {
   title: string;
   description: string;
-  gameId: string;
   lastUpdateDate: string;
   startDate: string;
 }

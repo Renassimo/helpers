@@ -9,38 +9,50 @@ describe('ItemsService', () => {
   afterEach(() => {
     ItemsService.clearInstanceForTest();
   });
+  const mockedGameId = 'gm1';
+  const mockedPlayId = 'pl1';
 
   describe('getAll', () => {
     test('returns data', async () => {
       // Arrange
-      const mockedPlayId = 'pl1';
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(plays).where(query).get()',
+        'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(items).where(query).get()',
         {
           docs: [{ id: 'it1', data: () => ({ title: 'doc 1' }) }],
         }
       );
-      const [mockedCollection1, mockedDoc, mockedCollection2, mockedWhere] =
-        mockedDbFuncs;
+      const [
+        mockedCollection1,
+        mockedDoc1,
+        mockedCollection2,
+        mockedDoc2,
+        mockedCollection3,
+        mockedWhere,
+      ] = mockedDbFuncs;
 
       const categorieService = ItemsService.getInstance(
         mockedDb as unknown as Firestore
       );
       const expectedResult = [{ id: 'it1', attributes: { title: 'doc 1' } }];
       // Act
-      const result = await categorieService.getAll('uid', mockedPlayId);
+      const result = await categorieService.getAll(
+        'uid',
+        mockedGameId,
+        mockedPlayId
+      );
       // Assert
       expect(result).toEqual(expectedResult);
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
-      expect(mockedDoc).toHaveBeenCalledWith('uid');
-      expect(mockedCollection2).toHaveBeenCalledWith('items');
+      expect(mockedDoc1).toHaveBeenCalledWith('uid');
+      expect(mockedCollection2).toHaveBeenCalledWith('games');
+      expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
+      expect(mockedCollection3).toHaveBeenCalledWith('items');
       expect(mockedWhere).toHaveBeenCalledWith('playId', '==', mockedPlayId);
     });
 
     describe('when receives error', () => {
       test('returns error', async () => {
         // Arrange
-        const mockedPlayId = 'pl1';
         const [mockedDb] = mockDBCallStack('collection()', {
           doc: () => {
             throw Error('Error happened');
@@ -53,7 +65,7 @@ describe('ItemsService', () => {
         // Act
         // Assert
         expect(async () => {
-          await itemsService.getAll('uid', mockedPlayId);
+          await itemsService.getAll('uid', mockedGameId, mockedPlayId);
         }).rejects.toThrowError('Error happened');
       });
     });
@@ -63,27 +75,35 @@ describe('ItemsService', () => {
     test('returns data', async () => {
       // Arrange
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(plays).doc(id).get()',
+        'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(items).doc(id).get()',
         {
           id: 'it1',
           data: () => ({ title: 'doc 1' }),
         }
       );
-      const [mockedCollection1, mockedDoc1, mockedCollection2, mockedDoc2] =
-        mockedDbFuncs;
+      const [
+        mockedCollection1,
+        mockedDoc1,
+        mockedCollection2,
+        mockedDoc2,
+        mockedCollection3,
+        mockedDoc3,
+      ] = mockedDbFuncs;
 
       const categorieService = ItemsService.getInstance(
         mockedDb as unknown as Firestore
       );
       const expectedResult = { id: 'it1', attributes: { title: 'doc 1' } };
       // Act
-      const result = await categorieService.getOne('uid', 'it1');
+      const result = await categorieService.getOne('uid', mockedGameId, 'it1');
       // Assert
       expect(result).toEqual(expectedResult);
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
       expect(mockedDoc1).toHaveBeenCalledWith('uid');
-      expect(mockedCollection2).toHaveBeenCalledWith('items');
-      expect(mockedDoc2).toHaveBeenCalledWith('it1');
+      expect(mockedCollection2).toHaveBeenCalledWith('games');
+      expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
+      expect(mockedCollection3).toHaveBeenCalledWith('items');
+      expect(mockedDoc3).toHaveBeenCalledWith('it1');
     });
 
     describe('when receives error', () => {
@@ -99,7 +119,7 @@ describe('ItemsService', () => {
         // Act
         // Assert
         expect(async () => {
-          await categorieService.getOne('uid', 'it1');
+          await categorieService.getOne('uid', mockedGameId, 'it1');
         }).rejects.toThrowError('Error happened');
       });
     });
@@ -109,13 +129,19 @@ describe('ItemsService', () => {
     test('returns data', async () => {
       // Arrange
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(plays).add()',
+        'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(items).add()',
         {
           id: 'it1',
         }
       );
-      const [mockedCollection1, mockedDoc, mockedCollection2, mockedAdd1] =
-        mockedDbFuncs;
+      const [
+        mockedCollection1,
+        mockedDoc1,
+        mockedCollection2,
+        mockedDoc2,
+        mockedCollection3,
+        mockedAdd1,
+      ] = mockedDbFuncs;
 
       const categorieService = ItemsService.getInstance(
         mockedDb as unknown as Firestore
@@ -126,13 +152,16 @@ describe('ItemsService', () => {
       // Act
       const result = await categorieService.create(
         'uid',
+        mockedGameId,
         mockedItem.attributes
       );
       // Assert
       expect(result).toEqual(expectedResult);
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
-      expect(mockedDoc).toHaveBeenCalledWith('uid');
-      expect(mockedCollection2).toHaveBeenCalledWith('items');
+      expect(mockedDoc1).toHaveBeenCalledWith('uid');
+      expect(mockedCollection2).toHaveBeenCalledWith('games');
+      expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
+      expect(mockedCollection3).toHaveBeenCalledWith('items');
       expect(mockedAdd1).toHaveBeenCalledWith(mockedItem.attributes);
     });
 
@@ -149,7 +178,11 @@ describe('ItemsService', () => {
         // Act
         // Assert
         expect(async () => {
-          await categorieService.create('uid', mockedItem.attributes);
+          await categorieService.create(
+            'uid',
+            mockedGameId,
+            mockedItem.attributes
+          );
         }).rejects.toThrowError('Error happened');
       });
     });
@@ -167,14 +200,20 @@ describe('ItemsService', () => {
       const mockedGet = jest.fn(() => ({ id: 'it1', data: mockedData }));
       const mockedUpdate = jest.fn(() => ({ id: 'it1' }));
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(plays).doc(id)',
+        'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(items).doc(id)',
         {
           get: mockedGet,
           update: mockedUpdate,
         }
       );
-      const [mockedCollection1, mockedDoc1, mockedCollection2, mockedDoc2] =
-        mockedDbFuncs;
+      const [
+        mockedCollection1,
+        mockedDoc1,
+        mockedCollection2,
+        mockedDoc2,
+        mockedCollection3,
+        mockedDoc3,
+      ] = mockedDbFuncs;
 
       const categorieService = ItemsService.getInstance(
         mockedDb as unknown as Firestore
@@ -184,15 +223,17 @@ describe('ItemsService', () => {
         attributes: updatedAttributes,
       };
       // Act
-      const result = await categorieService.update('uid', 'it1', {
+      const result = await categorieService.update('uid', mockedGameId, 'it1', {
         description: newDescription,
       });
       // Assert
       expect(result).toEqual(expectedResult);
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
       expect(mockedDoc1).toHaveBeenCalledWith('uid');
-      expect(mockedCollection2).toHaveBeenCalledWith('items');
-      expect(mockedDoc2).toHaveBeenCalledWith('it1');
+      expect(mockedCollection2).toHaveBeenCalledWith('games');
+      expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
+      expect(mockedCollection3).toHaveBeenCalledWith('items');
+      expect(mockedDoc3).toHaveBeenCalledWith('it1');
       expect(mockedUpdate).toHaveBeenCalledWith({
         description: newDescription,
       });
@@ -211,7 +252,7 @@ describe('ItemsService', () => {
         // Act
         // Assert
         expect(async () => {
-          await categorieService.update('uid', 'it1', {
+          await categorieService.update('uid', mockedGameId, 'it1', {
             description: newDescription,
           });
         }).rejects.toThrowError('Error happened');
@@ -223,7 +264,7 @@ describe('ItemsService', () => {
     test('returns data', async () => {
       // Arrange
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(plays).doc(id).delete()',
+        'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(items).doc(id).delete()',
         {}
       );
       const [
@@ -231,6 +272,8 @@ describe('ItemsService', () => {
         mockedDoc1,
         mockedCollection2,
         mockedDoc2,
+        mockedCollection3,
+        mockedDoc3,
         mockedDelete,
       ] = mockedDbFuncs;
 
@@ -239,13 +282,15 @@ describe('ItemsService', () => {
       );
       const expectedResult = {};
       // Act
-      const result = await categorieService.delete('uid', 'it1');
+      const result = await categorieService.delete('uid', mockedGameId, 'it1');
       // Assert
       expect(result).toEqual(expectedResult);
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
       expect(mockedDoc1).toHaveBeenCalledWith('uid');
-      expect(mockedCollection2).toHaveBeenCalledWith('items');
-      expect(mockedDoc2).toHaveBeenCalledWith('it1');
+      expect(mockedCollection2).toHaveBeenCalledWith('games');
+      expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
+      expect(mockedCollection3).toHaveBeenCalledWith('items');
+      expect(mockedDoc3).toHaveBeenCalledWith('it1');
       expect(mockedDelete).toHaveBeenCalledWith();
     });
 
@@ -262,7 +307,7 @@ describe('ItemsService', () => {
         // Act
         // Assert
         expect(async () => {
-          await categorieService.delete('uid', 'it1');
+          await categorieService.delete('uid', mockedGameId, 'it1');
         }).rejects.toThrowError('Error happened');
       });
     });
