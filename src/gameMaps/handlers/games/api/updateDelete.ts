@@ -25,13 +25,13 @@ const handler = async (
     if (method === PATCH) {
       const data = await gamesService.update(
         uid,
-        query.id as string,
+        query.gameId as string,
         body.data.attributes
       );
 
       res.status(200).json({ data });
     } else if (method === DELETE) {
-      await gamesService.delete(uid, query.id as string);
+      await gamesService.delete(uid, query.gameId as string);
 
       res.status(204).json({});
     }

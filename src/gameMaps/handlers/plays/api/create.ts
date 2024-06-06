@@ -12,7 +12,7 @@ const handler = async (
   if (req.method === 'POST') {
     try {
       const { uid, query, body, db } = req;
-      const gameId = query.id as string;
+      const gameId = query.gameId as string;
 
       const playsService = PlaysService.getInstance(db);
       const data = await playsService.create(uid, gameId, body.data.attributes);

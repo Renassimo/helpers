@@ -25,7 +25,7 @@ const handler = async (
     if (method === PATCH) {
       const data = await playsService.update(
         uid,
-        query.id as string,
+        query.gameId as string,
         query.playId as string,
         body.data.attributes
       );
@@ -34,7 +34,7 @@ const handler = async (
     } else if (method === DELETE) {
       await playsService.delete(
         uid,
-        query.id as string,
+        query.gameId as string,
         query.playId as string
       );
 

@@ -18,7 +18,7 @@ describe('getServerSideProps', () => {
     user: mockedUser,
     pages: mockedPageInfos,
     db: mockedDb,
-    query: { id: mockedGame.id },
+    query: { gameId: mockedGame.id },
   };
   const mockedGameData = mockedGame;
   const mockedPlaysData = mockedPlay;

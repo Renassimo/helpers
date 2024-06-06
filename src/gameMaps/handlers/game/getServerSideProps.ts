@@ -9,7 +9,7 @@ const getServerSideProps = async (
 ): Promise<GameServerSideProps> => {
   const { user, pages, query, db } = ctx;
   const { uid } = user;
-  const gameId = query.id as string;
+  const gameId = query.gameId as string;
 
   let data = null;
   let error = null;
