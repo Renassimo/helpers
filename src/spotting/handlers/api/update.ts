@@ -19,7 +19,6 @@ const handler = async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
 
       res.status(status).json(responseBody);
     } catch (error: any) {
-      console.error(error);
       res.status(500).json(getError(500, error?.message));
     }
   } else {

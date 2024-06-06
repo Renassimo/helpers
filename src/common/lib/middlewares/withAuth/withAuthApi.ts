@@ -44,7 +44,6 @@ const withAuthApi = (
         req.helpersData = helpersData;
       }
     } catch (error: any) {
-      console.error(error);
       const errorCode = error?.errorInfo?.code;
 
       error.status = 401;
