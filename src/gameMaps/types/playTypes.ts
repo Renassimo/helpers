@@ -1,10 +1,4 @@
-import { PageInfo, User } from '@/auth/types';
-import { CommonError } from '@/common/types/errors';
-
-export interface PlayData {
-  id: string;
-  attributes: PlayAttributes;
-}
+import { Data, PageProps, ServerSideProps } from '@/common/types/props';
 
 export interface PlayAttributes {
   title: string;
@@ -13,13 +7,10 @@ export interface PlayAttributes {
   startDate: string;
 }
 
-export interface PlaysPageProps {
-  user: User;
-  pages: PageInfo[];
-  data: PlayData[] | null;
-  error: CommonError | null;
-}
+export type PlayData = Data<PlayAttributes>;
 
-export interface PlaysServerSideProps {
-  props: PlaysPageProps;
-}
+export type PlayPageProps = PageProps<PlayData>;
+export type PlaysPageProps = PageProps<PlayData[]>;
+
+export type PlayServerSideProps = ServerSideProps<PlayPageProps>;
+export type PlaysServerSideProps = ServerSideProps<PlaysPageProps>;

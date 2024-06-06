@@ -1,10 +1,5 @@
-import { PageInfo, User } from '@/auth/types';
-import { CommonError } from '@/common/types/errors';
-
-export interface GameData {
-  id: string;
-  attributes: GameAttributes;
-}
+import { Data, PageProps, ServerSideProps } from '@/common/types/props';
+import { PlayData } from '@/gameMaps/types/playTypes';
 
 export interface GameAttributes {
   backgroundColor: string;
@@ -13,13 +8,13 @@ export interface GameAttributes {
   title: string;
 }
 
-export interface GamesPageProps {
-  user: User;
-  pages: PageInfo[];
-  data: GameData[] | null;
-  error: CommonError | null;
-}
+export type GameData = Data<GameAttributes>;
 
-export interface GamesServerSideProps {
-  props: GamesPageProps;
-}
+export type GamePageProps = PageProps<{
+  gameData: GameData;
+  playsData: PlayData[];
+}>;
+export type GamesPageProps = PageProps<GameData[]>;
+
+export type GameServerSideProps = ServerSideProps<GamePageProps>;
+export type GamesServerSideProps = ServerSideProps<GamesPageProps>;

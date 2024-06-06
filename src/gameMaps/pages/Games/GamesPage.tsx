@@ -11,12 +11,6 @@ import PageTemplate from '@/common/templates/PageTemplate';
 const GamesPage = ({ user, pages, data, error }: GamesPageProps) => {
   useErrorAlert(error);
 
-  console.log({
-    user,
-    pages,
-    data,
-    error,
-  });
   const gamePages: PageInfo[] = [
     ...(data?.map((game) => ({
       title: game.attributes.title,

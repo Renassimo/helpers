@@ -1,21 +1,32 @@
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
-import { GamesServerSideProps } from '@/gameMaps/types';
+import { GameServerSideProps } from '@/gameMaps/types';
 
 import GamesService from '@/gameMaps/services/games';
+import PlaysService from '@/gameMaps/services/plays';
 
 const getServerSideProps = async (
   ctx: GetServerSidePropsContextWithAuth
-): Promise<GamesServerSideProps> => {
-  const { user, pages, db } = ctx;
+): Promise<GameServerSideProps> => {
+  const { user, pages, query, db } = ctx;
   const { uid } = user;
+  const gameId = query.id as string;
 
   let data = null;
   let error = null;
 
   const gamesService = GamesService.getInstance(db);
+  const playsService = PlaysService.getInstance(db);
 
   try {
-    data = await gamesService.getAll(uid);
+    const [gameData, playsData] = await Promise.all([
+      gamesService.getOne(uid, gameId),
+      playsService.getAll(uid, gameId),
+    ]);
+
+    data = {
+      gameData,
+      playsData,
+    };
   } catch (err: any) {
     error = gamesService.deserializeError(err);
   }

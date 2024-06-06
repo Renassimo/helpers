@@ -1,10 +1,4 @@
-import { PageInfo, User } from '@/auth/types';
-import { CommonError } from '@/common/types/errors';
-
-export interface ItemData {
-  id: string;
-  attributes: ItemAttributes;
-}
+import { Data, PageProps, ServerSideProps } from '@/common/types/props';
 
 export interface ItemAttributes {
   categoryId: string;
@@ -15,13 +9,10 @@ export interface ItemAttributes {
   playId: string;
 }
 
-export interface ItemsPageProps {
-  user: User;
-  pages: PageInfo[];
-  data: ItemData[] | null;
-  error: CommonError | null;
-}
+export type ItemData = Data<ItemAttributes>;
 
-export interface ItemsServerSideProps {
-  props: ItemsPageProps;
-}
+export type ItemPageProps = PageProps<ItemData>;
+export type ItemsPageProps = PageProps<ItemData[]>;
+
+export type ItemServerSideProps = ServerSideProps<ItemPageProps>;
+export type ItemsServerSideProps = ServerSideProps<ItemsPageProps>;

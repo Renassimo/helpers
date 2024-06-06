@@ -1,14 +1,16 @@
-import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { Firestore } from '@/common/lib/firebase/types';
 
 import GamesService from '@/gameMaps/services/games';
+import PlaysService from '@/gameMaps/services/plays';
+
+import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
+import { mockedGame, mockedPlay } from '@/gameMaps/types/mocks';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 
 import getServerSideProps from '../getServerSideProps';
 
-import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
-import { mockedGames } from '@/gameMaps/types/mocks';
-
 jest.mock('@/gameMaps/services/games');
+jest.mock('@/gameMaps/services/plays');
 
 describe('getServerSideProps', () => {
   const mockedDb = 'mockedDb' as unknown as Firestore;
@@ -16,8 +18,10 @@ describe('getServerSideProps', () => {
     user: mockedUser,
     pages: mockedPageInfos,
     db: mockedDb,
+    query: { id: mockedGame.id },
   };
-  const mockedData = [...mockedGames];
+  const mockedGameData = mockedGame;
+  const mockedPlaysData = mockedPlay;
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -25,31 +29,40 @@ describe('getServerSideProps', () => {
 
   test('returns data', async () => {
     // Arange
-    const mockedGetAll = jest.fn(() => mockedData);
-    const mockedGetInstance = jest.fn(() => ({
-      getAll: mockedGetAll,
+    const mockedGetGame = jest.fn(() => mockedGameData);
+    const mockedGetGamesServiceInstance = jest.fn(() => ({
+      getOne: mockedGetGame,
     }));
     (GamesService.getInstance as unknown as jest.Mock).mockImplementationOnce(
-      mockedGetInstance
+      mockedGetGamesServiceInstance
     );
+
+    const mockedGetPlays = jest.fn(() => mockedPlaysData);
+    const mockedGetPlaysServiceInstance = jest.fn(() => ({
+      getAll: mockedGetPlays,
+    }));
+    (PlaysService.getInstance as unknown as jest.Mock).mockImplementationOnce(
+      mockedGetPlaysServiceInstance
+    );
+
     const expectedResult = {
       props: {
         user: mockedUser,
         pages: mockedPageInfos,
-        data: mockedGames,
+        data: { gameData: mockedGameData, playsData: mockedPlaysData },
         error: null,
       },
     };
-
     // Act
     const result = await getServerSideProps(
       mockedContext as unknown as GetServerSidePropsContextWithAuth
     );
-
     // Assert
     expect(result).toEqual(expectedResult);
-    expect(mockedGetAll).toHaveBeenCalledWith(mockedUser.uid);
-    expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
+    expect(mockedGetGamesServiceInstance).toHaveBeenCalledWith(mockedDb);
+    expect(mockedGetPlaysServiceInstance).toHaveBeenCalledWith(mockedDb);
+    expect(mockedGetGame).toHaveBeenCalledWith(mockedUser.uid, mockedGame.id);
+    expect(mockedGetPlays).toHaveBeenCalledWith(mockedUser.uid, mockedGame.id);
   });
 
   describe('when receives an error', () => {
@@ -59,14 +72,14 @@ describe('getServerSideProps', () => {
       const mockedErrorBody = { message: mockedErrorText };
       const mockedError = new Error(mockedErrorText);
       const mockedDeserializeError = jest.fn(() => mockedErrorBody);
-      const mockedGetInstance = jest.fn(() => ({
-        getAll: jest.fn(() => {
+      const mockedGetGamesServiceInstance = jest.fn(() => ({
+        getOne: jest.fn(() => {
           throw mockedError;
         }),
         deserializeError: mockedDeserializeError,
       }));
       (GamesService.getInstance as unknown as jest.Mock).mockImplementationOnce(
-        mockedGetInstance
+        mockedGetGamesServiceInstance
       );
 
       const expectedResult = {

@@ -1,10 +1,4 @@
-import { PageInfo, User } from '@/auth/types';
-import { CommonError } from '@/common/types/errors';
-
-export interface CategoryData {
-  id: string;
-  attributes: CategoryAttributes;
-}
+import { Data, PageProps, ServerSideProps } from '@/common/types/props';
 
 export interface CategoryAttributes {
   color: string;
@@ -13,13 +7,10 @@ export interface CategoryAttributes {
   itemsAmount: number;
 }
 
-export interface CategoriesPageProps {
-  user: User;
-  pages: PageInfo[];
-  data: CategoryData[] | null;
-  error: CommonError | null;
-}
+export type CategoryData = Data<CategoryAttributes>;
 
-export interface CategoriesServerSideProps {
-  props: CategoriesPageProps;
-}
+export type CategoryPageProps = PageProps<CategoryData>;
+export type CategoriesPageProps = PageProps<CategoryData[]>;
+
+export type CategoryServerSideProps = ServerSideProps<CategoryPageProps>;
+export type CategoriesServerSideProps = ServerSideProps<CategoriesPageProps>;
