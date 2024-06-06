@@ -1,24 +1,25 @@
-import GamesService from '@/gameMaps/services/games';
+import { NextApiRequestWithAuth } from '@/auth/types';
+import { NextApiResponse } from 'next';
+
+import handler from '../../api/create';
+
+import CategoriesService from '@/gameMaps/services/categories';
 import { getError } from '@/common/utils/errors';
 
-import { mockedGame } from '@/gameMaps/types/mocks';
+import { mockedCategory, mockedGame } from '@/gameMaps/types/mocks';
 
-import { NextApiResponse } from 'next';
-import { NextApiRequestWithAuth } from '@/auth/types';
-
-import handler from '../../api/updateDelete';
-
-jest.mock('@/gameMaps/services/games');
+jest.mock('@/gameMaps/services/categories');
 jest.mock('@/common/utils/errors');
 
-describe('updateDelete (game)', () => {
-  const mockedMethod = 'PATCH';
+describe('create (category)', () => {
+  const mockedMethod = 'POST';
   const mockedUid = 'uid';
-  const mockedAttributes = mockedGame.attributes;
+  const mockedGameId = mockedGame.id;
+  const mockedQuery = { gameId: mockedGameId };
+  const mockedAttributes = mockedCategory.attributes;
   const mockedBody = { data: { attributes: mockedAttributes } };
-  const mockedQuery = { gameId: mockedGame.id };
   const mockedDb = 'mockedDb';
-  const mockedData = { ...mockedGame };
+  const mockedData = { ...mockedCategory };
   const mockedJson = jest.fn();
   const mockedStatus = jest.fn(() => ({
     json: mockedJson,
@@ -27,73 +28,49 @@ describe('updateDelete (game)', () => {
     method: mockedMethod,
     uid: mockedUid,
     body: mockedBody,
-    query: mockedQuery,
     db: mockedDb,
+    query: mockedQuery,
   } as unknown as NextApiRequestWithAuth;
   const res = {
     status: mockedStatus,
   } as unknown as NextApiResponse;
 
-  let mockedUpdate = jest.fn(() => mockedData);
-  const mockedDelete = jest.fn();
+  let mockedCreate = jest.fn(() => mockedData);
   const mockedGetInstance = jest.fn(() => ({
-    update: mockedUpdate,
-    delete: mockedDelete,
+    create: mockedCreate,
   }));
 
   beforeEach(() => {
-    (GamesService.getInstance as unknown as jest.Mock).mockImplementationOnce(
-      mockedGetInstance
-    );
+    (
+      CategoriesService.getInstance as unknown as jest.Mock
+    ).mockImplementationOnce(mockedGetInstance);
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('when method is PATCH', () => {
-    test('writes status and data to response', async () => {
-      // Arange
-      mockedUpdate = jest.fn(() => mockedData);
-      // Act
-      await handler(req, res);
-      // Assert
-      expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
-      expect(mockedUpdate).toHaveBeenCalledWith(
-        mockedUid,
-        mockedGame.id,
-        mockedAttributes
-      );
-      expect(mockedStatus).toHaveBeenCalledWith(200);
-      expect(mockedJson).toHaveBeenCalledWith({ data: mockedData });
-    });
-  });
-
-  describe('when method is DELETE', () => {
-    const mockedMethod = 'DELETE';
-    const mockedReq = {
-      ...req,
-      method: mockedMethod,
-    } as unknown as NextApiRequestWithAuth;
-
-    test('writes status to response', async () => {
-      // Arange
-      mockedUpdate = jest.fn(() => mockedData);
-      // Act
-      await handler(mockedReq, res);
-      // Assert
-      expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
-      expect(mockedDelete).toHaveBeenCalledWith(mockedUid, mockedGame.id);
-      expect(mockedStatus).toHaveBeenCalledWith(204);
-      expect(mockedJson).toHaveBeenCalledWith({});
-    });
+  test('writes status and data to response', async () => {
+    // Arange
+    mockedCreate = jest.fn(() => mockedData);
+    // Act
+    await handler(req, res);
+    // Assert
+    expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
+    expect(mockedCreate).toHaveBeenCalledWith(
+      mockedUid,
+      mockedGameId,
+      mockedAttributes
+    );
+    expect(mockedStatus).toHaveBeenCalledWith(201);
+    expect(mockedJson).toHaveBeenCalledWith({ data: mockedData });
   });
 
   describe('when get error', () => {
     test('writes status and error to response', async () => {
       // Arange
       const mockedErrorMessage = 'New Error';
-      mockedUpdate = jest.fn(() => {
+      mockedCreate = jest.fn(() => {
         throw Error(mockedErrorMessage);
       });
 
@@ -123,7 +100,7 @@ describe('updateDelete (game)', () => {
         ...req,
         method: 'GET',
       } as unknown as NextApiRequestWithAuth;
-      mockedUpdate = jest.fn(() => mockedData);
+      mockedCreate = jest.fn(() => mockedData);
 
       const expectedStatusNumber = 405;
       const expectedError = {

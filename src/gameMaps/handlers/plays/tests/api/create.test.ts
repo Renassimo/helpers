@@ -11,7 +11,7 @@ import { mockedGame, mockedPlay } from '@/gameMaps/types/mocks';
 jest.mock('@/gameMaps/services/plays');
 jest.mock('@/common/utils/errors');
 
-describe('create', () => {
+describe('create (play)', () => {
   const mockedMethod = 'POST';
   const mockedUid = 'uid';
   const mockedGameId = mockedGame.id;

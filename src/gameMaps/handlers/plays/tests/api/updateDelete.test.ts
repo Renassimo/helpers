@@ -11,7 +11,7 @@ import handler from '../../api/updateDelete';
 jest.mock('@/gameMaps/services/plays');
 jest.mock('@/common/utils/errors');
 
-describe('updateDelete', () => {
+describe('updateDelete (play)', () => {
   const mockedMethod = 'PATCH';
   const mockedUid = 'uid';
   const mockedGameId = mockedGame.id;

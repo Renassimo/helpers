@@ -1,24 +1,26 @@
-import GamesService from '@/gameMaps/services/games';
+import ItemsService from '@/gameMaps/services/items';
 import { getError } from '@/common/utils/errors';
 
-import { mockedGame } from '@/gameMaps/types/mocks';
+import { mockedGame, mockedItem } from '@/gameMaps/types/mocks';
 
 import { NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/auth/types';
 
 import handler from '../../api/updateDelete';
 
-jest.mock('@/gameMaps/services/games');
+jest.mock('@/gameMaps/services/items');
 jest.mock('@/common/utils/errors');
 
-describe('updateDelete (game)', () => {
+describe('updateDelete (item)', () => {
   const mockedMethod = 'PATCH';
   const mockedUid = 'uid';
-  const mockedAttributes = mockedGame.attributes;
+  const mockedGameId = mockedGame.id;
+  const mockedItemId = mockedItem.id;
+  const mockedQuery = { gameId: mockedGameId, itemId: mockedItemId };
+  const mockedAttributes = mockedItem.attributes;
   const mockedBody = { data: { attributes: mockedAttributes } };
-  const mockedQuery = { gameId: mockedGame.id };
   const mockedDb = 'mockedDb';
-  const mockedData = { ...mockedGame };
+  const mockedData = { ...mockedItem };
   const mockedJson = jest.fn();
   const mockedStatus = jest.fn(() => ({
     json: mockedJson,
@@ -42,7 +44,7 @@ describe('updateDelete (game)', () => {
   }));
 
   beforeEach(() => {
-    (GamesService.getInstance as unknown as jest.Mock).mockImplementationOnce(
+    (ItemsService.getInstance as unknown as jest.Mock).mockImplementationOnce(
       mockedGetInstance
     );
   });
@@ -61,7 +63,8 @@ describe('updateDelete (game)', () => {
       expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
       expect(mockedUpdate).toHaveBeenCalledWith(
         mockedUid,
-        mockedGame.id,
+        mockedGameId,
+        mockedItemId,
         mockedAttributes
       );
       expect(mockedStatus).toHaveBeenCalledWith(200);
@@ -83,7 +86,11 @@ describe('updateDelete (game)', () => {
       await handler(mockedReq, res);
       // Assert
       expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
-      expect(mockedDelete).toHaveBeenCalledWith(mockedUid, mockedGame.id);
+      expect(mockedDelete).toHaveBeenCalledWith(
+        mockedUid,
+        mockedGameId,
+        mockedItemId
+      );
       expect(mockedStatus).toHaveBeenCalledWith(204);
       expect(mockedJson).toHaveBeenCalledWith({});
     });

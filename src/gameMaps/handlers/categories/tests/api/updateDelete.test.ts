@@ -1,24 +1,26 @@
-import GamesService from '@/gameMaps/services/games';
+import CategoriesService from '@/gameMaps/services/categories';
 import { getError } from '@/common/utils/errors';
 
-import { mockedGame } from '@/gameMaps/types/mocks';
+import { mockedGame, mockedCategory } from '@/gameMaps/types/mocks';
 
 import { NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/auth/types';
 
 import handler from '../../api/updateDelete';
 
-jest.mock('@/gameMaps/services/games');
+jest.mock('@/gameMaps/services/categories');
 jest.mock('@/common/utils/errors');
 
-describe('updateDelete (game)', () => {
+describe('updateDelete (category)', () => {
   const mockedMethod = 'PATCH';
   const mockedUid = 'uid';
-  const mockedAttributes = mockedGame.attributes;
+  const mockedGameId = mockedGame.id;
+  const mockedCategoryId = mockedCategory.id;
+  const mockedQuery = { gameId: mockedGameId, categoryId: mockedCategoryId };
+  const mockedAttributes = mockedCategory.attributes;
   const mockedBody = { data: { attributes: mockedAttributes } };
-  const mockedQuery = { gameId: mockedGame.id };
   const mockedDb = 'mockedDb';
-  const mockedData = { ...mockedGame };
+  const mockedData = { ...mockedCategory };
   const mockedJson = jest.fn();
   const mockedStatus = jest.fn(() => ({
     json: mockedJson,
@@ -42,9 +44,9 @@ describe('updateDelete (game)', () => {
   }));
 
   beforeEach(() => {
-    (GamesService.getInstance as unknown as jest.Mock).mockImplementationOnce(
-      mockedGetInstance
-    );
+    (
+      CategoriesService.getInstance as unknown as jest.Mock
+    ).mockImplementationOnce(mockedGetInstance);
   });
 
   afterEach(() => {
@@ -61,7 +63,8 @@ describe('updateDelete (game)', () => {
       expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
       expect(mockedUpdate).toHaveBeenCalledWith(
         mockedUid,
-        mockedGame.id,
+        mockedGameId,
+        mockedCategoryId,
         mockedAttributes
       );
       expect(mockedStatus).toHaveBeenCalledWith(200);
@@ -83,7 +86,11 @@ describe('updateDelete (game)', () => {
       await handler(mockedReq, res);
       // Assert
       expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
-      expect(mockedDelete).toHaveBeenCalledWith(mockedUid, mockedGame.id);
+      expect(mockedDelete).toHaveBeenCalledWith(
+        mockedUid,
+        mockedGameId,
+        mockedCategoryId
+      );
       expect(mockedStatus).toHaveBeenCalledWith(204);
       expect(mockedJson).toHaveBeenCalledWith({});
     });
