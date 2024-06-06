@@ -1,4 +1,7 @@
 import { Data, PageProps, ServerSideProps } from '@/common/types/props';
+import { GameData } from '@/gameMaps/types/gameTypes';
+import { CategoryData } from '@/gameMaps/types/categoryTypes';
+import { ItemData } from '@/gameMaps/types/itemTypes';
 
 export interface PlayAttributes {
   title: string;
@@ -9,8 +12,11 @@ export interface PlayAttributes {
 
 export type PlayData = Data<PlayAttributes>;
 
-export type PlayPageProps = PageProps<PlayData>;
-export type PlaysPageProps = PageProps<PlayData[]>;
+export type PlayPageProps = PageProps<{
+  gameData: GameData;
+  playData: PlayData;
+  categoriesData: CategoryData[];
+  itemsData: ItemData[];
+}>;
 
 export type PlayServerSideProps = ServerSideProps<PlayPageProps>;
-export type PlaysServerSideProps = ServerSideProps<PlaysPageProps>;
