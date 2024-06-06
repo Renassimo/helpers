@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 import { FiveBookData } from '@/fiveBook/types';
 import { NotionError } from '@/common/types/notion';
-import { PageInfo, User } from '@/common/types/auth';
+import { PageInfo, User } from '@/auth/types';
 
 import FiveBookProvider from '@/fiveBook/providers/FiveBookProvider';
 

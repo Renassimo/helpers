@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { PageInfo } from '@/common/types/auth';
+import { PageInfo } from '@/auth/types';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';

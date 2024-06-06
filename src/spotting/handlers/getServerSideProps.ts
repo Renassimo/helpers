@@ -1,4 +1,4 @@
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 
 import NotionService from '@/common/services/notion';
 

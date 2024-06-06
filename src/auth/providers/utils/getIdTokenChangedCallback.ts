@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import nookies from 'nookies';
 
-import { User } from '@/common/types/auth';
+import { User } from '@/auth/types';
 
 const getIdTokenChangedCallback = (setUser: Dispatch<User | null>) => {
   return async (user: any) => {

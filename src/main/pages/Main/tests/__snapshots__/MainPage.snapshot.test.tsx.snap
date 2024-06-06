@@ -16,51 +16,17 @@ exports[`MainPage renders successfully 1`] = `
     >
       Welcome to Helpers
     </h1>
-    <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1xsir0u-MuiGrid-root"
-    >
-      <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 MuiGrid-grid-xl-3 css-4031bd-MuiGrid-root"
+    <div>
+      <a
+        href="path1"
       >
-        <a
-          href="path1"
-        >
-          <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1ps6pg7-MuiPaper-root"
-          >
-            <div
-              class="MuiBox-root css-hpgf8j"
-            >
-              <h2
-                class="MuiTypography-root MuiTypography-h6 css-1kgxqm0-MuiTypography-root"
-              >
-                Page 1
-              </h2>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 MuiGrid-grid-xl-3 css-4031bd-MuiGrid-root"
+        Page 1
+      </a>
+      <a
+        href="path2"
       >
-        <a
-          href="path2"
-        >
-          <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1ps6pg7-MuiPaper-root"
-          >
-            <div
-              class="MuiBox-root css-hpgf8j"
-            >
-              <h2
-                class="MuiTypography-root MuiTypography-h6 css-1kgxqm0-MuiTypography-root"
-              >
-                Page 2
-              </h2>
-            </div>
-          </div>
-        </a>
-      </div>
+        Page 2
+      </a>
     </div>
   </div>
 </div>
@@ -81,9 +47,7 @@ exports[`MainPage when got no pages renders successfully 1`] = `
     >
       Welcome to Helpers
     </h1>
-    <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1xsir0u-MuiGrid-root"
-    />
+    <div />
   </div>
 </div>
 `;

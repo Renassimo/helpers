@@ -1,12 +1,15 @@
 import withAuthServerSideProps from '../withAuthServerSideProps';
 import { GetServerSidePropsContext } from 'next';
+
 import getServerSideUserData from '@/common/utils/serverSideUserData';
+
+import { Firestore } from '@/common/lib/firebase/types';
 
 jest.mock('@/common/utils/serverSideUserData');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
-jest.mock('@/common/lib/firebase/firestore', jest.fn());
 
 describe('withAuthServerSideProps', () => {
+  const mockedDb = 'mockedDb' as unknown as Firestore;
   const helperName = 'fiveBook';
   const handlerResult = { result: 'handler result' };
   const mockedHandler = jest.fn(() => handlerResult);
@@ -20,7 +23,7 @@ describe('withAuthServerSideProps', () => {
   const mockedHelperName2 = 'Helper Name';
   const mockedHelperPath2 = '/helper';
   let mockedUser: unknown = {};
-  let mockedNotionData: unknown = {};
+  let mockedHelpersData: unknown = {};
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -30,21 +33,25 @@ describe('withAuthServerSideProps', () => {
     mockedUser = {
       name: 'Name',
     };
-    mockedNotionData = {
+    mockedHelpersData = {
       someHelper: {
-        dataBaseID: mockedDataBaseID,
-        token: mockedNotionToken,
+        notiondData: {
+          dataBaseID: mockedDataBaseID,
+          token: mockedNotionToken,
+        },
       },
       anotherHelper: {
-        dataBaseID: mockedDataBaseID2,
-        token: mockedNotionToken2,
+        notionData: {
+          dataBaseID: mockedDataBaseID2,
+          token: mockedNotionToken2,
+        },
         title: mockedHelperName2,
         path: mockedHelperPath2,
       },
     };
     const mockedGetServerSideUserData = jest.fn(() => ({
       user: mockedUser,
-      notionData: mockedNotionData,
+      helpersData: mockedHelpersData,
     }));
     (getServerSideUserData as unknown as jest.Mock).mockImplementationOnce(
       mockedGetServerSideUserData
@@ -59,16 +66,18 @@ describe('withAuthServerSideProps', () => {
     ];
     const expectedResult = handlerResult;
     // Act
-    const result = await withAuthServerSideProps(mockedHandler)(
-      mockedContext as unknown as GetServerSidePropsContext
-    );
+    const result = await withAuthServerSideProps(
+      mockedHandler,
+      mockedDb
+    )(mockedContext as unknown as GetServerSidePropsContext);
     // Assert
-    expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+    expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext, mockedDb);
     expect(mockedHandler).toHaveBeenCalledWith({
       ...mockedContext,
-      notionData: mockedNotionData,
+      helpersData: mockedHelpersData,
       user: mockedUser,
       pages: expectedPages,
+      db: mockedDb,
     });
     expect(result).toEqual(expectedResult);
   });
@@ -84,30 +93,38 @@ describe('withAuthServerSideProps', () => {
         },
       };
       // Act
-      const result = await withAuthServerSideProps(mockedHandler)(
-        mockedContext as unknown as GetServerSidePropsContext
-      );
+      const result = await withAuthServerSideProps(
+        mockedHandler,
+        mockedDb
+      )(mockedContext as unknown as GetServerSidePropsContext);
       // Assert
-      expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+      expect(getServerSideUserData).toHaveBeenCalledWith(
+        mockedContext,
+        mockedDb
+      );
       expect(mockedHandler).not.toHaveBeenCalled();
       expect(result).toEqual(expectedResult);
     });
   });
 
-  describe('when got no Notion data', () => {
+  describe('when got no Helpers data', () => {
     test('returns 404', async () => {
       // Arrange
-      mockedNotionData = undefined;
+      mockedHelpersData = undefined;
       mockedUser = {
         name: 'Name',
       };
       const expectedResult = { notFound: true };
       // Act
-      const result = await withAuthServerSideProps(mockedHandler)(
-        mockedContext as unknown as GetServerSidePropsContext
-      );
+      const result = await withAuthServerSideProps(
+        mockedHandler,
+        mockedDb
+      )(mockedContext as unknown as GetServerSidePropsContext);
       // Assert
-      expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+      expect(getServerSideUserData).toHaveBeenCalledWith(
+        mockedContext,
+        mockedDb
+      );
       expect(mockedHandler).not.toHaveBeenCalled();
       expect(result).toEqual(expectedResult);
     });
@@ -121,14 +138,18 @@ describe('withAuthServerSideProps', () => {
         { title: mockedHelperName2, path: mockedHelperPath2 },
       ];
       const expectedResult = handlerResult;
-      mockedNotionData = {
+      mockedHelpersData = {
         [helperName]: {
-          dataBaseID: mockedDataBaseID,
-          token: mockedNotionToken,
+          notionData: {
+            dataBaseID: mockedDataBaseID,
+            token: mockedNotionToken,
+          },
         },
         anotherHelper: {
-          dataBaseID: mockedDataBaseID2,
-          token: mockedNotionToken2,
+          notionData: {
+            dataBaseID: mockedDataBaseID2,
+            token: mockedNotionToken2,
+          },
           title: mockedHelperName2,
           path: mockedHelperPath2,
         },
@@ -136,10 +157,14 @@ describe('withAuthServerSideProps', () => {
       // Act
       const result = await withAuthServerSideProps(
         mockedHandler,
+        mockedDb,
         helperName
       )(mockedContext as unknown as GetServerSidePropsContext);
       // Assert
-      expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+      expect(getServerSideUserData).toHaveBeenCalledWith(
+        mockedContext,
+        mockedDb
+      );
       expect(mockedHandler).toHaveBeenCalledWith({
         ...mockedContext,
         notionHelperData: {
@@ -148,22 +173,27 @@ describe('withAuthServerSideProps', () => {
         },
         user: mockedUser,
         pages: expectedPages,
+        db: mockedDb,
       });
       expect(result).toEqual(expectedResult);
     });
 
-    describe('when got no Notion data', () => {
+    describe('when got no Helpers data', () => {
       test('returns 404', async () => {
         // Arrange
-        mockedNotionData = undefined;
+        mockedHelpersData = undefined;
         const expectedResult = { notFound: true };
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });
@@ -172,15 +202,19 @@ describe('withAuthServerSideProps', () => {
     describe('when got no Helper data', () => {
       test('returns 404', async () => {
         // Arrange
-        mockedNotionData = {};
+        mockedHelpersData = {};
         const expectedResult = { notFound: true };
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });
@@ -189,19 +223,25 @@ describe('withAuthServerSideProps', () => {
     describe('when got no dataBaseID', () => {
       test('returns 404', async () => {
         // Arrange
-        mockedNotionData = {
+        mockedHelpersData = {
           [helperName]: {
-            token: mockedNotionToken,
+            notionData: {
+              token: mockedNotionToken,
+            },
           },
         };
         const expectedResult = { notFound: true };
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });
@@ -210,19 +250,25 @@ describe('withAuthServerSideProps', () => {
     describe('when got no Notion token', () => {
       test('returns 404', async () => {
         // Arrange
-        mockedNotionData = {
+        mockedHelpersData = {
           [helperName]: {
-            dataBaseID: mockedDataBaseID,
+            notionData: {
+              dataBaseID: mockedDataBaseID,
+            },
           },
         };
         const expectedResult = { notFound: true };
         // Act
         const result = await withAuthServerSideProps(
           mockedHandler,
+          mockedDb,
           helperName
         )(mockedContext as unknown as GetServerSidePropsContext);
         // Assert
-        expect(getServerSideUserData).toHaveBeenCalledWith(mockedContext);
+        expect(getServerSideUserData).toHaveBeenCalledWith(
+          mockedContext,
+          mockedDb
+        );
         expect(mockedHandler).not.toHaveBeenCalled();
         expect(result).toEqual(expectedResult);
       });

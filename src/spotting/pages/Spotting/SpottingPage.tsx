@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { PageInfo, User } from '@/common/types/auth';
+import { PageInfo, User } from '@/auth/types';
 import { NotionError } from '@/common/types/notion';
 import { SpottedPlaneApiData } from '@/spotting/types';
 
@@ -30,7 +30,7 @@ const SpottingPage = ({
 
   return (
     <SpottingProvider data={data}>
-      <PageTemplate title="5book" user={user} pages={pages}>
+      <PageTemplate title="Spotting" user={user} pages={pages}>
         <SpottedPlanesList />
       </PageTemplate>
     </SpottingProvider>

@@ -1,17 +1,18 @@
 import NotionService from '@/common/services/notion';
 
-import { getSpottedPlanes } from '@/spotting/handlers';
+import getSpottedPlanes from '@/spotting/handlers/getSpottedPlanes';
 
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
+import { Firestore } from '@/common/lib/firebase/types';
 
 import getServerSideProps from '../getServerSideProps';
 
 jest.mock('@/common/services/notion', () => jest.fn());
 jest.mock('@/spotting/handlers/getSpottedPlanes');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
-jest.mock('@/common/lib/firebase/firestore', jest.fn());
 
 describe('getServerSideProps', () => {
+  const mockedDb = 'mockedDb' as unknown as Firestore;
   const mockedDataBaseID = 'data-base-id';
   const mockedToken = 'token';
   const mockedUser = { name: 'User' };
@@ -23,6 +24,7 @@ describe('getServerSideProps', () => {
     user: mockedUser,
     pages: mockedPages,
     notionHelperData: { dataBaseID: mockedDataBaseID, token: mockedToken },
+    db: mockedDb,
   };
 
   afterEach(() => {

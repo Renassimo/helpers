@@ -9,7 +9,7 @@ import NavBar from '@/common/components/NavBar';
 import PageWrapper from '@/common/components/PageWrapper';
 import StaticNavBar from '@/common/components/StaticNavBar';
 
-import { PageInfo, User } from '@/common/types/auth';
+import { PageInfo, User } from '@/auth/types';
 
 const NavBarWrapper = styled.div(
   ({ theme }) => css`
@@ -40,15 +40,16 @@ const PageTemplate = ({
   navBarChildren,
 }: {
   title: string;
-  user?: User;
+  user?: User | null;
   pages?: PageInfo[];
   children: ReactNode;
   navBarChildren?: ReactNode;
 }) => {
+  const titleText = `Helpers - ${title}`;
   return (
     <>
       <Head>
-        <title>Helpers - {title}</title>
+        <title>{titleText}</title>
       </Head>
       <PageWrapper>
         <NavBarWrapper>

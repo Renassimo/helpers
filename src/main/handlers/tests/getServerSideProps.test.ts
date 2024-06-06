@@ -1,5 +1,5 @@
 import getServerSideProps from '../getServerSideProps';
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 
 describe('getServerSideProps', () => {
   const mockedDataBaseID = 'data-base-id';

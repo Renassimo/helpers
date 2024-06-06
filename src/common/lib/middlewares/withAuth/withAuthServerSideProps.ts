@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import sortBy from 'lodash/sortBy';
+import { capitalCase } from 'change-case';
 
 import getServerSideUserData from '@/common/utils/serverSideUserData';
 import {
@@ -7,14 +8,14 @@ import {
   showNotFound,
 } from '@/common/utils/serverSideRenderProps';
 
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
-import { NotionData } from '@/common/types/notion';
-import { capitalCase } from 'change-case';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
+import { HelpersData } from '@/common/types/helpers';
+import { Firestore } from '@/common/lib/firebase/types';
 
 // todo use as separate module
-const getPages = (notionData: NotionData) =>
+const getPages = (helpersData: HelpersData) =>
   sortBy(
-    Object.entries(notionData ?? {}).map(([key, value]) => ({
+    Object.entries(helpersData ?? {}).map(([key, value]) => ({
       title: value?.title ?? capitalCase(key),
       path: value?.path ?? `/${key}`,
     })),
@@ -23,23 +24,25 @@ const getPages = (notionData: NotionData) =>
 
 const withAuthServerSideProps = (
   handler: (ctx: GetServerSidePropsContextWithAuth) => object,
+  db: Firestore,
   helperName?: string
 ) => {
   return async (ctx: GetServerSidePropsContext) => {
-    const { user, notionData } = await getServerSideUserData(ctx);
+    const { user, helpersData } = await getServerSideUserData(ctx, db);
     if (!user) return redirectToSignIn;
 
-    const pages = getPages(notionData ?? {});
+    const pages = getPages(helpersData ?? {});
 
     if (helperName) {
-      const helperData = notionData?.[helperName];
-      const { dataBaseID = null, token = null } = helperData ?? {};
+      const helperData = helpersData?.[helperName];
+      const { notionData } = helperData ?? {};
+      const { dataBaseID = null, token = null } = notionData ?? {};
 
       if (!dataBaseID || !token) return showNotFound;
-      return handler({ ...ctx, user, notionHelperData: helperData, pages });
+      return handler({ ...ctx, user, notionHelperData: notionData, pages, db });
     } else {
-      if (!notionData) return showNotFound;
-      return handler({ ...ctx, user, notionData, pages });
+      if (!helpersData) return showNotFound;
+      return handler({ ...ctx, user, helpersData, pages, db });
     }
   };
 };

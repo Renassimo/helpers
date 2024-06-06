@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 import { UrlObject } from 'url';
-import { User } from '@/common/types/auth';
+import { User } from '@/auth/types';
 
 const AuthContext = createContext<{
   user: User | null;

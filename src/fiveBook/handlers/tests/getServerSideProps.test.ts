@@ -2,9 +2,10 @@ import { getDayCode } from '@/common/utils/dayjs';
 
 import NotionService from '@/common/services/notion';
 
-import { getDay } from '@/fiveBook/handlers';
+import getDay from '@/fiveBook/handlers/getDay';
 
-import { GetServerSidePropsContextWithAuth } from '@/common/types/auth';
+import { GetServerSidePropsContextWithAuth } from '@/auth/types';
+import { Firestore } from '@/common/lib/firebase/types';
 
 import getServerSideProps from '../getServerSideProps';
 
@@ -14,9 +15,9 @@ jest.mock('@/common/utils/dayjs', () => ({
 }));
 jest.mock('@/fiveBook/handlers/getDay');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
-jest.mock('@/common/lib/firebase/firestore', jest.fn());
 
 describe('getServerSideProps', () => {
+  const mockedDb = 'mockedDb' as unknown as Firestore;
   const mockedDayCode = '10101';
   const mockedQuery = { dayCode: mockedDayCode };
   const mockedDataBaseID = 'data-base-id';
@@ -31,6 +32,7 @@ describe('getServerSideProps', () => {
     user: mockedUser,
     pages: mockedPages,
     notionHelperData: { dataBaseID: mockedDataBaseID, token: mockedToken },
+    db: mockedDb,
   };
 
   afterEach(() => {

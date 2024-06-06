@@ -1,12 +1,23 @@
 import { GetServerSidePropsContext } from 'next';
+import { getFirestore } from 'firebase-admin/firestore';
+
 import getServerSideUserData from '@/common/utils/serverSideUserData';
 import getServerSideProps from '../getServerSideProps';
 
 jest.mock('@/common/utils/serverSideUserData');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
-jest.mock('@/common/lib/firebase/firestore', jest.fn());
+jest.mock('firebase-admin/firestore');
 
 describe('getServerSideProps', () => {
+  const mockedFirestore = 'mockedFirestore';
+  const mockedGetFirestore = jest.fn(() => mockedFirestore);
+
+  beforeEach(() => {
+    (getFirestore as unknown as jest.Mock).mockImplementationOnce(
+      mockedGetFirestore
+    );
+  });
+
   test('returns redirect to sign in', async () => {
     // Arrange
     const mockedContext = {
@@ -34,6 +45,10 @@ describe('getServerSideProps', () => {
     );
     // Assert
     expect(result).toEqual(expectedResult);
+    expect(mockedGetServerSideUserData).toBeCalledWith(
+      mockedContext,
+      mockedFirestore
+    );
   });
 
   describe('when got no user', () => {
@@ -56,6 +71,10 @@ describe('getServerSideProps', () => {
       );
       // Assert
       expect(result).toEqual(expectedResult);
+      expect(mockedGetServerSideUserData).toBeCalledWith(
+        mockedContext,
+        mockedFirestore
+      );
     });
   });
 });
