@@ -211,17 +211,16 @@ describe('GamesService', () => {
   describe('delete', () => {
     test('returns data', async () => {
       // Arrange
+      const mockedDocRef = { ref: 'Mocked Doc Ref' };
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(games).doc(id).delete()',
-        {}
+        'collection(gameMaps).doc(uid).collection(games).doc(id)',
+        mockedDocRef
       );
-      const [
-        mockedCollection1,
-        mockedDoc1,
-        mockedCollection2,
-        mockedDoc2,
-        mockedDelete,
-      ] = mockedDbFuncs;
+      const mockedRecursiveDelete = jest.fn();
+      // @ts-ignore
+      mockedDb.recursiveDelete = mockedRecursiveDelete;
+      const [mockedCollection1, mockedDoc1, mockedCollection2, mockedDoc2] =
+        mockedDbFuncs;
 
       const gamesService = GamesService.getInstance(
         mockedDb as unknown as Firestore
@@ -235,7 +234,7 @@ describe('GamesService', () => {
       expect(mockedDoc1).toHaveBeenCalledWith('uid');
       expect(mockedCollection2).toHaveBeenCalledWith('games');
       expect(mockedDoc2).toHaveBeenCalledWith('gm1');
-      expect(mockedDelete).toHaveBeenCalledWith();
+      expect(mockedRecursiveDelete).toHaveBeenCalledWith(mockedDocRef);
     });
 
     describe('when receives error', () => {

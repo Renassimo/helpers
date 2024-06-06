@@ -1,4 +1,5 @@
 import CategoriesService from '@/gameMaps/services/categories';
+import ItemsService from '@/gameMaps/services/items';
 
 import { NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/auth/types';
@@ -15,6 +16,8 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   const { uid, body, query, method, db } = req;
+  const gameId = query.gameId as string;
+  const categoryId = query.categoryId as string;
 
   if (!allowedMethods.includes(method as string))
     res.status(405).json(getError(405));
@@ -25,18 +28,25 @@ const handler = async (
     if (method === PATCH) {
       const data = await categoriesService.update(
         uid,
-        query.gameId as string,
-        query.categoryId as string,
+        gameId,
+        categoryId,
         body.data.attributes
       );
 
       res.status(200).json({ data });
     } else if (method === DELETE) {
-      await categoriesService.delete(
+      const itemsService = ItemsService.getInstance(db);
+
+      const playItems = await itemsService.getAll(
         uid,
-        query.gameId as string,
-        query.categoryId as string
+        gameId,
+        categoryId,
+        'categoryId'
       );
+      await Promise.all(
+        playItems.map((item) => itemsService.delete(uid, gameId, item.id))
+      );
+      await categoriesService.delete(uid, gameId, categoryId);
 
       res.status(204).json({});
     }

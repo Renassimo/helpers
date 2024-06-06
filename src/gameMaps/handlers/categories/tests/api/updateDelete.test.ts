@@ -1,7 +1,12 @@
 import CategoriesService from '@/gameMaps/services/categories';
+import ItemsService from '@/gameMaps/services/items';
 import { getError } from '@/common/utils/errors';
 
-import { mockedGame, mockedCategory } from '@/gameMaps/types/mocks';
+import {
+  mockedGame,
+  mockedItems,
+  mockedCategory,
+} from '@/gameMaps/types/mocks';
 
 import { NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/auth/types';
@@ -9,6 +14,7 @@ import { NextApiRequestWithAuth } from '@/auth/types';
 import handler from '../../api/updateDelete';
 
 jest.mock('@/gameMaps/services/categories');
+jest.mock('@/gameMaps/services/items');
 jest.mock('@/common/utils/errors');
 
 describe('updateDelete (category)', () => {
@@ -79,6 +85,19 @@ describe('updateDelete (category)', () => {
       method: mockedMethod,
     } as unknown as NextApiRequestWithAuth;
 
+    const mockedDeleteItem = jest.fn();
+    const mockedGetAllItems = jest.fn(() => mockedItems);
+    const mockedGetItemsServiceInstance = jest.fn(() => ({
+      getAll: mockedGetAllItems,
+      delete: mockedDeleteItem,
+    }));
+
+    beforeEach(() => {
+      (ItemsService.getInstance as unknown as jest.Mock).mockImplementationOnce(
+        mockedGetItemsServiceInstance
+      );
+    });
+
     test('writes status to response', async () => {
       // Arange
       mockedUpdate = jest.fn(() => mockedData);
@@ -86,6 +105,14 @@ describe('updateDelete (category)', () => {
       await handler(mockedReq, res);
       // Assert
       expect(mockedGetInstance).toHaveBeenCalledWith(mockedDb);
+      expect(mockedGetItemsServiceInstance).toHaveBeenCalledWith(mockedDb);
+      expect(mockedGetAllItems).toHaveBeenCalledWith(
+        mockedUid,
+        mockedGameId,
+        mockedCategoryId,
+        'categoryId'
+      );
+      expect(mockedDeleteItem).toHaveBeenCalledTimes(2);
       expect(mockedDelete).toHaveBeenCalledWith(
         mockedUid,
         mockedGameId,

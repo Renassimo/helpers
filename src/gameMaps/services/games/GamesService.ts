@@ -60,12 +60,12 @@ class GamesService extends FirestoreService {
   }
 
   async delete(uid: string, id: string): Promise<Record<string, never>> {
-    await this.db
+    const gameRef = this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
       .collection(this.GAMES)
-      .doc(id)
-      .delete();
+      .doc(id);
+    await this.db.recursiveDelete(gameRef);
     return {};
   }
 
