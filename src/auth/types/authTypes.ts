@@ -30,6 +30,7 @@ export interface GetServerSidePropsContextWithAuth
 export interface PageInfo {
   title: string;
   path: string;
+  onClick?: () => void;
 }
 
 export interface ServerSideUserData {

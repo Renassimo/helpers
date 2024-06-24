@@ -16,9 +16,17 @@ const PagesList = ({ pages }: { pages: PageInfo[] }) => {
       spacing={2}
       mt={5}
     >
-      {pages?.map(({ title, path }) => (
+      {pages?.map(({ title, path, onClick }) => (
         <Grid item key={title} xs={10} sm={6} md={4} lg={3} xl={3}>
-          <Link href={path}>
+          <Link
+            href={path}
+            onClick={(event) => {
+              if (onClick) {
+                event.preventDefault();
+                onClick();
+              }
+            }}
+          >
             <Paper>
               <Box p={1}>
                 <Typography component="h2" variant="h6" textAlign="center">

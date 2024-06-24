@@ -1,12 +1,11 @@
-import Typography from '@mui/material/Typography';
-
 import { GamesPageProps } from '@/gameMaps/types';
 import { PageInfo } from '@/auth/types';
 
 import { useErrorAlert } from '@/common/hooks/alerts';
 
+import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+
 import PagesList from '@/common/components/PagesList';
-import PageTemplate from '@/common/templates/PageTemplate';
 
 const GamesPage = ({ user, pages, data, error }: GamesPageProps) => {
   useErrorAlert(error);
@@ -16,15 +15,22 @@ const GamesPage = ({ user, pages, data, error }: GamesPageProps) => {
       title: game.attributes.title,
       path: `/gameMaps/games/${game.id}`,
     })) ?? []),
-    { title: '+ Add New Game', path: '/gameMaps/games/new' },
+    {
+      title: '+ Add New Game',
+      path: '/gameMaps/games/new',
+      onClick: () => console.log('New!'),
+    },
   ];
+
   return (
-    <PageTemplate title="Game Maps" user={user} pages={pages}>
-      <Typography component="h1" variant="h5" textAlign="center" mt={5}>
-        Games Page
-      </Typography>
+    <GameMapsTemplate
+      title="Game Maps"
+      user={user}
+      pages={pages}
+      description="Game Maps"
+    >
       {data && <PagesList pages={gamePages} />}
-    </PageTemplate>
+    </GameMapsTemplate>
   );
 };
 
