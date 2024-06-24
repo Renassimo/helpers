@@ -16,3 +16,9 @@ export interface Data<A> {
   id: string;
   attributes: A;
 }
+
+export interface BreadcrumbsItem {
+  href: string;
+  title: string;
+  current?: boolean;
+}

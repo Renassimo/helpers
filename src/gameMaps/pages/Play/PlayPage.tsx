@@ -1,43 +1,48 @@
-import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-import PageTemplate from '@/common/templates/PageTemplate';
+import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 
 import { useErrorAlert } from '@/common/hooks/alerts';
 
 import { PlayPageProps } from '@/gameMaps/types';
+import { BreadcrumbsItem } from '@/common/types/props';
 
 const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
   useErrorAlert(error);
 
   const { gameData, playData, categoriesData, itemsData } = data ?? {};
 
+  const gameTitle = gameData?.attributes.title ?? 'Game';
+  const playTitle = playData?.attributes.title ?? 'Play';
+  const title = `${gameTitle} - ${playTitle}`;
+
+  const breadcrumbs: BreadcrumbsItem[] = [
+    { title: 'Games', href: '/gameMaps/games' },
+    {
+      title: gameTitle,
+      href: `/gameMaps/games/${gameData?.id}`,
+    },
+    {
+      title: playTitle,
+      href: `/gameMaps/games/${gameData?.id}/plays/${playData?.id}`,
+      current: true,
+    },
+  ];
+
   console.log({ gameData, playData, categoriesData, itemsData });
 
   return (
-    <PageTemplate title="Game Maps" user={user} pages={pages}>
+    <GameMapsTemplate
+      title={title}
+      user={user}
+      pages={pages}
+      description={playData?.attributes.description || title}
+      breadcrumbs={breadcrumbs}
+    >
       {data && (
         <>
-          <Typography component="h1" variant="h5" textAlign="center" mt={5}>
-            {gameData?.attributes.title}
-          </Typography>
-          <Typography component="h2" variant="h5" textAlign="center" mt={2}>
-            {gameData?.attributes.description}
-          </Typography>
-          <Typography component="h2" variant="h5" textAlign="center" mt={5}>
-            {playData?.attributes.title}
-          </Typography>
-          <Typography
-            component="h2"
-            variant="h5"
-            textAlign="center"
-            mt={2}
-            mb={5}
-          >
-            {playData?.attributes.description}
-          </Typography>
           {categoriesData?.length && (
             <List
               sx={{ width: '100%', maxWidth: 960, bgcolor: 'background.paper' }}
@@ -72,7 +77,7 @@ const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
           )}
         </>
       )}
-    </PageTemplate>
+    </GameMapsTemplate>
   );
 };
 

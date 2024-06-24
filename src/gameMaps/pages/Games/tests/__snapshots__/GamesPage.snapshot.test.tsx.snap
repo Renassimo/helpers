@@ -15,7 +15,7 @@ exports[`GamesPage snapshot renders successfully 1`] = `
       <h1
         class="MuiTypography-root MuiTypography-h5 css-1uxccsd-MuiTypography-root"
       >
-        Games Page
+        Game Maps
       </h1>
       <div>
         <a
