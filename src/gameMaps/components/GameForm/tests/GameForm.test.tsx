@@ -4,7 +4,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import ImagePicker from '@/common/components/ImagePicker';
 import ColorPicker from '@/common/components/ColorPicker';
 
-import MockedImagePicker from '@/common/hooks/useImagePicker/tests/mocks';
+import MockedImagePicker from '@/common/components/ImagePicker/mocks';
 import MockedColorPicker from '@/common/components/ColorPicker/mocks';
 import { mockedGame } from '@/gameMaps/types/mocks';
 
@@ -79,9 +79,8 @@ describe('GameForm', () => {
     );
     expect(MockedImagePicker).toHaveBeenCalledWith(
       {
-        imageFile: null,
-        imageUrl: mockedValues.mapImageUrl,
-        setImageFile: expect.any(Function),
+        defaultUrlValue: mockedValues.mapImageUrl,
+        onChange: expect.any(Function),
       },
       {}
     );

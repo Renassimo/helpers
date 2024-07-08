@@ -9,13 +9,14 @@ const useGameForm = (data?: GameData) => {
   const [description, setDescription] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('');
   const [mapImageUrl, setMapImageUrl] = useState('');
-  const [mapImage, setMapImage] = useState<null | FileWithPreview>(null);
+  const [mapImage, setMapImage] = useState<FileWithPreview | null>(null);
 
   const cleanForm = () => {
     setTitle('');
     setDescription('');
     setBackgroundColor('');
     setMapImageUrl('');
+    setMapImage(null);
   };
 
   const prepareFormForEdit = () => {

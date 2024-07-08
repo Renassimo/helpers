@@ -6,7 +6,7 @@ import ColorPicker from '@/common/components/ColorPicker';
 import { GameFormProps } from '@/motivationPoll/types/props';
 
 const GameForm = ({ values, setters }: GameFormProps) => {
-  const { title, description, backgroundColor, mapImageUrl, mapImage } = values;
+  const { title, description, backgroundColor, mapImageUrl } = values;
   const { setTitle, setDescription, setBackgroundColor, setMapImage } = setters;
 
   return (
@@ -36,11 +36,7 @@ const GameForm = ({ values, setters }: GameFormProps) => {
         value={backgroundColor}
         onChange={setBackgroundColor}
       />
-      <ImagePicker
-        imageFile={mapImage}
-        setImageFile={setMapImage}
-        imageUrl={mapImageUrl}
-      />
+      <ImagePicker defaultUrlValue={mapImageUrl} onChange={setMapImage} />
     </>
   );
 };

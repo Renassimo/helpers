@@ -1,4 +1,3 @@
-import { Dispatch } from 'react';
 import { PageInfo, User } from '@/auth/types';
 import { CommonError } from '@/common/types/errors';
 import { FileWithPreview } from '@/common/types/files';
@@ -26,7 +25,6 @@ export interface BreadcrumbsItem {
 }
 
 export interface ImagePickerProps {
-  imageUrl?: string;
-  imageFile: null | FileWithPreview;
-  setImageFile: Dispatch<React.SetStateAction<null | FileWithPreview>>;
+  defaultUrlValue?: string;
+  onChange: (value: null | FileWithPreview) => void;
 }

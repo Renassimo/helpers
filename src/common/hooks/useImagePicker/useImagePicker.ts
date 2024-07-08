@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DropzoneState, useDropzone } from 'react-dropzone';
 
 import usePasteImage from '@/common/hooks/usePasteImage';
@@ -6,6 +6,7 @@ import usePasteImage from '@/common/hooks/usePasteImage';
 import { getFileWithPreview } from '@/common/utils/files';
 
 import { ImagePickerProps } from '@/common/types/props';
+import { FileWithPreview } from '@/common/types/files';
 
 const useImagePicker = (
   props: ImagePickerProps
@@ -15,9 +16,14 @@ const useImagePicker = (
   previewUrl: string;
   dropzone: DropzoneState;
 } => {
-  const { imageUrl = '', imageFile, setImageFile } = props;
+  const { defaultUrlValue = '', onChange } = props;
 
   const { pasteImage } = usePasteImage();
+
+  const handleChange = (image: FileWithPreview | null) => {
+    onChange(image);
+    setPreviewUrl(image?.preview ?? '');
+  };
 
   const dropzone = useDropzone({
     accept: {
@@ -27,23 +33,19 @@ const useImagePicker = (
       'image/gif': [],
     },
     maxFiles: 1,
-    onDrop: ([file]) => setImageFile(getFileWithPreview(file)),
+    onDrop: ([file]) => handleChange(getFileWithPreview(file)),
   });
 
-  const [previewUrl, setPreviewUrl] = useState<string>(imageUrl);
+  const [previewUrl, setPreviewUrl] = useState<string>(defaultUrlValue);
 
   const paste = async () => {
     const image = await pasteImage();
-    setImageFile(image);
+    handleChange(image);
   };
 
   const onClearFile = () => {
-    setImageFile(null);
+    handleChange(null);
   };
-
-  useEffect(() => {
-    setPreviewUrl(imageFile?.preview ?? imageUrl);
-  }, [imageFile?.preview]);
 
   return {
     pasteImage: paste,

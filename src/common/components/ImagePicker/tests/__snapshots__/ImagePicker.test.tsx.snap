@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImagePicker renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-1pdi223"
+    >
+       
+      <div>
+        MockedImagePreview - 
+        mockedPreviewUrl
+         - 
+        onClear
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ImagePicker when there is no previewUrl renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-1pdi223"
+    >
+       
+      <div
+        class="MuiBox-root css-0"
+      >
+        <div>
+          MockedImageDrop
+        </div>
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            MockedImagePaste 
+            onPaste
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

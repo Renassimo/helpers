@@ -20,13 +20,11 @@ describe('useImagePicker', () => {
     jest.clearAllMocks();
   });
 
-  const mockedImageUrl = 'image-url';
-  const mockedImageFile = 'image-file';
-  const mockedSetImageFile = jest.fn();
+  const mockedDefaultUrlValue = 'image-url';
+  const mockedOnChange = jest.fn();
   const mockedProps = {
-    imageUrl: mockedImageUrl,
-    imageFile: mockedImageFile,
-    setImageFile: mockedSetImageFile,
+    defaultUrlValue: mockedDefaultUrlValue,
+    onChange: mockedOnChange,
   } as unknown as ImagePickerProps;
   const mockedPastedImage = { preview: 'mocked-pasted-image-preview' };
   const mockedPasteImage = jest.fn(() => mockedPastedImage);
@@ -68,7 +66,7 @@ describe('useImagePicker', () => {
     expect(result.current).toEqual({
       pasteImage: expect.any(Function),
       onClearFile: expect.any(Function),
-      previewUrl: mockedImageUrl,
+      previewUrl: mockedDefaultUrlValue,
       dropzone: mockedDropzone,
     });
   });
@@ -83,12 +81,11 @@ describe('useImagePicker', () => {
       });
       // Assert
       expect(mockedPasteImage).toHaveBeenCalled();
-      expect(mockedSetImageFile).toHaveBeenCalledWith(mockedPastedImage);
+      expect(mockedOnChange).toHaveBeenCalledWith(mockedPastedImage);
       expect(result.current).toEqual({
         pasteImage: expect.any(Function),
         onClearFile: expect.any(Function),
-        // previewUrl: mockedPastedImage.preview,
-        previewUrl: mockedImageUrl,
+        previewUrl: mockedPastedImage.preview,
         dropzone: mockedDropzone,
       });
     });
@@ -106,12 +103,11 @@ describe('useImagePicker', () => {
       expect(result.current).toEqual({
         pasteImage: expect.any(Function),
         onClearFile: expect.any(Function),
-        // previewUrl: mockedPastedImage.preview,
-        previewUrl: mockedImageUrl,
+        previewUrl: '',
         dropzone: mockedDropzone,
       });
       expect(mockedPasteImage).not.toHaveBeenCalled();
-      expect(mockedSetImageFile).toHaveBeenCalledWith(null);
+      expect(mockedOnChange).toHaveBeenCalledWith(null);
     });
   });
 });
