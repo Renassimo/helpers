@@ -34,6 +34,10 @@ exports[`GamesPage snapshot renders successfully 1`] = `
           + Add New Game
         </a>
       </div>
+      <div>
+        MockedGameFormModal 
+        closed
+      </div>
     </div>
   </div>
 </body>

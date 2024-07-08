@@ -79,7 +79,7 @@ const GroupPlanesModal = ({
         title="Create group post"
         loading={loading}
         disabled={!groupName}
-        maxWidth={'xl'}
+        maxWidth="xl"
       >
         <GroupPlanesForm />
         <PlanesContainer>
