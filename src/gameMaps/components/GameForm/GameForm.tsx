@@ -1,11 +1,12 @@
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
 
 import ImagePicker from '@/common/components/ImagePicker';
 import ColorPicker from '@/common/components/ColorPicker';
 
 import { GameFormProps } from '@/motivationPoll/types/props';
 
-const GameForm = ({ values, setters }: GameFormProps) => {
+const GameForm = ({ values, setters, errors = {} }: GameFormProps) => {
   const { title, description, backgroundColor, mapImageUrl } = values;
   const { setTitle, setDescription, setBackgroundColor, setMapImage } = setters;
 
@@ -19,6 +20,8 @@ const GameForm = ({ values, setters }: GameFormProps) => {
         fullWidth
         margin="dense"
         variant="standard"
+        error={!!errors.title}
+        helperText={errors.title}
       />
       <TextField
         name="description"
@@ -29,14 +32,18 @@ const GameForm = ({ values, setters }: GameFormProps) => {
         multiline
         margin="dense"
         variant="standard"
+        error={!!errors.description}
+        helperText={errors.description}
       />
       <ColorPicker
         name="backgroundColor"
         label="Map background color"
         value={backgroundColor}
         onChange={setBackgroundColor}
+        error={errors.backgroundColor}
       />
       <ImagePicker defaultUrlValue={mapImageUrl} onChange={setMapImage} />
+      {errors.main && <Alert severity="error">{errors.main}</Alert>}
     </>
   );
 };

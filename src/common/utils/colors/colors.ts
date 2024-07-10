@@ -29,7 +29,7 @@ export const onColorPick = async (
   }
 };
 
-export const isValidHex = (color: string) => {
+export const isValidHex = (color: string): boolean => {
   if (!color || typeof color !== 'string') return false;
 
   // Validate hex values

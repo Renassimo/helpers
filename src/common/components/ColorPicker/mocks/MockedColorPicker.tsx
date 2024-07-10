@@ -1,7 +1,7 @@
-const MockedColorPicker = jest.fn(({ name, value, label, onChange }) => {
+const MockedColorPicker = jest.fn(({ name, value, label, onChange, error }) => {
   return (
     <div>
-      {name} - {value} - {label} - {onChange && 'onChange'}
+      {name} - {value} - {label} - {onChange && 'onChange'} - {error}
     </div>
   );
 });

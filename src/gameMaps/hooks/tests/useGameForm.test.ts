@@ -2,10 +2,14 @@ import { renderHook, cleanup, act } from '@testing-library/react';
 
 import { GameData } from '@/gameMaps/types';
 
+// import GameValidator from '@/gameMaps/validators/game';
+
 import { mockedGame } from '@/gameMaps/types/mocks';
 import { FileWithPreview } from '@/common/types/files';
 
 import useGameForm from '../useGameForm';
+
+jest.mock('@/gameMaps/validators/game');
 
 describe('useGameForm', () => {
   const mockedData: GameData = mockedGame;
@@ -46,6 +50,7 @@ describe('useGameForm', () => {
       setMapImageUrl: expect.any(Function),
       setMapImage: expect.any(Function),
     },
+    errors: {},
   };
 
   const setValues = async (setters: Record<string, any>) => {

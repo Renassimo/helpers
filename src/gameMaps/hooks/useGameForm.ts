@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { GameData } from '@/gameMaps/types';
 import { FileWithPreview } from '@/common/types/files';
 
+import GameValidator from '@/gameMaps/validators/game';
+
+import { CommonError } from '@/common/types/errors';
+
 const useGameForm = (data?: GameData) => {
   const isEditForm = !!data;
   const [title, setTitle] = useState('');
@@ -10,6 +14,7 @@ const useGameForm = (data?: GameData) => {
   const [backgroundColor, setBackgroundColor] = useState('');
   const [mapImageUrl, setMapImageUrl] = useState('');
   const [mapImage, setMapImage] = useState<FileWithPreview | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const cleanForm = () => {
     setTitle('');
@@ -17,6 +22,7 @@ const useGameForm = (data?: GameData) => {
     setBackgroundColor('');
     setMapImageUrl('');
     setMapImage(null);
+    setErrors({});
   };
 
   const prepareFormForEdit = () => {
@@ -29,7 +35,25 @@ const useGameForm = (data?: GameData) => {
     }
   };
 
-  const onSubmit = () => {
+  const validate = async () => {
+    const game = new GameValidator({
+      title,
+      description,
+      backgroundColor,
+    });
+    const validationErrors = await game.validate();
+    setErrors(validationErrors.messages);
+    if (validationErrors.hasError)
+      throw new Error('Some of fields are not valid');
+  };
+
+  const onSubmit = async () => {
+    try {
+      await validate();
+    } catch (error: unknown) {
+      const main = (error as CommonError).message ?? 'Error happened';
+      setErrors((current) => ({ ...current, main }));
+    }
     console.log({
       title,
       description,
@@ -37,6 +61,8 @@ const useGameForm = (data?: GameData) => {
       mapImageUrl,
       mapImage,
     });
+    // upload image
+    // save game (delete image if fails)
   };
 
   return {
@@ -58,6 +84,7 @@ const useGameForm = (data?: GameData) => {
       setMapImageUrl,
       setMapImage,
     },
+    errors,
   };
 };
 

@@ -23,6 +23,7 @@ const GameFormModal = ({
     cleanForm,
     prepareFormForEdit,
     onSubmit,
+    errors,
   } = useGameForm(data);
 
   const onModalClose = () => {
@@ -44,7 +45,7 @@ const GameFormModal = ({
       title="Create new game"
       loading={false}
     >
-      <GameForm values={values} setters={setters} />
+      <GameForm values={values} setters={setters} errors={errors} />
     </Modal>
   );
 };

@@ -1,7 +1,8 @@
-const MockedGameForm = jest.fn(({ values }) => (
+const MockedGameForm = jest.fn(({ values, errors }) => (
   <div>
     MockedGameForm - {values?.title} - {values?.description} -{' '}
-    {values?.backgroundColor} - {values?.mapImageUrl}
+    {values?.backgroundColor} - {values?.mapImageUrl} - {errors?.title} -{' '}
+    {errors?.description} - {errors?.backgroundColor}
   </div>
 ));
 

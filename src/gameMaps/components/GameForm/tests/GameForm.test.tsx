@@ -57,9 +57,19 @@ describe('GameForm', () => {
     setMapImage: mockedSetMapImage,
   };
 
+  const mockedErrors = {
+    title: 'Title error',
+    description: 'Description error',
+    backgroundColor: 'BackgroundColor error',
+    main: 'Main error',
+  };
+
+  const mockedEmptyErrors = {};
+
   const mockedProps: GameFormProps = {
     values: mockedValues,
     setters: mockedSetters,
+    errors: mockedEmptyErrors,
   };
 
   test('renders snapshot successfully', () => {
@@ -86,11 +96,44 @@ describe('GameForm', () => {
     );
   });
 
+  describe('when received errors', () => {
+    test('renders snapshot successfully', () => {
+      // Arange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <GameForm {...mockedProps} errors={mockedErrors} />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+      expect(MockedColorPicker).toHaveBeenCalledWith(
+        {
+          name: 'backgroundColor',
+          label: 'Map background color',
+          value: mockedValues.backgroundColor,
+          onChange: expect.any(Function),
+          error: mockedErrors.backgroundColor,
+        },
+        {}
+      );
+      expect(MockedImagePicker).toHaveBeenCalledWith(
+        {
+          defaultUrlValue: mockedValues.mapImageUrl,
+          onChange: expect.any(Function),
+        },
+        {}
+      );
+    });
+  });
+
   describe('when changes title', () => {
     test('calls setTitle', async () => {
       // Arange
       const { getByLabelText } = renderWithTheme(
-        <GameForm setters={mockedSetters} values={mockedEmptyValues} />
+        <GameForm
+          setters={mockedSetters}
+          values={mockedEmptyValues}
+          errors={mockedEmptyErrors}
+        />
       );
       // Act
       await userEvent.type(getByLabelText('Title'), 'Ti');
@@ -108,7 +151,11 @@ describe('GameForm', () => {
     test('calls setDescription', async () => {
       // Arange
       const { getByLabelText } = renderWithTheme(
-        <GameForm setters={mockedSetters} values={mockedEmptyValues} />
+        <GameForm
+          setters={mockedSetters}
+          values={mockedEmptyValues}
+          errors={mockedEmptyErrors}
+        />
       );
       // Act
       await userEvent.type(getByLabelText('Description'), 'De');

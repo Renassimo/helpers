@@ -44,6 +44,24 @@ describe('ColorPicker', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  describe('when error passed', () => {
+    test('renders snapshot successfully', () => {
+      // Arange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <ColorPicker
+          name={mockedName}
+          label={mockedLabel}
+          value={mockedValue}
+          onChange={mockedOnChange}
+          error="Error hapenned"
+        />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
   describe('when value is changed', () => {
     test('calls onChange', async () => {
       // Arange

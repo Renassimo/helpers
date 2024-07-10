@@ -8,11 +8,13 @@ const ColorPicker = ({
   value,
   label,
   onChange,
+  error,
 }: {
   name: string;
   value: string;
   label?: string;
   onChange: (color: string) => void;
+  error?: string;
 }) => {
   return (
     <Box position="relative">
@@ -25,12 +27,14 @@ const ColorPicker = ({
         multiline
         margin="dense"
         variant="standard"
+        error={!!error}
+        helperText={error}
       />
       <Box
         sx={{
           position: 'absolute',
           right: '4px',
-          bottom: '8px',
+          top: '28px',
           height: '24px',
           width: '24px',
           borderRadius: '12px',

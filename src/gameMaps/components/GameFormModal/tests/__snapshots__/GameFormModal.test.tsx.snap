@@ -14,6 +14,10 @@ exports[`GameFormModal renders snapshot successfully 1`] = `
         mocked-background-color
          - 
         mocked-map-image-url
+         - 
+         -
+         
+         - 
       </div>
       <div>
         title: 

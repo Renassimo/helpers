@@ -39,7 +39,60 @@ exports[`ColorPicker renders snapshot successfully 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-waps35"
+        class="MuiBox-root css-o0ybio"
+      />
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ColorPicker when error passed renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-79elbk"
+    >
+      <div
+        class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r1:"
+          id=":r1:-label"
+        >
+          label
+        </label>
+        <div
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
+        >
+          <textarea
+            aria-describedby=":r1:-helper-text"
+            aria-invalid="true"
+            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+            id=":r1:"
+            name="name"
+            style="height: 0px; overflow: hidden;"
+          >
+            #def
+          </textarea>
+          <textarea
+            aria-hidden="true"
+            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+            readonly=""
+            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+            tabindex="-1"
+          />
+        </div>
+        <p
+          class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-1d1r5q-MuiFormHelperText-root"
+          id=":r1:-helper-text"
+        >
+          Error hapenned
+        </p>
+      </div>
+      <div
+        class="MuiBox-root css-o0ybio"
       />
     </div>
   </div>
