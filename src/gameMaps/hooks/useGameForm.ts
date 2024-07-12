@@ -5,7 +5,13 @@ import { FileWithPreview } from '@/common/types/files';
 
 import GameValidator from '@/gameMaps/validators/game';
 
+import useErrors from '@/common/hooks/useErrors';
+
 import { CommonError } from '@/common/types/errors';
+
+import { validate } from '@/common/utils/validators';
+
+import uploadFile from '@/common/lib/firebase/utils/uploadFile';
 
 const useGameForm = (data?: GameData) => {
   const isEditForm = !!data;
@@ -14,7 +20,8 @@ const useGameForm = (data?: GameData) => {
   const [backgroundColor, setBackgroundColor] = useState('');
   const [mapImageUrl, setMapImageUrl] = useState('');
   const [mapImage, setMapImage] = useState<FileWithPreview | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const { errors, addErrors, cleanErrors } = useErrors();
 
   const cleanForm = () => {
     setTitle('');
@@ -22,7 +29,7 @@ const useGameForm = (data?: GameData) => {
     setBackgroundColor('');
     setMapImageUrl('');
     setMapImage(null);
-    setErrors({});
+    cleanErrors();
   };
 
   const prepareFormForEdit = () => {
@@ -35,24 +42,20 @@ const useGameForm = (data?: GameData) => {
     }
   };
 
-  const validate = async () => {
-    const game = new GameValidator({
-      title,
-      description,
-      backgroundColor,
-    });
-    const validationErrors = await game.validate();
-    setErrors(validationErrors.messages);
-    if (validationErrors.hasError)
-      throw new Error('Some of fields are not valid');
-  };
-
   const onSubmit = async () => {
     try {
-      await validate();
+      await validate(
+        new GameValidator({ title, description, backgroundColor }),
+        addErrors
+      );
+      let mapImageId: string;
+      if (mapImage) {
+        mapImageId = await uploadFile(mapImage, title);
+        console.log(mapImageId);
+      }
     } catch (error: unknown) {
       const main = (error as CommonError).message ?? 'Error happened';
-      setErrors((current) => ({ ...current, main }));
+      addErrors({ main });
     }
     console.log({
       title,
@@ -61,7 +64,6 @@ const useGameForm = (data?: GameData) => {
       mapImageUrl,
       mapImage,
     });
-    // upload image
     // save game (delete image if fails)
   };
 

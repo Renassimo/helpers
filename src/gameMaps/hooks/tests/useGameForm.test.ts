@@ -2,6 +2,11 @@ import { renderHook, cleanup, act } from '@testing-library/react';
 
 import { GameData } from '@/gameMaps/types';
 
+import useErrors from '@/common/hooks/useErrors';
+// import { validate } from '@/common/utils/validators';
+
+// import uploadFile from '@/common/lib/firebase/utils/uploadFile';
+
 // import GameValidator from '@/gameMaps/validators/game';
 
 import { mockedGame } from '@/gameMaps/types/mocks';
@@ -10,13 +15,28 @@ import { FileWithPreview } from '@/common/types/files';
 import useGameForm from '../useGameForm';
 
 jest.mock('@/gameMaps/validators/game');
+jest.mock('@/common/hooks/useErrors');
+jest.mock('@/common/utils/validators');
+jest.mock('@/common/lib/firebase/utils/uploadFile');
 
 describe('useGameForm', () => {
   const mockedData: GameData = mockedGame;
+  const mockedErrors = {};
+  const mockedAddErrors = jest.fn();
+  const mockedCleanErrors = jest.fn();
+  const mockedUseErrors = jest.fn(() => ({
+    errors: mockedErrors,
+    addErrors: mockedAddErrors,
+    cleanErrors: mockedCleanErrors,
+  }));
 
   afterEach(() => {
     cleanup();
     jest.clearAllMocks();
+  });
+
+  beforeEach(() => {
+    (useErrors as unknown as jest.Mock).mockImplementation(mockedUseErrors);
   });
 
   const mockedFileWithPreview = new File([], 'file') as FileWithPreview;
@@ -50,7 +70,7 @@ describe('useGameForm', () => {
       setMapImageUrl: expect.any(Function),
       setMapImage: expect.any(Function),
     },
-    errors: {},
+    errors: mockedErrors,
   };
 
   const setValues = async (setters: Record<string, any>) => {
