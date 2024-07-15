@@ -38,7 +38,7 @@ const useGameForm = (data?: GameData) => {
       setTitle(attributes.title);
       setDescription(attributes.description);
       setBackgroundColor(attributes.backgroundColor);
-      setMapImageUrl(attributes.mapImageUrl);
+      if (attributes.mapImageUrl) setMapImageUrl(attributes.mapImageUrl);
     }
   };
 

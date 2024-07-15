@@ -4,8 +4,9 @@ import { PlayData } from '@/gameMaps/types/playTypes';
 export interface GameAttributes {
   backgroundColor: string;
   description: string;
-  mapImageUrl: string;
   title: string;
+  mapImageUrl?: string;
+  mapImageId?: string;
 }
 
 export type GameData = Data<GameAttributes>;

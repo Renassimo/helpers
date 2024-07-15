@@ -7,7 +7,7 @@ export interface GameFormProps {
     title: string;
     description: string;
     backgroundColor: string;
-    mapImageUrl: string;
+    mapImageUrl?: string;
     mapImage: FileWithPreview | null;
   };
   setters: {

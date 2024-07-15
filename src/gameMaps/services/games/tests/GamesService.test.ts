@@ -3,11 +3,34 @@ import { Firestore } from '@/common/lib/firebase/types';
 import { mockDBCallStack } from '@/common/tests/helpers';
 import { mockedGame } from '@/gameMaps/types/mocks';
 
+import { getStorage } from 'firebase-admin/storage';
+
 import GamesService from '../GamesService';
 
+jest.mock('firebase-admin/storage');
+
 describe('GamesService', () => {
+  const mockedSignedUrl = 'mocked-signed-url';
+  const mockedGetSignedUrl = jest.fn(() => [mockedSignedUrl]);
+  const mockedDelete = jest.fn();
+  const mockedFile = jest.fn(() => ({
+    getSignedUrl: mockedGetSignedUrl,
+    delete: mockedDelete,
+  }));
+  const mockedBucket = jest.fn(() => ({
+    file: mockedFile,
+  }));
+  const mockedStorage = {
+    bucket: mockedBucket,
+  };
+  const mockedGetStorage = jest.fn(() => mockedStorage);
   afterEach(() => {
     GamesService.clearInstanceForTest();
+    jest.clearAllMocks();
+  });
+
+  beforeEach(() => {
+    (getStorage as unknown as jest.Mock).mockImplementation(mockedGetStorage);
   });
 
   describe('getAll', () => {
@@ -16,7 +39,12 @@ describe('GamesService', () => {
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
         'collection(gameMaps).doc(uid).collection(games).get()',
         {
-          docs: [{ id: 'gm1', data: () => ({ title: 'doc 1' }) }],
+          docs: [
+            {
+              id: 'gm1',
+              data: () => ({ title: 'doc 1', someExtra: 'will not passed' }),
+            },
+          ],
         }
       );
       const [mockedCollection1, mockedDoc, mockedCollection2] = mockedDbFuncs;
@@ -24,7 +52,12 @@ describe('GamesService', () => {
       const gamesService = GamesService.getInstance(
         mockedDb as unknown as Firestore
       );
-      const expectedResult = [{ id: 'gm1', attributes: { title: 'doc 1' } }];
+      const expectedResult = [
+        {
+          id: 'gm1',
+          attributes: { title: 'doc 1', description: '', backgroundColor: '' },
+        },
+      ];
       // Act
       const result = await gamesService.getAll('uid');
       // Assert
@@ -32,6 +65,9 @@ describe('GamesService', () => {
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
       expect(mockedDoc).toHaveBeenCalledWith('uid');
       expect(mockedCollection2).toHaveBeenCalledWith('games');
+      expect(mockedFile).not.toHaveBeenCalled();
+      expect(mockedBucket).not.toHaveBeenCalled();
+      expect(mockedDelete).not.toHaveBeenCalled();
     });
 
     describe('when receives error', () => {
@@ -62,7 +98,11 @@ describe('GamesService', () => {
         'collection(gameMaps).doc(uid).collection(games).doc(id).get()',
         {
           id: 'gm1',
-          data: () => ({ title: 'doc 1' }),
+          data: () => ({
+            title: 'doc 1',
+            someExtra: 'will not passed',
+            mapImageId: 'map-image-id',
+          }),
         }
       );
       const [mockedCollection1, mockedDoc1, mockedCollection2, mockedDoc2] =
@@ -71,7 +111,15 @@ describe('GamesService', () => {
       const gamesService = GamesService.getInstance(
         mockedDb as unknown as Firestore
       );
-      const expectedResult = { id: 'gm1', attributes: { title: 'doc 1' } };
+      const expectedResult = {
+        id: 'gm1',
+        attributes: {
+          title: 'doc 1',
+          description: '',
+          backgroundColor: '',
+          mapImageUrl: mockedSignedUrl,
+        },
+      };
       // Act
       const result = await gamesService.getOne('uid', 'gm1');
       // Assert
@@ -80,6 +128,52 @@ describe('GamesService', () => {
       expect(mockedDoc1).toHaveBeenCalledWith('uid');
       expect(mockedCollection2).toHaveBeenCalledWith('games');
       expect(mockedDoc2).toHaveBeenCalledWith('gm1');
+      expect(mockedFile).toHaveBeenCalledWith('map-image-id');
+      expect(mockedBucket).toHaveBeenCalledWith('');
+      expect(mockedDelete).not.toHaveBeenCalled();
+    });
+
+    describe('when requested with withMapImageId', () => {
+      test('returns data with withMapImageId', async () => {
+        // Arrange
+        const [mockedDb, mockedDbFuncs] = mockDBCallStack(
+          'collection(gameMaps).doc(uid).collection(games).doc(id).get()',
+          {
+            id: 'gm1',
+            data: () => ({
+              title: 'doc 1',
+              someExtra: 'will not passed',
+              mapImageId: 'map-image-id',
+            }),
+          }
+        );
+        const [mockedCollection1, mockedDoc1, mockedCollection2, mockedDoc2] =
+          mockedDbFuncs;
+
+        const gamesService = GamesService.getInstance(
+          mockedDb as unknown as Firestore
+        );
+        const expectedResult = {
+          id: 'gm1',
+          attributes: {
+            title: 'doc 1',
+            description: '',
+            backgroundColor: '',
+            mapImageId: 'map-image-id',
+          },
+        };
+        // Act
+        const result = await gamesService.getOne('uid', 'gm1', true);
+        // Assert
+        expect(result).toEqual(expectedResult);
+        expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
+        expect(mockedDoc1).toHaveBeenCalledWith('uid');
+        expect(mockedCollection2).toHaveBeenCalledWith('games');
+        expect(mockedDoc2).toHaveBeenCalledWith('gm1');
+        expect(mockedFile).not.toHaveBeenCalled();
+        expect(mockedBucket).not.toHaveBeenCalled();
+        expect(mockedDelete).not.toHaveBeenCalled();
+      });
     });
 
     describe('when receives error', () => {
@@ -104,29 +198,59 @@ describe('GamesService', () => {
   describe('create', () => {
     test('returns data', async () => {
       // Arrange
+      const mockedAdd = jest.fn(() => ({
+        id: 'gm1',
+      }));
+      const mockedDoc2 = jest.fn(
+        jest.fn(() => ({
+          get: jest.fn(() => ({
+            id: 'gm1',
+            data: () => ({
+              someExtra: 'will not passed',
+              mapImageId: 'map-image-id',
+              ...mockedGame.attributes,
+            }),
+          })),
+        }))
+      );
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(games).add()',
+        'collection(gameMaps).doc(uid).collection(games)',
         {
-          id: 'gm1',
+          add: mockedAdd,
+          doc: mockedDoc2,
         }
       );
-      const [mockedCollection1, mockedDoc, mockedCollection2, mockedAdd1] =
-        mockedDbFuncs;
+      const [mockedCollection1, mockedDoc1, mockedCollection2] = mockedDbFuncs;
 
       const gamesService = GamesService.getInstance(
         mockedDb as unknown as Firestore
       );
       const expectedResult = {
         ...mockedGame,
+        attributes: {
+          ...mockedGame.attributes,
+          mapImageUrl: undefined,
+        },
       };
       // Act
-      const result = await gamesService.create('uid', mockedGame.attributes);
+      const result = await gamesService.create('uid', {
+        ...mockedGame.attributes,
+        mapImageId: 'map-image-id',
+      });
       // Assert
       expect(result).toEqual(expectedResult);
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
-      expect(mockedDoc).toHaveBeenCalledWith('uid');
+      expect(mockedDoc1).toHaveBeenCalledWith('uid');
       expect(mockedCollection2).toHaveBeenCalledWith('games');
-      expect(mockedAdd1).toHaveBeenCalledWith(mockedGame.attributes);
+      expect(mockedDoc2).toHaveBeenCalledWith('gm1');
+      expect(mockedAdd).toHaveBeenCalledWith({
+        ...mockedGame.attributes,
+        mapImageId: 'map-image-id',
+        mapImageUrl: undefined,
+      });
+      expect(mockedFile).not.toHaveBeenCalled();
+      expect(mockedBucket).not.toHaveBeenCalled();
+      expect(mockedDelete).not.toHaveBeenCalled();
     });
 
     describe('when receives error', () => {
@@ -150,11 +274,13 @@ describe('GamesService', () => {
 
   describe('update', () => {
     const newTitle = 'New Game Title';
+
     test('returns data', async () => {
       // Arrange
       const updatedAttributes = {
         ...mockedGame.attributes,
         title: newTitle,
+        someExtra: 'will not passed',
       };
       const mockedData = jest.fn(() => updatedAttributes);
       const mockedGet = jest.fn(() => ({ id: 'gm1', data: mockedData }));
@@ -174,7 +300,11 @@ describe('GamesService', () => {
       );
       const expectedResult = {
         ...mockedGame,
-        attributes: updatedAttributes,
+        attributes: {
+          ...mockedGame.attributes,
+          title: newTitle,
+          mapImageUrl: '',
+        },
       };
       // Act
       const result = await gamesService.update('uid', 'gm1', {
@@ -187,6 +317,63 @@ describe('GamesService', () => {
       expect(mockedCollection2).toHaveBeenCalledWith('games');
       expect(mockedDoc2).toHaveBeenCalledWith('gm1');
       expect(mockedUpdate).toHaveBeenCalledWith({ title: newTitle });
+      expect(mockedFile).not.toHaveBeenCalled();
+      expect(mockedBucket).not.toHaveBeenCalled();
+      expect(mockedDelete).not.toHaveBeenCalled();
+    });
+
+    describe('when image changed', () => {
+      test('returns data and deletes old image', async () => {
+        // Arrange
+        const updatedAttributes = {
+          ...mockedGame.attributes,
+          title: newTitle,
+          someExtra: 'will not passed',
+          mapImageId: 'map-image-id',
+        };
+        const mockedData = jest.fn(() => updatedAttributes);
+        const mockedGet = jest.fn(() => ({ id: 'gm1', data: mockedData }));
+        const mockedUpdate = jest.fn(() => ({ id: 'gm1' }));
+        const [mockedDb, mockedDbFuncs] = mockDBCallStack(
+          'collection(gameMaps).doc(uid).collection(games).doc(id)',
+          {
+            get: mockedGet,
+            update: mockedUpdate,
+          }
+        );
+        const [mockedCollection1, mockedDoc1, mockedCollection2, mockedDoc2] =
+          mockedDbFuncs;
+
+        const gamesService = GamesService.getInstance(
+          mockedDb as unknown as Firestore
+        );
+        const expectedResult = {
+          ...mockedGame,
+          attributes: {
+            ...mockedGame.attributes,
+            title: newTitle,
+            mapImageUrl: 'mocked-signed-url',
+          },
+        };
+        // Act
+        const result = await gamesService.update('uid', 'gm1', {
+          title: newTitle,
+          mapImageId: 'new-map-image-id',
+        });
+        // Assert
+        expect(result).toEqual(expectedResult);
+        expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
+        expect(mockedDoc1).toHaveBeenCalledWith('uid');
+        expect(mockedCollection2).toHaveBeenCalledWith('games');
+        expect(mockedDoc2).toHaveBeenCalledWith('gm1');
+        expect(mockedUpdate).toHaveBeenCalledWith({
+          title: newTitle,
+          mapImageId: 'new-map-image-id',
+        });
+        expect(mockedFile).toHaveBeenCalledWith('map-image-id');
+        expect(mockedBucket).toHaveBeenCalled();
+        expect(mockedDelete).toHaveBeenCalledWith({ ignoreNotFound: true });
+      });
     });
 
     describe('when receives error', () => {
@@ -209,9 +396,15 @@ describe('GamesService', () => {
   });
 
   describe('delete', () => {
-    test('returns data', async () => {
+    test('deletes data and deletes image', async () => {
       // Arrange
-      const mockedDocRef = { ref: 'Mocked Doc Ref' };
+      const mockedData = jest.fn(() => ({
+        ...mockedGame.attributes,
+        mapImageId: 'map-image-id',
+      }));
+      const mockedGet = jest.fn(() => ({ id: 'gm1', data: mockedData }));
+
+      const mockedDocRef = { ref: 'Mocked Doc Ref', get: mockedGet };
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
         'collection(gameMaps).doc(uid).collection(games).doc(id)',
         mockedDocRef
@@ -235,6 +428,9 @@ describe('GamesService', () => {
       expect(mockedCollection2).toHaveBeenCalledWith('games');
       expect(mockedDoc2).toHaveBeenCalledWith('gm1');
       expect(mockedRecursiveDelete).toHaveBeenCalledWith(mockedDocRef);
+      expect(mockedFile).toHaveBeenCalledWith('map-image-id');
+      expect(mockedBucket).toHaveBeenCalled();
+      expect(mockedDelete).toHaveBeenCalledWith({ ignoreNotFound: true });
     });
 
     describe('when receives error', () => {
