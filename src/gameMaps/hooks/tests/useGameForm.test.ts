@@ -3,21 +3,30 @@ import { renderHook, cleanup, act } from '@testing-library/react';
 import { GameData } from '@/gameMaps/types';
 
 import useErrors from '@/common/hooks/useErrors';
-// import { validate } from '@/common/utils/validators';
 
-// import uploadFile from '@/common/lib/firebase/utils/uploadFile';
+import GameValidator from '@/gameMaps/validators/game';
+import { validate } from '@/common/utils/validators';
 
-// import GameValidator from '@/gameMaps/validators/game';
+import uploadFile from '@/common/lib/firebase/utils/uploadFile';
+import deleteFile from '@/common/lib/firebase/utils/deleteFile';
 
-import { mockedGame } from '@/gameMaps/types/mocks';
+import createGame from '@/gameMaps/handlers/client/createGame';
+import updateGame from '@/gameMaps/handlers/client/updateGame';
+import deleteGame from '@/gameMaps/handlers/client/deleteGame';
+
+import { mockedGame, mockedGame2 } from '@/gameMaps/types/mocks';
 import { FileWithPreview } from '@/common/types/files';
 
 import useGameForm from '../useGameForm';
 
-jest.mock('@/gameMaps/validators/game');
 jest.mock('@/common/hooks/useErrors');
+jest.mock('@/gameMaps/validators/game');
 jest.mock('@/common/utils/validators');
 jest.mock('@/common/lib/firebase/utils/uploadFile');
+jest.mock('@/common/lib/firebase/utils/deleteFile');
+jest.mock('@/gameMaps/handlers/client/createGame');
+jest.mock('@/gameMaps/handlers/client/updateGame');
+jest.mock('@/gameMaps/handlers/client/deleteGame');
 
 describe('useGameForm', () => {
   const mockedData: GameData = mockedGame;
@@ -29,6 +38,8 @@ describe('useGameForm', () => {
     addErrors: mockedAddErrors,
     cleanErrors: mockedCleanErrors,
   }));
+
+  const mockedOnFinish = jest.fn();
 
   afterEach(() => {
     cleanup();
@@ -62,6 +73,7 @@ describe('useGameForm', () => {
     cleanForm: expect.any(Function),
     isEditForm: false,
     onSubmit: expect.any(Function),
+    onDelete: expect.any(Function),
     values: expectedEmptyValues,
     setters: {
       setTitle: expect.any(Function),
@@ -71,14 +83,18 @@ describe('useGameForm', () => {
       setMapImage: expect.any(Function),
     },
     errors: mockedErrors,
+    loading: false,
   };
 
-  const setValues = async (setters: Record<string, any>) => {
+  const setValues = async (
+    setters: Record<string, any>,
+    withMapImage = true
+  ) => {
     await setters.setBackgroundColor(mockedGame.attributes.backgroundColor);
     await setters.setDescription(mockedGame.attributes.description);
     await setters.setTitle(mockedGame.attributes.title);
     await setters.setMapImageUrl(mockedGame.attributes.mapImageUrl);
-    await setters.setMapImage(mockedFileWithPreview);
+    if (withMapImage) await setters.setMapImage(mockedFileWithPreview);
   };
 
   test('returns empty game form state', () => {
@@ -118,11 +134,305 @@ describe('useGameForm', () => {
     });
   });
 
-  describe.skip('When form was submitted', () => {
-    test('calls onSubmit', () => {
+  describe('When form was submitted', () => {
+    const mockedGameValidatorInstance = {
+      validate: 'mocked-game-validator-instance',
+    };
+    const mockedGameValidator = jest.fn(() => mockedGameValidatorInstance);
+
+    const mockedDeleteFile = jest.fn();
+
+    const mockedMapImageId = 'mocked-map-image-id';
+    const mockedUploadFile = jest.fn(() => mockedMapImageId);
+
+    const mockedSubmittedData = 'mocked-submitted-data';
+    const mockedCreateGame = jest.fn(() => mockedSubmittedData);
+    const mockedUpdateGame = jest.fn(() => mockedSubmittedData);
+
+    beforeEach(() => {
+      (GameValidator as unknown as jest.Mock).mockImplementationOnce(
+        mockedGameValidator
+      );
+      (deleteFile as unknown as jest.Mock).mockImplementationOnce(
+        mockedDeleteFile
+      );
+
+      (uploadFile as unknown as jest.Mock).mockImplementationOnce(
+        mockedUploadFile
+      );
+      (createGame as unknown as jest.Mock).mockImplementationOnce(
+        mockedCreateGame
+      );
+      (updateGame as unknown as jest.Mock).mockImplementationOnce(
+        mockedUpdateGame
+      );
+    });
+
+    test('calls onSubmit', async () => {
       // Arange
+      const mockedValidate = jest.fn();
+      (validate as unknown as jest.Mock).mockImplementationOnce(mockedValidate);
+
+      const { result } = renderHook(() =>
+        useGameForm(undefined, mockedOnFinish)
+      );
+      await act(async () => {
+        await setValues(result.current.setters);
+      });
       // Act
+      await act(async () => {
+        await result.current.onSubmit();
+      });
       // Assert
+      expect(mockedValidate).toHaveBeenCalledWith(
+        mockedGameValidatorInstance,
+        mockedAddErrors
+      );
+      expect(mockedGameValidator).toHaveBeenCalledWith({
+        title: mockedGame.attributes.title,
+        description: mockedGame.attributes.description,
+        backgroundColor: mockedGame.attributes.backgroundColor,
+      });
+      expect(mockedUploadFile).toHaveBeenCalledWith(
+        mockedFileWithPreview,
+        mockedGame.attributes.title
+      );
+      expect(mockedCreateGame).toHaveBeenCalledWith({
+        title: mockedGame.attributes.title,
+        description: mockedGame.attributes.description,
+        backgroundColor: mockedGame.attributes.backgroundColor,
+        mapImageId: mockedMapImageId,
+      });
+      expect(mockedUpdateGame).not.toHaveBeenCalled();
+      expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
+      expect(mockedDeleteFile).not.toHaveBeenCalled();
+      expect(mockedAddErrors).not.toHaveBeenCalled();
+    });
+
+    describe('when file did not upload', () => {
+      test('calls onSubmit without mapImageId', async () => {
+        // Arange
+        const mockedValidate = jest.fn();
+        (validate as unknown as jest.Mock).mockImplementationOnce(
+          mockedValidate
+        );
+
+        const { result } = renderHook(() =>
+          useGameForm(undefined, mockedOnFinish)
+        );
+        await act(async () => {
+          await setValues(result.current.setters, false);
+        });
+        // Act
+        await act(async () => {
+          await result.current.onSubmit();
+        });
+        // Assert
+        expect(mockedValidate).toHaveBeenCalledWith(
+          mockedGameValidatorInstance,
+          mockedAddErrors
+        );
+        expect(mockedGameValidator).toHaveBeenCalledWith({
+          title: mockedGame.attributes.title,
+          description: mockedGame.attributes.description,
+          backgroundColor: mockedGame.attributes.backgroundColor,
+        });
+        expect(mockedUploadFile).not.toHaveBeenCalled();
+        expect(mockedCreateGame).toHaveBeenCalledWith({
+          title: mockedGame.attributes.title,
+          description: mockedGame.attributes.description,
+          backgroundColor: mockedGame.attributes.backgroundColor,
+        });
+        expect(mockedUpdateGame).not.toHaveBeenCalled();
+        expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
+        expect(mockedDeleteFile).not.toHaveBeenCalled();
+        expect(mockedAddErrors).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('When error occurs while submit', () => {
+      test('catches error, deletes file an set caught error', async () => {
+        // Arange
+        const mockedErrorMessage = 'Error occured!';
+        const mockedError = new Error(mockedErrorMessage);
+        const mockedValidate = jest.fn(() => {
+          throw mockedError;
+        });
+        (validate as unknown as jest.Mock).mockImplementationOnce(
+          mockedValidate
+        );
+
+        const { result } = renderHook(() =>
+          useGameForm(undefined, mockedOnFinish)
+        );
+        await act(async () => {
+          await setValues(result.current.setters);
+        });
+        // Act
+        await act(async () => {
+          await result.current.onSubmit();
+        });
+        // Assert
+        expect(mockedValidate).toHaveBeenCalledWith(
+          mockedGameValidatorInstance,
+          mockedAddErrors
+        );
+        expect(mockedGameValidator).toHaveBeenCalledWith({
+          title: mockedGame.attributes.title,
+          description: mockedGame.attributes.description,
+          backgroundColor: mockedGame.attributes.backgroundColor,
+        });
+        expect(mockedUploadFile).not.toHaveBeenCalled();
+        expect(mockedCreateGame).not.toHaveBeenCalled();
+        expect(mockedUpdateGame).not.toHaveBeenCalled();
+        expect(mockedOnFinish).not.toHaveBeenCalled();
+        expect(mockedDeleteFile).toHaveBeenCalledWith(undefined);
+        expect(mockedAddErrors).toHaveBeenCalledWith({
+          main: mockedErrorMessage,
+        });
+      });
+    });
+
+    describe('When data passed (edit form)', () => {
+      test('calls onSubmit', async () => {
+        // Arange
+        const mockedValidate = jest.fn();
+        (validate as unknown as jest.Mock).mockImplementationOnce(
+          mockedValidate
+        );
+
+        const { result } = renderHook(() =>
+          useGameForm(mockedData, mockedOnFinish)
+        );
+        await act(async () => {
+          await result.current.prepareFormForEdit();
+          await result.current.setters.setDescription(
+            mockedGame2.attributes.description
+          );
+          await result.current.setters.setMapImage(mockedFileWithPreview);
+        });
+        // Act
+        await act(async () => {
+          await result.current.onSubmit();
+        });
+        // Assert
+        expect(mockedValidate).toHaveBeenCalledWith(
+          mockedGameValidatorInstance,
+          mockedAddErrors
+        );
+        expect(mockedGameValidator).toHaveBeenCalledWith({
+          title: mockedGame.attributes.title,
+          description: mockedGame2.attributes.description,
+          backgroundColor: mockedGame.attributes.backgroundColor,
+        });
+        expect(mockedUploadFile).toHaveBeenCalledWith(
+          mockedFileWithPreview,
+          mockedGame.attributes.title
+        );
+        expect(mockedCreateGame).not.toHaveBeenCalled();
+        expect(mockedUpdateGame).toHaveBeenCalledWith(
+          {
+            title: mockedGame.attributes.title,
+            description: mockedGame2.attributes.description,
+            backgroundColor: mockedGame.attributes.backgroundColor,
+            mapImageId: mockedMapImageId,
+          },
+          mockedGame.id
+        );
+        expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
+        expect(mockedDeleteFile).not.toHaveBeenCalled();
+        expect(mockedAddErrors).not.toHaveBeenCalled();
+      });
+
+      describe('when file did not upload', () => {
+        test('calls onSubmit without mapImageId', async () => {
+          // Arange
+          const mockedValidate = jest.fn();
+          (validate as unknown as jest.Mock).mockImplementationOnce(
+            mockedValidate
+          );
+
+          const { result } = renderHook(() =>
+            useGameForm(mockedData, mockedOnFinish)
+          );
+          await act(async () => {
+            await result.current.prepareFormForEdit();
+            await result.current.setters.setDescription(
+              mockedGame2.attributes.description
+            );
+          });
+          // Act
+          await act(async () => {
+            await result.current.onSubmit();
+          });
+          // Assert
+          expect(mockedValidate).toHaveBeenCalledWith(
+            mockedGameValidatorInstance,
+            mockedAddErrors
+          );
+          expect(mockedGameValidator).toHaveBeenCalledWith({
+            title: mockedGame.attributes.title,
+            description: mockedGame2.attributes.description,
+            backgroundColor: mockedGame.attributes.backgroundColor,
+          });
+          expect(mockedUploadFile).not.toHaveBeenCalled();
+          expect(mockedCreateGame).not.toHaveBeenCalled();
+          expect(mockedUpdateGame).toHaveBeenCalledWith(
+            {
+              title: mockedGame.attributes.title,
+              description: mockedGame2.attributes.description,
+              backgroundColor: mockedGame.attributes.backgroundColor,
+            },
+            mockedGame.id
+          );
+          expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
+          expect(mockedDeleteFile).not.toHaveBeenCalled();
+          expect(mockedAddErrors).not.toHaveBeenCalled();
+        });
+      });
+
+      describe('When error occurs while submit', () => {
+        test('catches error, deletes file an set caught error', async () => {
+          // Arange
+          const mockedErrorMessage = 'Error occured!';
+          const mockedError = new Error(mockedErrorMessage);
+          const mockedValidate = jest.fn(() => {
+            throw mockedError;
+          });
+          (validate as unknown as jest.Mock).mockImplementationOnce(
+            mockedValidate
+          );
+
+          const { result } = renderHook(() =>
+            useGameForm(mockedData, mockedOnFinish)
+          );
+          await act(async () => {
+            await setValues(result.current.setters);
+          });
+          // Act
+          await act(async () => {
+            await result.current.onSubmit();
+          });
+          // Assert
+          expect(mockedValidate).toHaveBeenCalledWith(
+            mockedGameValidatorInstance,
+            mockedAddErrors
+          );
+          expect(mockedGameValidator).toHaveBeenCalledWith({
+            title: mockedGame.attributes.title,
+            description: mockedGame.attributes.description,
+            backgroundColor: mockedGame.attributes.backgroundColor,
+          });
+          expect(mockedUploadFile).not.toHaveBeenCalled();
+          expect(mockedCreateGame).not.toHaveBeenCalled();
+          expect(mockedUpdateGame).not.toHaveBeenCalled();
+          expect(mockedOnFinish).not.toHaveBeenCalled();
+          expect(mockedDeleteFile).toHaveBeenCalledWith(undefined);
+          expect(mockedAddErrors).toHaveBeenCalledWith({
+            main: mockedErrorMessage,
+          });
+        });
+      });
     });
   });
 
@@ -161,11 +471,77 @@ describe('useGameForm', () => {
       });
     });
 
-    describe.skip('When form was submitted', () => {
-      test('calls onSubmit', () => {
+    describe('when onDelete called', () => {
+      test('deletes game', async () => {
         // Arange
+        const mockedDeletedData = 'mocked-deleted-no-data';
+        const mockedDeleteGame = jest.fn(() => mockedDeletedData);
+        (deleteGame as unknown as jest.Mock).mockImplementationOnce(
+          mockedDeleteGame
+        );
+
+        const { result } = renderHook(() =>
+          useGameForm(mockedData, mockedOnFinish)
+        );
         // Act
+        await act(async () => {
+          await result.current.prepareFormForEdit();
+          await result.current.onDelete();
+        });
         // Assert
+        expect(mockedDeleteGame).toHaveBeenCalledWith(mockedGame.id);
+        expect(mockedOnFinish).toHaveBeenCalledWith(null);
+      });
+
+      describe('When error occurs while delete', () => {
+        test('catches error and set caught error', async () => {
+          // Arange
+          const mockedErrorMessage = 'Error occured!';
+          const mockedError = new Error(mockedErrorMessage);
+          const mockedDeleteGame = jest.fn(() => {
+            throw mockedError;
+          });
+          (deleteGame as unknown as jest.Mock).mockImplementation(
+            mockedDeleteGame
+          );
+
+          const { result } = renderHook(() =>
+            useGameForm(mockedData, mockedOnFinish)
+          );
+          // Act
+          await act(async () => {
+            await result.current.prepareFormForEdit();
+            await result.current.onDelete();
+          });
+          // Assert
+          expect(mockedOnFinish).not.toHaveBeenCalled();
+          expect(mockedAddErrors).toHaveBeenCalledWith({
+            main: mockedErrorMessage,
+          });
+          expect(mockedDeleteGame).toHaveBeenCalledWith(mockedGame.id);
+        });
+      });
+
+      describe('when data not passed (create form)', () => {
+        test('does not delete game', async () => {
+          // Arange
+          const mockedDeletedData = 'mocked-deleted-no-data';
+          const mockedDeleteGame = jest.fn(() => mockedDeletedData);
+          (deleteGame as unknown as jest.Mock).mockImplementationOnce(
+            mockedDeleteGame
+          );
+
+          const { result } = renderHook(() =>
+            useGameForm(undefined, mockedOnFinish)
+          );
+          // Act
+          await act(async () => {
+            await result.current.onDelete();
+          });
+          // Assert
+          expect(mockedDeleteGame).not.toHaveBeenCalled();
+          expect(mockedOnFinish).not.toHaveBeenCalled();
+        });
       });
     });
   });

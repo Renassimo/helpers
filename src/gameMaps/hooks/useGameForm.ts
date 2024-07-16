@@ -12,9 +12,18 @@ import { CommonError } from '@/common/types/errors';
 import { validate } from '@/common/utils/validators';
 
 import uploadFile from '@/common/lib/firebase/utils/uploadFile';
+import deleteFile from '@/common/lib/firebase/utils/deleteFile';
 
-const useGameForm = (data?: GameData) => {
+import createGame from '@/gameMaps/handlers/client/createGame';
+import updateGame from '@/gameMaps/handlers/client/updateGame';
+import deleteGame from '../handlers/client/deleteGame';
+
+const useGameForm = (
+  data?: GameData,
+  onFinish?: (data: GameData | null) => void
+) => {
   const isEditForm = !!data;
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('');
@@ -42,29 +51,54 @@ const useGameForm = (data?: GameData) => {
     }
   };
 
-  const onSubmit = async () => {
+  const onDelete = async (): Promise<void> => {
+    if (isEditForm) {
+      setLoading(true);
+      try {
+        await deleteGame(data.id);
+        onFinish?.(null);
+        setLoading(false);
+      } catch (error: unknown) {
+        setLoading(false);
+        const main = (error as CommonError).message ?? 'Error happened';
+        addErrors({ main });
+      }
+    }
+  };
+
+  const onSubmit = async (): Promise<void> => {
+    setLoading(true);
+    let mapImageId;
     try {
+      console.log({ title, description, backgroundColor });
       await validate(
         new GameValidator({ title, description, backgroundColor }),
         addErrors
       );
-      let mapImageId: string;
       if (mapImage) {
         mapImageId = await uploadFile(mapImage, title);
-        console.log(mapImageId);
       }
+      const withMapImageId: { mapImageId?: string } = mapImageId
+        ? { mapImageId }
+        : {};
+      const payload = {
+        title,
+        description,
+        backgroundColor,
+        ...withMapImageId,
+      };
+      const responseData = isEditForm
+        ? await updateGame(payload, data.id)
+        : await createGame(payload);
+
+      onFinish?.(responseData);
+      setLoading(false);
     } catch (error: unknown) {
+      setLoading(false);
+      deleteFile(mapImageId);
       const main = (error as CommonError).message ?? 'Error happened';
       addErrors({ main });
     }
-    console.log({
-      title,
-      description,
-      backgroundColor,
-      mapImageUrl,
-      mapImage,
-    });
-    // save game (delete image if fails)
   };
 
   return {
@@ -72,6 +106,7 @@ const useGameForm = (data?: GameData) => {
     cleanForm,
     isEditForm,
     onSubmit,
+    onDelete,
     values: {
       title,
       description,
@@ -87,6 +122,7 @@ const useGameForm = (data?: GameData) => {
       setMapImage,
     },
     errors,
+    loading,
   };
 };
 

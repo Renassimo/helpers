@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { GamesPageProps } from '@/gameMaps/types';
+import { GameData, GamesPageProps } from '@/gameMaps/types';
 import { PageInfo } from '@/auth/types';
 
 import { useErrorAlert } from '@/common/hooks/alerts';
@@ -10,9 +10,16 @@ import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 import PagesList from '@/common/components/PagesList';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
 
-const GamesPage = ({ user, pages, data, error }: GamesPageProps) => {
+const GamesPage = ({
+  user,
+  pages,
+  data: retrievedData,
+  error,
+}: GamesPageProps) => {
   useErrorAlert(error);
+
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
+  const [data, setData] = useState(retrievedData);
 
   const gamePages: PageInfo[] = [
     ...(data?.map((game) => ({
@@ -26,6 +33,10 @@ const GamesPage = ({ user, pages, data, error }: GamesPageProps) => {
     },
   ];
 
+  const addGameToState = (newData: GameData | null) => {
+    if (newData) setData((current) => [...(current ?? []), newData]);
+  };
+
   return (
     <GameMapsTemplate
       title="Game Maps"
@@ -38,6 +49,7 @@ const GamesPage = ({ user, pages, data, error }: GamesPageProps) => {
       <GameFormModal
         isModalOpen={isGameModalOpen}
         setIsModalOpen={setIsGameModalOpen}
+        onFinish={addGameToState}
       />
     </GameMapsTemplate>
   );

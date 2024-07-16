@@ -37,6 +37,7 @@ describe('GamesPage snapshot', () => {
       mockedUseErrorAlert
     );
   });
+
   test('renders successfully', () => {
     // Arange
     // Act
@@ -52,7 +53,11 @@ describe('GamesPage snapshot', () => {
     expect(baseElement).toMatchSnapshot();
     expect(mockedUseErrorAlert).toHaveBeenCalledWith(null);
     expect(MockedGameFormModal).toHaveBeenCalledWith(
-      { isModalOpen: false, setIsModalOpen: expect.any(Function) },
+      {
+        isModalOpen: false,
+        setIsModalOpen: expect.any(Function),
+        onFinish: expect.any(Function),
+      },
       {}
     );
   });

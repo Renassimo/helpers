@@ -11,11 +11,22 @@ const GameFormModal = ({
   isModalOpen,
   setIsModalOpen,
   data,
+  onFinish,
 }: {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
   data?: GameData;
+  onFinish: (newData: GameData | null) => void;
 }) => {
+  const onModalClose = () => {
+    setIsModalOpen(false);
+    cleanForm();
+  };
+
+  const handleFinish = (newData: GameData | null) => {
+    onFinish(newData);
+    onModalClose();
+  };
   const {
     isEditForm,
     values,
@@ -24,18 +35,14 @@ const GameFormModal = ({
     prepareFormForEdit,
     onSubmit,
     errors,
-  } = useGameForm(data);
-
-  const onModalClose = () => {
-    setIsModalOpen(false);
-    cleanForm();
-  };
+    loading,
+  } = useGameForm(data, handleFinish);
 
   useEffect(() => {
     if (isModalOpen && isEditForm) {
       prepareFormForEdit();
     }
-  }, [isModalOpen, isEditForm]);
+  }, [isModalOpen, isEditForm, prepareFormForEdit]);
 
   return (
     <Modal
@@ -43,7 +50,7 @@ const GameFormModal = ({
       onClose={onModalClose}
       onSubmit={onSubmit}
       title="Create new game"
-      loading={false}
+      loading={loading}
     >
       <GameForm values={values} setters={setters} errors={errors} />
     </Modal>
