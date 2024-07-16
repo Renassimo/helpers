@@ -16,8 +16,6 @@ const GameForm = ({
   const { title, description, backgroundColor, mapImageUrl } = values;
   const { setTitle, setDescription, setBackgroundColor, setMapImage } = setters;
 
-  console.log({ onDelete });
-
   return (
     <>
       <TextField

@@ -45,7 +45,7 @@ const GameFormModal = ({
       confirm(
         `Are you sure to delete ${
           data?.attributes.title ?? values.title
-        } game? Following action will also delete all plays, categories and map image.`
+        } game? Following action will also delete all plays, categories, found items and map image.`
       )
     ) {
       await onDelete();
@@ -56,7 +56,6 @@ const GameFormModal = ({
 
   useEffect(() => {
     if (isModalOpen && isEditForm) {
-      console.log('prepareFormForEdit');
       prepareFormForEdit();
     }
   }, [isModalOpen, isEditForm]);

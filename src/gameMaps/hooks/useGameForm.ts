@@ -70,7 +70,6 @@ const useGameForm = (
     setLoading(true);
     let mapImageId;
     try {
-      console.log({ title, description, backgroundColor });
       await validate(
         new GameValidator({ title, description, backgroundColor }),
         addErrors
