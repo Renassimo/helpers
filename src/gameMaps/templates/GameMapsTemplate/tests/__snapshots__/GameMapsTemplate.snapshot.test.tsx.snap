@@ -34,6 +34,13 @@ exports[`GameMaps Template snapshot renders successfully 1`] = `
             Breadcrumb 2
              - 
           </a>
+          <a
+            href="/breadcrumb3"
+          >
+            Breadcrumb 3
+             - 
+            Current
+          </a>
         </div>
       </div>
       Child

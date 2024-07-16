@@ -22,6 +22,7 @@ export interface BreadcrumbsItem {
   href: string;
   title: string;
   current?: boolean;
+  action?: () => void;
 }
 
 export interface ImagePickerProps {

@@ -37,6 +37,25 @@ exports[`Breadcrumbs snapshot renders successfully 1`] = `
             Breadcrumb 2
           </span>
         </li>
+        <li
+          aria-hidden="true"
+          class="MuiBreadcrumbs-separator css-1wuw8dw-MuiBreadcrumbs-separator"
+        >
+          /
+        </li>
+        <li
+          class="MuiBreadcrumbs-li"
+        >
+          <a
+            href="/breadcrumb3"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+            >
+              Breadcrumb 3
+            </span>
+          </a>
+        </li>
       </ol>
     </nav>
   </div>

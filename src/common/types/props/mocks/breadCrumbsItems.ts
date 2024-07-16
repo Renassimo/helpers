@@ -11,7 +11,14 @@ export const mockedBreadCrumbItem2: BreadcrumbsItem = {
   current: true,
 };
 
+export const mockedBreadCrumbItem3: BreadcrumbsItem = {
+  title: 'Breadcrumb 3',
+  href: '/breadcrumb3',
+  action: jest.fn(),
+};
+
 export const mockedBreadCrumbItems: BreadcrumbsItem[] = [
   mockedBreadCrumbItem1,
   mockedBreadCrumbItem2,
+  mockedBreadCrumbItem3,
 ];

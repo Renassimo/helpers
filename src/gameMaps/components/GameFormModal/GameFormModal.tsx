@@ -15,7 +15,7 @@ const GameFormModal = ({
 }: {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
-  data?: GameData;
+  data?: GameData | null;
   onFinish: (newData: GameData | null) => void;
 }) => {
   const onModalClose = () => {
@@ -40,9 +40,10 @@ const GameFormModal = ({
 
   useEffect(() => {
     if (isModalOpen && isEditForm) {
+      console.log('prepareFormForEdit');
       prepareFormForEdit();
     }
-  }, [isModalOpen, isEditForm, prepareFormForEdit]);
+  }, [isModalOpen, isEditForm]);
 
   return (
     <Modal

@@ -11,10 +11,12 @@ export interface GameAttributes {
 
 export type GameData = Data<GameAttributes>;
 
-export type GamePageProps = PageProps<{
+export interface GamePageData {
   gameData: GameData;
   playsData: PlayData[];
-}>;
+}
+
+export type GamePageProps = PageProps<GamePageData>;
 export type GamesPageProps = PageProps<GameData[]>;
 
 export type GameServerSideProps = ServerSideProps<GamePageProps>;

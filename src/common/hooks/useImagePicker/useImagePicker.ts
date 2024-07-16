@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DropzoneState, useDropzone } from 'react-dropzone';
 
 import usePasteImage from '@/common/hooks/usePasteImage';
@@ -20,10 +20,18 @@ const useImagePicker = (
 
   const { pasteImage } = usePasteImage();
 
+  const [previewUrl, setPreviewUrl] = useState<string>(defaultUrlValue);
+  const [touched, setTouched] = useState(false);
+
   const handleChange = (image: FileWithPreview | null) => {
+    setTouched(true);
     onChange(image);
     setPreviewUrl(image?.preview ?? '');
   };
+
+  useEffect(() => {
+    if (!touched) setPreviewUrl(defaultUrlValue);
+  }, [defaultUrlValue, touched]);
 
   const dropzone = useDropzone({
     accept: {
@@ -35,8 +43,6 @@ const useImagePicker = (
     maxFiles: 1,
     onDrop: ([file]) => handleChange(getFileWithPreview(file)),
   });
-
-  const [previewUrl, setPreviewUrl] = useState<string>(defaultUrlValue);
 
   const paste = async () => {
     const image = await pasteImage();

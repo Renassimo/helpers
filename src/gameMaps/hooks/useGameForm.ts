@@ -19,7 +19,7 @@ import updateGame from '@/gameMaps/handlers/client/updateGame';
 import deleteGame from '../handlers/client/deleteGame';
 
 const useGameForm = (
-  data?: GameData,
+  data?: GameData | null,
   onFinish?: (data: GameData | null) => void
 ) => {
   const isEditForm = !!data;
