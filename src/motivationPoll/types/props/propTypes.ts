@@ -16,5 +16,6 @@ export interface GameFormProps {
     setBackgroundColor: (value: string) => void;
     setMapImage: Dispatch<SetStateAction<FileWithPreview | null>>;
   };
+  onDelete?: () => Promise<void>;
   errors: Record<string, string>;
 }

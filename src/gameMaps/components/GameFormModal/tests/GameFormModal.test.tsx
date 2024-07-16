@@ -72,6 +72,47 @@ describe('GameFormModal', () => {
   });
 
   describe('when data passed', () => {
+    test('renders snapshot successfully', async () => {
+      // Arange
+      const mockedUseGameForm = jest.fn(() => ({
+        isEditForm: true,
+        values: mockedValues,
+        setters: mockedSetters,
+        cleanForm: mockedCleanForm,
+        prepareFormForEdit: mockedPrepareFormForEdit,
+        onSubmit: mockedOnSubmit,
+        errors: mockedErrors,
+      }));
+      (useGameForm as unknown as jest.Mock).mockImplementation(
+        mockedUseGameForm
+      );
+      // Act
+      const { baseElement } = await renderWithTheme(
+        <GameFormModal
+          isModalOpen={true}
+          setIsModalOpen={mockedSetIsModalOpen}
+          onFinish={mockedOnFinish}
+          data={mockedData}
+        />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+      expect(mockedUseGameForm).toBeCalledWith(
+        mockedData,
+        expect.any(Function)
+      );
+      expect(mockedPrepareFormForEdit).toBeCalled();
+      expect(MockedGameForm).toHaveBeenCalledWith(
+        {
+          values: mockedValues,
+          setters: mockedSetters,
+          errors: mockedErrors,
+          onDelete: expect.any(Function),
+        },
+        {}
+      );
+    });
+
     test('calls prepareFormForEdit', () => {
       // Arange
       const mockedUseGameForm = jest.fn(() => ({

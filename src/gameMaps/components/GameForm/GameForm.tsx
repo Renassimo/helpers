@@ -5,10 +5,18 @@ import ImagePicker from '@/common/components/ImagePicker';
 import ColorPicker from '@/common/components/ColorPicker';
 
 import { GameFormProps } from '@/motivationPoll/types/props';
+import { Button } from '@mui/material';
 
-const GameForm = ({ values, setters, errors = {} }: GameFormProps) => {
+const GameForm = ({
+  values,
+  setters,
+  errors = {},
+  onDelete,
+}: GameFormProps) => {
   const { title, description, backgroundColor, mapImageUrl } = values;
   const { setTitle, setDescription, setBackgroundColor, setMapImage } = setters;
+
+  console.log({ onDelete });
 
   return (
     <>
@@ -43,6 +51,17 @@ const GameForm = ({ values, setters, errors = {} }: GameFormProps) => {
         error={errors.backgroundColor}
       />
       <ImagePicker defaultUrlValue={mapImageUrl} onChange={setMapImage} />
+      {onDelete && (
+        <Button
+          type="button"
+          fullWidth
+          variant="outlined"
+          onClick={onDelete}
+          color="error"
+        >
+          Delete
+        </Button>
+      )}
       {errors.main && <Alert severity="error">{errors.main}</Alert>}
     </>
   );

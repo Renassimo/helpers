@@ -27,6 +27,7 @@ const GameFormModal = ({
     onFinish(newData);
     onModalClose();
   };
+
   const {
     isEditForm,
     values,
@@ -34,9 +35,24 @@ const GameFormModal = ({
     cleanForm,
     prepareFormForEdit,
     onSubmit,
+    onDelete,
     errors,
     loading,
   } = useGameForm(data, handleFinish);
+
+  const handleDelete = async (): Promise<void> => {
+    if (
+      confirm(
+        `Are you sure to delete ${
+          data?.attributes.title ?? values.title
+        } game? Following action will also delete all plays, categories and map image.`
+      )
+    ) {
+      await onDelete();
+      onModalClose();
+      onFinish(null);
+    }
+  };
 
   useEffect(() => {
     if (isModalOpen && isEditForm) {
@@ -53,7 +69,12 @@ const GameFormModal = ({
       title="Create new game"
       loading={loading}
     >
-      <GameForm values={values} setters={setters} errors={errors} />
+      <GameForm
+        values={values}
+        setters={setters}
+        errors={errors}
+        onDelete={isEditForm ? handleDelete : undefined}
+      />
     </Modal>
   );
 };

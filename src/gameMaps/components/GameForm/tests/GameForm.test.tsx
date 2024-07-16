@@ -33,6 +33,7 @@ describe('GameForm', () => {
   const mockedSetDescription = jest.fn();
   const mockedSetBackgroundColor = jest.fn();
   const mockedSetMapImage = jest.fn();
+  const mockedOnDelete = jest.fn();
 
   const mockedEmptyValues = {
     title: '',
@@ -125,6 +126,34 @@ describe('GameForm', () => {
     });
   });
 
+  describe('when receives optional props', () => {
+    test('renders snapshot successfully', () => {
+      // Arange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <GameForm {...mockedProps} onDelete={mockedOnDelete} />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+      expect(MockedColorPicker).toHaveBeenCalledWith(
+        {
+          name: 'backgroundColor',
+          label: 'Map background color',
+          value: mockedValues.backgroundColor,
+          onChange: expect.any(Function),
+        },
+        {}
+      );
+      expect(MockedImagePicker).toHaveBeenCalledWith(
+        {
+          defaultUrlValue: mockedValues.mapImageUrl,
+          onChange: expect.any(Function),
+        },
+        {}
+      );
+    });
+  });
+
   describe('when changes title', () => {
     test('calls setTitle', async () => {
       // Arange
@@ -166,6 +195,24 @@ describe('GameForm', () => {
       expect(mockedSetTitle).not.toHaveBeenCalled();
       expect(mockedSetBackgroundColor).not.toHaveBeenCalled();
       expect(mockedSetMapImage).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when clicks delete', () => {
+    test('calls onDelete', async () => {
+      // Arange
+      const { getByText } = renderWithTheme(
+        <GameForm
+          setters={mockedSetters}
+          values={mockedEmptyValues}
+          errors={mockedEmptyErrors}
+          onDelete={mockedOnDelete}
+        />
+      );
+      // Act
+      await userEvent.click(getByText('Delete'));
+      // Assert
+      expect(mockedOnDelete).toBeCalled();
     });
   });
 });
