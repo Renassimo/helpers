@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { GameData, GamesPageProps } from '@/gameMaps/types';
 import { PageInfo } from '@/auth/types';
 
-import { useErrorAlert } from '@/common/hooks/alerts';
+import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
 import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 
@@ -17,6 +17,7 @@ const GamesPage = ({
   error,
 }: GamesPageProps) => {
   useErrorAlert(error);
+  const { createSuccessAlert } = useAlerts();
 
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
   const [data, setData] = useState(retrievedData);
@@ -34,7 +35,10 @@ const GamesPage = ({
   ];
 
   const addGameToState = (newData: GameData | null) => {
-    if (newData) setData((current) => [...(current ?? []), newData]);
+    if (newData) {
+      setData((current) => [...(current ?? []), newData]);
+      createSuccessAlert(`New "${newData.attributes.title}" game was created!`);
+    }
   };
 
   return (

@@ -195,7 +195,7 @@ describe('useGameForm', () => {
       });
       expect(mockedUploadFile).toHaveBeenCalledWith(
         mockedFileWithPreview,
-        mockedGame.attributes.title
+        `gameMap-${mockedGame.attributes.title}`
       );
       expect(mockedCreateGame).toHaveBeenCalledWith({
         title: mockedGame.attributes.title,
@@ -327,18 +327,15 @@ describe('useGameForm', () => {
         });
         expect(mockedUploadFile).toHaveBeenCalledWith(
           mockedFileWithPreview,
-          mockedGame.attributes.title
+          `gameMap-${mockedGame.attributes.title}`
         );
         expect(mockedCreateGame).not.toHaveBeenCalled();
-        expect(mockedUpdateGame).toHaveBeenCalledWith(
-          {
-            title: mockedGame.attributes.title,
-            description: mockedGame2.attributes.description,
-            backgroundColor: mockedGame.attributes.backgroundColor,
-            mapImageId: mockedMapImageId,
-          },
-          mockedGame.id
-        );
+        expect(mockedUpdateGame).toHaveBeenCalledWith(mockedGame.id, {
+          title: mockedGame.attributes.title,
+          description: mockedGame2.attributes.description,
+          backgroundColor: mockedGame.attributes.backgroundColor,
+          mapImageId: mockedMapImageId,
+        });
         expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
         expect(mockedDeleteFile).not.toHaveBeenCalled();
         expect(mockedAddErrors).not.toHaveBeenCalled();
@@ -377,14 +374,11 @@ describe('useGameForm', () => {
           });
           expect(mockedUploadFile).not.toHaveBeenCalled();
           expect(mockedCreateGame).not.toHaveBeenCalled();
-          expect(mockedUpdateGame).toHaveBeenCalledWith(
-            {
-              title: mockedGame.attributes.title,
-              description: mockedGame2.attributes.description,
-              backgroundColor: mockedGame.attributes.backgroundColor,
-            },
-            mockedGame.id
-          );
+          expect(mockedUpdateGame).toHaveBeenCalledWith(mockedGame.id, {
+            title: mockedGame.attributes.title,
+            description: mockedGame2.attributes.description,
+            backgroundColor: mockedGame.attributes.backgroundColor,
+          });
           expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
           expect(mockedDeleteFile).not.toHaveBeenCalled();
           expect(mockedAddErrors).not.toHaveBeenCalled();

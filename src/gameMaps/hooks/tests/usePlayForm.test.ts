@@ -240,11 +240,11 @@ describe('usePlayForm', () => {
         expect(mockedCreatePlay).not.toHaveBeenCalled();
         expect(mockedUpdatePlay).toHaveBeenCalledWith(
           mockedGameId,
+          mockedPlay.id,
           {
             title: mockedPlay.attributes.title,
             description: mockedPlay2.attributes.description,
-          },
-          mockedPlay.id
+          }
         );
         expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
         expect(mockedAddErrors).not.toHaveBeenCalled();

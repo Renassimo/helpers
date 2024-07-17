@@ -1,8 +1,8 @@
 import { GameAttributes, GameData } from '@/gameMaps/types';
 
 const updateGame = async (
-  attributes: Partial<GameAttributes>,
-  id: string
+  id: string,
+  attributes: Partial<GameAttributes>
 ): Promise<GameData> => {
   const response = await fetch(`/api/gameMaps/games/${id}`, {
     method: 'PATCH',

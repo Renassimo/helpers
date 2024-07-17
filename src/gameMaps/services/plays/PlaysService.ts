@@ -24,7 +24,11 @@ class PlaysService extends FirestoreService {
       .doc(gameId)
       .collection(this.PLAYS)
       .get();
-    return plays.docs.map((doc) => this.deserializeDoc({ docData: doc }));
+    return plays.docs.map((doc) => {
+      const data = this.deserializeDoc<PlayData>({ docData: doc });
+      const { id, attributes } = data;
+      return { id, attributes: this.filterAttributes(attributes) };
+    });
   }
 
   async getOne(uid: string, gameId: string, id: string): Promise<PlayData> {
@@ -36,7 +40,8 @@ class PlaysService extends FirestoreService {
       .collection(this.PLAYS)
       .doc(id)
       .get();
-    return this.deserializeDoc({ docData });
+    const data = this.deserializeDoc<PlayData>({ docData });
+    return { id: data.id, attributes: this.filterAttributes(data.attributes) };
   }
 
   async create(
@@ -44,17 +49,20 @@ class PlaysService extends FirestoreService {
     gameId: string,
     attributes: PlayAttributes
   ): Promise<PlayData> {
-    const game = await this.db
+    const date = String(new Date());
+    const filteredAttributes = this.filterAttributes({
+      ...attributes,
+      createdAt: date,
+      updatedAt: date,
+    });
+    const play = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
       .collection(this.GAMES)
       .doc(gameId)
       .collection(this.PLAYS)
-      .add(attributes);
-    return this.deserializeDoc({
-      id: game.id,
-      updatedAttributes: attributes,
-    });
+      .add(filteredAttributes);
+    return await this.getOne(uid, gameId, play.id);
   }
 
   async update(
@@ -63,6 +71,11 @@ class PlaysService extends FirestoreService {
     id: string,
     attributes: Partial<PlayAttributes>
   ): Promise<PlayData> {
+    const filteredAttributes: Partial<PlayAttributes> =
+      this.filterPartialAttributes({
+        ...attributes,
+        updatedAt: String(new Date()),
+      });
     await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
@@ -70,8 +83,24 @@ class PlaysService extends FirestoreService {
       .doc(gameId)
       .collection(this.PLAYS)
       .doc(id)
-      .update({ ...attributes });
-    return this.getOne(uid, gameId, id);
+      .update({ ...filteredAttributes });
+    return await this.getOne(uid, gameId, id);
+  }
+
+  async updateDate(
+    uid: string,
+    gameId: string,
+    id: string
+  ): Promise<Record<string, never>> {
+    await this.db
+      .collection(this.GAME_MAPS)
+      .doc(uid)
+      .collection(this.GAMES)
+      .doc(gameId)
+      .collection(this.PLAYS)
+      .doc(id)
+      .update({ ...{ updatedAt: String(new Date()) } });
+    return {};
   }
 
   async delete(
@@ -88,6 +117,38 @@ class PlaysService extends FirestoreService {
       .doc(id)
       .delete();
     return {};
+  }
+
+  private filterAttributes(attributes: PlayAttributes): PlayAttributes {
+    const { title = '', description = '', createdAt, updatedAt } = attributes;
+
+    const withCreatedAt = createdAt ? { createdAt } : {};
+    const withUpdatedAt = updatedAt ? { updatedAt } : {};
+
+    const filteredAttributes: PlayAttributes = {
+      title,
+      description,
+      ...withCreatedAt,
+      ...withUpdatedAt,
+    };
+    return filteredAttributes;
+  }
+
+  private filterPartialAttributes(
+    attributes: Partial<PlayAttributes>
+  ): Partial<PlayAttributes> {
+    const { title, description, createdAt, updatedAt } = attributes;
+    const filteredAttributes: Partial<PlayAttributes> = {};
+
+    if (typeof title !== 'undefined') filteredAttributes.title = title;
+    if (typeof description !== 'undefined')
+      filteredAttributes.description = description;
+    if (typeof createdAt !== 'undefined')
+      filteredAttributes.createdAt = createdAt;
+    if (typeof updatedAt !== 'undefined')
+      filteredAttributes.updatedAt = updatedAt;
+
+    return filteredAttributes;
   }
 
   static getInstance(db: Firestore): PlaysService {

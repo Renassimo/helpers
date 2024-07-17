@@ -6,13 +6,14 @@ import PlayCards from '@/gameMaps/components/PlayCards';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
 import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 
-import useErrorAlert from '@/common/hooks/alerts/useErrorAlert';
+import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
 import { GameData, GamePageProps, PlayData } from '@/gameMaps/types';
 import { BreadcrumbsItem } from '@/common/types/props';
 
 const GamePage = ({ user, pages, data, error }: GamePageProps) => {
   useErrorAlert(error);
+  const { createSuccessAlert } = useAlerts();
   const { push } = useRouter();
 
   const [gameData, setGameData] = useState<GameData | null>(
@@ -41,12 +42,20 @@ const GamePage = ({ user, pages, data, error }: GamePageProps) => {
   ];
 
   const updateGameOnState = (newData: GameData | null) => {
-    if (newData == null) push(parentPageHref);
-    setGameData(newData);
+    if (newData == null) {
+      push(parentPageHref);
+      createSuccessAlert(`Game was deleted!`);
+    } else {
+      createSuccessAlert(`"${newData.attributes.title}" game was updated!`);
+      setGameData(newData);
+    }
   };
 
-  const addNewPlays = (newData: PlayData | null) => {
-    if (newData) setPlaysData((current) => [...(current ?? []), newData]);
+  const addPlayToState = (newData: PlayData | null) => {
+    if (newData) {
+      setPlaysData((current) => [...(current ?? []), newData]);
+      createSuccessAlert(`New "${newData.attributes.title}" play was created!`);
+    }
   };
 
   const onAddNewPlayClicked = () => {
@@ -77,7 +86,7 @@ const GamePage = ({ user, pages, data, error }: GamePageProps) => {
           <PlayFormModal
             isModalOpen={isPlayModalOpen}
             setIsModalOpen={setIsPlayModalOpen}
-            onFinish={addNewPlays}
+            onFinish={addPlayToState}
             gameId={gameData?.id}
           />
         </>

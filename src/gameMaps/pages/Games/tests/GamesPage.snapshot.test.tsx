@@ -6,7 +6,7 @@ import PageTemplate from '@/common/templates/PageTemplate';
 import PagesList from '@/common/components/PagesList';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
 
-import { useErrorAlert } from '@/common/hooks/alerts';
+import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
 import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
 import MockedPagesList from '@/common/components/PagesList/mocks';
@@ -24,6 +24,10 @@ jest.mock('@/common/hooks/alerts');
 describe('GamesPage snapshot', () => {
   const mockedPages: PageInfo[] = [{ title: 'Page 1', path: '/page1' }];
   const mockedUseErrorAlert = jest.fn();
+  const mockedCreateSuccessAlert = jest.fn();
+  const mockedUseAlerts = jest.fn(() => ({
+    createSuccessAlert: mockedCreateSuccessAlert,
+  }));
 
   beforeAll(() => {
     (PageTemplate as unknown as jest.Mock).mockImplementation(
@@ -36,6 +40,7 @@ describe('GamesPage snapshot', () => {
     (useErrorAlert as unknown as jest.Mock).mockImplementation(
       mockedUseErrorAlert
     );
+    (useAlerts as unknown as jest.Mock).mockImplementation(mockedUseAlerts);
   });
 
   test('renders successfully', () => {
@@ -52,6 +57,7 @@ describe('GamesPage snapshot', () => {
     // Assert
     expect(baseElement).toMatchSnapshot();
     expect(mockedUseErrorAlert).toHaveBeenCalledWith(null);
+    expect(mockedUseAlerts).toHaveBeenCalledWith();
     expect(MockedGameFormModal).toHaveBeenCalledWith(
       {
         isModalOpen: false,

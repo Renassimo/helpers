@@ -5,7 +5,7 @@ import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
 import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 
-import useErrorAlert from '@/common/hooks/alerts/useErrorAlert';
+import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
 import MockedPlayCards from '@/gameMaps/components/PlayCards/mocks';
 import MockedGameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate/mocks';
@@ -20,7 +20,7 @@ import GamePage from '../GamePage';
 
 jest.mock('@/gameMaps/components/PlayCards');
 jest.mock('@/gameMaps/templates/GameMapsTemplate');
-jest.mock('@/common/hooks/alerts/useErrorAlert');
+jest.mock('@/common/hooks/alerts');
 jest.mock('@/gameMaps/components/GameFormModal');
 jest.mock('@/gameMaps/components/PlayFormModal');
 jest.mock('next/router', () => ({
@@ -31,6 +31,10 @@ jest.mock('next/router', () => ({
 
 describe('Game Page snapshot', () => {
   const mockedUseErrorAlert = jest.fn();
+  const mockedCreateSuccessAlert = jest.fn();
+  const mockedUseAlerts = jest.fn(() => ({
+    createSuccessAlert: mockedCreateSuccessAlert,
+  }));
 
   beforeEach(() => {
     (GameMapsTemplate as unknown as jest.Mock).mockImplementationOnce(
@@ -46,6 +50,7 @@ describe('Game Page snapshot', () => {
     (PlayFormModal as unknown as jest.Mock).mockImplementation(
       MockedPlayFormModal
     );
+    (useAlerts as unknown as jest.Mock).mockImplementation(mockedUseAlerts);
   });
 
   afterEach(() => {
@@ -68,6 +73,7 @@ describe('Game Page snapshot', () => {
     // Assert
     expect(container).toMatchSnapshot();
     expect(mockedUseErrorAlert).toHaveBeenCalledWith(null);
+    expect(mockedUseAlerts).toHaveBeenCalledWith();
   });
 
   describe('when got an error', () => {
@@ -85,6 +91,7 @@ describe('Game Page snapshot', () => {
       // Assert
       expect(container).toMatchSnapshot();
       expect(mockedUseErrorAlert).toHaveBeenCalledWith(mockedError);
+      expect(mockedUseAlerts).toHaveBeenCalledWith();
     });
   });
 });

@@ -1,4 +1,5 @@
 import ItemsService from '@/gameMaps/services/items';
+import PlaysService from '@/gameMaps/services/plays';
 
 import { NextApiResponse } from 'next';
 import { NextApiRequestWithAuth } from '@/auth/types';
@@ -16,6 +17,12 @@ const handler = async (
 
       const itemsService = ItemsService.getInstance(db);
       const data = await itemsService.create(uid, gameId, body.data.attributes);
+      const playId = data.attributes.playId;
+
+      if (playId) {
+        const playsService = PlaysService.getInstance(db);
+        await playsService.updateDate(uid, gameId, playId);
+      }
 
       res.status(201).json({ data });
     } catch (error: any) {

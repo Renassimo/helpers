@@ -20,13 +20,9 @@ describe('updatePlay', () => {
       responseData
     );
     // Act
-    const result = await updatePlay(
-      mockedGame.id,
-      {
-        title: mockedPlay.attributes.title,
-      },
-      mockedPlay.id
-    );
+    const result = await updatePlay(mockedGame.id, mockedPlay.id, {
+      title: mockedPlay.attributes.title,
+    });
     // Assert
     expect(result).toEqual(expectedResult);
     expect(fetchMock.lastUrl()).toEqual(
@@ -55,7 +51,7 @@ describe('updatePlay', () => {
       // Act
       let error = '';
       try {
-        await updatePlay(mockedGame.id, mockedPlay.attributes, mockedPlay.id);
+        await updatePlay(mockedGame.id, mockedPlay.id, mockedPlay.attributes);
       } catch (err: unknown) {
         error = (err as CommonError)?.message ?? '';
       }

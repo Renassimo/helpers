@@ -5,6 +5,8 @@ const createJestConfig = nextJest({
   dir: './',
 });
 
+process.env.TZ = 'UTC';
+
 // Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
 const customJestConfig = {

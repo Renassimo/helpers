@@ -64,7 +64,7 @@ const usePlayForm = (
         description,
       };
       const responseData = isEditForm
-        ? await updatePlay(gameId, payload, data.id)
+        ? await updatePlay(gameId, data.id, payload)
         : await createPlay(gameId, payload);
 
       onFinish?.(responseData);

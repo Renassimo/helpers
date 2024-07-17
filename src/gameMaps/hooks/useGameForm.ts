@@ -75,7 +75,7 @@ const useGameForm = (
         addErrors
       );
       if (mapImage) {
-        mapImageId = await uploadFile(mapImage, title);
+        mapImageId = await uploadFile(mapImage, `gameMap-${title}`);
       }
       const withMapImageId: { mapImageId?: string } = mapImageId
         ? { mapImageId }
@@ -87,7 +87,7 @@ const useGameForm = (
         ...withMapImageId,
       };
       const responseData = isEditForm
-        ? await updateGame(payload, data.id)
+        ? await updateGame(data.id, payload)
         : await createGame(payload);
 
       onFinish?.(responseData);

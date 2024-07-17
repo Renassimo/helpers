@@ -10,8 +10,8 @@ describe('PlayCard snapshot', () => {
     description: mockedDescription,
     href: mockedHref,
   };
-  const mockedStartDate = 'Yesterday 9:18am';
-  const mockedLastUpdateDate = 'Today 10:48pm';
+  const mockedCreatedAt = 'Yesterday 9:18am';
+  const mockedUpdatedAt = 'Today 10:48pm';
   const mockedHandler = jest.fn();
 
   test('renders successfully', () => {
@@ -29,8 +29,8 @@ describe('PlayCard snapshot', () => {
       const { baseElement } = renderWithTheme(
         <PlayCard
           {...mockedProps}
-          startDate={mockedStartDate}
-          lastUpdateDate={mockedLastUpdateDate}
+          createdAt={mockedCreatedAt}
+          updatedAt={mockedUpdatedAt}
           onClick={mockedHandler}
         />
       );

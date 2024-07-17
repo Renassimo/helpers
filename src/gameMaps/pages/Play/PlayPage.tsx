@@ -8,13 +8,14 @@ import ListItemText from '@mui/material/ListItemText';
 import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 
-import { useErrorAlert } from '@/common/hooks/alerts';
+import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
 import { PlayData, PlayPageProps } from '@/gameMaps/types';
 import { BreadcrumbsItem } from '@/common/types/props';
 
 const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
   useErrorAlert(error);
+  const { createSuccessAlert } = useAlerts();
   const { push } = useRouter();
 
   const { gameData, categoriesData, itemsData } = data ?? {};
@@ -34,8 +35,13 @@ const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
   const [isPlayModalOpen, setIsPlayModalOpen] = useState(false);
 
   const updatePlayOnState = (newData: PlayData | null) => {
-    if (newData == null) push(parentPageHref);
-    setPlayData(newData);
+    if (newData == null) {
+      push(parentPageHref);
+      createSuccessAlert(`Play was deleted!`);
+    } else {
+      createSuccessAlert(`"${newData.attributes.title}" play was updated!`);
+      setPlayData(newData);
+    }
   };
 
   const handleEdit = () => {
@@ -54,8 +60,6 @@ const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
       action: handleEdit,
     },
   ];
-
-  console.log({ gameData, playData, categoriesData, itemsData });
 
   return (
     <GameMapsTemplate

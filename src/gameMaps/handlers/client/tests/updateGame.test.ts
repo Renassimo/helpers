@@ -19,7 +19,7 @@ describe('updatesGame', () => {
     const expectedResult = responseData.data;
     fetchMock.patch(`/api/gameMaps/games/${mockedId}`, responseData);
     // Act
-    const result = await updateGame(mockedGame.attributes, mockedId);
+    const result = await updateGame(mockedId, mockedGame.attributes);
     // Assert
     expect(result).toEqual(expectedResult);
     expect(fetchMock.lastUrl()).toEqual(`/api/gameMaps/games/${mockedId}`);
@@ -46,7 +46,7 @@ describe('updatesGame', () => {
       // Act
       let error = '';
       try {
-        await updateGame(mockedGame.attributes, mockedId);
+        await updateGame(mockedId, mockedGame.attributes);
       } catch (err: unknown) {
         error = (err as CommonError)?.message ?? '';
       }

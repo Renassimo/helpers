@@ -8,15 +8,15 @@ const PlayCard = ({
   title,
   description,
   href,
-  startDate,
-  lastUpdateDate,
+  createdAt,
+  updatedAt,
   onClick,
 }: {
   title: string;
   description: string;
   href: string;
-  startDate?: string;
-  lastUpdateDate?: string;
+  createdAt?: string;
+  updatedAt?: string;
   onClick?: () => void;
 }) => {
   return (
@@ -35,8 +35,8 @@ const PlayCard = ({
             {title}
           </Typography>
           <Typography variant="body1">{description}</Typography>
-          <Typography variant="body2">{startDate}</Typography>
-          <Typography variant="body2">{lastUpdateDate}</Typography>
+          <Typography variant="body2">{createdAt}</Typography>
+          <Typography variant="body2">{updatedAt}</Typography>
         </CardContent>
       </Link>
     </Card>
