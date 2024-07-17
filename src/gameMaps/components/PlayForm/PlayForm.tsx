@@ -1,20 +1,17 @@
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
-
-import ImagePicker from '@/common/components/ImagePicker';
-import ColorPicker from '@/common/components/ColorPicker';
 import Button from '@mui/material/Button';
 
-import { GameFormProps } from '@/motivationPoll/types/props';
+import { PlayFormProps } from '@/motivationPoll/types/props';
 
-const GameForm = ({
+const PlayForm = ({
   values,
   setters,
   errors = {},
   onDelete,
-}: GameFormProps) => {
-  const { title, description, backgroundColor, mapImageUrl } = values;
-  const { setTitle, setDescription, setBackgroundColor, setMapImage } = setters;
+}: PlayFormProps) => {
+  const { title, description } = values;
+  const { setTitle, setDescription } = setters;
 
   return (
     <>
@@ -41,14 +38,6 @@ const GameForm = ({
         error={!!errors.description}
         helperText={errors.description}
       />
-      <ColorPicker
-        name="backgroundColor"
-        label="Map background color"
-        value={backgroundColor}
-        onChange={setBackgroundColor}
-        error={errors.backgroundColor}
-      />
-      <ImagePicker defaultUrlValue={mapImageUrl} onChange={setMapImage} />
       {onDelete && (
         <Button
           type="button"
@@ -56,6 +45,7 @@ const GameForm = ({
           variant="outlined"
           onClick={onDelete}
           color="error"
+          sx={{ marginTop: 3 }}
         >
           Delete
         </Button>
@@ -65,4 +55,4 @@ const GameForm = ({
   );
 };
 
-export default GameForm;
+export default PlayForm;

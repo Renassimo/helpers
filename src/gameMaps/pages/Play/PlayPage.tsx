@@ -1,33 +1,57 @@
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
 import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 
 import { useErrorAlert } from '@/common/hooks/alerts';
 
-import { PlayPageProps } from '@/gameMaps/types';
+import { PlayData, PlayPageProps } from '@/gameMaps/types';
 import { BreadcrumbsItem } from '@/common/types/props';
 
 const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
   useErrorAlert(error);
+  const { push } = useRouter();
 
-  const { gameData, playData, categoriesData, itemsData } = data ?? {};
+  const { gameData, categoriesData, itemsData } = data ?? {};
+
+  const [playData, setPlayData] = useState<PlayData | null>(
+    data?.playData ?? null
+  );
+
+  const gameId = gameData?.id;
 
   const gameTitle = gameData?.attributes.title ?? 'Game';
   const playTitle = playData?.attributes.title ?? 'Play';
   const title = `${gameTitle} - ${playTitle}`;
 
+  const parentPageHref = `/gameMaps/games/${gameData?.id}`;
+
+  const [isPlayModalOpen, setIsPlayModalOpen] = useState(false);
+
+  const updatePlayOnState = (newData: PlayData | null) => {
+    if (newData == null) push(parentPageHref);
+    setPlayData(newData);
+  };
+
+  const handleEdit = () => {
+    setIsPlayModalOpen(true);
+  };
+
   const breadcrumbs: BreadcrumbsItem[] = [
     { title: 'Games', href: '/gameMaps/games' },
     {
       title: gameTitle,
-      href: `/gameMaps/games/${gameData?.id}`,
+      href: parentPageHref,
     },
     {
       title: playTitle,
       href: `/gameMaps/games/${gameData?.id}/plays/${playData?.id}`,
-      current: true,
+      action: handleEdit,
     },
   ];
 
@@ -41,7 +65,7 @@ const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
       description={playData?.attributes.description || title}
       breadcrumbs={breadcrumbs}
     >
-      {data && (
+      {data && gameId && (
         <>
           {categoriesData?.length && (
             <List
@@ -75,6 +99,13 @@ const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
               ))}
             </List>
           )}
+          <PlayFormModal
+            isModalOpen={isPlayModalOpen}
+            setIsModalOpen={setIsPlayModalOpen}
+            onFinish={updatePlayOnState}
+            gameId={gameData?.id}
+            data={playData}
+          />
         </>
       )}
     </GameMapsTemplate>

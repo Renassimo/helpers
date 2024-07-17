@@ -10,18 +10,24 @@ import PlayCards from '../PlayCards';
 
 jest.mock('@/gameMaps/components/PlayCard');
 
-describe('PlayCards snapshot', () => {
+describe('PlayCards', () => {
   beforeEach(() => {
     (PlayCard as unknown as jest.Mock).mockImplementation(MockedPlayCard);
   });
 
-  test('renders successfully', () => {
+  const mockedOnAddNewPlay = jest.fn();
+
+  test('renders snapshot successfully', () => {
     // Arange
     const mockedData = mockedPlays;
     const mockedGameId = mockedGame.id;
     // Act
     const { container } = renderWithTheme(
-      <PlayCards data={mockedData} gameId={mockedGameId} />
+      <PlayCards
+        data={mockedData}
+        gameId={mockedGameId}
+        onAddNewPlay={mockedOnAddNewPlay}
+      />
     );
     // Assert
     expect(container).toMatchSnapshot();

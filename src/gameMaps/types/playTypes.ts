@@ -6,8 +6,8 @@ import { ItemData } from '@/gameMaps/types/itemTypes';
 export interface PlayAttributes {
   title: string;
   description: string;
-  lastUpdateDate: string;
-  startDate: string;
+  lastUpdateDate?: string;
+  startDate?: string;
 }
 
 export type PlayData = Data<PlayAttributes>;

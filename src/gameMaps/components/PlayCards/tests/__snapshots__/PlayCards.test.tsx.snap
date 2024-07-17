@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PlayCards snapshot renders successfully 1`] = `
+exports[`PlayCards renders snapshot successfully 1`] = `
 <div>
   <div
     class="MuiBox-root css-z5dzyd"

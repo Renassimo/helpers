@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayFormModal renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedPlayForm - 
+        mocked-title
+         - 
+        mocked-description
+         - 
+         -
+         
+      </div>
+      <div>
+        title: 
+        Create new play
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PlayFormModal when data passed renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedPlayForm - 
+        mocked-title
+         - 
+        mocked-description
+         - 
+         -
+         
+      </div>
+      <div>
+        title: 
+        Create new play
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;

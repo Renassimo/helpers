@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 import PlayCards from '@/gameMaps/components/PlayCards';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
+import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 
 import useErrorAlert from '@/common/hooks/alerts/useErrorAlert';
 
@@ -17,8 +18,10 @@ const GamePage = ({ user, pages, data, error }: GamePageProps) => {
   const [gameData, setGameData] = useState<GameData | null>(
     data?.gameData ?? null
   );
-  const [playsData] = useState<PlayData[]>(data?.playsData ?? []);
+  const gameId = gameData?.id;
+  const [playsData, setPlaysData] = useState<PlayData[]>(data?.playsData ?? []);
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
+  const [isPlayModalOpen, setIsPlayModalOpen] = useState(false);
 
   const title = gameData?.attributes.title ?? 'Game';
 
@@ -42,6 +45,14 @@ const GamePage = ({ user, pages, data, error }: GamePageProps) => {
     setGameData(newData);
   };
 
+  const addNewPlays = (newData: PlayData | null) => {
+    if (newData) setPlaysData((current) => [...(current ?? []), newData]);
+  };
+
+  const onAddNewPlayClicked = () => {
+    setIsPlayModalOpen(true);
+  };
+
   return (
     <GameMapsTemplate
       title={title}
@@ -50,19 +61,27 @@ const GamePage = ({ user, pages, data, error }: GamePageProps) => {
       description={gameData?.attributes.description || title}
       breadcrumbs={breadcrumbs}
     >
-      {data && (
+      {gameId && (
         <>
-          {playsData?.length ? (
-            <PlayCards data={playsData} gameId={gameData?.id} />
-          ) : null}
+          <PlayCards
+            data={playsData}
+            gameId={gameData?.id}
+            onAddNewPlay={onAddNewPlayClicked}
+          />
+          <GameFormModal
+            isModalOpen={isGameModalOpen}
+            setIsModalOpen={setIsGameModalOpen}
+            onFinish={updateGameOnState}
+            data={gameData}
+          />
+          <PlayFormModal
+            isModalOpen={isPlayModalOpen}
+            setIsModalOpen={setIsPlayModalOpen}
+            onFinish={addNewPlays}
+            gameId={gameData?.id}
+          />
         </>
       )}
-      <GameFormModal
-        isModalOpen={isGameModalOpen}
-        setIsModalOpen={setIsGameModalOpen}
-        onFinish={updateGameOnState}
-        data={gameData}
-      />
     </GameMapsTemplate>
   );
 };

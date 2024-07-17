@@ -7,9 +7,11 @@ import { PlayData } from '@/gameMaps/types';
 const PlayCards = ({
   data,
   gameId = '',
+  onAddNewPlay,
 }: {
   data: PlayData[];
   gameId?: string;
+  onAddNewPlay: () => void;
 }) => {
   return (
     <Box
@@ -29,7 +31,7 @@ const PlayCards = ({
         title="+"
         description="Create new play"
         href={`${gameId}/plays/new`}
-        onClick={() => console.log('New')}
+        onClick={onAddNewPlay}
       />
     </Box>
   );

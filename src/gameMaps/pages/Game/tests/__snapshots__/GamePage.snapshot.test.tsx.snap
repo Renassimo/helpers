@@ -28,6 +28,10 @@ exports[`Game Page snapshot renders successfully 1`] = `
       MockedGameFormModal 
       closed
     </div>
+    <div>
+      MockedPlayFormModal 
+      closed
+    </div>
   </div>
 </div>
 `;
@@ -45,10 +49,6 @@ exports[`Game Page snapshot when got an error renders successfully 1`] = `
        - 
       Game
     </span>
-    <div>
-      MockedGameFormModal 
-      closed
-    </div>
   </div>
 </div>
 `;

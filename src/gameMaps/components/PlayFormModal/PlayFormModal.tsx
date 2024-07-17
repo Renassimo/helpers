@@ -1,29 +1,31 @@
 import { useEffect } from 'react';
 
-import useGameForm from '@/gameMaps/hooks/useGameForm';
+import usePlayForm from '@/gameMaps/hooks/usePlayForm';
 
 import Modal from '@/common/components/Modal';
-import GameForm from '@/gameMaps/components/GameForm';
+import PlayForm from '@/gameMaps/components/PlayForm';
 
-import { GameData } from '@/gameMaps/types';
+import { PlayData } from '@/gameMaps/types';
 
-const GameFormModal = ({
+const PlayFormModal = ({
   isModalOpen,
   setIsModalOpen,
   data,
   onFinish,
+  gameId,
 }: {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
-  data?: GameData | null;
-  onFinish: (newData: GameData | null) => void;
+  data?: PlayData | null;
+  onFinish: (newData: PlayData | null) => void;
+  gameId: string;
 }) => {
   const onModalClose = () => {
     setIsModalOpen(false);
     cleanForm();
   };
 
-  const handleFinish = (newData: GameData | null) => {
+  const handleFinish = (newData: PlayData | null) => {
     onFinish(newData);
     onModalClose();
   };
@@ -38,14 +40,14 @@ const GameFormModal = ({
     onDelete,
     errors,
     loading,
-  } = useGameForm(data, handleFinish);
+  } = usePlayForm(gameId, data, handleFinish);
 
   const handleDelete = async (): Promise<void> => {
     if (
       confirm(
         `Are you sure to delete "${
           data?.attributes.title ?? values.title
-        }" game? Following action will also delete all plays, categories, all found items releated to this game and map image.`
+        }" play? Following action will also delete all found items related to this play.`
       )
     ) {
       await onDelete();
@@ -65,10 +67,10 @@ const GameFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title="Create new game"
+      title="Create new play"
       loading={loading}
     >
-      <GameForm
+      <PlayForm
         values={values}
         setters={setters}
         errors={errors}
@@ -78,4 +80,4 @@ const GameFormModal = ({
   );
 };
 
-export default GameFormModal;
+export default PlayFormModal;

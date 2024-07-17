@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { GameData } from '@/gameMaps/types';
-import { FileWithPreview } from '@/common/types/files';
+import { PlayData } from '@/gameMaps/types';
 
-import GameValidator from '@/gameMaps/validators/game';
+import PlayValidator from '@/gameMaps/validators/play';
 
 import useErrors from '@/common/hooks/useErrors';
 
@@ -11,33 +10,25 @@ import { CommonError } from '@/common/types/errors';
 
 import { validate } from '@/common/utils/validators';
 
-import uploadFile from '@/common/lib/firebase/utils/uploadFile';
-import deleteFile from '@/common/lib/firebase/utils/deleteFile';
+import createPlay from '@/gameMaps/handlers/client/createPlay';
+import updatePlay from '@/gameMaps/handlers/client/updatePlay';
+import deletePlay from '@/gameMaps/handlers/client/deletePlay';
 
-import createGame from '@/gameMaps/handlers/client/createGame';
-import updateGame from '@/gameMaps/handlers/client/updateGame';
-import deleteGame from '@/gameMaps/handlers/client/deleteGame';
-
-const useGameForm = (
-  data?: GameData | null,
-  onFinish?: (data: GameData | null) => void
+const usePlayForm = (
+  gameId: string,
+  data?: PlayData | null,
+  onFinish?: (data: PlayData | null) => void
 ) => {
   const isEditForm = !!data;
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [backgroundColor, setBackgroundColor] = useState('');
-  const [mapImageUrl, setMapImageUrl] = useState('');
-  const [mapImage, setMapImage] = useState<FileWithPreview | null>(null);
 
   const { errors, addErrors, cleanErrors } = useErrors();
 
   const cleanForm = () => {
     setTitle('');
     setDescription('');
-    setBackgroundColor('');
-    setMapImageUrl('');
-    setMapImage(null);
     cleanErrors();
   };
 
@@ -46,8 +37,6 @@ const useGameForm = (
       const { attributes } = data;
       setTitle(attributes.title);
       setDescription(attributes.description);
-      setBackgroundColor(attributes.backgroundColor);
-      if (attributes.mapImageUrl) setMapImageUrl(attributes.mapImageUrl);
     }
   };
 
@@ -55,7 +44,7 @@ const useGameForm = (
     if (isEditForm) {
       setLoading(true);
       try {
-        await deleteGame(data.id);
+        await deletePlay(gameId, data.id);
         onFinish?.(null);
         setLoading(false);
       } catch (error: unknown) {
@@ -68,33 +57,20 @@ const useGameForm = (
 
   const onSubmit = async (): Promise<void> => {
     setLoading(true);
-    let mapImageId;
     try {
-      await validate(
-        new GameValidator({ title, description, backgroundColor }),
-        addErrors
-      );
-      if (mapImage) {
-        mapImageId = await uploadFile(mapImage, title);
-      }
-      const withMapImageId: { mapImageId?: string } = mapImageId
-        ? { mapImageId }
-        : {};
+      await validate(new PlayValidator({ title, description }), addErrors);
       const payload = {
         title,
         description,
-        backgroundColor,
-        ...withMapImageId,
       };
       const responseData = isEditForm
-        ? await updateGame(payload, data.id)
-        : await createGame(payload);
+        ? await updatePlay(gameId, payload, data.id)
+        : await createPlay(gameId, payload);
 
       onFinish?.(responseData);
       setLoading(false);
     } catch (error: unknown) {
       setLoading(false);
-      deleteFile(mapImageId);
       const main = (error as CommonError).message ?? 'Error happened';
       addErrors({ main });
     }
@@ -109,20 +85,14 @@ const useGameForm = (
     values: {
       title,
       description,
-      backgroundColor,
-      mapImageUrl,
-      mapImage,
     },
     setters: {
       setTitle,
       setDescription,
-      setBackgroundColor,
-      setMapImageUrl,
-      setMapImage,
     },
     errors,
     loading,
   };
 };
 
-export default useGameForm;
+export default usePlayForm;

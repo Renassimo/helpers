@@ -19,3 +19,16 @@ export interface GameFormProps {
   onDelete?: () => Promise<void>;
   errors: Record<string, string>;
 }
+
+export interface PlayFormProps {
+  values: {
+    title: string;
+    description: string;
+  };
+  setters: {
+    setTitle: (value: string) => void;
+    setDescription: (value: string) => void;
+  };
+  onDelete?: () => Promise<void>;
+  errors: Record<string, string>;
+}
