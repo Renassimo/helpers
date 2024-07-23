@@ -22,12 +22,6 @@ exports[`PlayCard snapshot renders successfully 1`] = `
           >
             Description
           </p>
-          <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-          />
-          <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-          />
         </div>
       </a>
     </div>
@@ -57,16 +51,30 @@ exports[`PlayCard snapshot when optional props passed renders successfully 1`] =
           >
             Description
           </p>
-          <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          <div
+            class="MuiBox-root css-164r41r"
           >
-            Yesterday 9:18am
-          </p>
-          <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-          >
-            Today 10:48pm
-          </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              <span>
+                Started: 
+              </span>
+              <span>
+                show-when-result
+              </span>
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              <span>
+                Last updated: 
+              </span>
+              <span>
+                show-when-result
+              </span>
+            </p>
+          </div>
         </div>
       </a>
     </div>

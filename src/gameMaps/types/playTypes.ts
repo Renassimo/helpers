@@ -12,11 +12,23 @@ export interface PlayAttributes {
 
 export type PlayData = Data<PlayAttributes>;
 
-export type PlayPageProps = PageProps<{
+export interface PlayPageData {
   gameData: GameData;
   playData: PlayData;
   categoriesData: CategoryData[];
   itemsData: ItemData[];
-}>;
+}
+
+export type PlayPageProps = PageProps<PlayPageData>;
 
 export type PlayServerSideProps = ServerSideProps<PlayPageProps>;
+
+export interface PlayContextData {
+  game: GameData | null;
+  play: PlayData | null;
+  updateSubmittedPlay: (newData: PlayData | null) => void;
+  isPlayEditOpen: boolean;
+  setIsPlayEditOpen: (newState: boolean) => void;
+  categories: CategoryData[] | null;
+  items: ItemData[] | null;
+}

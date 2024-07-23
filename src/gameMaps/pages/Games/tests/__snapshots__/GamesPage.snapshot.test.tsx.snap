@@ -4,19 +4,16 @@ exports[`GamesPage snapshot renders successfully 1`] = `
 <body>
   <div>
     <div>
-      Mocked Page Template (
+      Mocked Game Maps Template (
       Game Maps
       ):
       <span>
         Jesse Pinkman
          - 
         Page 1
-      </span>
-      <h1
-        class="MuiTypography-root MuiTypography-h5 css-1uxccsd-MuiTypography-root"
-      >
+         - 
         Game Maps
-      </h1>
+      </span>
       <div>
         <a
           href="/gameMaps/games/gm1"

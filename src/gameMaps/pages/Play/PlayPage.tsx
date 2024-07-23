@@ -1,52 +1,20 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-
 import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
-import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 
-import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
-
-import { PlayData, PlayPageProps } from '@/gameMaps/types';
+import { PlayPageProps } from '@/gameMaps/types';
 import { BreadcrumbsItem } from '@/common/types/props';
 
-const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
-  useErrorAlert(error);
-  const { createSuccessAlert } = useAlerts();
-  const { push } = useRouter();
+import usePlay from '@/gameMaps/hooks/usePlay';
 
-  const { gameData, categoriesData, itemsData } = data ?? {};
+import Play from '@/gameMaps/components/Play';
 
-  const [playData, setPlayData] = useState<PlayData | null>(
-    data?.playData ?? null
-  );
+const PlayPage = ({ user, pages }: Partial<PlayPageProps>) => {
+  const { game, play, setIsPlayEditOpen } = usePlay();
 
-  const gameId = gameData?.id;
-
-  const gameTitle = gameData?.attributes.title ?? 'Game';
-  const playTitle = playData?.attributes.title ?? 'Play';
+  const gameTitle = game?.attributes.title ?? 'Game';
+  const playTitle = play?.attributes.title ?? 'Play';
   const title = `${gameTitle} - ${playTitle}`;
 
-  const parentPageHref = `/gameMaps/games/${gameData?.id}`;
-
-  const [isPlayModalOpen, setIsPlayModalOpen] = useState(false);
-
-  const updatePlayOnState = (newData: PlayData | null) => {
-    if (newData == null) {
-      push(parentPageHref);
-      createSuccessAlert(`Play was deleted!`);
-    } else {
-      createSuccessAlert(`"${newData.attributes.title}" play was updated!`);
-      setPlayData(newData);
-    }
-  };
-
-  const handleEdit = () => {
-    setIsPlayModalOpen(true);
-  };
+  const parentPageHref = `/gameMaps/games/${game?.id}`;
 
   const breadcrumbs: BreadcrumbsItem[] = [
     { title: 'Games', href: '/gameMaps/games' },
@@ -56,8 +24,8 @@ const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
     },
     {
       title: playTitle,
-      href: `/gameMaps/games/${gameData?.id}/plays/${playData?.id}`,
-      action: handleEdit,
+      href: `/gameMaps/games/${game?.id}/plays/${play?.id}`,
+      action: () => setIsPlayEditOpen(true),
     },
   ];
 
@@ -66,52 +34,10 @@ const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
       title={title}
       user={user}
       pages={pages}
-      description={playData?.attributes.description || title}
+      description={play?.attributes.description || title}
       breadcrumbs={breadcrumbs}
     >
-      {data && gameId && (
-        <>
-          {categoriesData?.length && (
-            <List
-              sx={{ width: '100%', maxWidth: 960, bgcolor: 'background.paper' }}
-            >
-              {categoriesData?.map((category) => (
-                <ListItem key={category.id}>
-                  <ListItemText
-                    primary={category.attributes.title}
-                    secondary={category.attributes.description}
-                  />
-                  {itemsData?.length && (
-                    <List>
-                      {itemsData
-                        ?.filter(
-                          (item) => item.attributes.categoryId === category.id
-                        )
-                        .map((item) => (
-                          <ListItem key={item.id}>
-                            <ListItemText
-                              primary={item.attributes.description}
-                              secondary={
-                                item.attributes.collected ? '✅' : '❌'
-                              }
-                            />
-                          </ListItem>
-                        ))}
-                    </List>
-                  )}
-                </ListItem>
-              ))}
-            </List>
-          )}
-          <PlayFormModal
-            isModalOpen={isPlayModalOpen}
-            setIsModalOpen={setIsPlayModalOpen}
-            onFinish={updatePlayOnState}
-            gameId={gameData?.id}
-            data={playData}
-          />
-        </>
-      )}
+      <Play />
     </GameMapsTemplate>
   );
 };

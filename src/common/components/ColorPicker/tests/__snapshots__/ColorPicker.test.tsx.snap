@@ -41,6 +41,160 @@ exports[`ColorPicker renders snapshot successfully 1`] = `
       <div
         class="MuiBox-root css-o0ybio"
       />
+      <div>
+        <div
+          class="MuiBox-root css-1sjcqhi"
+        >
+          <div>
+            MockedHexColorPicker - 
+            #def
+          </div>
+          <div
+            class="MuiBox-root css-zycen2"
+          >
+            <button
+              aria-label="colorize"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-ci5apu-MuiSvgIcon-root"
+                data-testid="ColorizeIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m20.71 5.63-2.34-2.34a.9959.9959 0 0 0-1.41 0l-3.12 3.12-1.93-1.91-1.41 1.41 1.42 1.42L3 16.25V21h4.75l8.92-8.92 1.42 1.42 1.41-1.41-1.92-1.92 3.12-3.12c.4-.4.4-1.03.01-1.42zM6.92 19 5 17.08l8.06-8.06 1.92 1.92L6.92 19z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          title: 
+          Pick a color
+          ; maxWidth: 
+          sm
+          ;
+          closed
+          ;
+          not loading
+          ;
+          not disabled
+          ; onClose
+           
+          passed
+          ; onSubmit
+           
+          passed
+          ;
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ColorPicker when color is demo is clicked opens modal 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-79elbk"
+    >
+      <div
+        class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r4:"
+          id=":r4:-label"
+        >
+          label
+        </label>
+        <div
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
+        >
+          <textarea
+            aria-invalid="false"
+            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+            id=":r4:"
+            name="name"
+            style="height: 0px; overflow: hidden;"
+          >
+            #def
+          </textarea>
+          <textarea
+            aria-hidden="true"
+            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+            readonly=""
+            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+            tabindex="-1"
+          />
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-o0ybio"
+      />
+      <div>
+        <div
+          class="MuiBox-root css-1sjcqhi"
+        >
+          <div>
+            MockedHexColorPicker - 
+            #def
+          </div>
+          <div
+            class="MuiBox-root css-zycen2"
+          >
+            <button
+              aria-label="colorize"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-ci5apu-MuiSvgIcon-root"
+                data-testid="ColorizeIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m20.71 5.63-2.34-2.34a.9959.9959 0 0 0-1.41 0l-3.12 3.12-1.93-1.91-1.41 1.41 1.42 1.42L3 16.25V21h4.75l8.92-8.92 1.42 1.42 1.41-1.41-1.92-1.92 3.12-3.12c.4-.4.4-1.03.01-1.42zM6.92 19 5 17.08l8.06-8.06 1.92 1.92L6.92 19z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          title: 
+          Pick a color
+          ; maxWidth: 
+          sm
+          ;
+          open
+          ;
+          not loading
+          ;
+          not disabled
+          ; onClose
+           
+          passed
+          ; onSubmit
+           
+          passed
+          ;
+        </div>
+      </div>
     </div>
   </div>
 </body>
@@ -94,6 +248,60 @@ exports[`ColorPicker when error passed renders snapshot successfully 1`] = `
       <div
         class="MuiBox-root css-o0ybio"
       />
+      <div>
+        <div
+          class="MuiBox-root css-1sjcqhi"
+        >
+          <div>
+            MockedHexColorPicker - 
+            #def
+          </div>
+          <div
+            class="MuiBox-root css-zycen2"
+          >
+            <button
+              aria-label="colorize"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-ci5apu-MuiSvgIcon-root"
+                data-testid="ColorizeIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m20.71 5.63-2.34-2.34a.9959.9959 0 0 0-1.41 0l-3.12 3.12-1.93-1.91-1.41 1.41 1.42 1.42L3 16.25V21h4.75l8.92-8.92 1.42 1.42 1.41-1.41-1.92-1.92 3.12-3.12c.4-.4.4-1.03.01-1.42zM6.92 19 5 17.08l8.06-8.06 1.92 1.92L6.92 19z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <div>
+          title: 
+          Pick a color
+          ; maxWidth: 
+          sm
+          ;
+          closed
+          ;
+          not loading
+          ;
+          not disabled
+          ; onClose
+           
+          passed
+          ; onSubmit
+           
+          passed
+          ;
+        </div>
+      </div>
     </div>
   </div>
 </body>

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
+import { showWhen } from '@/common/utils/dayjs';
 
 const PlayCard = ({
   title,
@@ -35,8 +38,22 @@ const PlayCard = ({
             {title}
           </Typography>
           <Typography variant="body1">{description}</Typography>
-          <Typography variant="body2">{createdAt}</Typography>
-          <Typography variant="body2">{updatedAt}</Typography>
+          {(createdAt || updatedAt) && (
+            <Box mt={1}>
+              {createdAt && (
+                <Typography variant="body2">
+                  <span>Started: </span>
+                  <span>{showWhen(createdAt)}</span>
+                </Typography>
+              )}
+              {updatedAt && (
+                <Typography variant="body2">
+                  <span>Last updated: </span>
+                  <span>{showWhen(updatedAt)}</span>
+                </Typography>
+              )}
+            </Box>
+          )}
         </CardContent>
       </Link>
     </Card>
