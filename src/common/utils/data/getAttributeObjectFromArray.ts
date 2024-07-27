@@ -1,8 +1,20 @@
-export const getAttributeObjectFromArray = <A>(
-  array: { id: string; attributes: A }[]
+export const getAttributeObjectFromArray = <A, AA extends Record<string, any>>(
+  array: { id: string; attributes: A }[],
+  additionalAttributes?: AA
 ): {
   [key: string]: {
     id: string;
     attributes: A;
   };
-} => array?.reduce((result, item) => ({ ...result, [item.id]: item }), {});
+} =>
+  // todo make better algorithm
+  array?.reduce(
+    (result, item) => ({
+      ...result,
+      [item.id]: {
+        ...item,
+        attributes: { ...item.attributes, ...(additionalAttributes ?? {}) },
+      },
+    }),
+    {}
+  );

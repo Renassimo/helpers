@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderSaveMarkerPopupContent renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedSaveMarkerPopupContent - 
+        text
+         - 
+        withOnAdd
+         -
+         
+        withOnCancel
+      </div>
+    </div>
+  </div>
+</body>
+`;

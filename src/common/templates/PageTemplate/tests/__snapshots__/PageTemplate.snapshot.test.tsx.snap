@@ -18,10 +18,10 @@ exports[`PageTemplate renders successfully with NavBar 1`] = `
       </div>
     </div>
     <div
-      class="css-16cpvj6"
+      class="css-1qmo2ia"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1xmulb7-MuiContainer-root"
       >
         Children
       </div>
@@ -48,10 +48,10 @@ exports[`PageTemplate when navBarChildren passed renders successfully with NavBa
       </div>
     </div>
     <div
-      class="css-16cpvj6"
+      class="css-1qmo2ia"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1xmulb7-MuiContainer-root"
       >
         Children
       </div>
@@ -76,10 +76,10 @@ exports[`PageTemplate when navBarChildren passed when user is not passed renders
       </div>
     </div>
     <div
-      class="css-16cpvj6"
+      class="css-1qmo2ia"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1xmulb7-MuiContainer-root"
       >
         Children
       </div>
@@ -104,10 +104,10 @@ exports[`PageTemplate when user is not passed renders successfully with StaticNa
       </div>
     </div>
     <div
-      class="css-16cpvj6"
+      class="css-1qmo2ia"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1ss2ei0-MuiContainer-root"
+        class="MuiContainer-root MuiContainer-maxWidthLg MuiContainer-fixed css-1xmulb7-MuiContainer-root"
       >
         Children
       </div>

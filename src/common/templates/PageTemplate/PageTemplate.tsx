@@ -24,6 +24,8 @@ const NavBarWrapper = styled.div(
 const ContainerWrapper = styled.div(
   ({ theme }) => css`
     grid-row: 2;
+    display: grid;
+    grid-template-rows: 1fr;
 
     ${theme.breakpoints.down('md')} {
       grid-row: 1;
@@ -62,7 +64,9 @@ const PageTemplate = ({
           )}
         </NavBarWrapper>
         <ContainerWrapper>
-          <Container fixed>{children}</Container>
+          <Container fixed sx={{ display: 'flex', flexDirection: 'column' }}>
+            {children}
+          </Container>
         </ContainerWrapper>
       </PageWrapper>
     </>

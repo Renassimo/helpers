@@ -8,8 +8,18 @@ const PlayContext = createContext<PlayContextData>({
   updateSubmittedPlay: () => {},
   isPlayEditOpen: false,
   setIsPlayEditOpen: () => {},
-  categories: null,
-  items: null,
+  categories: {},
+  categoriesList: [],
+  isEveryCategoryChosen: true,
+  isNoCategoriesChosen: false,
+  items: [],
+  visibleItems: [],
+  choseAllCategories: () => {},
+  clearAllChosenCategories: () => {},
+  changeCategoryChoose: () => {},
+  pointingCategoryId: null,
+  setPointingCategoryId: () => {},
+  quitFromCreatingNewItem: () => {},
 });
 
 export default PlayContext;

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayMap renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedMapOnImage 
+      withOnClick
+       
+      /
+       
+      #fff
+       - 
+      <div>
+         - 
+        0.5
+         - 
+        10.5
+         - 
+        existing
+         
+        - 
+        Item 1 description
+      </div>
+      <div>
+         - 
+        0.6
+         - 
+        10.6
+         - 
+        existing
+         
+        - 
+        Item 2 description
+      </div>
+    </div>
+  </div>
+</body>
+`;
