@@ -20,6 +20,12 @@ const PlayContext = createContext<PlayContextData>({
   pointingCategoryId: null,
   setPointingCategoryId: () => {},
   quitFromCreatingNewItem: () => {},
+  updateSubmittedCategory: () => {},
+  isCategoryEditOpen: false,
+  setIsCategoryEditOpen: () => {},
+  editingCategory: null,
+  openCategoryCreating: () => {},
+  openCategoryUpdating: () => {},
 });
 
 export default PlayContext;

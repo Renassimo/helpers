@@ -9,6 +9,7 @@ import { PlayContextData, PlayPageData } from '@/gameMaps/types';
 
 import {
   mockedCategories,
+  mockedCategory2,
   mockedGame,
   mockedItems,
   mockedPlay,
@@ -60,6 +61,7 @@ describe('usePlayData', () => {
   const mockedGetCategoriesStateWithCountedItems = jest.fn(
     () => mockedCategoriesStateWithCountedItem
   );
+  const mockedCategoriesList = [mockedObject1, mockedObject2];
 
   const mockedData: PlayPageData = {
     gameData: mockedGame,
@@ -91,7 +93,7 @@ describe('usePlayData', () => {
     setIsPlayEditOpen: expect.any(Function),
     categories: mockedCategoriesStateWithCountedItem,
     items: [mockedObject],
-    categoriesList: [mockedObject1, mockedObject2],
+    categoriesList: mockedCategoriesList,
     isEveryCategoryChosen: true,
     isNoCategoriesChosen: false,
     visibleItems: [],
@@ -101,6 +103,12 @@ describe('usePlayData', () => {
     pointingCategoryId: null,
     setPointingCategoryId: expect.any(Function),
     quitFromCreatingNewItem: expect.any(Function),
+    updateSubmittedCategory: expect.any(Function),
+    isCategoryEditOpen: false,
+    setIsCategoryEditOpen: expect.any(Function),
+    editingCategory: null,
+    openCategoryCreating: expect.any(Function),
+    openCategoryUpdating: expect.any(Function),
   } as unknown as PlayContextData;
 
   test('returns state', () => {
@@ -285,6 +293,108 @@ describe('usePlayData', () => {
       // Assert
       expect(result.current).toEqual(expecteDefaultState);
       expect(mockedClearAll).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('when updates submitted category', () => {
+    test('creates success alert and updates state', async () => {
+      // Arange
+      const expectedState = {
+        ...expecteDefaultState,
+        categories: {
+          ...mockedCategoriesStateWithCountedItem,
+          [mockedCategory2.id]: mockedCategory2,
+        },
+        categoriesList: [...mockedCategoriesList, mockedCategory2],
+        isEveryCategoryChosen: false,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.updateSubmittedCategory(mockedCategory2);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+      expect(mockedPush).not.toHaveBeenCalled();
+      expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
+        `Categories were updated!`
+      );
+    });
+
+    describe('when category is null', () => {
+      test('creates success alert and updates state', async () => {
+        // Arange
+        const expectedState = {
+          ...expecteDefaultState,
+          categories: {
+            [mockedObject2.id]: mockedObject2,
+          },
+          categoriesList: [mockedObject2],
+        };
+        const { result } = renderHook(() => usePlayData(mockedData));
+        // Act
+        await act(async () => {
+          await result.current.updateSubmittedCategory(null, mockedObject1.id);
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+        expect(mockedPush).not.toHaveBeenCalled();
+        expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
+          `Category was deleted!`
+        );
+      });
+    });
+  });
+
+  describe('when calls setIsCategoryEditOpen', () => {
+    test('updates state', async () => {
+      // Arange
+      const expectedState = {
+        ...expecteDefaultState,
+        isCategoryEditOpen: true,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.setIsCategoryEditOpen(true);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+    });
+  });
+
+  describe('when calls openCategoryCreating', () => {
+    test('updates state', async () => {
+      // Arange
+      const expectedState = {
+        ...expecteDefaultState,
+        isCategoryEditOpen: true,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.openCategoryCreating();
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+    });
+  });
+
+  describe('when calls openCategoryUpdating', () => {
+    test('updates state', async () => {
+      // Arange
+      const expectedState = {
+        ...expecteDefaultState,
+        isCategoryEditOpen: true,
+        editingCategory: mockedObject1,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.openCategoryUpdating(mockedObject1.id);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
     });
   });
 });

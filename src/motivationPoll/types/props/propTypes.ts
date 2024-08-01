@@ -32,3 +32,20 @@ export interface PlayFormProps {
   onDelete?: () => Promise<void>;
   errors: Record<string, string>;
 }
+
+export interface CategoryFormProps {
+  values: {
+    title: string;
+    description: string;
+    color: string;
+    itemsAmount: number;
+  };
+  setters: {
+    setTitle: (value: string) => void;
+    setDescription: (value: string) => void;
+    setColor: (value: string) => void;
+    setItemsAmount: (value: number) => void;
+  };
+  onDelete?: () => Promise<void>;
+  errors: Record<string, string>;
+}

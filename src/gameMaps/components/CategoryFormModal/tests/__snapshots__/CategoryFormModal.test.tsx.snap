@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryFormModal renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedCategoryForm - 
+        mocked-title
+         - 
+        mocked-description
+         -
+         
+         - 
+         - 
+         -
+         
+         - 
+         - 
+      </div>
+      <div>
+        title: 
+        Create new game
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`CategoryFormModal when data passed renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedCategoryForm - 
+        mocked-title
+         - 
+        mocked-description
+         -
+         
+         - 
+         - 
+         -
+         
+         - 
+         - 
+      </div>
+      <div>
+        title: 
+        Create new game
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;

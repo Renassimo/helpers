@@ -41,4 +41,10 @@ export interface PlayContextData {
   pointingCategoryId: string | null;
   setPointingCategoryId: (id: string | null) => void;
   quitFromCreatingNewItem: () => void;
+  updateSubmittedCategory: (newData: CategoryData | null, id?: string) => void;
+  isCategoryEditOpen: boolean;
+  setIsCategoryEditOpen: (newState: boolean) => void;
+  editingCategory: CategoryData | null;
+  openCategoryCreating: () => void;
+  openCategoryUpdating: (id: string) => void;
 }

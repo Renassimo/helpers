@@ -126,6 +126,45 @@ const usePlayData = (data: PlayPageData | null): PlayContextData => {
     }
   }, []);
 
+  // Category editing and creating
+  const [isCategoryEditOpen, setIsCategoryEditOpen] = useState<boolean>(false);
+  const [editingCategoryId, setEditingCategoryId] = useState<string | null>(
+    null
+  );
+  const editingCategory: CategoryData | null = useMemo(
+    () => (editingCategoryId ? categories[editingCategoryId] : null),
+    [editingCategoryId, categories]
+  );
+  const openCategoryCreating = () => setIsCategoryEditOpen(true);
+  const openCategoryUpdating = (id: string) => {
+    setEditingCategoryId(id);
+    setIsCategoryEditOpen(true);
+  };
+  const updateSubmittedCategory = useCallback(
+    (newData: CategoryData | null, id?: string) => {
+      if (newData == null) {
+        setCategories((current) => {
+          const newState: CategoriesState = {};
+          for (const cat in current) {
+            if (cat !== id) newState[cat] = current[cat];
+          }
+          return newState;
+        });
+        createSuccessAlert(`Category was deleted!`);
+      } else {
+        setCategories((current) => {
+          return {
+            ...current,
+            [newData.id]: newData,
+          };
+        });
+        createSuccessAlert(`Categories were updated!`);
+      }
+      setEditingCategoryId(null);
+    },
+    []
+  );
+
   // Item creating
   const [pointingCategoryId, setPointingCategoryId] = useState<string | null>(
     null
@@ -153,6 +192,12 @@ const usePlayData = (data: PlayPageData | null): PlayContextData => {
     pointingCategoryId,
     setPointingCategoryId,
     quitFromCreatingNewItem,
+    updateSubmittedCategory,
+    isCategoryEditOpen,
+    setIsCategoryEditOpen,
+    editingCategory,
+    openCategoryCreating,
+    openCategoryUpdating,
   };
 };
 
