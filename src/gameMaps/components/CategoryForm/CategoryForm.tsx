@@ -44,7 +44,7 @@ const CategoryForm = ({
         name="itemsAmount"
         label="Items Amount"
         type="number"
-        value={itemsAmount}
+        value={itemsAmount > 0 ? itemsAmount : ''}
         onChange={(event) => setItemsAmount(+event.target.value)}
         fullWidth
         margin="dense"

@@ -299,15 +299,7 @@ describe('usePlayData', () => {
   describe('when updates submitted category', () => {
     test('creates success alert and updates state', async () => {
       // Arange
-      const expectedState = {
-        ...expecteDefaultState,
-        categories: {
-          ...mockedCategoriesStateWithCountedItem,
-          [mockedCategory2.id]: mockedCategory2,
-        },
-        categoriesList: [...mockedCategoriesList, mockedCategory2],
-        isEveryCategoryChosen: false,
-      };
+      const expectedState = expecteDefaultState;
       const { result } = renderHook(() => usePlayData(mockedData));
       // Act
       await act(async () => {
@@ -316,6 +308,15 @@ describe('usePlayData', () => {
       // Assert
       expect(result.current).toEqual(expectedState);
       expect(mockedPush).not.toHaveBeenCalled();
+      expect(mockedGetCategoriesStateWithCountedItems).toHaveBeenCalledWith(
+        {
+          [mockedCategory2.id]: {
+            ...mockedCategory2,
+            attributes: { ...mockedCategory2.attributes, chosen: true },
+          },
+        },
+        [mockedObject]
+      );
       expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
         `Categories were updated!`
       );

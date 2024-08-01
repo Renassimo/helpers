@@ -4,16 +4,16 @@ const getCategoriesStateWithCountedItems = (
   categories: CategoriesState,
   items: ItemData[]
 ): CategoriesState => {
-  items.forEach((element) => {
-    const { categoryId, collected } = element.attributes;
-    const { foundItemsAmount, collectedItemsAmount } =
-      categories[categoryId].attributes;
+  items.forEach((item) => {
+    const { categoryId, collected } = item.attributes;
+    const category = categories[categoryId];
+    if (!category) return;
+    const { foundItemsAmount, collectedItemsAmount } = category.attributes;
 
-    categories[categoryId].attributes.foundItemsAmount =
-      (foundItemsAmount ?? 0) + 1;
+    category.attributes.foundItemsAmount = (foundItemsAmount ?? 0) + 1;
 
     if (collected) {
-      categories[categoryId].attributes.collectedItemsAmount =
+      category.attributes.collectedItemsAmount =
         (collectedItemsAmount ?? 0) + 1;
     }
   });

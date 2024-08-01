@@ -155,7 +155,15 @@ const usePlayData = (data: PlayPageData | null): PlayContextData => {
         setCategories((current) => {
           return {
             ...current,
-            [newData.id]: newData,
+            ...getCategoriesStateWithCountedItems(
+              {
+                [newData.id]: {
+                  ...newData,
+                  attributes: { ...newData.attributes, chosen: true },
+                },
+              },
+              itemsList
+            ),
           };
         });
         createSuccessAlert(`Categories were updated!`);

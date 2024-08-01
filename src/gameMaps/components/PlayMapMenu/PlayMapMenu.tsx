@@ -17,6 +17,8 @@ import CategoryFormModal from '@/gameMaps/components/CategoryFormModal';
 
 import usePlay from '@/gameMaps/hooks/usePlay';
 
+import { CategoryData } from '@/gameMaps/types';
+
 const PlayMapMenu = () => {
   const {
     categoriesList,
@@ -39,6 +41,10 @@ const PlayMapMenu = () => {
   const openCategoryModalForUpdating = (event: MouseEvent, id: string) => {
     event.stopPropagation();
     openCategoryUpdating(id);
+  };
+
+  const onFinish = (newData: CategoryData | null) => {
+    updateSubmittedCategory(newData, editingCategory?.id);
   };
 
   return (
@@ -104,7 +110,7 @@ const PlayMapMenu = () => {
           isModalOpen={isCategoryEditOpen}
           setIsModalOpen={setIsCategoryEditOpen}
           data={editingCategory}
-          onFinish={updateSubmittedCategory}
+          onFinish={onFinish}
           gameId={gameId}
         />
       )}
