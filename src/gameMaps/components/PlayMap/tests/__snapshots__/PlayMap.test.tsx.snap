@@ -17,10 +17,13 @@ exports[`PlayMap renders successfully 1`] = `
         0.5
          - 
         10.5
-         - 
-        existing
+         -
          
-        - 
+        existing
+         - 
+        marked
+         -
+         
         <div
           class="MuiBox-root css-0"
         >
@@ -66,10 +69,13 @@ exports[`PlayMap renders successfully 1`] = `
         0.6
          - 
         10.6
-         - 
-        existing
+         -
          
-        - 
+        existing
+         - 
+        marked
+         -
+         
         <div
           class="MuiBox-root css-0"
         >
@@ -131,10 +137,13 @@ exports[`PlayMap when open for creating and new marker passed renders successful
         0.5
          - 
         10.5
-         - 
-        existing
+         -
          
-        - 
+        existing
+         - 
+        marked
+         -
+         
         <div
           class="MuiBox-root css-0"
         >
@@ -180,10 +189,13 @@ exports[`PlayMap when open for creating and new marker passed renders successful
         0.6
          - 
         10.6
-         - 
-        existing
+         -
          
-        - 
+        existing
+         - 
+        marked
+         -
+         
         <div
           class="MuiBox-root css-0"
         >
@@ -229,10 +241,13 @@ exports[`PlayMap when open for creating and new marker passed renders successful
         1
          - 
         2
-         - 
-        new
+         -
          
-        - 
+        new
+         - 
+        not marked
+         -
+         
         new marker description
       </div>
     </div>
@@ -272,10 +287,13 @@ exports[`PlayMap when open for editing renders successfully with mocked modal 1`
         0.5
          - 
         10.5
-         - 
-        existing
+         -
          
-        - 
+        existing
+         - 
+        marked
+         -
+         
         <div
           class="MuiBox-root css-0"
         >
@@ -321,10 +339,13 @@ exports[`PlayMap when open for editing renders successfully with mocked modal 1`
         0.6
          - 
         10.6
-         - 
-        existing
+         -
          
-        - 
+        existing
+         - 
+        marked
+         -
+         
         <div
           class="MuiBox-root css-0"
         >

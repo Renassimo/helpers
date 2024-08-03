@@ -67,6 +67,7 @@ const PlayMap = () => {
                   categories[marker.attributes.categoryId]?.attributes.color
                 }
                 isNew={!marker.id}
+                isMarked={!!marker.attributes.collected}
               >
                 {marker.id ? (
                   <Box>

@@ -30,7 +30,7 @@ describe('getMarkerIcon snapshot', () => {
       // Arange
       const mockedColor = '#123456';
       // Act
-      const result = getMarkerIcon(mockedColor, true);
+      const result = getMarkerIcon(mockedColor, true, true);
       // Assert
       expect(mockedInvert).toHaveBeenCalledWith(mockedColor, true);
       expect(result).toMatchSnapshot();

@@ -42,7 +42,7 @@ describe('MapMarker snapshot', () => {
     );
     // Assert
     expect(baseElement).toMatchSnapshot();
-    expect(mockedGetMarkerIcon).toHaveBeenCalledWith(mockedColor, false);
+    expect(mockedGetMarkerIcon).toHaveBeenCalledWith(mockedColor, false, false);
   });
 
   describe('when children passed', () => {
@@ -52,13 +52,13 @@ describe('MapMarker snapshot', () => {
       // Arange
       // Act
       const { baseElement } = renderWithTheme(
-        <MapMarker color={mockedColor} position={mockedPosition} isNew>
+        <MapMarker color={mockedColor} position={mockedPosition} isNew isMarked>
           Popup Content
         </MapMarker>
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(mockedGetMarkerIcon).toHaveBeenCalledWith(mockedColor, true);
+      expect(mockedGetMarkerIcon).toHaveBeenCalledWith(mockedColor, true, true);
     });
   });
 });
