@@ -51,8 +51,7 @@ const PlayFormModal = ({
       )
     ) {
       await onDelete();
-      onModalClose();
-      onFinish(null);
+      handleFinish(null);
     }
   };
 
@@ -67,7 +66,7 @@ const PlayFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title="Create new play"
+      title={`${data ? 'Create new' : `Update`} play`}
       loading={loading}
     >
       <PlayForm

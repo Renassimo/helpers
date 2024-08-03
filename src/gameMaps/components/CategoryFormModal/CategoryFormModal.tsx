@@ -51,8 +51,7 @@ const CategoryFormModal = ({
       )
     ) {
       await onDelete();
-      onModalClose();
-      onFinish(null);
+      handleFinish(null);
     }
   };
 
@@ -67,7 +66,7 @@ const CategoryFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title="Create new game"
+      title={`${data ? 'Create new' : `Update`} category`}
       loading={loading}
     >
       <CategoryForm

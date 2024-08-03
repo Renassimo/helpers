@@ -1,7 +1,7 @@
 import { Data, PageProps, ServerSideProps } from '@/common/types/props';
 import { GameData } from '@/gameMaps/types/gameTypes';
 import { CategoriesState, CategoryData } from '@/gameMaps/types/categoryTypes';
-import { ItemData } from '@/gameMaps/types/itemTypes';
+import { ItemData, ItemsState } from '@/gameMaps/types/itemTypes';
 
 export interface PlayAttributes {
   title: string;
@@ -33,7 +33,8 @@ export interface PlayContextData {
   categoriesList: CategoryData[];
   isEveryCategoryChosen: boolean;
   isNoCategoriesChosen: boolean;
-  items: ItemData[];
+  items: ItemsState;
+  itemsList: ItemData[];
   visibleItems: ItemData[];
   choseAllCategories: () => void;
   clearAllChosenCategories: () => void;
@@ -47,4 +48,11 @@ export interface PlayContextData {
   editingCategory: CategoryData | null;
   openCategoryCreating: () => void;
   openCategoryUpdating: (id: string) => void;
+  isItemEditOpen: boolean;
+  setIsItemEditOpen: (newState: boolean) => void;
+  creatingItemCoordinates: [number, number] | null;
+  editingItem: ItemData | null;
+  openItemCreating: (coordinates: [number, number]) => void;
+  openItemUpdating: (id: string) => void;
+  updateSubmittedItem: (newData: ItemData | null, id?: string) => void;
 }

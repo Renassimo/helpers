@@ -15,7 +15,7 @@ exports[`PlayFormModal renders snapshot successfully 1`] = `
       </div>
       <div>
         title: 
-        Create new play
+        Update play
         ; maxWidth: 
         sm
         ;

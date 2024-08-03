@@ -12,7 +12,8 @@ const PlayContext = createContext<PlayContextData>({
   categoriesList: [],
   isEveryCategoryChosen: true,
   isNoCategoriesChosen: false,
-  items: [],
+  items: {},
+  itemsList: [],
   visibleItems: [],
   choseAllCategories: () => {},
   clearAllChosenCategories: () => {},
@@ -26,6 +27,13 @@ const PlayContext = createContext<PlayContextData>({
   editingCategory: null,
   openCategoryCreating: () => {},
   openCategoryUpdating: () => {},
+  isItemEditOpen: false,
+  setIsItemEditOpen: () => {},
+  creatingItemCoordinates: null,
+  editingItem: null,
+  openItemCreating: () => {},
+  openItemUpdating: () => {},
+  updateSubmittedItem: () => {},
 });
 
 export default PlayContext;

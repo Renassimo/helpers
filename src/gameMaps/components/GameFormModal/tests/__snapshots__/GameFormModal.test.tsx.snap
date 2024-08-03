@@ -21,7 +21,7 @@ exports[`GameFormModal renders snapshot successfully 1`] = `
       </div>
       <div>
         title: 
-        Create new game
+        Update game
         ; maxWidth: 
         sm
         ;

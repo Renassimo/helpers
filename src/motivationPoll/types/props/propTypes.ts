@@ -49,3 +49,16 @@ export interface CategoryFormProps {
   onDelete?: () => Promise<void>;
   errors: Record<string, string>;
 }
+
+export interface ItemFormProps {
+  values: {
+    description: string;
+    collected: boolean;
+  };
+  setters: {
+    setDescription: (value: string) => void;
+    setCollected: (value: boolean) => void;
+  };
+  onDelete?: () => Promise<void>;
+  errors: Record<string, string>;
+}

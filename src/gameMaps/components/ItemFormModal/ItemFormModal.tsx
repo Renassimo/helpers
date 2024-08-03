@@ -1,30 +1,38 @@
 import { useEffect } from 'react';
 
-import useGameForm from '@/gameMaps/hooks/useGameForm';
+import useItemForm from '@/gameMaps/hooks/useItemForm';
 
 import Modal from '@/common/components/Modal';
-import GameForm from '@/gameMaps/components/GameForm';
+import ItemForm from '@/gameMaps/components/ItemForm';
 
-import { GameData } from '@/gameMaps/types';
+import { ItemData } from '@/gameMaps/types';
 
-const GameFormModal = ({
+const ItemFormModal = ({
   isModalOpen,
   setIsModalOpen,
   data,
   onFinish,
+  gameId,
+  coordinates,
+  playId,
+  categoryId,
 }: {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
-  data?: GameData | null;
-  onFinish: (newData: GameData | null) => void;
+  data?: ItemData | null;
+  onFinish: (newData: ItemData | null, id?: string) => void;
+  gameId: string;
+  coordinates: [number, number];
+  playId: string;
+  categoryId: string;
 }) => {
   const onModalClose = () => {
     setIsModalOpen(false);
     cleanForm();
   };
 
-  const handleFinish = (newData: GameData | null) => {
-    onFinish(newData);
+  const handleFinish = (newData: ItemData | null) => {
+    onFinish(newData, data?.id);
     onModalClose();
   };
 
@@ -38,16 +46,14 @@ const GameFormModal = ({
     onDelete,
     errors,
     loading,
-  } = useGameForm(data, handleFinish);
+  } = useItemForm(
+    { gameId, playId, categoryId, coordinates },
+    data,
+    handleFinish
+  );
 
   const handleDelete = async (): Promise<void> => {
-    if (
-      confirm(
-        `Are you sure to delete "${
-          data?.attributes.title ?? values.title
-        }" game? Following action will also delete all plays, categories, all found items releated to this game and map image.`
-      )
-    ) {
+    if (confirm(`Are you sure to delete this item?`)) {
       await onDelete();
       handleFinish(null);
     }
@@ -64,10 +70,10 @@ const GameFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title={`${data ? 'Create new' : `Update`} game`}
+      title={`${data ? 'Create new' : `Update`} item`}
       loading={loading}
     >
-      <GameForm
+      <ItemForm
         values={values}
         setters={setters}
         errors={errors}
@@ -77,4 +83,4 @@ const GameFormModal = ({
   );
 };
 
-export default GameFormModal;
+export default ItemFormModal;

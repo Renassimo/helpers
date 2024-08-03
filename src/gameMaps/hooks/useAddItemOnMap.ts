@@ -11,13 +11,16 @@ const useAddItemOnMap = ({
   categories,
   pointingCategoryId,
   visibleItems,
+  onAdd,
 }: {
   categories: CategoriesState;
   pointingCategoryId: string | null;
   visibleItems: ItemData[];
+  onAdd: (coordinates: [number, number]) => void;
 }): {
   allMarkers: (ItemData | ItemMarker | null)[];
   handleMapClick: (event: LeafletMouseEvent) => void;
+  newMarker: ItemMarker | null;
 } => {
   const [newMarker, setNewMarker] = useState<ItemMarker | null>(null);
   const allMarkers = useMemo(
@@ -32,15 +35,20 @@ const useAddItemOnMap = ({
     setNewMarker(null);
   }, []);
 
+  const openCreateNewItem = useCallback((coordinates: [number, number]) => {
+    clearAll();
+    onAdd(coordinates);
+  }, []);
+
   const renderCreateItemPopupContent = useCallback(
-    () =>
+    (coordinates: [number, number]) =>
       renderSaveMarkerPopupContent({
         text: `Add new ${
           pointingCategoryId
             ? categories[pointingCategoryId].attributes.title
             : ''
         } item?`,
-        onAdd: () => console.log('Add'),
+        onAdd: () => openCreateNewItem(coordinates),
         onCancel: deleteNewMarker,
       }),
     [categories, pointingCategoryId]
@@ -51,16 +59,17 @@ const useAddItemOnMap = ({
       if (!pointingCategoryId) return;
 
       const { lat, lng } = event.latlng;
+      const coordinates: [number, number] = [lat, lng];
 
       setNewMarker({
         attributes: {
-          coordinates: [lat, lng],
-          description: renderCreateItemPopupContent(),
+          coordinates,
+          description: renderCreateItemPopupContent(coordinates),
           categoryId: pointingCategoryId,
         },
       });
       clearAll();
-      createInfoAlert(renderCreateItemPopupContent(), 0);
+      createInfoAlert(renderCreateItemPopupContent(coordinates), 0);
     },
     [pointingCategoryId]
   );
@@ -79,7 +88,7 @@ const useAddItemOnMap = ({
     if (!pointingCategoryId) deleteNewMarker();
   }, [pointingCategoryId]);
 
-  return { allMarkers, handleMapClick };
+  return { allMarkers, handleMapClick, newMarker };
 };
 
 export default useAddItemOnMap;

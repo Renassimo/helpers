@@ -32,6 +32,7 @@ describe('useAddItemOnMap', () => {
     createInfoAlert: mockedCreateInfoAlert,
     clearAll: mockedClearAll,
   }));
+  const mockedOnAdd = jest.fn();
 
   beforeEach(() => {
     (renderSaveMarkerPopupContent as unknown as jest.Mock).mockImplementation(
@@ -49,11 +50,13 @@ describe('useAddItemOnMap', () => {
     const expectedResult = {
       allMarkers: [...mockedItems, null],
       handleMapClick: expect.any(Function),
+      newMarker: null,
     };
     const mockedProps = {
       categories: categoriesState,
       pointingCategoryId: null,
       visibleItems: mockedItems,
+      onAdd: mockedOnAdd,
     };
     // Act
     const { result } = renderHook(() => useAddItemOnMap(mockedProps));
@@ -71,11 +74,13 @@ describe('useAddItemOnMap', () => {
       const expectedResult = {
         allMarkers: [...mockedItems, null],
         handleMapClick: expect.any(Function),
+        newMarker: null,
       };
       const mockedProps = {
         categories: categoriesState,
         pointingCategoryId: null,
         visibleItems: mockedItems,
+        onAdd: mockedOnAdd,
       };
 
       const { result } = renderHook(() => useAddItemOnMap(mockedProps));
@@ -100,11 +105,13 @@ describe('useAddItemOnMap', () => {
       const expectedResult = {
         allMarkers: [...mockedItems, null],
         handleMapClick: expect.any(Function),
+        newMarker: null,
       };
       const mockedProps = {
         categories: categoriesState,
         pointingCategoryId: mockedPointingCategoryId,
         visibleItems: mockedItems,
+        onAdd: mockedOnAdd,
       };
       // Act
       const { result } = renderHook(() => useAddItemOnMap(mockedProps));
@@ -124,23 +131,23 @@ describe('useAddItemOnMap', () => {
     describe('when handleMapClick called', () => {
       test('returns updated state', async () => {
         // Arange
+        const expectedNewMarker = {
+          attributes: {
+            coordinates: [mockedEvent.latlng.lat, mockedEvent.latlng.lng],
+            description: mockedPopupContent,
+            categoryId: mockedPointingCategoryId,
+          },
+        };
         const expectedResult = {
-          allMarkers: [
-            ...mockedItems,
-            {
-              attributes: {
-                coordinates: [mockedEvent.latlng.lat, mockedEvent.latlng.lng],
-                description: mockedPopupContent,
-                categoryId: mockedPointingCategoryId,
-              },
-            },
-          ],
+          allMarkers: [...mockedItems, expectedNewMarker],
           handleMapClick: expect.any(Function),
+          newMarker: expectedNewMarker,
         };
         const mockedProps = {
           categories: categoriesState,
           pointingCategoryId: mockedPointingCategoryId,
           visibleItems: mockedItems,
+          onAdd: mockedOnAdd,
         };
 
         const { result } = renderHook(() => useAddItemOnMap(mockedProps));
@@ -184,11 +191,13 @@ describe('useAddItemOnMap', () => {
         const expectedResult = {
           allMarkers: [...mockedItems, null],
           handleMapClick: expect.any(Function),
+          newMarker: null,
         };
         const mockedProps = {
           categories: categoriesState,
           pointingCategoryId: mockedPointingCategoryId,
           visibleItems: mockedItems,
+          onAdd: mockedOnAdd,
         };
         const { result, rerender } = renderHook(
           (props) => useAddItemOnMap(props),

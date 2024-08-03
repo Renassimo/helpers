@@ -83,44 +83,15 @@ exports[`CategoryForm renders snapshot successfully 1`] = `
         />
       </div>
     </div>
-    <div
-      class="MuiBox-root css-79elbk"
-    >
-      <div
-        class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for=":r3:"
-          id=":r3:-label"
-        >
-          Color
-        </label>
-        <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
-        >
-          <textarea
-            aria-invalid="false"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-            id=":r3:"
-            name="color"
-            style="height: 0px; overflow: hidden;"
-          >
-            #fff
-          </textarea>
-          <textarea
-            aria-hidden="true"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-            readonly=""
-            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
-            tabindex="-1"
-          />
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-18lo42o"
-      />
+    <div>
+      color
+       - 
+      #fff
+       - 
+      Color
+       - 
+      onChange
+       - 
     </div>
   </div>
 </body>
@@ -135,8 +106,8 @@ exports[`CategoryForm when received errors renders snapshot successfully 1`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":r5:"
-        id=":r5:-label"
+        for=":r3:"
+        id=":r3:-label"
       >
         Title
       </label>
@@ -144,10 +115,10 @@ exports[`CategoryForm when received errors renders snapshot successfully 1`] = `
         class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl css-l4u8b9-MuiInputBase-root-MuiInput-root"
       >
         <input
-          aria-describedby=":r5:-helper-text"
+          aria-describedby=":r3:-helper-text"
           aria-invalid="true"
           class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
-          id=":r5:"
+          id=":r3:"
           name="title"
           type="text"
           value="Category 1"
@@ -155,7 +126,7 @@ exports[`CategoryForm when received errors renders snapshot successfully 1`] = `
       </div>
       <p
         class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-1d1r5q-MuiFormHelperText-root"
-        id=":r5:-helper-text"
+        id=":r3:-helper-text"
       >
         Title error
       </p>
@@ -166,8 +137,8 @@ exports[`CategoryForm when received errors renders snapshot successfully 1`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":r6:"
-        id=":r6:-label"
+        for=":r4:"
+        id=":r4:-label"
       >
         Description
       </label>
@@ -175,10 +146,10 @@ exports[`CategoryForm when received errors renders snapshot successfully 1`] = `
         class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
       >
         <textarea
-          aria-describedby=":r6:-helper-text"
+          aria-describedby=":r4:-helper-text"
           aria-invalid="true"
           class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-          id=":r6:"
+          id=":r4:"
           name="description"
           style="height: 0px; overflow: hidden;"
         >
@@ -194,7 +165,7 @@ exports[`CategoryForm when received errors renders snapshot successfully 1`] = `
       </div>
       <p
         class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-1d1r5q-MuiFormHelperText-root"
-        id=":r6:-helper-text"
+        id=":r4:-helper-text"
       >
         Description error
       </p>
@@ -203,64 +174,43 @@ exports[`CategoryForm when received errors renders snapshot successfully 1`] = `
       class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
     >
       <label
-        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":r7:"
-        id=":r7:-label"
+        for=":r5:"
+        id=":r5:-label"
       >
         Items Amount
       </label>
       <div
-        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-l4u8b9-MuiInputBase-root-MuiInput-root"
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl css-l4u8b9-MuiInputBase-root-MuiInput-root"
       >
         <input
-          aria-invalid="false"
+          aria-describedby=":r5:-helper-text"
+          aria-invalid="true"
           class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
-          id=":r7:"
+          id=":r5:"
           name="itemsAmount"
           type="number"
           value="50"
         />
       </div>
-    </div>
-    <div
-      class="MuiBox-root css-79elbk"
-    >
-      <div
-        class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+      <p
+        class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-1d1r5q-MuiFormHelperText-root"
+        id=":r5:-helper-text"
       >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for=":r8:"
-          id=":r8:-label"
-        >
-          Color
-        </label>
-        <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
-        >
-          <textarea
-            aria-invalid="false"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-            id=":r8:"
-            name="color"
-            style="height: 0px; overflow: hidden;"
-          >
-            #fff
-          </textarea>
-          <textarea
-            aria-hidden="true"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-            readonly=""
-            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
-            tabindex="-1"
-          />
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-18lo42o"
-      />
+        Items Amount error
+      </p>
+    </div>
+    <div>
+      color
+       - 
+      #fff
+       - 
+      Color
+       - 
+      onChange
+       - 
+      Color error
     </div>
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardError MuiAlert-standard css-1hdyuqk-MuiPaper-root-MuiAlert-root"
@@ -300,8 +250,8 @@ exports[`CategoryForm when receives optional props renders snapshot successfully
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":ra:"
-        id=":ra:-label"
+        for=":r6:"
+        id=":r6:-label"
       >
         Title
       </label>
@@ -311,7 +261,7 @@ exports[`CategoryForm when receives optional props renders snapshot successfully
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
-          id=":ra:"
+          id=":r6:"
           name="title"
           type="text"
           value="Category 1"
@@ -324,8 +274,8 @@ exports[`CategoryForm when receives optional props renders snapshot successfully
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":rb:"
-        id=":rb:-label"
+        for=":r7:"
+        id=":r7:-label"
       >
         Description
       </label>
@@ -335,7 +285,7 @@ exports[`CategoryForm when receives optional props renders snapshot successfully
         <textarea
           aria-invalid="false"
           class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-          id=":rb:"
+          id=":r7:"
           name="description"
           style="height: 0px; overflow: hidden;"
         >
@@ -356,8 +306,8 @@ exports[`CategoryForm when receives optional props renders snapshot successfully
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":rc:"
-        id=":rc:-label"
+        for=":r8:"
+        id=":r8:-label"
       >
         Items Amount
       </label>
@@ -367,51 +317,22 @@ exports[`CategoryForm when receives optional props renders snapshot successfully
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
-          id=":rc:"
+          id=":r8:"
           name="itemsAmount"
           type="number"
           value="50"
         />
       </div>
     </div>
-    <div
-      class="MuiBox-root css-79elbk"
-    >
-      <div
-        class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for=":rd:"
-          id=":rd:-label"
-        >
-          Color
-        </label>
-        <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
-        >
-          <textarea
-            aria-invalid="false"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-            id=":rd:"
-            name="color"
-            style="height: 0px; overflow: hidden;"
-          >
-            #fff
-          </textarea>
-          <textarea
-            aria-hidden="true"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-            readonly=""
-            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
-            tabindex="-1"
-          />
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-18lo42o"
-      />
+    <div>
+      color
+       - 
+      #fff
+       - 
+      Color
+       - 
+      onChange
+       - 
     </div>
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth css-5pqyj8-MuiButtonBase-root-MuiButton-root"

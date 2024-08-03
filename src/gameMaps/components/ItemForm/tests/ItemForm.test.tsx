@@ -1,75 +1,54 @@
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
-import ColorPicker from '@/common/components/ColorPicker';
+import { mockedItem } from '@/gameMaps/types/mocks';
 
-import MockedColorPicker from '@/common/components/ColorPicker/mocks';
-import { mockedCategory } from '@/gameMaps/types/mocks';
+import { ItemFormProps } from '@/motivationPoll/types/props';
 
-import { CategoryFormProps } from '@/motivationPoll/types/props';
+import ItemForm from '../ItemForm';
 
-import CategoryForm from '../CategoryForm';
-
-jest.mock('@/common/components/ColorPicker');
-
-describe('CategoryForm', () => {
+describe('ItemForm', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  const mockedSetTitle = jest.fn();
   const mockedSetDescription = jest.fn();
-  const mockedSetColor = jest.fn();
-  const mockedSetItemsAmount = jest.fn();
+  const mockedSetCollected = jest.fn();
   const mockedOnDelete = jest.fn();
 
   const mockedEmptyValues = {
-    title: '',
     description: '',
-    color: '',
-    itemsAmount: 0,
+    collected: false,
   };
 
   const mockedValues = {
-    title: mockedCategory.attributes.title,
-    description: mockedCategory.attributes.description,
-    color: mockedCategory.attributes.color,
-    itemsAmount: mockedCategory.attributes.itemsAmount,
+    description: mockedItem.attributes.description,
+    collected: mockedItem.attributes.collected,
   };
 
   const mockedSetters = {
-    setTitle: mockedSetTitle,
     setDescription: mockedSetDescription,
-    setColor: mockedSetColor,
-    setItemsAmount: mockedSetItemsAmount,
+    setCollected: mockedSetCollected,
   };
 
   const mockedErrors = {
-    title: 'Title error',
     description: 'Description error',
-    color: 'Color error',
-    itemsAmount: 'Items Amount error',
+    title: 'Title error',
     main: 'Main error',
   };
 
   const mockedEmptyErrors = {};
 
-  const mockedProps: CategoryFormProps = {
+  const mockedProps: ItemFormProps = {
     values: mockedValues,
     setters: mockedSetters,
     errors: mockedEmptyErrors,
   };
 
-  beforeEach(() => {
-    (ColorPicker as unknown as jest.Mock).mockImplementationOnce(
-      MockedColorPicker
-    );
-  });
-
   test('renders snapshot successfully', () => {
     // Arange
     // Act
-    const { baseElement } = renderWithTheme(<CategoryForm {...mockedProps} />);
+    const { baseElement } = renderWithTheme(<ItemForm {...mockedProps} />);
     // Assert
     expect(baseElement).toMatchSnapshot();
   });
@@ -79,7 +58,7 @@ describe('CategoryForm', () => {
       // Arange
       // Act
       const { baseElement } = renderWithTheme(
-        <CategoryForm {...mockedProps} errors={mockedErrors} />
+        <ItemForm {...mockedProps} errors={mockedErrors} />
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
@@ -91,31 +70,10 @@ describe('CategoryForm', () => {
       // Arange
       // Act
       const { baseElement } = renderWithTheme(
-        <CategoryForm {...mockedProps} onDelete={mockedOnDelete} />
+        <ItemForm {...mockedProps} onDelete={mockedOnDelete} />
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
-    });
-  });
-
-  describe('when changes title', () => {
-    test('calls setTitle', async () => {
-      // Arange
-      const { getByLabelText } = renderWithTheme(
-        <CategoryForm
-          setters={mockedSetters}
-          values={mockedEmptyValues}
-          errors={mockedEmptyErrors}
-        />
-      );
-      // Act
-      await userEvent.type(getByLabelText('Title'), 'Ti');
-      // Assert
-      expect(mockedSetTitle).toHaveBeenNthCalledWith(1, 'T');
-      expect(mockedSetTitle).toHaveBeenNthCalledWith(2, 'i');
-      expect(mockedSetTitle).toHaveBeenCalledTimes(2);
-      expect(mockedSetDescription).not.toHaveBeenCalled();
-      expect(mockedSetItemsAmount).not.toHaveBeenCalled();
     });
   });
 
@@ -123,7 +81,7 @@ describe('CategoryForm', () => {
     test('calls setDescription', async () => {
       // Arange
       const { getByLabelText } = renderWithTheme(
-        <CategoryForm
+        <ItemForm
           setters={mockedSetters}
           values={mockedEmptyValues}
           errors={mockedEmptyErrors}
@@ -135,27 +93,25 @@ describe('CategoryForm', () => {
       expect(mockedSetDescription).toHaveBeenNthCalledWith(1, 'D');
       expect(mockedSetDescription).toHaveBeenNthCalledWith(2, 'e');
       expect(mockedSetDescription).toHaveBeenCalledTimes(2);
-      expect(mockedSetTitle).not.toHaveBeenCalled();
-      expect(mockedSetItemsAmount).not.toHaveBeenCalled();
+      expect(mockedSetCollected).not.toHaveBeenCalled();
     });
   });
 
-  describe('when changes items amount', () => {
-    test('calls setItemsAmount', async () => {
+  describe('when changes collected', () => {
+    test('calls setCollected', async () => {
       // Arange
       const { getByLabelText } = renderWithTheme(
-        <CategoryForm
+        <ItemForm
           setters={mockedSetters}
           values={mockedEmptyValues}
           errors={mockedEmptyErrors}
         />
       );
       // Act
-      await userEvent.type(getByLabelText('Items Amount'), '5');
+      await userEvent.click(getByLabelText('Collected'));
       // Assert
-      expect(mockedSetItemsAmount).toHaveBeenNthCalledWith(1, 5);
-      expect(mockedSetItemsAmount).toHaveBeenCalledTimes(1);
-      expect(mockedSetTitle).not.toHaveBeenCalled();
+      expect(mockedSetCollected).toHaveBeenNthCalledWith(1, true);
+      expect(mockedSetCollected).toHaveBeenCalledTimes(1);
       expect(mockedSetDescription).not.toHaveBeenCalled();
     });
   });
@@ -164,7 +120,7 @@ describe('CategoryForm', () => {
     test('calls onDelete', async () => {
       // Arange
       const { getByText } = renderWithTheme(
-        <CategoryForm
+        <ItemForm
           setters={mockedSetters}
           values={mockedEmptyValues}
           errors={mockedEmptyErrors}

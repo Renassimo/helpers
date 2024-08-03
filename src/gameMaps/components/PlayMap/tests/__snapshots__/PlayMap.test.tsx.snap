@@ -12,6 +12,7 @@ exports[`PlayMap renders successfully 1`] = `
       #fff
        - 
       <div>
+        #fff
          - 
         0.5
          - 
@@ -20,9 +21,47 @@ exports[`PlayMap renders successfully 1`] = `
         existing
          
         - 
-        Item 1 description
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Item 1 description
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-s2uf1z"
+          >
+            <button
+              aria-label="edit-item"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="EditIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
       </div>
       <div>
+        #fff
          - 
         0.6
          - 
@@ -31,8 +70,315 @@ exports[`PlayMap renders successfully 1`] = `
         existing
          
         - 
-        Item 2 description
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Item 2 description
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-s2uf1z"
+          >
+            <button
+              aria-label="edit-item"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="EditIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PlayMap when open for creating and new marker passed renders successfully with mocked modal 1`] = `
+<body>
+  <div>
+    <div>
+      MockedMapOnImage 
+      withOnClick
+       
+      /
+       
+      #fff
+       - 
+      <div>
+        #fff
+         - 
+        0.5
+         - 
+        10.5
+         - 
+        existing
+         
+        - 
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Item 1 description
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-s2uf1z"
+          >
+            <button
+              aria-label="edit-item"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="EditIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        #fff
+         - 
+        0.6
+         - 
+        10.6
+         - 
+        existing
+         
+        - 
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Item 2 description
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-s2uf1z"
+          >
+            <button
+              aria-label="edit-item"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="EditIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        #888
+         - 
+        1
+         - 
+        2
+         - 
+        new
+         
+        - 
+        new marker description
+      </div>
+    </div>
+    <div>
+      MockedItemFormModal 
+      closed
+       - 
+      gm1
+       -
+       
+      1
+       - 
+      2
+       - 
+      pl1
+       - 
+      cat2
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PlayMap when open for editing renders successfully with mocked modal 1`] = `
+<body>
+  <div>
+    <div>
+      MockedMapOnImage 
+      withOnClick
+       
+      /
+       
+      #fff
+       - 
+      <div>
+        #fff
+         - 
+        0.5
+         - 
+        10.5
+         - 
+        existing
+         
+        - 
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Item 1 description
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-s2uf1z"
+          >
+            <button
+              aria-label="edit-item"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="EditIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        #fff
+         - 
+        0.6
+         - 
+        10.6
+         - 
+        existing
+         
+        - 
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Item 2 description
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-s2uf1z"
+          >
+            <button
+              aria-label="edit-item"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="EditIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      MockedItemFormModal 
+      closed
+       - 
+      gm1
+       -
+       
+      0.5
+       - 
+      10.5
+       - 
+      pl1
+       - 
+      cat1
     </div>
   </div>
 </body>

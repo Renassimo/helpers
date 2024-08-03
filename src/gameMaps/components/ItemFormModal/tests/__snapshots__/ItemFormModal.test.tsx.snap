@@ -1,26 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CategoryFormModal renders snapshot successfully 1`] = `
+exports[`ItemFormModal renders snapshot successfully 1`] = `
 <body>
   <div>
     <div>
       <div>
-        MockedCategoryForm - 
-        mocked-title
-         - 
+        MockedItemForm - 
         mocked-description
-         -
+         - 
          
-         - 
-         - 
-         -
-         
-         - 
+        - 
          - 
       </div>
       <div>
         title: 
-        Update category
+        Update item
         ; maxWidth: 
         sm
         ;
@@ -42,27 +36,21 @@ exports[`CategoryFormModal renders snapshot successfully 1`] = `
 </body>
 `;
 
-exports[`CategoryFormModal when data passed renders snapshot successfully 1`] = `
+exports[`ItemFormModal when data passed renders snapshot successfully 1`] = `
 <body>
   <div>
     <div>
       <div>
-        MockedCategoryForm - 
-        mocked-title
-         - 
+        MockedItemForm - 
         mocked-description
-         -
+         - 
          
-         - 
-         - 
-         -
-         
-         - 
+        - 
          - 
       </div>
       <div>
         title: 
-        Create new category
+        Create new item
         ; maxWidth: 
         sm
         ;

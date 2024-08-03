@@ -11,6 +11,7 @@ import {
   mockedCategories,
   mockedCategory2,
   mockedGame,
+  mockedItem2,
   mockedItems,
   mockedPlay,
   mockedPlay2,
@@ -92,7 +93,8 @@ describe('usePlayData', () => {
     isPlayEditOpen: false,
     setIsPlayEditOpen: expect.any(Function),
     categories: mockedCategoriesStateWithCountedItem,
-    items: [mockedObject],
+    items: { [mockedObject.id]: mockedObject },
+    itemsList: [mockedObject],
     categoriesList: mockedCategoriesList,
     isEveryCategoryChosen: true,
     isNoCategoriesChosen: false,
@@ -109,6 +111,13 @@ describe('usePlayData', () => {
     editingCategory: null,
     openCategoryCreating: expect.any(Function),
     openCategoryUpdating: expect.any(Function),
+    isItemEditOpen: false,
+    setIsItemEditOpen: expect.any(Function),
+    creatingItemCoordinates: null,
+    editingItem: null,
+    openItemCreating: expect.any(Function),
+    openItemUpdating: expect.any(Function),
+    updateSubmittedItem: expect.any(Function),
   } as unknown as PlayContextData;
 
   test('returns state', () => {
@@ -396,6 +405,128 @@ describe('usePlayData', () => {
       });
       // Assert
       expect(result.current).toEqual(expectedState);
+    });
+  });
+
+  describe('when calls setIsItemEditOpen', () => {
+    test('updates state', async () => {
+      // Arange
+      const expectedState = {
+        ...expecteDefaultState,
+        isItemEditOpen: true,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.setIsItemEditOpen(true);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+    });
+  });
+
+  describe('when calls openItemCreating', () => {
+    test('updates state', async () => {
+      // Arange
+      const mockedCoordinates: [number, number] = [1, 2];
+      const expectedState = {
+        ...expecteDefaultState,
+        isItemEditOpen: true,
+        creatingItemCoordinates: mockedCoordinates,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.openItemCreating(mockedCoordinates);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+    });
+  });
+
+  describe('when calls openItemUpdating', () => {
+    test('updates state', async () => {
+      // Arange
+      const expectedState = {
+        ...expecteDefaultState,
+        isItemEditOpen: true,
+        editingItem: mockedObject,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.openItemUpdating(mockedObject.id);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+    });
+  });
+
+  describe('when updates submitted item', () => {
+    test('creates success alert and updates state', async () => {
+      // Arange
+      const expectedItemsState = {
+        [mockedObject.id]: mockedObject,
+        [mockedItem2.id]: mockedItem2,
+      };
+      const expectedItemsList = [mockedObject, mockedItem2];
+      const expectedState = {
+        ...expecteDefaultState,
+        items: expectedItemsState,
+        itemsList: expectedItemsList,
+        isItemEditOpen: true,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      await act(async () => {
+        await result.current.openItemCreating([1, 2]);
+      });
+      // Act
+      await act(async () => {
+        await result.current.updateSubmittedItem(mockedItem2);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+      expect(mockedPush).not.toHaveBeenCalled();
+      expect(mockedGetCategoriesStateWithCountedItems).toHaveBeenCalledWith(
+        {
+          [mockedItem2.attributes.categoryId]:
+            expectedState.categories[mockedItem2.attributes.categoryId],
+        },
+        expectedItemsList
+      );
+      expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
+        `Items were updated!`
+      );
+    });
+
+    describe('when item is null', () => {
+      test('creates success alert and updates state', async () => {
+        // Arange
+        const expectedState = {
+          ...expecteDefaultState,
+          items: {},
+          itemsList: [],
+          isItemEditOpen: true,
+        };
+        const { result } = renderHook(() => usePlayData(mockedData));
+        await act(async () => {
+          await result.current.openItemUpdating(mockedObject.id);
+        });
+        // Act
+        await act(async () => {
+          await result.current.updateSubmittedItem(null, mockedObject.id);
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+        expect(mockedPush).not.toHaveBeenCalled();
+        expect(mockedGetCategoriesStateWithCountedItems).toHaveBeenCalledWith(
+          expecteDefaultState.categories,
+          []
+        );
+        expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
+          `Item was deleted!`
+        );
+      });
     });
   });
 });

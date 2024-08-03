@@ -5,7 +5,7 @@ export interface ItemAttributes {
   collected: boolean;
   coordinates: [number, number];
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
   playId: string;
 }
 
@@ -17,6 +17,10 @@ export interface ItemMarker {
     description: string | JSX.Element;
     categoryId: string;
   };
+}
+
+export interface ItemsState {
+  [id: string]: ItemData;
 }
 
 export type ItemData = Data<ItemAttributes>;
