@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert';
 import ColorPicker from '@/common/components/ColorPicker';
 import Button from '@mui/material/Button';
 
-import { CategoryFormProps } from '@/motivationPoll/types/props';
+import { CategoryFormProps } from '@/gameMaps/types/props';
 
 const CategoryForm = ({
   values,

@@ -3,7 +3,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import { mockedItem } from '@/gameMaps/types/mocks';
 
-import { ItemFormProps } from '@/motivationPoll/types/props';
+import { ItemFormProps } from '@/gameMaps/types/props';
 
 import ItemForm from '../ItemForm';
 

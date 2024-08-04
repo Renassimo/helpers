@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 
-import { ItemFormProps } from '@/motivationPoll/types/props';
+import { ItemFormProps } from '@/gameMaps/types/props';
 
 const ItemForm = ({
   values,

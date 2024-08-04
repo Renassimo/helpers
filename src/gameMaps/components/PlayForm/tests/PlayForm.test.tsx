@@ -3,7 +3,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import { mockedPlay } from '@/gameMaps/types/mocks';
 
-import { PlayFormProps } from '@/motivationPoll/types/props';
+import { PlayFormProps } from '@/gameMaps/types/props';
 
 import PlayForm from '../PlayForm';
 

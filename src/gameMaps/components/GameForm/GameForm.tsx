@@ -5,7 +5,7 @@ import ImagePicker from '@/common/components/ImagePicker';
 import ColorPicker from '@/common/components/ColorPicker';
 import Button from '@mui/material/Button';
 
-import { GameFormProps } from '@/motivationPoll/types/props';
+import { GameFormProps } from '@/gameMaps/types/props';
 
 const GameForm = ({
   values,

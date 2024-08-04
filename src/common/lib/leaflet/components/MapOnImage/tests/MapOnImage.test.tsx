@@ -49,6 +49,7 @@ describe('MapOnImage', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+
   test('renders successfully', () => {
     // Arange
     // Act

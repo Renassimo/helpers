@@ -8,7 +8,7 @@ import MockedImagePicker from '@/common/components/ImagePicker/mocks';
 import MockedColorPicker from '@/common/components/ColorPicker/mocks';
 import { mockedGame } from '@/gameMaps/types/mocks';
 
-import { GameFormProps } from '@/motivationPoll/types/props';
+import { GameFormProps } from '@/gameMaps/types/props';
 
 import GameForm from '../GameForm';
 

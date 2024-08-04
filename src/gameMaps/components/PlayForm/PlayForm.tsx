@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 
-import { PlayFormProps } from '@/motivationPoll/types/props';
+import { PlayFormProps } from '@/gameMaps/types/props';
 
 const PlayForm = ({
   values,

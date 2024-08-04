@@ -6,7 +6,7 @@ import ColorPicker from '@/common/components/ColorPicker';
 import MockedColorPicker from '@/common/components/ColorPicker/mocks';
 import { mockedCategory } from '@/gameMaps/types/mocks';
 
-import { CategoryFormProps } from '@/motivationPoll/types/props';
+import { CategoryFormProps } from '@/gameMaps/types/props';
 
 import CategoryForm from '../CategoryForm';
 
