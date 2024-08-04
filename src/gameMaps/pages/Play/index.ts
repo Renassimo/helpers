@@ -1,1 +1,1 @@
-export { default } from './PlayPage';
+export { default } from './PlayPageRoot';

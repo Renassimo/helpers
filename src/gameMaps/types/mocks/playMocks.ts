@@ -5,8 +5,8 @@ export const mockedPlay1: PlayData = {
   attributes: {
     title: 'Play 1',
     description: 'Play 1 description',
-    lastUpdateDate: '11-11',
-    startDate: '10-10',
+    createdAt: '10-10',
+    updatedAt: '11-11',
   },
 };
 
@@ -15,8 +15,8 @@ export const mockedPlay2: PlayData = {
   attributes: {
     title: 'Play 2',
     description: 'Play 2 description',
-    lastUpdateDate: '22-22',
-    startDate: '20-20',
+    createdAt: '20-20',
+    updatedAt: '22-22',
   },
 };
 

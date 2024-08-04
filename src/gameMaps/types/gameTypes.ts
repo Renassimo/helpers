@@ -4,16 +4,20 @@ import { PlayData } from '@/gameMaps/types/playTypes';
 export interface GameAttributes {
   backgroundColor: string;
   description: string;
-  mapImageUrl: string;
   title: string;
+  mapImageUrl?: string;
+  mapImageId?: string;
+  mapImageRatio?: number | null;
 }
 
 export type GameData = Data<GameAttributes>;
 
-export type GamePageProps = PageProps<{
+export interface GamePageData {
   gameData: GameData;
   playsData: PlayData[];
-}>;
+}
+
+export type GamePageProps = PageProps<GamePageData>;
 export type GamesPageProps = PageProps<GameData[]>;
 
 export type GameServerSideProps = ServerSideProps<GamePageProps>;

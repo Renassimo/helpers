@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapOnImage renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-uwwqev"
+    >
+      <div>
+        MockedMapContainer - 
+        center
+         - 
+        10
+         -
+         
+        {"height":"100%","width":"100%","backgroundColor":"backgroundColor"}
+         -
+         
+         - 
+        <div>
+          MockedImageOverlay - 
+          mapImageUrl
+           -
+           
+           - 
+          1
+           -
+           
+          10
+        </div>
+        <div>
+          MockedMapEventsHandler 
+          withHandleMapClick
+        </div>
+        Children
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MapOnImage when mapImageRatio passed renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-uwwqev"
+    >
+      <div>
+        MockedMapContainer - 
+        center
+         - 
+        10
+         -
+         
+        {"height":"100%","width":"100%","backgroundColor":"backgroundColor"}
+         -
+         
+         - 
+        <div>
+          MockedImageOverlay - 
+          mapImageUrl
+           -
+           
+           - 
+          1
+           -
+           
+          10
+        </div>
+        <div>
+          MockedMapEventsHandler 
+          withHandleMapClick
+        </div>
+        Children
+      </div>
+    </div>
+  </div>
+</body>
+`;

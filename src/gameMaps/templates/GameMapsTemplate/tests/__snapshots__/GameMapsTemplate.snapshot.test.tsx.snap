@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameMaps Template snapshot renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      Mocked Page Template (
+      Title
+      ):
+      <span>
+        Jesse Pinkman
+         - 
+        5book
+      </span>
+      <h1
+        class="MuiTypography-root MuiTypography-h5 css-1uxccsd-MuiTypography-root"
+      >
+        Descrtiption
+      </h1>
+      <div
+        class="MuiBox-root css-1ebprri"
+      >
+        <div>
+          <a
+            href="/breadcrumb1"
+          >
+            Breadcrumb 1
+             - 
+            Current
+          </a>
+          <a
+            href="/breadcrumb2"
+          >
+            Breadcrumb 2
+             - 
+          </a>
+          <a
+            href="/breadcrumb3"
+          >
+            Breadcrumb 3
+             - 
+            Current
+          </a>
+        </div>
+      </div>
+      Child
+    </div>
+  </div>
+</body>
+`;

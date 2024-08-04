@@ -3,7 +3,9 @@ import { Firestore, FirestoreDesrializedDoc, FirestoreDocData } from './types';
 
 interface FirestoreService {
   getAll?(...args: string[]): Promise<FirestoreDesrializedDoc[]>;
-  getOne?(...args: string[]): Promise<FirestoreDesrializedDoc>;
+  getOne?(
+    ...args: (string | boolean | undefined)[]
+  ): Promise<FirestoreDesrializedDoc>;
   create?(...args: (string | object)[]): Promise<FirestoreDesrializedDoc>;
   update?(...args: (string | object)[]): Promise<FirestoreDesrializedDoc>;
   delete?(...args: string[]): Promise<Record<string, never>>;

@@ -5,6 +5,10 @@ const createJestConfig = nextJest({
   dir: './',
 });
 
+process.env.TZ = 'UTC';
+
+const esModules = ['react-leaflet'].join('|');
+
 // Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
 const customJestConfig = {
@@ -14,8 +18,10 @@ const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/'],
   moduleNameMapper: {
     '@/(.*)$': '<rootDir>/src/$1',
+    'react-leaflet': '<rootDir>/src/common/lib/leaflet/mocks',
   },
   testEnvironment: 'jest-environment-jsdom',
+  transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

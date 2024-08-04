@@ -4,17 +4,20 @@ import { NextApiResponse } from 'next';
 import handler from '../../api/create';
 
 import ItemsService from '@/gameMaps/services/items';
+import PlaysService from '@/gameMaps/services/plays';
 import { getError } from '@/common/utils/errors';
 
-import { mockedItem, mockedGame } from '@/gameMaps/types/mocks';
+import { mockedItem, mockedGame, mockedPlay } from '@/gameMaps/types/mocks';
 
 jest.mock('@/gameMaps/services/items');
+jest.mock('@/gameMaps/services/plays');
 jest.mock('@/common/utils/errors');
 
 describe('create (item)', () => {
   const mockedMethod = 'POST';
   const mockedUid = 'uid';
   const mockedGameId = mockedGame.id;
+  const mockedPlayId = mockedPlay.id;
   const mockedQuery = { gameId: mockedGameId };
   const mockedAttributes = mockedItem.attributes;
   const mockedBody = { data: { attributes: mockedAttributes } };
@@ -40,9 +43,17 @@ describe('create (item)', () => {
     create: mockedCreate,
   }));
 
+  let mockedUpdateDate = jest.fn(() => ({}));
+  const mockedGetPlaysInstance = jest.fn(() => ({
+    updateDate: mockedUpdateDate,
+  }));
+
   beforeEach(() => {
     (ItemsService.getInstance as unknown as jest.Mock).mockImplementationOnce(
       mockedGetInstance
+    );
+    (PlaysService.getInstance as unknown as jest.Mock).mockImplementationOnce(
+      mockedGetPlaysInstance
     );
   });
 
@@ -53,6 +64,7 @@ describe('create (item)', () => {
   test('writes status and data to response', async () => {
     // Arange
     mockedCreate = jest.fn(() => mockedData);
+    mockedUpdateDate = jest.fn(() => ({}));
     // Act
     await handler(req, res);
     // Assert
@@ -62,12 +74,17 @@ describe('create (item)', () => {
       mockedGameId,
       mockedAttributes
     );
+    expect(mockedUpdateDate).toHaveBeenCalledWith(
+      mockedUid,
+      mockedGameId,
+      mockedPlayId
+    );
     expect(mockedStatus).toHaveBeenCalledWith(201);
     expect(mockedJson).toHaveBeenCalledWith({ data: mockedData });
   });
 
   describe('when get error', () => {
-    test('writes status and error to response', async () => {
+    test('writes status and error to response and updates play', async () => {
       // Arange
       const mockedErrorMessage = 'New Error';
       mockedCreate = jest.fn(() => {

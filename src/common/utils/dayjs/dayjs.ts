@@ -17,3 +17,7 @@ export const formatFromNotionDate = (date: string | null) =>
   dayjs(date).format('DD.MM.YYYY');
 export const formatToNotionDate = (date?: string | Dayjs | null) =>
   dayjs(date).format('YYYY-MM-DD');
+export const showWhen = (dateString: string) => {
+  const date = new Date(dateString);
+  return dayjs(date).format('ddd MMM D YYYY');
+};

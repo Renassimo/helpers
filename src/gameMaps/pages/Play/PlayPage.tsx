@@ -1,78 +1,44 @@
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-
-import PageTemplate from '@/common/templates/PageTemplate';
-
-import { useErrorAlert } from '@/common/hooks/alerts';
+import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 
 import { PlayPageProps } from '@/gameMaps/types';
+import { BreadcrumbsItem } from '@/common/types/props';
 
-const PlayPage = ({ user, pages, data, error }: PlayPageProps) => {
-  useErrorAlert(error);
+import usePlay from '@/gameMaps/hooks/usePlay';
 
-  const { gameData, playData, categoriesData, itemsData } = data ?? {};
+import Play from '@/gameMaps/components/Play';
 
-  console.log({ gameData, playData, categoriesData, itemsData });
+const PlayPage = ({ user, pages }: Partial<PlayPageProps>) => {
+  const { game, play, setIsPlayEditOpen } = usePlay();
+
+  const gameTitle = game?.attributes.title ?? 'Game';
+  const playTitle = play?.attributes.title ?? 'Play';
+  const title = `${gameTitle} - ${playTitle}`;
+
+  const parentPageHref = `/gameMaps/games/${game?.id}`;
+
+  const breadcrumbs: BreadcrumbsItem[] = [
+    { title: 'Games', href: '/gameMaps/games' },
+    {
+      title: gameTitle,
+      href: parentPageHref,
+    },
+    {
+      title: playTitle,
+      href: `/gameMaps/games/${game?.id}/plays/${play?.id}`,
+      action: () => setIsPlayEditOpen(true),
+    },
+  ];
 
   return (
-    <PageTemplate title="Game Maps" user={user} pages={pages}>
-      {data && (
-        <>
-          <Typography component="h1" variant="h5" textAlign="center" mt={5}>
-            {gameData?.attributes.title}
-          </Typography>
-          <Typography component="h2" variant="h5" textAlign="center" mt={2}>
-            {gameData?.attributes.description}
-          </Typography>
-          <Typography component="h2" variant="h5" textAlign="center" mt={5}>
-            {playData?.attributes.title}
-          </Typography>
-          <Typography
-            component="h2"
-            variant="h5"
-            textAlign="center"
-            mt={2}
-            mb={5}
-          >
-            {playData?.attributes.description}
-          </Typography>
-          {categoriesData?.length && (
-            <List
-              sx={{ width: '100%', maxWidth: 960, bgcolor: 'background.paper' }}
-            >
-              {categoriesData?.map((category) => (
-                <ListItem key={category.id}>
-                  <ListItemText
-                    primary={category.attributes.title}
-                    secondary={category.attributes.description}
-                  />
-                  {itemsData?.length && (
-                    <List>
-                      {itemsData
-                        ?.filter(
-                          (item) => item.attributes.categoryId === category.id
-                        )
-                        .map((item) => (
-                          <ListItem key={item.id}>
-                            <ListItemText
-                              primary={item.attributes.description}
-                              secondary={
-                                item.attributes.collected ? '✅' : '❌'
-                              }
-                            />
-                          </ListItem>
-                        ))}
-                    </List>
-                  )}
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </>
-      )}
-    </PageTemplate>
+    <GameMapsTemplate
+      title={title}
+      user={user}
+      pages={pages}
+      description={play?.attributes.description || title}
+      breadcrumbs={breadcrumbs}
+    >
+      <Play />
+    </GameMapsTemplate>
   );
 };
 
