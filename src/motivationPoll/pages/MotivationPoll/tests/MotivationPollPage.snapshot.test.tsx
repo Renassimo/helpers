@@ -3,17 +3,20 @@ import renderWithTheme from '@/common/tests/helpers';
 import usePdfDownload from '@/common/hooks/usePdfDownload';
 
 import MotivationPoll from '@/motivationPoll/components/MotivationPoll';
-import MockedMotivationPoll from '@/motivationPoll/components/MotivationPoll/mocks/MockedMotivationPoll';
 import LocaleLinks from '@/common/components/LocaleLinks';
-import MockedLocaleLinks from '@/common/components/LocaleLinks/mocks/MockedLocaleLinks';
-
-import { mockedApiData } from '@/motivationPoll/types/mocks';
+import PageTemplate from '@/common/templates/PageTemplate/PageTemplate';
 
 import MotivationPollPage from '../MotivationPollPage';
+
+import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
+import MockedLocaleLinks from '@/common/components/LocaleLinks/mocks';
+import MockedMotivationPoll from '@/motivationPoll/components/MotivationPoll/mocks';
+import { mockedApiData } from '@/motivationPoll/types/mocks';
 
 jest.mock('@/common/hooks/usePdfDownload');
 jest.mock('@/common/components/LocaleLinks');
 jest.mock('@/motivationPoll/components/MotivationPoll');
+jest.mock('@/common/templates/PageTemplate/PageTemplate');
 
 describe('MotivationPollPage snapshot', () => {
   const mockedOnDownloadPdf = jest.fn();
@@ -29,6 +32,7 @@ describe('MotivationPollPage snapshot', () => {
     (usePdfDownload as jest.Mock).mockImplementation(mockedUsePdfDownload);
     (MotivationPoll as jest.Mock).mockImplementation(MockedMotivationPoll);
     (LocaleLinks as jest.Mock).mockImplementation(MockedLocaleLinks);
+    (PageTemplate as jest.Mock).mockImplementation(MockedPageTemplate);
   });
 
   test('renders successfully', () => {

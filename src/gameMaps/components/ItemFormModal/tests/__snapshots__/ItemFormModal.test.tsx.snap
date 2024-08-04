@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemFormModal renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedItemForm - 
+        mocked-description
+         - 
+         
+        - 
+         - 
+      </div>
+      <div>
+        title: 
+        Update item
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ItemFormModal when data passed renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedItemForm - 
+        mocked-description
+         - 
+         
+        - 
+         - 
+      </div>
+      <div>
+        title: 
+        Create new item
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;

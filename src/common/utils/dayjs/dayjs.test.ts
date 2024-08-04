@@ -6,6 +6,7 @@ import {
   getNextDayCode,
   getPrevDayCode,
   getYear,
+  showWhen,
 } from '@/common/utils/dayjs/dayjs';
 import dayjs from 'dayjs';
 
@@ -84,6 +85,19 @@ describe('DayJS', () => {
       const expectedResult = '2000-11-13';
       // Act
       const result = formatToNotionDate('13 Nov 2000');
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('showWhen', () => {
+    test('returns formatted date', () => {
+      // Arange
+      const expectedResult = 'Wed Apr 1 2020';
+      // Act
+      const result = showWhen(
+        'Wed Apr 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)'
+      );
       // Assert
       expect(result).toEqual(expectedResult);
     });

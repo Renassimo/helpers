@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayCards renders snapshot successfully 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-z5dzyd"
+  >
+    <div>
+      Mocked Play Card (
+      Play 1
+      ):
+      Play 1 description
+       - 
+      gm1/plays/pl1
+       - 
+      with click
+       - 
+      10-10
+       -
+       
+      11-11
+    </div>
+    <div>
+      Mocked Play Card (
+      Play 2
+      ):
+      Play 2 description
+       - 
+      gm1/plays/pl2
+       - 
+      with click
+       - 
+      20-20
+       -
+       
+      22-22
+    </div>
+    <div>
+      Mocked Play Card (
+      +
+      ):
+      Create new play
+       - 
+      gm1/plays/new
+       - 
+       - 
+       -
+       
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game Page snapshot renders successfully 1`] = `
+<div>
+  <div>
+    MockedPlayProvider - 
+    <div>
+      MockedPlayPage
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Game Page snapshot when got an error renders successfully 1`] = `
+<div>
+  <div>
+    MockedPlayProvider - 
+    <div>
+      MockedPlayPage
+    </div>
+  </div>
+</div>
+`;

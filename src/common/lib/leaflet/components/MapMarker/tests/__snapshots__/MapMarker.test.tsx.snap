@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapMarker snapshot renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedMarker - 
+      0.1
+       - 
+      10.1
+       - 
+      mocked-icon
+       - 
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MapMarker snapshot when children passed renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedMarker - 
+      0.1
+       - 
+      10.1
+       - 
+      mocked-icon
+       - 
+      <div>
+        MockedPopup - 
+        Popup Content
+      </div>
+    </div>
+  </div>
+</body>
+`;

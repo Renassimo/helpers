@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GamesPage snapshot renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      Mocked Game Maps Template (
+      Game Maps
+      ):
+      <span>
+        Jesse Pinkman
+         - 
+        Page 1
+         - 
+        Game Maps
+      </span>
+      <div>
+        <a
+          href="/gameMaps/games/gm1"
+        >
+          Game 1
+        </a>
+        <a
+          href="/gameMaps/games/gm2"
+        >
+          Game 2
+        </a>
+        <a
+          href="/gameMaps/games/new"
+        >
+          + Add New Game
+        </a>
+      </div>
+      <div>
+        MockedGameFormModal 
+        closed
+      </div>
+    </div>
+  </div>
+</body>
+`;

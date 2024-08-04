@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageDrop renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="mockedGetRootPropsResult"
+    >
+      <input
+        type="input"
+      />
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+      >
+        Drag and drop map image, or click to select...
+      </p>
+    </div>
+  </div>
+</body>
+`;

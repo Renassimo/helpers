@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayCard snapshot renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1v5z4dq-MuiPaper-root-MuiCard-root"
+    >
+      <a
+        href="/href"
+      >
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <h5
+            class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+          >
+            Title
+          </h5>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+          >
+            Description
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PlayCard snapshot when optional props passed renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1v5z4dq-MuiPaper-root-MuiCard-root"
+    >
+      <a
+        href="/href"
+      >
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <h5
+            class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+          >
+            Title
+          </h5>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+          >
+            Description
+          </p>
+          <div
+            class="MuiBox-root css-164r41r"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              <span>
+                Started: 
+              </span>
+              <span>
+                show-when-result
+              </span>
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              <span>
+                Last updated: 
+              </span>
+              <span>
+                show-when-result
+              </span>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;

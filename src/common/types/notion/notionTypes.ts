@@ -3,11 +3,6 @@ export interface NotionHelperData {
   token: string;
 }
 
-export interface NotionData {
-  fiveBook?: NotionHelperData;
-  spotting?: NotionHelperData;
-}
-
 export interface NotionDataBaseResponse {
   has_more: boolean;
   next_cursor: string | null;
