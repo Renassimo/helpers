@@ -55,4 +55,7 @@ export interface PlayContextData {
   openItemCreating: (coordinates: [number, number]) => void;
   openItemUpdating: (id: string) => void;
   updateSubmittedItem: (newData: ItemData | null, id?: string) => void;
+  relocateItem: (id: string | null) => void;
+  relocatingItem: ItemData | null;
+  updateItemCoordinates: (coordinates: [number, number]) => void;
 }

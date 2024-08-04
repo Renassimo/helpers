@@ -34,6 +34,9 @@ const PlayContext = createContext<PlayContextData>({
   openItemCreating: () => {},
   openItemUpdating: () => {},
   updateSubmittedItem: () => {},
+  relocateItem: () => {},
+  relocatingItem: null,
+  updateItemCoordinates: () => {},
 });
 
 export default PlayContext;

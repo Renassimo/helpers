@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import useAlerts from '@/common/hooks/alerts';
 
@@ -10,22 +10,23 @@ import { LeafletMouseEvent } from 'leaflet';
 const useAddItemOnMap = ({
   categories,
   pointingCategoryId,
-  visibleItems,
   onAdd,
+  relocatingItem,
+  updateItemCoordinates,
 }: {
   categories: CategoriesState;
   pointingCategoryId: string | null;
-  visibleItems: ItemData[];
   onAdd: (coordinates: [number, number]) => void;
+  relocatingItem: ItemData | null;
+  updateItemCoordinates: (coordinates: [number, number]) => void;
 }): {
-  allMarkers: (ItemData | ItemMarker | null)[];
   handleMapClick: (event: LeafletMouseEvent) => void;
   newMarker: ItemMarker | null;
+  relocatingMarker: ItemMarker | null;
 } => {
   const [newMarker, setNewMarker] = useState<ItemMarker | null>(null);
-  const allMarkers = useMemo(
-    () => [...(visibleItems ?? []), newMarker],
-    [visibleItems, newMarker]
+  const [relocatingMarker, setRelocatingMarker] = useState<ItemMarker | null>(
+    null
   );
 
   const { createInfoAlert, clearAll } = useAlerts();
@@ -54,24 +55,56 @@ const useAddItemOnMap = ({
     [categories, pointingCategoryId]
   );
 
+  const renderRelocateItemPopupContent = useCallback(
+    (coordinates: [number, number], categoryTitle: string) => {
+      return renderSaveMarkerPopupContent({
+        text: `Relocate ${categoryTitle} item?`,
+        onAdd: async () => {
+          await updateItemCoordinates(coordinates);
+          setNewMarker(null);
+        },
+        onCancel: deleteNewMarker,
+      });
+    },
+    [categories, pointingCategoryId, newMarker, updateItemCoordinates]
+  );
+
   const handleMapClick = useCallback(
     (event: LeafletMouseEvent) => {
-      if (!pointingCategoryId) return;
+      if (!pointingCategoryId && !relocatingItem) return;
 
       const { lat, lng } = event.latlng;
       const coordinates: [number, number] = [lat, lng];
 
-      setNewMarker({
-        attributes: {
+      if (pointingCategoryId) {
+        setNewMarker({
+          attributes: {
+            coordinates,
+            description: renderCreateItemPopupContent(coordinates),
+            categoryId: pointingCategoryId,
+          },
+        });
+        clearAll();
+        createInfoAlert(renderCreateItemPopupContent(coordinates), 0);
+      } else if (relocatingItem) {
+        const popupContent = renderRelocateItemPopupContent(
           coordinates,
-          description: renderCreateItemPopupContent(coordinates),
-          categoryId: pointingCategoryId,
-        },
-      });
-      clearAll();
-      createInfoAlert(renderCreateItemPopupContent(coordinates), 0);
+          categories[relocatingItem.attributes.categoryId].attributes.title ??
+            ''
+        );
+        setRelocatingMarker({
+          id: relocatingItem.id,
+          attributes: {
+            coordinates,
+            description: popupContent,
+            categoryId: relocatingItem.attributes.categoryId,
+          },
+        });
+        clearAll();
+        createInfoAlert(popupContent, 0);
+      }
     },
-    [pointingCategoryId]
+    [pointingCategoryId, relocatingItem, renderRelocateItemPopupContent]
   );
 
   useEffect(() => {
@@ -81,6 +114,8 @@ const useAddItemOnMap = ({
         `Point on map to create a new ${categories[pointingCategoryId].attributes.title} item`,
         0
       );
+    } else {
+      setNewMarker(null);
     }
   }, [categories, pointingCategoryId]);
 
@@ -88,7 +123,21 @@ const useAddItemOnMap = ({
     if (!pointingCategoryId) deleteNewMarker();
   }, [pointingCategoryId]);
 
-  return { allMarkers, handleMapClick, newMarker };
+  useEffect(() => {
+    if (relocatingItem) {
+      clearAll();
+      createInfoAlert(
+        `Point on map to change ${
+          categories[relocatingItem.attributes.categoryId].attributes.title
+        } item coordinates`,
+        0
+      );
+    } else {
+      setRelocatingMarker(null);
+    }
+  }, [relocatingItem, categories]);
+
+  return { handleMapClick, newMarker, relocatingMarker };
 };
 
 export default useAddItemOnMap;

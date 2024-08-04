@@ -10,6 +10,7 @@ import usePlay from '@/gameMaps/hooks/usePlay';
 import {
   mockedCategories,
   mockedCategory1,
+  mockedItem2,
   mockedGame,
 } from '@/gameMaps/types/mocks';
 
@@ -30,6 +31,8 @@ describe('PlayMapMenu', () => {
   const mockedSetIsCategoryEditOpen = jest.fn();
   const mockedOpenCategoryCreating = jest.fn();
   const mockedOpenCategoryUpdating = jest.fn();
+  const mockedRelocatingItem = mockedItem2;
+  const mockedRelocateItem = jest.fn();
 
   const mockedUsePlayResult = {
     categoriesList: mockedCategoriesList,
@@ -46,6 +49,8 @@ describe('PlayMapMenu', () => {
     editingCategory: null,
     openCategoryCreating: mockedOpenCategoryCreating,
     openCategoryUpdating: mockedOpenCategoryUpdating,
+    relocatingItem: null,
+    relocateItem: mockedRelocateItem,
   };
 
   const mockedUsePlay = jest.fn(() => mockedUsePlayResult);
@@ -81,6 +86,22 @@ describe('PlayMapMenu', () => {
       const { baseElement } = renderWithTheme(<PlayMapMenu />);
       // Assert
       expect(baseElement).toMatchSnapshot();
+    });
+
+    describe('and when relocatingItem passed', () => {
+      test('renders successfully', () => {
+        // Arange
+        const mockedUsePlay = jest.fn(() => ({
+          ...mockedUsePlayResult,
+          pointingCategoryId: null,
+          relocatingItem: mockedRelocatingItem,
+        }));
+        (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+        // Act
+        const { baseElement } = renderWithTheme(<PlayMapMenu />);
+        // Assert
+        expect(baseElement).toMatchSnapshot();
+      });
     });
   });
 
@@ -143,7 +164,32 @@ describe('PlayMapMenu', () => {
       // Act
       await userEvent.click(getByText('Quit from creating new item'));
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).toHaveBeenCalled();
+      expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
+      expect(mockedChoseAllCategories).not.toHaveBeenCalled();
+      expect(mockedOpenCategoryCreating).not.toHaveBeenCalled();
+      expect(mockedOpenCategoryUpdating).not.toHaveBeenCalled();
+      expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
+      expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when "Quit from relocating item" clicked', () => {
+    test('calls relocateItem', async () => {
+      // Arange
+      const mockedUsePlay = jest.fn(() => ({
+        ...mockedUsePlayResult,
+        pointingCategoryId: null,
+        relocatingItem: mockedRelocatingItem,
+      }));
+      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      const { getByText } = renderWithTheme(<PlayMapMenu />);
+      // Act
+      await userEvent.click(getByText('Quit from relocating item'));
+      // Assert
+      expect(mockedRelocateItem).toHaveBeenCalledWith(null);
+      expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
       expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
       expect(mockedChoseAllCategories).not.toHaveBeenCalled();
       expect(mockedOpenCategoryCreating).not.toHaveBeenCalled();
@@ -165,6 +211,7 @@ describe('PlayMapMenu', () => {
       // Act
       await userEvent.click(getByText('Clear all'));
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
       expect(mockedClearAllChosenCategories).toHaveBeenCalled();
       expect(mockedChoseAllCategories).not.toHaveBeenCalled();
@@ -187,6 +234,7 @@ describe('PlayMapMenu', () => {
       // Act
       await userEvent.click(getByText('Choose all'));
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
       expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
       expect(mockedChoseAllCategories).toHaveBeenCalled();
@@ -209,6 +257,7 @@ describe('PlayMapMenu', () => {
       // Act
       await userEvent.click(getByText('Add category'));
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
       expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
       expect(mockedChoseAllCategories).not.toHaveBeenCalled();
@@ -231,6 +280,7 @@ describe('PlayMapMenu', () => {
       // Act
       await userEvent.click(getAllByLabelText('edit-category')[0]);
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
       expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
       expect(mockedChoseAllCategories).not.toHaveBeenCalled();
@@ -255,6 +305,7 @@ describe('PlayMapMenu', () => {
       // Act
       await userEvent.click(getAllByLabelText('add-category')[0]);
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
       expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
       expect(mockedChoseAllCategories).not.toHaveBeenCalled();
@@ -279,6 +330,7 @@ describe('PlayMapMenu', () => {
       // Act
       await userEvent.click(getAllByLabelText('category')[0]);
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
       expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
       expect(mockedChoseAllCategories).not.toHaveBeenCalled();

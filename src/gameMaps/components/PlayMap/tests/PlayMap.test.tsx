@@ -44,6 +44,9 @@ describe('PlayMap', () => {
   const mockedOpenItemUpdating = jest.fn();
   const mockedSetIsItemEditOpen = jest.fn();
   const mockedUpdateSubmittedItem = jest.fn();
+  const mockedRelocateItem = jest.fn();
+  const mockedUpdateItemCoordinates = jest.fn();
+  const mockedRelocatingItem = mockedItem1;
   const mockedUsePlayResult = {
     game: mockedGame,
     play: mockedPlay,
@@ -57,6 +60,9 @@ describe('PlayMap', () => {
     setIsItemEditOpen: mockedSetIsItemEditOpen,
     updateSubmittedItem: mockedUpdateSubmittedItem,
     editingItem: null,
+    relocateItem: mockedRelocateItem,
+    relocatingItem: null,
+    updateItemCoordinates: mockedUpdateItemCoordinates,
   };
   const mockedUsePlay = jest.fn(() => mockedUsePlayResult);
   const mockedHandleMapClick = jest.fn();
@@ -67,11 +73,10 @@ describe('PlayMap', () => {
       categoryId: mockedPointingCategoryId,
     },
   };
-  const mockedAllMarkers = mockedItems;
   const mockedUseAddItemOnMapResult = {
-    allMarkers: mockedAllMarkers,
     handleMapClick: mockedHandleMapClick,
     newMarker: null,
+    relocatingMarker: null,
   };
   const mockedUseAddItemOnMap = jest.fn(() => mockedUseAddItemOnMapResult);
 
@@ -101,8 +106,9 @@ describe('PlayMap', () => {
     expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
       categories: mockedCategoriesState,
       pointingCategoryId: null,
-      visibleItems: mockedVisibleItems,
       onAdd: expect.any(Function),
+      relocatingItem: null,
+      updateItemCoordinates: expect.any(Function),
     });
   });
 
@@ -122,8 +128,9 @@ describe('PlayMap', () => {
       expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
         categories: mockedCategoriesState,
         pointingCategoryId: null,
-        visibleItems: mockedVisibleItems,
         onAdd: expect.any(Function),
+        relocatingItem: null,
+        updateItemCoordinates: expect.any(Function),
       });
     });
   });
@@ -138,7 +145,6 @@ describe('PlayMap', () => {
       (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
       const mockedUseAddItemOnMap = jest.fn(() => ({
         ...mockedUseAddItemOnMapResult,
-        allMarkers: [...mockedAllMarkers, mockedNewMarker],
         newMarker: mockedNewMarker,
       }));
       (useAddItemOnMap as unknown as jest.Mock).mockImplementation(
@@ -152,8 +158,39 @@ describe('PlayMap', () => {
       expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
         categories: mockedCategoriesState,
         pointingCategoryId: mockedPointingCategoryId,
-        visibleItems: mockedVisibleItems,
         onAdd: expect.any(Function),
+        relocatingItem: null,
+        updateItemCoordinates: expect.any(Function),
+      });
+    });
+  });
+
+  describe('when relocating item passed', () => {
+    test('renders successfully', () => {
+      // Arange
+      const mockedUsePlay = jest.fn(() => ({
+        ...mockedUsePlayResult,
+        relocatingItem: mockedRelocatingItem,
+      }));
+      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      const mockedUseAddItemOnMap = jest.fn(() => ({
+        ...mockedUseAddItemOnMapResult,
+        relocatingMarker: mockedRelocatingItem,
+      }));
+      (useAddItemOnMap as unknown as jest.Mock).mockImplementation(
+        mockedUseAddItemOnMap
+      );
+      // Act
+      const { baseElement } = renderWithTheme(<PlayMap />);
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+      expect(mockedUsePlay).toHaveBeenCalledWith();
+      expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
+        categories: mockedCategoriesState,
+        pointingCategoryId: null,
+        onAdd: expect.any(Function),
+        relocatingItem: mockedRelocatingItem,
+        updateItemCoordinates: expect.any(Function),
       });
     });
   });
@@ -165,7 +202,20 @@ describe('PlayMap', () => {
       // Act
       await userEvent.click(getAllByLabelText('edit-item')[0]);
       // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedOpenItemUpdating).toHaveBeenCalledWith(mockedItem1.id);
+    });
+  });
+
+  describe('when clicks to relocate item', () => {
+    test('calls mockedRelocateItem', async () => {
+      // Arange
+      const { getAllByLabelText } = renderWithTheme(<PlayMap />);
+      // Act
+      await userEvent.click(getAllByLabelText('edit-coordinates')[0]);
+      // Assert
+      expect(mockedRelocateItem).toHaveBeenCalledWith(mockedItem1.id);
+      expect(mockedOpenItemUpdating).not.toHaveBeenCalled();
     });
   });
 });

@@ -3,7 +3,7 @@ import { act, renderHook } from '@testing-library/react';
 import {
   mockedCategory1,
   mockedCategory2,
-  mockedItems,
+  mockedItem2,
 } from '@/gameMaps/types/mocks';
 import { LeafletMouseEvent } from 'leaflet';
 
@@ -33,6 +33,7 @@ describe('useAddItemOnMap', () => {
     clearAll: mockedClearAll,
   }));
   const mockedOnAdd = jest.fn();
+  const mockedUpdateItemCoordinates = jest.fn();
 
   beforeEach(() => {
     (renderSaveMarkerPopupContent as unknown as jest.Mock).mockImplementation(
@@ -45,19 +46,22 @@ describe('useAddItemOnMap', () => {
     jest.clearAllMocks();
   });
 
+  const defaultProps = {
+    categories: categoriesState,
+    pointingCategoryId: null,
+    onAdd: mockedOnAdd,
+    relocatingItem: null,
+    updateItemCoordinates: mockedUpdateItemCoordinates,
+  };
+
   test('returns state', async () => {
     // Arange
     const expectedResult = {
-      allMarkers: [...mockedItems, null],
       handleMapClick: expect.any(Function),
       newMarker: null,
+      relocatingMarker: null,
     };
-    const mockedProps = {
-      categories: categoriesState,
-      pointingCategoryId: null,
-      visibleItems: mockedItems,
-      onAdd: mockedOnAdd,
-    };
+    const mockedProps = defaultProps;
     // Act
     const { result } = renderHook(() => useAddItemOnMap(mockedProps));
     // Assert
@@ -72,16 +76,11 @@ describe('useAddItemOnMap', () => {
     test('returns state without changes', async () => {
       // Arange
       const expectedResult = {
-        allMarkers: [...mockedItems, null],
         handleMapClick: expect.any(Function),
         newMarker: null,
+        relocatingMarker: null,
       };
-      const mockedProps = {
-        categories: categoriesState,
-        pointingCategoryId: null,
-        visibleItems: mockedItems,
-        onAdd: mockedOnAdd,
-      };
+      const mockedProps = defaultProps;
 
       const { result } = renderHook(() => useAddItemOnMap(mockedProps));
       // Act
@@ -103,15 +102,13 @@ describe('useAddItemOnMap', () => {
     test('returns state', async () => {
       // Arange
       const expectedResult = {
-        allMarkers: [...mockedItems, null],
         handleMapClick: expect.any(Function),
         newMarker: null,
+        relocatingMarker: null,
       };
       const mockedProps = {
-        categories: categoriesState,
+        ...defaultProps,
         pointingCategoryId: mockedPointingCategoryId,
-        visibleItems: mockedItems,
-        onAdd: mockedOnAdd,
       };
       // Act
       const { result } = renderHook(() => useAddItemOnMap(mockedProps));
@@ -139,15 +136,13 @@ describe('useAddItemOnMap', () => {
           },
         };
         const expectedResult = {
-          allMarkers: [...mockedItems, expectedNewMarker],
           handleMapClick: expect.any(Function),
           newMarker: expectedNewMarker,
+          relocatingMarker: null,
         };
         const mockedProps = {
-          categories: categoriesState,
+          ...defaultProps,
           pointingCategoryId: mockedPointingCategoryId,
-          visibleItems: mockedItems,
-          onAdd: mockedOnAdd,
         };
 
         const { result } = renderHook(() => useAddItemOnMap(mockedProps));
@@ -189,20 +184,21 @@ describe('useAddItemOnMap', () => {
       test('returns default state', async () => {
         // Arange
         const expectedResult = {
-          allMarkers: [...mockedItems, null],
           handleMapClick: expect.any(Function),
           newMarker: null,
+          relocatingMarker: null,
         };
         const mockedProps = {
-          categories: categoriesState,
+          ...defaultProps,
           pointingCategoryId: mockedPointingCategoryId,
-          visibleItems: mockedItems,
-          onAdd: mockedOnAdd,
         };
         const { result, rerender } = renderHook(
           (props) => useAddItemOnMap(props),
           { initialProps: mockedProps }
         );
+        await act(async () => {
+          await result.current.handleMapClick(mockedEvent);
+        });
         // Act
         rerender({
           ...mockedProps,
@@ -210,10 +206,126 @@ describe('useAddItemOnMap', () => {
         });
         // Assert
         expect(result.current).toEqual(expectedResult);
-        expect(mockedRenderSaveMarkerPopupContent).not.toHaveBeenCalled();
+        expect(mockedRenderSaveMarkerPopupContent).toHaveBeenCalled();
         expect(mockedUseAlerts).toBeCalledWith();
-        expect(mockedCreateInfoAlert).toBeCalledTimes(1);
-        expect(mockedClearAll).toBeCalledTimes(2);
+        expect(mockedCreateInfoAlert).toBeCalledTimes(2);
+        expect(mockedClearAll).toBeCalledTimes(3);
+        expect(mockedClearAll).toBeCalledWith();
+      });
+    });
+  });
+
+  describe('when relocatingItem is selected', () => {
+    const mockedRelocatingItem = mockedItem2;
+
+    test('returns state', async () => {
+      // Arange
+      const expectedResult = {
+        handleMapClick: expect.any(Function),
+        newMarker: null,
+        relocatingMarker: null,
+      };
+      const mockedProps = {
+        ...defaultProps,
+        relocatingItem: mockedRelocatingItem,
+      };
+      // Act
+      const { result } = renderHook(() => useAddItemOnMap(mockedProps));
+      // Assert
+      expect(result.current).toEqual(expectedResult);
+      expect(mockedRenderSaveMarkerPopupContent).not.toHaveBeenCalled();
+      expect(mockedUseAlerts).toBeCalledWith();
+      expect(mockedCreateInfoAlert).toBeCalledTimes(1);
+      expect(mockedCreateInfoAlert).toBeCalledWith(
+        'Point on map to change Category 1 item coordinates',
+        0
+      );
+      expect(mockedClearAll).toBeCalledTimes(2);
+      expect(mockedClearAll).toBeCalledWith();
+    });
+
+    describe('when handleMapClick called', () => {
+      test('returns updated state', async () => {
+        // Arange
+        const expectedResult = {
+          handleMapClick: expect.any(Function),
+          newMarker: null,
+          relocatingMarker: {
+            ...mockedRelocatingItem,
+            attributes: {
+              coordinates: [1.5, 10.5],
+              description: mockedPopupContent,
+              categoryId: mockedRelocatingItem.attributes.categoryId,
+            },
+          },
+        };
+        const mockedProps = {
+          ...defaultProps,
+          relocatingItem: mockedRelocatingItem,
+        };
+
+        const { result } = renderHook(() => useAddItemOnMap(mockedProps));
+        // Act
+        await act(async () => {
+          await result.current.handleMapClick(mockedEvent);
+        });
+        // Assert
+        expect(result.current).toEqual(expectedResult);
+        expect(mockedUseAlerts).toBeCalledWith();
+        expect(mockedRenderSaveMarkerPopupContent).toHaveBeenNthCalledWith(1, {
+          onAdd: expect.any(Function),
+          onCancel: expect.any(Function),
+          text: 'Relocate Category 1 item?',
+        });
+        expect(mockedRenderSaveMarkerPopupContent).toHaveBeenCalledTimes(1);
+        expect(mockedCreateInfoAlert).toBeCalledTimes(2);
+        expect(mockedCreateInfoAlert).toHaveBeenNthCalledWith(
+          1,
+          'Point on map to change Category 1 item coordinates',
+          0
+        );
+        expect(mockedCreateInfoAlert).toHaveBeenNthCalledWith(
+          2,
+          mockedPopupContent,
+          0
+        );
+        expect(mockedClearAll).toBeCalledTimes(3);
+        expect(mockedClearAll).toHaveBeenNthCalledWith(1);
+        expect(mockedClearAll).toHaveBeenNthCalledWith(2);
+        expect(mockedClearAll).toHaveBeenNthCalledWith(3);
+      });
+    });
+
+    describe('when relocatingItem is removed', () => {
+      test('returns default state', async () => {
+        // Arange
+        const expectedResult = {
+          handleMapClick: expect.any(Function),
+          newMarker: null,
+          relocatingMarker: null,
+        };
+        const mockedProps = {
+          ...defaultProps,
+          relocatingItem: mockedRelocatingItem,
+        };
+        const { result, rerender } = renderHook(
+          (props) => useAddItemOnMap(props),
+          { initialProps: mockedProps }
+        );
+        await act(async () => {
+          await result.current.handleMapClick(mockedEvent);
+        });
+        // Act
+        rerender({
+          ...mockedProps,
+          relocatingItem: null!,
+        });
+        // Assert
+        expect(result.current).toEqual(expectedResult);
+        expect(mockedRenderSaveMarkerPopupContent).toHaveBeenCalled();
+        expect(mockedUseAlerts).toBeCalledWith();
+        expect(mockedCreateInfoAlert).toBeCalledTimes(2);
+        expect(mockedClearAll).toBeCalledTimes(3);
         expect(mockedClearAll).toBeCalledWith();
       });
     });

@@ -6,6 +6,8 @@ import useAlerts from '@/common/hooks/alerts';
 import { getAttributeObjectFromArray } from '@/common/utils/data';
 import getCategoriesStateWithCountedItems from '@/gameMaps/utils/getCategoriesStateWithCountedItems';
 
+import updateItem from '@/gameMaps/handlers/client/updateItem';
+
 import {
   CategoriesState,
   CategoryAttributes,
@@ -17,9 +19,11 @@ import {
   PlayData,
   PlayPageData,
 } from '@/gameMaps/types';
+import { CommonError } from '@/common/types/errors';
 
 const usePlayData = (data: PlayPageData | null): PlayContextData => {
-  const { createSuccessAlert, clearAll } = useAlerts();
+  const { createSuccessAlert, clearAll, createErrorAlert, createInfoAlert } =
+    useAlerts();
   const { push } = useRouter();
 
   const {
@@ -244,6 +248,46 @@ const usePlayData = (data: PlayPageData | null): PlayContextData => {
     setIsItemEditOpen(false);
   }, [clearAll]);
 
+  // updating item coordinates
+  const [relocatingItemId, setRelocatingItemId] = useState<string | null>(null);
+  const relocateItem = (id: string | null) => {
+    if (id) setPointingCategoryId(null);
+    setRelocatingItemId(id);
+  };
+  const relocatingItem: ItemData | null = useMemo(() => {
+    if (!relocatingItemId) return null;
+
+    const relocatingItemData = items[relocatingItemId];
+    if (!relocatingItemData) return null;
+
+    return relocatingItemData;
+  }, [items, relocatingItemId]);
+
+  const updateItemCoordinates = useCallback(
+    async (coordinates: [number, number]) => {
+      const gameId = game?.id;
+      try {
+        console.log({ gameId, relocatingItemId, coordinates });
+        if (!gameId || !relocatingItemId || !coordinates)
+          throw new Error('Not all parameters passed');
+        clearAll();
+        createInfoAlert(`Updating item coordinates...`);
+        const data = await updateItem(gameId, relocatingItemId, {
+          coordinates,
+        });
+        setRelocatingItemId(null);
+        updateSubmittedItem(data);
+        clearAll();
+        createSuccessAlert(`Item coordinates updated`);
+      } catch (error: unknown) {
+        const { message } = error as CommonError;
+        clearAll();
+        createErrorAlert(message);
+      }
+    },
+    [game, relocatingItemId]
+  );
+
   return {
     game,
     play,
@@ -276,6 +320,9 @@ const usePlayData = (data: PlayPageData | null): PlayContextData => {
     openItemCreating,
     openItemUpdating,
     updateSubmittedItem,
+    relocateItem,
+    relocatingItem,
+    updateItemCoordinates,
   };
 };
 

@@ -35,6 +35,8 @@ const PlayMapMenu = () => {
     editingCategory,
     openCategoryCreating,
     openCategoryUpdating,
+    relocatingItem,
+    relocateItem,
   } = usePlay();
   const gameId = game?.id;
 
@@ -49,19 +51,25 @@ const PlayMapMenu = () => {
 
   return (
     <Box>
-      {pointingCategoryId ? (
-        <Box>
+      <Box>
+        {relocatingItem && (
+          <Button onClick={() => relocateItem(null)}>
+            Quit from relocating item
+          </Button>
+        )}
+        {pointingCategoryId && (
           <Button onClick={quitFromCreatingNewItem}>
             Quit from creating new item
           </Button>
-        </Box>
-      ) : (
-        <Box>
-          <Button onClick={clearAllChosenCategories}>Clear all</Button>
-          <Button onClick={choseAllCategories}>Choose all</Button>
-          <Button onClick={openCategoryCreating}>Add category</Button>
-        </Box>
-      )}
+        )}
+        {!pointingCategoryId && !relocatingItem && (
+          <>
+            <Button onClick={clearAllChosenCategories}>Clear all</Button>
+            <Button onClick={choseAllCategories}>Choose all</Button>
+            <Button onClick={openCategoryCreating}>Add category</Button>
+          </>
+        )}
+      </Box>
       <List>
         {categoriesList.map((category) => (
           <ListItemButton

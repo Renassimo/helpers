@@ -4,6 +4,7 @@ import useAlerts from '@/common/hooks/alerts';
 
 import { getAttributeObjectFromArray } from '@/common/utils/data';
 import getCategoriesStateWithCountedItems from '@/gameMaps/utils/getCategoriesStateWithCountedItems';
+import updateItem from '@/gameMaps/handlers/client/updateItem';
 
 import { PlayContextData, PlayPageData } from '@/gameMaps/types';
 
@@ -24,6 +25,7 @@ const mockedPush = jest.fn();
 jest.mock('@/common/hooks/alerts');
 jest.mock('@/common/utils/data');
 jest.mock('@/gameMaps/utils/getCategoriesStateWithCountedItems');
+jest.mock('@/gameMaps/handlers/client/updateItem');
 jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({
     push: mockedPush,
@@ -32,9 +34,13 @@ jest.mock('next/router', () => ({
 
 describe('usePlayData', () => {
   const mockedCreateSuccessAlert = jest.fn();
+  const mockedCreateErrorAlert = jest.fn();
+  const mockedCreateInfoAlert = jest.fn();
   const mockedClearAll = jest.fn();
   const mockedUseAlerts = jest.fn(() => ({
     createSuccessAlert: mockedCreateSuccessAlert,
+    createErrorAlert: mockedCreateErrorAlert,
+    createInfoAlert: mockedCreateInfoAlert,
     clearAll: mockedClearAll,
   }));
   const mockedObject = {
@@ -71,6 +77,8 @@ describe('usePlayData', () => {
     itemsData: mockedItems,
   };
 
+  const mockedUpdateItem = jest.fn(() => null);
+
   beforeEach(() => {
     (useAlerts as unknown as jest.Mock).mockImplementation(mockedUseAlerts);
     (getAttributeObjectFromArray as unknown as jest.Mock).mockImplementation(
@@ -79,6 +87,7 @@ describe('usePlayData', () => {
     (
       getCategoriesStateWithCountedItems as unknown as jest.Mock
     ).mockImplementation(mockedGetCategoriesStateWithCountedItems);
+    (updateItem as unknown as jest.Mock).mockImplementation(mockedUpdateItem);
   });
 
   afterEach(() => {
@@ -118,6 +127,9 @@ describe('usePlayData', () => {
     openItemCreating: expect.any(Function),
     openItemUpdating: expect.any(Function),
     updateSubmittedItem: expect.any(Function),
+    relocateItem: expect.any(Function),
+    relocatingItem: null,
+    updateItemCoordinates: expect.any(Function),
   } as unknown as PlayContextData;
 
   test('returns state', () => {
@@ -526,6 +538,119 @@ describe('usePlayData', () => {
         expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
           `Item was deleted!`
         );
+      });
+    });
+  });
+
+  describe('when relocate item called', () => {
+    test('returns updated state', async () => {
+      // Arange
+      const expectedState = {
+        ...expecteDefaultState,
+        relocatingItem: mockedObject,
+      };
+      const { result } = renderHook(() => usePlayData(mockedData));
+      // Act
+      await act(async () => {
+        await result.current.relocateItem(mockedObject.id);
+      });
+      // Assert
+      expect(result.current).toEqual(expectedState);
+      expect(mockedPush).not.toHaveBeenCalled();
+    });
+
+    describe('when passes null', () => {
+      test('returns updated state', async () => {
+        // Arange
+        const expectedState = expecteDefaultState;
+        const { result } = renderHook(() => usePlayData(mockedData));
+        await act(async () => {
+          await result.current.relocateItem(mockedObject.id);
+        });
+        expect(result.current).toEqual({
+          ...expecteDefaultState,
+          relocatingItem: mockedObject,
+        });
+        // Act
+        await act(async () => {
+          await result.current.relocateItem(null);
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+        expect(mockedPush).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('when calls updateItemCoordinates', () => {
+    test('returns updated state and calls mockedUpdateItem', async () => {
+      // Arange
+      const expectedState = expecteDefaultState;
+      const { result } = renderHook(() => usePlayData(mockedData));
+      await act(async () => {
+        await result.current.relocateItem(mockedObject.id);
+      });
+      expect(result.current).toEqual({
+        ...expecteDefaultState,
+        relocatingItem: mockedObject,
+      });
+      // Act
+      await act(async () => {
+        await result.current.updateItemCoordinates([1, 2]);
+      });
+      // Assert
+      expect(mockedClearAll).toHaveBeenCalledWith();
+      expect(mockedClearAll).toHaveBeenCalledTimes(2);
+      expect(mockedCreateInfoAlert).toHaveBeenCalledWith(
+        'Updating item coordinates...'
+      );
+      expect(mockedCreateErrorAlert).not.toHaveBeenCalled();
+      expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
+        `Item coordinates updated`
+      );
+      expect(mockedUpdateItem).toHaveBeenCalledWith(
+        mockedGame.id,
+        mockedObject.id,
+        { coordinates: [1, 2] }
+      );
+      expect(result.current).toEqual(expectedState);
+      expect(mockedPush).not.toHaveBeenCalled();
+    });
+
+    describe('and error happens', () => {
+      test('returns updated state and calls mockedUpdateItem', async () => {
+        // Arange
+        const mockedErrorMessage = 'error-msg';
+        (updateItem as unknown as jest.Mock).mockImplementation(
+          jest.fn(() => {
+            throw new Error(mockedErrorMessage);
+          })
+        );
+        const { result } = renderHook(() => usePlayData(mockedData));
+        await act(async () => {
+          await result.current.relocateItem(mockedObject.id);
+        });
+        expect(result.current).toEqual({
+          ...expecteDefaultState,
+          relocatingItem: mockedObject,
+        });
+        // Act
+        await act(async () => {
+          await result.current.updateItemCoordinates([1, 2]);
+        });
+        // Assert
+        expect(mockedClearAll).toHaveBeenCalledWith();
+        expect(mockedClearAll).toHaveBeenCalledTimes(2);
+        expect(mockedCreateInfoAlert).toHaveBeenCalledWith(
+          'Updating item coordinates...'
+        );
+        expect(mockedCreateErrorAlert).toHaveBeenCalledWith(mockedErrorMessage);
+        expect(mockedCreateSuccessAlert).not.toHaveBeenCalled();
+        expect(result.current).toEqual({
+          ...expecteDefaultState,
+          relocatingItem: mockedObject,
+        });
+        expect(mockedPush).not.toHaveBeenCalled();
       });
     });
   });

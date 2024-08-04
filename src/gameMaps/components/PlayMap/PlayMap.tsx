@@ -1,7 +1,10 @@
+import { MouseEvent } from 'react';
+
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
+import EditIcon from '@mui/icons-material/Edit';
+import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
 
 import MapOnImage from '@/common/lib/leaflet/components/MapOnImage';
 import MapMarker from '@/common/lib/leaflet/components/MapMarker';
@@ -24,18 +27,28 @@ const PlayMap = () => {
     setIsItemEditOpen,
     updateSubmittedItem,
     editingItem,
+    relocateItem,
+    relocatingItem,
+    updateItemCoordinates,
   } = usePlay();
-  const { allMarkers, handleMapClick, newMarker } = useAddItemOnMap({
+  const { handleMapClick, newMarker, relocatingMarker } = useAddItemOnMap({
     categories,
     pointingCategoryId,
-    visibleItems,
     onAdd: openItemCreating,
+    relocatingItem,
+    updateItemCoordinates,
   });
 
   const { mapImageUrl, backgroundColor } = game?.attributes ?? {};
 
-  const handleEditItem = (id?: string) => {
+  const handleEditItem = (event: MouseEvent, id?: string) => {
+    event.stopPropagation();
     if (id) openItemUpdating(id);
+  };
+
+  const handleRelocateItem = (event: MouseEvent, id?: string) => {
+    event.stopPropagation();
+    if (id) relocateItem(id);
   };
 
   const gameId = game?.id;
@@ -57,38 +70,62 @@ const PlayMap = () => {
         mapImageUrl={mapImageUrl}
         backgroundColor={backgroundColor}
       >
-        {allMarkers.map(
-          (marker) =>
-            marker && (
-              <MapMarker
-                key={marker.id ?? 'new-marker'}
-                position={marker.attributes.coordinates}
-                color={
-                  categories[marker.attributes.categoryId]?.attributes.color
-                }
-                isNew={!marker.id}
-                isMarked={!!marker.attributes.collected}
-              >
-                {marker.id ? (
-                  <Box>
-                    <Box>
-                      <Typography>{marker.attributes.description}</Typography>
-                    </Box>
-                    <Box textAlign="right">
-                      <IconButton
-                        aria-label="edit-item"
-                        size="small"
-                        onClick={() => handleEditItem(marker.id)}
-                      >
-                        <EditIcon />
-                      </IconButton>
-                    </Box>
-                  </Box>
-                ) : (
-                  marker.attributes.description
-                )}
-              </MapMarker>
-            )
+        {visibleItems.map((item) => (
+          <MapMarker
+            key={item.id}
+            position={item.attributes.coordinates}
+            color={categories[item.attributes.categoryId]?.attributes.color}
+            isMarked={!!item.attributes.collected}
+          >
+            {
+              <Box>
+                <Box>
+                  <Typography>{item.attributes.description}</Typography>
+                </Box>
+                <Box textAlign="right">
+                  <IconButton
+                    aria-label="edit-coordinates"
+                    size="small"
+                    onClick={(event) => handleRelocateItem(event, item.id)}
+                  >
+                    <EditLocationAltIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="edit-item"
+                    size="small"
+                    onClick={(event) => handleEditItem(event, item.id)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Box>
+              </Box>
+            }
+          </MapMarker>
+        ))}
+        {newMarker && (
+          <MapMarker
+            key={newMarker.id}
+            position={newMarker.attributes.coordinates}
+            color={
+              categories[newMarker.attributes.categoryId]?.attributes.color
+            }
+            isNew
+          >
+            {newMarker.attributes.description}
+          </MapMarker>
+        )}
+        {relocatingMarker && (
+          <MapMarker
+            key={relocatingMarker.id}
+            position={relocatingMarker.attributes.coordinates}
+            color={
+              categories[relocatingMarker.attributes.categoryId]?.attributes
+                .color
+            }
+            isNew
+          >
+            {relocatingMarker.attributes.description}
+          </MapMarker>
         )}
       </MapOnImage>
       {isItemModalAllowed && (
