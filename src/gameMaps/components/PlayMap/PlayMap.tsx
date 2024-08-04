@@ -39,7 +39,8 @@ const PlayMap = () => {
     updateItemCoordinates,
   });
 
-  const { mapImageUrl, backgroundColor } = game?.attributes ?? {};
+  const { mapImageUrl, backgroundColor, mapImageRatio } =
+    game?.attributes ?? {};
 
   const handleEditItem = (event: MouseEvent, id?: string) => {
     event.stopPropagation();
@@ -68,6 +69,7 @@ const PlayMap = () => {
       <MapOnImage
         onClick={handleMapClick}
         mapImageUrl={mapImageUrl}
+        mapImageRatio={mapImageRatio}
         backgroundColor={backgroundColor}
       >
         {visibleItems.map((item) => (

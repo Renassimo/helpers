@@ -48,7 +48,10 @@ describe('PlayMap', () => {
   const mockedUpdateItemCoordinates = jest.fn();
   const mockedRelocatingItem = mockedItem1;
   const mockedUsePlayResult = {
-    game: mockedGame,
+    game: {
+      ...mockedGame,
+      attributes: { ...mockedGame.attributes, mapImageRatio: 2 },
+    },
     play: mockedPlay,
     visibleItems: mockedVisibleItems,
     items: itemsState,

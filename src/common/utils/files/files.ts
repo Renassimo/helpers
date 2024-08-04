@@ -1,9 +1,28 @@
 import { FileWithPreview } from '@/common/types/files';
 
 export const getFileWithPreview = (file: File): FileWithPreview => {
+  const preview = URL.createObjectURL(file);
+
   return Object.assign(file, {
-    preview: URL.createObjectURL(file),
+    preview,
   });
+};
+
+export const updateImageRatio = (
+  file: FileWithPreview | null,
+  callback: (ratio: number | null) => void
+) => {
+  if (file) {
+    const image = new Image();
+    image.onload = () => {
+      const ratio = image.width / image.height;
+      callback(ratio);
+    };
+
+    image.src = file.preview;
+  } else {
+    callback(null);
+  }
 };
 
 export const getPastedFile = async (props?: {

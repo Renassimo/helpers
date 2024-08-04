@@ -267,7 +267,6 @@ const usePlayData = (data: PlayPageData | null): PlayContextData => {
     async (coordinates: [number, number]) => {
       const gameId = game?.id;
       try {
-        console.log({ gameId, relocatingItemId, coordinates });
         if (!gameId || !relocatingItemId || !coordinates)
           throw new Error('Not all parameters passed');
         clearAll();

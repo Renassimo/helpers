@@ -55,7 +55,12 @@ describe('GamesService', () => {
       const expectedResult = [
         {
           id: 'gm1',
-          attributes: { title: 'doc 1', description: '', backgroundColor: '' },
+          attributes: {
+            title: 'doc 1',
+            description: '',
+            backgroundColor: '',
+            mapImageRatio: null,
+          },
         },
       ];
       // Act
@@ -118,6 +123,7 @@ describe('GamesService', () => {
           description: '',
           backgroundColor: '',
           mapImageUrl: mockedSignedUrl,
+          mapImageRatio: null,
         },
       };
       // Act
@@ -160,6 +166,7 @@ describe('GamesService', () => {
             description: '',
             backgroundColor: '',
             mapImageId: 'map-image-id',
+            mapImageRatio: null,
           },
         };
         // Act
@@ -208,6 +215,7 @@ describe('GamesService', () => {
             data: () => ({
               someExtra: 'will not passed',
               mapImageId: 'map-image-id',
+              mapImageRatio: 2,
               ...mockedGame.attributes,
             }),
           })),
@@ -230,12 +238,14 @@ describe('GamesService', () => {
         attributes: {
           ...mockedGame.attributes,
           mapImageUrl: undefined,
+          mapImageRatio: 2,
         },
       };
       // Act
       const result = await gamesService.create('uid', {
         ...mockedGame.attributes,
         mapImageId: 'map-image-id',
+        mapImageRatio: 2,
       });
       // Assert
       expect(result).toEqual(expectedResult);
@@ -247,6 +257,7 @@ describe('GamesService', () => {
         ...mockedGame.attributes,
         mapImageId: 'map-image-id',
         mapImageUrl: undefined,
+        mapImageRatio: 2,
       });
       expect(mockedFile).not.toHaveBeenCalled();
       expect(mockedBucket).not.toHaveBeenCalled();
@@ -280,6 +291,7 @@ describe('GamesService', () => {
       const updatedAttributes = {
         ...mockedGame.attributes,
         title: newTitle,
+        mapImageRatio: 2,
         someExtra: 'will not passed',
       };
       const mockedData = jest.fn(() => updatedAttributes);
@@ -304,6 +316,7 @@ describe('GamesService', () => {
           ...mockedGame.attributes,
           title: newTitle,
           mapImageUrl: '',
+          mapImageRatio: 2,
         },
       };
       // Act
@@ -353,6 +366,7 @@ describe('GamesService', () => {
             ...mockedGame.attributes,
             title: newTitle,
             mapImageUrl: 'mocked-signed-url',
+            mapImageRatio: null,
           },
         };
         // Act

@@ -7,6 +7,7 @@ export interface GameAttributes {
   title: string;
   mapImageUrl?: string;
   mapImageId?: string;
+  mapImageRatio?: number | null;
 }
 
 export type GameData = Data<GameAttributes>;

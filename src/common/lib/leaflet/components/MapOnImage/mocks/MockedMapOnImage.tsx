@@ -1,8 +1,8 @@
 const MockedMapOnImage = jest.fn(
-  ({ onClick, mapImageUrl, backgroundColor, children }) => (
+  ({ onClick, mapImageUrl, backgroundColor, mapImageRatio, children }) => (
     <div>
       MockedMapOnImage {onClick && 'withOnClick'} {mapImageUrl}{' '}
-      {backgroundColor} - {children}
+      {backgroundColor} - {children} - {mapImageRatio}
     </div>
   )
 );

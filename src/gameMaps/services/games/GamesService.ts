@@ -117,11 +117,13 @@ class GamesService extends FirestoreService {
       description = '',
       backgroundColor = '',
       mapImageId = '',
+      mapImageRatio = null,
     } = attributes;
     const filteredAttributes: GameAttributes = {
       title,
       description,
       backgroundColor,
+      mapImageRatio,
     };
     if (withMapImageId) filteredAttributes.mapImageId = mapImageId;
     return filteredAttributes;
@@ -130,10 +132,13 @@ class GamesService extends FirestoreService {
   private filterPartialAttributes(
     attributes: Partial<GameAttributes>
   ): Partial<GameAttributes> {
-    const { title, description, backgroundColor, mapImageId } = attributes;
+    const { title, description, backgroundColor, mapImageId, mapImageRatio } =
+      attributes;
     const filteredAttributes: Partial<GameAttributes> = {};
 
     if (typeof title !== 'undefined') filteredAttributes.title = title;
+    if (typeof mapImageRatio !== 'undefined')
+      filteredAttributes.mapImageRatio = mapImageRatio;
     if (typeof description !== 'undefined')
       filteredAttributes.description = description;
     if (typeof backgroundColor !== 'undefined')

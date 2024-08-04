@@ -163,6 +163,8 @@ exports[`PlayMap renders successfully 1`] = `
           </div>
         </div>
       </div>
+       - 
+      2
     </div>
   </div>
 </body>
@@ -346,6 +348,8 @@ exports[`PlayMap when open for creating and new marker passed renders successful
          
         new marker description
       </div>
+       - 
+      2
     </div>
     <div>
       MockedItemFormModal 
@@ -529,6 +533,8 @@ exports[`PlayMap when open for editing renders successfully with mocked modal 1`
           </div>
         </div>
       </div>
+       - 
+      2
     </div>
     <div>
       MockedItemFormModal 
@@ -727,6 +733,8 @@ exports[`PlayMap when relocating item passed renders successfully 1`] = `
          
         Item 1 description
       </div>
+       - 
+      2
     </div>
   </div>
 </body>

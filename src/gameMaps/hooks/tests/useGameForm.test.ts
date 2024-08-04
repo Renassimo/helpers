@@ -6,6 +6,7 @@ import useErrors from '@/common/hooks/useErrors';
 
 import GameValidator from '@/gameMaps/validators/game';
 import { validate } from '@/common/utils/validators';
+import { updateImageRatio } from '@/common/utils/files';
 
 import uploadFile from '@/common/lib/firebase/utils/uploadFile';
 import deleteFile from '@/common/lib/firebase/utils/deleteFile';
@@ -22,6 +23,7 @@ import useGameForm from '../useGameForm';
 jest.mock('@/common/hooks/useErrors');
 jest.mock('@/gameMaps/validators/game');
 jest.mock('@/common/utils/validators');
+jest.mock('@/common/utils/files');
 jest.mock('@/common/lib/firebase/utils/uploadFile');
 jest.mock('@/common/lib/firebase/utils/deleteFile');
 jest.mock('@/gameMaps/handlers/client/createGame');
@@ -38,6 +40,10 @@ describe('useGameForm', () => {
     addErrors: mockedAddErrors,
     cleanErrors: mockedCleanErrors,
   }));
+  const mockedMapImageRatio = 2;
+  const mockedUpdateImageRatio = jest.fn((_, callback) =>
+    callback(mockedMapImageRatio)
+  );
 
   const mockedOnFinish = jest.fn();
 
@@ -48,6 +54,9 @@ describe('useGameForm', () => {
 
   beforeEach(() => {
     (useErrors as unknown as jest.Mock).mockImplementation(mockedUseErrors);
+    (updateImageRatio as unknown as jest.Mock).mockImplementation(
+      mockedUpdateImageRatio
+    );
   });
 
   const mockedFileWithPreview = new File([], 'file') as FileWithPreview;
@@ -202,11 +211,16 @@ describe('useGameForm', () => {
         description: mockedGame.attributes.description,
         backgroundColor: mockedGame.attributes.backgroundColor,
         mapImageId: mockedMapImageId,
+        mapImageRatio: mockedMapImageRatio,
       });
       expect(mockedUpdateGame).not.toHaveBeenCalled();
       expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
       expect(mockedDeleteFile).not.toHaveBeenCalled();
       expect(mockedAddErrors).not.toHaveBeenCalled();
+      expect(mockedUpdateImageRatio).toHaveBeenCalledWith(
+        mockedFileWithPreview,
+        expect.any(Function)
+      );
     });
 
     describe('when file did not upload', () => {
@@ -335,10 +349,15 @@ describe('useGameForm', () => {
           description: mockedGame2.attributes.description,
           backgroundColor: mockedGame.attributes.backgroundColor,
           mapImageId: mockedMapImageId,
+          mapImageRatio: mockedMapImageRatio,
         });
         expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
         expect(mockedDeleteFile).not.toHaveBeenCalled();
         expect(mockedAddErrors).not.toHaveBeenCalled();
+        expect(mockedUpdateImageRatio).toHaveBeenCalledWith(
+          mockedFileWithPreview,
+          expect.any(Function)
+        );
       });
 
       describe('when file did not upload', () => {
@@ -382,6 +401,10 @@ describe('useGameForm', () => {
           expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
           expect(mockedDeleteFile).not.toHaveBeenCalled();
           expect(mockedAddErrors).not.toHaveBeenCalled();
+          expect(mockedUpdateImageRatio).toHaveBeenCalledWith(
+            null,
+            expect.any(Function)
+          );
         });
       });
 

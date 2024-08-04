@@ -14,14 +14,17 @@ const MapOnImage = ({
   onClick,
   mapImageUrl,
   backgroundColor,
+  mapImageRatio,
   children,
 }: {
   onClick: (event: LeafletMouseEvent) => void;
   mapImageUrl?: string;
   backgroundColor?: string;
+  mapImageRatio?: number | null;
   children: ReactNode;
 }) => {
-  const { center, bounds } = getMapBoundsAndCenter();
+  const yRange = mapImageRatio ? 1 / mapImageRatio : 1;
+  const { center, bounds } = getMapBoundsAndCenter({ yRange });
 
   return (
     <Box width="100%" height="100%">

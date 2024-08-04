@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { GameData } from '@/gameMaps/types';
 import { FileWithPreview } from '@/common/types/files';
@@ -10,6 +10,7 @@ import useErrors from '@/common/hooks/useErrors';
 import { CommonError } from '@/common/types/errors';
 
 import { validate } from '@/common/utils/validators';
+import { updateImageRatio } from '@/common/utils/files';
 
 import uploadFile from '@/common/lib/firebase/utils/uploadFile';
 import deleteFile from '@/common/lib/firebase/utils/deleteFile';
@@ -29,6 +30,9 @@ const useGameForm = (
   const [backgroundColor, setBackgroundColor] = useState('');
   const [mapImageUrl, setMapImageUrl] = useState('');
   const [mapImage, setMapImage] = useState<FileWithPreview | null>(null);
+  const [mapImageRatio, setMapImageRatio] = useState<number | null>(null);
+
+  useEffect(() => updateImageRatio(mapImage, setMapImageRatio), [mapImage]);
 
   const { errors, addErrors, cleanErrors } = useErrors();
 
@@ -77,9 +81,10 @@ const useGameForm = (
       if (mapImage) {
         mapImageId = await uploadFile(mapImage, `gameMap-${title}`);
       }
-      const withMapImageId: { mapImageId?: string } = mapImageId
-        ? { mapImageId }
-        : {};
+      const withMapImageId: {
+        mapImageId?: string;
+        mapImageRatio?: number | null;
+      } = mapImageId ? { mapImageId, mapImageRatio } : {};
       const payload = {
         title,
         description,
