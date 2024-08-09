@@ -1,0 +1,157 @@
+{
+  "info": {
+    "_postman_id": "445898fb-2101-4bcc-aea4-79a73e74876a",
+    "name": "Games",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9801372"
+  },
+  "item": [
+    {
+      "name": "Create game",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"attributes\": {\n            \"title\": \"GTA Vice City II\",\n            \"description\": \"Time to Lance Vance Dance\",\n            \"mapImageId\": \"qwerty-4f37dfce-1f5f-4c8e-ac11-083ca0581aa1\",\n            \"mapImageRatio\": 1,\n            \"backgroundColor\": \"#00A7FF\"\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "gameMaps", "games"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update game",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"id\": \"oZnPxHLJ4lN8rrp9tcml\",\n        \"attributes\": {\n            \"description\": \"Lucia, do you know why are you here...? - Bad luck I guess\",\n            \"mapImageId\": \"qwerty-987b5104-4e00-4f2d-b8a0-41a6a2172c45\"\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/oZnPxHLJ4lN8rrp9tcml",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "gameMaps", "games", "oZnPxHLJ4lN8rrp9tcml"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get game",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/_next/data/development/en/gameMaps/games/oZnPxHLJ4lN8rrp9tcml.json?id=oZnPxHLJ4lN8rrp9tcml",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "_next",
+            "data",
+            "development",
+            "en",
+            "gameMaps",
+            "games",
+            "oZnPxHLJ4lN8rrp9tcml.json"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "oZnPxHLJ4lN8rrp9tcml"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get games",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/_next/data/development/en/gameMaps/games.json",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "_next",
+            "data",
+            "development",
+            "en",
+            "gameMaps",
+            "games.json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete game",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/oZnPxHLJ4lN8rrp9tcml",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "gameMaps", "games", "oZnPxHLJ4lN8rrp9tcml"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

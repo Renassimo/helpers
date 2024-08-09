@@ -1,0 +1,102 @@
+{
+  "info": {
+    "_postman_id": "0e597c3f-5024-4204-be8d-6559a8d450b8",
+    "name": "Categories",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9801372"
+  },
+  "item": [
+    {
+      "name": "Create category",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"attributes\": {\n            \"title\": \"Hidden Packages\",\n            \"description\": \"Get a reward after every 10 found\",\n            \"color\": \"#F900FF\",\n            \"itemsAmount\": 100\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/oa1hOLh0z9ZLtRtkqIa6/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "gameMaps",
+            "games",
+            "oa1hOLh0z9ZLtRtkqIa6",
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update category",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"id\": \"awwRzti0oYLhTnE9CdR2\",\n        \"attributes\": {\n            \"description\": \"Kill others!\"\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/oa1hOLh0z9ZLtRtkqIa6/categories/YPS7GHOVfF25rvNIE9Bx",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "gameMaps",
+            "games",
+            "oa1hOLh0z9ZLtRtkqIa6",
+            "categories",
+            "YPS7GHOVfF25rvNIE9Bx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete category",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/NR4kpIQfxP5PIXZbtvK1/categories/BaWTyh3HubmBxwatFv9w",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "gameMaps",
+            "games",
+            "NR4kpIQfxP5PIXZbtvK1",
+            "categories",
+            "BaWTyh3HubmBxwatFv9w"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
