@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useMemo,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { getAttributeObjectFromArray } from '@/common/utils/data';
 import getCategoriesStateWithCountedItems from '@/gameMaps/utils/getCategoriesStateWithCountedItems';
@@ -21,7 +15,8 @@ const useCategoriesData = (
   itemsList: ItemData[]
 ): {
   categories: CategoriesState;
-  setCategories: Dispatch<SetStateAction<CategoriesState>>;
+  updateCategory: (category: CategoryData | null, id?: string) => void;
+  recountCategories: (newItemsList: ItemData[]) => void;
   categoriesList: CategoryData[];
   visibleItems: ItemData[];
   choseAllCategories: () => void;
@@ -46,6 +41,35 @@ const useCategoriesData = (
   const categoriesList: CategoryData[] = useMemo(
     () => Object.values(categories),
     [categories]
+  );
+
+  const recountCategories = useCallback((newItemsList: ItemData[]) => {
+    setCategories((current) =>
+      getCategoriesStateWithCountedItems(current, newItemsList)
+    );
+  }, []);
+
+  const updateCategory = useCallback(
+    (category: CategoryData | null, id?: string) => {
+      if (category) {
+        setCategories((currentCategories: CategoriesState) => ({
+          ...currentCategories,
+          ...getCategoriesStateWithCountedItems(
+            { [category.id]: category },
+            itemsList
+          ),
+        }));
+      } else {
+        setCategories((currentCategories) => {
+          const newState: CategoriesState = {};
+          for (const cat in currentCategories) {
+            if (cat !== id) newState[cat] = currentCategories[cat];
+          }
+          return newState;
+        });
+      }
+    },
+    []
   );
 
   // Categories chosing
@@ -107,7 +131,8 @@ const useCategoriesData = (
 
   return {
     categories,
-    setCategories,
+    updateCategory,
+    recountCategories,
     categoriesList,
     visibleItems,
     choseAllCategories,

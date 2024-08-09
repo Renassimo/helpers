@@ -1,21 +1,17 @@
-import {
-  useCallback,
-  useMemo,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import useAlerts from '@/common/hooks/alerts';
 
-import getCategoriesStateWithCountedItems from '@/gameMaps/utils/getCategoriesStateWithCountedItems';
-
-import { CategoriesState, ItemData, ItemsState } from '@/gameMaps/types';
+import { ItemData, ItemsState } from '@/gameMaps/types';
 
 const useCreateUpdateItem = (
   items: ItemsState,
-  setItems: Dispatch<SetStateAction<ItemsState>>,
-  setCategories: Dispatch<SetStateAction<CategoriesState>>
+  updateItem: (
+    newData: ItemData | null,
+    recountCategories?: (newItemsList: ItemData[]) => void,
+    id?: string
+  ) => void,
+  recountCategories: (newItemsList: ItemData[]) => void
 ): {
   isItemEditOpen: boolean;
   creatingItemCoordinates: [number, number] | null;
@@ -52,39 +48,12 @@ const useCreateUpdateItem = (
   };
   const updateSubmittedItem = useCallback(
     (newData: ItemData | null, id?: string) => {
-      if (newData == null) {
-        setItems((current) => {
-          const newItemsState: ItemsState = {};
-          for (const cat in current) {
-            if (cat !== id) newItemsState[cat] = current[cat];
-          }
-          const newItemsList = Object.values(newItemsState);
-          setCategories((current) =>
-            getCategoriesStateWithCountedItems(current, newItemsList)
-          );
-          return newItemsState;
-        });
-        createSuccessAlert(`Item was deleted!`);
-      } else {
-        setItems((current) => {
-          const newItemsState = {
-            ...current,
-            [newData.id]: newData,
-          };
-          const newItemsList = Object.values(newItemsState);
-          setCategories((current) => ({
-            ...current,
-            ...getCategoriesStateWithCountedItems(
-              {
-                [newData.attributes.categoryId]:
-                  current[newData.attributes.categoryId],
-              },
-              newItemsList
-            ),
-          }));
-          return newItemsState;
-        });
+      if (newData) {
+        updateItem(newData, recountCategories);
         createSuccessAlert(`Items were updated!`);
+      } else {
+        updateItem(null, recountCategories, id);
+        createSuccessAlert(`Item was deleted!`);
       }
       setEditingItemId(null);
       setPointingCategoryId(null);

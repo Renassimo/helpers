@@ -20,12 +20,13 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     usePlayData(game, playData);
 
   // Items data
-  const { items, setItems, itemsList } = useItemsData(itemsData);
+  const { items, itemsList, updateItem } = useItemsData(itemsData);
 
   // Categories data
   const {
     categories,
-    setCategories,
+    updateCategory,
+    recountCategories,
     categoriesList,
     visibleItems,
     choseAllCategories,
@@ -43,7 +44,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openCategoryCreating,
     openCategoryUpdating,
     updateSubmittedCategory,
-  } = useCreateUpdateCategory(categories, setCategories, itemsList);
+  } = useCreateUpdateCategory(categories, updateCategory);
 
   // Item creating and updating
   const {
@@ -57,7 +58,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openItemUpdating,
     updateSubmittedItem,
     quitFromCreatingNewItem,
-  } = useCreateUpdateItem(items, setItems, setCategories);
+  } = useCreateUpdateItem(items, updateItem, recountCategories);
 
   // updating item coordinates
   const { relocateItem, relocatingItem, updateItemCoordinates } =

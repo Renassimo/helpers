@@ -1,21 +1,12 @@
-import {
-  useCallback,
-  useMemo,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import useAlerts from '@/common/hooks/alerts';
 
-import getCategoriesStateWithCountedItems from '@/gameMaps/utils/getCategoriesStateWithCountedItems';
-
-import { CategoriesState, CategoryData, ItemData } from '@/gameMaps/types';
+import { CategoriesState, CategoryData } from '@/gameMaps/types';
 
 const useCreateUpdateCategory = (
   categories: CategoriesState,
-  setCategories: Dispatch<SetStateAction<CategoriesState>>,
-  itemsList: ItemData[]
+  updateCategory: (category: CategoryData | null, id?: string) => void
 ): {
   isCategoryEditOpen: boolean;
   setIsCategoryEditOpen: (newState: boolean) => void;
@@ -25,7 +16,7 @@ const useCreateUpdateCategory = (
   updateSubmittedCategory: (newData: CategoryData | null, id?: string) => void;
 } => {
   const { createSuccessAlert } = useAlerts();
-  // Category editing and creating
+
   const [isCategoryEditOpen, setIsCategoryEditOpen] = useState<boolean>(false);
   const [editingCategoryId, setEditingCategoryId] = useState<string | null>(
     null
@@ -42,28 +33,12 @@ const useCreateUpdateCategory = (
   const updateSubmittedCategory = useCallback(
     (newData: CategoryData | null, id?: string) => {
       if (newData == null) {
-        setCategories((current) => {
-          const newState: CategoriesState = {};
-          for (const cat in current) {
-            if (cat !== id) newState[cat] = current[cat];
-          }
-          return newState;
-        });
+        updateCategory(null, id);
         createSuccessAlert(`Category was deleted!`);
       } else {
-        setCategories((current) => {
-          return {
-            ...current,
-            ...getCategoriesStateWithCountedItems(
-              {
-                [newData.id]: {
-                  ...newData,
-                  attributes: { ...newData.attributes, chosen: true },
-                },
-              },
-              itemsList
-            ),
-          };
+        updateCategory({
+          ...newData,
+          attributes: { ...newData.attributes, chosen: true },
         });
         createSuccessAlert(`Categories were updated!`);
       }

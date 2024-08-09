@@ -14,9 +14,10 @@ const usePlayData = (
   isPlayEditOpen: boolean;
   setIsPlayEditOpen: (newState: boolean) => void;
 } => {
-  const [play, setPlay] = useState<PlayData | null>(playData);
   const { createSuccessAlert } = useAlerts();
   const { push } = useRouter();
+
+  const [play, setPlay] = useState<PlayData | null>(playData);
 
   const [isPlayEditOpen, setIsPlayEditOpen] = useState<boolean>(false);
 

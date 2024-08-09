@@ -32,7 +32,7 @@ jest.mock('next/router', () => ({
   })),
 }));
 
-describe('usePlayData', () => {
+describe('usePlayProvider', () => {
   const mockedCreateSuccessAlert = jest.fn();
   const mockedCreateErrorAlert = jest.fn();
   const mockedCreateInfoAlert = jest.fn();
@@ -132,6 +132,7 @@ describe('usePlayData', () => {
     updateItemCoordinates: expect.any(Function),
   } as unknown as PlayContextData;
 
+  //
   test('returns state', () => {
     // Arange
     const expectedState = expecteDefaultState;
@@ -143,6 +144,7 @@ describe('usePlayData', () => {
     expect(mockedGetAttributeObjectFromArray).toHaveBeenCalledTimes(2);
   });
 
+  //
   describe('when updates submitted play', () => {
     test('creates success alert and updates state', async () => {
       // Arange
@@ -187,6 +189,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls setIsPlayEditOpen', () => {
     test('updates state', async () => {
       // Arange
@@ -204,6 +207,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when category is chosing', () => {
     describe('when all categories cleared', () => {
       test('updates state', async () => {
@@ -282,6 +286,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when updates poinitngCategoryId', () => {
     test('updates state', async () => {
       // Arange
@@ -299,6 +304,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when quits from creating new item', () => {
     test('updates state', async () => {
       // Arange
@@ -317,6 +323,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when updates submitted category', () => {
     test('creates success alert and updates state', async () => {
       // Arange
@@ -368,6 +375,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls setIsCategoryEditOpen', () => {
     test('updates state', async () => {
       // Arange
@@ -385,6 +393,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls openCategoryCreating', () => {
     test('updates state', async () => {
       // Arange
@@ -402,6 +411,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls openCategoryUpdating', () => {
     test('updates state', async () => {
       // Arange
@@ -420,6 +430,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls setIsItemEditOpen', () => {
     test('updates state', async () => {
       // Arange
@@ -437,6 +448,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls openItemCreating', () => {
     test('updates state', async () => {
       // Arange
@@ -456,6 +468,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls openItemUpdating', () => {
     test('updates state', async () => {
       // Arange
@@ -474,6 +487,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when updates submitted item', () => {
     test('creates success alert and updates state', async () => {
       // Arange
@@ -500,10 +514,7 @@ describe('usePlayData', () => {
       expect(result.current).toEqual(expectedState);
       expect(mockedPush).not.toHaveBeenCalled();
       expect(mockedGetCategoriesStateWithCountedItems).toHaveBeenCalledWith(
-        {
-          [mockedItem2.attributes.categoryId]:
-            expectedState.categories[mockedItem2.attributes.categoryId],
-        },
+        mockedCategoriesStateWithCountedItem,
         expectedItemsList
       );
       expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
@@ -542,6 +553,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when relocate item called', () => {
     test('returns updated state', async () => {
       // Arange
@@ -582,6 +594,7 @@ describe('usePlayData', () => {
     });
   });
 
+  //
   describe('when calls updateItemCoordinates', () => {
     test('returns updated state and calls mockedUpdateItem', async () => {
       // Arange

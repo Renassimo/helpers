@@ -21,10 +21,10 @@ const useUpdateItemCoordinates = (
   const { createSuccessAlert, clearAll, createErrorAlert, createInfoAlert } =
     useAlerts();
   const [relocatingItemId, setRelocatingItemId] = useState<string | null>(null);
-  const relocateItem = (id: string | null) => {
+  const relocateItem = useCallback((id: string | null) => {
     if (id) setPointingCategoryId(null);
     setRelocatingItemId(id);
-  };
+  }, []);
   const relocatingItem: ItemData | null = useMemo(() => {
     if (!relocatingItemId) return null;
 
