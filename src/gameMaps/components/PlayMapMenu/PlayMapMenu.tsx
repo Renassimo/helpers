@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import CategoryFormModal from '@/gameMaps/components/CategoryFormModal';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
 import { CategoryData } from '@/gameMaps/types';
 
@@ -37,7 +37,7 @@ const PlayMapMenu = () => {
     openCategoryUpdating,
     relocatingItem,
     relocateItem,
-  } = usePlay();
+  } = usePlayContext();
   const gameId = game?.id;
 
   const openCategoryModalForUpdating = (event: MouseEvent, id: string) => {

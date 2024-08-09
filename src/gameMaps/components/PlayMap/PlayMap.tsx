@@ -10,7 +10,7 @@ import MapOnImage from '@/common/lib/leaflet/components/MapOnImage';
 import MapMarker from '@/common/lib/leaflet/components/MapMarker';
 import ItemFormModal from '@/gameMaps/components/ItemFormModal';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 import useAddItemOnMap from '@/gameMaps/hooks/useAddItemOnMap';
 
 const PlayMap = () => {
@@ -30,7 +30,7 @@ const PlayMap = () => {
     relocateItem,
     relocatingItem,
     updateItemCoordinates,
-  } = usePlay();
+  } = usePlayContext();
   const { handleMapClick, newMarker, relocatingMarker } = useAddItemOnMap({
     categories,
     pointingCategoryId,

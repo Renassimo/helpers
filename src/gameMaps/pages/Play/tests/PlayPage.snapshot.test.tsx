@@ -4,7 +4,7 @@ import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
 
 import { PlayPageProps } from '@/gameMaps/types';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
 import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 import Play from '@/gameMaps/components/Play';
@@ -17,11 +17,11 @@ import PlayPage from '../PlayPage';
 
 jest.mock('@/gameMaps/templates/GameMapsTemplate');
 jest.mock('@/gameMaps/components/Play');
-jest.mock('@/gameMaps/hooks/usePlay');
+jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 
 describe('Game Page snapshot', () => {
   const mockedSetIsPlayEditOpen = jest.fn();
-  const mockedUsePlay = jest.fn(() => ({
+  const mockedUsePlayContext = jest.fn(() => ({
     game: mockedGame,
     play: mockedPlay,
     setIsPlayEditOpen: mockedSetIsPlayEditOpen,
@@ -32,7 +32,9 @@ describe('Game Page snapshot', () => {
       MockedGameMapsTemplate
     );
     (Play as unknown as jest.Mock).mockImplementation(MockedPlay);
-    (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+    (usePlayContext as unknown as jest.Mock).mockImplementation(
+      mockedUsePlayContext
+    );
   });
 
   afterEach(() => {
@@ -50,6 +52,6 @@ describe('Game Page snapshot', () => {
     // Assert
     expect(container).toMatchSnapshot();
     expect(MockedPlay).toHaveBeenCalledWith({}, {});
-    expect(mockedUsePlay).toHaveBeenCalledWith();
+    expect(mockedUsePlayContext).toHaveBeenCalledWith();
   });
 });

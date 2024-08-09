@@ -2,6 +2,6 @@ import { useContext } from 'react';
 
 import PlayContext from '@/gameMaps/contexts/PlayContext';
 
-const usePlay = () => useContext(PlayContext);
+const usePlayContext = () => useContext(PlayContext);
 
-export default usePlay;
+export default usePlayContext;

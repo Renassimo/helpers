@@ -18,7 +18,7 @@ import {
   mockedPlay2,
 } from '@/gameMaps/types/mocks';
 
-import usePlayData from '../hooks/usePlayData';
+import usePlayProvider from '../hooks/usePlayProvider';
 
 const mockedPush = jest.fn();
 
@@ -136,7 +136,7 @@ describe('usePlayData', () => {
     // Arange
     const expectedState = expecteDefaultState;
     // Act
-    const { result } = renderHook(() => usePlayData(mockedData));
+    const { result } = renderHook(() => usePlayProvider(mockedData));
     // Assert
     expect(result.current).toEqual(expectedState);
     expect(mockedUseAlerts).toHaveBeenCalledWith();
@@ -150,7 +150,7 @@ describe('usePlayData', () => {
         ...expecteDefaultState,
         play: mockedPlay2,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.updateSubmittedPlay(mockedPlay2);
@@ -170,7 +170,7 @@ describe('usePlayData', () => {
           ...expecteDefaultState,
           play: null,
         };
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         // Act
         await act(async () => {
           await result.current.updateSubmittedPlay(null);
@@ -194,7 +194,7 @@ describe('usePlayData', () => {
         ...expecteDefaultState,
         isPlayEditOpen: true,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.setIsPlayEditOpen(true);
@@ -226,7 +226,7 @@ describe('usePlayData', () => {
           isEveryCategoryChosen: false,
           isNoCategoriesChosen: true,
         } as unknown as PlayContextData;
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         // Act
         await act(async () => {
           await result.current.clearAllChosenCategories();
@@ -253,7 +253,7 @@ describe('usePlayData', () => {
           isEveryCategoryChosen: false,
           isNoCategoriesChosen: false,
         } as unknown as PlayContextData;
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         // Act
         await act(async () => {
           await result.current.changeCategoryChoose(mockedObject1.id, false);
@@ -266,7 +266,7 @@ describe('usePlayData', () => {
     describe('when all categories was chosen', () => {
       test('updates state', async () => {
         // Arange
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         await act(async () => {
           await result.current.changeCategoryChoose(mockedObject1.id, false);
         });
@@ -289,7 +289,7 @@ describe('usePlayData', () => {
         ...expecteDefaultState,
         pointingCategoryId: mockedObject2.id,
       } as unknown as PlayContextData;
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.setPointingCategoryId(mockedObject2.id);
@@ -302,7 +302,7 @@ describe('usePlayData', () => {
   describe('when quits from creating new item', () => {
     test('updates state', async () => {
       // Arange
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       await act(async () => {
         await result.current.setPointingCategoryId(mockedObject2.id);
       });
@@ -321,7 +321,7 @@ describe('usePlayData', () => {
     test('creates success alert and updates state', async () => {
       // Arange
       const expectedState = expecteDefaultState;
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.updateSubmittedCategory(mockedCategory2);
@@ -353,7 +353,7 @@ describe('usePlayData', () => {
           },
           categoriesList: [mockedObject2],
         };
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         // Act
         await act(async () => {
           await result.current.updateSubmittedCategory(null, mockedObject1.id);
@@ -375,7 +375,7 @@ describe('usePlayData', () => {
         ...expecteDefaultState,
         isCategoryEditOpen: true,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.setIsCategoryEditOpen(true);
@@ -392,7 +392,7 @@ describe('usePlayData', () => {
         ...expecteDefaultState,
         isCategoryEditOpen: true,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.openCategoryCreating();
@@ -410,7 +410,7 @@ describe('usePlayData', () => {
         isCategoryEditOpen: true,
         editingCategory: mockedObject1,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.openCategoryUpdating(mockedObject1.id);
@@ -427,7 +427,7 @@ describe('usePlayData', () => {
         ...expecteDefaultState,
         isItemEditOpen: true,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.setIsItemEditOpen(true);
@@ -446,7 +446,7 @@ describe('usePlayData', () => {
         isItemEditOpen: true,
         creatingItemCoordinates: mockedCoordinates,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.openItemCreating(mockedCoordinates);
@@ -464,7 +464,7 @@ describe('usePlayData', () => {
         isItemEditOpen: true,
         editingItem: mockedObject,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.openItemUpdating(mockedObject.id);
@@ -488,7 +488,7 @@ describe('usePlayData', () => {
         itemsList: expectedItemsList,
         isItemEditOpen: true,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       await act(async () => {
         await result.current.openItemCreating([1, 2]);
       });
@@ -520,7 +520,7 @@ describe('usePlayData', () => {
           itemsList: [],
           isItemEditOpen: true,
         };
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         await act(async () => {
           await result.current.openItemUpdating(mockedObject.id);
         });
@@ -549,7 +549,7 @@ describe('usePlayData', () => {
         ...expecteDefaultState,
         relocatingItem: mockedObject,
       };
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       // Act
       await act(async () => {
         await result.current.relocateItem(mockedObject.id);
@@ -563,7 +563,7 @@ describe('usePlayData', () => {
       test('returns updated state', async () => {
         // Arange
         const expectedState = expecteDefaultState;
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         await act(async () => {
           await result.current.relocateItem(mockedObject.id);
         });
@@ -586,7 +586,7 @@ describe('usePlayData', () => {
     test('returns updated state and calls mockedUpdateItem', async () => {
       // Arange
       const expectedState = expecteDefaultState;
-      const { result } = renderHook(() => usePlayData(mockedData));
+      const { result } = renderHook(() => usePlayProvider(mockedData));
       await act(async () => {
         await result.current.relocateItem(mockedObject.id);
       });
@@ -626,7 +626,7 @@ describe('usePlayData', () => {
             throw new Error(mockedErrorMessage);
           })
         );
-        const { result } = renderHook(() => usePlayData(mockedData));
+        const { result } = renderHook(() => usePlayProvider(mockedData));
         await act(async () => {
           await result.current.relocateItem(mockedObject.id);
         });

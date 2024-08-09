@@ -5,7 +5,7 @@ import CategoryFormModal from '@/gameMaps/components/CategoryFormModal';
 
 import MockedCategoryFormModal from '@/gameMaps/components/CategoryFormModal/mocks';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
 import {
   mockedCategories,
@@ -16,7 +16,7 @@ import {
 
 import PlayMapMenu from '../PlayMapMenu';
 
-jest.mock('@/gameMaps/hooks/usePlay');
+jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 jest.mock('@/gameMaps/components/CategoryFormModal');
 
 describe('PlayMapMenu', () => {
@@ -53,7 +53,7 @@ describe('PlayMapMenu', () => {
     relocateItem: mockedRelocateItem,
   };
 
-  const mockedUsePlay = jest.fn(() => mockedUsePlayResult);
+  const mockedUsePlayContext = jest.fn(() => mockedUsePlayResult);
 
   beforeEach(() => {
     (CategoryFormModal as unknown as jest.Mock).mockImplementation(
@@ -67,7 +67,9 @@ describe('PlayMapMenu', () => {
 
   test('renders successfully', () => {
     // Arange
-    (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+    (usePlayContext as unknown as jest.Mock).mockImplementation(
+      mockedUsePlayContext
+    );
     // Act
     const { baseElement } = renderWithTheme(<PlayMapMenu />);
     // Assert
@@ -77,11 +79,13 @@ describe('PlayMapMenu', () => {
   describe('when pointingCategoryId is null', () => {
     test('renders successfully', () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       // Act
       const { baseElement } = renderWithTheme(<PlayMapMenu />);
       // Assert
@@ -91,12 +95,14 @@ describe('PlayMapMenu', () => {
     describe('and when relocatingItem passed', () => {
       test('renders successfully', () => {
         // Arange
-        const mockedUsePlay = jest.fn(() => ({
+        const mockedUsePlayContext = jest.fn(() => ({
           ...mockedUsePlayResult,
           pointingCategoryId: null,
           relocatingItem: mockedRelocatingItem,
         }));
-        (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+        (usePlayContext as unknown as jest.Mock).mockImplementation(
+          mockedUsePlayContext
+        );
         // Act
         const { baseElement } = renderWithTheme(<PlayMapMenu />);
         // Assert
@@ -108,11 +114,13 @@ describe('PlayMapMenu', () => {
   describe('when isCategoryEditOpen true', () => {
     test('renders successfully', () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         isCategoryEditOpen: true,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       // Act
       const { baseElement } = renderWithTheme(<PlayMapMenu />);
       // Assert
@@ -132,12 +140,14 @@ describe('PlayMapMenu', () => {
     describe('and editingCategory passed', () => {
       test('renders successfully', () => {
         // Arange
-        const mockedUsePlay = jest.fn(() => ({
+        const mockedUsePlayContext = jest.fn(() => ({
           ...mockedUsePlayResult,
           isCategoryEditOpen: true,
           editingCategory: mockedCategory1,
         }));
-        (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+        (usePlayContext as unknown as jest.Mock).mockImplementation(
+          mockedUsePlayContext
+        );
         // Act
         const { baseElement } = renderWithTheme(<PlayMapMenu />);
         // Assert
@@ -159,7 +169,9 @@ describe('PlayMapMenu', () => {
   describe('when "Quit from creating new item" clicked', () => {
     test('calls quitFromCreatingNewItem', async () => {
       // Arange
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getByText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getByText('Quit from creating new item'));
@@ -178,12 +190,14 @@ describe('PlayMapMenu', () => {
   describe('when "Quit from relocating item" clicked', () => {
     test('calls relocateItem', async () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
         relocatingItem: mockedRelocatingItem,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getByText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getByText('Quit from relocating item'));
@@ -202,11 +216,13 @@ describe('PlayMapMenu', () => {
   describe('when "Clear all" clicked', () => {
     test('calls clearAllChosenCategories', async () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getByText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getByText('Clear all'));
@@ -225,11 +241,13 @@ describe('PlayMapMenu', () => {
   describe('when "Choose all" clicked', () => {
     test('calls choseAllCategories', async () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getByText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getByText('Choose all'));
@@ -248,11 +266,13 @@ describe('PlayMapMenu', () => {
   describe('when "Add category" clicked', () => {
     test('calls openCategoryCreating', async () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getByText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getByText('Add category'));
@@ -271,11 +291,13 @@ describe('PlayMapMenu', () => {
   describe('when category title clicked ', () => {
     test('calls openCategoryUpdating', async () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getAllByLabelText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getAllByLabelText('edit-category')[0]);
@@ -296,11 +318,13 @@ describe('PlayMapMenu', () => {
   describe('when add item clicked', () => {
     test('calls setPointingCategoryId', async () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getAllByLabelText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getAllByLabelText('add-category')[0]);
@@ -321,11 +345,13 @@ describe('PlayMapMenu', () => {
   describe('when item clicked', () => {
     test('calls changeCategoryChoose', async () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: null,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const { getAllByLabelText } = renderWithTheme(<PlayMapMenu />);
       // Act
       await userEvent.click(getAllByLabelText('category')[0]);

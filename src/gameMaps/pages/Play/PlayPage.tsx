@@ -3,12 +3,12 @@ import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
 import { PlayPageProps } from '@/gameMaps/types';
 import { BreadcrumbsItem } from '@/common/types/props';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
 import Play from '@/gameMaps/components/Play';
 
 const PlayPage = ({ user, pages }: Partial<PlayPageProps>) => {
-  const { game, play, setIsPlayEditOpen } = usePlay();
+  const { game, play, setIsPlayEditOpen } = usePlayContext();
 
   const gameTitle = game?.attributes.title ?? 'Game';
   const playTitle = play?.attributes.title ?? 'Play';

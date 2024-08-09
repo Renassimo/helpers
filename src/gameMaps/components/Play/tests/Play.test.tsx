@@ -1,6 +1,6 @@
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
 import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 import PlayMapMenu from '@/gameMaps/components/PlayMapMenu';
@@ -11,7 +11,7 @@ import { mockedGame, mockedPlay } from '@/gameMaps/types/mocks';
 
 import Play from '../Play';
 
-jest.mock('@/gameMaps/hooks/usePlay');
+jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 jest.mock('@/gameMaps/components/PlayFormModal');
 jest.mock('@/gameMaps/components/PlayMapMenu');
 jest.mock('@/gameMaps/components/PlayMap');
@@ -21,7 +21,7 @@ describe('Play', () => {
   const mockedIsPlayEditOpen = false;
   const mockedSetIsPlayEditOpen = jest.fn();
 
-  const mockedUsePlay = jest.fn(() => ({
+  const mockedUsePlayContext = jest.fn(() => ({
     game: mockedGame,
     play: mockedPlay,
     updateSubmittedPlay: mockeUpdateSubmittedPlay,
@@ -34,7 +34,9 @@ describe('Play', () => {
       MockedPlayFormModal
     );
     (PlayMapMenu as unknown as jest.Mock).mockImplementation(MockedPlayMapMenu);
-    (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+    (usePlayContext as unknown as jest.Mock).mockImplementation(
+      mockedUsePlayContext
+    );
   });
 
   afterEach(() => {
