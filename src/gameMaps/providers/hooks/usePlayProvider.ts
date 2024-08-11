@@ -60,7 +60,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     quitFromCreatingNewItem,
   } = useCreateUpdateItem(items, updateItem, recountCategories);
 
-  // updating item coordinates
+  // Updating item coordinates
   const { relocateItem, relocatingItem, updateItemCoordinates } =
     useUpdateItemCoordinates(
       game,

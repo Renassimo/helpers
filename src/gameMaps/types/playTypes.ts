@@ -25,36 +25,42 @@ export type PlayServerSideProps = ServerSideProps<PlayPageProps>;
 
 export interface PlayContextData {
   game: GameData | null;
+  // Play data
   play: PlayData | null;
   updateSubmittedPlay: (newData: PlayData | null) => void;
   isPlayEditOpen: boolean;
   setIsPlayEditOpen: (newState: boolean) => void;
-  categories: CategoriesState;
-  categoriesList: CategoryData[];
-  isEveryCategoryChosen: boolean;
-  isNoCategoriesChosen: boolean;
+  // Items data
   items: ItemsState;
   itemsList: ItemData[];
+  // Categories data
+  categories: CategoriesState;
+  categoriesList: CategoryData[];
   visibleItems: ItemData[];
   choseAllCategories: () => void;
   clearAllChosenCategories: () => void;
   changeCategoryChoose: (categoryId: string, chosen: boolean) => void;
-  pointingCategoryId: string | null;
-  setPointingCategoryId: (id: string | null) => void;
-  quitFromCreatingNewItem: () => void;
-  updateSubmittedCategory: (newData: CategoryData | null, id?: string) => void;
+  isEveryCategoryChosen: boolean;
+  isNoCategoriesChosen: boolean;
+  // Category creating and editing
   isCategoryEditOpen: boolean;
   setIsCategoryEditOpen: (newState: boolean) => void;
   editingCategory: CategoryData | null;
   openCategoryCreating: () => void;
   openCategoryUpdating: (id: string) => void;
+  updateSubmittedCategory: (newData: CategoryData | null, id?: string) => void;
+  // Item creating and updating
   isItemEditOpen: boolean;
-  setIsItemEditOpen: (newState: boolean) => void;
   creatingItemCoordinates: [number, number] | null;
+  pointingCategoryId: string | null;
   editingItem: ItemData | null;
+  setPointingCategoryId: (id: string | null) => void;
+  setIsItemEditOpen: (newState: boolean) => void;
   openItemCreating: (coordinates: [number, number]) => void;
   openItemUpdating: (id: string) => void;
   updateSubmittedItem: (newData: ItemData | null, id?: string) => void;
+  quitFromCreatingNewItem: () => void;
+  // Updating item coordinates
   relocateItem: (id: string | null) => void;
   relocatingItem: ItemData | null;
   updateItemCoordinates: (coordinates: [number, number]) => void;
