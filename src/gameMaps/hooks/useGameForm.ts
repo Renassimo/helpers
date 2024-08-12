@@ -5,7 +5,6 @@ import { FileWithPreview } from '@/common/types/files';
 
 import GameValidator from '@/gameMaps/validators/game';
 
-import { validate } from '@/common/utils/validators';
 import { updateImageRatio } from '@/common/utils/files';
 
 import uploadFile from '@/common/lib/firebase/utils/uploadFile';
@@ -32,10 +31,9 @@ const useGameForm = (
     setters,
     clear,
     prepareForEdit,
-    addErrors,
     onDelete,
     onSubmit,
-  } = useForm<GameAttributes>({
+  } = useForm<GameAttributes, GameValidator>({
     defaultValues: {
       title: '',
       description: '',
@@ -53,10 +51,6 @@ const useGameForm = (
       let mapImageId;
       try {
         const { title, description, backgroundColor } = values;
-        await validate(
-          new GameValidator({ title, description, backgroundColor }),
-          addErrors
-        );
         if (mapImage) {
           mapImageId = await uploadFile(mapImage, `gameMap-${title}`);
         }
@@ -80,6 +74,8 @@ const useGameForm = (
         throw error;
       }
     },
+    getValidator: ({ title, description, backgroundColor }) =>
+      new GameValidator({ title, description, backgroundColor }),
   });
 
   useEffect(() => updateImageRatio(mapImage, setMapImageRatio), [mapImage]);

@@ -5,7 +5,6 @@ import { CategoryData } from '@/gameMaps/types';
 import useForm from '@/common/hooks/useForm';
 
 import CategoryValidator from '@/gameMaps/validators/category';
-import { validate } from '@/common/utils/validators';
 
 import createCategory from '@/gameMaps/handlers/client/createCategory';
 import updateCategory from '@/gameMaps/handlers/client/updateCategory';
@@ -118,9 +117,6 @@ describe('useCategoryForm', () => {
 
     test('calls onSubmit', async () => {
       // Arange
-      const mockedValidate = jest.fn();
-      (validate as unknown as jest.Mock).mockImplementationOnce(mockedValidate);
-
       const { result } = renderHook(() =>
         useCategoryForm(mockedGameId, null, mockedOnFinish)
       );
@@ -129,10 +125,6 @@ describe('useCategoryForm', () => {
         await result.current.onSubmit();
       });
       // Assert
-      expect(mockedValidate).toHaveBeenCalledWith(
-        mockedCategoryValidatorInstance,
-        mockedAddErrors
-      );
       expect(mockedCategoryValidator).toHaveBeenCalledWith({
         title: mockedTitle,
         description: mockedDescription,
@@ -153,11 +145,6 @@ describe('useCategoryForm', () => {
     describe('When data passed (edit form)', () => {
       test('calls onSubmit', async () => {
         // Arange
-        const mockedValidate = jest.fn();
-        (validate as unknown as jest.Mock).mockImplementationOnce(
-          mockedValidate
-        );
-
         const { result } = renderHook(() =>
           useCategoryForm(mockedGameId, mockedData, mockedOnFinish)
         );
@@ -166,10 +153,6 @@ describe('useCategoryForm', () => {
           await result.current.onSubmit();
         });
         // Assert
-        expect(mockedValidate).toHaveBeenCalledWith(
-          mockedCategoryValidatorInstance,
-          mockedAddErrors
-        );
         expect(mockedCategoryValidator).toHaveBeenCalledWith({
           title: mockedTitle,
           description: mockedDescription,

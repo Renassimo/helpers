@@ -2,8 +2,6 @@ import { PlayAttributes, PlayData } from '@/gameMaps/types';
 
 import PlayValidator from '@/gameMaps/validators/play';
 
-import { validate } from '@/common/utils/validators';
-
 import createPlay from '@/gameMaps/handlers/client/createPlay';
 import updatePlay from '@/gameMaps/handlers/client/updatePlay';
 import deletePlay from '@/gameMaps/handlers/client/deletePlay';
@@ -21,12 +19,11 @@ const usePlayForm = (
     values,
     setters,
     isEditing,
-    addErrors,
     clear,
     prepareForEdit,
     onDelete,
     onSubmit,
-  } = useForm<PlayAttributes>({
+  } = useForm<PlayAttributes, PlayValidator>({
     defaultValues: { title: '', description: '' },
     attributes: data?.attributes,
     onDelete: async () => {
@@ -36,13 +33,13 @@ const usePlayForm = (
       }
     },
     onSubmit: async (values) => {
-      await validate(new PlayValidator(values), addErrors);
       const responseData = data
         ? await updatePlay(gameId, data.id, values)
         : await createPlay(gameId, values);
 
       onFinish?.(responseData);
     },
+    getValidator: (values) => new PlayValidator(values),
   });
 
   return {

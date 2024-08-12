@@ -2,23 +2,29 @@ import { useCallback, useMemo, useState } from 'react';
 
 import useErrors from '@/common/hooks/useErrors';
 
+import { validate } from '@/common/utils/validators';
+
 import { CommonError } from '@/common/types/errors';
+
+import Validator from '@/common/utils/validators/validator';
 
 type Value = string | number | boolean | null | undefined;
 
 const capitalizeFirstLetter = (string: string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
-const useForm = <A extends Record<string, any>>({
+const useForm = <A extends Record<string, any>, V extends Validator>({
   defaultValues,
   attributes,
   onDelete: handleDelete,
   onSubmit: handleSubmit,
+  getValidator,
 }: {
   defaultValues: A;
   attributes?: A | null;
   onDelete?: () => Promise<void>;
   onSubmit?: (values: A) => Promise<void>;
+  getValidator?: (values: A) => V;
 }): {
   isEditing: boolean;
   values: A;
@@ -99,9 +105,15 @@ const useForm = <A extends Record<string, any>>({
     }
   }, [isEditing, handleDelete]);
 
+  const validates = useCallback(async () => {
+    if (!getValidator) return;
+    await validate(getValidator(values as A), addErrors);
+  }, [getValidator, values]);
+
   const onSubmit = useCallback(async (): Promise<void> => {
     setLoading(true);
     try {
+      await validates();
       await handleSubmit?.(values as A);
       setLoading(false);
     } catch (error: unknown) {
@@ -109,7 +121,7 @@ const useForm = <A extends Record<string, any>>({
       const main = (error as CommonError).message ?? 'Error happened';
       addErrors({ main });
     }
-  }, [values, handleSubmit]);
+  }, [values, handleSubmit, validates]);
 
   return {
     isEditing,

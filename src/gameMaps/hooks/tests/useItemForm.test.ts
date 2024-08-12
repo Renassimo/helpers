@@ -5,7 +5,6 @@ import { ItemData } from '@/gameMaps/types';
 import useForm from '@/common/hooks/useForm';
 
 import ItemValidator from '@/gameMaps/validators/item';
-import { validate } from '@/common/utils/validators';
 
 import createItem from '@/gameMaps/handlers/client/createItem';
 import updateItem from '@/gameMaps/handlers/client/updateItem';
@@ -119,9 +118,6 @@ describe('useItemForm', () => {
 
     test('calls onSubmit', async () => {
       // Arange
-      const mockedValidate = jest.fn();
-      (validate as unknown as jest.Mock).mockImplementationOnce(mockedValidate);
-
       const { result } = renderHook(() =>
         useItemForm(mockedAdditionalData, null, mockedOnFinish)
       );
@@ -130,10 +126,6 @@ describe('useItemForm', () => {
         await result.current.onSubmit();
       });
       // Assert
-      expect(mockedValidate).toHaveBeenCalledWith(
-        mockedItemValidatorInstance,
-        mockedAddErrors
-      );
       expect(mockedItemValidator).toHaveBeenCalledWith({
         description: mockedDescription,
         collected: mockedCollected,
@@ -152,11 +144,6 @@ describe('useItemForm', () => {
     describe('When data passed (edit form)', () => {
       test('calls onSubmit', async () => {
         // Arange
-        const mockedValidate = jest.fn();
-        (validate as unknown as jest.Mock).mockImplementationOnce(
-          mockedValidate
-        );
-
         const { result } = renderHook(() =>
           useItemForm(mockedAdditionalData, mockedData, mockedOnFinish)
         );
@@ -165,10 +152,6 @@ describe('useItemForm', () => {
           await result.current.onSubmit();
         });
         // Assert
-        expect(mockedValidate).toHaveBeenCalledWith(
-          mockedItemValidatorInstance,
-          mockedAddErrors
-        );
         expect(mockedItemValidator).toHaveBeenCalledWith({
           description: mockedDescription,
           collected: mockedCollected,

@@ -2,8 +2,6 @@ import { ItemData } from '@/gameMaps/types';
 
 import ItemValidator from '@/gameMaps/validators/item';
 
-import { validate } from '@/common/utils/validators';
-
 import createItem from '@/gameMaps/handlers/client/createItem';
 import updateItem from '@/gameMaps/handlers/client/updateItem';
 import deleteItem from '@/gameMaps/handlers/client/deleteItem';
@@ -28,7 +26,6 @@ const useItemForm = (
   const {
     loading,
     errors,
-    addErrors,
     values,
     setters,
     isEditing: isEditForm,
@@ -36,10 +33,13 @@ const useItemForm = (
     prepareForEdit,
     onDelete,
     onSubmit,
-  } = useForm<{
-    description: string;
-    collected: boolean;
-  }>({
+  } = useForm<
+    {
+      description: string;
+      collected: boolean;
+    },
+    ItemValidator
+  >({
     defaultValues: { description: '', collected: false },
     attributes: data?.attributes,
     onDelete: async () => {
@@ -49,7 +49,6 @@ const useItemForm = (
       }
     },
     onSubmit: async (values) => {
-      await validate(new ItemValidator(values), addErrors);
       const responseData = data
         ? await updateItem(gameId, data.id, {
             ...values,
@@ -66,6 +65,7 @@ const useItemForm = (
 
       onFinish?.(responseData);
     },
+    getValidator: (values) => new ItemValidator(values),
   });
 
   return {

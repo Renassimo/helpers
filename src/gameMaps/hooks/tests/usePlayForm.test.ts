@@ -5,7 +5,6 @@ import { PlayData } from '@/gameMaps/types';
 import useForm from '@/common/hooks/useForm';
 
 import PlayValidator from '@/gameMaps/validators/play';
-import { validate } from '@/common/utils/validators';
 
 import createPlay from '@/gameMaps/handlers/client/createPlay';
 import updatePlay from '@/gameMaps/handlers/client/updatePlay';
@@ -18,7 +17,6 @@ import usePlayForm from '../usePlayForm';
 
 jest.mock('@/common/hooks/useForm');
 jest.mock('@/gameMaps/validators/play');
-jest.mock('@/common/utils/validators');
 jest.mock('@/gameMaps/handlers/client/createPlay');
 jest.mock('@/gameMaps/handlers/client/updatePlay');
 jest.mock('@/gameMaps/handlers/client/deletePlay');
@@ -110,9 +108,6 @@ describe('usePlayForm', () => {
 
     test('calls onSubmit', async () => {
       // Arange
-      const mockedValidate = jest.fn();
-      (validate as unknown as jest.Mock).mockImplementationOnce(mockedValidate);
-
       const { result } = renderHook(() =>
         usePlayForm(mockedGameId, null, mockedOnFinish)
       );
@@ -121,10 +116,6 @@ describe('usePlayForm', () => {
         await result.current.onSubmit();
       });
       // Assert
-      expect(mockedValidate).toHaveBeenCalledWith(
-        mockedPlayValidatorInstance,
-        mockedAddErrors
-      );
       expect(mockedPlayValidator).toHaveBeenCalledWith({
         title: mockedTitle,
         description: mockedDescription,
@@ -141,11 +132,6 @@ describe('usePlayForm', () => {
     describe('When data passed (edit form)', () => {
       test('calls onSubmit', async () => {
         // Arange
-        const mockedValidate = jest.fn();
-        (validate as unknown as jest.Mock).mockImplementationOnce(
-          mockedValidate
-        );
-
         const { result } = renderHook(() =>
           usePlayForm(mockedGameId, mockedData, mockedOnFinish)
         );
@@ -154,10 +140,6 @@ describe('usePlayForm', () => {
           await result.current.onSubmit();
         });
         // Assert
-        expect(mockedValidate).toHaveBeenCalledWith(
-          mockedPlayValidatorInstance,
-          mockedAddErrors
-        );
         expect(mockedPlayValidator).toHaveBeenCalledWith({
           title: mockedTitle,
           description: mockedDescription,

@@ -1,9 +1,16 @@
 import { cleanup, renderHook } from '@testing-library/react';
-import useErrors from '@/common/hooks/useErrors';
-import useForm from '../useForm';
 import { act } from 'react-dom/test-utils';
 
+import useErrors from '@/common/hooks/useErrors';
+
+import Validator from '@/common/utils/validators/validator';
+
+import { validate } from '@/common/utils/validators';
+
+import useForm from '../useForm';
+
 jest.mock('@/common/hooks/useErrors');
+jest.mock('@/common/utils/validators');
 
 describe('useForm', () => {
   const mockedErrors = 'mocked-errors';
@@ -14,15 +21,19 @@ describe('useForm', () => {
     addErrors: mockedAddErrors,
     cleanErrors: mockedCleanErrors,
   }));
+  const mockedValidate = jest.fn();
 
   beforeEach(() => {
     (useErrors as unknown as jest.Mock).mockImplementation(mockedUseErrors);
+    (validate as unknown as jest.Mock).mockImplementation(mockedValidate);
   });
 
   const mockedDefaultValues = { value1: '', value2: 0 };
   const mockedAttributes = { value1: 'value-1', value2: 1 };
   const mockedOnDelete = jest.fn();
   const mockedOnSubmit = jest.fn();
+  const validator = 'mocked-validator' as unknown as Validator;
+  const mockedGetValidator = jest.fn(() => validator);
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -254,6 +265,7 @@ describe('useForm', () => {
         attributes: mockedAttributes,
         onDelete: mockedOnDelete,
         onSubmit: mockedOnSubmit,
+        getValidator: mockedGetValidator,
       };
       const { result } = renderHook(() => useForm(mockedProps));
       // Act
@@ -264,7 +276,33 @@ describe('useForm', () => {
       expect(mockedOnDelete).not.toHaveBeenCalledWith();
       expect(mockedOnSubmit).toHaveBeenCalledWith(mockedDefaultValues);
       expect(mockedAddErrors).not.toHaveBeenCalled();
+      expect(mockedValidate).toBeCalledWith(validator, mockedAddErrors);
+      expect(mockedGetValidator).toBeCalledWith(mockedDefaultValues);
       expect(result.current.loading).toBeFalsy();
+    });
+
+    describe('without validation', () => {
+      test('calls mockedOnSubmit', async () => {
+        // Arange
+        const mockedProps = {
+          defaultValues: mockedDefaultValues,
+          attributes: mockedAttributes,
+          onDelete: mockedOnDelete,
+          onSubmit: mockedOnSubmit,
+        };
+        const { result } = renderHook(() => useForm(mockedProps));
+        // Act
+        await act(async () => {
+          await result.current.onSubmit();
+        });
+        // Assert
+        expect(mockedOnDelete).not.toHaveBeenCalledWith();
+        expect(mockedOnSubmit).toHaveBeenCalledWith(mockedDefaultValues);
+        expect(mockedAddErrors).not.toHaveBeenCalled();
+        expect(mockedValidate).not.toHaveBeenCalled();
+        expect(mockedGetValidator).not.toHaveBeenCalled();
+        expect(result.current.loading).toBeFalsy();
+      });
     });
 
     describe('but error happens', () => {

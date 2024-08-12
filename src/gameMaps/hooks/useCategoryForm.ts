@@ -26,7 +26,7 @@ const useCategoryForm = (
     prepareForEdit,
     onDelete,
     onSubmit,
-  } = useForm<CategoryAttributes>({
+  } = useForm<CategoryAttributes, CategoryValidator>({
     defaultValues: { title: '', description: '', color: '', itemsAmount: 0 },
     attributes: data?.attributes,
     onDelete: async () => {
@@ -43,6 +43,7 @@ const useCategoryForm = (
 
       onFinish?.(responseData);
     },
+    getValidator: (values) => new CategoryValidator(values),
   });
 
   return {

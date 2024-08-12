@@ -5,7 +5,6 @@ import { GameData } from '@/gameMaps/types';
 import useForm from '@/common/hooks/useForm';
 
 import GameValidator from '@/gameMaps/validators/game';
-import { validate } from '@/common/utils/validators';
 import { updateImageRatio } from '@/common/utils/files';
 
 import uploadFile from '@/common/lib/firebase/utils/uploadFile';
@@ -24,7 +23,6 @@ import useGameForm from '../useGameForm';
 
 jest.mock('@/common/hooks/useForm');
 jest.mock('@/gameMaps/validators/game');
-jest.mock('@/common/utils/validators');
 jest.mock('@/common/utils/files');
 jest.mock('@/common/lib/firebase/utils/uploadFile');
 jest.mock('@/common/lib/firebase/utils/deleteFile');
@@ -125,7 +123,7 @@ describe('useGameForm', () => {
     const mockedUpdateGame = jest.fn(() => mockedSubmittedData);
 
     beforeEach(() => {
-      (GameValidator as unknown as jest.Mock).mockImplementationOnce(
+      (GameValidator as unknown as jest.Mock).mockImplementation(
         mockedGameValidator
       );
       (deleteFile as unknown as jest.Mock).mockImplementationOnce(
@@ -135,19 +133,13 @@ describe('useGameForm', () => {
       (uploadFile as unknown as jest.Mock).mockImplementationOnce(
         mockedUploadFile
       );
-      (createGame as unknown as jest.Mock).mockImplementationOnce(
-        mockedCreateGame
-      );
-      (updateGame as unknown as jest.Mock).mockImplementationOnce(
-        mockedUpdateGame
-      );
     });
 
     test('calls onSubmit', async () => {
       // Arange
-      const mockedValidate = jest.fn();
-      (validate as unknown as jest.Mock).mockImplementationOnce(mockedValidate);
-
+      (createGame as unknown as jest.Mock).mockImplementationOnce(
+        mockedCreateGame
+      );
       const { result } = renderHook(() =>
         useGameForm(undefined, mockedOnFinish)
       );
@@ -159,10 +151,6 @@ describe('useGameForm', () => {
         await result.current.onSubmit();
       });
       // Assert
-      expect(mockedValidate).toHaveBeenCalledWith(
-        mockedGameValidatorInstance,
-        mockedAddErrors
-      );
       expect(mockedGameValidator).toHaveBeenCalledWith({
         title: mockedTitle,
         description: mockedDescription,
@@ -192,11 +180,9 @@ describe('useGameForm', () => {
     describe('when file did not upload', () => {
       test('calls onSubmit without mapImageId', async () => {
         // Arange
-        const mockedValidate = jest.fn();
-        (validate as unknown as jest.Mock).mockImplementationOnce(
-          mockedValidate
+        (createGame as unknown as jest.Mock).mockImplementationOnce(
+          mockedCreateGame
         );
-
         const { result } = renderHook(() =>
           useGameForm(undefined, mockedOnFinish)
         );
@@ -205,10 +191,6 @@ describe('useGameForm', () => {
           await result.current.onSubmit();
         });
         // Assert
-        expect(mockedValidate).toHaveBeenCalledWith(
-          mockedGameValidatorInstance,
-          mockedAddErrors
-        );
         expect(mockedGameValidator).toHaveBeenCalledWith({
           title: mockedTitle,
           description: mockedDescription,
@@ -228,15 +210,15 @@ describe('useGameForm', () => {
     });
 
     describe('When error occurs while submit', () => {
-      test('catches error, deletes file an set caught error', async () => {
+      test('catches error, deletes file an throws caught error', async () => {
         // Arange
         const mockedErrorMessage = 'Error occured!';
         const mockedError = new Error(mockedErrorMessage);
-        const mockedValidate = jest.fn(() => {
+        const mockedCreateGame = jest.fn(() => {
           throw mockedError;
         });
-        (validate as unknown as jest.Mock).mockImplementationOnce(
-          mockedValidate
+        (createGame as unknown as jest.Mock).mockImplementationOnce(
+          mockedCreateGame
         );
 
         const { result } = renderHook(() =>
@@ -252,17 +234,13 @@ describe('useGameForm', () => {
           expectedError = error;
         }
         // Assert
-        expect(mockedValidate).toHaveBeenCalledWith(
-          mockedGameValidatorInstance,
-          mockedAddErrors
-        );
         expect(mockedGameValidator).toHaveBeenCalledWith({
           title: mockedTitle,
           description: mockedDescription,
           backgroundColor: mockedBackgroundColor,
         });
         expect(mockedUploadFile).not.toHaveBeenCalled();
-        expect(mockedCreateGame).not.toHaveBeenCalled();
+        expect(mockedCreateGame).toHaveBeenCalled();
         expect(mockedUpdateGame).not.toHaveBeenCalled();
         expect(mockedOnFinish).not.toHaveBeenCalled();
         expect(mockedDeleteFile).toHaveBeenCalledWith(undefined);
@@ -273,11 +251,9 @@ describe('useGameForm', () => {
     describe('When data passed (edit form)', () => {
       test('calls onSubmit', async () => {
         // Arange
-        const mockedValidate = jest.fn();
-        (validate as unknown as jest.Mock).mockImplementationOnce(
-          mockedValidate
+        (updateGame as unknown as jest.Mock).mockImplementationOnce(
+          mockedUpdateGame
         );
-
         const { result } = renderHook(() =>
           useGameForm(mockedData, mockedOnFinish)
         );
@@ -289,10 +265,6 @@ describe('useGameForm', () => {
           await result.current.onSubmit();
         });
         // Assert
-        expect(mockedValidate).toHaveBeenCalledWith(
-          mockedGameValidatorInstance,
-          mockedAddErrors
-        );
         expect(mockedGameValidator).toHaveBeenCalledWith({
           title: mockedTitle,
           description: mockedDescription,
@@ -322,11 +294,9 @@ describe('useGameForm', () => {
       describe('when file did not upload', () => {
         test('calls onSubmit without mapImageId', async () => {
           // Arange
-          const mockedValidate = jest.fn();
-          (validate as unknown as jest.Mock).mockImplementationOnce(
-            mockedValidate
+          (updateGame as unknown as jest.Mock).mockImplementationOnce(
+            mockedUpdateGame
           );
-
           const { result } = renderHook(() =>
             useGameForm(mockedData, mockedOnFinish)
           );
@@ -335,10 +305,6 @@ describe('useGameForm', () => {
             await result.current.onSubmit();
           });
           // Assert
-          expect(mockedValidate).toHaveBeenCalledWith(
-            mockedGameValidatorInstance,
-            mockedAddErrors
-          );
           expect(mockedGameValidator).toHaveBeenCalledWith({
             title: mockedTitle,
             description: mockedDescription,
@@ -366,11 +332,11 @@ describe('useGameForm', () => {
           // Arange
           const mockedErrorMessage = 'Error occured!';
           const mockedError = new Error(mockedErrorMessage);
-          const mockedValidate = jest.fn(() => {
+          const mockedUpdateGame = jest.fn(() => {
             throw mockedError;
           });
-          (validate as unknown as jest.Mock).mockImplementationOnce(
-            mockedValidate
+          (updateGame as unknown as jest.Mock).mockImplementationOnce(
+            mockedUpdateGame
           );
 
           const { result } = renderHook(() =>
@@ -389,20 +355,19 @@ describe('useGameForm', () => {
             expectedError = error;
           }
           // Assert
-          expect(mockedValidate).toHaveBeenCalledWith(
-            mockedGameValidatorInstance,
-            mockedAddErrors
-          );
           expect(mockedGameValidator).toHaveBeenCalledWith({
             title: mockedTitle,
             description: mockedDescription,
             backgroundColor: mockedBackgroundColor,
           });
-          expect(mockedUploadFile).not.toHaveBeenCalled();
+          expect(mockedUploadFile).toHaveBeenCalledWith(
+            mockedFileWithPreview,
+            `gameMap-mocked-title`
+          );
           expect(mockedCreateGame).not.toHaveBeenCalled();
-          expect(mockedUpdateGame).not.toHaveBeenCalled();
+          expect(mockedUpdateGame).toHaveBeenCalled();
           expect(mockedOnFinish).not.toHaveBeenCalled();
-          expect(mockedDeleteFile).toHaveBeenCalledWith(undefined);
+          expect(mockedDeleteFile).toHaveBeenCalledWith('mocked-map-image-id');
           expect(expectedError).toEqual(mockedError);
         });
       });
