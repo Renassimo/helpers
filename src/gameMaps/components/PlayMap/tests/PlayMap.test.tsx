@@ -4,7 +4,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import MapOnImage from '@/common/lib/leaflet/components/MapOnImage';
 import MapMarker from '@/common/lib/leaflet/components/MapMarker';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 import useAddItemOnMap from '@/gameMaps/hooks/useAddItemOnMap';
 import ItemFormModal from '@/gameMaps/components/ItemFormModal';
 
@@ -26,7 +26,7 @@ import PlayMap from '../PlayMap';
 jest.mock('@/common/lib/leaflet/components/MapOnImage');
 jest.mock('@/common/lib/leaflet/components/MapMarker');
 jest.mock('@/gameMaps/components/ItemFormModal');
-jest.mock('@/gameMaps/hooks/usePlay');
+jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 jest.mock('@/gameMaps/hooks/useAddItemOnMap');
 
 describe('PlayMap', () => {
@@ -67,7 +67,7 @@ describe('PlayMap', () => {
     relocatingItem: null,
     updateItemCoordinates: mockedUpdateItemCoordinates,
   };
-  const mockedUsePlay = jest.fn(() => mockedUsePlayResult);
+  const mockedUsePlayContext = jest.fn(() => mockedUsePlayResult);
   const mockedHandleMapClick = jest.fn();
   const mockedNewMarker = {
     attributes: {
@@ -89,7 +89,9 @@ describe('PlayMap', () => {
     (ItemFormModal as unknown as jest.Mock).mockImplementation(
       MockedItemFormModal
     );
-    (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+    (usePlayContext as unknown as jest.Mock).mockImplementation(
+      mockedUsePlayContext
+    );
     (useAddItemOnMap as unknown as jest.Mock).mockImplementation(
       mockedUseAddItemOnMap
     );
@@ -105,7 +107,7 @@ describe('PlayMap', () => {
     const { baseElement } = renderWithTheme(<PlayMap />);
     // Assert
     expect(baseElement).toMatchSnapshot();
-    expect(mockedUsePlay).toHaveBeenCalledWith();
+    expect(mockedUsePlayContext).toHaveBeenCalledWith();
     expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
       categories: mockedCategoriesState,
       pointingCategoryId: null,
@@ -118,16 +120,18 @@ describe('PlayMap', () => {
   describe('when open for editing', () => {
     test('renders successfully with mocked modal', () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         editingItem: mockedItem1,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       // Act
       const { baseElement } = renderWithTheme(<PlayMap />);
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(mockedUsePlay).toHaveBeenCalledWith();
+      expect(mockedUsePlayContext).toHaveBeenCalledWith();
       expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
         categories: mockedCategoriesState,
         pointingCategoryId: null,
@@ -141,11 +145,13 @@ describe('PlayMap', () => {
   describe('when open for creating and new marker passed', () => {
     test('renders successfully with mocked modal', () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         pointingCategoryId: mockedPointingCategoryId,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const mockedUseAddItemOnMap = jest.fn(() => ({
         ...mockedUseAddItemOnMapResult,
         newMarker: mockedNewMarker,
@@ -157,7 +163,7 @@ describe('PlayMap', () => {
       const { baseElement } = renderWithTheme(<PlayMap />);
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(mockedUsePlay).toHaveBeenCalledWith();
+      expect(mockedUsePlayContext).toHaveBeenCalledWith();
       expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
         categories: mockedCategoriesState,
         pointingCategoryId: mockedPointingCategoryId,
@@ -171,11 +177,13 @@ describe('PlayMap', () => {
   describe('when relocating item passed', () => {
     test('renders successfully', () => {
       // Arange
-      const mockedUsePlay = jest.fn(() => ({
+      const mockedUsePlayContext = jest.fn(() => ({
         ...mockedUsePlayResult,
         relocatingItem: mockedRelocatingItem,
       }));
-      (usePlay as unknown as jest.Mock).mockImplementation(mockedUsePlay);
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
       const mockedUseAddItemOnMap = jest.fn(() => ({
         ...mockedUseAddItemOnMapResult,
         relocatingMarker: mockedRelocatingItem,
@@ -187,7 +195,7 @@ describe('PlayMap', () => {
       const { baseElement } = renderWithTheme(<PlayMap />);
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(mockedUsePlay).toHaveBeenCalledWith();
+      expect(mockedUsePlayContext).toHaveBeenCalledWith();
       expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
         categories: mockedCategoriesState,
         pointingCategoryId: null,

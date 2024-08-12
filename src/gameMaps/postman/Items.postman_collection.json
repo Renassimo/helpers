@@ -1,0 +1,96 @@
+{
+  "info": {
+    "_postman_id": "2f690b44-6af7-480b-8e0d-0bd88d4cde85",
+    "name": "Items",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9801372"
+  },
+  "item": [
+    {
+      "name": "Create item",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"attributes\": {\n            \"categoryId\": \"YPS7GHOVfF25rvNIE9Bx\",\n            \"playId\": \"M2XmhrM7P00NPRzJa98l\",\n            \"description\": \"Ech\",\n            \"coordinates\": [0.8, 10.7],\n            \"imageUrl\": \"\",\n            \"collected\": false\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/oa1hOLh0z9ZLtRtkqIa6/items",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "gameMaps", "games", "oa1hOLh0z9ZLtRtkqIa6", "items"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update item",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"id\": \"awwRzti0oYLhTnE9CdR2\",\n        \"attributes\": {\n            \"collected\": true\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/1HDAsruVsbBl2tApzAaC/items/z3TAb8pnGTTTajUiBKhP",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "gameMaps",
+            "games",
+            "1HDAsruVsbBl2tApzAaC",
+            "items",
+            "z3TAb8pnGTTTajUiBKhP"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete item",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/NR4kpIQfxP5PIXZbtvK1/items/RyX4kvZfrrNah8FqOkbG",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "gameMaps",
+            "games",
+            "NR4kpIQfxP5PIXZbtvK1",
+            "items",
+            "RyX4kvZfrrNah8FqOkbG"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

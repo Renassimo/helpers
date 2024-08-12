@@ -1,0 +1,96 @@
+{
+  "info": {
+    "_postman_id": "600a652a-34a1-420a-828b-2358b462bda1",
+    "name": "Plays",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9801372"
+  },
+  "item": [
+    {
+      "name": "Create play",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"attributes\": {\n            \"title\": \"MacBook Pro\",\n            \"description\": \"Playing on my mac\"\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/oa1hOLh0z9ZLtRtkqIa6/plays",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "gameMaps", "games", "oa1hOLh0z9ZLtRtkqIa6", "plays"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update play",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"data\": {\n        \"id\": \"ftk3Yo5SDpLNwcCoWiIz\",\n        \"attributes\": {\n            \"description\": \"Grove street, home..\"\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/oa1hOLh0z9ZLtRtkqIa6/plays/M2XmhrM7P00NPRzJa98l",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "gameMaps",
+            "games",
+            "oa1hOLh0z9ZLtRtkqIa6",
+            "plays",
+            "M2XmhrM7P00NPRzJa98l"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete play",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/gameMaps/games/NR4kpIQfxP5PIXZbtvK1/plays/SeP1G7D7leikVZLAB0RO",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "gameMaps",
+            "games",
+            "NR4kpIQfxP5PIXZbtvK1",
+            "plays",
+            "SeP1G7D7leikVZLAB0RO"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

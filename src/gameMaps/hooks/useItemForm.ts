@@ -1,18 +1,12 @@
-import { useState } from 'react';
-
 import { ItemData } from '@/gameMaps/types';
 
 import ItemValidator from '@/gameMaps/validators/item';
 
-import useErrors from '@/common/hooks/useErrors';
-
-import { CommonError } from '@/common/types/errors';
-
-import { validate } from '@/common/utils/validators';
-
 import createItem from '@/gameMaps/handlers/client/createItem';
 import updateItem from '@/gameMaps/handlers/client/updateItem';
 import deleteItem from '@/gameMaps/handlers/client/deleteItem';
+
+import useForm from '@/common/hooks/useForm';
 
 const useItemForm = (
   {
@@ -29,86 +23,61 @@ const useItemForm = (
   data?: ItemData | null,
   onFinish?: (data: ItemData | null) => void
 ) => {
-  const isEditForm = !!data;
-  const [loading, setLoading] = useState(false);
-  const [description, setDescription] = useState('');
-  const [collected, setCollected] = useState(false);
-
-  const { errors, addErrors, cleanErrors } = useErrors();
-
-  const cleanForm = () => {
-    setDescription('');
-    setCollected(false);
-    cleanErrors();
-  };
-
-  const prepareFormForEdit = () => {
-    if (data) {
-      const { attributes } = data;
-      setDescription(attributes.description);
-      setCollected(attributes.collected);
-    }
-  };
-
-  const onDelete = async (): Promise<void> => {
-    if (isEditForm) {
-      setLoading(true);
-      try {
+  const {
+    loading,
+    errors,
+    values,
+    setters,
+    isEditing: isEditForm,
+    clear,
+    prepareForEdit,
+    onDelete,
+    onSubmit,
+  } = useForm<
+    {
+      description: string;
+      collected: boolean;
+    },
+    ItemValidator
+  >({
+    defaultValues: { description: '', collected: false },
+    attributes: data?.attributes,
+    onDelete: async () => {
+      if (data) {
         await deleteItem(gameId, data.id);
         onFinish?.(null);
-        setLoading(false);
-      } catch (error: unknown) {
-        setLoading(false);
-        const main = (error as CommonError).message ?? 'Error happened';
-        addErrors({ main });
       }
-    }
-  };
-
-  const onSubmit = async (): Promise<void> => {
-    setLoading(true);
-    try {
-      await validate(new ItemValidator({ description, collected }), addErrors);
-      const payload = {
-        description,
-        collected,
-      };
-      const responseData = isEditForm
+    },
+    onSubmit: async (values) => {
+      const responseData = data
         ? await updateItem(gameId, data.id, {
-            ...payload,
+            ...values,
             playId,
             categoryId,
             coordinates,
           })
         : await createItem(gameId, {
-            ...payload,
+            ...values,
             playId,
             categoryId,
             coordinates,
           });
 
       onFinish?.(responseData);
-      setLoading(false);
-    } catch (error: unknown) {
-      setLoading(false);
-      const main = (error as CommonError).message ?? 'Error happened';
-      addErrors({ main });
-    }
-  };
+    },
+    getValidator: (values) => new ItemValidator(values),
+  });
 
   return {
-    prepareFormForEdit,
-    cleanForm,
+    prepareFormForEdit: prepareForEdit,
+    cleanForm: clear,
     isEditForm,
     onSubmit,
     onDelete,
-    values: {
-      description,
-      collected,
-    },
+    values,
     setters: {
-      setDescription,
-      setCollected,
+      setDescription: setters.setDescription,
+      setCollected: setters.setCollected,
     },
     errors,
     loading,

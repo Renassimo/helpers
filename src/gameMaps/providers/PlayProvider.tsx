@@ -4,7 +4,7 @@ import { PlayPageData } from '@/gameMaps/types';
 
 import PlayContext from '@/gameMaps/contexts/PlayContext';
 
-import usePlayData from '@/gameMaps/providers/hooks/usePlayData';
+import usePlayProvider from '@/gameMaps/providers/hooks/usePlayProvider';
 
 const PlayProvider = ({
   children,
@@ -13,7 +13,7 @@ const PlayProvider = ({
   children: ReactNode;
   data: PlayPageData | null;
 }) => {
-  const data = usePlayData(apiData);
+  const data = usePlayProvider(apiData);
 
   return <PlayContext.Provider value={data}>{children}</PlayContext.Provider>;
 };

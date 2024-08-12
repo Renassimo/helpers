@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import usePlay from '@/gameMaps/hooks/usePlay';
+import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
 import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 import PlayMapMenu from '@/gameMaps/components/PlayMapMenu';
@@ -16,7 +16,7 @@ const PlayMap = dynamic(() => import('@/gameMaps/components/PlayMap'), {
 
 const Play = () => {
   const { game, play, updateSubmittedPlay, isPlayEditOpen, setIsPlayEditOpen } =
-    usePlay();
+    usePlayContext();
   const gameId = game?.id;
 
   return (
