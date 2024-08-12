@@ -49,9 +49,10 @@ const useGameForm = (
         onFinish?.(null);
       }
     },
-    onSubmit: async () => {
+    onSubmit: async (values) => {
       let mapImageId;
       try {
+        const { title, description, backgroundColor } = values;
         await validate(
           new GameValidator({ title, description, backgroundColor }),
           addErrors
@@ -80,19 +81,11 @@ const useGameForm = (
       }
     },
   });
-  const { title, description, backgroundColor } = values;
-  const { setMapImageUrl } = setters;
 
   useEffect(() => updateImageRatio(mapImage, setMapImageRatio), [mapImage]);
 
-  const prepareFormForEdit = () => {
-    prepareForEdit();
-    if (data?.attributes.mapImageUrl)
-      setMapImageUrl(data?.attributes.mapImageUrl);
-  };
-
   return {
-    prepareFormForEdit,
+    prepareFormForEdit: prepareForEdit,
     cleanForm: clear,
     isEditForm,
     onSubmit,
@@ -105,7 +98,7 @@ const useGameForm = (
       setTitle: setters.setTitle,
       setDescription: setters.setDescription,
       setBackgroundColor: setters.setBackgroundColor,
-      setMapImageUrl,
+      setMapImageUrl: setters.setMapImageUrl,
       setMapImage,
     },
     errors,

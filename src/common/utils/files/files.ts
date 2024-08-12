@@ -9,7 +9,7 @@ export const getFileWithPreview = (file: File): FileWithPreview => {
 };
 
 export const updateImageRatio = (
-  file: FileWithPreview | null,
+  file: FileWithPreview | null | undefined,
   callback: (ratio: number | null) => void
 ) => {
   if (file) {

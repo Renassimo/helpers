@@ -35,7 +35,7 @@ const useCategoryForm = (
         onFinish?.(null);
       }
     },
-    onSubmit: async () => {
+    onSubmit: async (values) => {
       await validate(new CategoryValidator(values), addErrors);
       const responseData = data
         ? await updateCategory(gameId, data.id, values)

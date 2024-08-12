@@ -2,7 +2,7 @@ import { renderHook, cleanup, act } from '@testing-library/react';
 
 import { CategoryData } from '@/gameMaps/types';
 
-import useErrors from '@/common/hooks/useErrors';
+import useForm from '@/common/hooks/useForm';
 
 import CategoryValidator from '@/gameMaps/validators/category';
 import { validate } from '@/common/utils/validators';
@@ -11,15 +11,12 @@ import createCategory from '@/gameMaps/handlers/client/createCategory';
 import updateCategory from '@/gameMaps/handlers/client/updateCategory';
 import deleteCategory from '@/gameMaps/handlers/client/deleteCategory';
 
-import {
-  mockedCategory,
-  mockedCategory2,
-  mockedGame,
-} from '@/gameMaps/types/mocks';
+import { mockedCategory, mockedGame } from '@/gameMaps/types/mocks';
+import mockUseForm from '@/common/hooks/useForm/mocks';
 
 import useCategoryForm from '../useCategoryForm';
 
-jest.mock('@/common/hooks/useErrors');
+jest.mock('@/common/hooks/useForm');
 jest.mock('@/gameMaps/validators/category');
 jest.mock('@/common/utils/validators');
 jest.mock('@/gameMaps/handlers/client/createCategory');
@@ -29,16 +26,42 @@ jest.mock('@/gameMaps/handlers/client/deleteCategory');
 describe('useCategoryForm', () => {
   const mockedData: CategoryData = mockedCategory;
   const mockedGameId = mockedGame.id;
-  const mockedErrors = {};
   const mockedAddErrors = jest.fn();
-  const mockedCleanErrors = jest.fn();
-  const mockedUseErrors = jest.fn(() => ({
-    errors: mockedErrors,
-    addErrors: mockedAddErrors,
-    cleanErrors: mockedCleanErrors,
-  }));
 
   const mockedOnFinish = jest.fn();
+
+  const mockedDescription = 'mocked-description';
+  const mockedTitle = 'mocked-title';
+  const mockedColor = 'mocked-color';
+  const mockedItemsAmount = 'mocked-items-amount';
+
+  const mockedIsEditing = 'mocked-is-editing';
+  const mockedValues = {
+    title: mockedTitle,
+    description: mockedDescription,
+    color: mockedColor,
+    itemsAmount: mockedItemsAmount,
+  };
+  const mockedSetters = {
+    setTitle: 'mocked-setTitle',
+    setDescription: 'mocked-setDescription',
+    setColor: 'mocked-setColor',
+    setItemsAmount: 'mocked-setItemsAmount',
+  };
+  const mockedLoading = 'mocked-loading';
+  const mockedErrors = 'mocked-errors';
+  const mockedClear = 'mocked-clear';
+  const mockedPrepareForEdit = 'mocked-prepare-for-edit';
+  const mockedUseForm = mockUseForm({
+    mockedIsEditing,
+    mockedValues,
+    mockedSetters,
+    mockedLoading,
+    mockedErrors,
+    mockedClear,
+    mockedPrepareForEdit,
+    mockedAddErrors,
+  });
 
   afterEach(() => {
     cleanup();
@@ -46,45 +69,19 @@ describe('useCategoryForm', () => {
   });
 
   beforeEach(() => {
-    (useErrors as unknown as jest.Mock).mockImplementation(mockedUseErrors);
+    (useForm as unknown as jest.Mock).mockImplementation(mockedUseForm);
   });
 
-  const expectedFilledValues = {
-    title: mockedCategory.attributes.title,
-    description: mockedCategory.attributes.description,
-    color: mockedCategory.attributes.color,
-    itemsAmount: mockedCategory.attributes.itemsAmount,
-  };
-
-  const expectedEmptyValues = {
-    title: '',
-    description: '',
-    color: '',
-    itemsAmount: 0,
-  };
-
   const expectedEmptyState = {
-    prepareFormForEdit: expect.any(Function),
-    cleanForm: expect.any(Function),
-    isEditForm: false,
+    prepareFormForEdit: mockedPrepareForEdit,
+    cleanForm: mockedClear,
+    isEditForm: mockedIsEditing,
     onSubmit: expect.any(Function),
     onDelete: expect.any(Function),
-    values: expectedEmptyValues,
-    setters: {
-      setTitle: expect.any(Function),
-      setDescription: expect.any(Function),
-      setColor: expect.any(Function),
-      setItemsAmount: expect.any(Function),
-    },
+    values: mockedValues,
+    setters: mockedSetters,
     errors: mockedErrors,
-    loading: false,
-  };
-
-  const setValues = async (setters: Record<string, any>) => {
-    await setters.setTitle(mockedCategory.attributes.title);
-    await setters.setDescription(mockedCategory.attributes.description);
-    await setters.setColor(mockedCategory.attributes.color);
-    await setters.setItemsAmount(mockedCategory.attributes.itemsAmount);
+    loading: mockedLoading,
   };
 
   test('returns empty category form state', () => {
@@ -93,35 +90,6 @@ describe('useCategoryForm', () => {
     const { result } = renderHook(() => useCategoryForm(mockedGameId));
     // Assert
     expect(result.current).toEqual(expectedEmptyState);
-  });
-
-  describe('When prepares form for edit without data', () => {
-    test('returns empty category form state', async () => {
-      // Arange
-      const { result } = renderHook(() => useCategoryForm(mockedGameId));
-      // Act
-      await act(async () => {
-        await result.current.prepareFormForEdit();
-      });
-      // Assert
-      expect(result.current).toEqual(expectedEmptyState);
-    });
-  });
-
-  describe('When setters called', () => {
-    test('returns updated category form state', async () => {
-      // Arange
-      const { result } = renderHook(() => useCategoryForm(mockedGameId));
-      // Act
-      await act(async () => {
-        await setValues(result.current.setters);
-      });
-      // Assert
-      expect(result.current).toEqual({
-        ...expectedEmptyState,
-        values: expectedFilledValues,
-      });
-    });
   });
 
   describe('When form was submitted', () => {
@@ -156,9 +124,6 @@ describe('useCategoryForm', () => {
       const { result } = renderHook(() =>
         useCategoryForm(mockedGameId, null, mockedOnFinish)
       );
-      await act(async () => {
-        await setValues(result.current.setters);
-      });
       // Act
       await act(async () => {
         await result.current.onSubmit();
@@ -169,62 +134,20 @@ describe('useCategoryForm', () => {
         mockedAddErrors
       );
       expect(mockedCategoryValidator).toHaveBeenCalledWith({
-        title: mockedCategory.attributes.title,
-        description: mockedCategory.attributes.description,
-        color: mockedCategory.attributes.color,
-        itemsAmount: mockedCategory.attributes.itemsAmount,
+        title: mockedTitle,
+        description: mockedDescription,
+        color: mockedColor,
+        itemsAmount: mockedItemsAmount,
       });
       expect(mockedCreateCategory).toHaveBeenCalledWith(mockedGameId, {
-        title: mockedCategory.attributes.title,
-        description: mockedCategory.attributes.description,
-        color: mockedCategory.attributes.color,
-        itemsAmount: mockedCategory.attributes.itemsAmount,
+        title: mockedTitle,
+        description: mockedDescription,
+        color: mockedColor,
+        itemsAmount: mockedItemsAmount,
       });
       expect(mockedUpdateCategory).not.toHaveBeenCalled();
       expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
       expect(mockedAddErrors).not.toHaveBeenCalled();
-    });
-
-    describe('When error occurs while submit', () => {
-      test('catches error and sets caught error', async () => {
-        // Arange
-        const mockedErrorMessage = 'Error occured!';
-        const mockedError = new Error(mockedErrorMessage);
-        const mockedValidate = jest.fn(() => {
-          throw mockedError;
-        });
-        (validate as unknown as jest.Mock).mockImplementationOnce(
-          mockedValidate
-        );
-
-        const { result } = renderHook(() =>
-          useCategoryForm(mockedGameId, null, mockedOnFinish)
-        );
-        await act(async () => {
-          await setValues(result.current.setters);
-        });
-        // Act
-        await act(async () => {
-          await result.current.onSubmit();
-        });
-        // Assert
-        expect(mockedValidate).toHaveBeenCalledWith(
-          mockedCategoryValidatorInstance,
-          mockedAddErrors
-        );
-        expect(mockedCategoryValidator).toHaveBeenCalledWith({
-          title: mockedCategory.attributes.title,
-          description: mockedCategory.attributes.description,
-          color: mockedCategory.attributes.color,
-          itemsAmount: mockedCategory.attributes.itemsAmount,
-        });
-        expect(mockedCreateCategory).not.toHaveBeenCalled();
-        expect(mockedUpdateCategory).not.toHaveBeenCalled();
-        expect(mockedOnFinish).not.toHaveBeenCalled();
-        expect(mockedAddErrors).toHaveBeenCalledWith({
-          main: mockedErrorMessage,
-        });
-      });
     });
 
     describe('When data passed (edit form)', () => {
@@ -238,12 +161,6 @@ describe('useCategoryForm', () => {
         const { result } = renderHook(() =>
           useCategoryForm(mockedGameId, mockedData, mockedOnFinish)
         );
-        await act(async () => {
-          await result.current.prepareFormForEdit();
-          await result.current.setters.setDescription(
-            mockedCategory2.attributes.description
-          );
-        });
         // Act
         await act(async () => {
           await result.current.onSubmit();
@@ -254,109 +171,29 @@ describe('useCategoryForm', () => {
           mockedAddErrors
         );
         expect(mockedCategoryValidator).toHaveBeenCalledWith({
-          title: mockedCategory.attributes.title,
-          description: mockedCategory2.attributes.description,
-          color: mockedCategory.attributes.color,
-          itemsAmount: mockedCategory.attributes.itemsAmount,
+          title: mockedTitle,
+          description: mockedDescription,
+          color: mockedColor,
+          itemsAmount: mockedItemsAmount,
         });
         expect(mockedCreateCategory).not.toHaveBeenCalled();
         expect(mockedUpdateCategory).toHaveBeenCalledWith(
           mockedGameId,
           mockedCategory.id,
           {
-            title: mockedCategory.attributes.title,
-            description: mockedCategory2.attributes.description,
-            color: mockedCategory.attributes.color,
-            itemsAmount: mockedCategory.attributes.itemsAmount,
+            title: mockedTitle,
+            description: mockedDescription,
+            color: mockedColor,
+            itemsAmount: mockedItemsAmount,
           }
         );
         expect(mockedOnFinish).toHaveBeenCalledWith(mockedSubmittedData);
         expect(mockedAddErrors).not.toHaveBeenCalled();
       });
-
-      describe('When error occurs while submit', () => {
-        test('catches error and sets caught error', async () => {
-          // Arange
-          const mockedErrorMessage = 'Error occured!';
-          const mockedError = new Error(mockedErrorMessage);
-          const mockedValidate = jest.fn(() => {
-            throw mockedError;
-          });
-          (validate as unknown as jest.Mock).mockImplementationOnce(
-            mockedValidate
-          );
-
-          const { result } = renderHook(() =>
-            useCategoryForm(mockedGameId, mockedData, mockedOnFinish)
-          );
-          await act(async () => {
-            await setValues(result.current.setters);
-          });
-          // Act
-          await act(async () => {
-            await result.current.onSubmit();
-          });
-          // Assert
-          expect(mockedValidate).toHaveBeenCalledWith(
-            mockedCategoryValidatorInstance,
-            mockedAddErrors
-          );
-          expect(mockedCategoryValidator).toHaveBeenCalledWith({
-            title: mockedCategory.attributes.title,
-            description: mockedCategory.attributes.description,
-            color: mockedCategory.attributes.color,
-            itemsAmount: mockedCategory.attributes.itemsAmount,
-          });
-          expect(mockedCreateCategory).not.toHaveBeenCalled();
-          expect(mockedUpdateCategory).not.toHaveBeenCalled();
-          expect(mockedOnFinish).not.toHaveBeenCalled();
-          expect(mockedAddErrors).toHaveBeenCalledWith({
-            main: mockedErrorMessage,
-          });
-        });
-      });
     });
   });
 
   describe('when data passed', () => {
-    describe('When prepares form for edit', () => {
-      test('returns updated category form state', async () => {
-        // Arange
-        const { result } = renderHook(() =>
-          useCategoryForm(mockedGameId, mockedData)
-        );
-        // Act
-        await act(async () => {
-          await result.current.prepareFormForEdit();
-        });
-        // Assert
-        expect(result.current).toEqual({
-          ...expectedEmptyState,
-          isEditForm: true,
-          values: { ...expectedFilledValues },
-        });
-      });
-    });
-
-    describe('When form is cleaned', () => {
-      test('returns updated empty category form state', async () => {
-        // Arange
-        const { result } = renderHook(() =>
-          useCategoryForm(mockedGameId, mockedData)
-        );
-        // Act
-        await act(async () => {
-          await result.current.prepareFormForEdit();
-          await result.current.cleanForm();
-        });
-        // Assert
-        expect(result.current).toEqual({
-          ...expectedEmptyState,
-          isEditForm: true,
-        });
-      });
-    });
-
     describe('when onDelete called', () => {
       test('deletes category', async () => {
         // Arange
@@ -371,7 +208,6 @@ describe('useCategoryForm', () => {
         );
         // Act
         await act(async () => {
-          await result.current.prepareFormForEdit();
           await result.current.onDelete();
         });
         // Assert
@@ -380,38 +216,6 @@ describe('useCategoryForm', () => {
           mockedCategory.id
         );
         expect(mockedOnFinish).toHaveBeenCalledWith(null);
-      });
-
-      describe('When error occurs while delete', () => {
-        test('catches error and set caught error', async () => {
-          // Arange
-          const mockedErrorMessage = 'Error occured!';
-          const mockedError = new Error(mockedErrorMessage);
-          const mockedDeleteCategory = jest.fn(() => {
-            throw mockedError;
-          });
-          (deleteCategory as unknown as jest.Mock).mockImplementation(
-            mockedDeleteCategory
-          );
-
-          const { result } = renderHook(() =>
-            useCategoryForm(mockedGameId, mockedData, mockedOnFinish)
-          );
-          // Act
-          await act(async () => {
-            await result.current.prepareFormForEdit();
-            await result.current.onDelete();
-          });
-          // Assert
-          expect(mockedOnFinish).not.toHaveBeenCalled();
-          expect(mockedAddErrors).toHaveBeenCalledWith({
-            main: mockedErrorMessage,
-          });
-          expect(mockedDeleteCategory).toHaveBeenCalledWith(
-            mockedGame.id,
-            mockedCategory.id
-          );
-        });
       });
 
       describe('when data not passed (create form)', () => {
