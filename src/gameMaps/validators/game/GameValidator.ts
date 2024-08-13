@@ -5,7 +5,7 @@ import { IsHashedHexColor } from '@/common/utils/validators/decorators';
 import Validator from '@/common/utils/validators';
 
 class GameValidator extends Validator {
-  @Length(3, 20)
+  @Length(3, 30)
   title: string;
 
   @Length(3, 300)
