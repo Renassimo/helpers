@@ -70,7 +70,7 @@ const PlayMapMenu = () => {
           </>
         )}
       </Box>
-      <List>
+      <List sx={{ maxHeight: 'calc(75vh - 52.5px)', overflow: 'auto' }}>
         {categoriesList.map((category) => (
           <ListItemButton
             key={category.id}

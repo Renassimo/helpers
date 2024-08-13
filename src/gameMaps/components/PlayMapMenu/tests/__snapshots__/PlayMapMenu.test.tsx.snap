@@ -21,7 +21,7 @@ exports[`PlayMapMenu renders successfully 1`] = `
         </button>
       </div>
       <ul
-        class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+        class="MuiList-root MuiList-padding css-1hekvkn-MuiList-root"
       >
         <div
           aria-label="category"
@@ -278,7 +278,7 @@ exports[`PlayMapMenu when isCategoryEditOpen true and editingCategory passed ren
         </button>
       </div>
       <ul
-        class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+        class="MuiList-root MuiList-padding css-1hekvkn-MuiList-root"
       >
         <div
           aria-label="category"
@@ -535,7 +535,7 @@ exports[`PlayMapMenu when isCategoryEditOpen true renders successfully 1`] = `
         </button>
       </div>
       <ul
-        class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+        class="MuiList-root MuiList-padding css-1hekvkn-MuiList-root"
       >
         <div
           aria-label="category"
@@ -792,7 +792,7 @@ exports[`PlayMapMenu when pointingCategoryId is null and when relocatingItem pas
         </button>
       </div>
       <ul
-        class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+        class="MuiList-root MuiList-padding css-1hekvkn-MuiList-root"
       >
         <div
           aria-label="category"
@@ -1071,7 +1071,7 @@ exports[`PlayMapMenu when pointingCategoryId is null renders successfully 1`] = 
         </button>
       </div>
       <ul
-        class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+        class="MuiList-root MuiList-padding css-1hekvkn-MuiList-root"
       >
         <div
           aria-label="category"
