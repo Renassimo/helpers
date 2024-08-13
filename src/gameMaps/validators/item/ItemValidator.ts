@@ -3,7 +3,7 @@ import { Length, IsBoolean } from 'class-validator';
 import Validator from '@/common/utils/validators';
 
 class ItemValidator extends Validator {
-  @Length(3, 300)
+  @Length(0, 300)
   description: string;
 
   @IsBoolean()

@@ -5,10 +5,10 @@ import { IsHashedHexColor } from '@/common/utils/validators/decorators';
 import Validator from '@/common/utils/validators';
 
 class CategoryValidator extends Validator {
-  @Length(3, 20)
+  @Length(3, 30)
   title: string;
 
-  @Length(3, 300)
+  @Length(0, 300)
   description: string;
 
   @IsHashedHexColor()
