@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
 
 import MapOnImage from '@/common/lib/leaflet/components/MapOnImage';
@@ -12,7 +14,6 @@ import ItemFormModal from '@/gameMaps/components/ItemFormModal';
 
 import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 import useAddItemOnMap from '@/gameMaps/hooks/useAddItemOnMap';
-import { Checkbox, FormControlLabel } from '@mui/material';
 
 const PlayMap = () => {
   const {
