@@ -47,7 +47,9 @@ describe('PlayMap', () => {
   const mockedRelocateItem = jest.fn();
   const mockedUpdateItemCoordinates = jest.fn();
   const mockedRelocatingItem = mockedItem1;
-  const mockedUsePlayResult = {
+  const mockedUpdateItemCollection = jest.fn();
+  const mockedItemCollectionUpdating = false;
+  const mockedUsePlayContextResult = {
     game: {
       ...mockedGame,
       attributes: { ...mockedGame.attributes, mapImageRatio: 2 },
@@ -66,8 +68,10 @@ describe('PlayMap', () => {
     relocateItem: mockedRelocateItem,
     relocatingItem: null,
     updateItemCoordinates: mockedUpdateItemCoordinates,
+    updateItemCollection: mockedUpdateItemCollection,
+    itemCollectionUpdating: mockedItemCollectionUpdating,
   };
-  const mockedUsePlayContext = jest.fn(() => mockedUsePlayResult);
+  const mockedUsePlayContext = jest.fn(() => mockedUsePlayContextResult);
   const mockedHandleMapClick = jest.fn();
   const mockedNewMarker = {
     attributes: {
@@ -121,7 +125,7 @@ describe('PlayMap', () => {
     test('renders successfully with mocked modal', () => {
       // Arange
       const mockedUsePlayContext = jest.fn(() => ({
-        ...mockedUsePlayResult,
+        ...mockedUsePlayContextResult,
         editingItem: mockedItem1,
       }));
       (usePlayContext as unknown as jest.Mock).mockImplementation(
@@ -146,7 +150,7 @@ describe('PlayMap', () => {
     test('renders successfully with mocked modal', () => {
       // Arange
       const mockedUsePlayContext = jest.fn(() => ({
-        ...mockedUsePlayResult,
+        ...mockedUsePlayContextResult,
         pointingCategoryId: mockedPointingCategoryId,
       }));
       (usePlayContext as unknown as jest.Mock).mockImplementation(
@@ -178,7 +182,7 @@ describe('PlayMap', () => {
     test('renders successfully', () => {
       // Arange
       const mockedUsePlayContext = jest.fn(() => ({
-        ...mockedUsePlayResult,
+        ...mockedUsePlayContextResult,
         relocatingItem: mockedRelocatingItem,
       }));
       (usePlayContext as unknown as jest.Mock).mockImplementation(
@@ -215,6 +219,7 @@ describe('PlayMap', () => {
       // Assert
       expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedOpenItemUpdating).toHaveBeenCalledWith(mockedItem1.id);
+      expect(mockedUpdateItemCollection).not.toHaveBeenCalled();
     });
   });
 
@@ -227,6 +232,23 @@ describe('PlayMap', () => {
       // Assert
       expect(mockedRelocateItem).toHaveBeenCalledWith(mockedItem1.id);
       expect(mockedOpenItemUpdating).not.toHaveBeenCalled();
+      expect(mockedUpdateItemCollection).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when clicks to collection item', () => {
+    test('calls mockedUpdateItemCollection', async () => {
+      // Arange
+      const { getAllByLabelText } = renderWithTheme(<PlayMap />);
+      // Act
+      await userEvent.click(getAllByLabelText('Collected')[0]);
+      // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
+      expect(mockedOpenItemUpdating).not.toHaveBeenCalled();
+      expect(mockedUpdateItemCollection).toHaveBeenCalledWith(
+        mockedItem1.id,
+        !mockedItem1.attributes.collected
+      );
     });
   });
 });

@@ -88,7 +88,7 @@ describe('updateDelete (category)', () => {
     const mockedDeleteItem = jest.fn();
     const mockedGetAllItems = jest.fn(() => mockedItems);
     const mockedGetItemsServiceInstance = jest.fn(() => ({
-      getAll: mockedGetAllItems,
+      getAllByCategory: mockedGetAllItems,
       delete: mockedDeleteItem,
     }));
 
@@ -109,8 +109,7 @@ describe('updateDelete (category)', () => {
       expect(mockedGetAllItems).toHaveBeenCalledWith(
         mockedUid,
         mockedGameId,
-        mockedCategoryId,
-        'categoryId'
+        mockedCategoryId
       );
       expect(mockedDeleteItem).toHaveBeenCalledTimes(2);
       expect(mockedDelete).toHaveBeenCalledWith(

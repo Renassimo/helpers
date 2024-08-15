@@ -6,6 +6,7 @@ import useCreateUpdateCategory from './subhooks/useCreateUpdateCategory';
 import useItemsData from './subhooks/useItemsData';
 import useCreateUpdateItem from './subhooks/useCreateUpdateItem';
 import useUpdateItemCoordinates from './subhooks/useUpdateItemCoordinates';
+import useUpdateItemCollection from './subhooks/useUpdateItemCollection';
 
 const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
   const {
@@ -64,24 +65,32 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
   const { relocateItem, relocatingItem, updateItemCoordinates } =
     useUpdateItemCoordinates(
       game,
+      play,
       items,
       setPointingCategoryId,
       updateSubmittedItem
     );
 
+  // Updating item collection
+  const { updateItemCollection, loading: itemCollectionUpdating } =
+    useUpdateItemCollection(game, play, updateSubmittedItem);
+
   return {
     game,
+    // Play data
     play,
     updateSubmittedPlay,
     isPlayEditOpen,
     setIsPlayEditOpen,
+    // Items data
+    items,
+    itemsList,
+    visibleItems,
+    // Category creating and editing
     categories,
     categoriesList,
     isEveryCategoryChosen,
     isNoCategoriesChosen,
-    items,
-    itemsList,
-    visibleItems,
     choseAllCategories,
     clearAllChosenCategories,
     changeCategoryChoose,
@@ -94,6 +103,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     editingCategory,
     openCategoryCreating,
     openCategoryUpdating,
+    // Item creating and updating
     isItemEditOpen,
     setIsItemEditOpen,
     creatingItemCoordinates,
@@ -101,9 +111,13 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openItemCreating,
     openItemUpdating,
     updateSubmittedItem,
+    // Updating item coordinates
     relocateItem,
     relocatingItem,
     updateItemCoordinates,
+    // Updating item collection
+    updateItemCollection,
+    itemCollectionUpdating,
   };
 };
 

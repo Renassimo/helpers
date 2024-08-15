@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
 
 import MapOnImage from '@/common/lib/leaflet/components/MapOnImage';
@@ -30,6 +32,8 @@ const PlayMap = () => {
     relocateItem,
     relocatingItem,
     updateItemCoordinates,
+    updateItemCollection,
+    itemCollectionUpdating,
   } = usePlayContext();
   const { handleMapClick, newMarker, relocatingMarker } = useAddItemOnMap({
     categories,
@@ -64,6 +68,10 @@ const PlayMap = () => {
 
   const isItemModalAllowed = !!(gameId && categoryId && playId && coordinates);
 
+  const handleUpdateItemCollection = (collected: boolean, itemId: string) => {
+    updateItemCollection(itemId, collected);
+  };
+
   return (
     <>
       <MapOnImage
@@ -83,6 +91,21 @@ const PlayMap = () => {
               <Box>
                 <Box>
                   <Typography>{item.attributes.description}</Typography>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={item.attributes.collected}
+                        disabled={itemCollectionUpdating}
+                        onChange={(event) =>
+                          handleUpdateItemCollection(
+                            event?.target.checked,
+                            item.id
+                          )
+                        }
+                      />
+                    }
+                    label="Collected"
+                  />
                 </Box>
                 <Box textAlign="right">
                   <IconButton

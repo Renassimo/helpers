@@ -6,7 +6,10 @@ export interface ItemAttributes {
   coordinates: [number, number];
   description: string;
   imageUrl?: string;
-  playId: string;
+  playId?: string;
+  collectedByPlayId?: {
+    [key: string]: boolean;
+  };
 }
 
 export interface ItemMarker {

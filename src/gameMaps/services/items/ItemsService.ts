@@ -19,8 +19,7 @@ class ItemsService extends FirestoreService {
   async getAll(
     uid: string,
     gameId: string,
-    filterById: string,
-    filterBy = 'playId'
+    playId: string
   ): Promise<ItemData[]> {
     const plays = await this.db
       .collection(this.GAME_MAPS)
@@ -28,12 +27,37 @@ class ItemsService extends FirestoreService {
       .collection(this.GAMES)
       .doc(gameId)
       .collection(this.ITEMS)
-      .where(filterBy, '==', filterById)
       .get();
-    return plays.docs.map((doc) => this.deserializeDoc({ docData: doc }));
+    return plays.docs.map((doc) =>
+      this.filterAttributesForClient(
+        this.deserializeDoc({ docData: doc }),
+        playId
+      )
+    );
   }
 
-  async getOne(uid: string, gameId: string, id: string): Promise<ItemData> {
+  async getAllByCategory(
+    uid: string,
+    gameId: string,
+    categoryId: string
+  ): Promise<{ id: string }[]> {
+    const plays = await this.db
+      .collection(this.GAME_MAPS)
+      .doc(uid)
+      .collection(this.GAMES)
+      .doc(gameId)
+      .collection(this.ITEMS)
+      .where('categoryId', '==', categoryId)
+      .get();
+    return plays.docs.map((doc) => ({ id: doc.id }));
+  }
+
+  async getOne(
+    uid: string,
+    gameId: string,
+    id: string,
+    playId?: string
+  ): Promise<ItemData> {
     const docData = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
@@ -42,7 +66,10 @@ class ItemsService extends FirestoreService {
       .collection(this.ITEMS)
       .doc(id)
       .get();
-    return this.deserializeDoc({ docData });
+    return this.filterAttributesForClient(
+      this.deserializeDoc<ItemData>({ docData }),
+      playId
+    );
   }
 
   async create(
@@ -50,13 +77,27 @@ class ItemsService extends FirestoreService {
     gameId: string,
     attributes: ItemAttributes
   ): Promise<ItemData> {
+    const { playId, collected, categoryId, coordinates, description } =
+      attributes;
+    const withCollectedByPlayId = playId
+      ? {
+          collectedByPlayId: {
+            [playId]: collected,
+          },
+        }
+      : {};
     const game = await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
       .collection(this.GAMES)
       .doc(gameId)
       .collection(this.ITEMS)
-      .add(attributes);
+      .add({
+        categoryId,
+        coordinates,
+        description,
+        ...withCollectedByPlayId,
+      });
     return this.deserializeDoc({
       id: game.id,
       updatedAttributes: attributes,
@@ -69,6 +110,8 @@ class ItemsService extends FirestoreService {
     id: string,
     attributes: Partial<ItemAttributes>
   ): Promise<ItemData> {
+    const { playId } = attributes;
+
     await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
@@ -76,8 +119,8 @@ class ItemsService extends FirestoreService {
       .doc(gameId)
       .collection(this.ITEMS)
       .doc(id)
-      .update({ ...attributes });
-    return this.getOne(uid, gameId, id);
+      .update(this.filterPartialAttributes(attributes));
+    return this.getOne(uid, gameId, id, playId);
   }
 
   async delete(
@@ -94,6 +137,50 @@ class ItemsService extends FirestoreService {
       .doc(id)
       .delete();
     return {};
+  }
+
+  private filterAttributesForClient(data: ItemData, playId?: string): ItemData {
+    const withPlayId = playId ? { playId } : {};
+    const {
+      collectedByPlayId,
+      categoryId,
+      coordinates,
+      description = '',
+    } = data.attributes;
+    return {
+      ...data,
+      attributes: {
+        ...withPlayId,
+        categoryId,
+        coordinates,
+        description,
+        collected: !!collectedByPlayId?.[playId ?? ''],
+      },
+    };
+  }
+
+  private filterPartialAttributes(
+    attributes: Partial<ItemAttributes>
+  ): Partial<ItemAttributes> {
+    const { playId, collected, categoryId, coordinates, description } =
+      attributes;
+
+    const withCollected =
+      typeof playId !== 'undefined' && typeof collected !== 'undefined'
+        ? { [`collectedByPlayId.${playId}`]: collected }
+        : {};
+    const filteredAttributes: Partial<ItemAttributes> = {
+      ...withCollected,
+    };
+
+    if (typeof categoryId !== 'undefined')
+      filteredAttributes.categoryId = categoryId;
+    if (typeof coordinates !== 'undefined')
+      filteredAttributes.coordinates = coordinates;
+    if (typeof description !== 'undefined')
+      filteredAttributes.description = description;
+
+    return filteredAttributes;
   }
 
   static getInstance(db: Firestore): ItemsService {

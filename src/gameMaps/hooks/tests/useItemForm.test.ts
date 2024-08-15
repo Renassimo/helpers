@@ -25,7 +25,7 @@ jest.mock('@/gameMaps/handlers/client/deleteItem');
 describe('useItemForm', () => {
   const mockedData: ItemData = mockedItem;
   const mockedGameId = mockedGame.id;
-  const mockedPlayId = mockedItem.attributes.playId;
+  const mockedPlayId = mockedItem.attributes.playId as string;
   const mockedCategoryId = mockedItem.attributes.categoryId;
   const mockedCoordinates = mockedItem.attributes.coordinates;
   const mockedAdditionalData = {
