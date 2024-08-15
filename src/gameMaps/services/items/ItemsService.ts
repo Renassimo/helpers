@@ -110,8 +110,8 @@ class ItemsService extends FirestoreService {
     id: string,
     attributes: Partial<ItemAttributes>
   ): Promise<ItemData> {
-    const { playId, collected, categoryId, coordinates, description } =
-      attributes;
+    const { playId } = attributes;
+
     await this.db
       .collection(this.GAME_MAPS)
       .doc(uid)
@@ -119,12 +119,7 @@ class ItemsService extends FirestoreService {
       .doc(gameId)
       .collection(this.ITEMS)
       .doc(id)
-      .update({
-        categoryId,
-        coordinates,
-        description,
-        [`collectedByPlayId.${playId}`]: collected,
-      });
+      .update(this.filterPartialAttributes(attributes));
     return this.getOne(uid, gameId, id, playId);
   }
 
@@ -162,6 +157,30 @@ class ItemsService extends FirestoreService {
         collected: !!collectedByPlayId?.[playId ?? ''],
       },
     };
+  }
+
+  private filterPartialAttributes(
+    attributes: Partial<ItemAttributes>
+  ): Partial<ItemAttributes> {
+    const { playId, collected, categoryId, coordinates, description } =
+      attributes;
+
+    const withCollected =
+      typeof playId !== 'undefined' && typeof collected !== 'undefined'
+        ? { [`collectedByPlayId.${playId}`]: collected }
+        : {};
+    const filteredAttributes: Partial<ItemAttributes> = {
+      ...withCollected,
+    };
+
+    if (typeof categoryId !== 'undefined')
+      filteredAttributes.categoryId = categoryId;
+    if (typeof coordinates !== 'undefined')
+      filteredAttributes.coordinates = coordinates;
+    if (typeof description !== 'undefined')
+      filteredAttributes.description = description;
+
+    return filteredAttributes;
   }
 
   static getInstance(db: Firestore): ItemsService {

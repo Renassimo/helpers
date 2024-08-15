@@ -330,7 +330,6 @@ describe('ItemsService', () => {
       const result = await categorieService.update('uid', mockedGameId, 'it1', {
         description: newDescription,
         categoryId: mockedItem.attributes.categoryId,
-        coordinates: mockedItem.attributes.coordinates,
         playId: mockedItem.attributes.playId,
         collected: mockedItem.attributes.collected,
       });
@@ -345,9 +344,75 @@ describe('ItemsService', () => {
       expect(mockedUpdate).toHaveBeenCalledWith({
         description: newDescription,
         categoryId: mockedItem.attributes.categoryId,
-        coordinates: mockedItem.attributes.coordinates,
         [`collectedByPlayId.${mockedItem.attributes.playId}`]:
           mockedItem.attributes.collected,
+      });
+    });
+
+    describe('when updates only coordinates', () => {
+      test('returns data', async () => {
+        // Arrange
+        const updatedAttributes = {
+          description: newDescription,
+          categoryId: mockedItem.attributes.categoryId,
+          coordinates: mockedItem.attributes.coordinates,
+          collectedByPlayId: {
+            [mockedItem.attributes.playId!]: mockedItem.attributes.collected,
+          },
+        };
+        const mockedData = jest.fn(() => updatedAttributes);
+        const mockedGet = jest.fn(() => ({ id: 'it1', data: mockedData }));
+        const mockedUpdate = jest.fn(() => ({ id: 'it1' }));
+        const [mockedDb, mockedDbFuncs] = mockDBCallStack(
+          'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(items).doc(id)',
+          {
+            get: mockedGet,
+            update: mockedUpdate,
+          }
+        );
+        const [
+          mockedCollection1,
+          mockedDoc1,
+          mockedCollection2,
+          mockedDoc2,
+          mockedCollection3,
+          mockedDoc3,
+        ] = mockedDbFuncs;
+
+        const categorieService = ItemsService.getInstance(
+          mockedDb as unknown as Firestore
+        );
+        const expectedResult = {
+          ...mockedItem,
+          attributes: {
+            description: newDescription,
+            categoryId: mockedItem.attributes.categoryId,
+            coordinates: mockedItem.attributes.coordinates,
+            playId: mockedItem.attributes.playId,
+            collected: mockedItem.attributes.collected,
+          },
+        };
+        // Act
+        const result = await categorieService.update(
+          'uid',
+          mockedGameId,
+          'it1',
+          {
+            coordinates: mockedItem.attributes.coordinates,
+            playId: mockedItem.attributes.playId,
+          }
+        );
+        // Assert
+        expect(result).toEqual(expectedResult);
+        expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
+        expect(mockedDoc1).toHaveBeenCalledWith('uid');
+        expect(mockedCollection2).toHaveBeenCalledWith('games');
+        expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
+        expect(mockedCollection3).toHaveBeenCalledWith('items');
+        expect(mockedDoc3).toHaveBeenCalledWith('it1');
+        expect(mockedUpdate).toHaveBeenCalledWith({
+          coordinates: mockedItem.attributes.coordinates,
+        });
       });
     });
 

@@ -64,6 +64,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
   const { relocateItem, relocatingItem, updateItemCoordinates } =
     useUpdateItemCoordinates(
       game,
+      play,
       items,
       setPointingCategoryId,
       updateSubmittedItem

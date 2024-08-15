@@ -218,6 +218,7 @@ describe('usePlayProvider', () => {
     );
     expect(mockedUseUpdateItemCoordinates).toHaveBeenCalledWith(
       mockedGameData,
+      mockedPlay,
       mockedItems,
       mockedSetPointingCategoryId,
       mockedUpdateSubmittedItem

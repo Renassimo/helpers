@@ -4,11 +4,12 @@ import useAlerts from '@/common/hooks/alerts';
 
 import updateItem from '@/gameMaps/handlers/client/updateItem';
 
-import { GameData, ItemData, ItemsState } from '@/gameMaps/types';
+import { GameData, ItemData, ItemsState, PlayData } from '@/gameMaps/types';
 import { CommonError } from '@/common/types/errors';
 
 const useUpdateItemCoordinates = (
   game: GameData | null,
+  play: PlayData | null,
   items: ItemsState,
   setPointingCategoryId: (id: string | null) => void,
   updateSubmittedItem: (newData: ItemData | null, id?: string) => void
@@ -44,6 +45,7 @@ const useUpdateItemCoordinates = (
         createInfoAlert(`Updating item coordinates...`);
         const data = await updateItem(gameId, relocatingItemId, {
           coordinates,
+          playId: play?.id,
         });
         setRelocatingItemId(null);
         updateSubmittedItem(data);

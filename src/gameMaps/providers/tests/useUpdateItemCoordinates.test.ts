@@ -6,7 +6,12 @@ import updateItem from '@/gameMaps/handlers/client/updateItem';
 
 import { PlayContextData } from '@/gameMaps/types';
 
-import { mockedGame, mockedItem1, mockedItem2 } from '@/gameMaps/types/mocks';
+import {
+  mockedGame,
+  mockedItem1,
+  mockedItem2,
+  mockedPlay,
+} from '@/gameMaps/types/mocks';
 
 import useUpdateItemCoordinates from '../hooks/subhooks/useUpdateItemCoordinates';
 
@@ -60,6 +65,7 @@ describe('useUpdateItemCoordinates', () => {
     const { result } = renderHook(() =>
       useUpdateItemCoordinates(
         mockedGame,
+        mockedPlay,
         mockedItemsState,
         mockedSetPointingCategoryId,
         mockedUpdateSubmittedItem
@@ -80,6 +86,7 @@ describe('useUpdateItemCoordinates', () => {
       const { result } = renderHook(() =>
         useUpdateItemCoordinates(
           mockedGame,
+          mockedPlay,
           mockedItemsState,
           mockedSetPointingCategoryId,
           mockedUpdateSubmittedItem
@@ -101,6 +108,7 @@ describe('useUpdateItemCoordinates', () => {
         const { result } = renderHook(() =>
           useUpdateItemCoordinates(
             mockedGame,
+            mockedPlay,
             mockedItemsState,
             mockedSetPointingCategoryId,
             mockedUpdateSubmittedItem
@@ -131,6 +139,7 @@ describe('useUpdateItemCoordinates', () => {
       const { result } = renderHook(() =>
         useUpdateItemCoordinates(
           mockedGame,
+          mockedPlay,
           mockedItemsState,
           mockedSetPointingCategoryId,
           mockedUpdateSubmittedItem
@@ -160,7 +169,7 @@ describe('useUpdateItemCoordinates', () => {
       expect(mockedUpdateItem).toHaveBeenCalledWith(
         mockedGame.id,
         mockedItem2.id,
-        { coordinates: [1, 2] }
+        { coordinates: [1, 2], playId: mockedPlay.id }
       );
       expect(mockedUpdateSubmittedItem).toHaveBeenCalledWith(mockedUpdatedData);
       expect(result.current).toEqual(expectedState);
@@ -178,6 +187,7 @@ describe('useUpdateItemCoordinates', () => {
         const { result } = renderHook(() =>
           useUpdateItemCoordinates(
             mockedGame,
+            mockedPlay,
             mockedItemsState,
             mockedSetPointingCategoryId,
             mockedUpdateSubmittedItem
