@@ -57,7 +57,7 @@ const useUpdateItemCoordinates = (
         createErrorAlert(message);
       }
     },
-    [game, relocatingItemId]
+    [game, play, relocatingItemId]
   );
 
   return {

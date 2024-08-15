@@ -64,4 +64,7 @@ export interface PlayContextData {
   relocateItem: (id: string | null) => void;
   relocatingItem: ItemData | null;
   updateItemCoordinates: (coordinates: [number, number]) => void;
+  // Updating item collection
+  updateItemCollection: (itemId: string, collected: boolean) => void;
+  itemCollectionUpdating: boolean;
 }

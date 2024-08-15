@@ -12,6 +12,7 @@ import ItemFormModal from '@/gameMaps/components/ItemFormModal';
 
 import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 import useAddItemOnMap from '@/gameMaps/hooks/useAddItemOnMap';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 const PlayMap = () => {
   const {
@@ -30,6 +31,8 @@ const PlayMap = () => {
     relocateItem,
     relocatingItem,
     updateItemCoordinates,
+    updateItemCollection,
+    itemCollectionUpdating,
   } = usePlayContext();
   const { handleMapClick, newMarker, relocatingMarker } = useAddItemOnMap({
     categories,
@@ -64,6 +67,10 @@ const PlayMap = () => {
 
   const isItemModalAllowed = !!(gameId && categoryId && playId && coordinates);
 
+  const handleUpdateItemCollection = (collected: boolean, itemId: string) => {
+    updateItemCollection(itemId, collected);
+  };
+
   return (
     <>
       <MapOnImage
@@ -83,6 +90,21 @@ const PlayMap = () => {
               <Box>
                 <Box>
                   <Typography>{item.attributes.description}</Typography>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={item.attributes.collected}
+                        disabled={itemCollectionUpdating}
+                        onChange={(event) =>
+                          handleUpdateItemCollection(
+                            event?.target.checked,
+                            item.id
+                          )
+                        }
+                      />
+                    }
+                    label="Collected"
+                  />
                 </Box>
                 <Box textAlign="right">
                   <IconButton

@@ -43,6 +43,9 @@ const PlayContext = createContext<PlayContextData>({
   relocateItem: () => {},
   relocatingItem: null,
   updateItemCoordinates: () => {},
+  // Updating item collection
+  updateItemCollection: () => {},
+  itemCollectionUpdating: false,
 });
 
 export default PlayContext;

@@ -15,6 +15,7 @@ import useCategoriesData from '../hooks/subhooks/useCategoriesData';
 import useCreateUpdateCategory from '../hooks/subhooks/useCreateUpdateCategory';
 import useCreateUpdateItem from '../hooks/subhooks/useCreateUpdateItem';
 import useUpdateItemCoordinates from '../hooks/subhooks/useUpdateItemCoordinates';
+import useUpdateItemCollection from '../hooks/subhooks/useUpdateItemCollection';
 
 import usePlayProvider from '../hooks/usePlayProvider';
 
@@ -24,6 +25,7 @@ jest.mock('../hooks/subhooks/useCategoriesData');
 jest.mock('../hooks/subhooks/useCreateUpdateCategory');
 jest.mock('../hooks/subhooks/useCreateUpdateItem');
 jest.mock('../hooks/subhooks/useUpdateItemCoordinates');
+jest.mock('../hooks/subhooks/useUpdateItemCollection');
 
 describe('usePlayProvider', () => {
   const mockedData: PlayPageData = {
@@ -123,6 +125,13 @@ describe('usePlayProvider', () => {
     updateItemCoordinates: mockedUpdateItemCoordinates,
   }));
 
+  const mockedUpdateItemCollection = 'mockedUpdateItemCollection';
+  const mockedItemCollectionUpdating = 'mockedItemCollectionUpdating';
+  const mockedUseUpdateItemCollection = jest.fn(() => ({
+    updateItemCollection: mockedUpdateItemCollection,
+    loading: mockedItemCollectionUpdating,
+  }));
+
   beforeEach(() => {
     (usePlayData as unknown as jest.Mock).mockImplementation(mockedUsePlayData);
     (useItemsData as unknown as jest.Mock).mockImplementation(
@@ -139,6 +148,9 @@ describe('usePlayProvider', () => {
     );
     (useUpdateItemCoordinates as unknown as jest.Mock).mockImplementation(
       mockedUseUpdateItemCoordinates
+    );
+    (useUpdateItemCollection as unknown as jest.Mock).mockImplementation(
+      mockedUseUpdateItemCollection
     );
   });
 
@@ -188,6 +200,9 @@ describe('usePlayProvider', () => {
     relocateItem: mockedRelocateItem,
     relocatingItem: mockedRelocatingItem,
     updateItemCoordinates: mockedUpdateItemCoordinates,
+    // Updating item collection
+    updateItemCollection: mockedUpdateItemCollection,
+    itemCollectionUpdating: mockedItemCollectionUpdating,
   } as unknown as PlayContextData;
 
   //
@@ -221,6 +236,11 @@ describe('usePlayProvider', () => {
       mockedPlay,
       mockedItems,
       mockedSetPointingCategoryId,
+      mockedUpdateSubmittedItem
+    );
+    expect(mockedUseUpdateItemCollection).toHaveBeenCalledWith(
+      mockedGameData,
+      mockedPlay,
       mockedUpdateSubmittedItem
     );
   });
