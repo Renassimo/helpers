@@ -27,7 +27,7 @@ describe('ItemFormModal', () => {
 
   const mockedData = mockedItem;
   const mockedGameId = mockedGame.id;
-  const mockedPlayId = mockedData.attributes.playId;
+  const mockedPlayId = mockedData.attributes.playId as string;
   const mockedCategoryId = mockedData.attributes.categoryId;
   const mockedCoordinates = mockedData.attributes.coordinates;
 

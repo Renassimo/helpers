@@ -37,11 +37,10 @@ const handler = async (
     } else if (method === DELETE) {
       const itemsService = ItemsService.getInstance(db);
 
-      const categoryItems = await itemsService.getAll(
+      const categoryItems = await itemsService.getAllByCategory(
         uid,
         gameId,
-        categoryId,
-        'categoryId'
+        categoryId
       );
       await Promise.all(
         categoryItems.map((item) => itemsService.delete(uid, gameId, item.id))
