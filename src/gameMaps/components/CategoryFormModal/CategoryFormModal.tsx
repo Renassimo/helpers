@@ -66,7 +66,7 @@ const CategoryFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title={`${data ? 'Create new' : `Update`} category`}
+      title={`${isEditForm ? 'Update' : `Create new`} category`}
       loading={loading}
     >
       <CategoryForm

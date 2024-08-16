@@ -70,7 +70,7 @@ const ItemFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title={`${data ? 'Create new' : `Update`} item`}
+      title={`${isEditForm ? 'Update' : `Create new`} item`}
       loading={loading}
     >
       <ItemForm

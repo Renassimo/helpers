@@ -66,7 +66,7 @@ const PlayFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title={`${data ? 'Create new' : `Update`} play`}
+      title={`${isEditForm ? 'Update' : `Create new`} play`}
       loading={loading}
     >
       <PlayForm

@@ -20,7 +20,7 @@ exports[`CategoryFormModal renders snapshot successfully 1`] = `
       </div>
       <div>
         title: 
-        Update category
+        Create new category
         ; maxWidth: 
         sm
         ;
@@ -62,7 +62,7 @@ exports[`CategoryFormModal when data passed renders snapshot successfully 1`] = 
       </div>
       <div>
         title: 
-        Create new category
+        Update category
         ; maxWidth: 
         sm
         ;
