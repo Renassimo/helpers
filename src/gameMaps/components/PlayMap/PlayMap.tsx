@@ -91,7 +91,12 @@ const PlayMap = () => {
             {
               <Box>
                 <Box>
-                  <Typography>{item.attributes.description}</Typography>
+                  <Typography variant="subtitle2">
+                    {categories[item.attributes.categoryId]?.attributes.title}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    {item.attributes.description}
+                  </Typography>
                   <FormControlLabel
                     control={
                       <Checkbox
