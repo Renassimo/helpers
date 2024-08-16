@@ -1044,7 +1044,7 @@ exports[`PlayMapMenu when pointingCategoryId is null renders successfully 1`] = 
           tabindex="0"
           type="button"
         >
-          Clear all
+          Hide all
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />

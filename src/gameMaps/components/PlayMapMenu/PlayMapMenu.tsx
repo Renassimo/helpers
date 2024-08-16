@@ -65,7 +65,7 @@ const PlayMapMenu = () => {
         )}
         {!pointingCategoryId && !relocatingItem && (
           <>
-            <Button onClick={clearAllChosenCategories}>Clear all</Button>
+            <Button onClick={clearAllChosenCategories}>Hide all</Button>
             <Button onClick={choseAllCategories}>Choose all</Button>
             <Button onClick={openCategoryCreating}>Add category</Button>
           </>

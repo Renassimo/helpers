@@ -229,7 +229,7 @@ describe('PlayMapMenu', () => {
       );
       const { getByText } = renderWithTheme(<PlayMapMenu />);
       // Act
-      await userEvent.click(getByText('Clear all'));
+      await userEvent.click(getByText('Hide all'));
       // Assert
       expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
