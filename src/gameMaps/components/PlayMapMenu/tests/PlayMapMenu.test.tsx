@@ -33,6 +33,7 @@ describe('PlayMapMenu', () => {
   const mockedOpenCategoryUpdating = jest.fn();
   const mockedRelocatingItem = mockedItem2;
   const mockedRelocateItem = jest.fn();
+  const mockedClearCategoryEditing = jest.fn();
 
   const mockedUsePlayResult = {
     categoriesList: mockedCategoriesList,
@@ -51,6 +52,7 @@ describe('PlayMapMenu', () => {
     openCategoryUpdating: mockedOpenCategoryUpdating,
     relocatingItem: null,
     relocateItem: mockedRelocateItem,
+    clearCategoryEditing: mockedClearCategoryEditing,
   };
 
   const mockedUsePlayContext = jest.fn(() => mockedUsePlayResult);
@@ -132,6 +134,7 @@ describe('PlayMapMenu', () => {
           data: null,
           onFinish: expect.any(Function),
           gameId: mockedGame.id,
+          clearData: mockedClearCategoryEditing,
         },
         {}
       );
@@ -159,6 +162,7 @@ describe('PlayMapMenu', () => {
             data: mockedCategory1,
             onFinish: expect.any(Function),
             gameId: mockedGame.id,
+            clearData: mockedClearCategoryEditing,
           },
           {}
         );

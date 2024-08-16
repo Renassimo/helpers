@@ -49,6 +49,7 @@ export interface PlayContextData {
   openCategoryCreating: () => void;
   openCategoryUpdating: (id: string) => void;
   updateSubmittedCategory: (newData: CategoryData | null, id?: string) => void;
+  clearCategoryEditing: () => void;
   // Item creating and updating
   isItemEditOpen: boolean;
   creatingItemCoordinates: [number, number] | null;
@@ -60,6 +61,7 @@ export interface PlayContextData {
   openItemUpdating: (id: string) => void;
   updateSubmittedItem: (newData: ItemData | null, id?: string) => void;
   quitFromCreatingNewItem: () => void;
+  clearItemEditing: () => void;
   // Updating item coordinates
   relocateItem: (id: string | null) => void;
   relocatingItem: ItemData | null;

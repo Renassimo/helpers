@@ -34,6 +34,7 @@ const PlayMap = () => {
     updateItemCoordinates,
     updateItemCollection,
     itemCollectionUpdating,
+    clearItemEditing,
   } = usePlayContext();
   const { handleMapClick, newMarker, relocatingMarker } = useAddItemOnMap({
     categories,
@@ -163,6 +164,7 @@ const PlayMap = () => {
           playId={playId}
           coordinates={coordinates}
           data={editingItem}
+          clearData={clearItemEditing}
         />
       )}
     </>

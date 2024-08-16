@@ -13,12 +13,14 @@ const CategoryFormModal = ({
   data,
   onFinish,
   gameId,
+  clearData,
 }: {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
   data?: CategoryData | null;
   onFinish: (newData: CategoryData | null) => void;
   gameId: string;
+  clearData?: () => void;
 }) => {
   const onModalClose = () => {
     setIsModalOpen(false);
@@ -58,6 +60,13 @@ const CategoryFormModal = ({
   useEffect(() => {
     if (isModalOpen && isEditForm) {
       prepareFormForEdit();
+    }
+  }, [isModalOpen, isEditForm]);
+
+  // Clears data when closes modal
+  useEffect(() => {
+    if (!isModalOpen && isEditForm) {
+      clearData?.();
     }
   }, [isModalOpen, isEditForm]);
 

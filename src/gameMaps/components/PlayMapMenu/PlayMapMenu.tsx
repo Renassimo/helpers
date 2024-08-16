@@ -37,6 +37,7 @@ const PlayMapMenu = () => {
     openCategoryUpdating,
     relocatingItem,
     relocateItem,
+    clearCategoryEditing,
   } = usePlayContext();
   const gameId = game?.id;
 
@@ -120,6 +121,7 @@ const PlayMapMenu = () => {
           data={editingCategory}
           onFinish={onFinish}
           gameId={gameId}
+          clearData={clearCategoryEditing}
         />
       )}
     </Box>

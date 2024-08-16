@@ -36,6 +36,7 @@ describe('useCreateUpdateCategory', () => {
     openCategoryCreating: expect.any(Function),
     openCategoryUpdating: expect.any(Function),
     updateSubmittedCategory: expect.any(Function),
+    clearCategoryEditing: expect.any(Function),
   } as unknown as PlayContextData;
 
   const mockedUpdateCategory = jest.fn();
@@ -157,6 +158,28 @@ describe('useCreateUpdateCategory', () => {
       });
       // Assert
       expect(result.current).toEqual(expectedState);
+    });
+
+    describe('and then clearCategoryEditing called', () => {
+      test('updates state', async () => {
+        // Arange
+        const expectedState = {
+          ...expecteDefaultState,
+          isCategoryEditOpen: true,
+        };
+        const { result } = renderHook(() =>
+          useCreateUpdateCategory(mockedCategoriesState, mockedUpdateCategory)
+        );
+        await act(async () => {
+          await result.current.openCategoryUpdating(mockedObject1.id);
+        });
+        // Act
+        await act(async () => {
+          await result.current.clearCategoryEditing();
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+      });
     });
   });
 });

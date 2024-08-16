@@ -16,6 +16,7 @@ const ItemFormModal = ({
   coordinates,
   playId,
   categoryId,
+  clearData,
 }: {
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
@@ -25,6 +26,7 @@ const ItemFormModal = ({
   coordinates: [number, number];
   playId: string;
   categoryId: string;
+  clearData?: () => void;
 }) => {
   const onModalClose = () => {
     setIsModalOpen(false);
@@ -62,6 +64,13 @@ const ItemFormModal = ({
   useEffect(() => {
     if (isModalOpen && isEditForm) {
       prepareFormForEdit();
+    }
+  }, [isModalOpen, isEditForm]);
+
+  // Clears data when closes modal
+  useEffect(() => {
+    if (!isModalOpen && isEditForm) {
+      clearData?.();
     }
   }, [isModalOpen, isEditForm]);
 

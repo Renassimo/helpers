@@ -49,6 +49,7 @@ describe('PlayMap', () => {
   const mockedRelocatingItem = mockedItem1;
   const mockedUpdateItemCollection = jest.fn();
   const mockedItemCollectionUpdating = false;
+  const mockedClearItemEditing = jest.fn();
   const mockedUsePlayContextResult = {
     game: {
       ...mockedGame,
@@ -70,6 +71,7 @@ describe('PlayMap', () => {
     updateItemCoordinates: mockedUpdateItemCoordinates,
     updateItemCollection: mockedUpdateItemCollection,
     itemCollectionUpdating: mockedItemCollectionUpdating,
+    clearItemEditing: mockedClearItemEditing,
   };
   const mockedUsePlayContext = jest.fn(() => mockedUsePlayContextResult);
   const mockedHandleMapClick = jest.fn();
@@ -143,6 +145,20 @@ describe('PlayMap', () => {
         relocatingItem: null,
         updateItemCoordinates: expect.any(Function),
       });
+      expect(MockedItemFormModal).toHaveBeenCalledWith(
+        {
+          isModalOpen: false,
+          setIsModalOpen: mockedSetIsItemEditOpen,
+          onFinish: mockedUpdateSubmittedItem,
+          gameId: mockedGame.id,
+          categoryId: mockedCategory1.id,
+          playId: mockedPlay.id,
+          coordinates: mockedItem1.attributes.coordinates,
+          data: mockedItem1,
+          clearData: mockedClearItemEditing,
+        },
+        {}
+      );
     });
   });
 

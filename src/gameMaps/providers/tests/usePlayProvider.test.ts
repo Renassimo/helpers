@@ -84,6 +84,7 @@ describe('usePlayProvider', () => {
   const mockedOpenCategoryCreating = 'mockedOpenCategoryCreating';
   const mockedOpenCategoryUpdating = 'mockedOpenCategoryUpdating';
   const mockedUpdateSubmittedCategory = 'mockedUpdateSubmittedCategory';
+  const mockedClearCategoryEditing = 'mockedClearCategoryEditing';
   const mockedUseCreateUpdateCategory = jest.fn(() => ({
     isCategoryEditOpen: mockedIsCategoryEditOpen,
     setIsCategoryEditOpen: mockedSetIsCategoryEditOpen,
@@ -91,6 +92,7 @@ describe('usePlayProvider', () => {
     openCategoryCreating: mockedOpenCategoryCreating,
     openCategoryUpdating: mockedOpenCategoryUpdating,
     updateSubmittedCategory: mockedUpdateSubmittedCategory,
+    clearCategoryEditing: mockedClearCategoryEditing,
   }));
 
   const mockedIsItemEditOpen = 'mockedIsItemEditOpen';
@@ -103,6 +105,7 @@ describe('usePlayProvider', () => {
   const mockedOpenItemUpdating = 'mockedOpenItemUpdating';
   const mockedUpdateSubmittedItem = 'mockedUpdateSubmittedItem';
   const mockedQuitFromCreatingNewItem = 'mockedQuitFromCreatingNewItem';
+  const mockedClearItemEditing = 'mockedClearItemEditing';
   const mockedUseCreateUpdateItem = jest.fn(() => ({
     isItemEditOpen: mockedIsItemEditOpen,
     creatingItemCoordinates: mockedCreatingItemCoordinates,
@@ -114,6 +117,7 @@ describe('usePlayProvider', () => {
     openItemUpdating: mockedOpenItemUpdating,
     updateSubmittedItem: mockedUpdateSubmittedItem,
     quitFromCreatingNewItem: mockedQuitFromCreatingNewItem,
+    clearItemEditing: mockedClearItemEditing,
   }));
 
   const mockedRelocateItem = 'mockedRelocateItem';
@@ -185,6 +189,7 @@ describe('usePlayProvider', () => {
     openCategoryCreating: mockedOpenCategoryCreating,
     openCategoryUpdating: mockedOpenCategoryUpdating,
     updateSubmittedCategory: mockedUpdateSubmittedCategory,
+    clearCategoryEditing: mockedClearCategoryEditing,
     // Item creating and updating
     isItemEditOpen: mockedIsItemEditOpen,
     creatingItemCoordinates: mockedCreatingItemCoordinates,
@@ -196,6 +201,7 @@ describe('usePlayProvider', () => {
     openItemUpdating: mockedOpenItemUpdating,
     updateSubmittedItem: mockedUpdateSubmittedItem,
     quitFromCreatingNewItem: mockedQuitFromCreatingNewItem,
+    clearItemEditing: mockedClearItemEditing,
     // Updating item coordinates
     relocateItem: mockedRelocateItem,
     relocatingItem: mockedRelocatingItem,

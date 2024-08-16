@@ -45,6 +45,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openCategoryCreating,
     openCategoryUpdating,
     updateSubmittedCategory,
+    clearCategoryEditing,
   } = useCreateUpdateCategory(categories, updateCategory);
 
   // Item creating and updating
@@ -59,6 +60,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openItemUpdating,
     updateSubmittedItem,
     quitFromCreatingNewItem,
+    clearItemEditing,
   } = useCreateUpdateItem(items, updateItem, recountCategories);
 
   // Updating item coordinates
@@ -103,6 +105,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     editingCategory,
     openCategoryCreating,
     openCategoryUpdating,
+    clearCategoryEditing,
     // Item creating and updating
     isItemEditOpen,
     setIsItemEditOpen,
@@ -111,6 +114,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openItemCreating,
     openItemUpdating,
     updateSubmittedItem,
+    clearItemEditing,
     // Updating item coordinates
     relocateItem,
     relocatingItem,
