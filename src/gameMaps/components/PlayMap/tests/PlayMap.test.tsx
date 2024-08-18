@@ -30,11 +30,20 @@ jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 jest.mock('@/gameMaps/hooks/useAddItemOnMap');
 
 describe('PlayMap', () => {
+  // to check category filtering
+  const mockedAdditionalItem = {
+    id: 'item-id',
+    attributes: {
+      ...mockedItem1.attributes,
+      categoryId: 'category-id',
+    },
+  };
   const mockedPointingCategoryId = mockedCategory2.id;
-  const mockedVisibleItems = mockedItems;
+  const mockedVisibleItems = [...mockedItems, mockedAdditionalItem];
   const itemsState = {
     [mockedItem1.id]: mockedItem1,
     [mockedItem2.id]: mockedItem2,
+    'item-id': mockedAdditionalItem,
   };
   const mockedCategoriesState = {
     [mockedCategory1.id]: mockedCategory1,

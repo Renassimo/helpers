@@ -35,6 +35,9 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     changeCategoryChoose,
     isEveryCategoryChosen,
     isNoCategoriesChosen,
+    toggleFullyCollected,
+    categoryFilterQuery,
+    setCategoryFilterQuery,
   } = useCategoriesData(categoriesData, itemsList);
 
   // Category creating and editing
@@ -87,15 +90,19 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     // Items data
     items,
     itemsList,
-    visibleItems,
-    // Category creating and editing
+    // Categories data
     categories,
     categoriesList,
+    visibleItems,
     isEveryCategoryChosen,
     isNoCategoriesChosen,
     choseAllCategories,
     clearAllChosenCategories,
     changeCategoryChoose,
+    toggleFullyCollected,
+    categoryFilterQuery,
+    setCategoryFilterQuery,
+    // Category creating and editing
     pointingCategoryId,
     setPointingCategoryId,
     quitFromCreatingNewItem,

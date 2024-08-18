@@ -21,6 +21,9 @@ const PlayContext = createContext<PlayContextData>({
   changeCategoryChoose: () => {},
   isEveryCategoryChosen: true,
   isNoCategoriesChosen: false,
+  toggleFullyCollected: () => {},
+  categoryFilterQuery: '',
+  setCategoryFilterQuery: () => {},
   // Category creating and editing
   isCategoryEditOpen: false,
   setIsCategoryEditOpen: () => {},

@@ -42,6 +42,9 @@ export interface PlayContextData {
   changeCategoryChoose: (categoryId: string, chosen: boolean) => void;
   isEveryCategoryChosen: boolean;
   isNoCategoriesChosen: boolean;
+  toggleFullyCollected: () => void;
+  categoryFilterQuery: string;
+  setCategoryFilterQuery: (value: string) => void;
   // Category creating and editing
   isCategoryEditOpen: boolean;
   setIsCategoryEditOpen: (newState: boolean) => void;
