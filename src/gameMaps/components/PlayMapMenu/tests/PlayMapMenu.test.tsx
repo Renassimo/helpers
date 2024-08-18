@@ -2,8 +2,10 @@ import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import CategoryFormModal from '@/gameMaps/components/CategoryFormModal';
+import FilterInput from '@/common/components/FilterInput';
 
 import MockedCategoryFormModal from '@/gameMaps/components/CategoryFormModal/mocks';
+import MockedFilterInput from '@/common/components/FilterInput/MockedFilterInput';
 
 import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
@@ -18,6 +20,7 @@ import PlayMapMenu from '../PlayMapMenu';
 
 jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 jest.mock('@/gameMaps/components/CategoryFormModal');
+jest.mock('@/common/components/FilterInput');
 
 describe('PlayMapMenu', () => {
   const mockedCategoriesList = mockedCategories;
@@ -33,6 +36,10 @@ describe('PlayMapMenu', () => {
   const mockedOpenCategoryUpdating = jest.fn();
   const mockedRelocatingItem = mockedItem2;
   const mockedRelocateItem = jest.fn();
+  const mockedClearCategoryEditing = jest.fn();
+  const mockedToggleFullyCollected = jest.fn();
+  const mockedCategoryFilterQuery = 'Filter query';
+  const mockedSetCategoryFilterQuery = jest.fn();
 
   const mockedUsePlayResult = {
     categoriesList: mockedCategoriesList,
@@ -51,6 +58,10 @@ describe('PlayMapMenu', () => {
     openCategoryUpdating: mockedOpenCategoryUpdating,
     relocatingItem: null,
     relocateItem: mockedRelocateItem,
+    clearCategoryEditing: mockedClearCategoryEditing,
+    toggleFullyCollected: mockedToggleFullyCollected,
+    categoryFilterQuery: mockedCategoryFilterQuery,
+    setCategoryFilterQuery: mockedSetCategoryFilterQuery,
   };
 
   const mockedUsePlayContext = jest.fn(() => mockedUsePlayResult);
@@ -59,6 +70,7 @@ describe('PlayMapMenu', () => {
     (CategoryFormModal as unknown as jest.Mock).mockImplementation(
       MockedCategoryFormModal
     );
+    (FilterInput as unknown as jest.Mock).mockImplementation(MockedFilterInput);
   });
 
   afterEach(() => {
@@ -90,6 +102,13 @@ describe('PlayMapMenu', () => {
       const { baseElement } = renderWithTheme(<PlayMapMenu />);
       // Assert
       expect(baseElement).toMatchSnapshot();
+      expect(MockedFilterInput).toHaveBeenCalledWith(
+        {
+          value: mockedCategoryFilterQuery,
+          setValue: mockedSetCategoryFilterQuery,
+        },
+        {}
+      );
     });
 
     describe('and when relocatingItem passed', () => {
@@ -132,6 +151,7 @@ describe('PlayMapMenu', () => {
           data: null,
           onFinish: expect.any(Function),
           gameId: mockedGame.id,
+          clearData: mockedClearCategoryEditing,
         },
         {}
       );
@@ -159,6 +179,7 @@ describe('PlayMapMenu', () => {
             data: mockedCategory1,
             onFinish: expect.any(Function),
             gameId: mockedGame.id,
+            clearData: mockedClearCategoryEditing,
           },
           {}
         );
@@ -184,6 +205,7 @@ describe('PlayMapMenu', () => {
       expect(mockedOpenCategoryUpdating).not.toHaveBeenCalled();
       expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
       expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
     });
   });
 
@@ -210,6 +232,7 @@ describe('PlayMapMenu', () => {
       expect(mockedOpenCategoryUpdating).not.toHaveBeenCalled();
       expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
       expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
     });
   });
 
@@ -223,9 +246,9 @@ describe('PlayMapMenu', () => {
       (usePlayContext as unknown as jest.Mock).mockImplementation(
         mockedUsePlayContext
       );
-      const { getByText } = renderWithTheme(<PlayMapMenu />);
+      const { getByLabelText } = renderWithTheme(<PlayMapMenu />);
       // Act
-      await userEvent.click(getByText('Clear all'));
+      await userEvent.click(getByLabelText('Hide all'));
       // Assert
       expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
@@ -235,6 +258,7 @@ describe('PlayMapMenu', () => {
       expect(mockedOpenCategoryUpdating).not.toHaveBeenCalled();
       expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
       expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
     });
   });
 
@@ -248,9 +272,9 @@ describe('PlayMapMenu', () => {
       (usePlayContext as unknown as jest.Mock).mockImplementation(
         mockedUsePlayContext
       );
-      const { getByText } = renderWithTheme(<PlayMapMenu />);
+      const { getByLabelText } = renderWithTheme(<PlayMapMenu />);
       // Act
-      await userEvent.click(getByText('Choose all'));
+      await userEvent.click(getByLabelText('Choose all'));
       // Assert
       expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
@@ -260,6 +284,7 @@ describe('PlayMapMenu', () => {
       expect(mockedOpenCategoryUpdating).not.toHaveBeenCalled();
       expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
       expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
     });
   });
 
@@ -273,9 +298,9 @@ describe('PlayMapMenu', () => {
       (usePlayContext as unknown as jest.Mock).mockImplementation(
         mockedUsePlayContext
       );
-      const { getByText } = renderWithTheme(<PlayMapMenu />);
+      const { getByLabelText } = renderWithTheme(<PlayMapMenu />);
       // Act
-      await userEvent.click(getByText('Add category'));
+      await userEvent.click(getByLabelText('Add category'));
       // Assert
       expect(mockedRelocateItem).not.toHaveBeenCalled();
       expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
@@ -285,6 +310,33 @@ describe('PlayMapMenu', () => {
       expect(mockedOpenCategoryUpdating).not.toHaveBeenCalled();
       expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
       expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when "Hide / show fully collected" clicked', () => {
+    test('calls openCategoryCreating', async () => {
+      // Arange
+      const mockedUsePlayContext = jest.fn(() => ({
+        ...mockedUsePlayResult,
+        pointingCategoryId: null,
+      }));
+      (usePlayContext as unknown as jest.Mock).mockImplementation(
+        mockedUsePlayContext
+      );
+      const { getByLabelText } = renderWithTheme(<PlayMapMenu />);
+      // Act
+      await userEvent.click(getByLabelText('Hide / show fully collected'));
+      // Assert
+      expect(mockedRelocateItem).not.toHaveBeenCalled();
+      expect(mockedQuitFromCreatingNewItem).not.toHaveBeenCalled();
+      expect(mockedClearAllChosenCategories).not.toHaveBeenCalled();
+      expect(mockedChoseAllCategories).not.toHaveBeenCalled();
+      expect(mockedOpenCategoryCreating).not.toHaveBeenCalled();
+      expect(mockedOpenCategoryUpdating).not.toHaveBeenCalled();
+      expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
+      expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).toHaveBeenCalled();
     });
   });
 
@@ -312,6 +364,7 @@ describe('PlayMapMenu', () => {
       );
       expect(mockedSetPointingCategoryId).not.toHaveBeenCalled();
       expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
     });
   });
 
@@ -339,6 +392,7 @@ describe('PlayMapMenu', () => {
         mockedCategories[0].id
       );
       expect(mockedChangeCategoryChoose).not.toHaveBeenCalled();
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
     });
   });
 
@@ -367,6 +421,7 @@ describe('PlayMapMenu', () => {
         mockedCategories[0].id,
         true
       );
+      expect(mockedToggleFullyCollected).not.toHaveBeenCalled();
     });
   });
 });

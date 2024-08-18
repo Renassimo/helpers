@@ -14,7 +14,7 @@ exports[`ItemFormModal renders snapshot successfully 1`] = `
       </div>
       <div>
         title: 
-        Update item
+        Create new item
         ; maxWidth: 
         sm
         ;
@@ -50,7 +50,7 @@ exports[`ItemFormModal when data passed renders snapshot successfully 1`] = `
       </div>
       <div>
         title: 
-        Create new item
+        Update item
         ; maxWidth: 
         sm
         ;

@@ -35,6 +35,9 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     changeCategoryChoose,
     isEveryCategoryChosen,
     isNoCategoriesChosen,
+    toggleFullyCollected,
+    categoryFilterQuery,
+    setCategoryFilterQuery,
   } = useCategoriesData(categoriesData, itemsList);
 
   // Category creating and editing
@@ -45,6 +48,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openCategoryCreating,
     openCategoryUpdating,
     updateSubmittedCategory,
+    clearCategoryEditing,
   } = useCreateUpdateCategory(categories, updateCategory);
 
   // Item creating and updating
@@ -59,6 +63,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openItemUpdating,
     updateSubmittedItem,
     quitFromCreatingNewItem,
+    clearItemEditing,
   } = useCreateUpdateItem(items, updateItem, recountCategories);
 
   // Updating item coordinates
@@ -85,15 +90,19 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     // Items data
     items,
     itemsList,
-    visibleItems,
-    // Category creating and editing
+    // Categories data
     categories,
     categoriesList,
+    visibleItems,
     isEveryCategoryChosen,
     isNoCategoriesChosen,
     choseAllCategories,
     clearAllChosenCategories,
     changeCategoryChoose,
+    toggleFullyCollected,
+    categoryFilterQuery,
+    setCategoryFilterQuery,
+    // Category creating and editing
     pointingCategoryId,
     setPointingCategoryId,
     quitFromCreatingNewItem,
@@ -103,6 +112,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     editingCategory,
     openCategoryCreating,
     openCategoryUpdating,
+    clearCategoryEditing,
     // Item creating and updating
     isItemEditOpen,
     setIsItemEditOpen,
@@ -111,6 +121,7 @@ const usePlayProvider = (data: PlayPageData | null): PlayContextData => {
     openItemCreating,
     openItemUpdating,
     updateSubmittedItem,
+    clearItemEditing,
     // Updating item coordinates
     relocateItem,
     relocatingItem,

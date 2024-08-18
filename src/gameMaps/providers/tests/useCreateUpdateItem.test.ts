@@ -46,6 +46,7 @@ describe('useCreateUpdateItem', () => {
     openItemUpdating: expect.any(Function),
     updateSubmittedItem: expect.any(Function),
     quitFromCreatingNewItem: expect.any(Function),
+    clearItemEditing: expect.any(Function),
   } as unknown as PlayContextData;
 
   test('returns state', () => {
@@ -180,6 +181,32 @@ describe('useCreateUpdateItem', () => {
       });
       // Assert
       expect(result.current).toEqual(expectedState);
+    });
+
+    describe('and then clearItemEditing called', () => {
+      test('updates state', async () => {
+        // Arange
+        const expectedState = {
+          ...expecteDefaultState,
+          isItemEditOpen: true,
+        };
+        const { result } = renderHook(() =>
+          useCreateUpdateItem(
+            mockedItemsState,
+            mockedUpdateItem,
+            mockedRecountCategories
+          )
+        );
+        await act(async () => {
+          await result.current.openItemUpdating(mockedItem2.id);
+        });
+        // Act
+        await act(async () => {
+          await result.current.clearItemEditing();
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+      });
     });
   });
 

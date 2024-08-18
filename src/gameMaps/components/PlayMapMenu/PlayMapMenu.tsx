@@ -10,10 +10,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import IconButton from '@mui/material/IconButton';
 
-import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveDoneIcon from '@mui/icons-material/RemoveDone';
 
 import CategoryFormModal from '@/gameMaps/components/CategoryFormModal';
+import FilterInput from '@/common/components/FilterInput';
 
 import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
@@ -37,6 +41,10 @@ const PlayMapMenu = () => {
     openCategoryUpdating,
     relocatingItem,
     relocateItem,
+    clearCategoryEditing,
+    toggleFullyCollected,
+    categoryFilterQuery,
+    setCategoryFilterQuery,
   } = usePlayContext();
   const gameId = game?.id;
 
@@ -63,11 +71,33 @@ const PlayMapMenu = () => {
           </Button>
         )}
         {!pointingCategoryId && !relocatingItem && (
-          <>
-            <Button onClick={clearAllChosenCategories}>Clear all</Button>
-            <Button onClick={choseAllCategories}>Choose all</Button>
-            <Button onClick={openCategoryCreating}>Add category</Button>
-          </>
+          <Box display="flex" alignItems="center">
+            <IconButton
+              onClick={toggleFullyCollected}
+              aria-label="Hide / show fully collected"
+            >
+              <RemoveDoneIcon />
+            </IconButton>
+            <IconButton
+              onClick={clearAllChosenCategories}
+              aria-label="Hide all"
+            >
+              <CheckBoxOutlineBlankIcon />
+            </IconButton>
+            <IconButton onClick={choseAllCategories} aria-label="Choose all">
+              <CheckBoxIcon />
+            </IconButton>
+            <IconButton
+              onClick={openCategoryCreating}
+              aria-label="Add category"
+            >
+              <AddIcon />
+            </IconButton>
+            <FilterInput
+              value={categoryFilterQuery}
+              setValue={setCategoryFilterQuery}
+            />
+          </Box>
         )}
       </Box>
       <List sx={{ maxHeight: 'calc(75vh - 52.5px)', overflow: 'auto' }}>
@@ -120,6 +150,7 @@ const PlayMapMenu = () => {
           data={editingCategory}
           onFinish={onFinish}
           gameId={gameId}
+          clearData={clearCategoryEditing}
         />
       )}
     </Box>

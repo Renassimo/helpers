@@ -21,6 +21,9 @@ const PlayContext = createContext<PlayContextData>({
   changeCategoryChoose: () => {},
   isEveryCategoryChosen: true,
   isNoCategoriesChosen: false,
+  toggleFullyCollected: () => {},
+  categoryFilterQuery: '',
+  setCategoryFilterQuery: () => {},
   // Category creating and editing
   isCategoryEditOpen: false,
   setIsCategoryEditOpen: () => {},
@@ -28,6 +31,7 @@ const PlayContext = createContext<PlayContextData>({
   openCategoryCreating: () => {},
   openCategoryUpdating: () => {},
   updateSubmittedCategory: () => {},
+  clearCategoryEditing: () => {},
   // Item creating and updating
   isItemEditOpen: false,
   creatingItemCoordinates: null,
@@ -39,6 +43,7 @@ const PlayContext = createContext<PlayContextData>({
   openItemUpdating: () => {},
   updateSubmittedItem: () => {},
   quitFromCreatingNewItem: () => {},
+  clearItemEditing: () => {},
   // Updating item coordinates
   relocateItem: () => {},
   relocatingItem: null,

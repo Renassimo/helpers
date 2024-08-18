@@ -24,6 +24,9 @@ const useCategoriesData = (
   changeCategoryChoose: (categoryId: string, chosen: boolean) => void;
   isEveryCategoryChosen: boolean;
   isNoCategoriesChosen: boolean;
+  toggleFullyCollected: () => void;
+  categoryFilterQuery: string;
+  setCategoryFilterQuery: (value: string) => void;
 } => {
   const [categories, setCategories] = useState<CategoriesState>(
     getCategoriesStateWithCountedItems(
@@ -38,10 +41,39 @@ const useCategoriesData = (
       itemsList
     )
   );
+
+  const [fullyCollectedHidden, setFullyCollectedHidden] = useState(true);
+  const [categoryFilterQuery, setCategoryFilterQuery] = useState('');
+
+  const visibleCategories = useMemo(() => {
+    const result: CategoriesState = {};
+    for (const id in categories) {
+      const category = categories[id];
+      const { attributes } = category;
+      const { collectedItemsAmount, itemsAmount } = attributes;
+      const fullyCollected = (collectedItemsAmount ?? 0) >= itemsAmount;
+      const filtered =
+        category.attributes.title.search(
+          new RegExp(categoryFilterQuery, 'i')
+        ) >= 0;
+      const visible =
+        (!fullyCollectedHidden && filtered) ||
+        (fullyCollectedHidden && !fullyCollected && filtered);
+      if (visible) {
+        result[id] = category;
+      }
+    }
+    return result;
+  }, [categories, fullyCollectedHidden, categoryFilterQuery]);
+
   const categoriesList: CategoryData[] = useMemo(
-    () => Object.values(categories),
-    [categories]
+    () => Object.values(visibleCategories),
+    [visibleCategories]
   );
+
+  const toggleFullyCollected = useCallback(() => {
+    setFullyCollectedHidden((current) => !current);
+  }, []);
 
   const recountCategories = useCallback((newItemsList: ItemData[]) => {
     setCategories((current) =>
@@ -124,13 +156,13 @@ const useCategoriesData = (
     () =>
       itemsList?.filter(
         (item: ItemData) =>
-          categories[item.attributes.categoryId]?.attributes.chosen
+          visibleCategories[item.attributes.categoryId]?.attributes.chosen
       ),
-    [itemsList, categories]
+    [itemsList, visibleCategories]
   );
 
   return {
-    categories,
+    categories: visibleCategories,
     updateCategory,
     recountCategories,
     categoriesList,
@@ -140,6 +172,9 @@ const useCategoriesData = (
     changeCategoryChoose,
     isEveryCategoryChosen,
     isNoCategoriesChosen,
+    toggleFullyCollected,
+    categoryFilterQuery,
+    setCategoryFilterQuery,
   };
 };
 

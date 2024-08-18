@@ -64,7 +64,7 @@ const GameFormModal = ({
       open={isModalOpen}
       onClose={onModalClose}
       onSubmit={onSubmit}
-      title={`${data ? 'Create new' : `Update`} game`}
+      title={`${isEditForm ? 'Update' : `Create new`} game`}
       loading={loading}
     >
       <GameForm

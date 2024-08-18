@@ -30,11 +30,20 @@ jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 jest.mock('@/gameMaps/hooks/useAddItemOnMap');
 
 describe('PlayMap', () => {
+  // to check category filtering
+  const mockedAdditionalItem = {
+    id: 'item-id',
+    attributes: {
+      ...mockedItem1.attributes,
+      categoryId: 'category-id',
+    },
+  };
   const mockedPointingCategoryId = mockedCategory2.id;
-  const mockedVisibleItems = mockedItems;
+  const mockedVisibleItems = [...mockedItems, mockedAdditionalItem];
   const itemsState = {
     [mockedItem1.id]: mockedItem1,
     [mockedItem2.id]: mockedItem2,
+    'item-id': mockedAdditionalItem,
   };
   const mockedCategoriesState = {
     [mockedCategory1.id]: mockedCategory1,
@@ -49,6 +58,7 @@ describe('PlayMap', () => {
   const mockedRelocatingItem = mockedItem1;
   const mockedUpdateItemCollection = jest.fn();
   const mockedItemCollectionUpdating = false;
+  const mockedClearItemEditing = jest.fn();
   const mockedUsePlayContextResult = {
     game: {
       ...mockedGame,
@@ -70,6 +80,7 @@ describe('PlayMap', () => {
     updateItemCoordinates: mockedUpdateItemCoordinates,
     updateItemCollection: mockedUpdateItemCollection,
     itemCollectionUpdating: mockedItemCollectionUpdating,
+    clearItemEditing: mockedClearItemEditing,
   };
   const mockedUsePlayContext = jest.fn(() => mockedUsePlayContextResult);
   const mockedHandleMapClick = jest.fn();
@@ -143,6 +154,20 @@ describe('PlayMap', () => {
         relocatingItem: null,
         updateItemCoordinates: expect.any(Function),
       });
+      expect(MockedItemFormModal).toHaveBeenCalledWith(
+        {
+          isModalOpen: false,
+          setIsModalOpen: mockedSetIsItemEditOpen,
+          onFinish: mockedUpdateSubmittedItem,
+          gameId: mockedGame.id,
+          categoryId: mockedCategory1.id,
+          playId: mockedPlay.id,
+          coordinates: mockedItem1.attributes.coordinates,
+          data: mockedItem1,
+          clearData: mockedClearItemEditing,
+        },
+        {}
+      );
     });
   });
 

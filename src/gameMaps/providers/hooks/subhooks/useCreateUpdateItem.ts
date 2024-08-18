@@ -23,11 +23,13 @@ const useCreateUpdateItem = (
   openItemUpdating: (id: string) => void;
   updateSubmittedItem: (newData: ItemData | null, id?: string) => void;
   quitFromCreatingNewItem: () => void;
+  clearItemEditing: () => void;
 } => {
   const { createSuccessAlert, clearAll } = useAlerts();
 
   const [isItemEditOpen, setIsItemEditOpen] = useState<boolean>(false);
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
+  const clearItemEditing = useCallback(() => setEditingItemId(null), []);
   const [creatingItemCoordinates, setCreatingItemCoordinates] = useState<
     [number, number] | null
   >(null);
@@ -55,7 +57,7 @@ const useCreateUpdateItem = (
         updateItem(null, recountCategories, id);
         createSuccessAlert(`Item was deleted!`);
       }
-      setEditingItemId(null);
+      clearItemEditing();
       setPointingCategoryId(null);
       setCreatingItemCoordinates(null);
     },
@@ -79,6 +81,7 @@ const useCreateUpdateItem = (
     openItemUpdating,
     updateSubmittedItem,
     quitFromCreatingNewItem,
+    clearItemEditing,
   };
 };
 

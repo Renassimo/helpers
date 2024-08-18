@@ -14,12 +14,17 @@ const useCreateUpdateCategory = (
   openCategoryCreating: () => void;
   openCategoryUpdating: (id: string) => void;
   updateSubmittedCategory: (newData: CategoryData | null, id?: string) => void;
+  clearCategoryEditing: () => void;
 } => {
   const { createSuccessAlert } = useAlerts();
 
   const [isCategoryEditOpen, setIsCategoryEditOpen] = useState<boolean>(false);
   const [editingCategoryId, setEditingCategoryId] = useState<string | null>(
     null
+  );
+  const clearCategoryEditing = useCallback(
+    () => setEditingCategoryId(null),
+    []
   );
   const editingCategory: CategoryData | null = useMemo(
     () => (editingCategoryId ? categories[editingCategoryId] : null),
@@ -42,7 +47,7 @@ const useCreateUpdateCategory = (
         });
         createSuccessAlert(`Categories were updated!`);
       }
-      setEditingCategoryId(null);
+      clearCategoryEditing();
     },
     []
   );
@@ -54,6 +59,7 @@ const useCreateUpdateCategory = (
     openCategoryCreating,
     openCategoryUpdating,
     updateSubmittedCategory,
+    clearCategoryEditing,
   };
 };
 

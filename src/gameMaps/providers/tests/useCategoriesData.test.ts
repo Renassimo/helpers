@@ -4,9 +4,9 @@ import { getAttributeObjectFromArray } from '@/common/utils/data';
 import getCategoriesStateWithCountedItems from '@/gameMaps/utils/getCategoriesStateWithCountedItems';
 
 import {
-  mockedCategories,
   mockedCategory1,
   mockedCategory2,
+  mockedCategory3,
   mockedItem1,
   mockedItem2,
 } from '@/gameMaps/types/mocks';
@@ -17,6 +17,7 @@ jest.mock('@/common/utils/data');
 jest.mock('@/gameMaps/utils/getCategoriesStateWithCountedItems');
 
 describe('useCategoriesData', () => {
+  const mockedCategories = [mockedCategory1, mockedCategory2, mockedCategory3];
   const mockedAttributeObjectFromArray = {
     [mockedCategory1.id]: {
       ...mockedCategory1,
@@ -29,6 +30,13 @@ describe('useCategoriesData', () => {
       ...mockedCategory2,
       attributes: {
         ...mockedCategory2.attributes,
+        chosen: true,
+      },
+    },
+    [mockedCategory3.id]: {
+      ...mockedCategory3,
+      attributes: {
+        ...mockedCategory3.attributes,
         chosen: true,
       },
     },
@@ -54,16 +62,41 @@ describe('useCategoriesData', () => {
       collectedItemsAmount: 0,
     },
   };
+  const mockedObject3 = {
+    ...mockedCategory3,
+    attributes: {
+      ...mockedCategory3.attributes,
+      chosen: true,
+      foundItemsAmount: 1,
+      collectedItemsAmount: 1,
+    },
+  };
+  const mockedItem3 = {
+    id: 'it3',
+    attributes: {
+      ...mockedItem2.attributes,
+      categoryId: 'cat3',
+    },
+  };
   const mockedCategoriesStateWithCountedItem = {
     [mockedObject1.id]: mockedObject1,
     [mockedObject2.id]: mockedObject2,
+    [mockedObject3.id]: mockedObject3,
   };
   const mockedGetCategoriesStateWithCountedItems = jest.fn(
     () => mockedCategoriesStateWithCountedItem
   );
-  const mockedCategoriesList = [mockedObject1, mockedObject2];
+  const mockedVisibleCategories = {
+    [mockedObject1.id]: mockedObject1,
+    [mockedObject2.id]: mockedObject2,
+    // [mockedObject3.id]: mockedObject3,
+  };
+  const mockedCategoriesList = [
+    mockedObject1,
+    mockedObject2 /*, mockedObject3 */,
+  ];
 
-  const expectedVisibleItems = [mockedItem1, mockedItem2];
+  const expectedVisibleItems = [mockedItem1, mockedItem2 /*, mockedItem3 */];
 
   beforeEach(() => {
     (getAttributeObjectFromArray as unknown as jest.Mock).mockImplementation(
@@ -79,10 +112,10 @@ describe('useCategoriesData', () => {
     cleanup();
   });
 
-  const mockedItemsList = [mockedItem1, mockedItem2];
+  const mockedItemsList = [mockedItem1, mockedItem2, mockedItem3];
 
   const expecteDefaultState = {
-    categories: mockedCategoriesStateWithCountedItem,
+    categories: mockedVisibleCategories,
     updateCategory: expect.any(Function),
     recountCategories: expect.any(Function),
     categoriesList: mockedCategoriesList,
@@ -92,6 +125,9 @@ describe('useCategoriesData', () => {
     changeCategoryChoose: expect.any(Function),
     isEveryCategoryChosen: true,
     isNoCategoriesChosen: false,
+    toggleFullyCollected: expect.any(Function),
+    categoryFilterQuery: '',
+    setCategoryFilterQuery: expect.any(Function),
   };
 
   test('returns state', () => {
@@ -174,7 +210,7 @@ describe('useCategoriesData', () => {
       // Assert
       expect(result.current).toEqual(expecteDefaultState);
       expect(mockedGetCategoriesStateWithCountedItems).toHaveBeenCalledWith(
-        expecteDefaultState.categories,
+        mockedCategoriesStateWithCountedItem,
         [mockedItem1]
       );
     });
@@ -262,6 +298,76 @@ describe('useCategoriesData', () => {
         });
         // Assert
         expect(result.current).toEqual(expecteDefaultState);
+      });
+    });
+
+    describe('when calls toggleFullyCollected', () => {
+      test('updates state', async () => {
+        // Arange
+        const expectedState = {
+          ...expecteDefaultState,
+          categories: mockedCategoriesStateWithCountedItem,
+          categoriesList: [mockedObject1, mockedObject2, mockedObject3],
+          visibleItems: [mockedItem1, mockedItem2, mockedItem3],
+        };
+        const { result } = renderHook(() =>
+          useCategoriesData(mockedCategories, mockedItemsList)
+        );
+        // Act
+        await act(async () => {
+          await result.current.toggleFullyCollected();
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+      });
+    });
+
+    describe('when calls setCategoryFilterQuery', () => {
+      test('updates state', async () => {
+        // Arange
+        const expectedState = {
+          ...expecteDefaultState,
+          categories: {
+            [mockedObject2.id]: mockedObject2,
+          },
+          categoriesList: [mockedObject2],
+          visibleItems: [],
+          categoryFilterQuery: 'ry 2',
+        };
+        const { result } = renderHook(() =>
+          useCategoriesData(mockedCategories, mockedItemsList)
+        );
+        // Act
+        await act(async () => {
+          await result.current.setCategoryFilterQuery('ry 2');
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+      });
+    });
+
+    describe('when calls both setCategoryFilterQuery and setCategoryFilterQuery', () => {
+      test('updates state', async () => {
+        // Arange
+        const expectedState = {
+          ...expecteDefaultState,
+          categories: {
+            [mockedObject3.id]: mockedObject3,
+          },
+          categoriesList: [mockedObject3],
+          visibleItems: [mockedItem3],
+          categoryFilterQuery: 'ry 3',
+        };
+        const { result } = renderHook(() =>
+          useCategoriesData(mockedCategories, mockedItemsList)
+        );
+        // Act
+        await act(async () => {
+          await result.current.toggleFullyCollected();
+          await result.current.setCategoryFilterQuery('ry 3');
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
       });
     });
   });

@@ -34,6 +34,7 @@ const PlayMap = () => {
     updateItemCoordinates,
     updateItemCollection,
     itemCollectionUpdating,
+    clearItemEditing,
   } = usePlayContext();
   const { handleMapClick, newMarker, relocatingMarker } = useAddItemOnMap({
     categories,
@@ -80,53 +81,60 @@ const PlayMap = () => {
         mapImageRatio={mapImageRatio}
         backgroundColor={backgroundColor}
       >
-        {visibleItems.map((item) => (
-          <MapMarker
-            key={item.id}
-            position={item.attributes.coordinates}
-            color={categories[item.attributes.categoryId]?.attributes.color}
-            isMarked={!!item.attributes.collected}
-          >
-            {
-              <Box>
+        {visibleItems.map((item) =>
+          categories[item.attributes.categoryId] ? (
+            <MapMarker
+              key={item.id}
+              position={item.attributes.coordinates}
+              color={categories[item.attributes.categoryId]?.attributes.color}
+              isMarked={!!item.attributes.collected}
+            >
+              {
                 <Box>
-                  <Typography>{item.attributes.description}</Typography>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={item.attributes.collected}
-                        disabled={itemCollectionUpdating}
-                        onChange={(event) =>
-                          handleUpdateItemCollection(
-                            event?.target.checked,
-                            item.id
-                          )
-                        }
-                      />
-                    }
-                    label="Collected"
-                  />
+                  <Box>
+                    <Typography variant="subtitle2">
+                      {categories[item.attributes.categoryId]?.attributes.title}
+                    </Typography>
+                    <Typography variant="subtitle1">
+                      {item.attributes.description}
+                    </Typography>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={item.attributes.collected}
+                          disabled={itemCollectionUpdating}
+                          onChange={(event) =>
+                            handleUpdateItemCollection(
+                              event?.target.checked,
+                              item.id
+                            )
+                          }
+                        />
+                      }
+                      label="Collected"
+                    />
+                  </Box>
+                  <Box textAlign="right">
+                    <IconButton
+                      aria-label="edit-coordinates"
+                      size="small"
+                      onClick={(event) => handleRelocateItem(event, item.id)}
+                    >
+                      <EditLocationAltIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="edit-item"
+                      size="small"
+                      onClick={(event) => handleEditItem(event, item.id)}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </Box>
                 </Box>
-                <Box textAlign="right">
-                  <IconButton
-                    aria-label="edit-coordinates"
-                    size="small"
-                    onClick={(event) => handleRelocateItem(event, item.id)}
-                  >
-                    <EditLocationAltIcon />
-                  </IconButton>
-                  <IconButton
-                    aria-label="edit-item"
-                    size="small"
-                    onClick={(event) => handleEditItem(event, item.id)}
-                  >
-                    <EditIcon />
-                  </IconButton>
-                </Box>
-              </Box>
-            }
-          </MapMarker>
-        ))}
+              }
+            </MapMarker>
+          ) : null
+        )}
         {newMarker && (
           <MapMarker
             key={newMarker.id}
@@ -163,6 +171,7 @@ const PlayMap = () => {
           playId={playId}
           coordinates={coordinates}
           data={editingItem}
+          clearData={clearItemEditing}
         />
       )}
     </>

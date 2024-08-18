@@ -20,6 +20,16 @@ export const mockedCategory2: CategoryData = {
   },
 };
 
+export const mockedCategory3: CategoryData = {
+  id: 'cat3',
+  attributes: {
+    color: '#888',
+    description: 'Category 3 description',
+    title: 'Category 3',
+    itemsAmount: 1,
+  },
+};
+
 export const mockedCategory = mockedCategory1;
 
 export const mockedCategories: CategoryData[] = [
