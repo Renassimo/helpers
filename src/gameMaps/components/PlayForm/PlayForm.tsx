@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
@@ -9,9 +11,16 @@ const PlayForm = ({
   setters,
   errors = {},
   onDelete,
+  isReady = false,
 }: PlayFormProps) => {
   const { title, description } = values;
   const { setTitle, setDescription } = setters;
+
+  const inputRef = useRef<null | HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isReady) inputRef?.current?.focus();
+  }, [isReady]);
 
   return (
     <>
@@ -20,6 +29,7 @@ const PlayForm = ({
         label="Title"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
+        inputRef={inputRef}
         fullWidth
         margin="dense"
         variant="standard"

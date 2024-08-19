@@ -81,7 +81,12 @@ describe('ItemFormModal', () => {
     );
     expect(mockedPrepareFormForEdit).not.toBeCalled();
     expect(MockedItemForm).toHaveBeenCalledWith(
-      { values: mockedValues, setters: mockedSetters, errors: mockedErrors },
+      {
+        values: mockedValues,
+        setters: mockedSetters,
+        errors: mockedErrors,
+        isReady: true,
+      },
       {}
     );
   });
@@ -133,6 +138,7 @@ describe('ItemFormModal', () => {
           setters: mockedSetters,
           errors: mockedErrors,
           onDelete: expect.any(Function),
+          isReady: true,
         },
         {}
       );

@@ -11,6 +11,8 @@ exports[`ItemFormModal renders snapshot successfully 1`] = `
          
         - 
          - 
+         - 
+        isReady
       </div>
       <div>
         title: 
@@ -47,6 +49,8 @@ exports[`ItemFormModal when data passed renders snapshot successfully 1`] = `
          
         - 
          - 
+         - 
+        isReady
       </div>
       <div>
         title: 

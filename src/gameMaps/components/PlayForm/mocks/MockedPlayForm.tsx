@@ -1,7 +1,7 @@
-const MockedPlayForm = jest.fn(({ values, errors }) => (
+const MockedPlayForm = jest.fn(({ values, errors, isReady }) => (
   <div>
     MockedPlayForm - {values?.title} - {values?.description} - {errors?.title} -{' '}
-    {errors?.description}
+    {errors?.description} - {isReady && 'isReady'}
   </div>
 ));
 
