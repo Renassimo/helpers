@@ -1,5 +1,8 @@
 import { MouseEvent, useCallback, useState } from 'react';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -64,6 +67,9 @@ const PlayMapMenu = () => {
     []
   );
 
+  const theme = useTheme();
+  const short = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box>
       <Box>
@@ -113,7 +119,12 @@ const PlayMapMenu = () => {
           </Box>
         )}
       </Box>
-      <List sx={{ maxHeight: 'calc(75vh - 52.5px)', overflow: 'auto' }}>
+      <List
+        sx={{
+          maxHeight: short ? '20vh' : 'calc(79vh - 52.5px)',
+          overflow: 'auto',
+        }}
+      >
         {categoriesList.map((category) => (
           <ListItemButton
             key={category.id}

@@ -1,4 +1,4 @@
-import { MapContainer, ImageOverlay } from 'react-leaflet';
+import { MapContainer, ImageOverlay, ZoomControl } from 'react-leaflet';
 
 import Box from '@mui/material/Box';
 
@@ -38,6 +38,7 @@ const MapOnImage = ({
             backgroundColor,
           }}
           attributionControl={false}
+          zoomControl={false}
         >
           <ImageOverlay
             url={mapImageUrl}
@@ -45,6 +46,7 @@ const MapOnImage = ({
             opacity={1}
             zIndex={10}
           />
+          <ZoomControl position="bottomleft" />
           <MapEventsHandler handleMapClick={onClick} />
           {children}
         </MapContainer>

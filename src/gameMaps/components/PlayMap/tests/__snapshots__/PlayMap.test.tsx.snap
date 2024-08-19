@@ -7,7 +7,7 @@ exports[`PlayMap renders successfully 1`] = `
       class="MuiBox-root css-ojqyia"
     >
       <div
-        class="MuiBox-root css-mebauc"
+        class="MuiBox-root css-7unbet"
       >
         <button
           aria-label="Toggle show recent items"
@@ -399,7 +399,7 @@ exports[`PlayMap when clecks to Toggle show recent items renders successfully 1`
       class="MuiBox-root css-ojqyia"
     >
       <div
-        class="MuiBox-root css-mebauc"
+        class="MuiBox-root css-7unbet"
       >
         <button
           aria-label="Toggle show recent items"
@@ -572,7 +572,7 @@ exports[`PlayMap when open for creating and new marker passed renders successful
       class="MuiBox-root css-ojqyia"
     >
       <div
-        class="MuiBox-root css-mebauc"
+        class="MuiBox-root css-7unbet"
       >
         <button
           aria-label="Toggle show recent items"
@@ -994,7 +994,7 @@ exports[`PlayMap when open for editing renders successfully with mocked modal 1`
       class="MuiBox-root css-ojqyia"
     >
       <div
-        class="MuiBox-root css-mebauc"
+        class="MuiBox-root css-7unbet"
       >
         <button
           aria-label="Toggle show recent items"
@@ -1401,7 +1401,7 @@ exports[`PlayMap when relocating item passed renders successfully 1`] = `
       class="MuiBox-root css-ojqyia"
     >
       <div
-        class="MuiBox-root css-mebauc"
+        class="MuiBox-root css-7unbet"
       >
         <button
           aria-label="Toggle show recent items"

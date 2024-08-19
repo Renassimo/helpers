@@ -91,7 +91,7 @@ const PlayMap = () => {
 
   return (
     <Box position="relative" height="100%" width="100%">
-      <Box position="absolute" top={0} right={0} zIndex={1}>
+      <Box position="absolute" top={0} left={0} zIndex={1000}>
         <IconButton
           aria-label="Toggle show recent items"
           size="small"

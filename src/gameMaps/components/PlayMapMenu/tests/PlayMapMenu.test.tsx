@@ -9,6 +9,8 @@ import MockedFilterInput from '@/common/components/FilterInput/MockedFilterInput
 
 import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import {
   mockedCategories,
   mockedCategory1,
@@ -21,6 +23,7 @@ import PlayMapMenu from '../PlayMapMenu';
 jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 jest.mock('@/gameMaps/components/CategoryFormModal');
 jest.mock('@/common/components/FilterInput');
+jest.mock('@mui/material/useMediaQuery');
 
 describe('PlayMapMenu', () => {
   const mockedCategoriesList = mockedCategories;
@@ -66,11 +69,16 @@ describe('PlayMapMenu', () => {
 
   const mockedUsePlayContext = jest.fn(() => mockedUsePlayResult);
 
+  const mockUseMediaQuery = jest.fn(() => false);
+
   beforeEach(() => {
     (CategoryFormModal as unknown as jest.Mock).mockImplementation(
       MockedCategoryFormModal
     );
     (FilterInput as unknown as jest.Mock).mockImplementation(MockedFilterInput);
+    (useMediaQuery as unknown as jest.Mock).mockImplementation(
+      mockUseMediaQuery
+    );
   });
 
   afterEach(() => {
@@ -144,6 +152,36 @@ describe('PlayMapMenu', () => {
         );
         // Act
         await userEvent.click(getByLabelText('Toggle compact list'));
+        // Assert
+        expect(baseElement).toMatchSnapshot();
+        expect(MockedFilterInput).toHaveBeenCalledWith(
+          {
+            value: mockedCategoryFilterQuery,
+            setValue: mockedSetCategoryFilterQuery,
+          },
+          {}
+        );
+      });
+    });
+
+    describe('and when screen is lower than md breakpoint', () => {
+      beforeEach(() => {
+        (useMediaQuery as unknown as jest.Mock).mockImplementation(
+          jest.fn(() => true)
+        );
+      });
+
+      test('renders successfully', async () => {
+        // Arange
+        const mockedUsePlayContext = jest.fn(() => ({
+          ...mockedUsePlayResult,
+          pointingCategoryId: null,
+        }));
+        (usePlayContext as unknown as jest.Mock).mockImplementation(
+          mockedUsePlayContext
+        );
+        // Act
+        const { baseElement } = renderWithTheme(<PlayMapMenu />);
         // Assert
         expect(baseElement).toMatchSnapshot();
         expect(MockedFilterInput).toHaveBeenCalledWith(
