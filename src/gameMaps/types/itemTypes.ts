@@ -10,6 +10,7 @@ export interface ItemAttributes {
   collectedByPlayId?: {
     [key: string]: boolean;
   };
+  recent?: boolean;
 }
 
 export interface ItemMarker {

@@ -51,7 +51,10 @@ const useCreateUpdateItem = (
   const updateSubmittedItem = useCallback(
     (newData: ItemData | null, id?: string) => {
       if (newData) {
-        updateItem(newData, recountCategories);
+        updateItem(
+          { ...newData, attributes: { ...newData.attributes, recent: true } },
+          recountCategories
+        );
         createSuccessAlert(`Items were updated!`);
       } else {
         updateItem(null, recountCategories, id);

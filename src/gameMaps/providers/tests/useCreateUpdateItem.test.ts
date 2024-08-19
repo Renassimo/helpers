@@ -241,7 +241,10 @@ describe('useCreateUpdateItem', () => {
       // Assert
       expect(result.current).toEqual(expectedState);
       expect(mockedUpdateItem).toHaveBeenCalledWith(
-        mockedUpdatedItem,
+        {
+          ...mockedUpdatedItem,
+          attributes: { ...mockedUpdatedItem.attributes, recent: true },
+        },
         mockedRecountCategories
       );
       expect(mockedCreateSuccessAlert).toHaveBeenCalledWith(
