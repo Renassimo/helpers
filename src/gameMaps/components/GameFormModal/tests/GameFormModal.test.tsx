@@ -66,7 +66,12 @@ describe('GameFormModal', () => {
     expect(mockedUseGameForm).toBeCalledWith(undefined, expect.any(Function));
     expect(mockedPrepareFormForEdit).not.toBeCalled();
     expect(MockedGameForm).toHaveBeenCalledWith(
-      { values: mockedValues, setters: mockedSetters, errors: mockedErrors },
+      {
+        values: mockedValues,
+        setters: mockedSetters,
+        errors: mockedErrors,
+        isReady: true,
+      },
       {}
     );
   });
@@ -108,6 +113,7 @@ describe('GameFormModal', () => {
           setters: mockedSetters,
           errors: mockedErrors,
           onDelete: expect.any(Function),
+          isReady: true,
         },
         {}
       );

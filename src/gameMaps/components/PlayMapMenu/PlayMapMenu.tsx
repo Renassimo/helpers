@@ -1,4 +1,7 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useCallback, useState } from 'react';
+
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -15,6 +18,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveDoneIcon from '@mui/icons-material/RemoveDone';
+import SegmentIcon from '@mui/icons-material/Segment';
 
 import CategoryFormModal from '@/gameMaps/components/CategoryFormModal';
 import FilterInput from '@/common/components/FilterInput';
@@ -57,6 +61,15 @@ const PlayMapMenu = () => {
     updateSubmittedCategory(newData, editingCategory?.id);
   };
 
+  const [isCompact, setIsCompact] = useState(true);
+  const toggleIsCompact = useCallback(
+    () => setIsCompact((current) => !current),
+    []
+  );
+
+  const theme = useTheme();
+  const short = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box>
       <Box>
@@ -77,6 +90,12 @@ const PlayMapMenu = () => {
               aria-label="Hide / show fully collected"
             >
               <RemoveDoneIcon />
+            </IconButton>
+            <IconButton
+              onClick={toggleIsCompact}
+              aria-label="Toggle compact list"
+            >
+              <SegmentIcon />
             </IconButton>
             <IconButton
               onClick={clearAllChosenCategories}
@@ -100,7 +119,12 @@ const PlayMapMenu = () => {
           </Box>
         )}
       </Box>
-      <List sx={{ maxHeight: 'calc(75vh - 52.5px)', overflow: 'auto' }}>
+      <List
+        sx={{
+          maxHeight: short ? '20vh' : 'calc(79vh - 52.5px)',
+          overflow: 'auto',
+        }}
+      >
         {categoriesList.map((category) => (
           <ListItemButton
             key={category.id}
@@ -115,7 +139,9 @@ const PlayMapMenu = () => {
             <ListItemIcon>
               <LocationOnIcon style={{ color: category.attributes.color }} />
             </ListItemIcon>
-            <ListItemText secondary={category.attributes.description}>
+            <ListItemText
+              secondary={!isCompact && category.attributes.description}
+            >
               {category.attributes.title} -{' '}
               {category.attributes.collectedItemsAmount ?? 0}/
               {category.attributes.foundItemsAmount ?? 0}/

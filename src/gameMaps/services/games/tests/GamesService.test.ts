@@ -37,7 +37,7 @@ describe('GamesService', () => {
     test('returns data', async () => {
       // Arrange
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(games).get()',
+        'collection(gameMaps).doc(uid).collection(games).orderBy().get()',
         {
           docs: [
             {
@@ -47,7 +47,8 @@ describe('GamesService', () => {
           ],
         }
       );
-      const [mockedCollection1, mockedDoc, mockedCollection2] = mockedDbFuncs;
+      const [mockedCollection1, mockedDoc, mockedCollection2, mockedOrderBy] =
+        mockedDbFuncs;
 
       const gamesService = GamesService.getInstance(
         mockedDb as unknown as Firestore
@@ -70,6 +71,7 @@ describe('GamesService', () => {
       expect(mockedCollection1).toHaveBeenCalledWith('gameMaps');
       expect(mockedDoc).toHaveBeenCalledWith('uid');
       expect(mockedCollection2).toHaveBeenCalledWith('games');
+      expect(mockedOrderBy).toHaveBeenCalledWith('title');
       expect(mockedFile).not.toHaveBeenCalled();
       expect(mockedBucket).not.toHaveBeenCalled();
       expect(mockedDelete).not.toHaveBeenCalled();

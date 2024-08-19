@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useCallback, useMemo, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -6,7 +6,9 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+
 import EditLocationAltIcon from '@mui/icons-material/EditLocationAlt';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 
 import MapOnImage from '@/common/lib/leaflet/components/MapOnImage';
 import MapMarker from '@/common/lib/leaflet/components/MapMarker';
@@ -73,15 +75,38 @@ const PlayMap = () => {
     updateItemCollection(itemId, collected);
   };
 
+  const [isOnlyRecentShowing, setIsOnlyRecentShowing] = useState(false);
+  const toggleIsOnlyRecentShowing = useCallback(
+    () => setIsOnlyRecentShowing((current) => !current),
+    []
+  );
+
+  const itemsToShow = useMemo(
+    () =>
+      isOnlyRecentShowing
+        ? visibleItems.filter((item) => item.attributes.recent)
+        : visibleItems,
+    [isOnlyRecentShowing, visibleItems]
+  );
+
   return (
-    <>
+    <Box position="relative" height="100%" width="100%">
+      <Box position="absolute" top={0} left={0} zIndex={1000}>
+        <IconButton
+          aria-label="Toggle show recent items"
+          size="small"
+          onClick={toggleIsOnlyRecentShowing}
+        >
+          <ScheduleIcon sx={{ fill: 'white' }} />
+        </IconButton>
+      </Box>
       <MapOnImage
         onClick={handleMapClick}
         mapImageUrl={mapImageUrl}
         mapImageRatio={mapImageRatio}
         backgroundColor={backgroundColor}
       >
-        {visibleItems.map((item) =>
+        {itemsToShow.map((item) =>
           categories[item.attributes.categoryId] ? (
             <MapMarker
               key={item.id}
@@ -174,7 +199,7 @@ const PlayMap = () => {
           clearData={clearItemEditing}
         />
       )}
-    </>
+    </Box>
   );
 };
 

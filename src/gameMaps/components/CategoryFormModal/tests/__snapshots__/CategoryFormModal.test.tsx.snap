@@ -17,6 +17,9 @@ exports[`CategoryFormModal renders snapshot successfully 1`] = `
          
          - 
          - 
+         -
+         
+        isReady
       </div>
       <div>
         title: 
@@ -59,6 +62,9 @@ exports[`CategoryFormModal when data passed renders snapshot successfully 1`] = 
          
          - 
          - 
+         -
+         
+        isReady
       </div>
       <div>
         title: 

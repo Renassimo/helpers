@@ -7,28 +7,32 @@ exports[`Play renders successfully 1`] = `
       class="MuiBox-root css-svckkv"
     >
       <div
-        class="MuiGrid-root MuiGrid-container css-1sgmr83-MuiGrid-root"
+        class="css-jhrool"
       >
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1sgmr83-MuiGrid-root"
         >
-          <div>
-            MockedPlayMapMenu
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5 MuiGrid-grid-lg-4 MuiGrid-grid-xl-3 css-b2n9wa-MuiGrid-root"
+          >
+            <div>
+              MockedPlayMapMenu
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7 MuiGrid-grid-lg-8 MuiGrid-grid-xl-9 css-qx3y6e-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Map Loading...
+            </p>
           </div>
         </div>
-        <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-2buvx3-MuiGrid-root"
-        >
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-          >
-            Map Loading...
-          </p>
-        </div>
-        <div>
-          MockedPlayFormModal 
-          closed
-        </div>
+      </div>
+      <div>
+        MockedPlayFormModal 
+        closed
       </div>
     </div>
   </div>

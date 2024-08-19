@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,9 +13,16 @@ const ItemForm = ({
   setters,
   errors = {},
   onDelete,
+  isReady = false,
 }: ItemFormProps) => {
   const { description, collected } = values;
   const { setDescription, setCollected } = setters;
+
+  const inputRef = useRef<null | HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isReady) inputRef?.current?.focus();
+  }, [isReady]);
 
   return (
     <>
@@ -22,6 +31,7 @@ const ItemForm = ({
         label="Description"
         value={description}
         onChange={(event) => setDescription(event.target.value)}
+        inputRef={inputRef}
         fullWidth
         multiline
         margin="dense"

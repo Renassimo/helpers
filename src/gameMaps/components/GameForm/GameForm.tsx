@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 
@@ -12,9 +14,16 @@ const GameForm = ({
   setters,
   errors = {},
   onDelete,
+  isReady = false,
 }: GameFormProps) => {
   const { title, description, backgroundColor, mapImageUrl } = values;
   const { setTitle, setDescription, setBackgroundColor, setMapImage } = setters;
+
+  const inputRef = useRef<null | HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isReady) inputRef?.current?.focus();
+  }, [isReady]);
 
   return (
     <>
@@ -23,6 +32,7 @@ const GameForm = ({
         label="Title"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
+        inputRef={inputRef}
         fullWidth
         margin="dense"
         variant="standard"

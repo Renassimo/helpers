@@ -1,4 +1,4 @@
-import { MapContainer, ImageOverlay } from 'react-leaflet';
+import { MapContainer, ImageOverlay, ZoomControl } from 'react-leaflet';
 import getMapBoundsAndCenter from '@/common/lib/leaflet/utils/getMapBoundsAndCenter';
 import MapEventsHandler from '@/common/lib/leaflet/components/MapEventsHandler';
 
@@ -13,11 +13,12 @@ jest.mock('@/common/lib/leaflet/components/MapEventsHandler');
 describe('MapOnImage', () => {
   const mockeOnClick = jest.fn();
   const MockedMapContainer = jest.fn(
-    ({ center, zoom, style, attributionControl, children }) => (
+    ({ center, zoom, style, attributionControl, children, zoomControl }) => (
       <div>
         MockedMapContainer - {center} - {zoom} -{' '}
         {typeof style === 'object' && JSON.stringify(style)} -{' '}
         {attributionControl && 'with attributionControl'} - {children}
+        {zoomControl && 'With zoom control'}
       </div>
     )
   );
@@ -27,6 +28,9 @@ describe('MapOnImage', () => {
       {typeof bounds === 'object' && JSON.stringify(bounds)} - {opacity} -{' '}
       {zIndex}
     </div>
+  ));
+  const MockedZoomControl = jest.fn(({ position }) => (
+    <div>ZoomControl - {position} - </div>
   ));
   const mockedBoundAndCenter = { center: 'center', bounds: 'bounds' };
   const mockedGetMapBoundsAndCenter = jest.fn(() => mockedBoundAndCenter);
@@ -41,6 +45,7 @@ describe('MapOnImage', () => {
     (ImageOverlay as unknown as jest.Mock).mockImplementation(
       MockedImageOverlay
     );
+    (ZoomControl as unknown as jest.Mock).mockImplementation(MockedZoomControl);
     (getMapBoundsAndCenter as unknown as jest.Mock).mockImplementation(
       mockedGetMapBoundsAndCenter
     );

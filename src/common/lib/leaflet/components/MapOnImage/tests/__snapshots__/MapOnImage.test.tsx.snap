@@ -29,6 +29,11 @@ exports[`MapOnImage renders successfully 1`] = `
           10
         </div>
         <div>
+          ZoomControl - 
+          bottomleft
+           - 
+        </div>
+        <div>
           MockedMapEventsHandler 
           withHandleMapClick
         </div>
@@ -66,6 +71,11 @@ exports[`MapOnImage when mapImageRatio passed renders successfully 1`] = `
            -
            
           10
+        </div>
+        <div>
+          ZoomControl - 
+          bottomleft
+           - 
         </div>
         <div>
           MockedMapEventsHandler 

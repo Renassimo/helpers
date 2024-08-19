@@ -53,6 +53,18 @@ describe('ItemForm', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  describe('when ready', () => {
+    test('renders snapshot successfully', () => {
+      // Arange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <ItemForm {...mockedProps} isReady />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
   describe('when received errors', () => {
     test('renders snapshot successfully', () => {
       // Arange

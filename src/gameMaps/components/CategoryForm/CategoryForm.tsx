@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 
@@ -11,9 +13,16 @@ const CategoryForm = ({
   setters,
   errors = {},
   onDelete,
+  isReady = false,
 }: CategoryFormProps) => {
   const { title, description, color, itemsAmount } = values;
   const { setTitle, setDescription, setColor, setItemsAmount } = setters;
+
+  const inputRef = useRef<null | HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isReady) inputRef?.current?.focus();
+  }, [isReady]);
 
   return (
     <>
@@ -23,6 +32,7 @@ const CategoryForm = ({
         value={title}
         onChange={(event) => setTitle(event.target.value)}
         fullWidth
+        inputRef={inputRef}
         margin="dense"
         variant="standard"
         error={!!errors.title}

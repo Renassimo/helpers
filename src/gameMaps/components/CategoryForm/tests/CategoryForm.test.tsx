@@ -74,6 +74,18 @@ describe('CategoryForm', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  describe('when ready', () => {
+    test('renders snapshot successfully', () => {
+      // Arange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <CategoryForm {...mockedProps} isReady />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
   describe('when received errors', () => {
     test('renders snapshot successfully', () => {
       // Arange

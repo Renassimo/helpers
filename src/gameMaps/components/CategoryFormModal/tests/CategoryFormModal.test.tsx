@@ -74,7 +74,12 @@ describe('CategoryFormModal', () => {
     );
     expect(mockedPrepareFormForEdit).not.toBeCalled();
     expect(MockedCategoryForm).toHaveBeenCalledWith(
-      { values: mockedValues, setters: mockedSetters, errors: mockedErrors },
+      {
+        values: mockedValues,
+        setters: mockedSetters,
+        errors: mockedErrors,
+        isReady: true,
+      },
       {}
     );
   });
@@ -118,6 +123,7 @@ describe('CategoryFormModal', () => {
           setters: mockedSetters,
           errors: mockedErrors,
           onDelete: expect.any(Function),
+          isReady: true,
         },
         {}
       );

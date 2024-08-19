@@ -17,7 +17,6 @@ import {
   mockedGame,
   mockedItem1,
   mockedItem2,
-  mockedItems,
   mockedPlay,
 } from '@/gameMaps/types/mocks';
 
@@ -38,12 +37,26 @@ describe('PlayMap', () => {
       categoryId: 'category-id',
     },
   };
+  const mockedRecentItem = {
+    id: 'recent-item',
+    attributes: {
+      ...mockedItem1.attributes,
+      description: 'Recent item description',
+      recent: true,
+    },
+  };
   const mockedPointingCategoryId = mockedCategory2.id;
-  const mockedVisibleItems = [...mockedItems, mockedAdditionalItem];
+  const mockedVisibleItems = [
+    mockedItem1,
+    mockedItem2,
+    mockedAdditionalItem,
+    mockedRecentItem,
+  ];
   const itemsState = {
     [mockedItem1.id]: mockedItem1,
     [mockedItem2.id]: mockedItem2,
     'item-id': mockedAdditionalItem,
+    [mockedRecentItem.id]: mockedRecentItem,
   };
   const mockedCategoriesState = {
     [mockedCategory1.id]: mockedCategory1,
@@ -129,6 +142,25 @@ describe('PlayMap', () => {
       onAdd: expect.any(Function),
       relocatingItem: null,
       updateItemCoordinates: expect.any(Function),
+    });
+  });
+
+  describe('when clecks to Toggle show recent items', () => {
+    test('renders successfully', async () => {
+      // Arange
+      const { baseElement, getByLabelText } = renderWithTheme(<PlayMap />);
+      // Act
+      await userEvent.click(getByLabelText('Toggle show recent items'));
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+      expect(mockedUsePlayContext).toHaveBeenCalledWith();
+      expect(mockedUseAddItemOnMap).toHaveBeenCalledWith({
+        categories: mockedCategoriesState,
+        pointingCategoryId: null,
+        onAdd: expect.any(Function),
+        relocatingItem: null,
+        updateItemCoordinates: expect.any(Function),
+      });
     });
   });
 

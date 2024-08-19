@@ -76,14 +76,14 @@ exports[`GameForm renders snapshot successfully 1`] = `
 </body>
 `;
 
-exports[`GameForm when received errors renders snapshot successfully 1`] = `
+exports[`GameForm when ready renders snapshot successfully 1`] = `
 <body>
   <div>
     <div
       class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
     >
       <label
-        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-focused MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
         for=":r2:"
         id=":r2:-label"
@@ -91,11 +91,10 @@ exports[`GameForm when received errors renders snapshot successfully 1`] = `
         Title
       </label>
       <div
-        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl css-l4u8b9-MuiInputBase-root-MuiInput-root"
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth Mui-focused MuiInputBase-formControl css-l4u8b9-MuiInputBase-root-MuiInput-root"
       >
         <input
-          aria-describedby=":r2:-helper-text"
-          aria-invalid="true"
+          aria-invalid="false"
           class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
           id=":r2:"
           name="title"
@@ -103,18 +102,12 @@ exports[`GameForm when received errors renders snapshot successfully 1`] = `
           value="Game 1"
         />
       </div>
-      <p
-        class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-1d1r5q-MuiFormHelperText-root"
-        id=":r2:-helper-text"
-      >
-        Title error
-      </p>
     </div>
     <div
       class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
     >
       <label
-        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
         for=":r3:"
         id=":r3:-label"
@@ -122,11 +115,10 @@ exports[`GameForm when received errors renders snapshot successfully 1`] = `
         Description
       </label>
       <div
-        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
       >
         <textarea
-          aria-describedby=":r3:-helper-text"
-          aria-invalid="true"
+          aria-invalid="false"
           class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
           id=":r3:"
           name="description"
@@ -142,9 +134,93 @@ exports[`GameForm when received errors renders snapshot successfully 1`] = `
           tabindex="-1"
         />
       </div>
+    </div>
+    <div>
+      backgroundColor
+       - 
+      #fff
+       - 
+      Map background color
+       - 
+      onChange
+       - 
+    </div>
+    <div>
+      MockedImagePicker - 
+    </div>
+  </div>
+</body>
+`;
+
+exports[`GameForm when received errors renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+    >
+      <label
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+        data-shrink="true"
+        for=":r4:"
+        id=":r4:-label"
+      >
+        Title
+      </label>
+      <div
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl css-l4u8b9-MuiInputBase-root-MuiInput-root"
+      >
+        <input
+          aria-describedby=":r4:-helper-text"
+          aria-invalid="true"
+          class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          id=":r4:"
+          name="title"
+          type="text"
+          value="Game 1"
+        />
+      </div>
       <p
         class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-1d1r5q-MuiFormHelperText-root"
-        id=":r3:-helper-text"
+        id=":r4:-helper-text"
+      >
+        Title error
+      </p>
+    </div>
+    <div
+      class="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth MuiTextField-root css-1z10yd4-MuiFormControl-root-MuiTextField-root"
+    >
+      <label
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-error MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
+        data-shrink="true"
+        for=":r5:"
+        id=":r5:-label"
+      >
+        Description
+      </label>
+      <div
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary Mui-error MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-1rcvvn7-MuiInputBase-root-MuiInput-root"
+      >
+        <textarea
+          aria-describedby=":r5:-helper-text"
+          aria-invalid="true"
+          class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+          id=":r5:"
+          name="description"
+          style="height: 0px; overflow: hidden;"
+        >
+          Game 1 description
+        </textarea>
+        <textarea
+          aria-hidden="true"
+          class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
+          readonly=""
+          style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+          tabindex="-1"
+        />
+      </div>
+      <p
+        class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-1d1r5q-MuiFormHelperText-root"
+        id=":r5:-helper-text"
       >
         Description error
       </p>
@@ -201,8 +277,8 @@ exports[`GameForm when receives optional props renders snapshot successfully 1`]
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":r4:"
-        id=":r4:-label"
+        for=":r6:"
+        id=":r6:-label"
       >
         Title
       </label>
@@ -212,7 +288,7 @@ exports[`GameForm when receives optional props renders snapshot successfully 1`]
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
-          id=":r4:"
+          id=":r6:"
           name="title"
           type="text"
           value="Game 1"
@@ -225,8 +301,8 @@ exports[`GameForm when receives optional props renders snapshot successfully 1`]
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-1c2i806-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for=":r5:"
-        id=":r5:-label"
+        for=":r7:"
+        id=":r7:-label"
       >
         Description
       </label>
@@ -236,7 +312,7 @@ exports[`GameForm when receives optional props renders snapshot successfully 1`]
         <textarea
           aria-invalid="false"
           class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline css-66dh3a-MuiInputBase-input-MuiInput-input"
-          id=":r5:"
+          id=":r7:"
           name="description"
           style="height: 0px; overflow: hidden;"
         >

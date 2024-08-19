@@ -97,6 +97,34 @@ describe('GameForm', () => {
     );
   });
 
+  describe('when ready', () => {
+    test('renders snapshot successfully', () => {
+      // Arange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <GameForm {...mockedProps} isReady />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+      expect(MockedColorPicker).toHaveBeenCalledWith(
+        {
+          name: 'backgroundColor',
+          label: 'Map background color',
+          value: mockedValues.backgroundColor,
+          onChange: expect.any(Function),
+        },
+        {}
+      );
+      expect(MockedImagePicker).toHaveBeenCalledWith(
+        {
+          defaultUrlValue: mockedValues.mapImageUrl,
+          onChange: expect.any(Function),
+        },
+        {}
+      );
+    });
+  });
+
   describe('when received errors', () => {
     test('renders snapshot successfully', () => {
       // Arange

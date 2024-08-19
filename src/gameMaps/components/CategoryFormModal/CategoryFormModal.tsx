@@ -83,6 +83,7 @@ const CategoryFormModal = ({
         setters={setters}
         errors={errors}
         onDelete={isEditForm ? handleDelete : undefined}
+        isReady={isModalOpen}
       />
     </Modal>
   );

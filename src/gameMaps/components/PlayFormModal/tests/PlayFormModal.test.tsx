@@ -70,7 +70,12 @@ describe('PlayFormModal', () => {
     );
     expect(mockedPrepareFormForEdit).not.toBeCalled();
     expect(MockedPlayForm).toHaveBeenCalledWith(
-      { values: mockedValues, setters: mockedSetters, errors: mockedErrors },
+      {
+        values: mockedValues,
+        setters: mockedSetters,
+        errors: mockedErrors,
+        isReady: true,
+      },
       {}
     );
   });
@@ -114,6 +119,7 @@ describe('PlayFormModal', () => {
           setters: mockedSetters,
           errors: mockedErrors,
           onDelete: expect.any(Function),
+          isReady: true,
         },
         {}
       );

@@ -15,7 +15,7 @@ describe('CategoriesService', () => {
     test('returns data', async () => {
       // Arrange
       const [mockedDb, mockedDbFuncs] = mockDBCallStack(
-        'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(categories).get()',
+        'collection(gameMaps).doc(uid).collection(games).doc(gameId).collection(categories).orderBy().get()',
         {
           docs: [{ id: 'cat1', data: () => ({ title: 'doc 1' }) }],
         }
@@ -26,6 +26,7 @@ describe('CategoriesService', () => {
         mockedCollection2,
         mockedDoc2,
         mockedCollection3,
+        mockedOrderBy,
       ] = mockedDbFuncs;
 
       const categorieService = CategoriesService.getInstance(
@@ -41,6 +42,7 @@ describe('CategoriesService', () => {
       expect(mockedCollection2).toHaveBeenCalledWith('games');
       expect(mockedDoc2).toHaveBeenCalledWith(mockedGameId);
       expect(mockedCollection3).toHaveBeenCalledWith('categories');
+      expect(mockedOrderBy).toHaveBeenCalledWith('title');
     });
 
     describe('when receives error', () => {
