@@ -24,6 +24,7 @@ class GamesService extends FirestoreService {
       .collection(this.GAME_MAPS)
       .doc(uid)
       .collection(this.GAMES)
+      .orderBy('title')
       .get();
     return games.docs.map((doc) => {
       const data = this.deserializeDoc<GameData>({ docData: doc });

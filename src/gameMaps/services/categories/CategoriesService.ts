@@ -23,6 +23,7 @@ class CategoriesService extends FirestoreService {
       .collection(this.GAMES)
       .doc(gameId)
       .collection(this.CATEGORIES)
+      .orderBy('title')
       .get();
     return plays.docs.map((doc) => this.deserializeDoc({ docData: doc }));
   }
