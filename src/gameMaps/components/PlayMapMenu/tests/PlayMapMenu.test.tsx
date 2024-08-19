@@ -128,6 +128,33 @@ describe('PlayMapMenu', () => {
         expect(baseElement).toMatchSnapshot();
       });
     });
+
+    describe('and when click toggle compact', () => {
+      test('renders successfully', async () => {
+        // Arange
+        const mockedUsePlayContext = jest.fn(() => ({
+          ...mockedUsePlayResult,
+          pointingCategoryId: null,
+        }));
+        (usePlayContext as unknown as jest.Mock).mockImplementation(
+          mockedUsePlayContext
+        );
+        const { baseElement, getByLabelText } = renderWithTheme(
+          <PlayMapMenu />
+        );
+        // Act
+        await userEvent.click(getByLabelText('Toggle compact list'));
+        // Assert
+        expect(baseElement).toMatchSnapshot();
+        expect(MockedFilterInput).toHaveBeenCalledWith(
+          {
+            value: mockedCategoryFilterQuery,
+            setValue: mockedSetCategoryFilterQuery,
+          },
+          {}
+        );
+      });
+    });
   });
 
   describe('when isCategoryEditOpen true', () => {
