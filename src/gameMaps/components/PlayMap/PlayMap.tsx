@@ -113,6 +113,9 @@ const PlayMap = () => {
               position={item.attributes.coordinates}
               color={categories[item.attributes.categoryId]?.attributes.color}
               isMarked={!!item.attributes.collected}
+              title={`${
+                categories[item.attributes.categoryId]?.attributes.title
+              } - ${item.attributes.description}`}
             >
               {
                 <Box>

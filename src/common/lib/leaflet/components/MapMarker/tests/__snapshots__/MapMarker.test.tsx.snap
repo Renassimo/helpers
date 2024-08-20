@@ -11,6 +11,14 @@ exports[`MapMarker snapshot renders successfully 1`] = `
        - 
       mocked-icon
        - 
+      <div>
+        MockedTooltip - 
+        top
+         - 
+        0
+         - 
+        -45
+      </div>
     </div>
   </div>
 </body>

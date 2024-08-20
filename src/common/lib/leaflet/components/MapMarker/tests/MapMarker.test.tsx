@@ -3,7 +3,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import MapMarker from '../MapMarker';
 import getMarkerIcon from '../../../utils/getMarkerIcon';
 
-import { Marker, Popup } from 'react-leaflet';
+import { Marker, Popup, Tooltip } from 'react-leaflet';
 
 jest.mock('react-leaflet');
 jest.mock('../../../utils/getMarkerIcon');
@@ -17,12 +17,18 @@ describe('MapMarker snapshot', () => {
   const MockedPopup = jest.fn(({ children }) => (
     <div>MockedPopup - {children}</div>
   ));
+  const MockedTooltip = jest.fn(({ direction, offset }) => (
+    <div>
+      MockedTooltip - {direction} - {offset[0]} - {offset[1]}
+    </div>
+  ));
   const mockedIcon = 'mocked-icon';
   const mockedGetMarkerIcon = jest.fn(() => mockedIcon);
 
   beforeEach(() => {
     (Marker as unknown as jest.Mock).mockImplementation(MokcedMarker);
     (Popup as unknown as jest.Mock).mockImplementation(MockedPopup);
+    (Tooltip as unknown as jest.Mock).mockImplementation(MockedTooltip);
     (getMarkerIcon as unknown as jest.Mock).mockImplementation(
       mockedGetMarkerIcon
     );
@@ -38,7 +44,11 @@ describe('MapMarker snapshot', () => {
     // Arange
     // Act
     const { baseElement } = renderWithTheme(
-      <MapMarker color={mockedColor} position={mockedPosition} />
+      <MapMarker
+        color={mockedColor}
+        position={mockedPosition}
+        title="mocked-title"
+      />
     );
     // Assert
     expect(baseElement).toMatchSnapshot();
