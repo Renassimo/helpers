@@ -43,10 +43,38 @@ describe('Notion service', () => {
       });
     });
   });
+
+  describe('queryDatabase', () => {
+    const mockedDataBaseID = 'data-base-id';
+
+    test('returns data', async () => {
+      // Arrange
+      const responseData = { hello: 'world' };
+      const expectedResult = { data: responseData, ok: true };
+      fetchMock.get(`${mockedURL}/databases/${mockedDataBaseID}`, responseData);
+      const notionService = new NotionService(mockedToken);
+      // Act
+      const result = await notionService.retreiveDatabase(mockedDataBaseID);
+      // Assert
+      expect(result).toEqual(expectedResult);
+      expect(fetchMock.lastUrl()).toEqual(
+        `${mockedURL}/databases/${mockedDataBaseID}`
+      );
+      expect(fetchMock.lastOptions()).toEqual({
+        headers: {
+          Authorization: 'Bearer token',
+          'Content-Type': 'application/json',
+          'Notion-Version': '2022-02-22',
+        },
+        method: 'GET',
+      });
+    });
+  });
+
   describe('updatePage', () => {
     const mockedPageID = 'page-id';
 
-    test('Test', async () => {
+    test('updates page', async () => {
       // Arrange
       const responseData = { hello: 'world' };
       const expectedResult = { data: responseData, ok: true };
@@ -72,7 +100,7 @@ describe('Notion service', () => {
   describe('retrieveBlockChildren', () => {
     const mockedBlockID = 'block-id';
 
-    test('Test', async () => {
+    test('returns data', async () => {
       // Arrange
       const responseData = { hello: 'world' };
       const expectedResult = { data: responseData, ok: true };
