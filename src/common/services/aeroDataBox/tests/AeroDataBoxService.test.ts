@@ -67,17 +67,21 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe('retreiveAirportByText', () => {
+  describe('retreiveAirportsByText', () => {
     const mockedSearchQuery = 'search-query';
 
     test('returns data', async () => {
       // Arange
+      const expectedResult = { data: [responseGetData] };
+      const responseData = {
+        items: [responseGetData],
+      };
       fetchMock.get(
         `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`,
-        responseGetData
+        responseData
       );
       // Act
-      const result = await aeroDataBoxService.retreiveAirportByText(
+      const result = await aeroDataBoxService.retreiveAirportsByText(
         mockedSearchQuery
       );
       // Assert
@@ -101,12 +105,16 @@ describe('AeroDataBoxService', () => {
 
     test('returns data', async () => {
       // Arange
+      const expectedResult = { data: [responseGetData] };
+      const responseData = {
+        items: [responseGetData],
+      };
       fetchMock.get(
         `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`,
-        responseGetData
+        responseData
       );
       // Act
-      const result = await aeroDataBoxService.retreiveAirportByLocation(
+      const result = await aeroDataBoxService.retreiveAirportsByLocation(
         mockedLat,
         mockedLon
       );

@@ -1,3 +1,5 @@
+import { AeroDataBoxApi } from '@/common/types/aeroDataBox';
+
 class AeroDataBoxService {
   apiKey!: string;
   baseURL!: string;
@@ -10,7 +12,7 @@ class AeroDataBoxService {
   async retrieveAircrafts(
     searchQuery: string,
     searchBy: 'reg' | 'icao24' | 'id' = 'reg'
-  ) {
+  ): Promise<{ data: AeroDataBoxApi.Aircraft[] }> {
     const response = await fetch(
       `${this.baseURL}/aircrafts/${searchBy}/${searchQuery}/all`,
       {
@@ -25,7 +27,7 @@ class AeroDataBoxService {
   async retreiveAirportByCode(
     code: string,
     searchBy: 'iata' | 'icao' = 'iata'
-  ) {
+  ): Promise<{ data: AeroDataBoxApi.AirportExact }> {
     const response = await fetch(
       `${this.baseURL}/airports/${searchBy}/${code}?withTime=true`,
       {
@@ -37,7 +39,9 @@ class AeroDataBoxService {
     return { data };
   }
 
-  async retreiveAirportByText(searchQuery: string) {
+  async retreiveAirportsByText(
+    searchQuery: string
+  ): Promise<{ data: AeroDataBoxApi.Airport[] }> {
     const response = await fetch(
       `${this.baseURL}/airports/search/term?q=${searchQuery}`,
       {
@@ -45,11 +49,14 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
-    const data = await response.json();
-    return { data };
+    const { items } = await response.json();
+    return { data: items };
   }
 
-  async retreiveAirportByLocation(lat: string, lot: string) {
+  async retreiveAirportsByLocation(
+    lat: string,
+    lot: string
+  ): Promise<{ data: AeroDataBoxApi.Airport[] }> {
     const response = await fetch(
       `${this.baseURL}/airports/search/location?lat=${lat}&lon=${lot}&radiusKm=25&limit=10`,
       {
@@ -57,8 +64,8 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
-    const data = await response.json();
-    return { data };
+    const { items } = await response.json();
+    return { data: items };
   }
 
   private get headers() {
