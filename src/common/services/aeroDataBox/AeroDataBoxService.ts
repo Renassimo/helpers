@@ -22,6 +22,45 @@ class AeroDataBoxService {
     return { data };
   }
 
+  async retreiveAirportByCode(
+    code: string,
+    searchBy: 'iata' | 'icao' = 'iata'
+  ) {
+    const response = await fetch(
+      `${this.baseURL}/airports/${searchBy}/${code}?withTime=true`,
+      {
+        method: 'GET',
+        headers: this.headers,
+      }
+    );
+    const data = await response.json();
+    return { data };
+  }
+
+  async retreiveAirportByText(searchQuery: string) {
+    const response = await fetch(
+      `${this.baseURL}/airports/search/term?q=${searchQuery}`,
+      {
+        method: 'GET',
+        headers: this.headers,
+      }
+    );
+    const data = await response.json();
+    return { data };
+  }
+
+  async retreiveAirportByLocation(lat: string, lot: string) {
+    const response = await fetch(
+      `${this.baseURL}/airports/search/location?lat=${lat}&lon=${lot}&radiusKm=25&limit=10`,
+      {
+        method: 'GET',
+        headers: this.headers,
+      }
+    );
+    const data = await response.json();
+    return { data };
+  }
+
   private get headers() {
     return {
       'Content-Type': 'application/json',
