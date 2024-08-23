@@ -5,7 +5,7 @@ import CategoryFormModal from '@/gameMaps/components/CategoryFormModal';
 import FilterInput from '@/common/components/FilterInput';
 
 import MockedCategoryFormModal from '@/gameMaps/components/CategoryFormModal/mocks';
-import MockedFilterInput from '@/common/components/FilterInput/MockedFilterInput';
+import MockedFilterInput from '@/common/components/FilterInput/mocks';
 
 import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 

@@ -1,6 +1,9 @@
 export interface NotionHelperData {
   dataBaseID: string;
   token: string;
+  additionalDbIds?: {
+    [key: string]: string;
+  };
 }
 
 export interface NotionDataBaseResponse {
@@ -19,9 +22,14 @@ export interface NotionError {
   status: number;
 }
 
+export interface NotionCover {
+  external?: { url: string };
+  file?: { url: string };
+}
+
 export interface NotionResult {
   archived: boolean;
-  cover: string | null;
+  cover: NotionCover | null;
   created_by: NotionUpdatedBy;
   created_time: string;
   icon: { type: string; emoji: string } | null;

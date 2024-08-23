@@ -5,7 +5,11 @@ import NotionPropertiesDeserializer from '@/common/serializers/notion';
 describe('NotionPropertiesDeserializer', () => {
   const mockedResult = {
     archived: false,
-    cover: null,
+    cover: {
+      file: {
+        url: 'cover url',
+      },
+    },
     created_by: {
       id: 'created_by_id',
       object: 'created_by_object',
@@ -82,6 +86,7 @@ describe('NotionPropertiesDeserializer', () => {
       dateAttribute: deserializer.getDateAttribute('Date Property'),
       checkboxAttribute: deserializer.getCheckboxAttribute('Checkbox Property'),
       urlAttribute: deserializer.getUrlAttribute('Url Property'),
+      cover: deserializer.cover,
     };
     // Assert
     expect(result).toEqual({
@@ -92,6 +97,7 @@ describe('NotionPropertiesDeserializer', () => {
       dateAttribute: mockedResult.properties['Date Property'].date.start,
       checkboxAttribute: mockedResult.properties['Checkbox Property'].checkbox,
       urlAttribute: mockedResult.properties['Url Property'].url,
+      cover: mockedResult.cover.file.url,
     });
   });
 

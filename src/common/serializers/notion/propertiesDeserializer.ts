@@ -4,6 +4,7 @@ class NotionPropertiesDeserializer {
   result: NotionResult;
   id: string;
   url: string;
+  cover: string | null;
   emoji?: string;
   properties: NotionProperties;
 
@@ -13,6 +14,7 @@ class NotionPropertiesDeserializer {
     this.url = result.url;
     this.properties = result.properties;
     this.emoji = result.icon?.emoji;
+    this.cover = result.cover?.external?.url ?? result.cover?.file?.url ?? null;
   }
 
   private getProperty(propertyName: string) {

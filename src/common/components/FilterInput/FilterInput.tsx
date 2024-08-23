@@ -7,18 +7,21 @@ import CloseIcon from '@mui/icons-material/Close';
 const FilterInput = ({
   value,
   setValue,
+  fullWidth = false,
 }: {
   value: string;
   setValue: (value: string) => void;
+  fullWidth?: boolean;
 }) => {
   return (
-    <FormControl>
+    <FormControl fullWidth={fullWidth}>
       <Input
         id="filter"
         size="small"
         placeholder="Filter"
         aria-label="Filter"
         value={value}
+        fullWidth={fullWidth}
         onChange={(event) => setValue(event.target.value)}
         endAdornment={
           <InputAdornment position="end">
