@@ -101,5 +101,19 @@ describe('DayJS', () => {
       // Assert
       expect(result).toEqual(expectedResult);
     });
+
+    describe('when called without weekDay', () => {
+      test('returns formatted date', () => {
+        // Arange
+        const expectedResult = 'Apr 1 2020';
+        // Act
+        const result = showWhen(
+          'Wed Apr 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)',
+          false
+        );
+        // Assert
+        expect(result).toEqual(expectedResult);
+      });
+    });
   });
 });

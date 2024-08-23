@@ -1,13 +1,18 @@
 import { useEffect } from 'react';
 
-import { PageInfo, User } from '@/auth/types';
 import { NotionError } from '@/common/types/notion';
+import { PageInfo, User } from '@/auth/types';
+import { FlightData } from '@/myFlights/types';
 
 import useAlerts from '@/common/hooks/alerts';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 
-const SpottingPage = ({
+import FlightsProvider from '@/myFlights/providers/FlightsProvider';
+
+import MyFlights from '@/myFlights/components/MyFlights';
+
+const MyFlightsPage = ({
   user,
   pages,
   data,
@@ -15,7 +20,7 @@ const SpottingPage = ({
 }: {
   user: User;
   pages: PageInfo[];
-  data: any[] | null;
+  data: FlightData[] | null;
   error: NotionError | null;
 }) => {
   const { createErrorAlert } = useAlerts();
@@ -24,15 +29,13 @@ const SpottingPage = ({
     if (error) createErrorAlert(error.message || error.code || error.status);
   }, [createErrorAlert, error]);
 
-  console.log(data);
-
   return (
-    // <SpottingProvider data={data}>
-    <PageTemplate title="My Flights" user={user} pages={pages}>
-      My Flights
-    </PageTemplate>
-    // </SpottingProvider>
+    <FlightsProvider data={data}>
+      <PageTemplate title="My Flights" user={user} pages={pages}>
+        <MyFlights />
+      </PageTemplate>
+    </FlightsProvider>
   );
 };
 
-export default SpottingPage;
+export default MyFlightsPage;

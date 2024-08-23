@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyFlights renders successfully 1`] = `
+<body>
+  <div>
+    <h1
+      class="MuiTypography-root MuiTypography-h6 css-15cin6z-MuiTypography-root"
+    >
+      My Flights
+    </h1>
+    <div>
+      MockedFlightTable
+    </div>
+  </div>
+</body>
+`;

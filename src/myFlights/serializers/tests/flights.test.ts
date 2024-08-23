@@ -67,6 +67,7 @@ describe('Flights serializers', () => {
             age: mockedTextAttribute,
             url: mockedUrl,
             photoUrl: mockedCover,
+            number: 1,
           },
         },
       ];

@@ -20,6 +20,18 @@ describe('FilterInput', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  describe('when fullWidth passed', () => {
+    test('renders successfully', () => {
+      // Arange
+      // Act
+      const { baseElement } = renderWithTheme(
+        <FilterInput value={mockedValue} setValue={mockedSetValue} fullWidth />
+      );
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
   describe('when changes value', () => {
     test('calls mockedSetValue', async () => {
       // Arange

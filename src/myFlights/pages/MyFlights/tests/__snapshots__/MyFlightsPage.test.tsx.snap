@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyFlightsPage renders successfully 1`] = `
+<div>
+  <div>
+    MockedFlightsProvider - 
+    <div>
+      Mocked Page Template (
+      My Flights
+      ):
+      <span>
+        Jesse Pinkman
+         - 
+        5book
+      </span>
+      <div>
+        MockedMyFlights
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MyFlightsPage when receives error renders successfully 1`] = `
+<div>
+  <div>
+    MockedFlightsProvider - 
+    <div>
+      Mocked Page Template (
+      My Flights
+      ):
+      <span>
+        Jesse Pinkman
+         - 
+        5book
+      </span>
+      <div>
+        MockedMyFlights
+      </div>
+    </div>
+  </div>
+</div>
+`;

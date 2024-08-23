@@ -21,9 +21,21 @@ export interface FlightAttributes {
   age: string | null;
   url: string;
   photoUrl: string | null;
+  number: number;
 }
 
 export interface FlightData {
   id: string;
   attributes: FlightAttributes;
+}
+
+export interface FlightsState {
+  [id: string]: FlightData;
+}
+
+export interface FlightsContextData {
+  // Flights data
+  flights: FlightsState;
+  flightsList: FlightData[];
+  updateFlight: (flight: FlightData) => void;
 }

@@ -4,7 +4,7 @@ import NotionPropertiesDeserializer from '@/common/serializers/notion';
 import { FlightData } from '../types';
 
 export const deserializeFlights = (results: NotionResult[]): FlightData[] => {
-  return results.map((result: NotionResult) => {
+  return results.map((result: NotionResult, index) => {
     const deserializer = new NotionPropertiesDeserializer(result);
     const id = deserializer.id;
 
@@ -33,6 +33,7 @@ export const deserializeFlights = (results: NotionResult[]): FlightData[] => {
         age: deserializer.getTextAttribute('Age'),
         url: deserializer.url,
         photoUrl: deserializer.cover,
+        number: index + 1,
       },
     };
   });
