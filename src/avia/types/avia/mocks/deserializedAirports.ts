@@ -1,4 +1,6 @@
-export const mockedDeserializedAirports = [
+import { Avia } from '../avia';
+
+export const mockedDeserializedAirports: Avia.AirportData[] = [
   {
     id: 'WAW/EPWA',
     attributes: {

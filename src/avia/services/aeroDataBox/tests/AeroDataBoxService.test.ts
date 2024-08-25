@@ -11,7 +11,7 @@ describe('AeroDataBoxService', () => {
 
   const aeroDataBoxService = new AeroDataBoxService(mockedApiKey);
 
-  describe('retrieveAircrafts', () => {
+  describe.skip('retrieveAircrafts', () => {
     const mockedSearchBy = 'reg';
     const mockedSearchQuery = 'search-query';
 

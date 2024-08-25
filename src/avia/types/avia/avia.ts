@@ -25,4 +25,21 @@ export namespace Avia {
   }
 
   export type AirportData = Data<AirportAttributes>;
+
+  export interface AircraftAttributes {
+    registration: string;
+    serial: string | null;
+    airlineName: string | null;
+    modelCode: string | null;
+    model: string | null;
+    typeName: string | null;
+    productionLine: string | null;
+    isFreighter: boolean | null;
+    firstFlightDate: string | null;
+    rolloutDate: string | null;
+    deliveryDate: string | null;
+    photoUrl: string | null;
+  }
+
+  export type AircraftData = Data<AircraftAttributes>;
 }

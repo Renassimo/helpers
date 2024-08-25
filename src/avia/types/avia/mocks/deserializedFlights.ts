@@ -1,4 +1,6 @@
-export const mockedDeserializedFlights = [
+import { Avia } from '../avia';
+
+export const mockedDeserializedFlights: Avia.FlightData[] = [
   {
     id: 'FZ 1839__2024-08-24',
     attributes: {

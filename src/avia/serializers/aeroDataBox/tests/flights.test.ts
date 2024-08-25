@@ -32,39 +32,38 @@ describe('Flights serializers', () => {
       // Assert
       expect(result).toEqual(expectedResult);
     });
-  });
-
-  describe('when optional params did not passed ', () => {
-    test('deserializes results', () => {
-      // Arrange
-      const [mockedFlight] = mockedFlights;
-      const mockedResult = {
-        ...mockedFlight,
-        aircraft: undefined,
-        airline: undefined,
-      } as AeroDataBoxApi.Flight;
-      const expectedResult = [
-        {
-          id: 'FZ 1839__2024-08-24',
-          attributes: {
-            flightNumber: 'FZ 1839',
-            origin: 'DXB/OMDB',
-            originName: 'Dubai',
-            destination: 'WAW/EPWA',
-            destinationName: 'Warsaw Chopin',
-            distance: 4157,
-            date: '2024-08-24',
-            airline: null,
-            aircraft: null,
-            registration: null,
-            photoUrl: null,
+    describe('when optional params did not passed ', () => {
+      test('deserializes results', () => {
+        // Arrange
+        const [mockedFlight] = mockedFlights;
+        const mockedResult = {
+          ...mockedFlight,
+          aircraft: undefined,
+          airline: undefined,
+        } as AeroDataBoxApi.Flight;
+        const expectedResult = [
+          {
+            id: 'FZ 1839__2024-08-24',
+            attributes: {
+              flightNumber: 'FZ 1839',
+              origin: 'DXB/OMDB',
+              originName: 'Dubai',
+              destination: 'WAW/EPWA',
+              destinationName: 'Warsaw Chopin',
+              distance: 4157,
+              date: '2024-08-24',
+              airline: null,
+              aircraft: null,
+              registration: null,
+              photoUrl: null,
+            },
           },
-        },
-      ];
-      // Act
-      const result = deserializeFlights([mockedResult]);
-      // Assert
-      expect(result).toEqual(expectedResult);
+        ];
+        // Act
+        const result = deserializeFlights([mockedResult]);
+        // Assert
+        expect(result).toEqual(expectedResult);
+      });
     });
   });
 });

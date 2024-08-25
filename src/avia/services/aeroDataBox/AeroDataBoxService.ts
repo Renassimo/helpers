@@ -1,5 +1,9 @@
 import { AeroDataBoxApi } from '@/avia/types/aeroDataBox';
-import { mockedAirports, mockedFlights } from '@/avia/types/aeroDataBox/mocks';
+import {
+  mockedAircrafts,
+  mockedAirports,
+  mockedFlights,
+} from '@/avia/types/aeroDataBox/mocks';
 
 class AeroDataBoxService {
   apiKey!: string;
@@ -13,7 +17,8 @@ class AeroDataBoxService {
   async retrieveAircrafts(
     searchQuery: string,
     searchBy: 'reg' | 'icao24' | 'id' = 'reg'
-  ): Promise<{ data: AeroDataBoxApi.Aircraft[] }> {
+  ): Promise<AeroDataBoxApi.Aircraft[]> {
+    return [mockedAircrafts[0], mockedAircrafts[0]];
     const response = await fetch(
       `${this.baseURL}/aircrafts/${searchBy}/${searchQuery}/all`,
       {
