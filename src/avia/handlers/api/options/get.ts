@@ -5,7 +5,7 @@ import { NextApiRequestWithAuth } from '@/auth/types';
 
 import { getError } from '@/common/utils/errors';
 
-import getOptions from '@/myFlights/handlers/getOptions';
+import getOptions from '@/avia/handlers/getOptions';
 
 const handler = async (
   req: NextApiRequestWithAuth,
@@ -14,12 +14,9 @@ const handler = async (
   if (req.method === 'GET') {
     try {
       const { notionHelperData } = req;
-      const {
-        dataBaseID: fligtsDbId,
-        token,
-        additionalDbIds,
-      } = notionHelperData!;
-      const { spotting: spottingDbId } = additionalDbIds!;
+      const { token, additionalDbIds } = notionHelperData!;
+      const { spotting: spottingDbId, myFlights: fligtsDbId } =
+        additionalDbIds!;
 
       const notionService = new NotionService(token);
       const data = await getOptions(notionService, fligtsDbId, spottingDbId);

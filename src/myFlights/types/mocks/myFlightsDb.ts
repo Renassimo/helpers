@@ -1,4 +1,4 @@
-import { FlightsDB } from '../flightsDb';
+import { FlightsDB } from '../myFlightsDb';
 
 export const mockedFlightsDb: FlightsDB = {
   id: 'flights',

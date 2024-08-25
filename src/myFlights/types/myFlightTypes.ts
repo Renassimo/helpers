@@ -1,4 +1,4 @@
-export interface FlightAttributes {
+export interface MyFlightAttributes {
   title: string | null;
   date: string | null;
   airline: string | null;
@@ -24,18 +24,18 @@ export interface FlightAttributes {
   number: number;
 }
 
-export interface FlightData {
+export interface MyFlightData {
   id: string;
-  attributes: FlightAttributes;
+  attributes: MyFlightAttributes;
 }
 
-export interface FlightsState {
-  [id: string]: FlightData;
+export interface MyFlightsState {
+  [id: string]: MyFlightData;
 }
 
 export interface FlightsContextData {
   // Flights data
-  flights: FlightsState;
-  flightsList: FlightData[];
-  updateFlight: (flight: FlightData) => void;
+  flights: MyFlightsState;
+  flightsList: MyFlightData[];
+  updateFlight: (flight: MyFlightData) => void;
 }

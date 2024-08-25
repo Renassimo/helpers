@@ -11,6 +11,6 @@
     "@typescript-eslint/no-empty-function": 1,
     "@typescript-eslint/no-empty-interface": 1,
     "@typescript-eslint/ban-ts-comment": 1,
-    "@typescript-eslint/no-namespace": 1
+    "@typescript-eslint/no-namespace": 0
   }
 }

@@ -1,6 +1,6 @@
-import { FlightData, FlightsState } from '../flightTypes';
+import { MyFlightData, MyFlightsState } from '../myFlightTypes';
 
-export const mockedFlight1: FlightData = {
+export const mockedMyFlight1: MyFlightData = {
   id: 'fl1',
   attributes: {
     age: 'age1',
@@ -29,7 +29,7 @@ export const mockedFlight1: FlightData = {
   },
 };
 
-export const mockedFlight2: FlightData = {
+export const mockedMyFlight2: MyFlightData = {
   id: 'fl2',
   attributes: {
     age: 'age2',
@@ -58,7 +58,7 @@ export const mockedFlight2: FlightData = {
   },
 };
 
-export const mockedFlight3: FlightData = {
+export const mockedMyFlight3: MyFlightData = {
   id: 'fl3',
   attributes: {
     age: null,
@@ -87,16 +87,16 @@ export const mockedFlight3: FlightData = {
   },
 };
 
-export const mockedFlight: FlightData = mockedFlight1;
+export const mockedMyFlight: MyFlightData = mockedMyFlight1;
 
-export const mockedFlightsList: FlightData[] = [
-  mockedFlight1,
-  mockedFlight2,
-  mockedFlight3,
+export const mockedMyFlightsList: MyFlightData[] = [
+  mockedMyFlight1,
+  mockedMyFlight2,
+  mockedMyFlight3,
 ];
 
-export const mockedFlights: FlightsState = {
-  [mockedFlight1.id]: mockedFlight1,
-  [mockedFlight2.id]: mockedFlight2,
-  [mockedFlight3.id]: mockedFlight3,
+export const mockedMyFlights: MyFlightsState = {
+  [mockedMyFlight1.id]: mockedMyFlight1,
+  [mockedMyFlight2.id]: mockedMyFlight2,
+  [mockedMyFlight3.id]: mockedMyFlight3,
 };

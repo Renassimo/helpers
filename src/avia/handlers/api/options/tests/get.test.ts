@@ -4,24 +4,26 @@ import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
 import NotionService from '@/common/services/notion';
 import { getError } from '@/common/utils/errors';
-import getOptions from '@/myFlights/handlers/getOptions';
+import getOptions from '@/avia/handlers/getOptions';
 
-import handler from '@/myFlights/handlers/api/options/get';
+import handler from '@/avia/handlers/api/options/get';
 
 jest.mock('@/common/services/notion');
-jest.mock('@/myFlights/handlers/getOptions');
+jest.mock('@/avia/handlers/getOptions');
 jest.mock('@/common/utils/errors');
 
 describe('get options', () => {
   const mockedData = 'mocked-data';
   const mockedMethod = 'GET';
   const mockedToken = 'mocked token';
-  const mockedDataBaseID = 'mocked-data-base-id';
+  const mockedFlightsDbID = 'mocked-data-base-id';
   const mockedSpottingDbId = 'mocked-spotting-db-id';
-  const mockedAdditionalDbIds = { spotting: mockedSpottingDbId };
+  const mockedAdditionalDbIds = {
+    spotting: mockedSpottingDbId,
+    myFlights: mockedFlightsDbID,
+  };
   const mockedNotionHelperData = {
     token: mockedToken,
-    dataBaseID: mockedDataBaseID,
     additionalDbIds: mockedAdditionalDbIds,
   };
   const mockedStatusCode = 200;
@@ -67,7 +69,7 @@ describe('get options', () => {
     expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(mockedToken);
     expect(mockedGetOptions).toHaveBeenCalledWith(
       mockedNotionServiceInstance,
-      mockedDataBaseID,
+      mockedFlightsDbID,
       mockedSpottingDbId
     );
     expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);

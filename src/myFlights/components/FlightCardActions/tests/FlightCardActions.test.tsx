@@ -4,9 +4,9 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import useThemeBreakpoints from '@/common/hooks/useThemeBreakpoints';
 
 import {
-  mockedFlight,
-  mockedFlight2,
-  mockedFlight3,
+  mockedMyFlight,
+  mockedMyFlight2,
+  mockedMyFlight3,
 } from '@/myFlights/types/mocks';
 
 import FlightCardActions from '../FlightCardActions';
@@ -33,7 +33,7 @@ describe('FlightCardActions', () => {
     // Arange
     // Act
     const { baseElement } = renderWithTheme(
-      <FlightCardActions data={mockedFlight} />
+      <FlightCardActions data={mockedMyFlight} />
     );
     // Assert
     expect(baseElement).toMatchSnapshot();
@@ -44,7 +44,7 @@ describe('FlightCardActions', () => {
       // Arange
       // Act
       const { baseElement } = renderWithTheme(
-        <FlightCardActions data={mockedFlight3} />
+        <FlightCardActions data={mockedMyFlight3} />
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
@@ -56,7 +56,7 @@ describe('FlightCardActions', () => {
       // Arange
       // Act
       const { baseElement } = renderWithTheme(
-        <FlightCardActions data={mockedFlight2} />
+        <FlightCardActions data={mockedMyFlight2} />
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
@@ -75,7 +75,7 @@ describe('FlightCardActions', () => {
       );
       // Act
       const { baseElement } = renderWithTheme(
-        <FlightCardActions data={mockedFlight} />
+        <FlightCardActions data={mockedMyFlight} />
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
@@ -86,7 +86,7 @@ describe('FlightCardActions', () => {
     test('calls ...', async () => {
       // Arange
       const { getByLabelText } = renderWithTheme(
-        <FlightCardActions data={mockedFlight} />
+        <FlightCardActions data={mockedMyFlight} />
       );
       // Act
       await userEvent.click(getByLabelText('Edit'));

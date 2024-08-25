@@ -6,7 +6,7 @@ import { deserializeFlights } from '../flights';
 jest.mock('@/common/serializers/notion');
 
 describe('Flights serializers', () => {
-  describe('deserializeSpottedPlanes ', () => {
+  describe('deserializeFlights ', () => {
     const mockedResults = [{ mockedResult1: 'mockedResult1' }];
 
     const mockedId = 'mockedPhotoUrl1';

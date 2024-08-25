@@ -1,2 +1,2 @@
-export * from './flights';
-export * from './flightsDb';
+export * from './myFlights';
+export * from './myFlightsDb';

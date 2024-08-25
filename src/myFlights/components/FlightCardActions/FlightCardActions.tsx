@@ -7,9 +7,9 @@ import EditInNewIcon from '@mui/icons-material/Edit';
 
 import useThemeBreakpoints from '@/common/hooks/useThemeBreakpoints';
 
-import { FlightData } from '@/myFlights/types';
+import { MyFlightData } from '@/myFlights/types';
 
-const FlightCardActions = ({ data }: { data: FlightData }) => {
+const FlightCardActions = ({ data }: { data: MyFlightData }) => {
   const {
     down: { md: densed },
   } = useThemeBreakpoints();

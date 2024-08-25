@@ -1,9 +1,9 @@
 import { NotionResult } from '@/common/types/notion';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
-import { FlightData } from '../types';
+import { MyFlightData } from '@/myFlights/types';
 
-export const deserializeFlights = (results: NotionResult[]): FlightData[] => {
+export const deserializeFlights = (results: NotionResult[]): MyFlightData[] => {
   return results.map((result: NotionResult, index) => {
     const deserializer = new NotionPropertiesDeserializer(result);
     const id = deserializer.id;

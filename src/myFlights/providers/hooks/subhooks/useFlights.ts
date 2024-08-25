@@ -2,24 +2,24 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { getAttributeObjectFromArray } from '@/common/utils/data';
 
-import { FlightData, FlightsState } from '@/myFlights/types';
+import { MyFlightData, MyFlightsState } from '@/myFlights/types';
 
 const useFlights = (
-  flightsData: FlightData[] | null
+  flightsData: MyFlightData[] | null
 ): {
-  flights: FlightsState;
-  flightsList: FlightData[];
-  updateFlight: (flight: FlightData) => void;
+  flights: MyFlightsState;
+  flightsList: MyFlightData[];
+  updateFlight: (flight: MyFlightData) => void;
 } => {
-  const [flights, setFlights] = useState<FlightsState>(
+  const [flights, setFlights] = useState<MyFlightsState>(
     flightsData ? getAttributeObjectFromArray(flightsData) : {}
   );
-  const flightsList: FlightData[] = useMemo(
+  const flightsList: MyFlightData[] = useMemo(
     () => Object.values(flights),
     [flights]
   );
   const updateFlight = useCallback(
-    (flight: FlightData) =>
+    (flight: MyFlightData) =>
       setFlights((current) => ({ ...current, [flight.id]: flight })),
     []
   );

@@ -3,6 +3,7 @@ import { Firestore } from '@/common/lib/firebase/types';
 
 import { NotionHelperData } from '@/common/types/notion';
 import { HelpersData } from '@/common/types/helpers';
+import { AeroDataBoxHelperData } from '@/avia/types/aeroDataBox';
 
 export interface User {
   email: string;
@@ -15,6 +16,7 @@ export interface NextApiRequestWithAuth extends NextApiRequest {
   uid: string;
   helpersData?: HelpersData;
   notionHelperData?: NotionHelperData;
+  aeroDataBoxHelperData?: AeroDataBoxHelperData;
   db: Firestore;
 }
 

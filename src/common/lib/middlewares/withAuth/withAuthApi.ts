@@ -34,12 +34,13 @@ const withAuthApi = (
         if (!helperData)
           return res.status(403).json(getError(403, 'No Helper data'));
 
-        const { notionData } = helperData;
+        const { notionData, aeroDataBoxData } = helperData;
         const { token: notionToken } = helperData.notionData ?? {};
         if (!notionToken)
           return res.status(403).json(getError(403, 'No Notion token'));
 
         req.notionHelperData = notionData;
+        if (aeroDataBoxData) req.aeroDataBoxHelperData = aeroDataBoxData;
       } else {
         req.helpersData = helpersData;
       }

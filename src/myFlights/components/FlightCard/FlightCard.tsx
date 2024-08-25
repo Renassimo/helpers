@@ -3,13 +3,13 @@ import Grid from '@mui/material/Grid';
 
 import { showWhen } from '@/common/utils/dayjs';
 
-import { FlightData } from '@/myFlights/types';
+import { MyFlightData } from '@/myFlights/types';
 
 import useThemeBreakpoints from '@/common/hooks/useThemeBreakpoints';
 
 import FlightCardActions from '@/myFlights/components/FlightCardActions';
 
-const FlightCard = ({ data }: { data: FlightData }) => {
+const FlightCard = ({ data }: { data: MyFlightData }) => {
   const { attributes } = data;
   const {
     photoUrl,
