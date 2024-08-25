@@ -4,7 +4,7 @@ import { Avia } from '@/avia/types/avia';
 export const deserializeFlights = (
   results: AeroDataBoxApi.Flight[]
 ): Avia.FlightData[] => {
-  return results.map((result: AeroDataBoxApi.Flight) => {
+  return results.map((result: AeroDataBoxApi.Flight): Avia.FlightData => {
     const {
       number: flightNumber,
       departure,
@@ -28,9 +28,9 @@ export const deserializeFlights = (
       attributes: {
         flightNumber,
         origin: `${originPoint.iata}/${originPoint.icao}`,
-        originName: originPoint.name,
+        originName: originPoint.name ?? null,
         destination: `${destinationPoint.iata}/${destinationPoint.icao}`,
-        destinationName: destinationPoint.name,
+        destinationName: destinationPoint.name ?? null,
         distance: Math.round(greatCircleDistance.km),
         date: date,
         airline: airline?.name ?? null,

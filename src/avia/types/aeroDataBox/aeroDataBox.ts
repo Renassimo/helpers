@@ -57,18 +57,22 @@ export namespace AeroDataBoxApi {
     interface Basic {
       icao: string; // 'EPWA'; 'LSZH';
       iata: string; // 'WAW'; 'ZRH';
-      shortName: string; // 'Chopin'; 'Kloten';
-      municipalityName: string; // 'Warsaw'; 'Zurich';
+      shortName?: string; // 'Chopin'; 'Kloten';
+      municipalityName?: string; // 'Warsaw'; 'Zurich';
       location: Location;
       countryCode: string; // 'PL'; 'CH';
       timeZone: string; // 'Europe/Warsaw'; 'Europe/Zurich';
     }
     export interface WithName extends Basic {
-      name: string; // 'Warsaw Chopin'; 'Zurich Kloten';
+      name?: string; // 'Warsaw Chopin'; 'Zurich Kloten';
+      fullName?: never;
     }
     export interface WithFullName extends Basic {
       // retrives by IATA or ICAO code
-      fullName: string; // 'Warsaw Chopin'; 'Zurich Kloten';
+      fullName?: string; // 'Warsaw Chopin'; 'Zurich Kloten';
+      name?: never;
+      // in case of error
+      message: string;
     }
   }
 

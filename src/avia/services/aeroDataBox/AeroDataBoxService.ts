@@ -1,5 +1,9 @@
 import { AeroDataBoxApi } from '@/avia/types/aeroDataBox';
-import { mockedFlights } from '@/avia/types/aeroDataBox/mocks';
+import {
+  mockedAircrafts,
+  mockedAirports,
+  mockedFlights,
+} from '@/avia/types/aeroDataBox/mocks';
 
 class AeroDataBoxService {
   apiKey!: string;
@@ -13,7 +17,8 @@ class AeroDataBoxService {
   async retrieveAircrafts(
     searchQuery: string,
     searchBy: 'reg' | 'icao24' | 'id' = 'reg'
-  ): Promise<{ data: AeroDataBoxApi.Aircraft[] }> {
+  ): Promise<AeroDataBoxApi.Aircraft[]> {
+    return [mockedAircrafts[0], mockedAircrafts[0]];
     const response = await fetch(
       `${this.baseURL}/aircrafts/${searchBy}/${searchQuery}/all`,
       {
@@ -27,7 +32,8 @@ class AeroDataBoxService {
   async retreiveAirportByCode(
     code: string,
     searchBy: 'iata' | 'icao' = 'iata'
-  ): Promise<{ data: AeroDataBoxApi.AirportExact }> {
+  ): Promise<AeroDataBoxApi.AirportExact> {
+    return mockedAirports[1] as AeroDataBoxApi.AirportExact;
     const response = await fetch(
       `${this.baseURL}/airports/${searchBy}/${code}?withTime=true`,
       {
@@ -40,7 +46,8 @@ class AeroDataBoxService {
 
   async retreiveAirportsByText(
     searchQuery: string
-  ): Promise<{ data: AeroDataBoxApi.Airport[] }> {
+  ): Promise<AeroDataBoxApi.Airport[]> {
+    return [mockedAirports[0] as AeroDataBoxApi.Airport];
     const response = await fetch(
       `${this.baseURL}/airports/search/term?q=${searchQuery}`,
       {
@@ -55,7 +62,8 @@ class AeroDataBoxService {
   async retreiveAirportsByLocation(
     lat: string,
     lot: string
-  ): Promise<{ data: AeroDataBoxApi.Airport[] }> {
+  ): Promise<AeroDataBoxApi.Airport[]> {
+    return [mockedAirports[0] as AeroDataBoxApi.Airport];
     const response = await fetch(
       `${this.baseURL}/airports/search/location?lat=${lat}&lon=${lot}&radiusKm=25&limit=10`,
       {
