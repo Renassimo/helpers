@@ -1,4 +1,10 @@
 const errors: Record<number, Record<string, string | number>> = {
+  400: {
+    code: 'bad_request',
+    message: 'Bad Request',
+    object: 'error',
+    status: 400,
+  },
   401: {
     code: 'not_authenticated',
     message: 'Not Authenticated',

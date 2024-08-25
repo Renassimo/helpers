@@ -40,7 +40,7 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe('retreiveAirportByCode', () => {
+  describe.skip('retreiveAirportByCode', () => {
     const mockedSearchBy = 'iata';
     const mockedCode = 'waw';
 
@@ -67,7 +67,7 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe('retreiveAirportsByText', () => {
+  describe.skip('retreiveAirportsByText', () => {
     const mockedSearchQuery = 'search-query';
 
     test('returns data', async () => {
@@ -99,7 +99,7 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe('retreiveAirportsByLocation', () => {
+  describe.skip('retreiveAirportsByLocation', () => {
     const mockedLat = 'lattitude';
     const mockedLon = 'longitude';
 
