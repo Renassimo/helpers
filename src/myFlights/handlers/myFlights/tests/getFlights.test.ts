@@ -1,6 +1,6 @@
 import NotionService from '@/common/services/notion';
 
-import getFlights from '@/myFlights/handlers/getFlights';
+import getFlights from '@/myFlights/handlers/myFlights/getFlights';
 
 import { deserializeFlights } from '@/myFlights/serializers';
 

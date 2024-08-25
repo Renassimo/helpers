@@ -45,6 +45,7 @@ describe('withAuthApi', () => {
   const mockedGetUserHelpersData = jest.fn(() => ({
     helpersData: mockedHelpersData,
   }));
+  const mockedAeroDataBoxData = 'aeroDataBoxData';
 
   describe('when got no errors', () => {
     const mockedUid = 'uid';
@@ -240,6 +241,7 @@ describe('withAuthApi', () => {
         mockedHelpersData = {
           [helperName]: {
             notionData: { token: notionToken },
+            aeroDataBoxData: mockedAeroDataBoxData,
           },
         };
 
@@ -254,6 +256,7 @@ describe('withAuthApi', () => {
             token: notionToken,
           },
           db: mockedDb,
+          aeroDataBoxHelperData: mockedAeroDataBoxData,
         };
 
         // Act

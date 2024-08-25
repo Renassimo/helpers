@@ -8,17 +8,26 @@ import {
   showNotFound,
 } from '@/common/utils/serverSideRenderProps';
 
-import { GetServerSidePropsContextWithAuth } from '@/auth/types';
+import { GetServerSidePropsContextWithAuth, PageInfo } from '@/auth/types';
 import { HelpersData } from '@/common/types/helpers';
 import { Firestore } from '@/common/lib/firebase/types';
 
 // todo use as separate module
 const getPages = (helpersData: HelpersData) =>
   sortBy(
-    Object.entries(helpersData ?? {}).map(([key, value]) => ({
-      title: value?.title ?? capitalCase(key),
-      path: value?.path ?? `/${key}`,
-    })),
+    Object.entries(helpersData ?? {}).reduce(
+      (result: PageInfo[], [key, value]) => {
+        if (value.apiOnly) return result;
+        return [
+          ...result,
+          {
+            title: value?.title ?? capitalCase(key),
+            path: value?.path ?? `/${key}`,
+          },
+        ];
+      },
+      []
+    ),
     'title'
   );
 

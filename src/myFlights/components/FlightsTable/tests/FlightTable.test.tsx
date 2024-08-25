@@ -16,10 +16,10 @@ import MockedFilterInput from '@/common/components/FilterInput/mocks';
 import MockedFlightCard from '@/myFlights/components/FlightCard/mocks';
 
 import {
-  mockedFlight1,
-  mockedFlight2,
-  mockedFlight3,
-  mockedFlightsList,
+  mockedMyFlight1,
+  mockedMyFlight2,
+  mockedMyFlight3,
+  mockedMyFlightsList,
 } from '@/myFlights/types/mocks';
 
 import FlightsTable from '../FlightsTable';
@@ -39,20 +39,20 @@ describe('FlightTable', () => {
   const mockedShowWhen = jest.fn((arg) => arg);
 
   const mockedUseFlightsContext = jest.fn(() => ({
-    flightsList: mockedFlightsList,
+    flightsList: mockedMyFlightsList,
   }));
 
   const mockedSetFilterQuery = jest.fn();
   const mockedUseFilterResult = {
     filterQuery: '',
     setFilterQuery: mockedSetFilterQuery,
-    visibleItems: mockedFlightsList,
+    visibleItems: mockedMyFlightsList,
   };
   const mockedUseFilter = jest.fn(() => mockedUseFilterResult);
 
   const mockedReverse = jest.fn();
   const mockedUseTableOrderResult = {
-    orderedList: mockedFlightsList,
+    orderedList: mockedMyFlightsList,
     isReversedOrder: true,
     reverse: mockedReverse,
   };
@@ -71,7 +71,7 @@ describe('FlightTable', () => {
   };
   const mockedUseTablePaginationResult = {
     paginationProps: mockedPaginationProps,
-    rows: mockedFlightsList,
+    rows: mockedMyFlightsList,
   };
   const mockedUseTablePagination = jest.fn(
     () => mockedUseTablePaginationResult
@@ -118,7 +118,7 @@ describe('FlightTable', () => {
     // Assert
     expect(baseElement).toMatchSnapshot();
     expect(useFlightsContext).toBeCalledWith();
-    expect(useFilter).toBeCalledWith(mockedFlightsList, [
+    expect(useFilter).toBeCalledWith(mockedMyFlightsList, [
       'airline',
       'manufacturer',
       'model',
@@ -129,13 +129,13 @@ describe('FlightTable', () => {
       'destinationName',
       'airplaneName',
     ]);
-    expect(useTableOrder).toBeCalledWith(mockedFlightsList, true);
-    expect(useTablePagination).toBeCalledWith(mockedFlightsList, [
+    expect(useTableOrder).toBeCalledWith(mockedMyFlightsList, true);
+    expect(useTablePagination).toBeCalledWith(mockedMyFlightsList, [
       10,
       25,
       50,
       100,
-      mockedFlightsList.length,
+      mockedMyFlightsList.length,
     ]);
     expect(useTableCollapse).toBeCalledWith();
     expect(useThemeBreakpoints).toBeCalledWith();
@@ -144,9 +144,9 @@ describe('FlightTable', () => {
       {}
     );
     expect(FlightCard).toBeCalledTimes(3);
-    expect(FlightCard).nthCalledWith(1, { data: mockedFlight1 }, {});
-    expect(FlightCard).nthCalledWith(2, { data: mockedFlight2 }, {});
-    expect(FlightCard).nthCalledWith(3, { data: mockedFlight3 }, {});
+    expect(FlightCard).nthCalledWith(1, { data: mockedMyFlight1 }, {});
+    expect(FlightCard).nthCalledWith(2, { data: mockedMyFlight2 }, {});
+    expect(FlightCard).nthCalledWith(3, { data: mockedMyFlight3 }, {});
   });
 
   describe('when table hook results changed', () => {
@@ -171,7 +171,7 @@ describe('FlightTable', () => {
     }));
 
     const mockedUseTableCollapse = jest.fn(() => [
-      mockedFlight2.id,
+      mockedMyFlight2.id,
       mockedToggleOpenRowId,
     ]);
 
@@ -195,7 +195,7 @@ describe('FlightTable', () => {
       // Assert
       expect(baseElement).toMatchSnapshot();
       expect(useFlightsContext).toBeCalledWith();
-      expect(useFilter).toBeCalledWith(mockedFlightsList, [
+      expect(useFilter).toBeCalledWith(mockedMyFlightsList, [
         'airline',
         'manufacturer',
         'model',
@@ -206,13 +206,13 @@ describe('FlightTable', () => {
         'destinationName',
         'airplaneName',
       ]);
-      expect(useTableOrder).toBeCalledWith(mockedFlightsList, true);
-      expect(useTablePagination).toBeCalledWith(mockedFlightsList, [
+      expect(useTableOrder).toBeCalledWith(mockedMyFlightsList, true);
+      expect(useTablePagination).toBeCalledWith(mockedMyFlightsList, [
         10,
         25,
         50,
         100,
-        mockedFlightsList.length,
+        mockedMyFlightsList.length,
       ]);
       expect(useTableCollapse).toBeCalledWith();
       expect(useThemeBreakpoints).toBeCalledWith();
@@ -225,9 +225,9 @@ describe('FlightTable', () => {
         {}
       );
       expect(FlightCard).toBeCalledTimes(3);
-      expect(FlightCard).nthCalledWith(1, { data: mockedFlight1 }, {});
-      expect(FlightCard).nthCalledWith(2, { data: mockedFlight2 }, {});
-      expect(FlightCard).nthCalledWith(3, { data: mockedFlight3 }, {});
+      expect(FlightCard).nthCalledWith(1, { data: mockedMyFlight1 }, {});
+      expect(FlightCard).nthCalledWith(2, { data: mockedMyFlight2 }, {});
+      expect(FlightCard).nthCalledWith(3, { data: mockedMyFlight3 }, {});
     });
   });
 
@@ -281,9 +281,9 @@ describe('FlightTable', () => {
       // Arange
       const { getByText } = renderWithTheme(<FlightsTable />);
       // Act
-      await userEvent.click(getByText(mockedFlight3.attributes.date!));
+      await userEvent.click(getByText(mockedMyFlight3.attributes.date!));
       // Assert
-      expect(mockedToggleOpenRowId).toHaveBeenCalledWith(mockedFlight3.id);
+      expect(mockedToggleOpenRowId).toHaveBeenCalledWith(mockedMyFlight3.id);
     });
   });
 });

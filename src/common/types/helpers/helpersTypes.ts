@@ -1,3 +1,4 @@
+import { AeroDataBoxHelperData } from '@/avia/types/aeroDataBox';
 import { NotionHelperData } from '../notion';
 
 export interface HelpersData {
@@ -7,7 +8,9 @@ export interface HelpersData {
 export interface HelperData {
   path?: string;
   title?: string;
+  apiOnly?: boolean;
   notionData?: NotionHelperData;
+  aeroDataBoxData?: AeroDataBoxHelperData;
 }
 
 export interface UserHelpersData {

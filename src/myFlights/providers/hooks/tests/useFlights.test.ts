@@ -1,26 +1,26 @@
 import { act, renderHook } from '@testing-library/react';
 
 import {
-  mockedFlight1,
-  mockedFlight2,
-  mockedFlight3,
-  mockedFlights,
-  mockedFlightsList,
+  mockedMyFlight1,
+  mockedMyFlight2,
+  mockedMyFlight3,
+  mockedMyFlights,
+  mockedMyFlightsList,
 } from '@/myFlights/types/mocks';
 
 import useFlights from '../subhooks/useFlights';
 
 describe('useFlights', () => {
   const expectedDefaultState = {
-    flights: mockedFlights,
-    flightsList: mockedFlightsList,
+    flights: mockedMyFlights,
+    flightsList: mockedMyFlightsList,
     updateFlight: expect.any(Function),
   };
 
   test('return default state', () => {
     // Arange
     // Act
-    const { result } = renderHook(() => useFlights(mockedFlightsList));
+    const { result } = renderHook(() => useFlights(mockedMyFlightsList));
     // Assert
     expect(result.current).toEqual(expectedDefaultState);
   });
@@ -44,18 +44,18 @@ describe('useFlights', () => {
     test('return default state', async () => {
       // Arange
       const updatedFlight = {
-        ...mockedFlight1,
-        attributes: { ...mockedFlight1.attributes, title: 'updated title1' },
+        ...mockedMyFlight1,
+        attributes: { ...mockedMyFlight1.attributes, title: 'updated title1' },
       };
       const expectedState = {
         flights: {
           ...expectedDefaultState.flights,
           [updatedFlight.id]: updatedFlight,
         },
-        flightsList: [updatedFlight, mockedFlight2, mockedFlight3],
+        flightsList: [updatedFlight, mockedMyFlight2, mockedMyFlight3],
         updateFlight: expect.any(Function),
       };
-      const { result } = renderHook(() => useFlights(mockedFlightsList));
+      const { result } = renderHook(() => useFlights(mockedMyFlightsList));
       // Act
       await act(async () => {
         await result.current.updateFlight(updatedFlight);

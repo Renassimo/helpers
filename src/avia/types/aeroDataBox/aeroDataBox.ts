@@ -32,6 +32,7 @@ export namespace AeroDataBoxApi {
     airport: Airport;
     scheduledTime?: Time;
     revisedTime?: Time;
+    predictedTime?: Time;
     terminal?: string; // 'C';
     checkInDesk?: string; // '222-227'; - for departures
     gate?: string; // '39'; - for departures
@@ -42,12 +43,12 @@ export namespace AeroDataBoxApi {
   export interface AircraftShort {
     reg?: string; // 'YL-ABM';
     modeS?: string; // '502D5E'; - hex code
-    model: string; // 'Airbus A220-300';
+    model?: string; // 'Airbus A220-300';
     image?: Image;
   }
 
   export interface Airline {
-    name: string; // 'SWISS';
+    name?: string; // 'SWISS';
     iata: string; // 'LX';
     icao: string; // 'SWR';
   }
@@ -80,11 +81,12 @@ export namespace AeroDataBoxApi {
     arrival: Point;
     lastUpdatedUtc?: string; // '2024-08-21 15:26Z';
     number: string; // 'LX 1353';
+    callSign?: string; // 'FDB1839',
     status?: string; // 'Expected';
     codeshareStatus?: string; // 'IsOperator';
     isCargo: boolean; // false;
-    aircraft: AircraftShort;
-    airline: Airline;
+    aircraft?: AircraftShort;
+    airline?: Airline;
   }
 
   export interface Aircraft {
@@ -113,4 +115,8 @@ export namespace AeroDataBoxApi {
     numRegistrations?: number; // 18
     image?: Image;
   }
+}
+
+export interface AeroDataBoxHelperData {
+  xRapidapiKey: string;
 }

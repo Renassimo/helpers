@@ -7,7 +7,7 @@ import FlightsProvider from '@/myFlights/providers/FlightsProvider';
 import MyFlights from '@/myFlights/components/MyFlights';
 
 import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
-import { mockedFlightsList } from '@/myFlights/types/mocks';
+import { mockedMyFlightsList } from '@/myFlights/types/mocks';
 import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
 import MockedPageTemplate from '@/common/templates/PageTemplate/mocks/MockedPageTemplate';
@@ -49,7 +49,7 @@ describe('MyFlightsPage', () => {
       <MyFlightsPage
         user={mockedUser}
         pages={mockedPageInfos}
-        data={mockedFlightsList}
+        data={mockedMyFlightsList}
         error={null}
       />
     );

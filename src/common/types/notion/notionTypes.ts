@@ -142,3 +142,16 @@ export interface NotionParent {
   page_id: string;
   type: string;
 }
+
+export interface NotionSelectProperty {
+  id: string;
+  name: string;
+  type: 'select';
+  select: {
+    options: NotionSelect[];
+  };
+}
+
+export interface NotionDBSelectProperties {
+  [key: string]: NotionSelectProperty;
+}

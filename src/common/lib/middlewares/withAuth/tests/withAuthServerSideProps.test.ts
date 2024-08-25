@@ -34,6 +34,9 @@ describe('withAuthServerSideProps', () => {
       name: 'Name',
     };
     mockedHelpersData = {
+      someApiOnlyHelper: {
+        apiOnly: true,
+      },
       someHelper: {
         notiondData: {
           dataBaseID: mockedDataBaseID,

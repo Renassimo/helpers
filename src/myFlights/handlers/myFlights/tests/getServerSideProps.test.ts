@@ -1,6 +1,6 @@
 import NotionService from '@/common/services/notion';
 
-import getFlights from '@/myFlights/handlers/getFlights';
+import getFlights from '@/myFlights/handlers/myFlights/getFlights';
 
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { Firestore } from '@/common/lib/firebase/types';
@@ -8,7 +8,7 @@ import { Firestore } from '@/common/lib/firebase/types';
 import getServerSideProps from '../getServerSideProps';
 
 jest.mock('@/common/services/notion', () => jest.fn());
-jest.mock('@/myFlights/handlers/getFlights');
+jest.mock('@/myFlights/handlers/myFlights/getFlights');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
 
 describe('getServerSideProps', () => {

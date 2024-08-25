@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { NotionError } from '@/common/types/notion';
 import { PageInfo, User } from '@/auth/types';
-import { FlightData } from '@/myFlights/types';
+import { MyFlightData } from '@/myFlights/types';
 
 import useAlerts from '@/common/hooks/alerts';
 
@@ -20,7 +20,7 @@ const MyFlightsPage = ({
 }: {
   user: User;
   pages: PageInfo[];
-  data: FlightData[] | null;
+  data: MyFlightData[] | null;
   error: NotionError | null;
 }) => {
   const { createErrorAlert } = useAlerts();

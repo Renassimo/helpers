@@ -1,8 +1,8 @@
-import { FlightData, FlightsContextData } from '@/myFlights/types';
+import { MyFlightData, FlightsContextData } from '@/myFlights/types';
 
 import useFlights from './subhooks/useFlights';
 
-const usePlayProvider = (data: FlightData[] | null): FlightsContextData => {
+const usePlayProvider = (data: MyFlightData[] | null): FlightsContextData => {
   // Flights data
   const { flights, flightsList, updateFlight } = useFlights(data);
 

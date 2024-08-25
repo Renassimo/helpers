@@ -1,10 +1,11 @@
-import { AeroDataBoxApi } from '@/common/types/aeroDataBox';
+import { AeroDataBoxApi } from '@/avia/types/aeroDataBox';
+import { mockedFlights } from '@/avia/types/aeroDataBox/mocks';
 
 class AeroDataBoxService {
   apiKey!: string;
   baseURL!: string;
 
-  constructor(apiKey = '') {
+  constructor(apiKey: string) {
     this.apiKey = apiKey;
     this.baseURL = process.env.AERO_DATA_BOX_BASE_URL ?? '';
   }
@@ -20,8 +21,7 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
-    const data = await response.json();
-    return { data };
+    return await response.json();
   }
 
   async retreiveAirportByCode(
@@ -35,8 +35,7 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
-    const data = await response.json();
-    return { data };
+    return await response.json();
   }
 
   async retreiveAirportsByText(
@@ -50,7 +49,7 @@ class AeroDataBoxService {
       }
     );
     const { items } = await response.json();
-    return { data: items };
+    return items;
   }
 
   async retreiveAirportsByLocation(
@@ -65,7 +64,23 @@ class AeroDataBoxService {
       }
     );
     const { items } = await response.json();
-    return { data: items };
+    return items;
+  }
+
+  async retreiveFlights(
+    flightNumber: string,
+    date?: string
+  ): Promise<AeroDataBoxApi.Flight[]> {
+    return mockedFlights;
+    const withDate = date ? `/${date}` : '';
+    const response = await fetch(
+      `${this.baseURL}/flights/number/${flightNumber}${withDate}?withAircraftImage=true`,
+      {
+        method: 'GET',
+        headers: this.headers,
+      }
+    );
+    return await response.json();
   }
 
   private get headers() {

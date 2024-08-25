@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { FlightData } from '@/myFlights/types';
+import { MyFlightData } from '@/myFlights/types';
 
 import FlightsContext from '@/myFlights/contexts/FlightsContext';
 
@@ -11,7 +11,7 @@ const FlightsProvider = ({
   data: apiData,
 }: {
   children: ReactNode;
-  data: FlightData[] | null;
+  data: MyFlightData[] | null;
 }) => {
   const data = useFlightsProvider(apiData);
 

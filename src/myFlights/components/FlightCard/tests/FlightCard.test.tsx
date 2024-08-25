@@ -6,7 +6,7 @@ import { showWhen } from '@/common/utils/dayjs';
 import FlightCardActions from '@/myFlights/components/FlightCardActions';
 
 import MockedFlightCardActions from '@/myFlights/components/FlightCardActions/mocks';
-import { mockedFlight, mockedFlight3 } from '@/myFlights/types/mocks';
+import { mockedMyFlight, mockedMyFlight3 } from '@/myFlights/types/mocks';
 
 import FlightCard from '../FlightCard';
 
@@ -39,10 +39,15 @@ describe('FlightCard', () => {
   test('renders successfully', () => {
     // Arange
     // Act
-    const { baseElement } = renderWithTheme(<FlightCard data={mockedFlight} />);
+    const { baseElement } = renderWithTheme(
+      <FlightCard data={mockedMyFlight} />
+    );
     // Assert
     expect(baseElement).toMatchSnapshot();
-    expect(MockedFlightCardActions).toBeCalledWith({ data: mockedFlight }, {});
+    expect(MockedFlightCardActions).toBeCalledWith(
+      { data: mockedMyFlight },
+      {}
+    );
   });
 
   describe('when limited data passed', () => {
@@ -50,12 +55,12 @@ describe('FlightCard', () => {
       // Arange
       // Act
       const { baseElement } = renderWithTheme(
-        <FlightCard data={mockedFlight3} />
+        <FlightCard data={mockedMyFlight3} />
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
       expect(MockedFlightCardActions).toBeCalledWith(
-        { data: mockedFlight3 },
+        { data: mockedMyFlight3 },
         {}
       );
     });
@@ -73,12 +78,12 @@ describe('FlightCard', () => {
       );
       // Act
       const { baseElement } = renderWithTheme(
-        <FlightCard data={mockedFlight} />
+        <FlightCard data={mockedMyFlight} />
       );
       // Assert
       expect(baseElement).toMatchSnapshot();
       expect(MockedFlightCardActions).toBeCalledWith(
-        { data: mockedFlight },
+        { data: mockedMyFlight },
         {}
       );
     });

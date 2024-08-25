@@ -7,7 +7,7 @@ describe('AeroDataBoxService', () => {
   process.env.AERO_DATA_BOX_BASE_URL = mockedURL;
 
   const responseGetData = { hello: 'world' };
-  const expectedResult = { data: responseGetData };
+  const expectedResult = responseGetData;
 
   const aeroDataBoxService = new AeroDataBoxService(mockedApiKey);
 
@@ -72,7 +72,7 @@ describe('AeroDataBoxService', () => {
 
     test('returns data', async () => {
       // Arange
-      const expectedResult = { data: [responseGetData] };
+      const expectedResult = [responseGetData];
       const responseData = {
         items: [responseGetData],
       };
@@ -99,13 +99,13 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe('retreiveAirportByLocation', () => {
+  describe('retreiveAirportsByLocation', () => {
     const mockedLat = 'lattitude';
     const mockedLon = 'longitude';
 
     test('returns data', async () => {
       // Arange
-      const expectedResult = { data: [responseGetData] };
+      const expectedResult = [responseGetData];
       const responseData = {
         items: [responseGetData],
       };
@@ -129,6 +129,66 @@ describe('AeroDataBoxService', () => {
           'x-rapidapi-key': mockedApiKey,
         },
         method: 'GET',
+      });
+    });
+  });
+
+  describe.skip('retreiveFlights', () => {
+    const mockedFlightNumber = 'flight-number';
+    const mockedDate = 'date';
+
+    test('returns data', async () => {
+      // Arange
+      const expectedResult = [responseGetData];
+      const responseData = [responseGetData];
+      fetchMock.get(
+        `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`,
+        responseData
+      );
+      // Act
+      const result = await aeroDataBoxService.retreiveFlights(
+        mockedFlightNumber
+      );
+      // Assert
+      expect(result).toEqual(expectedResult);
+      expect(fetchMock.lastUrl()).toEqual(
+        `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`
+      );
+      expect(fetchMock.lastOptions()).toEqual({
+        headers: {
+          'Content-Type': 'application/json',
+          'x-rapidapi-key': mockedApiKey,
+        },
+        method: 'GET',
+      });
+    });
+
+    describe('when date passed', () => {
+      test('returns data', async () => {
+        // Arange
+        const expectedResult = [responseGetData];
+        const responseData = [responseGetData];
+        fetchMock.get(
+          `${mockedURL}/flights/number/${mockedFlightNumber}/${mockedDate}?withAircraftImage=true`,
+          responseData
+        );
+        // Act
+        const result = await aeroDataBoxService.retreiveFlights(
+          mockedFlightNumber,
+          mockedDate
+        );
+        // Assert
+        expect(result).toEqual(expectedResult);
+        expect(fetchMock.lastUrl()).toEqual(
+          `${mockedURL}/flights/number/${mockedFlightNumber}/${mockedDate}?withAircraftImage=true`
+        );
+        expect(fetchMock.lastOptions()).toEqual({
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': mockedApiKey,
+          },
+          method: 'GET',
+        });
       });
     });
   });
