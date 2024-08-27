@@ -1,6 +1,6 @@
 import useChooseRetreivedItem from '@/common/hooks/useChooseRetreivedItem';
 import { act, renderHook } from '@testing-library/react';
-import useFlights from '../subhooks/useFlights';
+import useFlights from '../useFlights';
 
 jest.mock('@/common/hooks/useChooseRetreivedItem');
 

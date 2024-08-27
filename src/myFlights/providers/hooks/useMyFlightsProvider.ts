@@ -2,10 +2,12 @@ import { MyFlightData, MyFlightsContextData } from '@/myFlights/types';
 
 import useMyFlights from './subhooks/useMyFlights';
 import useRetreiveData from '@/common/hooks/useRetreiveData';
+
+import useFlights from '@/avia/hooks/useFlights';
+import useAircrafts from '@/avia/hooks/useAircrafts';
+import useAirports from '@/avia/hooks/useAirports';
+
 import { Avia } from '@/avia/types/avia';
-import useFlights from './subhooks/useFlights';
-import useAircrafts from './subhooks/useAircrafts';
-import useAirports from './subhooks/useAirports';
 
 const useMyFlightsProvider = (
   data: MyFlightData[] | null
