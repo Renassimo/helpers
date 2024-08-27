@@ -1,33 +1,27 @@
-import { useCallback, useMemo, useState } from 'react';
+import { Avia } from '@/avia/types/avia';
+import { UseFlightsResult } from '@/myFlights/types';
 
-import { getAttributeObjectFromArray } from '@/common/utils/data';
+import useChooseRetreivedItem from '@/common/hooks/useChooseRetreivedItem';
 
-import { MyFlightData, MyFlightsState } from '@/myFlights/types';
+const useFlights = (): UseFlightsResult => {
+  const {
+    items: flights,
+    chosenItem: chosenFlight,
+    retreiveItems,
+    chooseItem: chooseFlight,
+    clearChosenItem: clearChosenFlight,
+  } = useChooseRetreivedItem<Avia.FlightData>();
 
-const useFlights = (
-  flightsData: MyFlightData[] | null
-): {
-  flights: MyFlightsState;
-  flightsList: MyFlightData[];
-  updateFlight: (flight: MyFlightData) => void;
-} => {
-  const [flights, setFlights] = useState<MyFlightsState>(
-    flightsData ? getAttributeObjectFromArray(flightsData) : {}
-  );
-  const flightsList: MyFlightData[] = useMemo(
-    () => Object.values(flights),
-    [flights]
-  );
-  const updateFlight = useCallback(
-    (flight: MyFlightData) =>
-      setFlights((current) => ({ ...current, [flight.id]: flight })),
-    []
-  );
+  // /api/avia/flights/fz 1839
+  const retreiveFlights = async (flightNumber: string) =>
+    await retreiveItems(`/api/avia/flights/${flightNumber}`);
 
   return {
     flights,
-    flightsList,
-    updateFlight,
+    chosenFlight,
+    retreiveFlights,
+    chooseFlight,
+    clearChosenFlight,
   };
 };
 

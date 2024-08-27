@@ -4,12 +4,48 @@ exports[`MyFlights renders successfully 1`] = `
 <body>
   <div>
     <h1
-      class="MuiTypography-root MuiTypography-h6 css-15cin6z-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-h6 css-rb4lkx-MuiTypography-root"
     >
       My Flights
     </h1>
     <div>
-      MockedFlightTable
+      MockedMyFlightsTable
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MyFlights when no option received renders successfully 1`] = `
+<body>
+  <div>
+    <h1
+      class="MuiTypography-root MuiTypography-h6 css-rb4lkx-MuiTypography-root"
+    >
+      My Flights
+      <button
+        aria-label="Add flight"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1e9ebnl-MuiButtonBase-root-MuiIconButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </h1>
+    <div>
+      MockedMyFlightsTable
     </div>
   </div>
 </body>

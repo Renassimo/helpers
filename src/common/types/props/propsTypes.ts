@@ -18,6 +18,10 @@ export interface Data<A> {
   attributes: A;
 }
 
+export interface ApiData<D> {
+  data: D;
+}
+
 export interface BreadcrumbsItem {
   href: string;
   title: string;

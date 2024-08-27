@@ -3,7 +3,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import useAlerts from '@/common/hooks/alerts';
 
 import PageTemplate from '@/common/templates/PageTemplate';
-import FlightsProvider from '@/myFlights/providers/FlightsProvider';
+import MyFlightsProvider from '@/myFlights/providers/MyFlightsProvider';
 import MyFlights from '@/myFlights/components/MyFlights';
 
 import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
@@ -11,14 +11,14 @@ import { mockedMyFlightsList } from '@/myFlights/types/mocks';
 import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
 import MockedPageTemplate from '@/common/templates/PageTemplate/mocks/MockedPageTemplate';
-import MockedFlightsProvider from '@/myFlights/providers/mocks/MockedFlightsProvider';
+import MockedMyFlightsProvider from '@/myFlights/providers/mocks/MockedMyFlightsProvider';
 import MockedMyFlights from '@/myFlights/components/MyFlights/mocks/MockedMyFlights';
 
 import MyFlightsPage from '../MyFlightsPage';
 
 jest.mock('@/common/hooks/alerts');
 jest.mock('@/common/templates/PageTemplate');
-jest.mock('@/myFlights/providers/FlightsProvider');
+jest.mock('@/myFlights/providers/MyFlightsProvider');
 jest.mock('@/myFlights/components/MyFlights');
 
 describe('MyFlightsPage', () => {
@@ -32,8 +32,8 @@ describe('MyFlightsPage', () => {
     (PageTemplate as unknown as jest.Mock).mockImplementationOnce(
       MockedPageTemplate
     );
-    (FlightsProvider as unknown as jest.Mock).mockImplementationOnce(
-      MockedFlightsProvider
+    (MyFlightsProvider as unknown as jest.Mock).mockImplementationOnce(
+      MockedMyFlightsProvider
     );
     (MyFlights as unknown as jest.Mock).mockImplementationOnce(MockedMyFlights);
   });

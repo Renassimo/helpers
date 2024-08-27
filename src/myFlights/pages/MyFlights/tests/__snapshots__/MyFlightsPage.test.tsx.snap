@@ -3,7 +3,7 @@
 exports[`MyFlightsPage renders successfully 1`] = `
 <div>
   <div>
-    MockedFlightsProvider - 
+    MyFlightsProvider - 
     <div>
       Mocked Page Template (
       My Flights
@@ -24,7 +24,7 @@ exports[`MyFlightsPage renders successfully 1`] = `
 exports[`MyFlightsPage when receives error renders successfully 1`] = `
 <div>
   <div>
-    MockedFlightsProvider - 
+    MyFlightsProvider - 
     <div>
       Mocked Page Template (
       My Flights

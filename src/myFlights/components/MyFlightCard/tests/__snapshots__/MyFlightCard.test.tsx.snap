@@ -1,0 +1,424 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyFlightCard renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5 css-urj5pv-MuiGrid-root"
+      >
+        <img
+          src="photoUrl1"
+          width="100%"
+        />
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-spacing-xs-2 MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1hbdv7e-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Origin
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            originName1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Destination
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            destinationName1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Flight number
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            flightNumber1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Distance, km
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            1111
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Seat number
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            seatNumber1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Airplane name
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            airplaneName1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            First flight
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            firstFlight1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Age at the flight
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            age1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Serial
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            cn1
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-1 css-1dfagy3-MuiGrid-root"
+      >
+        <div>
+          MockedMyFlightCardActions - 
+          fl1
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MyFlightCard when limited data passed renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5 css-urj5pv-MuiGrid-root"
+      >
+        <img
+          src="/images/plane.png"
+          width="100%"
+        />
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-spacing-xs-2 MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1hbdv7e-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Origin
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            originName3
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Destination
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            destinationName3
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Distance, km
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            3333
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-1 css-1dfagy3-MuiGrid-root"
+      >
+        <div>
+          MockedMyFlightCardActions - 
+          fl3
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MyFlightCard when screen is lower than sm breakpoint renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5 css-urj5pv-MuiGrid-root"
+      >
+        <img
+          src="photoUrl1"
+          width="100%"
+        />
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-spacing-xs-2 MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1hbdv7e-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Origin
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            originName1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Destination
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            destinationName1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Flight number
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            flightNumber1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Distance, km
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            1111
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Seat number
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            seatNumber1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Airplane name
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            airplaneName1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            First flight
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            firstFlight1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Age at the flight
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            age1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Registration
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            registration1
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+          >
+            Serial
+            : 
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            cn1
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-1 css-1dfagy3-MuiGrid-root"
+      >
+        <div>
+          MockedMyFlightCardActions - 
+          fl1
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

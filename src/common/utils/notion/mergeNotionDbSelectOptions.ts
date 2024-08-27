@@ -15,7 +15,7 @@ interface MatchSchema {
 const mergeNotionDbSelectOptions = <T extends NotionDBSelectProperties>(
   objects: T[],
   matchSchema: MatchSchema
-) => {
+): { [key: string]: string[] } => {
   const mergedOptions: { [key: string]: string[] } = {};
 
   Object.entries(matchSchema).forEach(([key, matches]) => {

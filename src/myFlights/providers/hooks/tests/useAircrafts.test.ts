@@ -1,10 +1,10 @@
 import useChooseRetreivedItem from '@/common/hooks/useChooseRetreivedItem';
 import { act, renderHook } from '@testing-library/react';
-import useFlights from '../subhooks/useFlights';
+import useAircrafts from '../subhooks/useAircrafts';
 
 jest.mock('@/common/hooks/useChooseRetreivedItem');
 
-describe('useFlights', () => {
+describe('useAircrafts', () => {
   const mockedItems = 'mocked-items';
   const mockedChosenItem = 'mocked-chosen-item';
   const mockedRetreiveItemsResult = 'mocked-retreive-items-result';
@@ -13,11 +13,11 @@ describe('useFlights', () => {
   const mockedClearChosenItem = jest.fn();
 
   const defaultState = {
-    flights: mockedItems,
-    chosenFlight: mockedChosenItem,
-    retreiveFlights: expect.any(Function),
-    chooseFlight: mockedChooseItem,
-    clearChosenFlight: mockedClearChosenItem,
+    aircrafts: mockedItems,
+    chosenAircraft: mockedChosenItem,
+    retreiveAircrafts: expect.any(Function),
+    chooseAircraft: mockedChooseItem,
+    clearChosenAircraft: mockedClearChosenItem,
   };
 
   beforeEach(() => {
@@ -36,43 +36,41 @@ describe('useFlights', () => {
     jest.clearAllMocks();
   });
 
-  test('returns default state and retreives flights', () => {
+  test('returns default state and retreives aircrafts', () => {
     // Arange
     // Act
-    const { result } = renderHook(() => useFlights());
+    const { result } = renderHook(() => useAircrafts());
     // Assert
     expect(result.current).toEqual(defaultState);
   });
 
-  describe('when retreives flights', () => {
+  describe('when retreives aircrafts', () => {
     test('returns default state and retreive items', async () => {
       // Arange
-      const { result } = renderHook(() => useFlights());
-      let responseData: string | null = '';
+      const { result } = renderHook(() => useAircrafts());
       // Act
+      let responseData: string | null = '';
       await act(async () => {
-        responseData = (await result.current.retreiveFlights(
-          'flight-number'
+        responseData = (await result.current.retreiveAircrafts(
+          'reg'
         )) as unknown as string;
       });
       // Assert
       expect(result.current).toEqual(defaultState);
-      expect(mockedRetreiveItems).toBeCalledWith(
-        '/api/avia/flights/flight-number'
-      );
+      expect(mockedRetreiveItems).toBeCalledWith('/api/avia/aircrafts/reg');
       expect(responseData).toEqual(mockedRetreiveItemsResult);
       expect(mockedChooseItem).not.toBeCalled();
       expect(mockedClearChosenItem).not.toBeCalled();
     });
   });
 
-  describe('when calls chooseFlight', () => {
+  describe('when calls chooseAircraft', () => {
     test('returns default state and calls mockedChooseItem', async () => {
       // Arange
-      const { result } = renderHook(() => useFlights());
+      const { result } = renderHook(() => useAircrafts());
       // Act
       await act(async () => {
-        await result.current.chooseFlight('id1');
+        await result.current.chooseAircraft('id1');
       });
       // Assert
       expect(result.current).toEqual(defaultState);
@@ -82,13 +80,13 @@ describe('useFlights', () => {
     });
   });
 
-  describe('when calls clearChosenFlight', () => {
+  describe('when calls clearChosenAircraft', () => {
     test('returns default state and calls mockedChooseItem', async () => {
       // Arange
-      const { result } = renderHook(() => useFlights());
+      const { result } = renderHook(() => useAircrafts());
       // Act
       await act(async () => {
-        await result.current.clearChosenFlight();
+        await result.current.clearChosenAircraft();
       });
       // Assert
       expect(result.current).toEqual(defaultState);

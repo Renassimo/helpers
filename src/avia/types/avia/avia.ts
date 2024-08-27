@@ -1,4 +1,4 @@
-import { Data } from '@/common/types/props';
+import { ApiData, Data } from '@/common/types/props';
 
 export namespace Avia {
   export interface FlightAttributes {
@@ -17,6 +17,8 @@ export namespace Avia {
 
   export type FlightData = Data<FlightAttributes>;
 
+  export type FlightsApiData = ApiData<FlightData[]>;
+
   export interface AirportAttributes {
     airportCode: string;
     airportName: string | null;
@@ -25,6 +27,8 @@ export namespace Avia {
   }
 
   export type AirportData = Data<AirportAttributes>;
+
+  export type AirportsApiData = ApiData<AirportData[]>;
 
   export interface AircraftAttributes {
     registration: string;
@@ -42,4 +46,13 @@ export namespace Avia {
   }
 
   export type AircraftData = Data<AircraftAttributes>;
+
+  export type AircraftApiData = ApiData<AircraftData[]>;
+
+  export interface Options {
+    airlines: string[];
+    airports: string[];
+    manufacturers: string[];
+    models: string[];
+  }
 }
