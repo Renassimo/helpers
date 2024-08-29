@@ -12,14 +12,14 @@ import MockedFlightForm from '@/myFlights/components/FlightForm/mocks';
 
 import { mockedDeserializedFlights } from '@/avia/types/avia/mocks';
 
-import MyFlightForm from '../MyFlightForm';
+import SearchMyFlightDetailsForm from '../SearchMyFlightDetailsForm';
 
 jest.mock('@/myFlights/components/AircraftForm');
 jest.mock('@/myFlights/components/AirportForm');
 jest.mock('@/myFlights/components/FlightForm');
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
 
-describe('MyFlightForm', () => {
+describe('SearchMyFlightDetailsForm', () => {
   beforeEach(() => {
     (AircraftForm as unknown as jest.Mock).mockImplementation(
       MockedAircraftForm
@@ -38,7 +38,7 @@ describe('MyFlightForm', () => {
       jest.fn(() => ({ flightsResult: {} }))
     );
     // Act
-    const { baseElement } = renderWithTheme(<MyFlightForm />);
+    const { baseElement } = renderWithTheme(<SearchMyFlightDetailsForm />);
     // Assert
     expect(baseElement).toMatchSnapshot();
   });
@@ -52,7 +52,7 @@ describe('MyFlightForm', () => {
         }))
       );
       // Act
-      const { baseElement } = renderWithTheme(<MyFlightForm />);
+      const { baseElement } = renderWithTheme(<SearchMyFlightDetailsForm />);
       // Assert
       expect(baseElement).toMatchSnapshot();
     });

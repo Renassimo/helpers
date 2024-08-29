@@ -3,16 +3,16 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
 import Modal from '@/common/components/Modal';
-import MyFlightForm from '@/myFlights/components/MyFlightForm';
+import SearchMyFlightDetailsForm from '@/myFlights/components/SearchMyFlightDetailsForm';
 
 import MockedModal from '@/common/components/Modal/mocks';
-import MockedMyFlightForm from '@/myFlights/components/MyFlightForm/mocks';
+import MockedSearchMyFlightDetailsForm from '@/myFlights/components/SearchMyFlightDetailsForm/mocks';
 
 import MyFlightFormModal from '../MyFlightFormModal';
 
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
 jest.mock('@/common/components/Modal');
-jest.mock('@/myFlights/components/MyFlightForm');
+jest.mock('@/myFlights/components/SearchMyFlightDetailsForm');
 
 describe('MyFlightFormModal', () => {
   afterEach(() => {
@@ -21,8 +21,8 @@ describe('MyFlightFormModal', () => {
 
   beforeEach(() => {
     (Modal as unknown as jest.Mock).mockImplementation(MockedModal);
-    (MyFlightForm as unknown as jest.Mock).mockImplementation(
-      MockedMyFlightForm
+    (SearchMyFlightDetailsForm as unknown as jest.Mock).mockImplementation(
+      MockedSearchMyFlightDetailsForm
     );
   });
 
@@ -49,6 +49,6 @@ describe('MyFlightFormModal', () => {
     );
     // Assert
     expect(baseElement).toMatchSnapshot();
-    expect(MockedMyFlightForm).toHaveBeenCalledWith({}, {});
+    expect(MockedSearchMyFlightDetailsForm).toHaveBeenCalledWith({}, {});
   });
 });

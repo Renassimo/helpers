@@ -5,7 +5,7 @@ exports[`MyFlightFormModal renders snapshot successfully 1`] = `
   <div>
     <div>
       <div>
-        MockedMyFlightForm
+        MockedSearchMyFlightDetailsForm
       </div>
       <div>
         title: 

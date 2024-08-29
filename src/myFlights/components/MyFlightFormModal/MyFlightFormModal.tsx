@@ -4,7 +4,7 @@ import { MyFlightData } from '@/myFlights/types';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
-import MyFlightForm from '@/myFlights/components/MyFlightForm';
+import SearchMyFlightDetailsForm from '@/myFlights/components/SearchMyFlightDetailsForm';
 
 const MyFlightFormModal = ({
   isModalOpen,
@@ -38,7 +38,7 @@ const MyFlightFormModal = ({
       title={`${isEditForm ? 'Update' : `Create new`} flight`}
       loading={false}
     >
-      <MyFlightForm />
+      <SearchMyFlightDetailsForm />
     </Modal>
   );
 };

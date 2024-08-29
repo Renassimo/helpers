@@ -6,7 +6,7 @@ import FlightForm from '@/myFlights/components/FlightForm';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
-const MyFlightForm = () => {
+const SearchMyFlightDetailsForm = () => {
   const {
     flightsResult: { chosenFlight },
   } = useMyFlightsContext();
@@ -24,4 +24,4 @@ const MyFlightForm = () => {
   );
 };
 
-export default MyFlightForm;
+export default SearchMyFlightDetailsForm;
