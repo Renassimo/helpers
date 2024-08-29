@@ -15,11 +15,13 @@ describe('useChooseRetreivedItem', () => {
   const mockedUrl = 'mocked-url';
   const mockedRetreiveItemsResult = 'mocked-retreive-items-result';
   const mockedRetreiveItems = jest.fn(() => mockedRetreiveItemsResult);
+  const mockedCleanData = jest.fn();
   const mockedUseRetreiveItemResult = {
     data: mockedData,
     error: mockedError,
     loading: mockedLoading,
     retreive: mockedRetreiveItems,
+    cleanData: mockedCleanData,
   };
 
   beforeEach(() => {
@@ -41,6 +43,7 @@ describe('useChooseRetreivedItem', () => {
     clearChosenItem: expect.any(Function),
     loading: mockedLoading,
     error: mockedError,
+    cleanUp: expect.any(Function),
   };
 
   test('returns default state', () => {
@@ -125,6 +128,20 @@ describe('useChooseRetreivedItem', () => {
       // Assert
       expect(result.current).toEqual(defaultState);
       expect(res).toEqual(null);
+    });
+  });
+
+  describe('when cleans up', () => {
+    test('returns default state and calls cleanData', async () => {
+      // Arange
+      const { result } = renderHook(() => useChooseRetreivedItem());
+      // Act
+      await act(async () => {
+        await result.current.cleanUp();
+      });
+      // Assert
+      expect(result.current).toEqual(defaultState);
+      expect(mockedCleanData).toBeCalledTimes(1);
     });
   });
 });

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlightCard renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      FZ 1839
+       -
+      <div>
+        Dubai - Warsaw Chopin
+      </div>
+      <div>
+        DXB/OMDB - WAW/EPWA
+      </div>
+      <div>
+        flydubai
+      </div>
+      <div>
+        Boeing 737 MAX 8
+      </div>
+      <div>
+        A6-FMB
+      </div>
+      <div>
+        4157 km
+      </div>
+       
+      - 
+      chosen
+       - 
+      https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg
+       - 
+      FZ 1839
+    </div>
+  </div>
+</body>
+`;
+
+exports[`FlightCard when partial flight passed renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      FZ 1839
+       -
+      <div>
+        Dubai - 
+      </div>
+      <div>
+         - WAW/EPWA
+      </div>
+      <div>
+        flydubai
+      </div>
+      <div>
+        Boeing 737 MAX 8
+      </div>
+      <div>
+        A6-FMB
+      </div>
+       
+      - 
+       - 
+      https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg
+       - 
+      FZ 1839
+    </div>
+  </div>
+</body>
+`;

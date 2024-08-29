@@ -9,7 +9,7 @@ import useThemeBreakpoints from '@/common/hooks/useThemeBreakpoints';
 
 import MyFlightCardActions from '@/myFlights/components/MyFlightCardActions';
 
-const FlightCard = ({ data }: { data: MyFlightData }) => {
+const MyFlightCard = ({ data }: { data: MyFlightData }) => {
   const { attributes } = data;
   const {
     photoUrl,
@@ -65,4 +65,4 @@ const FlightCard = ({ data }: { data: MyFlightData }) => {
   );
 };
 
-export default FlightCard;
+export default MyFlightCard;

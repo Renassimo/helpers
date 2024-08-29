@@ -1,4 +1,7 @@
 import dayjs, { Dayjs } from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 const dateFormat = 'YYYY-MM-DD';
 const yearFormat = 'YYYY';
@@ -21,3 +24,5 @@ export const showWhen = (dateString: string, withWeekDay = true) => {
   const date = new Date(dateString);
   return dayjs(date).format(`${withWeekDay ? 'ddd ' : ''}MMM D YYYY`);
 };
+export const showTimePassed = (dateString: string) =>
+  dayjs(dateString).toNow(true);

@@ -16,6 +16,8 @@ const MyFlightsContext = createContext<MyFlightsContextData>({
     retreiveFlights: async () => null,
     chooseFlight: () => null,
     clearChosenFlight: () => null,
+    loading: false,
+    cleanUpFlights: () => {},
   },
   // Aircrafts
   aircraftsResult: {
@@ -24,15 +26,34 @@ const MyFlightsContext = createContext<MyFlightsContextData>({
     retreiveAircrafts: async () => null,
     chooseAircraft: () => null,
     clearChosenAircraft: () => null,
+    loading: false,
+    cleanUpAircrafts: () => {},
   },
   // Airports
-  airportsResult: {
+  // Origins
+  originsResult: {
     airports: null,
     chosenAirport: null,
     retreiveAirports: async () => null,
     chooseAirport: () => null,
     clearChosenAirport: () => null,
+    loading: false,
+    cleanUpAirports: () => {},
   },
+  // Destinations
+  destinationsResult: {
+    airports: null,
+    chosenAirport: null,
+    retreiveAirports: async () => null,
+    chooseAirport: () => null,
+    clearChosenAirport: () => null,
+    loading: false,
+    cleanUpAirports: () => {},
+  },
+  // CleanUp
+  cleanUp: () => {},
+  // Loaded values
+  loadedValues: {},
 });
 
 export default MyFlightsContext;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AviaCard renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedActiveCard - 
+      chosen
+       - 
+      image-url
+       - 
+      image-alt
+    </div>
+  </div>
+</body>
+`;

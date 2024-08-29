@@ -6,12 +6,22 @@ import {
   getNextDayCode,
   getPrevDayCode,
   getYear,
+  showTimePassed,
   showWhen,
 } from '@/common/utils/dayjs/dayjs';
 import dayjs from 'dayjs';
 
 describe('DayJS', () => {
   const date = dayjs('2020-02-11');
+
+  beforeAll(() => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date(2020, 1, 11));
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
 
   describe('getYear', () => {
     test('returns year', () => {
@@ -114,6 +124,17 @@ describe('DayJS', () => {
         // Assert
         expect(result).toEqual(expectedResult);
       });
+    });
+  });
+
+  describe('showTimePassed', () => {
+    test('returns formatted relative date', () => {
+      // Arrange
+      const expectedResult = '8 years';
+      // Act
+      const result = showTimePassed('2011-11-11');
+      // Assert
+      expect(result).toEqual(expectedResult);
     });
   });
 });

@@ -52,5 +52,10 @@ export interface MyFlightsContextData {
   // Aircrafts
   aircraftsResult: UseAircraftsResult;
   // Airports
-  airportsResult: UseAirportsResult;
+  originsResult: UseAirportsResult;
+  destinationsResult: UseAirportsResult;
+  // CleanUp
+  cleanUp: () => void;
+  // Loaded values
+  loadedValues: Partial<MyFlightAttributes>;
 }

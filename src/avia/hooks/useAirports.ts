@@ -10,6 +10,8 @@ const useAirports = (): UseAirportsResult => {
     retreiveItems,
     chooseItem: chooseAirport,
     clearChosenItem: clearChosenAirport,
+    loading,
+    cleanUp: cleanUpAirports,
   } = useChooseRetreivedItem<Avia.AirportData>();
 
   // /api/avia/airports?code=WAW
@@ -37,6 +39,8 @@ const useAirports = (): UseAirportsResult => {
     retreiveAirports,
     chooseAirport,
     clearChosenAirport,
+    loading,
+    cleanUpAirports,
   };
 };
 

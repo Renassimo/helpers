@@ -11,6 +11,7 @@ describe('useAirports', () => {
   const mockedRetreiveItems = jest.fn(() => mockedRetreiveItemsResult);
   const mockedChooseItem = jest.fn();
   const mockedClearChosenItem = jest.fn();
+  const mockedCleanUp = jest.fn();
 
   const defaultState = {
     airports: mockedItems,
@@ -18,6 +19,8 @@ describe('useAirports', () => {
     retreiveAirports: expect.any(Function),
     chooseAirport: mockedChooseItem,
     clearChosenAirport: mockedClearChosenItem,
+    loading: false,
+    cleanUpAirports: mockedCleanUp,
   };
 
   beforeEach(() => {
@@ -28,6 +31,8 @@ describe('useAirports', () => {
         retreiveItems: mockedRetreiveItems,
         chooseItem: mockedChooseItem,
         clearChosenItem: mockedClearChosenItem,
+        loading: false,
+        cleanUp: mockedCleanUp,
       }))
     );
   });
@@ -68,6 +73,7 @@ describe('useAirports', () => {
         expect(responseData).toEqual(mockedRetreiveItemsResult);
         expect(mockedChooseItem).not.toBeCalled();
         expect(mockedClearChosenItem).not.toBeCalled();
+        expect(mockedCleanUp).not.toBeCalled();
       });
     });
 
@@ -94,6 +100,7 @@ describe('useAirports', () => {
         expect(responseData).toEqual(mockedRetreiveItemsResult);
         expect(mockedChooseItem).not.toBeCalled();
         expect(mockedClearChosenItem).not.toBeCalled();
+        expect(mockedCleanUp).not.toBeCalled();
       });
     });
 
@@ -121,6 +128,7 @@ describe('useAirports', () => {
         expect(responseData).toEqual(mockedRetreiveItemsResult);
         expect(mockedChooseItem).not.toBeCalled();
         expect(mockedClearChosenItem).not.toBeCalled();
+        expect(mockedCleanUp).not.toBeCalled();
       });
     });
 
@@ -145,6 +153,7 @@ describe('useAirports', () => {
         expect(responseData).toEqual(null);
         expect(mockedChooseItem).not.toBeCalled();
         expect(mockedClearChosenItem).not.toBeCalled();
+        expect(mockedCleanUp).not.toBeCalled();
       });
     });
   });
@@ -162,6 +171,7 @@ describe('useAirports', () => {
       expect(mockedRetreiveItems).not.toBeCalled();
       expect(mockedChooseItem).toBeCalledWith('id1');
       expect(mockedClearChosenItem).not.toBeCalled();
+      expect(mockedCleanUp).not.toBeCalled();
     });
   });
 
@@ -178,6 +188,24 @@ describe('useAirports', () => {
       expect(mockedRetreiveItems).not.toBeCalled();
       expect(mockedChooseItem).not.toBeCalled();
       expect(mockedClearChosenItem).toBeCalledWith();
+      expect(mockedCleanUp).not.toBeCalled();
+    });
+  });
+
+  describe('when calls cleanUpAirports', () => {
+    test('returns default state and calls cleanUp', async () => {
+      // Arange
+      const { result } = renderHook(() => useAirports());
+      // Act
+      await act(async () => {
+        await result.current.cleanUpAirports();
+      });
+      // Assert
+      expect(result.current).toEqual(defaultState);
+      expect(mockedRetreiveItems).not.toBeCalled();
+      expect(mockedChooseItem).not.toBeCalled();
+      expect(mockedClearChosenItem).not.toBeCalled();
+      expect(mockedCleanUp).toBeCalledWith();
     });
   });
 });

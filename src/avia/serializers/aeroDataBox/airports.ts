@@ -8,8 +8,15 @@ export const deserializeAirports = (
     (
       result: AeroDataBoxApi.Airport | AeroDataBoxApi.AirportExact
     ): Avia.AirportData => {
-      const { iata, icao, name, fullName, municipalityName, shortName } =
-        result;
+      const {
+        iata,
+        icao,
+        name,
+        fullName,
+        municipalityName,
+        shortName,
+        location,
+      } = result;
       const airportCode = `${iata}/${icao}`;
 
       return {
@@ -19,6 +26,7 @@ export const deserializeAirports = (
           airportName: name ?? fullName ?? null,
           municipalityName: municipalityName ?? null,
           shortName: shortName ?? null,
+          location: location ?? null,
         },
       };
     }

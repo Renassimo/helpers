@@ -11,6 +11,10 @@ exports[`MyFlights renders successfully 1`] = `
     <div>
       MockedMyFlightsTable
     </div>
+    <div>
+      MockedMyFlightFormModal 
+      closed
+    </div>
   </div>
 </body>
 `;
@@ -46,6 +50,10 @@ exports[`MyFlights when no option received renders successfully 1`] = `
     </h1>
     <div>
       MockedMyFlightsTable
+    </div>
+    <div>
+      MockedMyFlightFormModal 
+      closed
     </div>
   </div>
 </body>

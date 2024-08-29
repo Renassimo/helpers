@@ -8,6 +8,7 @@ import useAircrafts from '@/avia/hooks/useAircrafts';
 import useAirports from '@/avia/hooks/useAirports';
 
 import { Avia } from '@/avia/types/avia';
+import useLoadedValues from './subhooks/useLoadedValues';
 
 const useMyFlightsProvider = (
   data: MyFlightData[] | null
@@ -20,33 +21,23 @@ const useMyFlightsProvider = (
 
   // Flights
   const flightsResult = useFlights();
-  // const {
-  //   flights,
-  //   chosenFlight,
-  //   retreiveFlights,
-  //   chooseFlight,
-  //   clearChosenFlight,
-  // } = flightsResult;
 
   // Aircrafs
   const aircraftsResult = useAircrafts();
-  // const {
-  //   aircrafts,
-  //   chosenAircraft,
-  //   retreiveAircrafts,
-  //   chooseAircraft,
-  //   clearChosenAircraft,
-  // } = aircraftsResult;
 
   // Airports
-  const airportsResult = useAirports();
-  // const {
-  //   airports,
-  //   chosenAirport,
-  //   retreiveAirports,
-  //   chooseAirport,
-  //   clearChosenAirport,
-  // } = airportsResult;
+  // Origin
+  const originsResult = useAirports();
+  // Destination
+  const destinationsResult = useAirports();
+
+  // Loaded values
+  const { loadedValues, cleanUp } = useLoadedValues({
+    flightsResult,
+    aircraftsResult,
+    originsResult,
+    destinationsResult,
+  });
 
   return {
     // Flights data
@@ -60,7 +51,12 @@ const useMyFlightsProvider = (
     // Aircrafts
     aircraftsResult,
     // Airports
-    airportsResult,
+    originsResult,
+    destinationsResult,
+    // CleanUp
+    cleanUp,
+    // Loaded values
+    loadedValues,
   };
 };
 

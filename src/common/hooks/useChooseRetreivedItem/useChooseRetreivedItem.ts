@@ -14,12 +14,14 @@ const useChooseRetreivedItem = <D extends { id: string; attributes: any }>(
   clearChosenItem: () => null;
   loading: boolean;
   error: CommonError | null;
+  cleanUp: () => void;
 } => {
   const {
     data,
     retreive: retreiveItems,
     loading,
     error,
+    cleanData,
   } = useRetreiveData<{ data: D[] }>(url);
   const items = useMemo(() => data?.data ?? [], [data]);
   const [chosenItem, setChosenItem] = useState<D | null>(null);
@@ -41,6 +43,11 @@ const useChooseRetreivedItem = <D extends { id: string; attributes: any }>(
     return null;
   }, []);
 
+  const cleanUp = useCallback(() => {
+    cleanData();
+    clearChosenItem();
+  }, []);
+
   useEffect(() => {
     if (items.length === 1) chooseItem(items[0].id);
   }, [items]);
@@ -53,6 +60,7 @@ const useChooseRetreivedItem = <D extends { id: string; attributes: any }>(
     clearChosenItem,
     loading,
     error,
+    cleanUp,
   };
 };
 

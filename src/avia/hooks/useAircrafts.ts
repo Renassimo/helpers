@@ -10,6 +10,8 @@ const useAircrafts = (): UseAircraftsResult => {
     retreiveItems,
     chooseItem: chooseAircraft,
     clearChosenItem: clearChosenAircraft,
+    loading,
+    cleanUp: cleanUpAircrafts,
   } = useChooseRetreivedItem<Avia.AircraftData>();
 
   // /api/avia/aircrafts/SP-TVZ
@@ -22,6 +24,8 @@ const useAircrafts = (): UseAircraftsResult => {
     retreiveAircrafts,
     chooseAircraft,
     clearChosenAircraft,
+    loading,
+    cleanUpAircrafts,
   };
 };
 

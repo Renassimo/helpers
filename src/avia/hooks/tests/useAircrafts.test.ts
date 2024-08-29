@@ -11,6 +11,7 @@ describe('useAircrafts', () => {
   const mockedRetreiveItems = jest.fn(() => mockedRetreiveItemsResult);
   const mockedChooseItem = jest.fn();
   const mockedClearChosenItem = jest.fn();
+  const mockedCleanUp = jest.fn();
 
   const defaultState = {
     aircrafts: mockedItems,
@@ -18,6 +19,8 @@ describe('useAircrafts', () => {
     retreiveAircrafts: expect.any(Function),
     chooseAircraft: mockedChooseItem,
     clearChosenAircraft: mockedClearChosenItem,
+    loading: false,
+    cleanUpAircrafts: mockedCleanUp,
   };
 
   beforeEach(() => {
@@ -28,6 +31,8 @@ describe('useAircrafts', () => {
         retreiveItems: mockedRetreiveItems,
         chooseItem: mockedChooseItem,
         clearChosenItem: mockedClearChosenItem,
+        loading: false,
+        cleanUp: mockedCleanUp,
       }))
     );
   });
@@ -61,6 +66,7 @@ describe('useAircrafts', () => {
       expect(responseData).toEqual(mockedRetreiveItemsResult);
       expect(mockedChooseItem).not.toBeCalled();
       expect(mockedClearChosenItem).not.toBeCalled();
+      expect(mockedCleanUp).not.toBeCalled();
     });
   });
 
@@ -77,6 +83,7 @@ describe('useAircrafts', () => {
       expect(mockedRetreiveItems).not.toBeCalled();
       expect(mockedChooseItem).toBeCalledWith('id1');
       expect(mockedClearChosenItem).not.toBeCalled();
+      expect(mockedCleanUp).not.toBeCalled();
     });
   });
 
@@ -93,6 +100,24 @@ describe('useAircrafts', () => {
       expect(mockedRetreiveItems).not.toBeCalled();
       expect(mockedChooseItem).not.toBeCalled();
       expect(mockedClearChosenItem).toBeCalledWith();
+      expect(mockedCleanUp).not.toBeCalled();
+    });
+  });
+
+  describe('when calls cleanUpAircrafts', () => {
+    test('returns default state and calls cleanUp', async () => {
+      // Arange
+      const { result } = renderHook(() => useAircrafts());
+      // Act
+      await act(async () => {
+        await result.current.cleanUpAircrafts();
+      });
+      // Assert
+      expect(result.current).toEqual(defaultState);
+      expect(mockedRetreiveItems).not.toBeCalled();
+      expect(mockedChooseItem).not.toBeCalled();
+      expect(mockedClearChosenItem).not.toBeCalledWith();
+      expect(mockedCleanUp).toBeCalledWith();
     });
   });
 });

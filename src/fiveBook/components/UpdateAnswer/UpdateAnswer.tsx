@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef } from 'react';
 import { useRouter } from 'next/router';
 
-import { TextField } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import Modal from '@/common/components/Modal';

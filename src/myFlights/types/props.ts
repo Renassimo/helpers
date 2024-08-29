@@ -15,6 +15,8 @@ export interface UseFlightsResult {
   ) => Promise<Avia.FlightsApiData | null>;
   chooseFlight: (id: string) => Avia.FlightData | null;
   clearChosenFlight: () => null;
+  loading: boolean;
+  cleanUpFlights: () => void;
 }
 
 export interface UseAircraftsResult {
@@ -25,6 +27,8 @@ export interface UseAircraftsResult {
   ) => Promise<Avia.AircraftApiData | null>;
   chooseAircraft: (id: string) => Avia.AircraftData | null;
   clearChosenAircraft: () => null;
+  loading: boolean;
+  cleanUpAircrafts: () => void;
 }
 
 export interface UseAirportsResult {
@@ -35,4 +39,6 @@ export interface UseAirportsResult {
   ) => Promise<Avia.AirportsApiData | null>;
   chooseAirport: (id: string) => Avia.AirportData | null;
   clearChosenAirport: () => null;
+  loading: boolean;
+  cleanUpAirports: () => void;
 }

@@ -10,6 +10,8 @@ const useFlights = (): UseFlightsResult => {
     retreiveItems,
     chooseItem: chooseFlight,
     clearChosenItem: clearChosenFlight,
+    loading,
+    cleanUp: cleanUpFlights,
   } = useChooseRetreivedItem<Avia.FlightData>();
 
   // /api/avia/flights/fz 1839
@@ -22,6 +24,8 @@ const useFlights = (): UseFlightsResult => {
     retreiveFlights,
     chooseFlight,
     clearChosenFlight,
+    loading,
+    cleanUpFlights,
   };
 };
 

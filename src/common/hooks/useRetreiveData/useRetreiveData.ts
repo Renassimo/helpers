@@ -11,6 +11,7 @@ const useRetreiveData = <D>(
   retreive: (url: string) => Promise<D | null>;
   loading: boolean;
   error: CommonError | null;
+  cleanData: () => void;
 } => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<CommonError | null>(null);
@@ -38,7 +39,11 @@ const useRetreiveData = <D>(
     if (url && typeof window !== 'undefined') retreive(url);
   }, [url]);
 
-  return { data, retreive, loading, error };
+  const cleanData = useCallback(() => {
+    setData(null);
+  }, []);
+
+  return { data, retreive, loading, error, cleanData };
 };
 
 export default useRetreiveData;

@@ -10,9 +10,9 @@ import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
 import { mockedMyFlightsList } from '@/myFlights/types/mocks';
 import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
-import MockedPageTemplate from '@/common/templates/PageTemplate/mocks/MockedPageTemplate';
-import MockedMyFlightsProvider from '@/myFlights/providers/mocks/MockedMyFlightsProvider';
-import MockedMyFlights from '@/myFlights/components/MyFlights/mocks/MockedMyFlights';
+import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
+import MockedMyFlightsProvider from '@/myFlights/providers/mocks';
+import MockedMyFlights from '@/myFlights/components/MyFlights/mocks';
 
 import MyFlightsPage from '../MyFlightsPage';
 

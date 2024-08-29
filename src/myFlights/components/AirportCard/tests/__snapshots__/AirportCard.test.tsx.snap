@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AirportCard renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      WAW/EPWA
+       -
+      <div>
+        Warsaw Chopin
+      </div>
+       
+      - 
+      chosen
+       - 
+       - 
+    </div>
+  </div>
+</body>
+`;
+
+exports[`AirportCard when partial airport passed and when title passed renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      Origin
+       -
+      <div>
+        WAW/EPWA
+      </div>
+      <div>
+        Warsaw Chopin
+      </div>
+       
+      - 
+       - 
+       - 
+    </div>
+  </div>
+</body>
+`;
+
+exports[`AirportCard when partial airport passed renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      WAW/EPWA
+       -
+      <div>
+        Warsaw Chopin
+      </div>
+       
+      - 
+       - 
+       - 
+    </div>
+  </div>
+</body>
+`;
+
+exports[`AirportCard when title passed renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      Origin
+       -
+      <div>
+        WAW/EPWA
+      </div>
+      <div>
+        Warsaw Chopin
+      </div>
+       
+      - 
+      chosen
+       - 
+       - 
+    </div>
+  </div>
+</body>
+`;

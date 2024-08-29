@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyFlightForm renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedFlightForm
+      </div>
+      <div>
+        MockedAirportForm - 
+        Origin
+      </div>
+      <div>
+        MockedAirportForm - 
+        Destination
+      </div>
+      <div>
+        MockedAircraftForm - 
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MyFlightForm when flight details received renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedFlightForm
+      </div>
+      <div>
+        MockedAircraftForm - 
+        A6-FMB
+      </div>
+    </div>
+  </div>
+</body>
+`;

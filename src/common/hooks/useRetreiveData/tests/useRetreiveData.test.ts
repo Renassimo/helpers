@@ -13,6 +13,7 @@ describe('useRetreiveData', () => {
     retreive: expect.any(Function),
     loading: false,
     error: null,
+    cleanData: expect.any(Function),
   };
 
   const mockedUrl = '/mocked-url';
@@ -69,6 +70,27 @@ describe('useRetreiveData', () => {
       expect(fetchMock.lastUrl()).toEqual(mockedUrl);
       expect(fetchMock.lastOptions()).toEqual(undefined);
       expect(responseData).toEqual(mockedResponseData);
+    });
+
+    describe('and then cleans data', () => {
+      test('returns default state', async () => {
+        // Arange
+        fetchMock.get(mockedUrl, mockedResponseData);
+        const { result } = renderHook(() => useRetreiveData());
+        // Act
+        let responseData: string | null = '';
+        await act(async () => {
+          responseData = (await result.current.retreive(
+            mockedUrl
+          )) as unknown as string;
+          await result.current.cleanData();
+        });
+        // Assert
+        expect(result.current).toEqual(defaultState);
+        expect(fetchMock.lastUrl()).toEqual(mockedUrl);
+        expect(fetchMock.lastOptions()).toEqual(undefined);
+        expect(responseData).toEqual(mockedResponseData);
+      });
     });
   });
 
