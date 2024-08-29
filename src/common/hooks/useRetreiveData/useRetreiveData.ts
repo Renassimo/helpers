@@ -25,10 +25,12 @@ const useRetreiveData = <D>(
     try {
       const response = await fetch(url);
       const data = (await response.json()) as D;
+      if (!response.ok) throw data;
       setData(data);
       setLoading(false);
       return data;
-    } catch (error: unknown) {
+    } catch (caught: any) {
+      const error = caught?.error ?? caught;
       setError(error as CommonError);
       setLoading(false);
       return null;

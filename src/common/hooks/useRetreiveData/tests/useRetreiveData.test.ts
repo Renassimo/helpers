@@ -124,4 +124,33 @@ describe('useRetreiveData', () => {
       expect(responseData).toEqual(null);
     });
   });
+
+  describe('when response is not ok', () => {
+    test('throws error', async () => {
+      // Arange
+      const mockedError = { message: 'Error happened' };
+      const mockedFetch = jest.fn(() => ({
+        ok: false,
+        json: () => ({ error: mockedError }),
+      }));
+      Object.defineProperty(globalThis, 'fetch', {
+        value: mockedFetch,
+      });
+      const { result } = renderHook(() => useRetreiveData());
+      // Act
+      let responseData: string | null = '';
+      await act(async () => {
+        responseData = (await result.current.retreive(
+          mockedUrl
+        )) as unknown as string;
+      });
+      // Assert
+      expect(result.current).toEqual({
+        ...defaultState,
+        error: { message: 'Error happened' },
+      });
+      expect(useErrorAlert).toHaveBeenCalledWith(mockedError);
+      expect(responseData).toEqual(null);
+    });
+  });
 });
