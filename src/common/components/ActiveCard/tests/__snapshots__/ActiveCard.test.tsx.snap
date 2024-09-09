@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActiveCard renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+    >
+      <button
+        aria-label="Action area"
+        class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div>
+            Children
+          </div>
+        </div>
+        <span
+          class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ActiveCard when chosen passed renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+    >
+      <button
+        aria-label="Close"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1nxn43-MuiButtonBase-root-MuiIconButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="CloseIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+      <button
+        aria-label="Action area"
+        class="MuiButtonBase-root Mui-disabled MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        disabled=""
+        tabindex="-1"
+        type="button"
+      >
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div>
+            Children
+          </div>
+        </div>
+        <span
+          class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ActiveCard when image passed renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+    >
+      <button
+        aria-label="Action area"
+        class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        tabindex="0"
+        type="button"
+      >
+        <img
+          alt="image-alt"
+          class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          height="120"
+          src="image-url"
+        />
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div>
+            Children
+          </div>
+        </div>
+        <span
+          class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ActiveCard when image passed when chosen passed renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+    >
+      <button
+        aria-label="Close"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1nxn43-MuiButtonBase-root-MuiIconButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="CloseIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+      <button
+        aria-label="Action area"
+        class="MuiButtonBase-root Mui-disabled MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        disabled=""
+        tabindex="-1"
+        type="button"
+      >
+        <img
+          alt="image-alt"
+          class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          height="120"
+          src="image-url"
+        />
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div>
+            Children
+          </div>
+        </div>
+        <span
+          class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+      </button>
+    </div>
+  </div>
+</body>
+`;

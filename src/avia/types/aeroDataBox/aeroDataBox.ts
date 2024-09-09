@@ -29,7 +29,7 @@ export namespace AeroDataBoxApi {
   }
 
   interface Point {
-    airport: Airport;
+    airport?: Airport;
     scheduledTime?: Time;
     revisedTime?: Time;
     predictedTime?: Time;
@@ -55,13 +55,13 @@ export namespace AeroDataBoxApi {
 
   namespace Airport {
     interface Basic {
-      icao: string; // 'EPWA'; 'LSZH';
-      iata: string; // 'WAW'; 'ZRH';
+      icao?: string; // 'EPWA'; 'LSZH';
+      iata?: string; // 'WAW'; 'ZRH';
       shortName?: string; // 'Chopin'; 'Kloten';
       municipalityName?: string; // 'Warsaw'; 'Zurich';
-      location: Location;
-      countryCode: string; // 'PL'; 'CH';
-      timeZone: string; // 'Europe/Warsaw'; 'Europe/Zurich';
+      location?: Location;
+      countryCode?: string; // 'PL'; 'CH';
+      timeZone?: string; // 'Europe/Warsaw'; 'Europe/Zurich';
     }
     export interface WithName extends Basic {
       name?: string; // 'Warsaw Chopin'; 'Zurich Kloten';
@@ -80,9 +80,9 @@ export namespace AeroDataBoxApi {
   export type AirportExact = Airport.WithFullName;
 
   export interface Flight {
-    greatCircleDistance: Length;
-    departure: Point;
-    arrival: Point;
+    greatCircleDistance?: Length;
+    departure?: Point;
+    arrival?: Point;
     lastUpdatedUtc?: string; // '2024-08-21 15:26Z';
     number: string; // 'LX 1353';
     callSign?: string; // 'FDB1839',

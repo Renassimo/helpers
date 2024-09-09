@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyFlightFormModal renders snapshot successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="MuiBox-root css-186xlyj"
+      >
+        <div>
+          MockedSearchMyFlightDetailsForm
+        </div>
+        <h4
+          class="MuiTypography-root MuiTypography-h6 css-1sqg2sd-MuiTypography-root"
+        >
+          Fix values or enter mannually bellow:
+        </h4>
+        <div>
+          MockedMyFlightForm
+        </div>
+      </div>
+      <div>
+        title: 
+        Create new flight
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;

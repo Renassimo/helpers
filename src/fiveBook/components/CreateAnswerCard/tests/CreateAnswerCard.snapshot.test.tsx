@@ -2,10 +2,10 @@ import renderWithTheme from '@/common/tests/helpers';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import DatePicker from '@/fiveBook/components/DatePicker';
+import FiveBookDatePicker from '@/fiveBook/components/FiveBookDatePicker';
 import CreateAnswerForm from '@/fiveBook/components/CreateAnswerForm';
 
-import MockedDatePicker from '@/fiveBook/components/DatePicker/mocks';
+import MockedFiveBookDatePicker from '@/fiveBook/components/FiveBookDatePicker/mocks';
 import MockedCreateAnswerForm from '@/fiveBook/components/CreateAnswerForm/mocks';
 
 import CreateAnswerCard from '../CreateAnswerCard';
@@ -13,7 +13,7 @@ import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
 jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('@mui/material/useMediaQuery');
-jest.mock('@/fiveBook/components/DatePicker');
+jest.mock('@/fiveBook/components/FiveBookDatePicker');
 jest.mock('@/fiveBook/components/CreateAnswerForm');
 
 describe('CreateAnswerCard snapshot', () => {
@@ -25,7 +25,9 @@ describe('CreateAnswerCard snapshot', () => {
     (useMediaQuery as unknown as jest.Mock).mockImplementation(
       mockedUseMediaQuery
     );
-    (DatePicker as unknown as jest.Mock).mockImplementation(MockedDatePicker);
+    (FiveBookDatePicker as unknown as jest.Mock).mockImplementation(
+      MockedFiveBookDatePicker
+    );
     (CreateAnswerForm as unknown as jest.Mock).mockImplementation(
       MockedCreateAnswerForm
     );
@@ -51,7 +53,7 @@ describe('CreateAnswerCard snapshot', () => {
       const { baseElement } = renderWithTheme(<CreateAnswerCard />);
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(MockedDatePicker).not.toHaveBeenCalled();
+      expect(MockedFiveBookDatePicker).not.toHaveBeenCalled();
       expect(MockedCreateAnswerForm).toHaveBeenCalledWith({}, {});
       expect(mockedUseMediaQuery).toHaveBeenCalledWith(
         '@media (max-width:899.95px)'
@@ -73,7 +75,7 @@ describe('CreateAnswerCard snapshot', () => {
         const { baseElement } = renderWithTheme(<CreateAnswerCard />);
         // Assert
         expect(baseElement).toMatchSnapshot();
-        expect(MockedDatePicker).not.toHaveBeenCalled();
+        expect(MockedFiveBookDatePicker).not.toHaveBeenCalled();
         expect(MockedCreateAnswerForm).toHaveBeenCalledWith({}, {});
         expect(mockedUseMediaQuery).toHaveBeenCalledWith(
           '@media (max-width:899.95px)'
@@ -93,7 +95,10 @@ describe('CreateAnswerCard snapshot', () => {
       const { baseElement } = renderWithTheme(<CreateAnswerCard />);
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(MockedDatePicker).toHaveBeenCalledWith({ staticPicker: true }, {});
+      expect(MockedFiveBookDatePicker).toHaveBeenCalledWith(
+        { staticPicker: true },
+        {}
+      );
       expect(MockedCreateAnswerForm).toHaveBeenCalledWith({}, {});
       expect(mockedUseMediaQuery).toHaveBeenCalledWith(
         '@media (max-width:899.95px)'
@@ -115,7 +120,7 @@ describe('CreateAnswerCard snapshot', () => {
         const { baseElement } = renderWithTheme(<CreateAnswerCard />);
         // Assert
         expect(baseElement).toMatchSnapshot();
-        expect(MockedDatePicker).toHaveBeenCalledWith(
+        expect(MockedFiveBookDatePicker).toHaveBeenCalledWith(
           { staticPicker: true },
           {}
         );

@@ -9,6 +9,7 @@ const AlertsContainer = styled.div`
   display: grid;
   grid-gap: 16px;
   width: 300px;
+  z-index: 2;
 `;
 
 const Alerts = ({

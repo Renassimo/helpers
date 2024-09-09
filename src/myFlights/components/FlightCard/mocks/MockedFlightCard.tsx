@@ -1,5 +1,5 @@
-const MockedFlightCard = jest.fn(({ data }) => (
-  <div>MockedFlightCard - {data?.id}</div>
+const MockedFlightCard = jest.fn(({ chosen }) => (
+  <div>MockedFlightCard - {chosen && 'chosen'}</div>
 ));
 
 export default MockedFlightCard;

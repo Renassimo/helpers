@@ -47,7 +47,7 @@ class AeroDataBoxService {
   async retreiveAirportsByText(
     searchQuery: string
   ): Promise<AeroDataBoxApi.Airport[]> {
-    return [mockedAirports[0] as AeroDataBoxApi.Airport];
+    return mockedAirports as AeroDataBoxApi.Airport[];
     const response = await fetch(
       `${this.baseURL}/airports/search/term?q=${searchQuery}`,
       {
@@ -63,7 +63,7 @@ class AeroDataBoxService {
     lat: string,
     lot: string
   ): Promise<AeroDataBoxApi.Airport[]> {
-    return [mockedAirports[0] as AeroDataBoxApi.Airport];
+    return mockedAirports as AeroDataBoxApi.Airport[];
     const response = await fetch(
       `${this.baseURL}/airports/search/location?lat=${lat}&lon=${lot}&radiusKm=25&limit=10`,
       {
@@ -79,7 +79,7 @@ class AeroDataBoxService {
     flightNumber: string,
     date?: string
   ): Promise<AeroDataBoxApi.Flight[]> {
-    return mockedFlights;
+    return [...mockedFlights, ...mockedFlights];
     const withDate = date ? `/${date}` : '';
     const response = await fetch(
       `${this.baseURL}/flights/number/${flightNumber}${withDate}?withAircraftImage=true`,

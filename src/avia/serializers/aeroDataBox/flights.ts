@@ -13,25 +13,37 @@ export const deserializeFlights = (
       airline,
       aircraft,
     } = result;
-    const { airport: originPoint } = departure;
-    const { airport: destinationPoint } = arrival;
+    const { airport: originPoint } = departure ?? {};
+    const { airport: destinationPoint } = arrival ?? {};
 
     const date =
-      (departure.scheduledTime?.local ?? departure.revisedTime?.local)?.split(
+      (departure?.scheduledTime?.local ?? departure?.revisedTime?.local)?.split(
         ' '
       )[0] ?? '';
 
     const id = `${flightNumber}__${date}`;
+    const originIata = originPoint?.iata ?? '';
+    const originIcao = originPoint?.icao ?? '';
+    const destinationIata = destinationPoint?.iata ?? '';
+    const destinationIcao = destinationPoint?.icao ?? '';
 
     return {
       id,
       attributes: {
         flightNumber,
-        origin: `${originPoint.iata}/${originPoint.icao}`,
-        originName: originPoint.name ?? null,
-        destination: `${destinationPoint.iata}/${destinationPoint.icao}`,
-        destinationName: destinationPoint.name ?? null,
-        distance: Math.round(greatCircleDistance.km),
+        origin: `${originIata ?? ''}${originIata && originIcao && '/'}${
+          originIcao ?? ''
+        }`,
+        originName: originPoint?.name ?? '',
+        destination: `${destinationIata ?? ''}${
+          destinationIata && destinationIcao && '/'
+        }${destinationIcao ?? ''}`,
+        destinationName: destinationPoint?.name ?? '',
+        originLocation: originPoint?.location ?? null,
+        destinationLocation: destinationPoint?.location ?? null,
+        distance: greatCircleDistance
+          ? Math.round(greatCircleDistance.km)
+          : null,
         date: date,
         airline: airline?.name ?? null,
         aircraft: aircraft?.model ?? null,

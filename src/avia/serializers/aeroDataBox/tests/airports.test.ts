@@ -16,6 +16,10 @@ describe('Airports serializers', () => {
             airportName: 'Kazan ',
             municipalityName: 'Kazan',
             shortName: 'Kazan',
+            location: {
+              lat: 55.6062,
+              lon: 49.2787,
+            },
           },
         },
         {
@@ -25,6 +29,10 @@ describe('Airports serializers', () => {
             airportName: 'Warsaw Chopin',
             municipalityName: 'Warsaw',
             shortName: 'Chopin',
+            location: {
+              lat: 52.1657,
+              lon: 20.9671,
+            },
           },
         },
       ];
@@ -44,12 +52,14 @@ describe('Airports serializers', () => {
             name: undefined,
             municipalityName: undefined,
             shortName: undefined,
+            location: undefined,
           } as AeroDataBoxApi.Airport,
           {
             ...mockedAirport2,
             fullName: undefined,
             municipalityName: undefined,
             shortName: undefined,
+            location: undefined,
           } as AeroDataBoxApi.AirportExact,
         ];
         const expectedResult = [
@@ -60,6 +70,7 @@ describe('Airports serializers', () => {
               airportName: null,
               municipalityName: null,
               shortName: null,
+              location: null,
             },
           },
           {
@@ -69,6 +80,7 @@ describe('Airports serializers', () => {
               airportName: null,
               municipalityName: null,
               shortName: null,
+              location: null,
             },
           },
         ];

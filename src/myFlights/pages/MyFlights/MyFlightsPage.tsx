@@ -8,7 +8,7 @@ import useAlerts from '@/common/hooks/alerts';
 
 import PageTemplate from '@/common/templates/PageTemplate';
 
-import FlightsProvider from '@/myFlights/providers/FlightsProvider';
+import MyFlightsProvider from '@/myFlights/providers/MyFlightsProvider';
 
 import MyFlights from '@/myFlights/components/MyFlights';
 
@@ -30,11 +30,11 @@ const MyFlightsPage = ({
   }, [createErrorAlert, error]);
 
   return (
-    <FlightsProvider data={data}>
+    <MyFlightsProvider data={data}>
       <PageTemplate title="My Flights" user={user} pages={pages}>
         <MyFlights />
       </PageTemplate>
-    </FlightsProvider>
+    </MyFlightsProvider>
   );
 };
 

@@ -1,0 +1,527 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyFlightForm renders successfully with empty values 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+           - 
+          Date
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Flight Number
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Alt flight number
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Seat number
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Airline
+           - 
+           -
+           
+          Airline 1 -
+          Airline 2 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Alt airline
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Origin
+           - 
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Origin name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Destination
+           - 
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Destination name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Distance, km
+           - 
+          number
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Manufacturer
+           - 
+           -
+           
+          Manufacturer 5 -
+          Manufacturers 6 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Model
+           - 
+           -
+           
+          Model 7 -
+          Model 8 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Registration
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          CN
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Airplane name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+           - 
+          First flight
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Age
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Planespotters URL
+           - 
+          url
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Photo URL
+           - 
+          url
+           - 
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MyFlightForm when loaded values passed renders successfully with empty values 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+           - 
+          Date
+           - 
+           -
+           
+          loadedValues.date
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Flight Number
+           - 
+           - 
+          loadedValues.flightNumber
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Alt flight number
+           - 
+           - 
+          loadedValues.altFlightNumber
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Seat number
+           - 
+           - 
+          loadedValues.seatNumber
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Airline
+           - 
+          loadedValues.airline
+           -
+           
+          Airline 1 -
+          Airline 2 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Alt airline
+           - 
+           - 
+          loadedValues.altAirline
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Origin
+           - 
+          loadedValues.origin
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Origin name
+           - 
+           - 
+          loadedValues.originName
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Destination
+           - 
+          loadedValues.destination
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Destination name
+           - 
+           - 
+          loadedValues.destinationName
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Distance, km
+           - 
+          number
+           - 
+          loadedValues.distance
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Manufacturer
+           - 
+          loadedValues.manufacturer
+           -
+           
+          Manufacturer 5 -
+          Manufacturers 6 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Model
+           - 
+          loadedValues.model
+           -
+           
+          Model 7 -
+          Model 8 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Registration
+           - 
+           - 
+          loadedValues.registration
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          CN
+           - 
+           - 
+          loadedValues.cn
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Airplane name
+           - 
+           - 
+          loadedValues.airplaneName
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+           - 
+          First flight
+           - 
+           -
+           
+          loadedValues.firstFlight
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Age
+           - 
+           - 
+          loadedValues.age
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Planespotters URL
+           - 
+          url
+           - 
+          loadedValues.planespottersUrl
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Photo URL
+           - 
+          url
+           - 
+          loadedValues.photoUrl
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

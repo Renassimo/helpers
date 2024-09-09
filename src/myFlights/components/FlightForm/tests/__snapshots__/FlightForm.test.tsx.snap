@@ -1,0 +1,639 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlightForm renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+      >
+        <button
+          aria-label="Close"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1nxn43-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="CloseIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          aria-label="Action area"
+          class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+          tabindex="0"
+          type="button"
+        >
+          <img
+            alt="FZ 1839"
+            class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+            height="120"
+            src="https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg"
+          />
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
+            >
+              FZ 1839
+               
+              <a
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                href="https://www.google.com/search?q=FZ 1839"
+                tabindex="0"
+                target="_blank"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="OpenInNewIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            >
+              Dubai - Warsaw Chopin
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            >
+              DXB/OMDB - WAW/EPWA
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            >
+              flydubai
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            >
+              Boeing 737 MAX 8
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            >
+              A6-FMB
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+            >
+              4157 km
+            </p>
+          </div>
+          <span
+            class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+          />
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`FlightForm when no aircrafts renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedAviaInput - 
+        Flight number
+         - 
+         - 
+         - 
+         -
+         
+         - 
+        <button
+          aria-label="Search"
+          class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+          disabled=""
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="SearchIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="MuiBox-root css-1yuhvjn"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+          Flight date
+           - 
+           - 
+           -
+           
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`FlightForm when no chosenFlight and when value is not empty renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedAviaInput - 
+        Flight number
+         - 
+         - 
+         - 
+        Val
+         -
+         
+         - 
+        <button
+          aria-label="Search"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="SearchIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiBox-root css-1yuhvjn"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+          Flight date
+           - 
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-ohyvb6"
+      >
+        <div
+          class="MuiBox-root css-hnroeo"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+          >
+            <button
+              aria-label="Action area"
+              class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+              tabindex="0"
+              type="button"
+            >
+              <img
+                alt="FZ 1839"
+                class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+                height="120"
+                src="https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg"
+              />
+              <div
+                class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
+                >
+                  FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Dubai - Warsaw Chopin
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  DXB/OMDB - WAW/EPWA
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  flydubai
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Boeing 737 MAX 8
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  A6-FMB
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  4157 km
+                </p>
+              </div>
+              <span
+                class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-12z0wuy"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+          >
+            <button
+              aria-label="Action area"
+              class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+              tabindex="0"
+              type="button"
+            >
+              <img
+                alt="FZ 1839"
+                class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+                height="120"
+                src="https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg"
+              />
+              <div
+                class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
+                >
+                  FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Dubai - Warsaw Chopin
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  DXB/OMDB - WAW/EPWA
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  flydubai
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Boeing 737 MAX 8
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  A6-FMB
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  4157 km
+                </p>
+              </div>
+              <span
+                class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`FlightForm when no chosenFlight renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedAviaInput - 
+        Flight number
+         - 
+         - 
+         - 
+         -
+         
+         - 
+        <button
+          aria-label="Search"
+          class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+          disabled=""
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="SearchIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="MuiBox-root css-1yuhvjn"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+          Flight date
+           - 
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-ohyvb6"
+      >
+        <div
+          class="MuiBox-root css-hnroeo"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+          >
+            <button
+              aria-label="Action area"
+              class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+              tabindex="0"
+              type="button"
+            >
+              <img
+                alt="FZ 1839"
+                class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+                height="120"
+                src="https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg"
+              />
+              <div
+                class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
+                >
+                  FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Dubai - Warsaw Chopin
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  DXB/OMDB - WAW/EPWA
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  flydubai
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Boeing 737 MAX 8
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  A6-FMB
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  4157 km
+                </p>
+              </div>
+              <span
+                class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-12z0wuy"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-98fxvp-MuiPaper-root-MuiCard-root"
+          >
+            <button
+              aria-label="Action area"
+              class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+              tabindex="0"
+              type="button"
+            >
+              <img
+                alt="FZ 1839"
+                class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+                height="120"
+                src="https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg"
+              />
+              <div
+                class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
+                >
+                  FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Dubai - Warsaw Chopin
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  DXB/OMDB - WAW/EPWA
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  flydubai
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  Boeing 737 MAX 8
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  A6-FMB
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+                >
+                  4157 km
+                </p>
+              </div>
+              <span
+                class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+              />
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

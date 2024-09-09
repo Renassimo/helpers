@@ -8,6 +8,10 @@ export const mockedDeserializedAirports: Avia.AirportData[] = [
       airportName: 'Warsaw Chopin',
       municipalityName: 'Warsaw',
       shortName: 'Chopin',
+      location: {
+        lat: 52.1657,
+        lon: 20.9671,
+      },
     },
   },
   {
@@ -17,6 +21,7 @@ export const mockedDeserializedAirports: Avia.AirportData[] = [
       airportName: null,
       municipalityName: null,
       shortName: null,
+      location: null,
     },
   },
 ];

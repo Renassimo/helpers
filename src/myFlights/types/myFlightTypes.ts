@@ -1,3 +1,10 @@
+import { Avia } from '@/avia/types/avia';
+import {
+  UseAircraftsResult,
+  UseAirportsResult,
+  UseFlightsResult,
+} from './props';
+
 export interface MyFlightAttributes {
   title: string | null;
   date: string | null;
@@ -33,9 +40,24 @@ export interface MyFlightsState {
   [id: string]: MyFlightData;
 }
 
-export interface FlightsContextData {
+export interface MyFlightsContextData {
   // Flights data
-  flights: MyFlightsState;
-  flightsList: MyFlightData[];
-  updateFlight: (flight: MyFlightData) => void;
+  myFlights: MyFlightsState;
+  myFlightsList: MyFlightData[];
+  updateMyFlight: (flight: MyFlightData) => void;
+  // Options
+  options: Avia.Options | null;
+  // Matchers
+  matchers: Avia.Matchers | null;
+  // Flights
+  flightsResult: UseFlightsResult;
+  // Aircrafts
+  aircraftsResult: UseAircraftsResult;
+  // Airports
+  originsResult: UseAirportsResult;
+  destinationsResult: UseAirportsResult;
+  // CleanUp
+  cleanUp: () => void;
+  // Loaded values
+  loadedValues: Partial<MyFlightAttributes>;
 }

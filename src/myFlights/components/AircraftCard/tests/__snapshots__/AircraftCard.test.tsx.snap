@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AircraftCard renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      VP-BQX
+       -
+      <div>
+        Aeroflot
+      </div>
+      <div>
+        Airbus A321
+      </div>
+      <div>
+        321-211
+      </div>
+      <div>
+        CN: 2957
+      </div>
+      <div>
+        From Then (N years)
+      </div>
+       
+      - 
+      chosen
+       - 
+      https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg
+       - 
+      VP-BQX
+       - 
+      https://www.planespotters.net/search?q=VP-BQX
+    </div>
+  </div>
+</body>
+`;
+
+exports[`AircraftCard when partial aircraft passed renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      MockedAviaCard - 
+      VP-BQX
+       -
+      <div>
+        Aeroflot
+      </div>
+      <div>
+        Airbus A321
+      </div>
+      <div>
+        A321
+      </div>
+      <div>
+        From Then (N years)
+      </div>
+       
+      - 
+       - 
+      https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg
+       - 
+      VP-BQX
+       - 
+      https://www.planespotters.net/search?q=VP-BQX
+    </div>
+  </div>
+</body>
+`;

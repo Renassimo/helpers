@@ -16,6 +16,14 @@ export const mockedDeserializedFlights: Avia.FlightData[] = [
       registration: 'A6-FMB',
       photoUrl:
         'https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg',
+      originLocation: {
+        lat: 25.252798,
+        lon: 55.3644,
+      },
+      destinationLocation: {
+        lat: 52.1657,
+        lon: 20.9671,
+      },
     },
   },
 ];

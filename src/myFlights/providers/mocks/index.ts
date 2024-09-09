@@ -1,1 +1,1 @@
-export { default } from './MockedFlightsProvider';
+export { default } from './MockedMyFlightsProvider';

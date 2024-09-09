@@ -69,7 +69,7 @@ exports[`CreateAnswerCard snapshot when screen width is wider than md renders su
           class="MuiBox-root css-1yuhvjn"
         >
           <div>
-            Mocked DatePicker. Static: 
+            MockedFiveBookDatePicker. Static: 
             , onChange: 
           </div>
         </div>
@@ -101,7 +101,7 @@ exports[`CreateAnswerCard snapshot when screen width is wider than md when got n
           class="MuiBox-root css-1yuhvjn"
         >
           <div>
-            Mocked DatePicker. Static: 
+            MockedFiveBookDatePicker. Static: 
             , onChange: 
           </div>
         </div>
