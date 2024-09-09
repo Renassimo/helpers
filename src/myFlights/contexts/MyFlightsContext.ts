@@ -9,6 +9,8 @@ const MyFlightsContext = createContext<MyFlightsContextData>({
   updateMyFlight: () => {},
   // Options
   options: null,
+  // Matchers
+  matchers: null,
   // Flights
   flightsResult: {
     flights: null,

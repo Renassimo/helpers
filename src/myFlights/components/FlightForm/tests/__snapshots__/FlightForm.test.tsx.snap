@@ -32,9 +32,8 @@ exports[`FlightForm renders successfully 1`] = `
         </button>
         <button
           aria-label="Action area"
-          class="MuiButtonBase-root Mui-disabled MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
-          disabled=""
-          tabindex="-1"
+          class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+          tabindex="0"
           type="button"
         >
           <img
@@ -50,6 +49,28 @@ exports[`FlightForm renders successfully 1`] = `
               class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
             >
               FZ 1839
+               
+              <a
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                href="https://www.google.com/search?q=FZ 1839"
+                tabindex="0"
+                target="_blank"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="OpenInNewIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
             </p>
             <p
               class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
@@ -84,6 +105,9 @@ exports[`FlightForm renders successfully 1`] = `
           </div>
           <span
             class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+          />
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />
         </button>
       </div>
@@ -126,6 +150,19 @@ exports[`FlightForm when no aircrafts renders successfully 1`] = `
             />
           </svg>
         </button>
+      </div>
+      <div
+        class="MuiBox-root css-1yuhvjn"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+          Flight date
+           - 
+           - 
+           -
+           
+        </div>
       </div>
     </div>
   </div>
@@ -171,6 +208,19 @@ exports[`FlightForm when no chosenFlight and when value is not empty renders suc
         </button>
       </div>
       <div
+        class="MuiBox-root css-1yuhvjn"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+          Flight date
+           - 
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
         class="MuiBox-root css-ohyvb6"
       >
         <div
@@ -198,6 +248,28 @@ exports[`FlightForm when no chosenFlight and when value is not empty renders suc
                   class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
                 >
                   FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
                 </p>
                 <p
                   class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
@@ -264,6 +336,28 @@ exports[`FlightForm when no chosenFlight and when value is not empty renders suc
                   class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
                 >
                   FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
                 </p>
                 <p
                   class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
@@ -347,6 +441,19 @@ exports[`FlightForm when no chosenFlight renders successfully 1`] = `
         </button>
       </div>
       <div
+        class="MuiBox-root css-1yuhvjn"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+          Flight date
+           - 
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
         class="MuiBox-root css-ohyvb6"
       >
         <div
@@ -374,6 +481,28 @@ exports[`FlightForm when no chosenFlight renders successfully 1`] = `
                   class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
                 >
                   FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
                 </p>
                 <p
                   class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
@@ -440,6 +569,28 @@ exports[`FlightForm when no chosenFlight renders successfully 1`] = `
                   class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-ejgmvm-MuiTypography-root"
                 >
                   FZ 1839
+                   
+                  <a
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                    href="https://www.google.com/search?q=FZ 1839"
+                    tabindex="0"
+                    target="_blank"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="OpenInNewIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </a>
                 </p>
                 <p
                   class="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"

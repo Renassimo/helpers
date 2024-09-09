@@ -37,12 +37,16 @@ const FlightCard = ({
     distance ? `${distance} km` : null,
   ];
 
+  const link =
+    flightNumber && `https://www.google.com/search?q=${flightNumber}`;
+
   return (
     <AviaCard
       onClick={onClick}
       chosen={chosen}
       imageUrl={photoUrl ?? '/images/plane.png'}
       imageAlt={flightNumber}
+      link={link}
       title={flightNumber}
       additionalContent={additionalContent}
     />

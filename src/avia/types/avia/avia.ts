@@ -1,3 +1,4 @@
+import { Matcher } from '@/common/types/matchers';
 import { ApiData, Data } from '@/common/types/props';
 
 export namespace Avia {
@@ -62,5 +63,12 @@ export namespace Avia {
     airports: string[];
     manufacturers: string[];
     models: string[];
+  }
+
+  export interface Matchers {
+    airlines: Matcher;
+    airports: Matcher;
+    manufacturers: Matcher;
+    models: Matcher;
   }
 }

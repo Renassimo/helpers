@@ -1,23 +1,22 @@
 import { MyFlightData, MyFlightsContextData } from '@/myFlights/types';
 
-import useMyFlights from './subhooks/useMyFlights';
-import useRetreiveData from '@/common/hooks/useRetreiveData';
-
 import useFlights from '@/avia/hooks/useFlights';
 import useAircrafts from '@/avia/hooks/useAircrafts';
 import useAirports from '@/avia/hooks/useAirports';
+import useAviaMatchers from '@/avia/hooks/useAviaMatchers';
+import useAviaOptions from '@/avia/hooks/useAviaOptions';
 
-import { Avia } from '@/avia/types/avia';
+import useMyFlights from './subhooks/useMyFlights';
 import useLoadedValues from './subhooks/useLoadedValues';
 
 const useMyFlightsProvider = (
   data: MyFlightData[] | null
 ): MyFlightsContextData => {
-  // Flights data
-  const { myFlights, myFlightsList, updateMyFlight } = useMyFlights(data);
-
   // Options
-  const { data: options } = useRetreiveData<Avia.Options>('/api/avia/options');
+  const { data: options /* updateOptions */ } = useAviaOptions();
+
+  // Matchers
+  const { data: matchers /* updateMatchers */ } = useAviaMatchers();
 
   // Flights
   const flightsResult = useFlights();
@@ -39,6 +38,9 @@ const useMyFlightsProvider = (
     destinationsResult,
   });
 
+  // Flights data
+  const { myFlights, myFlightsList, updateMyFlight } = useMyFlights(data);
+
   return {
     // Flights data
     myFlights,
@@ -46,6 +48,8 @@ const useMyFlightsProvider = (
     updateMyFlight,
     // Options
     options,
+    // Matchers
+    matchers,
     // Flights
     flightsResult,
     // Aircrafts

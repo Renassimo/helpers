@@ -1,7 +1,10 @@
-const MockedActiveCard = jest.fn(({ chosen, imageUrl, imageAlt }) => (
-  <div>
-    MockedActiveCard - {chosen && 'chosen'} - {imageUrl} - {imageAlt}
-  </div>
-));
+const MockedActiveCard = jest.fn(
+  ({ chosen, imageUrl, imageAlt, link, children }) => (
+    <div>
+      MockedActiveCard - {chosen && 'chosen'} - {imageUrl} - {imageAlt} - {link}{' '}
+      - {children}
+    </div>
+  )
+);
 
 export default MockedActiveCard;

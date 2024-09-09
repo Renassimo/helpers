@@ -70,6 +70,30 @@ describe('useFlights', () => {
       expect(mockedClearChosenItem).not.toBeCalled();
       expect(mockedCleanUp).not.toBeCalled();
     });
+
+    describe('when retreives flights with date', () => {
+      test('returns default state and retreive items', async () => {
+        // Arange
+        const { result } = renderHook(() => useFlights());
+        let responseData: string | null = '';
+        // Act
+        await act(async () => {
+          responseData = (await result.current.retreiveFlights(
+            'flight-number',
+            'mocked-date'
+          )) as unknown as string;
+        });
+        // Assert
+        expect(result.current).toEqual(defaultState);
+        expect(mockedRetreiveItems).toBeCalledWith(
+          '/api/avia/flights/flight-number?date=mocked-date'
+        );
+        expect(responseData).toEqual(mockedRetreiveItemsResult);
+        expect(mockedChooseItem).not.toBeCalled();
+        expect(mockedClearChosenItem).not.toBeCalled();
+        expect(mockedCleanUp).not.toBeCalled();
+      });
+    });
   });
 
   describe('when calls chooseFlight', () => {

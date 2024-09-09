@@ -8,9 +8,11 @@ import useInputValue from '@/common/hooks/useInputValue';
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
 import AviaInput from '@/avia/components/AviaInput';
+import DatePicker from '@/common/components/DateInput';
 import AircraftCard from '@/myFlights/components/AircraftCard';
 
 import MockedAviaInput from '@/avia/components/AviaInput/mocks';
+import MockedDateInput from '@/common/components/DateInput/mocks';
 import MockedAircraftCard from '@/myFlights/components/AircraftCard/mocks';
 
 import { mockedDeserializedFlights } from '@/avia/types/avia/mocks';
@@ -19,12 +21,13 @@ import FlightForm from '../FlightForm';
 
 jest.mock('@/common/hooks/useInputValue');
 jest.mock('@/avia/components/AviaInput');
+jest.mock('@/common/components/DateInput');
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
 jest.mock('@/myFlights/components/AircraftCard');
 
 describe('FlightForm', () => {
   const mockedSetValue = jest.fn();
-  const mockUseInputValue = (value = '') =>
+  const mockUseInputValue = (value: any = '') =>
     jest.fn(() => [value, mockedSetValue]);
 
   const retreiveFlights = jest.fn();
@@ -45,6 +48,7 @@ describe('FlightForm', () => {
 
   beforeEach(() => {
     (AviaInput as unknown as jest.Mock).mockImplementation(MockedAviaInput);
+    (DatePicker as unknown as jest.Mock).mockImplementation(MockedDateInput);
     (AircraftCard as unknown as jest.Mock).mockImplementation(
       MockedAircraftCard
     );
@@ -56,8 +60,11 @@ describe('FlightForm', () => {
 
   test('renders successfully', () => {
     // Arange
-    (useInputValue as unknown as jest.Mock).mockImplementation(
+    (useInputValue as unknown as jest.Mock).mockImplementationOnce(
       mockUseInputValue()
+    );
+    (useInputValue as unknown as jest.Mock).mockImplementationOnce(
+      mockUseInputValue(null)
     );
     (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
       mockUseMyFlightsContext()
@@ -73,8 +80,11 @@ describe('FlightForm', () => {
 
     test('renders successfully', () => {
       // Arange
-      (useInputValue as unknown as jest.Mock).mockImplementation(
+      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
         mockUseInputValue()
+      );
+      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
+        mockUseInputValue(null)
       );
       (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
         mockUseMyFlightsContext(contextProps)
@@ -87,11 +97,15 @@ describe('FlightForm', () => {
 
     describe('and when value is not empty', () => {
       const value = 'Val';
+      const flightDate = 'flight-date';
 
       test('renders successfully', async () => {
         // Arange
-        (useInputValue as unknown as jest.Mock).mockImplementation(
+        (useInputValue as unknown as jest.Mock).mockImplementationOnce(
           mockUseInputValue(value)
+        );
+        (useInputValue as unknown as jest.Mock).mockImplementationOnce(
+          mockUseInputValue(null)
         );
         (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
           mockUseMyFlightsContext(contextProps)
@@ -105,8 +119,11 @@ describe('FlightForm', () => {
       describe('and clicks to search', () => {
         test('calls retreiveFlights', async () => {
           // Arange
-          (useInputValue as unknown as jest.Mock).mockImplementation(
+          (useInputValue as unknown as jest.Mock).mockImplementationOnce(
             mockUseInputValue(value)
+          );
+          (useInputValue as unknown as jest.Mock).mockImplementationOnce(
+            mockUseInputValue(null)
           );
           (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
             mockUseMyFlightsContext(contextProps)
@@ -115,7 +132,27 @@ describe('FlightForm', () => {
           // Act
           await userEvent.click(getByLabelText('Search'));
           // Assert
-          expect(retreiveFlights).toBeCalledWith('Val');
+          expect(retreiveFlights).toBeCalledWith('Val', null);
+        });
+
+        describe('and flight date was set', () => {
+          test('calls retreiveFlights', async () => {
+            // Arange
+            (useInputValue as unknown as jest.Mock).mockImplementationOnce(
+              mockUseInputValue(value)
+            );
+            (useInputValue as unknown as jest.Mock).mockImplementationOnce(
+              mockUseInputValue('flight-date')
+            );
+            (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
+              mockUseMyFlightsContext(contextProps)
+            );
+            const { getByLabelText } = renderWithTheme(<FlightForm />);
+            // Act
+            await userEvent.click(getByLabelText('Search'));
+            // Assert
+            expect(retreiveFlights).toBeCalledWith('Val', flightDate);
+          });
         });
       });
     });
@@ -124,8 +161,11 @@ describe('FlightForm', () => {
   describe('when no aircrafts', () => {
     test('renders successfully', () => {
       // Arange
-      (useInputValue as unknown as jest.Mock).mockImplementation(
+      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
         mockUseInputValue()
+      );
+      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
+        mockUseInputValue(null)
       );
       (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
         mockUseMyFlightsContext({ chosenFlight: null, flights: null })

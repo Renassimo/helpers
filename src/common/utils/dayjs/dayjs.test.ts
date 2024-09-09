@@ -1,4 +1,5 @@
 import {
+  addDay,
   formatFromNotionDate,
   formatToNotionDate,
   getDayCode,
@@ -6,8 +7,12 @@ import {
   getNextDayCode,
   getPrevDayCode,
   getYear,
+  isSameDay,
+  isValidDate,
+  showReadableDate,
   showTimePassed,
   showWhen,
+  substractDay,
 } from '@/common/utils/dayjs/dayjs';
 import dayjs from 'dayjs';
 
@@ -135,6 +140,94 @@ describe('DayJS', () => {
       const result = showTimePassed('2011-11-11');
       // Assert
       expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('isValidDate', () => {
+    test('returns validity', () => {
+      // Arrange
+      const expectedResult = true;
+      // Act
+      const result = isValidDate(dayjs('2011-11-11'));
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('showReadableDate', () => {
+    test('returns readable date string', () => {
+      // Arrange
+      const expectedResult = '11 Nov 2011';
+      // Act
+      const result = showReadableDate(dayjs('2011-11-11'));
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+
+    describe('when invalid date passed', () => {
+      test('returns empty string', () => {
+        // Arrange
+        const expectedResult = '';
+        // Act
+        const result = showReadableDate();
+        // Assert
+        expect(result).toEqual(expectedResult);
+      });
+    });
+  });
+
+  describe('isSameDay', () => {
+    test('returns result', () => {
+      // Arrange
+      const expectedResult = true;
+      // Act
+      const result = isSameDay('2011-11-11', '2011-11-11');
+      // Assert
+      expect(result).toEqual(expectedResult);
+    });
+
+    describe('when nulls passed', () => {
+      test('returns result', () => {
+        // Arrange
+        const expectedResult = false;
+        // Act
+        const result = isSameDay(null, null);
+        // Assert
+        expect(result).toEqual(expectedResult);
+      });
+    });
+
+    describe('when dyjs dates passed', () => {
+      test('returns result', () => {
+        // Arrange
+        const expectedResult = true;
+        // Act
+        const result = isSameDay(dayjs('2011-11-11'), dayjs('11 Nov 2011'));
+        // Assert
+        expect(result).toEqual(expectedResult);
+      });
+    });
+  });
+
+  describe('addDay', () => {
+    test('returns result', () => {
+      // Arrange
+      const expectedResult = '2011-11-12';
+      // Act
+      const result = addDay(dayjs('2011-11-11'));
+      // Assert
+      expect(result.format('YYYY-MM-DD')).toEqual(expectedResult);
+    });
+  });
+
+  describe('substractDay', () => {
+    test('returns result', () => {
+      // Arrange
+      const expectedResult = '2011-11-10';
+      // Act
+      const result = substractDay(dayjs('2011-11-11'));
+      // Assert
+      expect(result.format('YYYY-MM-DD')).toEqual(expectedResult);
     });
   });
 });

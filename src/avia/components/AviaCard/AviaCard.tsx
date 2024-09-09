@@ -1,4 +1,6 @@
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 import ActiveCard from '@/common/components/ActiveCard';
 
@@ -9,6 +11,7 @@ const AviaCard = ({
   imageUrl,
   imageAlt,
   title,
+  link,
 }: {
   additionalContent: (string | null)[];
   onClick: () => void;
@@ -16,6 +19,7 @@ const AviaCard = ({
   imageUrl?: string;
   imageAlt?: string;
   title?: string;
+  link?: string;
 }) => {
   return (
     <ActiveCard
@@ -24,10 +28,21 @@ const AviaCard = ({
       chosen={chosen}
       imageUrl={imageUrl}
       imageAlt={imageAlt}
+      link={link}
     >
       {title && (
         <Typography gutterBottom variant="body2">
-          {title}
+          {title}{' '}
+          {link && (
+            <IconButton
+              href={link}
+              target="_blank"
+              size="small"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <OpenInNewIcon />
+            </IconButton>
+          )}
         </Typography>
       )}
       {additionalContent.map(

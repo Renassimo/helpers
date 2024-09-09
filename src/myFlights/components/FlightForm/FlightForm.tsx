@@ -10,6 +10,7 @@ import useInputValue from '@/common/hooks/useInputValue';
 
 import FlightCard from '@/myFlights/components/FlightCard';
 import AviaInput from '@/avia/components/AviaInput';
+import DatePicker from '@/common/components/DateInput';
 
 const FlightForm = () => {
   const {
@@ -23,10 +24,11 @@ const FlightForm = () => {
     },
   } = useMyFlightsContext();
 
-  const [flightValue, setFlightValue] = useInputValue();
+  const [flightValue, setFlightValue] = useInputValue<string>('');
+  const [flightDate, setFlightDate] = useInputValue<string | null>(null);
 
   const onSubmit = async () => {
-    await retreiveFlights(flightValue);
+    await retreiveFlights(flightValue, flightDate);
   };
 
   const lengthOk = flightValue.length > 2;
@@ -38,23 +40,34 @@ const FlightForm = () => {
   return (
     <Box>
       {!chosenFlight && (
-        <AviaInput
-          title="Flight number"
-          value={flightValue}
-          setValue={setFlightValue}
-          disabled={loading}
-          onKeyDown={onEnter}
-          adornments={
-            <IconButton
-              size="small"
-              onClick={onSubmit}
-              disabled={loading || !lengthOk}
-              aria-label="Search"
-            >
-              <SearchIcon />
-            </IconButton>
-          }
-        />
+        <>
+          <AviaInput
+            title="Flight number"
+            value={flightValue}
+            setValue={setFlightValue}
+            disabled={loading}
+            onKeyDown={onEnter}
+            adornments={
+              <IconButton
+                size="small"
+                onClick={onSubmit}
+                disabled={loading || !lengthOk}
+                aria-label="Search"
+              >
+                <SearchIcon />
+              </IconButton>
+            }
+          />
+          <Box mt={2}>
+            <DatePicker
+              value={flightDate}
+              setValue={(newValue) => setFlightDate(newValue)}
+              placeholder="Flight date"
+              disabled={loading}
+              fullWidth
+            />
+          </Box>
+        </>
       )}
       {flights && !chosenFlight && (
         <Box display="flex" overflow="auto">

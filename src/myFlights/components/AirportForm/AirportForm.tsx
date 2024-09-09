@@ -32,7 +32,7 @@ const AirportForm = ({ title }: { title: 'Origin' | 'Destination' }) => {
     },
   } = useMyFlightsContext();
 
-  const [airportValue, setAirportValue] = useInputValue();
+  const [airportValue, setAirportValue] = useInputValue<string>('');
   const [by, setBy] = useState<'code' | 'text' | 'location'>('code');
   const [locationLoading, setLocationLoading] = useState(false);
 

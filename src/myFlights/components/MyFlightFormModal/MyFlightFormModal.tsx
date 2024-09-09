@@ -1,3 +1,6 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
 import Modal from '@/common/components/Modal';
 
 import { MyFlightData } from '@/myFlights/types';
@@ -5,6 +8,7 @@ import { MyFlightData } from '@/myFlights/types';
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
 import SearchMyFlightDetailsForm from '@/myFlights/components/SearchMyFlightDetailsForm';
+import MyFlightForm from '@/myFlights/components/MyFlightForm';
 
 const MyFlightFormModal = ({
   isModalOpen,
@@ -38,7 +42,13 @@ const MyFlightFormModal = ({
       title={`${isEditForm ? 'Update' : `Create new`} flight`}
       loading={false}
     >
-      <SearchMyFlightDetailsForm />
+      <Box minWidth={325}>
+        <SearchMyFlightDetailsForm />
+        <Typography mt={3} component="h4" variant="h6">
+          Fix values or enter mannually bellow:
+        </Typography>
+        <MyFlightForm />
+      </Box>
     </Modal>
   );
 };

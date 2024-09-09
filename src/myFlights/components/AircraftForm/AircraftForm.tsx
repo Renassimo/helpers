@@ -23,7 +23,7 @@ const AircraftForm = ({ registration }: { registration?: string | null }) => {
     },
   } = useMyFlightsContext();
 
-  const [aircraftValue, setAircraftValue] = useInputValue();
+  const [aircraftValue, setAircraftValue] = useInputValue('');
 
   const onSubmit = async () => {
     await retreiveAircrafts(aircraftValue);
@@ -42,23 +42,25 @@ const AircraftForm = ({ registration }: { registration?: string | null }) => {
   return (
     <Box>
       {!chosenAircraft && (
-        <AviaInput
-          title="Aircraft registration"
-          value={aircraftValue}
-          setValue={setAircraftValue}
-          disabled={loading}
-          onKeyDown={onEnter}
-          adornments={
-            <IconButton
-              size="small"
-              onClick={onSubmit}
-              disabled={loading || !lengthOk}
-              aria-label="Search"
-            >
-              <SearchIcon />
-            </IconButton>
-          }
-        />
+        <Box mt={3}>
+          <AviaInput
+            title="Aircraft registration"
+            value={aircraftValue}
+            setValue={setAircraftValue}
+            disabled={loading}
+            onKeyDown={onEnter}
+            adornments={
+              <IconButton
+                size="small"
+                onClick={onSubmit}
+                disabled={loading || !lengthOk}
+                aria-label="Search"
+              >
+                <SearchIcon />
+              </IconButton>
+            }
+          />
+        </Box>
       )}
       {aircrafts && !chosenAircraft && (
         <Box display="flex" overflow="auto">

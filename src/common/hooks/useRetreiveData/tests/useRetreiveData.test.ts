@@ -58,9 +58,9 @@ describe('useRetreiveData', () => {
       // Act
       let responseData: string | null = '';
       await act(async () => {
-        responseData = (await result.current.retreive(
-          mockedUrl
-        )) as unknown as string;
+        responseData = (await result.current.retreive(mockedUrl, {
+          method: 'GET',
+        })) as unknown as string;
       });
       // Assert
       expect(result.current).toEqual({
@@ -68,7 +68,7 @@ describe('useRetreiveData', () => {
         data: mockedResponseData,
       });
       expect(fetchMock.lastUrl()).toEqual(mockedUrl);
-      expect(fetchMock.lastOptions()).toEqual(undefined);
+      expect(fetchMock.lastOptions()).toEqual({ method: 'GET' });
       expect(responseData).toEqual(mockedResponseData);
     });
 

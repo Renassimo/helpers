@@ -15,8 +15,10 @@ const useFlights = (): UseFlightsResult => {
   } = useChooseRetreivedItem<Avia.FlightData>();
 
   // /api/avia/flights/fz 1839
-  const retreiveFlights = async (flightNumber: string) =>
-    await retreiveItems(`/api/avia/flights/${flightNumber}`);
+  const retreiveFlights = async (flightNumber: string, date?: string | null) =>
+    await retreiveItems(
+      `/api/avia/flights/${flightNumber}${date ? `?date=${date}` : ''}`
+    );
 
   return {
     flights,

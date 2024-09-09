@@ -22,6 +22,7 @@ describe('ActiveCard', () => {
     chosen?: boolean;
     imageUrl?: string;
     imageAlt?: string;
+    link?: string;
   }) => {
     return renderWithTheme(
       <ActiveCard {...props}>
@@ -68,6 +69,26 @@ describe('ActiveCard', () => {
         await userEvent.click(getByLabelText('Close'));
         // Assert
         expect(onClose).toBeCalled();
+      });
+    });
+
+    describe('when link passed and when clicks to action area', () => {
+      test('opens link', async () => {
+        // Arange
+        const link = 'mocked-link';
+        const mockedOpen = jest.fn();
+        window.open = mockedOpen;
+
+        const { getByLabelText } = renderActiveCard({
+          ...props,
+          link,
+        });
+        // Act
+        await userEvent.click(getByLabelText('Action area'));
+        // Assert
+        expect(onClose).not.toBeCalled();
+        expect(onClick).not.toBeCalled();
+        expect(mockedOpen).toBeCalledWith(link, '_blank');
       });
     });
   });

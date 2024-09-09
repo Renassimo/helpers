@@ -2,12 +2,14 @@ import { CommonError } from '@/common/types/errors';
 import { Firestore, FirestoreDesrializedDoc, FirestoreDocData } from './types';
 
 interface FirestoreService {
-  getAll?(...args: string[]): Promise<FirestoreDesrializedDoc[]>;
+  getAll?<T>(...args: string[]): Promise<FirestoreDesrializedDoc[] | T>;
   getOne?(
     ...args: (string | boolean | undefined)[]
   ): Promise<FirestoreDesrializedDoc>;
   create?(...args: (string | object)[]): Promise<FirestoreDesrializedDoc>;
-  update?(...args: (string | object)[]): Promise<FirestoreDesrializedDoc>;
+  update?<T>(
+    ...args: (string | object)[]
+  ): Promise<FirestoreDesrializedDoc | T>;
   delete?(...args: string[]): Promise<Record<string, never>>;
 }
 

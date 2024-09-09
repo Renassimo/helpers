@@ -11,7 +11,8 @@ export interface UseFlightsResult {
   flights: Avia.FlightData[] | null;
   chosenFlight: Avia.FlightData | null;
   retreiveFlights: (
-    flightNumber: string
+    flightNumber: string,
+    date?: string | null
   ) => Promise<Avia.FlightsApiData | null>;
   chooseFlight: (id: string) => Avia.FlightData | null;
   clearChosenFlight: () => null;

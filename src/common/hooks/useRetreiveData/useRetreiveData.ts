@@ -5,10 +5,10 @@ import { useErrorAlert } from '@/common/hooks/alerts';
 import { CommonError } from '@/common/types/errors';
 
 const useRetreiveData = <D>(
-  url?: string
+  defaultUrl?: string
 ): {
   data: D | null;
-  retreive: (url: string) => Promise<D | null>;
+  retreive: (url: string, options?: RequestInit) => Promise<D | null>;
   loading: boolean;
   error: CommonError | null;
   cleanData: () => void;
@@ -19,27 +19,30 @@ const useRetreiveData = <D>(
 
   useErrorAlert(error);
 
-  const retreive = useCallback(async (url: string): Promise<D | null> => {
-    setLoading(true);
+  const retreive = useCallback(
+    async (url: string, options?: RequestInit): Promise<D | null> => {
+      setLoading(true);
 
-    try {
-      const response = await fetch(url);
-      const data = (await response.json()) as D;
-      if (!response.ok) throw data;
-      setData(data);
-      setLoading(false);
-      return data;
-    } catch (caught: any) {
-      const error = caught?.error ?? caught;
-      setError(error as CommonError);
-      setLoading(false);
-      return null;
-    }
-  }, []);
+      try {
+        const response = await fetch(url, options);
+        const data = (await response.json()) as D;
+        if (!response.ok) throw data;
+        setData(data);
+        setLoading(false);
+        return data;
+      } catch (caught: any) {
+        const error = caught?.error ?? caught;
+        setError(error as CommonError);
+        setLoading(false);
+        return null;
+      }
+    },
+    []
+  );
 
   useEffect(() => {
-    if (url && typeof window !== 'undefined') retreive(url);
-  }, [url]);
+    if (defaultUrl && typeof window !== 'undefined') retreive(defaultUrl);
+  }, [defaultUrl]);
 
   const cleanData = useCallback(() => {
     setData(null);

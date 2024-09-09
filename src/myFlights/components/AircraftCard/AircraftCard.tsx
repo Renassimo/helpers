@@ -37,6 +37,8 @@ const AircraftCard = ({
     serial && `CN: ${serial}`,
     date && `From ${showWhen(date, false)} (${showTimePassed(date)})`,
   ];
+  const link =
+    registration && `https://www.planespotters.net/search?q=${registration}`;
 
   return (
     <AviaCard
@@ -44,6 +46,7 @@ const AircraftCard = ({
       chosen={chosen}
       imageUrl={photoUrl ?? '/images/plane.png'}
       imageAlt={registration}
+      link={link}
       title={registration}
       additionalContent={additionalContent}
     />

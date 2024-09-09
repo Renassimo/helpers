@@ -47,6 +47,8 @@ export interface MyFlightsContextData {
   updateMyFlight: (flight: MyFlightData) => void;
   // Options
   options: Avia.Options | null;
+  // Matchers
+  matchers: Avia.Matchers | null;
   // Flights
   flightsResult: UseFlightsResult;
   // Aircrafts

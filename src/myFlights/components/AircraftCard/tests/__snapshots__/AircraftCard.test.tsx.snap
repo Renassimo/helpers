@@ -29,6 +29,8 @@ exports[`AircraftCard renders successfully 1`] = `
       https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg
        - 
       VP-BQX
+       - 
+      https://www.planespotters.net/search?q=VP-BQX
     </div>
   </div>
 </body>
@@ -59,6 +61,8 @@ exports[`AircraftCard when partial aircraft passed renders successfully 1`] = `
       https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg
        - 
       VP-BQX
+       - 
+      https://www.planespotters.net/search?q=VP-BQX
     </div>
   </div>
 </body>

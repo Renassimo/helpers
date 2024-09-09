@@ -25,6 +25,7 @@
     "dayjs": "^1.11.7",
     "firebase": "^9.17.1",
     "firebase-admin": "^11.5.0",
+    "fuse.js": "^7.0.0",
     "html2canvas": "^1.4.1",
     "invert-color": "^2.0.0",
     "jspdf": "^2.5.1",

@@ -16,6 +16,7 @@ describe('AviaCard', () => {
     imageUrl: 'image-url',
     imageAlt: 'image-alt',
     title: 'title',
+    link: 'link',
   };
 
   beforeEach(() => {

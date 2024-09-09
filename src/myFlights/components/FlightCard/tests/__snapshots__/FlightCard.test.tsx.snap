@@ -32,6 +32,8 @@ exports[`FlightCard renders successfully 1`] = `
       https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg
        - 
       FZ 1839
+       - 
+      https://www.google.com/search?q=FZ 1839
     </div>
   </div>
 </body>
@@ -65,6 +67,8 @@ exports[`FlightCard when partial flight passed renders successfully 1`] = `
       https://farm66.staticflickr.com/65535/51788228697_3c96482599_z.jpg
        - 
       FZ 1839
+       - 
+      https://www.google.com/search?q=FZ 1839
     </div>
   </div>
 </body>
