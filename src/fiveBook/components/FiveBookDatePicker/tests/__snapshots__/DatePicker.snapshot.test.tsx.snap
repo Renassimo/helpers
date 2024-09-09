@@ -10,7 +10,7 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
         class="MuiInputAdornment-root MuiInputAdornment-positionEnd css-1laqsz7-MuiInputAdornment-root"
       >
         <button
-          aria-label="Choose date, selected date is Mar 11, 2022"
+          aria-label="Choose date, selected date is 11 Mar 2022"
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -28,29 +28,21 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
           </svg>
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          >
-            <span
-              class="css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
-              style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
-            >
-              <span
-                class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
-              />
-            </span>
-          </span>
+          />
         </button>
       </div>
       <input
-        placeholder="mm/dd/yyyy"
+        placeholder="dd/mm/yyyy"
         type="tel"
-        value="03/11/2022"
+        value="11/03/2022"
       />
     </div>
     <div
       class="css-n89q8k"
     >
       <button
-        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+        aria-label="Date Picker"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
         tabindex="0"
         type="button"
       >
@@ -67,7 +59,16 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
         </svg>
         <span
           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
+        >
+          <span
+            class="css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
+            style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
+          >
+            <span
+              class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
+            />
+          </span>
+        </span>
       </button>
     </div>
   </div>
@@ -206,13 +207,6 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                     role="row"
                   >
                     <span
-                      aria-label="Sunday"
-                      class="MuiTypography-root MuiTypography-caption MuiDayPicker-weekDayLabel css-raiqh1-MuiTypography-root-MuiDayPicker-weekDayLabel"
-                      role="columnheader"
-                    >
-                      S
-                    </span>
-                    <span
                       aria-label="Monday"
                       class="MuiTypography-root MuiTypography-caption MuiDayPicker-weekDayLabel css-raiqh1-MuiTypography-root-MuiDayPicker-weekDayLabel"
                       role="columnheader"
@@ -254,6 +248,13 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                     >
                       S
                     </span>
+                    <span
+                      aria-label="Sunday"
+                      class="MuiTypography-root MuiTypography-caption MuiDayPicker-weekDayLabel css-raiqh1-MuiTypography-root-MuiDayPicker-weekDayLabel"
+                      role="columnheader"
+                    >
+                      S
+                    </span>
                   </div>
                   <div
                     class="PrivatePickersSlideTransition-root MuiDayPicker-slideTransition css-sf5t6v-PrivatePickersSlideTransition-root-MuiDayPicker-slideTransition"
@@ -267,10 +268,6 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                         class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
                         role="row"
                       >
-                        <div
-                          class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
-                          role="gridcell"
-                        />
                         <div
                           class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
                           role="gridcell"
@@ -335,11 +332,6 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
-                      </div>
-                      <div
-                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                        role="row"
-                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -352,6 +344,11 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
+                      </div>
+                      <div
+                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                        role="row"
+                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -424,11 +421,6 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
-                      </div>
-                      <div
-                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                        role="row"
-                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -441,6 +433,11 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
+                      </div>
+                      <div
+                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                        role="row"
+                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -513,11 +510,6 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
-                      </div>
-                      <div
-                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                        role="row"
-                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -530,6 +522,11 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
+                      </div>
+                      <div
+                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                        role="row"
+                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -602,11 +599,6 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
-                      </div>
-                      <div
-                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                        role="row"
-                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -619,6 +611,11 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
+                      </div>
+                      <div
+                        class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                        role="row"
+                      >
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -667,6 +664,10 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
                         </button>
+                        <div
+                          class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
+                          role="gridcell"
+                        />
                         <div
                           class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
                           role="gridcell"
@@ -820,13 +821,6 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                       role="row"
                     >
                       <span
-                        aria-label="Sunday"
-                        class="MuiTypography-root MuiTypography-caption MuiDayPicker-weekDayLabel css-raiqh1-MuiTypography-root-MuiDayPicker-weekDayLabel"
-                        role="columnheader"
-                      >
-                        S
-                      </span>
-                      <span
                         aria-label="Monday"
                         class="MuiTypography-root MuiTypography-caption MuiDayPicker-weekDayLabel css-raiqh1-MuiTypography-root-MuiDayPicker-weekDayLabel"
                         role="columnheader"
@@ -868,6 +862,13 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                       >
                         S
                       </span>
+                      <span
+                        aria-label="Sunday"
+                        class="MuiTypography-root MuiTypography-caption MuiDayPicker-weekDayLabel css-raiqh1-MuiTypography-root-MuiDayPicker-weekDayLabel"
+                        role="columnheader"
+                      >
+                        S
+                      </span>
                     </div>
                     <div
                       class="PrivatePickersSlideTransition-root MuiDayPicker-slideTransition css-sf5t6v-PrivatePickersSlideTransition-root-MuiDayPicker-slideTransition"
@@ -881,10 +882,6 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                           class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
                           role="row"
                         >
-                          <div
-                            class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
-                            role="gridcell"
-                          />
                           <div
                             class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
                             role="gridcell"
@@ -949,11 +946,6 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
-                        </div>
-                        <div
-                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                          role="row"
-                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -966,6 +958,11 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
+                        </div>
+                        <div
+                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                          role="row"
+                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -1038,11 +1035,6 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
-                        </div>
-                        <div
-                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                          role="row"
-                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -1055,6 +1047,11 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
+                        </div>
+                        <div
+                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                          role="row"
+                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -1127,11 +1124,6 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
-                        </div>
-                        <div
-                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                          role="row"
-                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -1144,6 +1136,11 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
+                        </div>
+                        <div
+                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                          role="row"
+                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -1216,11 +1213,6 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
-                        </div>
-                        <div
-                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
-                          role="row"
-                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -1233,6 +1225,11 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
+                        </div>
+                        <div
+                          class="MuiDayPicker-weekContainer css-ghi3gg-MuiDayPicker-weekContainer"
+                          role="row"
+                        >
                           <button
                             aria-selected="false"
                             class="MuiButtonBase-root MuiPickersDay-root MuiPickersDay-dayWithMargin css-bkrceb-MuiButtonBase-root-MuiPickersDay-root"
@@ -1281,6 +1278,10 @@ exports[`DatePicker Snapshot when static renders successfully 1`] = `
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
                           </button>
+                          <div
+                            class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
+                            role="gridcell"
+                          />
                           <div
                             class="MuiPickersDay-root MuiPickersDay-dayWithMargin MuiPickersDay-hiddenDaySpacingFiller MuiPickersDay-hiddenDaySpacingFiller css-ggw2de-MuiPickersDay-root"
                             role="gridcell"

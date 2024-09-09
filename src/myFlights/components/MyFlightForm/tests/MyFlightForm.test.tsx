@@ -4,11 +4,11 @@ import { Avia } from '@/avia/types/avia';
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 import useInputValue from '@/common/hooks/useInputValue';
 
-import DateInput from '@/common/components/DateInput';
+import DateInput from '@/common/components/DatePickers/DateInput';
 import FreeAutoComplete from '@/common/components/FreeAutoComplete';
 import ClearableInput from '@/common/components/ClearableInput';
 
-import MockedDateInput from '@/common/components/DateInput/mocks';
+import MockedDateInput from '@/common/components/DatePickers/DateInput/mocks';
 import MockedFreeAutoComplete from '@/common/components/FreeAutoComplete/mocks';
 import MockedClearableInput from '@/common/components/ClearableInput/mocks';
 
@@ -16,7 +16,7 @@ import MyFlightForm from '../MyFlightForm';
 
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
 jest.mock('@/common/hooks/useInputValue');
-jest.mock('@/common/components/DateInput');
+jest.mock('@/common/components/DatePickers/DateInput');
 jest.mock('@/common/components/FreeAutoComplete');
 jest.mock('@/common/components/ClearableInput');
 

@@ -10,7 +10,7 @@ import useInputValue from '@/common/hooks/useInputValue';
 
 import FlightCard from '@/myFlights/components/FlightCard';
 import AviaInput from '@/avia/components/AviaInput';
-import DatePicker from '@/common/components/DateInput';
+import DatePicker from '@/common/components/DatePickers/DateInput';
 
 const FlightForm = () => {
   const {

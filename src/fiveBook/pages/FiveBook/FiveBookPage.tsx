@@ -11,7 +11,7 @@ import PageTemplate from '@/common/templates/PageTemplate';
 import CreateAnswerCard from '@/fiveBook/components/CreateAnswerCard';
 import AnswersCard from '@/fiveBook/components/AnswersCard';
 import DayLink from '@/fiveBook/components/DayLink';
-import DatePicker from '@/fiveBook/components/DatePicker';
+import FiveBookDatePicker from '@/fiveBook/components/FiveBookDatePicker';
 
 import Box from '@mui/material/Box';
 
@@ -92,7 +92,7 @@ const FiveBookPage = ({
           isLowerThanMd && (
             <Box display="grid" gap={1} gridTemplateColumns="1fr 1fr 1fr">
               <DayLink prev />
-              <DatePicker />
+              <FiveBookDatePicker />
               <DayLink next />
             </Box>
           )

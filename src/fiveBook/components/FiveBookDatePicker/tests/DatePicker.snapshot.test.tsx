@@ -4,7 +4,7 @@ import renderWithTheme from '@/common/tests/helpers';
 
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
-import DatePicker from '../DatePicker';
+import DatePicker from '../FiveBookDatePicker';
 
 jest.mock('@/fiveBook/hooks/useFiveBook');
 jest.mock('next/router', () => ({
@@ -27,9 +27,7 @@ describe('DatePicker Snapshot', () => {
     // Arrange
     const { baseElement, getByLabelText } = renderWithTheme(<DatePicker />);
     // Act
-    await userEvent.click(
-      getByLabelText('Choose date, selected date is Mar 11, 2022')
-    );
+    await userEvent.click(getByLabelText('Date Picker'));
     // Assert
     expect(baseElement).toMatchSnapshot();
   });

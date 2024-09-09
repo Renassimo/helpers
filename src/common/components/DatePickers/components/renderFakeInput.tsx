@@ -52,7 +52,7 @@ const FakeInput = (params: TextFieldPropsWithDisabled) => {
   );
 };
 
-const renderFakeInput = (params: TextFieldProps, disabled: boolean) => (
+const renderFakeInput = (params: TextFieldProps, disabled?: boolean) => (
   <FakeInput {...params} disabled={disabled} />
 );
 

@@ -1,6 +1,6 @@
 import { MyFlightAttributes } from '@/myFlights/types';
 
-import DateInput from '@/common/components/DateInput';
+import DateInput from '@/common/components/DatePickers/DateInput';
 import FreeAutoComplete from '@/common/components/FreeAutoComplete';
 import ClearableInput from '@/common/components/ClearableInput';
 

@@ -1,6 +1,6 @@
 import { Dayjs } from 'dayjs';
 
-const MockedDatePicker = jest.fn(
+const MockedFiveBookDatePicker = jest.fn(
   ({
     onChange,
     staticPicker = false,
@@ -9,9 +9,9 @@ const MockedDatePicker = jest.fn(
     staticPicker?: boolean;
   }) => (
     <div>
-      Mocked DatePicker. Static: {staticPicker}, onChange: {!!onChange}
+      MockedFiveBookDatePicker. Static: {staticPicker}, onChange: {!!onChange}
     </div>
   )
 );
 
-export default MockedDatePicker;
+export default MockedFiveBookDatePicker;

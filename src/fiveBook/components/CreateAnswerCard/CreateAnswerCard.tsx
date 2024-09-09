@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import FiveBookCard from '@/fiveBook/components/FiveBookCard';
-import DatePicker from '@/fiveBook/components/DatePicker';
+import FiveBookDatePicker from '@/fiveBook/components/FiveBookDatePicker';
 import CreateAnswerForm from '@/fiveBook/components/CreateAnswerForm';
 
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
@@ -23,7 +23,7 @@ const CreateAnswerCard = () => {
       </Typography>
       {!isLowerThanMd && (
         <Box mt={2}>
-          <DatePicker staticPicker />
+          <FiveBookDatePicker staticPicker />
         </Box>
       )}
       <CreateAnswerForm />

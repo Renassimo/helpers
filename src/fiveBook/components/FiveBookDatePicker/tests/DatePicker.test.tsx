@@ -1,11 +1,11 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers';
 
 import useFiveBook from '@/fiveBook/hooks/useFiveBook';
 
-import DatePicker from '../DatePicker';
+import DatePicker from '../FiveBookDatePicker';
 
 const mockedPush = jest.fn();
 
@@ -18,6 +18,12 @@ jest.mock('next/router', () => ({
 
 describe('DatePicker', () => {
   const mockedDay = dayjs('2022-03-11');
+
+  let expectedDay = '';
+  const mockedOnChange = jest.fn(async (day: Dayjs | null) => {
+    expectedDay = day ? day.format('MM/DD') : '';
+    return true;
+  });
 
   beforeEach(() => {
     const mockUseFiveBook = {
@@ -35,9 +41,7 @@ describe('DatePicker', () => {
     const { getByLabelText, getByText } = renderWithTheme(<DatePicker />);
     // Act
     await waitFor(async () => {
-      await userEvent.click(
-        getByLabelText('Choose date, selected date is Mar 11, 2022')
-      );
+      await userEvent.click(getByLabelText('Date Picker'));
       await userEvent.click(getByText('26'));
     });
     // Assert
@@ -47,19 +51,16 @@ describe('DatePicker', () => {
   describe('custom onChange passed', () => {
     test('changes date', async () => {
       // Arrange
-      const mockedOnChange = jest.fn();
       const { getByLabelText, getByText } = renderWithTheme(
         <DatePicker onChange={mockedOnChange} />
       );
       // Act
       await waitFor(async () => {
-        await userEvent.click(
-          getByLabelText('Choose date, selected date is Mar 11, 2022')
-        );
-        await userEvent.click(getByText('26'));
+        await userEvent.click(getByLabelText('Date Picker'));
+        await userEvent.click(getByText('23'));
       });
       // Assert
-      expect(mockedOnChange).toHaveBeenCalledWith(mockedDay.add(15, 'day'));
+      expect(expectedDay).toEqual('03/23');
       expect(mockedPush).not.toHaveBeenCalled();
     });
   });
@@ -77,14 +78,13 @@ describe('DatePicker', () => {
     describe('custom onChange passed', () => {
       test('changes date', async () => {
         // Arrange
-        const mockedOnChange = jest.fn();
         const { getByText } = renderWithTheme(
           <DatePicker onChange={mockedOnChange} staticPicker />
         );
         // Act
-        await userEvent.click(getByText('26'));
+        await userEvent.click(getByText('19'));
         // Assert
-        expect(mockedOnChange).toHaveBeenCalledWith(mockedDay.add(15, 'day'));
+        expect(expectedDay).toEqual('03/19');
         expect(mockedPush).not.toHaveBeenCalled();
       });
     });
