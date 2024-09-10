@@ -3,7 +3,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import { UseFlightsResult } from '@/myFlights/types';
 
-import useInputValue from '@/common/hooks/useInputValue';
+import useStateValue from '@/common/hooks/useStateValue';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
@@ -19,7 +19,7 @@ import { mockedDeserializedFlights } from '@/avia/types/avia/mocks';
 
 import FlightForm from '../FlightForm';
 
-jest.mock('@/common/hooks/useInputValue');
+jest.mock('@/common/hooks/useStateValue');
 jest.mock('@/avia/components/AviaInput');
 jest.mock('@/common/components/DatePickers/DateInput');
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
@@ -27,7 +27,7 @@ jest.mock('@/myFlights/components/AircraftCard');
 
 describe('FlightForm', () => {
   const mockedSetValue = jest.fn();
-  const mockUseInputValue = (value: any = '') =>
+  const mockUseStateValue = (value: any = '') =>
     jest.fn(() => [value, mockedSetValue]);
 
   const retreiveFlights = jest.fn();
@@ -60,11 +60,11 @@ describe('FlightForm', () => {
 
   test('renders successfully', () => {
     // Arange
-    (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-      mockUseInputValue()
+    (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+      mockUseStateValue()
     );
-    (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-      mockUseInputValue(null)
+    (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+      mockUseStateValue(null)
     );
     (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
       mockUseMyFlightsContext()
@@ -80,11 +80,11 @@ describe('FlightForm', () => {
 
     test('renders successfully', () => {
       // Arange
-      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-        mockUseInputValue()
+      (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+        mockUseStateValue()
       );
-      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-        mockUseInputValue(null)
+      (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+        mockUseStateValue(null)
       );
       (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
         mockUseMyFlightsContext(contextProps)
@@ -101,11 +101,11 @@ describe('FlightForm', () => {
 
       test('renders successfully', async () => {
         // Arange
-        (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-          mockUseInputValue(value)
+        (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+          mockUseStateValue(value)
         );
-        (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-          mockUseInputValue(null)
+        (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+          mockUseStateValue(null)
         );
         (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
           mockUseMyFlightsContext(contextProps)
@@ -119,11 +119,11 @@ describe('FlightForm', () => {
       describe('and clicks to search', () => {
         test('calls retreiveFlights', async () => {
           // Arange
-          (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-            mockUseInputValue(value)
+          (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+            mockUseStateValue(value)
           );
-          (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-            mockUseInputValue(null)
+          (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+            mockUseStateValue(null)
           );
           (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
             mockUseMyFlightsContext(contextProps)
@@ -138,11 +138,11 @@ describe('FlightForm', () => {
         describe('and flight date was set', () => {
           test('calls retreiveFlights', async () => {
             // Arange
-            (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-              mockUseInputValue(value)
+            (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+              mockUseStateValue(value)
             );
-            (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-              mockUseInputValue('flight-date')
+            (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+              mockUseStateValue('flight-date')
             );
             (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
               mockUseMyFlightsContext(contextProps)
@@ -161,11 +161,11 @@ describe('FlightForm', () => {
   describe('when no aircrafts', () => {
     test('renders successfully', () => {
       // Arange
-      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-        mockUseInputValue()
+      (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+        mockUseStateValue()
       );
-      (useInputValue as unknown as jest.Mock).mockImplementationOnce(
-        mockUseInputValue(null)
+      (useStateValue as unknown as jest.Mock).mockImplementationOnce(
+        mockUseStateValue(null)
       );
       (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
         mockUseMyFlightsContext({ chosenFlight: null, flights: null })

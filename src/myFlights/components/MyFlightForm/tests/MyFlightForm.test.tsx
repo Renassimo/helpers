@@ -2,7 +2,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 import { Avia } from '@/avia/types/avia';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
-import useInputValue from '@/common/hooks/useInputValue';
+import useStateValue from '@/common/hooks/useStateValue';
 
 import DateInput from '@/common/components/DatePickers/DateInput';
 import FreeAutoComplete from '@/common/components/FreeAutoComplete';
@@ -15,7 +15,7 @@ import MockedClearableInput from '@/common/components/ClearableInput/mocks';
 import MyFlightForm from '../MyFlightForm';
 
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
-jest.mock('@/common/hooks/useInputValue');
+jest.mock('@/common/hooks/useStateValue');
 jest.mock('@/common/components/DatePickers/DateInput');
 jest.mock('@/common/components/FreeAutoComplete');
 jest.mock('@/common/components/ClearableInput');
@@ -53,7 +53,7 @@ describe('MyFlightForm', () => {
         loadedValues: {},
       }))
     );
-    (useInputValue as unknown as jest.Mock).mockImplementation(
+    (useStateValue as unknown as jest.Mock).mockImplementation(
       jest.fn(() => [{}, jest.fn()])
     );
     // Act
@@ -100,7 +100,7 @@ describe('MyFlightForm', () => {
       const mockedSetState = jest.fn((fn) => {
         setStateResult = fn({});
       });
-      (useInputValue as unknown as jest.Mock).mockImplementation(
+      (useStateValue as unknown as jest.Mock).mockImplementation(
         jest.fn(() => [{}, mockedSetState])
       );
       // Act

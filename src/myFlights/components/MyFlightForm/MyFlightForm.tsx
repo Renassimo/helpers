@@ -6,7 +6,7 @@ import { MyFlightAttributes } from '@/myFlights/types';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
-import useInputValue from '@/common/hooks/useInputValue';
+import useStateValue from '@/common/hooks/useStateValue';
 
 import MyFlightFormField from './components/MyFlightFormField';
 import getFormFieldsSchema from './utils/getFormFieldsSchema';
@@ -15,7 +15,7 @@ import MyFlightFormFieldProps from './types';
 const MyFlightForm = () => {
   const { options, matchers, loadedValues } = useMyFlightsContext();
 
-  const [state, setState] = useInputValue<Partial<MyFlightAttributes>>({});
+  const [state, setState] = useStateValue<Partial<MyFlightAttributes>>({});
   const setValue = (key: string, value: string | number | null) => {
     setState((current) => ({ ...current, [key]: value }));
   };

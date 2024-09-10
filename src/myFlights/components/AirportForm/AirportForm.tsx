@@ -6,7 +6,7 @@ import LabelIcon from '@mui/icons-material/Label';
 import TitleIcon from '@mui/icons-material/Title';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 
-import useInputValue from '@/common/hooks/useInputValue';
+import useStateValue from '@/common/hooks/useStateValue';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
@@ -32,7 +32,7 @@ const AirportForm = ({ title }: { title: 'Origin' | 'Destination' }) => {
     },
   } = useMyFlightsContext();
 
-  const [airportValue, setAirportValue] = useInputValue<string>('');
+  const [airportValue, setAirportValue] = useStateValue<string>('');
   const [by, setBy] = useState<'code' | 'text' | 'location'>('code');
   const [locationLoading, setLocationLoading] = useState(false);
 
