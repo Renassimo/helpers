@@ -12,6 +12,8 @@ describe('useMyFlightForm', () => {
   const cleanUp = jest.fn();
   const updateMyFlight = jest.fn();
   const deleteMyFlight = jest.fn();
+  const updateOptions = jest.fn();
+  const updateMatchers = jest.fn();
 
   const defaultState = {
     isModalOpen: false,
@@ -25,7 +27,8 @@ describe('useMyFlightForm', () => {
     loading: false,
   };
 
-  const mockedRetreive = jest.fn(() => ({ id: 'retreived data id' }));
+  const mockedRetreivedData = { id: 'retreived data id' };
+  const mockedRetreive = jest.fn(() => ({ data: mockedRetreivedData }));
   const mockedUseRetrieveData = jest.fn(() => ({
     retreive: mockedRetreive,
     loading: false,
@@ -45,7 +48,14 @@ describe('useMyFlightForm', () => {
     // Arange
     // Act
     const { result } = renderHook(() =>
-      useMyFlightForm(loadedValues, cleanUp, updateMyFlight, deleteMyFlight)
+      useMyFlightForm(
+        loadedValues,
+        cleanUp,
+        updateMyFlight,
+        deleteMyFlight,
+        updateOptions,
+        updateMatchers
+      )
     );
     // Assert
     expect(result.current).toEqual(defaultState);
@@ -73,12 +83,71 @@ describe('useMyFlightForm', () => {
       };
       // Act
       const { result } = renderHook(() =>
-        useMyFlightForm(loadedValues, cleanUp, updateMyFlight, deleteMyFlight)
+        useMyFlightForm(
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers
+        )
       );
       // Assert
       expect(result.current).toEqual({
         ...defaultState,
         state: loadedValues,
+      });
+    });
+
+    describe('and then calls onSubmit', () => {
+      test('calls retrieveData, callbacks and updates state', async () => {
+        // Arange
+        const loadedValues = {
+          originName: 'loadedValues.originName',
+          origin: 'loadedValues.origin',
+        };
+        const { result } = renderHook(() =>
+          useMyFlightForm(
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers
+          )
+        );
+        await act(async () => {
+          await result.current.openModal();
+        });
+        await act(async () => {
+          await result.current.setValue('origin', 'WAW');
+        });
+        // Act
+        await act(async () => {
+          await result.current.onSubmit();
+        });
+        // Assert
+        expect(mockedRetreive).toBeCalledWith('/api/myFlights', {
+          method: 'POST',
+          body: JSON.stringify({
+            data: {
+              attributes: {
+                originName: 'loadedValues.originName',
+                origin: 'WAW',
+                title: 'WAW - ',
+              },
+            },
+          }),
+        });
+        expect(updateMyFlight).toBeCalledWith(mockedRetreivedData);
+        expect(updateOptions).toBeCalledWith();
+        expect(updateMatchers).toBeCalledWith({
+          airlines: {},
+          airports: { 'loadedValues.origin': 'WAW' },
+          manufacturers: {},
+          models: {},
+        });
+        expect(result.current).toEqual(defaultState);
       });
     });
   });
@@ -87,7 +156,14 @@ describe('useMyFlightForm', () => {
     test('update state', async () => {
       // Arange
       const { result } = renderHook(() =>
-        useMyFlightForm(loadedValues, cleanUp, updateMyFlight, deleteMyFlight)
+        useMyFlightForm(
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers
+        )
       );
       // Act
       await act(async () => {
@@ -101,7 +177,14 @@ describe('useMyFlightForm', () => {
       test('update state', async () => {
         // Arange
         const { result } = renderHook(() =>
-          useMyFlightForm(loadedValues, cleanUp, updateMyFlight, deleteMyFlight)
+          useMyFlightForm(
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers
+          )
         );
         await act(async () => {
           await result.current.openModal();
@@ -117,10 +200,17 @@ describe('useMyFlightForm', () => {
     });
 
     describe('and then calls onSubmit', () => {
-      test('calls retrieveData, updateMyFlight and updates state', async () => {
+      test('calls retrieveData, callbacks and updates state', async () => {
         // Arange
         const { result } = renderHook(() =>
-          useMyFlightForm(loadedValues, cleanUp, updateMyFlight, deleteMyFlight)
+          useMyFlightForm(
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers
+          )
         );
         await act(async () => {
           await result.current.openModal();
@@ -135,8 +225,13 @@ describe('useMyFlightForm', () => {
         // Assert
         expect(mockedRetreive).toBeCalledWith('/api/myFlights', {
           method: 'POST',
-          body: JSON.stringify({ data: { attributes: { origin: 'WAW' } } }),
+          body: JSON.stringify({
+            data: { attributes: { origin: 'WAW', title: 'WAW - ' } },
+          }),
         });
+        expect(updateMyFlight).toBeCalledWith(mockedRetreivedData);
+        expect(updateOptions).toBeCalledWith();
+        expect(updateMatchers).not.toBeCalled();
         expect(result.current).toEqual(defaultState);
       });
     });
@@ -145,7 +240,14 @@ describe('useMyFlightForm', () => {
       test('update state', async () => {
         // Arange
         const { result } = renderHook(() =>
-          useMyFlightForm(loadedValues, cleanUp, updateMyFlight, deleteMyFlight)
+          useMyFlightForm(
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers
+          )
         );
         // Act
         await act(async () => {
@@ -161,14 +263,16 @@ describe('useMyFlightForm', () => {
       });
 
       describe('and then calls onSubmit', () => {
-        test('calls retrieveData, updateMyFlight and updates state', async () => {
+        test('calls retrieveData, callbacks and updates state', async () => {
           // Arange
           const { result } = renderHook(() =>
             useMyFlightForm(
               loadedValues,
               cleanUp,
               updateMyFlight,
-              deleteMyFlight
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
             )
           );
           await act(async () => {
@@ -189,6 +293,9 @@ describe('useMyFlightForm', () => {
               body: JSON.stringify({ data: { attributes: { origin: 'WAW' } } }),
             }
           );
+          expect(updateMyFlight).toBeCalledWith(mockedRetreivedData);
+          expect(updateOptions).toBeCalledWith();
+          expect(updateMatchers).not.toBeCalled();
           expect(result.current).toEqual(defaultState);
         });
       });
@@ -204,7 +311,9 @@ describe('useMyFlightForm', () => {
               loadedValues,
               cleanUp,
               updateMyFlight,
-              deleteMyFlight
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
             )
           );
           await act(async () => {
@@ -221,6 +330,9 @@ describe('useMyFlightForm', () => {
               method: 'DELETE',
             }
           );
+          expect(deleteMyFlight).toBeCalledWith(mockedMyFlight.id);
+          expect(updateOptions).not.toBeCalled();
+          expect(updateMatchers).not.toBeCalled();
           expect(result.current).toEqual(defaultState);
         });
 
@@ -235,7 +347,9 @@ describe('useMyFlightForm', () => {
                 loadedValues,
                 cleanUp,
                 updateMyFlight,
-                deleteMyFlight
+                deleteMyFlight,
+                updateOptions,
+                updateMatchers
               )
             );
             await act(async () => {
@@ -247,6 +361,9 @@ describe('useMyFlightForm', () => {
             });
             // Assert
             expect(mockedRetreive).not.toBeCalled();
+            expect(deleteMyFlight).not.toBeCalled();
+            expect(updateOptions).not.toBeCalled();
+            expect(updateMatchers).not.toBeCalled();
             expect(result.current).toEqual({
               ...defaultState,
               isModalOpen: true,

@@ -14,10 +14,10 @@ const useMyFlightsProvider = (
   data: MyFlightData[] | null
 ): MyFlightsContextData => {
   // Options
-  const { data: options /* updateOptions */ } = useAviaOptions();
+  const { data: options, updateOptions } = useAviaOptions();
 
   // Matchers
-  const { data: matchers /* updateMatchers */ } = useAviaMatchers();
+  const { data: matchers, updateMatchers } = useAviaMatchers();
 
   // Flights
   const flightsResult = useFlights();
@@ -48,7 +48,9 @@ const useMyFlightsProvider = (
     loadedValues,
     cleanUp,
     updateMyFlight,
-    deleteMyFlight
+    deleteMyFlight,
+    updateOptions,
+    updateMatchers
   );
 
   return {

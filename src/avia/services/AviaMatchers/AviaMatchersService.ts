@@ -42,7 +42,10 @@ class AviaMatchersService extends FirestoreService {
         {};
       if (!this.isObject(docData)) return;
 
-      result[supportedKey] = this.getValidMatcher(docData);
+      const validMatcher = this.getValidMatcher(docData);
+      if (!validMatcher) return;
+
+      result[supportedKey] = validMatcher;
     });
 
     return result as Avia.Matchers as AM;
@@ -58,13 +61,16 @@ class AviaMatchersService extends FirestoreService {
       const matcher = matchers[key];
       if (!matcher || !this.isObject(matcher)) return;
 
+      const validMatcher = this.getValidMatcher(matcher);
+      if (!validMatcher) return;
+
       const ref = this.db
         .collection(this.AVIA)
         .doc(uid)
         .collection(this.MATCHERS)
         .doc(key);
 
-      batch.update(ref, this.getValidMatcher(matcher));
+      batch.update(ref, validMatcher);
     });
 
     await batch.commit();
@@ -76,15 +82,17 @@ class AviaMatchersService extends FirestoreService {
     return typeof data === 'object' && !Array.isArray(data) && data !== null;
   }
 
-  private getValidMatcher(data: Record<string, any>): Matcher {
-    const m: Matcher = {};
+  private getValidMatcher(data: Record<string, any>): Matcher | null {
+    const matcher: Matcher = {};
 
     Object.entries(data).forEach(([id, value]) => {
       if (typeof value !== 'string') return;
-      m[id] = value;
+      matcher[id] = value;
     });
 
-    return m;
+    if (Object.keys(matcher).length === 0) return null;
+
+    return matcher;
   }
 
   static getInstance(db: Firestore): AviaMatchersService {

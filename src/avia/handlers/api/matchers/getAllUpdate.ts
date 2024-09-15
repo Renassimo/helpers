@@ -19,15 +19,15 @@ const handler = async (
   if (!allowedMethods.includes(method as string))
     res.status(405).json(getError(405));
 
-  const gamesService = AviaMatchersService.getInstance(db);
+  const aviaMatchersService = AviaMatchersService.getInstance(db);
 
   try {
     if (method === GET) {
-      const data = await gamesService.getAll(uid);
+      const data = await aviaMatchersService.getAll(uid);
 
       res.status(200).json({ data });
     } else if (method === PATCH) {
-      const data = await gamesService.update(uid, body.data);
+      const data = await aviaMatchersService.update(uid, body.data);
 
       res.status(200).json({ data });
     }

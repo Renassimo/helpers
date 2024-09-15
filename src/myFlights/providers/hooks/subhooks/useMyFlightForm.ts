@@ -5,6 +5,8 @@ import {
   MyFlightData,
   UseMyFlightFormResult,
 } from '@/myFlights/types';
+import { Avia } from '@/avia/types/avia';
+import { Matcher } from '@/common/types/matchers';
 
 import useRetreiveData from '@/common/hooks/useRetreiveData';
 
@@ -12,7 +14,9 @@ const useMyFlightForm = (
   loadedValues: Partial<MyFlightAttributes>,
   cleanUp: () => void,
   updateMyFlight: (flight: MyFlightData) => void,
-  deleteMyFlight: (id: string) => void
+  deleteMyFlight: (id: string) => void,
+  updateOptions: () => Promise<void>,
+  updateMatchers: (data: Partial<Avia.Matchers>) => Promise<void>
 ): UseMyFlightFormResult => {
   const { retreive, loading } = useRetreiveData<{ data: MyFlightData }>();
 
@@ -41,6 +45,47 @@ const useMyFlightForm = (
     cleanUp();
   }, []);
 
+  const getNewMatcher = useCallback(
+    (key: string): Matcher => {
+      const loadedValue = loadedValues[key as keyof MyFlightAttributes];
+      const stateValue = state[key as keyof MyFlightAttributes];
+
+      if (!loadedValue ?? !stateValue) return {};
+
+      return loadedValue !== stateValue
+        ? { [String(loadedValue)]: String(stateValue) }
+        : {};
+    },
+    [loadedValues, state]
+  );
+
+  const getNewMatchers = useCallback((): Avia.Matchers | null => {
+    const origin = getNewMatcher('origin');
+    const destination = getNewMatcher('destination');
+    const airline = getNewMatcher('airline');
+    const altAirline = getNewMatcher('altAirline');
+    const manufacturer = getNewMatcher('manufacturer');
+    const model = getNewMatcher('model');
+
+    const hasNewMatchers = [
+      origin,
+      destination,
+      airline,
+      altAirline,
+      manufacturer,
+      model,
+    ].some((matcher) => Object.keys(matcher).length > 0);
+
+    if (!hasNewMatchers) return null;
+
+    return {
+      airlines: { ...airline, ...altAirline },
+      airports: { ...origin, ...destination },
+      manufacturers: manufacturer,
+      models: model,
+    };
+  }, [getNewMatcher]);
+
   const onSubmit = useCallback(async () => {
     const updatedData = isEditing
       ? await retreive(`/api/myFlights/${editingData.id}`, {
@@ -63,14 +108,31 @@ const useMyFlightForm = (
         })
       : await retreive('/api/myFlights', {
           method: 'POST',
-          body: JSON.stringify({ data: { attributes: state } }),
+          body: JSON.stringify({
+            data: {
+              attributes: {
+                ...state,
+                title:
+                  state.title ??
+                  `${state.origin ?? ''} - ${state.destination ?? ''}`,
+              },
+            },
+          }),
         });
 
     if (updatedData) {
       updateMyFlight(updatedData.data);
+
+      const newMatchers = getNewMatchers();
+      const promises = [updateOptions()];
+
+      if (newMatchers) promises.push(updateMatchers(newMatchers));
+
       closeModal();
+
+      await Promise.all(promises);
     }
-  }, [isEditing, editingData, state]);
+  }, [isEditing, editingData, state, getNewMatchers]);
 
   const onDelete = useCallback(async () => {
     if (!isEditing) return;
