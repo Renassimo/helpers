@@ -4,7 +4,9 @@ import { MyFlightData } from '@/myFlights/types';
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
 import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSerializer';
 
-export const deserializeFlights = (results: NotionResult[]): MyFlightData[] => {
+export const deserializeMyFlights = (
+  results: NotionResult[]
+): MyFlightData[] => {
   return results.map((result: NotionResult, index, arr) => {
     const deserializer = new NotionPropertiesDeserializer(result);
     const id = deserializer.id;
@@ -40,7 +42,7 @@ export const deserializeFlights = (results: NotionResult[]): MyFlightData[] => {
   });
 };
 
-export const serializeFlight = (data: MyFlightData) => {
+export const serializeMyFlight = (data: MyFlightData) => {
   const { attributes } = data;
   const serializer = new NotionPropertiesSerializer(attributes);
 

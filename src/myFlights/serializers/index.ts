@@ -1,1 +1,1 @@
-export * from './flights';
+export * from './myFlights';

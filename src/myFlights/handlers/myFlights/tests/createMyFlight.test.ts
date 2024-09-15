@@ -1,6 +1,9 @@
 import NotionService from '@/common/services/notion';
 
-import { deserializeFlights, serializeFlight } from '@/myFlights/serializers';
+import {
+  deserializeMyFlights,
+  serializeMyFlight,
+} from '@/myFlights/serializers';
 import createMyFlight from '../createMyFlight';
 
 jest.mock('@/myFlights/serializers');
@@ -17,10 +20,10 @@ describe('createMyFlight', () => {
   const mockedCreatePage = jest.fn(() => ({ ok: mockedOk, data: mockedData }));
 
   beforeEach(() => {
-    (serializeFlight as unknown as jest.Mock).mockImplementation(
+    (serializeMyFlight as unknown as jest.Mock).mockImplementation(
       jest.fn(() => mockedSerializedData)
     );
-    (deserializeFlights as unknown as jest.Mock).mockImplementation(
+    (deserializeMyFlights as unknown as jest.Mock).mockImplementation(
       jest.fn(() => mockedDeserializedData)
     );
   });
@@ -48,12 +51,12 @@ describe('createMyFlight', () => {
     );
     // Assert
     expect(result).toEqual(expectedResult);
-    expect(serializeFlight).toHaveBeenCalledWith('request-body');
+    expect(serializeMyFlight).toHaveBeenCalledWith('request-body');
     expect(mockedCreatePage).toHaveBeenCalledWith(
       mockedDataBaseID,
       mockedSerializedData
     );
-    expect(deserializeFlights).toHaveBeenCalledWith([mockedData]);
+    expect(deserializeMyFlights).toHaveBeenCalledWith([mockedData]);
   });
 
   describe('if response is not ok', () => {
@@ -76,12 +79,12 @@ describe('createMyFlight', () => {
       );
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(serializeFlight).toHaveBeenCalledWith('request-body');
+      expect(serializeMyFlight).toHaveBeenCalledWith('request-body');
       expect(mockedCreatePage).toHaveBeenCalledWith(
         mockedDataBaseID,
         mockedSerializedData
       );
-      expect(deserializeFlights).not.toBeCalled();
+      expect(deserializeMyFlights).not.toBeCalled();
     });
   });
 });

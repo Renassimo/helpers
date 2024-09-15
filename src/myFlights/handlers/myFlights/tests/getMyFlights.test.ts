@@ -2,7 +2,7 @@ import NotionService from '@/common/services/notion';
 
 import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
 
-import { deserializeFlights } from '@/myFlights/serializers';
+import { deserializeMyFlights } from '@/myFlights/serializers';
 
 jest.mock('@/myFlights/serializers');
 jest.mock('@/common/services/notion');
@@ -26,7 +26,7 @@ describe('getMyFlights', () => {
   ];
 
   beforeAll(() => {
-    (deserializeFlights as unknown as jest.Mock).mockImplementation(
+    (deserializeMyFlights as unknown as jest.Mock).mockImplementation(
       jest.fn(() => mockedDeserializedData)
     );
   });
@@ -52,7 +52,7 @@ describe('getMyFlights', () => {
         );
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(deserializeFlights).toHaveBeenCalledWith([
+        expect(deserializeMyFlights).toHaveBeenCalledWith([
           mockedDataToDeserialize,
         ]);
         expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
@@ -77,7 +77,7 @@ describe('getMyFlights', () => {
         );
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(deserializeFlights).toHaveBeenCalledWith([]);
+        expect(deserializeMyFlights).toHaveBeenCalledWith([]);
         expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
           expectedQueryDatabaseArgs[0],
           expectedQueryDatabaseArgs[1]
@@ -104,7 +104,7 @@ describe('getMyFlights', () => {
       const result = await getMyFlights(mockedNotionService, mockedDataBaseID);
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(deserializeFlights).not.toHaveBeenCalled();
+      expect(deserializeMyFlights).not.toHaveBeenCalled();
       expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
         expectedQueryDatabaseArgs[0],
         expectedQueryDatabaseArgs[1]

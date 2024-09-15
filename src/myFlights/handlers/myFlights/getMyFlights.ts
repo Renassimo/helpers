@@ -1,6 +1,6 @@
 import NotionService from '@/common/services/notion';
 
-import { deserializeFlights } from '@/myFlights/serializers';
+import { deserializeMyFlights } from '@/myFlights/serializers';
 
 const getMyFlights = async (
   notionService: NotionService,
@@ -13,7 +13,7 @@ const getMyFlights = async (
 
   const { results } = data;
 
-  return { data: deserializeFlights(results) };
+  return { data: deserializeMyFlights(results) };
 };
 
 export default getMyFlights;

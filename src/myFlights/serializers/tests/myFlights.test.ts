@@ -2,7 +2,7 @@ import { NotionResult } from '@/common/types/notion';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
 import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSerializer';
-import { deserializeFlights, serializeFlight } from '../flights';
+import { deserializeMyFlights, serializeMyFlight } from '../myFlights';
 import { mockedMyFlight } from '@/myFlights/types/mocks';
 
 jest.mock('@/common/serializers/notion');
@@ -81,7 +81,7 @@ describe('Flights serializers', () => {
         },
       ];
       // Act
-      const result = deserializeFlights(
+      const result = deserializeMyFlights(
         mockedResults as unknown as NotionResult[]
       );
       // Assert
@@ -160,7 +160,7 @@ describe('Flights serializers', () => {
           },
         ];
         // Act
-        const result = deserializeFlights([
+        const result = deserializeMyFlights([
           { mockedResult1: 'mockedResult1' },
           { mockedResult2: 'mockedResult2' },
         ] as unknown as NotionResult[]);
@@ -196,7 +196,7 @@ describe('Flights serializers', () => {
     test('serializes result', () => {
       // Arange
       // Act
-      const result = serializeFlight(mockedMyFlight);
+      const result = serializeMyFlight(mockedMyFlight);
       // Assert
       expect(NotionPropertiesSerializer).toBeCalledWith(
         mockedMyFlight.attributes
