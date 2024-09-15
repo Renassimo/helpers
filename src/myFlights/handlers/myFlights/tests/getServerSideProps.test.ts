@@ -1,6 +1,6 @@
 import NotionService from '@/common/services/notion';
 
-import getFlights from '@/myFlights/handlers/myFlights/getFlights';
+import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
 
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { Firestore } from '@/common/lib/firebase/types';
@@ -8,7 +8,7 @@ import { Firestore } from '@/common/lib/firebase/types';
 import getServerSideProps from '../getServerSideProps';
 
 jest.mock('@/common/services/notion', () => jest.fn());
-jest.mock('@/myFlights/handlers/myFlights/getFlights');
+jest.mock('@/myFlights/handlers/myFlights/getMyFlights');
 jest.mock('@/common/lib/firebase/auth', jest.fn());
 
 describe('getServerSideProps', () => {
@@ -37,7 +37,7 @@ describe('getServerSideProps', () => {
         data: mockedData,
         error: null,
       }));
-      (getFlights as unknown as jest.Mock).mockImplementationOnce(
+      (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
         mockedGetFlights
       );
     });
@@ -59,7 +59,7 @@ describe('getServerSideProps', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(NotionService).toHaveBeenCalledWith(mockedToken);
-      expect(getFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
+      expect(getMyFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
     });
   });
 
@@ -70,7 +70,7 @@ describe('getServerSideProps', () => {
         data: null,
         error: { status: 500 },
       }));
-      (getFlights as unknown as jest.Mock).mockImplementationOnce(
+      (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
         mockedGetFlights
       );
       const expectedResult = {
@@ -88,7 +88,7 @@ describe('getServerSideProps', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(NotionService).toHaveBeenCalledWith(mockedToken);
-      expect(getFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
+      expect(getMyFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
     });
   });
 
@@ -99,7 +99,7 @@ describe('getServerSideProps', () => {
         data: null,
         error: { status: 404 },
       }));
-      (getFlights as unknown as jest.Mock).mockImplementationOnce(
+      (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
         mockedGetFlights
       );
       const expectedResult = { notFound: true };
@@ -110,7 +110,7 @@ describe('getServerSideProps', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(NotionService).toHaveBeenCalledWith(mockedToken);
-      expect(getFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
+      expect(getMyFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
     });
   });
 });

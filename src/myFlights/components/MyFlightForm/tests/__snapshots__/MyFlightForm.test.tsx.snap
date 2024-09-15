@@ -525,3 +525,271 @@ exports[`MyFlightForm when loaded values passed renders successfully with empty 
   </div>
 </body>
 `;
+
+exports[`MyFlightForm when state values passed renders successfully with empty values 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          state.date
+           - 
+           - 
+          Date
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.flightNumber
+           - 
+          Flight Number
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.altFlightNumber
+           - 
+          Alt flight number
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.seatNumber
+           - 
+          Seat number
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Airline
+           - 
+           -
+           
+          Airline 1 -
+          Airline 2 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.altAirline
+           - 
+          Alt airline
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Origin
+           - 
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.originName
+           - 
+          Origin name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Destination
+           - 
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.destinationName
+           - 
+          Destination name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.distance
+           - 
+          Distance, km
+           - 
+          number
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Manufacturer
+           - 
+           -
+           
+          Manufacturer 5 -
+          Manufacturers 6 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Model
+           - 
+           -
+           
+          Model 7 -
+          Model 8 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.registration
+           - 
+          Registration
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.cn
+           - 
+          CN
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.airplaneName
+           - 
+          Airplane name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          state.firstFlight
+           - 
+           - 
+          First flight
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.age
+           - 
+          Age
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.planespottersUrl
+           - 
+          Planespotters URL
+           - 
+          url
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.photoUrl
+           - 
+          Photo URL
+           - 
+          url
+           - 
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

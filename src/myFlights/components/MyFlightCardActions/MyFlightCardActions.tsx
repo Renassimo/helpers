@@ -6,6 +6,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import EditInNewIcon from '@mui/icons-material/Edit';
 
 import useThemeBreakpoints from '@/common/hooks/useThemeBreakpoints';
+import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
 import { MyFlightData } from '@/myFlights/types';
 
@@ -13,6 +14,10 @@ const MyFlightCardActions = ({ data }: { data: MyFlightData }) => {
   const {
     down: { md: densed },
   } = useThemeBreakpoints();
+
+  const {
+    myFlightForm: { openModal },
+  } = useMyFlightsContext();
 
   const { attributes } = data;
   const { planespottersUrl, registration, url } = attributes;
@@ -26,7 +31,7 @@ const MyFlightCardActions = ({ data }: { data: MyFlightData }) => {
   return (
     <Grid container direction={densed ? 'row' : 'column'}>
       <Grid item>
-        <IconButton aria-label="Edit" onClick={() => console.log('Edit')}>
+        <IconButton aria-label="Edit" onClick={() => openModal(data)}>
           {<EditInNewIcon />}
         </IconButton>
       </Grid>

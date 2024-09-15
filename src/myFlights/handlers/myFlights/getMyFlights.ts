@@ -2,7 +2,10 @@ import NotionService from '@/common/services/notion';
 
 import { deserializeFlights } from '@/myFlights/serializers';
 
-const getFlights = async (notionService: NotionService, dataBaseID: string) => {
+const getMyFlights = async (
+  notionService: NotionService,
+  dataBaseID: string
+) => {
   const { ok, data } = await notionService.queryDatabase(dataBaseID, {
     sorts: [{ property: 'Date', direction: 'ascending' }],
   });
@@ -13,4 +16,4 @@ const getFlights = async (notionService: NotionService, dataBaseID: string) => {
   return { data: deserializeFlights(results) };
 };
 
-export default getFlights;
+export default getMyFlights;

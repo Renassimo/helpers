@@ -4,7 +4,7 @@ import NotionService from '@/common/services/notion';
 
 import { showNotFound } from '@/common/utils/serverSideRenderProps';
 
-import getFlights from '@/myFlights/handlers/myFlights/getFlights';
+import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
 
 const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
   const { user, notionHelperData, pages } = ctx;
@@ -12,7 +12,7 @@ const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
 
   const notionService = new NotionService(token);
 
-  const { data = null, error = null } = await getFlights(
+  const { data = null, error = null } = await getMyFlights(
     notionService,
     dataBaseID
   );

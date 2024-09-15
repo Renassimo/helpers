@@ -32,27 +32,22 @@ describe('MyFlightFormModal', () => {
     );
   });
 
-  const mockedCleanUp = jest.fn();
-  const mockedSetIsModalOpen = jest.fn();
-  const mockedOnFinish = jest.fn();
-
   test('renders snapshot successfully', () => {
     // Arange
     const mockedUseMyFlightsContext = jest.fn(() => ({
-      cleanUp: mockedCleanUp,
+      myFlightForm: {
+        isModalOpen: true,
+        closeModal: jest.fn(),
+        isEditing: false,
+        onSubmit: jest.fn(),
+        loading: false,
+      },
     }));
     (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
       mockedUseMyFlightsContext
     );
     // Act
-    const { baseElement } = renderWithTheme(
-      <MyFlightFormModal
-        isModalOpen={true}
-        setIsModalOpen={mockedSetIsModalOpen}
-        onFinish={mockedOnFinish}
-        data={null}
-      />
-    );
+    const { baseElement } = renderWithTheme(<MyFlightFormModal />);
     // Assert
     expect(baseElement).toMatchSnapshot();
     expect(MockedSearchMyFlightDetailsForm).toHaveBeenCalledWith({}, {});

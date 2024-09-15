@@ -8,6 +8,7 @@ import useAviaOptions from '@/avia/hooks/useAviaOptions';
 
 import useMyFlights from './subhooks/useMyFlights';
 import useLoadedValues from './subhooks/useLoadedValues';
+import useMyFlightForm from './subhooks/useMyFlightForm';
 
 const useMyFlightsProvider = (
   data: MyFlightData[] | null
@@ -39,7 +40,16 @@ const useMyFlightsProvider = (
   });
 
   // Flights data
-  const { myFlights, myFlightsList, updateMyFlight } = useMyFlights(data);
+  const { myFlights, myFlightsList, updateMyFlight, deleteMyFlight } =
+    useMyFlights(data);
+
+  // My Flight Form
+  const myFlightForm = useMyFlightForm(
+    loadedValues,
+    cleanUp,
+    updateMyFlight,
+    deleteMyFlight
+  );
 
   return {
     // Flights data
@@ -61,6 +71,8 @@ const useMyFlightsProvider = (
     cleanUp,
     // Loaded values
     loadedValues,
+    // My Flight Form
+    myFlightForm,
   };
 };
 

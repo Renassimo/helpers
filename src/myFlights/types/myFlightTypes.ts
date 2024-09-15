@@ -3,6 +3,7 @@ import {
   UseAircraftsResult,
   UseAirportsResult,
   UseFlightsResult,
+  UseMyFlightFormResult,
 } from './props';
 
 export interface MyFlightAttributes {
@@ -60,4 +61,6 @@ export interface MyFlightsContextData {
   cleanUp: () => void;
   // Loaded values
   loadedValues: Partial<MyFlightAttributes>;
+  // My Flight Form
+  myFlightForm: UseMyFlightFormResult;
 }

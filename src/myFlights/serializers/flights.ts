@@ -1,7 +1,8 @@
 import { NotionResult } from '@/common/types/notion';
+import { MyFlightData } from '@/myFlights/types';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
-import { MyFlightData } from '@/myFlights/types';
+import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSerializer';
 
 export const deserializeFlights = (results: NotionResult[]): MyFlightData[] => {
   return results.map((result: NotionResult, index) => {
@@ -37,4 +38,36 @@ export const deserializeFlights = (results: NotionResult[]): MyFlightData[] => {
       },
     };
   });
+};
+
+export const serializeFlight = (data: MyFlightData) => {
+  const { attributes } = data;
+  const serializer = new NotionPropertiesSerializer(attributes);
+
+  return {
+    icon: { type: 'emoji', emoji: '✈️' },
+    ...serializer.getUrlCover('photoUrl'),
+    properties: {
+      ...serializer.getName('title'),
+      ...serializer.getRichText('Age', 'age'),
+      ...serializer.getRichText('Seat number', 'seatNumber'),
+      ...serializer.getRichText('Destination name', 'destinationName'),
+      ...serializer.getRichText('Flight number', 'flightNumber'),
+      ...serializer.getRichText('Airplane name', 'airplaneName'),
+      ...serializer.getRichText('CN / MSN', 'cn'),
+      ...serializer.getRichText('Registration', 'registration'),
+      ...serializer.getRichText('Origin name', 'originName'),
+      ...serializer.getRichText('Alt flight number', 'altFlightNumber'),
+      ...serializer.getDate('First flight', 'firstFlight'),
+      ...serializer.getDate('Date', 'date'),
+      ...serializer.getSelect('Origin', 'origin'),
+      ...serializer.getSelect('Destination', 'destination'),
+      ...serializer.getSelect('Airline', 'airline'),
+      ...serializer.getSelect('Manufacturer', 'manufacturer'),
+      ...serializer.getSelect('Alt airline', 'altAirline'),
+      ...serializer.getSelect('Model', 'model'),
+      ...serializer.getNumber('Distance, km', 'distance'),
+      ...serializer.getUrl('Planespotters URL', 'planespottersUrl'),
+    },
+  };
 };

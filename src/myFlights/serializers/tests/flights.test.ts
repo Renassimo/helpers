@@ -1,11 +1,18 @@
 import { NotionResult } from '@/common/types/notion';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
-import { deserializeFlights } from '../flights';
+import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSerializer';
+import { deserializeFlights, serializeFlight } from '../flights';
+import { mockedMyFlight } from '@/myFlights/types/mocks';
 
 jest.mock('@/common/serializers/notion');
+jest.mock('@/common/serializers/notion/propertiesSerializer');
 
 describe('Flights serializers', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('deserializeFlights ', () => {
     const mockedResults = [{ mockedResult1: 'mockedResult1' }];
 
@@ -129,6 +136,102 @@ describe('Flights serializers', () => {
         1,
         'Planespotters URL'
       );
+    });
+  });
+
+  describe('serializeFlight', () => {
+    const getRichText = jest.fn((key, attr) => ({ [key]: attr }));
+    const getDate = jest.fn((key, attr) => ({ [key]: attr }));
+    const getSelect = jest.fn((key, attr) => ({ [key]: attr }));
+    const getUrl = jest.fn((key, attr) => ({ [key]: attr }));
+    const getUrlCover = jest.fn((attr) => ({ urlCover: attr }));
+    const getNumber = jest.fn((key, attr) => ({ [key]: attr }));
+    const getName = jest.fn((attr) => ({ name: attr }));
+
+    beforeEach(() => {
+      (NotionPropertiesSerializer as unknown as jest.Mock).mockImplementation(
+        () => ({
+          getRichText,
+          getDate,
+          getSelect,
+          getUrl,
+          getUrlCover,
+          getNumber,
+          getName,
+        })
+      );
+    });
+
+    test('serializes result', () => {
+      // Arange
+      // Act
+      const result = serializeFlight(mockedMyFlight);
+      // Assert
+      expect(NotionPropertiesSerializer).toBeCalledWith(
+        mockedMyFlight.attributes
+      );
+      expect(getUrlCover).toBeCalledTimes(1);
+      expect(getUrlCover).nthCalledWith(1, 'photoUrl');
+      expect(getName).toBeCalledTimes(1);
+      expect(getName).nthCalledWith(1, 'title');
+      expect(getRichText).toBeCalledTimes(9);
+      expect(getRichText).nthCalledWith(1, 'Age', 'age');
+      expect(getRichText).nthCalledWith(2, 'Seat number', 'seatNumber');
+      expect(getRichText).nthCalledWith(
+        3,
+        'Destination name',
+        'destinationName'
+      );
+      expect(getRichText).nthCalledWith(4, 'Flight number', 'flightNumber');
+      expect(getRichText).nthCalledWith(5, 'Airplane name', 'airplaneName');
+      expect(getRichText).nthCalledWith(6, 'CN / MSN', 'cn');
+      expect(getRichText).nthCalledWith(7, 'Registration', 'registration');
+      expect(getRichText).nthCalledWith(8, 'Origin name', 'originName');
+      expect(getRichText).nthCalledWith(
+        9,
+        'Alt flight number',
+        'altFlightNumber'
+      );
+      expect(getDate).toBeCalledTimes(2);
+      expect(getDate).nthCalledWith(1, 'First flight', 'firstFlight');
+      expect(getDate).nthCalledWith(2, 'Date', 'date');
+      expect(getSelect).toBeCalledTimes(6);
+      expect(getSelect).nthCalledWith(1, 'Origin', 'origin');
+      expect(getSelect).nthCalledWith(2, 'Destination', 'destination');
+      expect(getSelect).nthCalledWith(3, 'Airline', 'airline');
+      expect(getSelect).nthCalledWith(4, 'Manufacturer', 'manufacturer');
+      expect(getSelect).nthCalledWith(5, 'Alt airline', 'altAirline');
+      expect(getSelect).nthCalledWith(6, 'Model', 'model');
+      expect(getNumber).toBeCalledTimes(1);
+      expect(getNumber).nthCalledWith(1, 'Distance, km', 'distance');
+      expect(getUrl).toBeCalledTimes(1);
+      expect(getUrl).nthCalledWith(1, 'Planespotters URL', 'planespottersUrl');
+      expect(result).toEqual({
+        icon: { type: 'emoji', emoji: '✈️' },
+        urlCover: 'photoUrl',
+        properties: {
+          name: 'title',
+          Age: 'age',
+          'Seat number': 'seatNumber',
+          'Destination name': 'destinationName',
+          'Flight number': 'flightNumber',
+          'Airplane name': 'airplaneName',
+          'CN / MSN': 'cn',
+          Registration: 'registration',
+          'Origin name': 'originName',
+          'Alt flight number': 'altFlightNumber',
+          'First flight': 'firstFlight',
+          Date: 'date',
+          Origin: 'origin',
+          Destination: 'destination',
+          Airline: 'airline',
+          Manufacturer: 'manufacturer',
+          'Alt airline': 'altAirline',
+          Model: 'model',
+          'Distance, km': 'distance',
+          'Planespotters URL': 'planespottersUrl',
+        },
+      });
     });
   });
 });

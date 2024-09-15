@@ -44,7 +44,7 @@ describe('Notion service', () => {
     });
   });
 
-  describe('queryDatabase', () => {
+  describe('retreiveDatabase', () => {
     const mockedDataBaseID = 'data-base-id';
 
     test('returns data', async () => {
@@ -93,6 +93,35 @@ describe('Notion service', () => {
           'Notion-Version': '2022-02-22',
         },
         method: 'PATCH',
+      });
+    });
+  });
+
+  describe('createPage', () => {
+    const mockedDataBaseID = 'data-base-id';
+
+    test('creates page', async () => {
+      // Arrange
+      const responseData = { hello: 'world' };
+      const expectedResult = { data: responseData, ok: true };
+      fetchMock.post(`${mockedURL}/pages`, responseData);
+      const notionService = new NotionService(mockedToken);
+      // Act
+      const result = await notionService.createPage(
+        mockedDataBaseID,
+        mockedArgs
+      );
+      // Assert
+      expect(result).toEqual(expectedResult);
+      expect(fetchMock.lastUrl()).toEqual(`${mockedURL}/pages`);
+      expect(fetchMock.lastOptions()).toEqual({
+        body: '{"parent":{"database_id":"data-base-id"},"arg1":[],"arg2":{}}',
+        headers: {
+          Authorization: 'Bearer token',
+          'Content-Type': 'application/json',
+          'Notion-Version': '2022-02-22',
+        },
+        method: 'POST',
       });
     });
   });

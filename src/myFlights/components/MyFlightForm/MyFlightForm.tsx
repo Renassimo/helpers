@@ -1,45 +1,18 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import Box from '@mui/material/Box';
-
-import { MyFlightAttributes } from '@/myFlights/types';
+import Button from '@mui/material/Button';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
-
-import useStateValue from '@/common/hooks/useStateValue';
 
 import MyFlightFormField from './components/MyFlightFormField';
 import getFormFieldsSchema from './utils/getFormFieldsSchema';
 import MyFlightFormFieldProps from './types';
 
 const MyFlightForm = () => {
-  const { options, matchers, loadedValues } = useMyFlightsContext();
-
-  const [state, setState] = useStateValue<Partial<MyFlightAttributes>>({});
-  const setValue = (key: string, value: string | number | null) => {
-    setState((current) => ({ ...current, [key]: value }));
-  };
-
-  useEffect(() => {
-    setState((state) => ({
-      ...state,
-      date: loadedValues.date,
-      flightNumber: loadedValues.flightNumber,
-      registration: loadedValues.registration,
-      cn: loadedValues.cn,
-      firstFlight: loadedValues.firstFlight,
-      airplaneName: loadedValues.airplaneName,
-      originName: loadedValues.originName,
-      destinationName: loadedValues.destinationName,
-      seatNumber: loadedValues.seatNumber,
-      altAirline: loadedValues.altAirline,
-      altFlightNumber: loadedValues.altFlightNumber,
-      planespottersUrl: loadedValues.planespottersUrl,
-      distance: loadedValues.distance,
-      age: loadedValues.age,
-      photoUrl: loadedValues.photoUrl,
-    }));
-  }, [loadedValues]);
+  const { options, matchers, loadedValues, myFlightForm } =
+    useMyFlightsContext();
+  const { state, setValue, isEditing, loading, onDelete } = myFlightForm;
 
   const formFields: MyFlightFormFieldProps[] = useMemo(
     () => getFormFieldsSchema(matchers, options),
@@ -58,6 +31,20 @@ const MyFlightForm = () => {
           />
         </Box>
       ))}
+      {isEditing && (
+        <Box mt={2}>
+          <Button
+            fullWidth
+            type="button"
+            color="error"
+            variant="outlined"
+            disabled={loading}
+            onClick={onDelete}
+          >
+            Delete
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };

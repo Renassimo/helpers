@@ -3,44 +3,23 @@ import Typography from '@mui/material/Typography';
 
 import Modal from '@/common/components/Modal';
 
-import { MyFlightData } from '@/myFlights/types';
-
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
 import SearchMyFlightDetailsForm from '@/myFlights/components/SearchMyFlightDetailsForm';
 import MyFlightForm from '@/myFlights/components/MyFlightForm';
 
-const MyFlightFormModal = ({
-  isModalOpen,
-  setIsModalOpen,
-  data,
-  onFinish,
-}: {
-  isModalOpen: boolean;
-  setIsModalOpen: (isOpen: boolean) => void;
-  data?: MyFlightData | null;
-  onFinish: (newData: MyFlightData | null) => void;
-}) => {
-  const isEditForm = !!data;
-
-  const { cleanUp } = useMyFlightsContext();
-
-  const onSubmit = () => {
-    onFinish(null);
-  };
-
-  const onModalClose = () => {
-    setIsModalOpen(false);
-    cleanUp();
-  };
+const MyFlightFormModal = () => {
+  const {
+    myFlightForm: { isModalOpen, closeModal, isEditing, onSubmit, loading },
+  } = useMyFlightsContext();
 
   return (
     <Modal
       open={isModalOpen}
-      onClose={onModalClose}
+      onClose={closeModal}
       onSubmit={onSubmit}
-      title={`${isEditForm ? 'Update' : `Create new`} flight`}
-      loading={false}
+      title={`${isEditing ? 'Update' : `Create new`} flight`}
+      loading={loading}
     >
       <Box minWidth={325}>
         <SearchMyFlightDetailsForm />
