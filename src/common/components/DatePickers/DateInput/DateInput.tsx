@@ -70,7 +70,11 @@ const DateInput = ({
   };
 
   const onEnter = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') onDayChange(inputValue);
+    if (event.key === 'Enter') {
+      event.stopPropagation();
+      event.preventDefault();
+      onDayChange(inputValue);
+    }
   };
 
   const showChangeDate = !!(inputValue && !isSameDay(day, inputValue));
