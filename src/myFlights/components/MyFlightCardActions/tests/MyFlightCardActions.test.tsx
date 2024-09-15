@@ -45,19 +45,6 @@ describe('MyFlightCardActions', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
-  describe('when opens modal', () => {
-    test('call openModal', async () => {
-      // Arange
-      const { getByLabelText } = renderWithTheme(
-        <FlightCardActions data={mockedMyFlight} />
-      );
-      // Act
-      await userEvent.click(getByLabelText('Edit'));
-      // Assert
-      expect(mockedOpenModal).toBeCalledWith(mockedMyFlight);
-    });
-  });
-
   describe('when limited data passed', () => {
     test('renders successfully', () => {
       // Arange
@@ -101,8 +88,8 @@ describe('MyFlightCardActions', () => {
     });
   });
 
-  describe.skip('when clicks to edit button', () => {
-    test('calls ...', async () => {
+  describe('when clicks to edit button', () => {
+    test('call openModal', async () => {
       // Arange
       const { getByLabelText } = renderWithTheme(
         <FlightCardActions data={mockedMyFlight} />
@@ -110,6 +97,7 @@ describe('MyFlightCardActions', () => {
       // Act
       await userEvent.click(getByLabelText('Edit'));
       // Assert
+      expect(mockedOpenModal).toBeCalledWith(mockedMyFlight);
     });
   });
 });
