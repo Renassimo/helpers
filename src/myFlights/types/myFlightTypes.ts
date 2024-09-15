@@ -29,7 +29,7 @@ export interface MyFlightAttributes {
   age: string | null;
   url: string;
   photoUrl: string | null;
-  number: number;
+  number: number | null;
 }
 
 export interface MyFlightData {

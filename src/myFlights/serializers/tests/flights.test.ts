@@ -31,51 +31,53 @@ describe('Flights serializers', () => {
     const mockedGetNumberAttribute = jest.fn(() => mockedNumberAttribute);
     const mockedGetUrlAttribute = jest.fn(() => mockedUrlAttribute);
 
+    const expectedAttributes = {
+      title: mockedTextAttribute,
+      date: mockedDateAttribute,
+      airline: mockedSelectAttribute,
+      flightNumber: mockedTextAttribute,
+      origin: mockedSelectAttribute,
+      destination: mockedSelectAttribute,
+      manufacturer: mockedSelectAttribute,
+      model: mockedSelectAttribute,
+      registration: mockedTextAttribute,
+      cn: mockedTextAttribute,
+      firstFlight: mockedDateAttribute,
+      airplaneName: mockedTextAttribute,
+      originName: mockedTextAttribute,
+      destinationName: mockedTextAttribute,
+      seatNumber: mockedTextAttribute,
+      altAirline: mockedSelectAttribute,
+      altFlightNumber: mockedTextAttribute,
+      planespottersUrl: mockedUrlAttribute,
+      distance: mockedNumberAttribute,
+      age: mockedTextAttribute,
+      url: mockedUrl,
+      photoUrl: mockedCover,
+      number: null,
+    };
+
     beforeEach(() => {
-      (
-        NotionPropertiesDeserializer as unknown as jest.Mock
-      ).mockImplementationOnce(() => ({
-        getTextAttribute: mockedGetTextAttribute,
-        getSelectAttribute: mockedGetSelectAttribute,
-        getDateAttribute: mockedGetDateAttribute,
-        getNumberAttribute: mockedGetNumberAttribute,
-        getUrlAttribute: mockedGetUrlAttribute,
-        id: mockedId,
-        url: mockedUrl,
-        cover: mockedCover,
-      }));
+      (NotionPropertiesDeserializer as unknown as jest.Mock).mockImplementation(
+        () => ({
+          getTextAttribute: mockedGetTextAttribute,
+          getSelectAttribute: mockedGetSelectAttribute,
+          getDateAttribute: mockedGetDateAttribute,
+          getNumberAttribute: mockedGetNumberAttribute,
+          getUrlAttribute: mockedGetUrlAttribute,
+          id: mockedId,
+          url: mockedUrl,
+          cover: mockedCover,
+        })
+      );
     });
 
-    test('deserializes results', () => {
+    test('deserializes result', () => {
       // Arrange
       const expectedResult = [
         {
           id: mockedId,
-          attributes: {
-            title: mockedTextAttribute,
-            date: mockedDateAttribute,
-            airline: mockedSelectAttribute,
-            flightNumber: mockedTextAttribute,
-            origin: mockedSelectAttribute,
-            destination: mockedSelectAttribute,
-            manufacturer: mockedSelectAttribute,
-            model: mockedSelectAttribute,
-            registration: mockedTextAttribute,
-            cn: mockedTextAttribute,
-            firstFlight: mockedDateAttribute,
-            airplaneName: mockedTextAttribute,
-            originName: mockedTextAttribute,
-            destinationName: mockedTextAttribute,
-            seatNumber: mockedTextAttribute,
-            altAirline: mockedSelectAttribute,
-            altFlightNumber: mockedTextAttribute,
-            planespottersUrl: mockedUrlAttribute,
-            distance: mockedNumberAttribute,
-            age: mockedTextAttribute,
-            url: mockedUrl,
-            photoUrl: mockedCover,
-            number: 1,
-          },
+          attributes: { ...expectedAttributes },
         },
       ];
       // Act
@@ -136,6 +138,35 @@ describe('Flights serializers', () => {
         1,
         'Planespotters URL'
       );
+    });
+
+    describe('when length is mpre than 1', () => {
+      test('deserializes results', () => {
+        // Arrange
+        const expectedResult = [
+          {
+            id: mockedId,
+            attributes: {
+              ...expectedAttributes,
+              number: 1,
+            },
+          },
+          {
+            id: mockedId,
+            attributes: {
+              ...expectedAttributes,
+              number: 2,
+            },
+          },
+        ];
+        // Act
+        const result = deserializeFlights([
+          { mockedResult1: 'mockedResult1' },
+          { mockedResult2: 'mockedResult2' },
+        ] as unknown as NotionResult[]);
+        // Assert
+        expect(result).toEqual(expectedResult);
+      });
     });
   });
 
