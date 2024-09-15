@@ -10,6 +10,7 @@ const useMyFlights = (
   myFlights: MyFlightsState;
   myFlightsList: MyFlightData[];
   updateMyFlight: (flight: MyFlightData) => void;
+  deleteMyFlight: (id: string) => void;
 } => {
   const [myFlights, setMyFlights] = useState<MyFlightsState>(
     myFlightsData ? getAttributeObjectFromArray(myFlightsData) : {}
@@ -24,10 +25,19 @@ const useMyFlights = (
     []
   );
 
+  const deleteMyFlight = useCallback((id: string) => {
+    setMyFlights((current) => {
+      const coppied = { ...current };
+      delete coppied[id];
+      return coppied;
+    });
+  }, []);
+
   return {
     myFlights,
     myFlightsList,
     updateMyFlight,
+    deleteMyFlight,
   };
 };
 

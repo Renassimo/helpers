@@ -1,8 +1,9 @@
+import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
+
 import { Avia } from '@/avia/types/avia';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
-import useInputValue from '@/common/hooks/useInputValue';
 
 import DateInput from '@/common/components/DatePickers/DateInput';
 import FreeAutoComplete from '@/common/components/FreeAutoComplete';
@@ -15,7 +16,6 @@ import MockedClearableInput from '@/common/components/ClearableInput/mocks';
 import MyFlightForm from '../MyFlightForm';
 
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
-jest.mock('@/common/hooks/useInputValue');
 jest.mock('@/common/components/DatePickers/DateInput');
 jest.mock('@/common/components/FreeAutoComplete');
 jest.mock('@/common/components/ClearableInput');
@@ -33,6 +33,20 @@ describe('MyFlightForm', () => {
     manufacturers: { 'Manufacturer 5': 'Manufacturers 6' },
     models: { 'Model 7': 'Model 8' },
   };
+  const onDelete = jest.fn();
+  const setValue = jest.fn();
+  const myFlightsContext = {
+    options,
+    matchers,
+    loadedValues: {},
+    myFlightForm: {
+      state: {},
+      setValue,
+      isEditing: false,
+      loading: false,
+      onDelete,
+    },
+  };
 
   beforeEach(() => {
     (DateInput as unknown as jest.Mock).mockImplementation(MockedDateInput);
@@ -47,14 +61,7 @@ describe('MyFlightForm', () => {
   test('renders successfully with empty values', () => {
     // Arange
     (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
-      jest.fn(() => ({
-        options,
-        matchers,
-        loadedValues: {},
-      }))
-    );
-    (useInputValue as unknown as jest.Mock).mockImplementation(
-      jest.fn(() => [{}, jest.fn()])
+      jest.fn(() => myFlightsContext)
     );
     // Act
     const { baseElement } = renderWithTheme(<MyFlightForm />);
@@ -84,8 +91,7 @@ describe('MyFlightForm', () => {
       };
       (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
         jest.fn(() => ({
-          options,
-          matchers,
+          ...myFlightsContext,
           loadedValues: {
             ...loadedValuesInState,
             model: 'loadedValues.model',
@@ -96,18 +102,81 @@ describe('MyFlightForm', () => {
           },
         }))
       );
-      let setStateResult: any = {};
-      const mockedSetState = jest.fn((fn) => {
-        setStateResult = fn({});
-      });
-      (useInputValue as unknown as jest.Mock).mockImplementation(
-        jest.fn(() => [{}, mockedSetState])
+      // Act
+      const { baseElement } = renderWithTheme(<MyFlightForm />);
+      // Assert
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
+  describe('when state values passed', () => {
+    test('renders successfully with empty values', () => {
+      // Arange
+      const state = {
+        date: 'state.date',
+        flightNumber: 'state.flightNumber',
+        registration: 'state.registration',
+        cn: 'state.cn',
+        firstFlight: 'state.firstFlight',
+        airplaneName: 'state.airplaneName',
+        originName: 'state.originName',
+        destinationName: 'state.destinationName',
+        seatNumber: 'state.seatNumber',
+        altAirline: 'state.altAirline',
+        altFlightNumber: 'state.altFlightNumber',
+        planespottersUrl: 'state.planespottersUrl',
+        distance: 'state.distance',
+        age: 'state.age',
+        photoUrl: 'state.photoUrl',
+      };
+      (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
+        jest.fn(() => ({
+          ...myFlightsContext,
+          myFlightForm: { ...myFlightsContext.myFlightForm, state },
+        }))
       );
       // Act
       const { baseElement } = renderWithTheme(<MyFlightForm />);
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(setStateResult).toEqual(loadedValuesInState);
+    });
+  });
+
+  describe('when clicks delete button', () => {
+    test('calls onDelete', async () => {
+      // Arange
+      const state = {
+        date: 'state.date',
+        flightNumber: 'state.flightNumber',
+        registration: 'state.registration',
+        cn: 'state.cn',
+        firstFlight: 'state.firstFlight',
+        airplaneName: 'state.airplaneName',
+        originName: 'state.originName',
+        destinationName: 'state.destinationName',
+        seatNumber: 'state.seatNumber',
+        altAirline: 'state.altAirline',
+        altFlightNumber: 'state.altFlightNumber',
+        planespottersUrl: 'state.planespottersUrl',
+        distance: 'state.distance',
+        age: 'state.age',
+        photoUrl: 'state.photoUrl',
+      };
+      (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
+        jest.fn(() => ({
+          ...myFlightsContext,
+          myFlightForm: {
+            ...myFlightsContext.myFlightForm,
+            state,
+            isEditing: true,
+          },
+        }))
+      );
+      const { getByText } = renderWithTheme(<MyFlightForm />);
+      // Act
+      await userEvent.click(getByText('Delete'));
+      // Assert
+      expect(onDelete).toBeCalled();
     });
   });
 });

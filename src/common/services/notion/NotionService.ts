@@ -29,6 +29,16 @@ class NotionService {
     return { ok: response.ok, data };
   };
 
+  createPage = async (dataBaseID: string, args: object) => {
+    const response = await fetch(`${this.baseURL}/pages`, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({ parent: { database_id: dataBaseID }, ...args }),
+    });
+    const data = await response.json();
+    return { ok: response.ok, data };
+  };
+
   updatePage = async (pageId: string, args: object) => {
     const response = await fetch(`${this.baseURL}/pages/${pageId}`, {
       method: 'PATCH',

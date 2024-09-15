@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
-import useInputValue from '@/common/hooks/useInputValue';
+import useStateValue from '@/common/hooks/useStateValue';
 
 import FlightCard from '@/myFlights/components/FlightCard';
 import AviaInput from '@/avia/components/AviaInput';
@@ -24,8 +24,8 @@ const FlightForm = () => {
     },
   } = useMyFlightsContext();
 
-  const [flightValue, setFlightValue] = useInputValue<string>('');
-  const [flightDate, setFlightDate] = useInputValue<string | null>(null);
+  const [flightValue, setFlightValue] = useStateValue<string>('');
+  const [flightDate, setFlightDate] = useStateValue<string | null>(null);
 
   const onSubmit = async () => {
     await retreiveFlights(flightValue, flightDate);

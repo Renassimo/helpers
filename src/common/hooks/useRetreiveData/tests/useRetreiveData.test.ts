@@ -72,6 +72,28 @@ describe('useRetreiveData', () => {
       expect(responseData).toEqual(mockedResponseData);
     });
 
+    describe('when deletes data', () => {
+      test('returns empty object', async () => {
+        // Arange
+        fetchMock.delete(mockedUrl, { status: 204 });
+        const { result } = renderHook(() => useRetreiveData());
+        // Act
+        let responseData: string | null = '';
+        await act(async () => {
+          responseData = (await result.current.retreive(mockedUrl, {
+            method: 'DELETE',
+          })) as unknown as string;
+        });
+        // Assert
+        expect(result.current).toEqual({
+          ...defaultState,
+        });
+        expect(fetchMock.lastUrl()).toEqual(mockedUrl);
+        expect(fetchMock.lastOptions()).toEqual({ method: 'DELETE' });
+        expect(responseData).toEqual({});
+      });
+    });
+
     describe('and then cleans data', () => {
       test('returns default state', async () => {
         // Arange

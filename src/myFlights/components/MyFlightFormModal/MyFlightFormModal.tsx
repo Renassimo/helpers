@@ -1,54 +1,44 @@
-import Box from '@mui/material/Box';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+
 import Typography from '@mui/material/Typography';
 
 import Modal from '@/common/components/Modal';
-
-import { MyFlightData } from '@/myFlights/types';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
 import SearchMyFlightDetailsForm from '@/myFlights/components/SearchMyFlightDetailsForm';
 import MyFlightForm from '@/myFlights/components/MyFlightForm';
 
-const MyFlightFormModal = ({
-  isModalOpen,
-  setIsModalOpen,
-  data,
-  onFinish,
-}: {
-  isModalOpen: boolean;
-  setIsModalOpen: (isOpen: boolean) => void;
-  data?: MyFlightData | null;
-  onFinish: (newData: MyFlightData | null) => void;
-}) => {
-  const isEditForm = !!data;
+const ModalWrapper = styled.main(
+  ({ theme }) => css`
+    min-width: 325px;
+    ${theme.breakpoints.up('md')} {
+      width: 400px;
+    }
+  `
+);
 
-  const { cleanUp } = useMyFlightsContext();
-
-  const onSubmit = () => {
-    onFinish(null);
-  };
-
-  const onModalClose = () => {
-    setIsModalOpen(false);
-    cleanUp();
-  };
+const MyFlightFormModal = () => {
+  const {
+    myFlightForm: { isModalOpen, closeModal, isEditing, onSubmit, loading },
+  } = useMyFlightsContext();
 
   return (
     <Modal
       open={isModalOpen}
-      onClose={onModalClose}
+      onClose={closeModal}
       onSubmit={onSubmit}
-      title={`${isEditForm ? 'Update' : `Create new`} flight`}
-      loading={false}
+      title={`${isEditing ? 'Update' : `Create new`} flight`}
+      loading={loading}
     >
-      <Box minWidth={325}>
+      <ModalWrapper>
         <SearchMyFlightDetailsForm />
         <Typography mt={3} component="h4" variant="h6">
           Fix values or enter mannually bellow:
         </Typography>
         <MyFlightForm />
-      </Box>
+      </ModalWrapper>
     </Modal>
   );
 };

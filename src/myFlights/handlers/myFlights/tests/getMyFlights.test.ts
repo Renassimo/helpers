@@ -1,18 +1,17 @@
 import NotionService from '@/common/services/notion';
 
-import getFlights from '@/myFlights/handlers/myFlights/getFlights';
+import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
 
-import { deserializeFlights } from '@/myFlights/serializers';
+import { deserializeMyFlights } from '@/myFlights/serializers';
 
 jest.mock('@/myFlights/serializers');
 jest.mock('@/common/services/notion');
 
-describe('getFlights', () => {
+describe('getMyFlights', () => {
   let mockedOk: boolean;
   let mockedData: object;
 
   const mockedDataBaseID = 'mocked_data_base_id';
-  const mockedToken = 'mocked_token';
   const mockedDeserializedData = { data: 'some deserialized data' };
   const mockedDataToDeserialize = { data: 'some data to deserialize' };
   const mockedQueryDatabase = jest.fn(async () => ({
@@ -27,7 +26,7 @@ describe('getFlights', () => {
   ];
 
   beforeAll(() => {
-    (deserializeFlights as unknown as jest.Mock).mockImplementation(
+    (deserializeMyFlights as unknown as jest.Mock).mockImplementation(
       jest.fn(() => mockedDeserializedData)
     );
   });
@@ -37,24 +36,23 @@ describe('getFlights', () => {
   });
 
   describe('when response is ok', () => {
-    beforeEach(() => {
-      mockedOk = true;
-      (NotionService as unknown as jest.Mock).mockImplementationOnce(() => ({
-        queryDatabase: mockedQueryDatabase,
-      }));
-    });
-
     describe('and has results', () => {
       test('returns data', async () => {
         // Arrange
         mockedData = { results: [mockedDataToDeserialize] };
-        const mockedNotionService = new NotionService(mockedToken);
+        mockedOk = true;
+        const mockedNotionService = {
+          queryDatabase: mockedQueryDatabase,
+        } as unknown as NotionService;
         const expectedResult = { data: mockedDeserializedData };
         // Act
-        const result = await getFlights(mockedNotionService, mockedDataBaseID);
+        const result = await getMyFlights(
+          mockedNotionService,
+          mockedDataBaseID
+        );
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(deserializeFlights).toHaveBeenCalledWith([
+        expect(deserializeMyFlights).toHaveBeenCalledWith([
           mockedDataToDeserialize,
         ]);
         expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
@@ -68,13 +66,18 @@ describe('getFlights', () => {
       test('returns empty data', async () => {
         // Arrange
         mockedData = { results: [] };
-        const mockedNotionService = new NotionService(mockedToken);
+        const mockedNotionService = {
+          queryDatabase: mockedQueryDatabase,
+        } as unknown as NotionService;
         const expectedResult = { data: mockedDeserializedData };
         // Act
-        const result = await getFlights(mockedNotionService, mockedDataBaseID);
+        const result = await getMyFlights(
+          mockedNotionService,
+          mockedDataBaseID
+        );
         // Assert
         expect(result).toEqual(expectedResult);
-        expect(deserializeFlights).toHaveBeenCalledWith([]);
+        expect(deserializeMyFlights).toHaveBeenCalledWith([]);
         expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
           expectedQueryDatabaseArgs[0],
           expectedQueryDatabaseArgs[1]
@@ -84,13 +87,6 @@ describe('getFlights', () => {
   });
 
   describe('when response is not ok', () => {
-    beforeEach(() => {
-      mockedOk = false;
-      (NotionService as unknown as jest.Mock).mockImplementationOnce(() => ({
-        queryDatabase: mockedQueryDatabase,
-      }));
-    });
-
     test('returns error', async () => {
       // Arrange
       mockedData = {
@@ -99,13 +95,16 @@ describe('getFlights', () => {
         object: 'error',
         status: 500,
       };
-      const mockedNotionService = new NotionService(mockedToken);
+      mockedOk = false;
+      const mockedNotionService = {
+        queryDatabase: mockedQueryDatabase,
+      } as unknown as NotionService;
       const expectedResult = { error: mockedData };
       // Act
-      const result = await getFlights(mockedNotionService, mockedDataBaseID);
+      const result = await getMyFlights(mockedNotionService, mockedDataBaseID);
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(deserializeFlights).not.toHaveBeenCalled();
+      expect(deserializeMyFlights).not.toHaveBeenCalled();
       expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
         expectedQueryDatabaseArgs[0],
         expectedQueryDatabaseArgs[1]

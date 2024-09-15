@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
-import useInputValue from '@/common/hooks/useInputValue';
+import useStateValue from '@/common/hooks/useStateValue';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
@@ -23,7 +23,7 @@ const AircraftForm = ({ registration }: { registration?: string | null }) => {
     },
   } = useMyFlightsContext();
 
-  const [aircraftValue, setAircraftValue] = useInputValue('');
+  const [aircraftValue, setAircraftValue] = useStateValue('');
 
   const onSubmit = async () => {
     await retreiveAircrafts(aircraftValue);

@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
@@ -9,13 +7,12 @@ import MyFlightFormModal from '@/myFlights/components/MyFlightFormModal';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
-import { MyFlightData } from '@/myFlights/types';
-
 const MyFlights = () => {
-  const { options } = useMyFlightsContext();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const onFinish = (newData: MyFlightData | null) => console.log(newData);
+  const {
+    options,
+    myFlightForm: { openModal },
+  } = useMyFlightsContext();
+  const addFlight = () => openModal();
 
   return (
     <>
@@ -33,18 +30,14 @@ const MyFlights = () => {
           <IconButton
             aria-label="Add flight"
             sx={{ paddingY: 0 }}
-            onClick={() => setIsModalOpen(true)}
+            onClick={addFlight}
           >
             <AddIcon />
           </IconButton>
         )}
       </Typography>
       <MyFlightsTable />
-      <MyFlightFormModal
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        onFinish={onFinish}
-      />
+      <MyFlightFormModal />
     </>
   );
 };

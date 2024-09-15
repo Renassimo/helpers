@@ -1,4 +1,5 @@
 import { Avia } from '@/avia/types/avia';
+import { MyFlightAttributes, MyFlightData } from './myFlightTypes';
 
 export interface RetrieveAirportsProps {
   code?: string;
@@ -42,4 +43,16 @@ export interface UseAirportsResult {
   clearChosenAirport: () => null;
   loading: boolean;
   cleanUpAirports: () => void;
+}
+
+export interface UseMyFlightFormResult {
+  isModalOpen: boolean;
+  openModal: (data?: MyFlightData | null) => void;
+  closeModal: () => void;
+  state: Partial<MyFlightAttributes>;
+  setValue: (key: string, value: string | number | null) => void;
+  isEditing: boolean;
+  onSubmit: () => Promise<void>;
+  onDelete: () => Promise<void>;
+  loading: boolean;
 }

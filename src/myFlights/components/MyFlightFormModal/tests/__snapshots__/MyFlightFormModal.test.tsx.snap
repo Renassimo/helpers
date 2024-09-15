@@ -4,8 +4,8 @@ exports[`MyFlightFormModal renders snapshot successfully 1`] = `
 <body>
   <div>
     <div>
-      <div
-        class="MuiBox-root css-186xlyj"
+      <main
+        class="css-r7gpdi"
       >
         <div>
           MockedSearchMyFlightDetailsForm
@@ -18,7 +18,7 @@ exports[`MyFlightFormModal renders snapshot successfully 1`] = `
         <div>
           MockedMyFlightForm
         </div>
-      </div>
+      </main>
       <div>
         title: 
         Create new flight

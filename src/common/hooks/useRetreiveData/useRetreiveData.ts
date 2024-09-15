@@ -19,12 +19,21 @@ const useRetreiveData = <D>(
 
   useErrorAlert(error);
 
+  const deleteRetreive = (response: Response): Record<string, never> => {
+    if (!response.ok) throw {};
+    setLoading(false);
+    return {};
+  };
+
   const retreive = useCallback(
     async (url: string, options?: RequestInit): Promise<D | null> => {
       setLoading(true);
 
       try {
         const response = await fetch(url, options);
+        if (response.status === 204 || options?.method === 'DELETE') {
+          return deleteRetreive(response) as D;
+        }
         const data = (await response.json()) as D;
         if (!response.ok) throw data;
         setData(data);

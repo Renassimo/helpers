@@ -13,7 +13,12 @@ describe('useAviaMatchers', () => {
     jest.clearAllMocks();
   });
 
-  const data = { data: 'data' };
+  const data = {
+    data: {
+      airlines: { airline1: 'Airline 1', airline2: 'Airline 2' },
+      airports: {},
+    },
+  };
   const retreive = jest.fn();
 
   test('returns state', () => {
@@ -38,8 +43,15 @@ describe('useAviaMatchers', () => {
         jest.fn(() => ({ data, retreive }))
       );
       const { result } = renderHook(() => useAviaMatchers());
+      const uploadData = {
+        airlines: { airline1: 'Airline 1', airline2: 'Airline-2' },
+        models: {},
+        airports: {},
+      } as Matchers;
+      const expectedUploadData = {
+        airlines: { airline2: 'Airline-2' },
+      };
       // Act
-      const uploadData = { data: 'new-data' } as unknown as Matchers;
       await act(async () => {
         await result.current.updateMatchers(uploadData);
       });
@@ -47,7 +59,7 @@ describe('useAviaMatchers', () => {
       expect(retreive).toBeCalledWith('/api/avia/matchers', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: uploadData }),
+        body: JSON.stringify({ data: expectedUploadData }),
       });
     });
   });

@@ -56,6 +56,18 @@ const MyFlightsContext = createContext<MyFlightsContextData>({
   cleanUp: () => {},
   // Loaded values
   loadedValues: {},
+  // My Flight Form
+  myFlightForm: {
+    isModalOpen: false,
+    openModal: () => {},
+    closeModal: () => {},
+    state: {},
+    setValue: () => {},
+    isEditing: false,
+    onSubmit: async () => {},
+    onDelete: async () => {},
+    loading: false,
+  },
 });
 
 export default MyFlightsContext;

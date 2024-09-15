@@ -8,15 +8,16 @@ import useAviaOptions from '@/avia/hooks/useAviaOptions';
 
 import useMyFlights from './subhooks/useMyFlights';
 import useLoadedValues from './subhooks/useLoadedValues';
+import useMyFlightForm from './subhooks/useMyFlightForm';
 
 const useMyFlightsProvider = (
   data: MyFlightData[] | null
 ): MyFlightsContextData => {
   // Options
-  const { data: options /* updateOptions */ } = useAviaOptions();
+  const { data: options, updateOptions } = useAviaOptions();
 
   // Matchers
-  const { data: matchers /* updateMatchers */ } = useAviaMatchers();
+  const { data: matchers, updateMatchers } = useAviaMatchers();
 
   // Flights
   const flightsResult = useFlights();
@@ -39,7 +40,18 @@ const useMyFlightsProvider = (
   });
 
   // Flights data
-  const { myFlights, myFlightsList, updateMyFlight } = useMyFlights(data);
+  const { myFlights, myFlightsList, updateMyFlight, deleteMyFlight } =
+    useMyFlights(data);
+
+  // My Flight Form
+  const myFlightForm = useMyFlightForm(
+    loadedValues,
+    cleanUp,
+    updateMyFlight,
+    deleteMyFlight,
+    updateOptions,
+    updateMatchers
+  );
 
   return {
     // Flights data
@@ -61,6 +73,8 @@ const useMyFlightsProvider = (
     cleanUp,
     // Loaded values
     loadedValues,
+    // My Flight Form
+    myFlightForm,
   };
 };
 

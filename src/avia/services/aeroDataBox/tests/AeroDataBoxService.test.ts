@@ -11,7 +11,7 @@ describe('AeroDataBoxService', () => {
 
   const aeroDataBoxService = new AeroDataBoxService(mockedApiKey);
 
-  describe.skip('retrieveAircrafts', () => {
+  describe('retrieveAircrafts', () => {
     const mockedSearchBy = 'reg';
     const mockedSearchQuery = 'search-query';
 
@@ -40,7 +40,7 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe.skip('retreiveAirportByCode', () => {
+  describe('retreiveAirportByCode', () => {
     const mockedSearchBy = 'iata';
     const mockedCode = 'waw';
 
@@ -67,7 +67,7 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe.skip('retreiveAirportsByText', () => {
+  describe('retreiveAirportsByText', () => {
     const mockedSearchQuery = 'search-query';
 
     test('returns data', async () => {
@@ -99,7 +99,7 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe.skip('retreiveAirportsByLocation', () => {
+  describe('retreiveAirportsByLocation', () => {
     const mockedLat = 'lattitude';
     const mockedLon = 'longitude';
 
@@ -133,7 +133,7 @@ describe('AeroDataBoxService', () => {
     });
   });
 
-  describe.skip('retreiveFlights', () => {
+  describe('retreiveFlights', () => {
     const mockedFlightNumber = 'flight-number';
     const mockedDate = 'date';
 

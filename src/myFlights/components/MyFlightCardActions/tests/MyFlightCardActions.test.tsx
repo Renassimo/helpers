@@ -2,6 +2,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import useThemeBreakpoints from '@/common/hooks/useThemeBreakpoints';
+import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
 import {
   mockedMyFlight,
@@ -12,16 +13,21 @@ import {
 import FlightCardActions from '../MyFlightCardActions';
 
 jest.mock('@/common/hooks/useThemeBreakpoints');
+jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
 
 describe('MyFlightCardActions', () => {
   const mockedBreakpoints = {
     down: { md: false },
   };
   const mockedUseThemeBreakpoints = jest.fn(() => mockedBreakpoints);
+  const mockedOpenModal = jest.fn();
 
   beforeEach(() => {
     (useThemeBreakpoints as unknown as jest.Mock).mockImplementation(
       mockedUseThemeBreakpoints
+    );
+    (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
+      jest.fn(() => ({ myFlightForm: { openModal: mockedOpenModal } }))
     );
   });
 
@@ -82,8 +88,8 @@ describe('MyFlightCardActions', () => {
     });
   });
 
-  describe.skip('when clicks to edit button', () => {
-    test('calls ...', async () => {
+  describe('when clicks to edit button', () => {
+    test('call openModal', async () => {
       // Arange
       const { getByLabelText } = renderWithTheme(
         <FlightCardActions data={mockedMyFlight} />
@@ -91,6 +97,7 @@ describe('MyFlightCardActions', () => {
       // Act
       await userEvent.click(getByLabelText('Edit'));
       // Assert
+      expect(mockedOpenModal).toBeCalledWith(mockedMyFlight);
     });
   });
 });

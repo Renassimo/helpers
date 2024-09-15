@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import FlightsTable from '@/myFlights/components/MyFlightsTable';
@@ -15,6 +16,12 @@ jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
 jest.mock('@/myFlights/components/MyFlightFormModal');
 
 describe('MyFlights', () => {
+  const mockedOpenModal = jest.fn();
+  const mockedMyFlightsContext = {
+    options: null,
+    myFlightForm: { openModal: mockedOpenModal },
+  };
+
   beforeEach(() => {
     (FlightsTable as unknown as jest.Mock).mockImplementation(
       MockedMyFlightsTable
@@ -23,7 +30,7 @@ describe('MyFlights', () => {
       MockedMyFlightFormModal
     );
     (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
-      jest.fn(() => ({ options: null }))
+      jest.fn(() => mockedMyFlightsContext)
     );
   });
 
@@ -43,7 +50,10 @@ describe('MyFlights', () => {
   describe('when no option received', () => {
     beforeEach(() => {
       (useMyFlightsContext as unknown as jest.Mock).mockImplementation(
-        jest.fn(() => ({ options: 'mocked-options' }))
+        jest.fn(() => ({
+          ...mockedMyFlightsContext,
+          options: 'mocked-options',
+        }))
       );
     });
 
@@ -54,6 +64,17 @@ describe('MyFlights', () => {
       // Assert
       expect(baseElement).toMatchSnapshot();
       expect(FlightsTable).toBeCalledWith({}, {});
+    });
+
+    describe('when clicks add flight', () => {
+      test('calls openModal', async () => {
+        // Arange
+        const { getByLabelText } = renderWithTheme(<MyFlights />);
+        // Act
+        await userEvent.click(getByLabelText('Add flight'));
+        // Assert
+        expect(mockedOpenModal).toBeCalledWith();
+      });
     });
   });
 });

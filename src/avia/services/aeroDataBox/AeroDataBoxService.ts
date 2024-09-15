@@ -1,9 +1,9 @@
 import { AeroDataBoxApi } from '@/avia/types/aeroDataBox';
-import {
-  mockedAircrafts,
-  mockedAirports,
-  mockedFlights,
-} from '@/avia/types/aeroDataBox/mocks';
+// import {
+//   mockedAircrafts,
+//   mockedAirports,
+//   mockedFlights,
+// } from '@/avia/types/aeroDataBox/mocks';
 
 class AeroDataBoxService {
   apiKey!: string;
@@ -18,7 +18,7 @@ class AeroDataBoxService {
     searchQuery: string,
     searchBy: 'reg' | 'icao24' | 'id' = 'reg'
   ): Promise<AeroDataBoxApi.Aircraft[]> {
-    return [mockedAircrafts[0], mockedAircrafts[0]];
+    // return [mockedAircrafts[0], mockedAircrafts[0]];
     const response = await fetch(
       `${this.baseURL}/aircrafts/${searchBy}/${searchQuery}/all`,
       {
@@ -33,7 +33,7 @@ class AeroDataBoxService {
     code: string,
     searchBy: 'iata' | 'icao' = 'iata'
   ): Promise<AeroDataBoxApi.AirportExact> {
-    return mockedAirports[1] as AeroDataBoxApi.AirportExact;
+    // return mockedAirports[1] as AeroDataBoxApi.AirportExact;
     const response = await fetch(
       `${this.baseURL}/airports/${searchBy}/${code}?withTime=true`,
       {
@@ -47,7 +47,7 @@ class AeroDataBoxService {
   async retreiveAirportsByText(
     searchQuery: string
   ): Promise<AeroDataBoxApi.Airport[]> {
-    return mockedAirports as AeroDataBoxApi.Airport[];
+    // return mockedAirports as AeroDataBoxApi.Airport[];
     const response = await fetch(
       `${this.baseURL}/airports/search/term?q=${searchQuery}`,
       {
@@ -63,7 +63,7 @@ class AeroDataBoxService {
     lat: string,
     lot: string
   ): Promise<AeroDataBoxApi.Airport[]> {
-    return mockedAirports as AeroDataBoxApi.Airport[];
+    // return mockedAirports as AeroDataBoxApi.Airport[];
     const response = await fetch(
       `${this.baseURL}/airports/search/location?lat=${lat}&lon=${lot}&radiusKm=25&limit=10`,
       {
@@ -79,7 +79,7 @@ class AeroDataBoxService {
     flightNumber: string,
     date?: string
   ): Promise<AeroDataBoxApi.Flight[]> {
-    return [...mockedFlights, ...mockedFlights];
+    // return [...mockedFlights, ...mockedFlights];
     const withDate = date ? `/${date}` : '';
     const response = await fetch(
       `${this.baseURL}/flights/number/${flightNumber}${withDate}?withAircraftImage=true`,
