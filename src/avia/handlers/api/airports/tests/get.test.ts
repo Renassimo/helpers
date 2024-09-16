@@ -108,6 +108,33 @@ describe('get (airports)', () => {
         );
       });
     });
+
+    describe('when receives bull', () => {
+      test('writes status and error to response', async () => {
+        // Arange
+        const mockedErrorMessage = 'Not found.';
+        const mockedData = null as unknown as AeroDataBoxApi.AirportExact;
+        mockedRetreiveAirportByCode = jest.fn(() => mockedData);
+        const expectedStatusNumber = 404;
+        const expectedErrorMessage = 'expectedError';
+        const expectedError = new Error(expectedErrorMessage);
+
+        const mockedGetError = jest.fn(() => expectedError);
+        (getError as unknown as jest.Mock).mockImplementationOnce(
+          mockedGetError
+        );
+        // Act
+        await handler(getReq({ code }), res);
+        // Assert
+        expect(deserializeAirports).not.toHaveBeenCalled();
+        expect(mockedStatus).toHaveBeenCalledWith(expectedStatusNumber);
+        expect(mockedJson).toHaveBeenCalledWith(expectedError);
+        expect(mockedGetError).toHaveBeenCalledWith(
+          expectedStatusNumber,
+          mockedErrorMessage
+        );
+      });
+    });
   });
 
   describe('when icao code passed', () => {
@@ -151,6 +178,33 @@ describe('get (airports)', () => {
         // Assert
         expect(deserializeAirports).not.toHaveBeenCalled();
         expect(mockedStatus).toHaveBeenCalledWith(500);
+        expect(mockedJson).toHaveBeenCalledWith(expectedError);
+        expect(mockedGetError).toHaveBeenCalledWith(
+          expectedStatusNumber,
+          mockedErrorMessage
+        );
+      });
+    });
+
+    describe('when receives null', () => {
+      test('writes status and error to response', async () => {
+        // Arange
+        const mockedErrorMessage = 'Not found.';
+        const mockedData = null as unknown as AeroDataBoxApi.AirportExact;
+        mockedRetreiveAirportByCode = jest.fn(() => mockedData);
+        const expectedStatusNumber = 404;
+        const expectedErrorMessage = 'expectedError';
+        const expectedError = new Error(expectedErrorMessage);
+
+        const mockedGetError = jest.fn(() => expectedError);
+        (getError as unknown as jest.Mock).mockImplementationOnce(
+          mockedGetError
+        );
+        // Act
+        await handler(getReq({ code }), res);
+        // Assert
+        expect(deserializeAirports).not.toHaveBeenCalled();
+        expect(mockedStatus).toHaveBeenCalledWith(expectedStatusNumber);
         expect(mockedJson).toHaveBeenCalledWith(expectedError);
         expect(mockedGetError).toHaveBeenCalledWith(
           expectedStatusNumber,
