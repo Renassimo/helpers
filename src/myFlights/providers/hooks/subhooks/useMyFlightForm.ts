@@ -8,6 +8,8 @@ import {
 import { Avia } from '@/avia/types/avia';
 import { Matcher } from '@/common/types/matchers';
 
+import { showTimePassed } from '@/common/utils/dayjs';
+
 import useRetreiveData from '@/common/hooks/useRetreiveData';
 
 const useMyFlightForm = (
@@ -169,6 +171,10 @@ const useMyFlightForm = (
   useEffect(() => {
     if (editingData) setState(editingData.attributes);
   }, [editingData]);
+
+  useEffect(() => {
+    setValue('age', showTimePassed(state.firstFlight, state.date));
+  }, [state.firstFlight, state.date]);
 
   return {
     isModalOpen,

@@ -59,10 +59,11 @@ const useLoadedValues = ({
       chosenDestination?.attributes.location ??
       chosenFlight?.attributes.destinationLocation;
     const distancePossible = originLocation && destinationLocation;
+    const date = chosenFlight?.attributes.date ?? null;
 
     return {
       title: null,
-      date: chosenFlight?.attributes.date ?? null,
+      date,
       airline:
         chosenAircraft?.attributes.airlineName ??
         chosenFlight?.attributes.airline ??
@@ -107,7 +108,7 @@ const useLoadedValues = ({
         (distancePossible &&
           geoDistance(originLocation, destinationLocation)) ??
         null,
-      age: firstFlight ? showTimePassed(firstFlight) : null,
+      age: firstFlight ? showTimePassed(firstFlight, date) : null,
       photoUrl:
         chosenAircraft?.attributes.photoUrl ??
         chosenFlight?.attributes.photoUrl ??

@@ -63,7 +63,7 @@ class NotionPropertiesSerializer<T extends { [key: string]: any }> {
     const content = this.attributes[attributeKey];
     return content
       ? {
-          [notionKey]: { number: content },
+          [notionKey]: { number: Number(content) },
         }
       : {};
   };

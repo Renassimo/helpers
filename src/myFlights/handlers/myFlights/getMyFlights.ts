@@ -7,7 +7,10 @@ const getMyFlights = async (
   dataBaseID: string
 ) => {
   const { ok, data } = await notionService.queryDatabase(dataBaseID, {
-    sorts: [{ property: 'Date', direction: 'ascending' }],
+    sorts: [
+      { property: 'Date', direction: 'ascending' },
+      { timestamp: 'created_time', direction: 'ascending' },
+    ],
   });
   if (!ok) return { error: data };
 

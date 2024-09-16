@@ -21,7 +21,10 @@ describe('getMyFlights', () => {
   const expectedQueryDatabaseArgs = [
     mockedDataBaseID,
     {
-      sorts: [{ property: 'Date', direction: 'ascending' }],
+      sorts: [
+        { property: 'Date', direction: 'ascending' },
+        { timestamp: 'created_time', direction: 'ascending' },
+      ],
     },
   ];
 
