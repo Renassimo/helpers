@@ -23,6 +23,8 @@ const MyFlightCard = ({ data }: { data: MyFlightData }) => {
     distance,
     registration,
     airplaneName,
+    altFlightNumber,
+    altAirline,
   } = attributes;
 
   const {
@@ -33,6 +35,8 @@ const MyFlightCard = ({ data }: { data: MyFlightData }) => {
     ['Origin', originName],
     ['Destination', destinationName],
     ['Flight number', flightNumber],
+    ['Alt. flight number', altFlightNumber],
+    ['Alt. airline', altAirline],
     ['Distance, km', distance],
     ['Seat number', seatNumber],
     ['Airplane name', airplaneName],

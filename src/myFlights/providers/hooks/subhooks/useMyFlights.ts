@@ -21,8 +21,19 @@ const useMyFlights = (
   );
   const updateMyFlight = useCallback(
     (flight: MyFlightData) =>
-      setMyFlights((current) => ({ ...current, [flight.id]: flight })),
-    []
+      setMyFlights((current) => ({
+        ...current,
+        [flight.id]: {
+          ...flight,
+          attributes: {
+            ...flight.attributes,
+            number:
+              current[flight.id]?.attributes?.number ||
+              myFlightsList.length + 1,
+          },
+        },
+      })),
+    [myFlightsList]
   );
 
   const deleteMyFlight = useCallback((id: string) => {

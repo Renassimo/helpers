@@ -76,8 +76,38 @@ describe('get (flights)', () => {
     });
   });
 
+  describe('when receives empty array in data', () => {
+    test('writes status and error to response', async () => {
+      // Arange
+      const mockedErrorMessage = 'Not found.';
+      const mockedData = [] as AeroDataBoxApi.Flight[];
+      mockedRetreiveFlights = jest.fn(() => mockedData);
+      const expectedStatusNumber = 404;
+      const expectedErrorMessage = 'expectedError';
+      const expectedError = new Error(expectedErrorMessage);
+
+      const mockedGetError = jest.fn(() => expectedError);
+      (getError as unknown as jest.Mock).mockImplementationOnce(mockedGetError);
+      // Act
+      await handler(req, res);
+      // Assert
+      expect(AeroDataBoxService).toHaveBeenCalledWith(mockedXRapidapiKey);
+      expect(mockedRetreiveFlights).toHaveBeenCalledWith(
+        mockedNumber,
+        mockedDate
+      );
+      expect(deserializeFlights).not.toHaveBeenCalled();
+      expect(mockedStatus).toHaveBeenCalledWith(expectedStatusNumber);
+      expect(mockedJson).toHaveBeenCalledWith(expectedError);
+      expect(mockedGetError).toHaveBeenCalledWith(
+        expectedStatusNumber,
+        mockedErrorMessage
+      );
+    });
+  });
+
   describe('when receives error in data', () => {
-    test('writes status and data to response', async () => {
+    test('writes status and error to response', async () => {
       // Arange
       const mockedErrorMessage = 'Something went wrong.';
       const mockedData = {

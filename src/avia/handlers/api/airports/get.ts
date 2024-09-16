@@ -54,17 +54,18 @@ const handler = async (
           lat,
           lon
         );
-        if (!result.length) throw result;
+        if (!Array.isArray(result)) throw result;
         data = result;
       } else if (byText) {
         const result = await aeroDataBoxService.retreiveAirportsByText(
           text ?? code ?? ''
         );
-        if (!result.length) throw result;
+        if (!Array.isArray(result)) throw result;
         data = result;
       } else data = null;
 
       if (!data) throw { status: 400, message: 'Not all parameters provided' };
+      if (data.length === 0) throw { status: 404, message: 'Not found.' };
 
       res.status(200).json({ data: deserializeAirports(data) });
     } catch (error: any) {

@@ -70,11 +70,14 @@ exports[`MyFlightForm renders successfully with empty values 1`] = `
         class="MuiBox-root css-164r41r"
       >
         <div>
-          MockedClearableInput - 
+          MockedFreeAutoComplete - 
            - 
           Alt airline
            - 
-           - 
+           -
+           
+          Airline 1 -
+          Airline 2 -
         </div>
       </div>
       <div
@@ -328,12 +331,15 @@ exports[`MyFlightForm when loaded values passed renders successfully with empty 
         class="MuiBox-root css-164r41r"
       >
         <div>
-          MockedClearableInput - 
+          MockedFreeAutoComplete - 
            - 
           Alt airline
            - 
-           - 
           loadedValues.altAirline
+           -
+           
+          Airline 1 -
+          Airline 2 -
         </div>
       </div>
       <div
@@ -600,12 +606,15 @@ exports[`MyFlightForm when state values passed renders successfully with empty v
         class="MuiBox-root css-164r41r"
       >
         <div>
-          MockedClearableInput - 
+          MockedFreeAutoComplete - 
           state.altAirline
            - 
           Alt airline
            - 
-           - 
+           -
+           
+          Airline 1 -
+          Airline 2 -
         </div>
       </div>
       <div

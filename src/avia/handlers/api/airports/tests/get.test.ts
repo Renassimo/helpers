@@ -81,7 +81,7 @@ describe('get (airports)', () => {
     });
 
     describe('when receives error in data', () => {
-      test('writes status and data to response', async () => {
+      test('writes status and error to response', async () => {
         // Arange
         const mockedErrorMessage = 'Something went wrong.';
         const mockedData = {
@@ -113,7 +113,7 @@ describe('get (airports)', () => {
   describe('when icao code passed', () => {
     const code = 'UWKD';
 
-    test('writes status and data to response', async () => {
+    test('writes status and error to response', async () => {
       // Arange
       mockedRetreiveAirportByCode = jest.fn(() => mockedAirport);
       // Act
@@ -131,7 +131,7 @@ describe('get (airports)', () => {
     });
 
     describe('when receives error in data', () => {
-      test('writes status and data to response', async () => {
+      test('writes status and error to response', async () => {
         // Arange
         const mockedErrorMessage = 'Something went wrong.';
         const mockedData = {
@@ -182,7 +182,7 @@ describe('get (airports)', () => {
     });
 
     describe('when receives error in data', () => {
-      test('writes status and data to response', async () => {
+      test('writes status and error to response', async () => {
         // Arange
         const mockedErrorMessage = 'Something went wrong.';
         const mockedData = {
@@ -232,7 +232,7 @@ describe('get (airports)', () => {
     });
 
     describe('when receives error in data', () => {
-      test('writes status and data to response', async () => {
+      test('writes status and error to response', async () => {
         // Arange
         const mockedErrorMessage = 'Something went wrong.';
         const mockedData = {
@@ -252,6 +252,33 @@ describe('get (airports)', () => {
         // Assert
         expect(deserializeAirports).not.toHaveBeenCalled();
         expect(mockedStatus).toHaveBeenCalledWith(500);
+        expect(mockedJson).toHaveBeenCalledWith(expectedError);
+        expect(mockedGetError).toHaveBeenCalledWith(
+          expectedStatusNumber,
+          mockedErrorMessage
+        );
+      });
+    });
+
+    describe('when empty array in data', () => {
+      test('writes status and 404 error to response', async () => {
+        // Arange
+        const mockedErrorMessage = 'Not found.';
+        const mockedData = [] as AeroDataBoxApi.Airport[];
+        mockedRetreiveAirportByText = jest.fn(() => mockedData);
+        const expectedStatusNumber = 404;
+        const expectedErrorMessage = 'expectedError';
+        const expectedError = new Error(expectedErrorMessage);
+
+        const mockedGetError = jest.fn(() => expectedError);
+        (getError as unknown as jest.Mock).mockImplementationOnce(
+          mockedGetError
+        );
+        // Act
+        await handler(getReq({ text }), res);
+        // Assert
+        expect(deserializeAirports).not.toHaveBeenCalled();
+        expect(mockedStatus).toHaveBeenCalledWith(expectedStatusNumber);
         expect(mockedJson).toHaveBeenCalledWith(expectedError);
         expect(mockedGetError).toHaveBeenCalledWith(
           expectedStatusNumber,
