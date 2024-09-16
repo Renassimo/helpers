@@ -22,7 +22,7 @@ describe('AeroDataBoxService', () => {
     test('returns data', async () => {
       // Arange
       fetchMock.get(
-        `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all`,
+        `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`,
         responseGetData
       );
       // Act
@@ -32,7 +32,7 @@ describe('AeroDataBoxService', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all`
+        `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`
       );
       expect(fetchMock.lastOptions()).toEqual({
         headers: {
@@ -47,7 +47,7 @@ describe('AeroDataBoxService', () => {
       test('returns data', async () => {
         // Arange
         fetchMock.get(
-          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all`,
+          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`,
           { status: 204 }
         );
         // Act
@@ -57,7 +57,7 @@ describe('AeroDataBoxService', () => {
         // Assert
         expect(result).toEqual([]);
         expect(fetchMock.lastUrl()).toEqual(
-          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all`
+          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`
         );
         expect(fetchMock.lastOptions()).toEqual({
           headers: {
