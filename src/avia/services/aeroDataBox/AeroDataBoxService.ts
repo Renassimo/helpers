@@ -20,7 +20,7 @@ class AeroDataBoxService {
   ): Promise<AeroDataBoxApi.Aircraft[]> {
     // return [mockedAircrafts[0], mockedAircrafts[0]];
     const response = await fetch(
-      `${this.baseURL}/aircrafts/${searchBy}/${searchQuery}/all`,
+      `${this.baseURL}/aircrafts/${searchBy}/${searchQuery}/all?withImage=true`,
       {
         method: 'GET',
         headers: this.headers,
