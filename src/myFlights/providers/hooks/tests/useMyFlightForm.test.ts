@@ -3,9 +3,12 @@ import { act, renderHook } from '@testing-library/react';
 import useRetreiveData from '@/common/hooks/useRetreiveData';
 import { mockedMyFlight } from '@/myFlights/types/mocks';
 
+import { showTimePassed } from '@/common/utils/dayjs';
+
 import useMyFlightForm from '../subhooks/useMyFlightForm';
 
 jest.mock('@/common/hooks/useRetreiveData');
+jest.mock('@/common/utils/dayjs');
 
 describe('useMyFlightForm', () => {
   const loadedValues = {};
@@ -34,9 +37,14 @@ describe('useMyFlightForm', () => {
     loading: false,
   }));
 
+  const mockedPassedTime = ' N years!';
+
   beforeEach(() => {
     (useRetreiveData as unknown as jest.Mock).mockImplementation(
       mockedUseRetrieveData
+    );
+    (showTimePassed as unknown as jest.Mock).mockImplementation(
+      jest.fn(() => mockedPassedTime)
     );
   });
 
@@ -58,7 +66,47 @@ describe('useMyFlightForm', () => {
       )
     );
     // Assert
-    expect(result.current).toEqual(defaultState);
+    expect(result.current).toEqual({
+      ...defaultState,
+      state: { age: mockedPassedTime },
+    });
+    expect(showTimePassed).toBeCalledWith(undefined, undefined);
+  });
+
+  describe('when sets firstFlight and date', () => {
+    test('calculate age', async () => {
+      // Arange
+      const { result } = renderHook(() =>
+        useMyFlightForm(
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers
+        )
+      );
+      // Act
+      await act(async () => {
+        await result.current.setValue('date', 'dateValue');
+      });
+      await act(async () => {
+        await result.current.setValue('firstFlight', 'firstFlightValue');
+      });
+      // Assert
+      expect(result.current).toEqual({
+        ...defaultState,
+        state: {
+          age: mockedPassedTime,
+          date: 'dateValue',
+          firstFlight: 'firstFlightValue',
+        },
+      });
+      expect(showTimePassed).toBeCalledTimes(3);
+      expect(showTimePassed).nthCalledWith(1, undefined, undefined);
+      expect(showTimePassed).nthCalledWith(2, undefined, 'dateValue');
+      expect(showTimePassed).nthCalledWith(3, 'firstFlightValue', 'dateValue');
+    });
   });
 
   describe('when loaded values passed', () => {
@@ -95,7 +143,7 @@ describe('useMyFlightForm', () => {
       // Assert
       expect(result.current).toEqual({
         ...defaultState,
-        state: loadedValues,
+        state: { ...loadedValues, age: mockedPassedTime },
       });
     });
 
@@ -133,6 +181,7 @@ describe('useMyFlightForm', () => {
             data: {
               attributes: {
                 originName: 'loadedValues.originName',
+                age: mockedPassedTime,
                 origin: 'WAW',
                 title: 'WAW - ',
               },
@@ -170,7 +219,11 @@ describe('useMyFlightForm', () => {
         await result.current.openModal();
       });
       // Assert
-      expect(result.current).toEqual({ ...defaultState, isModalOpen: true });
+      expect(result.current).toEqual({
+        ...defaultState,
+        isModalOpen: true,
+        state: { age: mockedPassedTime },
+      });
     });
 
     describe('and closes modal', () => {
@@ -189,7 +242,11 @@ describe('useMyFlightForm', () => {
         await act(async () => {
           await result.current.openModal();
         });
-        expect(result.current).toEqual({ ...defaultState, isModalOpen: true });
+        expect(result.current).toEqual({
+          ...defaultState,
+          isModalOpen: true,
+          state: { age: mockedPassedTime },
+        });
         // Act
         await act(async () => {
           await result.current.closeModal();
@@ -226,7 +283,13 @@ describe('useMyFlightForm', () => {
         expect(mockedRetreive).toBeCalledWith('/api/myFlights', {
           method: 'POST',
           body: JSON.stringify({
-            data: { attributes: { origin: 'WAW', title: 'WAW - ' } },
+            data: {
+              attributes: {
+                age: mockedPassedTime,
+                origin: 'WAW',
+                title: 'WAW - ',
+              },
+            },
           }),
         });
         expect(updateMyFlight).toBeCalledWith(mockedRetreivedData);
@@ -258,7 +321,7 @@ describe('useMyFlightForm', () => {
           ...defaultState,
           isModalOpen: true,
           isEditing: true,
-          state: mockedMyFlight.attributes,
+          state: { ...mockedMyFlight.attributes, age: mockedPassedTime },
         });
       });
 
@@ -290,13 +353,18 @@ describe('useMyFlightForm', () => {
             `/api/myFlights/${mockedMyFlight.id}`,
             {
               method: 'PATCH',
-              body: JSON.stringify({ data: { attributes: { origin: 'WAW' } } }),
+              body: JSON.stringify({
+                data: { attributes: { age: mockedPassedTime, origin: 'WAW' } },
+              }),
             }
           );
           expect(updateMyFlight).toBeCalledWith(mockedRetreivedData);
           expect(updateOptions).toBeCalledWith();
           expect(updateMatchers).not.toBeCalled();
-          expect(result.current).toEqual(defaultState);
+          expect(result.current).toEqual({
+            ...defaultState,
+            state: { age: mockedPassedTime },
+          });
         });
       });
 
@@ -333,7 +401,10 @@ describe('useMyFlightForm', () => {
           expect(deleteMyFlight).toBeCalledWith(mockedMyFlight.id);
           expect(updateOptions).not.toBeCalled();
           expect(updateMatchers).not.toBeCalled();
-          expect(result.current).toEqual(defaultState);
+          expect(result.current).toEqual({
+            ...defaultState,
+            state: { age: mockedPassedTime },
+          });
         });
 
         describe('but does not confirms deletion', () => {
@@ -368,7 +439,7 @@ describe('useMyFlightForm', () => {
               ...defaultState,
               isModalOpen: true,
               isEditing: true,
-              state: mockedMyFlight.attributes,
+              state: { ...mockedMyFlight.attributes, age: mockedPassedTime },
             });
           });
         });

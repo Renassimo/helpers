@@ -25,8 +25,14 @@ export const showWhen = (dateString: string, withWeekDay = true) => {
   const date = new Date(dateString);
   return dayjs(date).format(`${withWeekDay ? 'ddd ' : ''}MMM D YYYY`);
 };
-export const showTimePassed = (dateString: string) =>
-  dayjs(dateString).toNow(true);
+export const showTimePassed = (
+  dateString?: string | null,
+  dateStringTo?: string | null
+) => {
+  if (!dateString) return '';
+  if (!dateStringTo) return dayjs(dateString).toNow(true);
+  return dayjs(dateString).to(dayjs(dateStringTo), true);
+};
 export const isValidDate = (date?: Dayjs): boolean => {
   return !!date?.isValid();
 };

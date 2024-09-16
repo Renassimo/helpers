@@ -151,10 +151,11 @@ describe('useLoadedValues', () => {
         const registration = chosenAircraft?.attributes.registration;
 
         const firstFlight = chosenAircraft?.attributes.firstFlightDate;
+        const date = chosenFlight?.attributes.date;
 
         const expectedResult = {
           title: null,
-          date: chosenFlight?.attributes.date,
+          date,
           airline: chosenAircraft?.attributes.airlineName,
           flightNumber: chosenFlight?.attributes.flightNumber,
           origin: chosenOrigin?.attributes.airportCode,
@@ -186,7 +187,7 @@ describe('useLoadedValues', () => {
         );
         // Assert
         expect(result.current.loadedValues).toEqual(expectedResult);
-        expect(showTimePassed).toBeCalledWith(firstFlight);
+        expect(showTimePassed).toBeCalledWith(firstFlight, date);
         expect(geoDistance).not.toBeCalled();
       });
     });
@@ -239,7 +240,7 @@ describe('useLoadedValues', () => {
         );
         // Assert
         expect(result.current.loadedValues).toEqual(expectedResult);
-        expect(showTimePassed).toBeCalledWith(firstFlight);
+        expect(showTimePassed).toBeCalledWith(firstFlight, null);
         expect(geoDistance).toBeCalledWith(originLocation, destinationLocation);
       });
     });
@@ -257,10 +258,11 @@ describe('useLoadedValues', () => {
           chosenAircraft?.attributes.rolloutDate ??
           chosenAircraft?.attributes.deliveryDate ??
           null;
+        const date = chosenFlight?.attributes.date;
 
         const expectedResult = {
           title: null,
-          date: chosenFlight?.attributes.date,
+          date,
           airline: chosenAircraft?.attributes.airlineName,
           flightNumber: chosenFlight?.attributes.flightNumber,
           origin: chosenFlight?.attributes.origin,
@@ -292,7 +294,7 @@ describe('useLoadedValues', () => {
         );
         // Assert
         expect(result.current.loadedValues).toEqual(expectedResult);
-        expect(showTimePassed).toBeCalledWith(firstFlight);
+        expect(showTimePassed).toBeCalledWith(firstFlight, date);
         expect(geoDistance).not.toBeCalled();
       });
     });
@@ -349,10 +351,11 @@ describe('useLoadedValues', () => {
         const registration = chosenAircraft?.attributes.registration;
 
         const firstFlight = chosenAircraft?.attributes.deliveryDate;
+        const date = chosenFlight?.attributes.date;
 
         const expectedResult = {
           title: null,
-          date: chosenFlight?.attributes.date,
+          date,
           airline: chosenAircraft?.attributes.airlineName,
           flightNumber: chosenFlight?.attributes.flightNumber,
           origin: chosenOrigin?.attributes.airportCode,
@@ -396,7 +399,7 @@ describe('useLoadedValues', () => {
         );
         // Assert
         expect(result.current.loadedValues).toEqual(expectedResult);
-        expect(showTimePassed).toBeCalledWith(firstFlight);
+        expect(showTimePassed).toBeCalledWith(firstFlight, date);
         expect(geoDistance).not.toBeCalled();
       });
     });

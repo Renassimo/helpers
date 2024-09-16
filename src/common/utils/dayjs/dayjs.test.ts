@@ -141,6 +141,17 @@ describe('DayJS', () => {
       // Assert
       expect(result).toEqual(expectedResult);
     });
+
+    describe('when both dates passe', () => {
+      test('returns formatted relative date', () => {
+        // Arrange
+        const expectedResult = '4 years';
+        // Act
+        const result = showTimePassed('2011-11-11', '2015-12-12');
+        // Assert
+        expect(result).toEqual(expectedResult);
+      });
+    });
   });
 
   describe('isValidDate', () => {
