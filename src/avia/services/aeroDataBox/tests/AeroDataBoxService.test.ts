@@ -11,6 +11,10 @@ describe('AeroDataBoxService', () => {
 
   const aeroDataBoxService = new AeroDataBoxService(mockedApiKey);
 
+  afterEach(() => {
+    fetchMock.reset();
+  });
+
   describe('retrieveAircrafts', () => {
     const mockedSearchBy = 'reg';
     const mockedSearchQuery = 'search-query';
@@ -36,6 +40,32 @@ describe('AeroDataBoxService', () => {
           'x-rapidapi-key': mockedApiKey,
         },
         method: 'GET',
+      });
+    });
+
+    describe('when fetch returns 204 status', () => {
+      test('returns data', async () => {
+        // Arange
+        fetchMock.get(
+          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all`,
+          { status: 204 }
+        );
+        // Act
+        const result = await aeroDataBoxService.retrieveAircrafts(
+          mockedSearchQuery
+        );
+        // Assert
+        expect(result).toEqual([]);
+        expect(fetchMock.lastUrl()).toEqual(
+          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all`
+        );
+        expect(fetchMock.lastOptions()).toEqual({
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': mockedApiKey,
+          },
+          method: 'GET',
+        });
       });
     });
   });
@@ -160,6 +190,32 @@ describe('AeroDataBoxService', () => {
           'x-rapidapi-key': mockedApiKey,
         },
         method: 'GET',
+      });
+    });
+
+    describe('when fetch returns 204 status', () => {
+      test('returns data', async () => {
+        // Arange
+        fetchMock.get(
+          `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`,
+          { status: 204 }
+        );
+        // Act
+        const result = await aeroDataBoxService.retreiveFlights(
+          mockedFlightNumber
+        );
+        // Assert
+        expect(result).toEqual([]);
+        expect(fetchMock.lastUrl()).toEqual(
+          `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`
+        );
+        expect(fetchMock.lastOptions()).toEqual({
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': mockedApiKey,
+          },
+          method: 'GET',
+        });
       });
     });
 

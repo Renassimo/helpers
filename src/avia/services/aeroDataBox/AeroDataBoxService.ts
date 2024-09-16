@@ -26,6 +26,7 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
+    if (response.status === 204) return [];
     return await response.json();
   }
 
@@ -88,6 +89,7 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
+    if (response.status === 204) return [];
     return await response.json();
   }
 

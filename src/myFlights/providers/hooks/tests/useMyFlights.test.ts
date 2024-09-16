@@ -9,6 +9,7 @@ import {
 } from '@/myFlights/types/mocks';
 
 import useMyFlights from '../subhooks/useMyFlights';
+import { MyFlightData } from '@/myFlights/types';
 
 describe('useMyFlights', () => {
   const expectedDefaultState = {
@@ -63,6 +64,40 @@ describe('useMyFlights', () => {
       });
       // Assert
       expect(result.current).toEqual(expectedState);
+    });
+
+    describe('when flight is new', () => {
+      test('returns updated state', async () => {
+        // Arange
+        const newFlight = {
+          id: 'new-flight',
+          attributes: { origin: 'ORIGIN' },
+        };
+        const newFlightWithNumber = {
+          ...newFlight,
+          attributes: { ...newFlight.attributes, number: 4 },
+        };
+        const expectedState = {
+          ...expectedDefaultState,
+          myFlights: {
+            ...expectedDefaultState.myFlights,
+            [newFlight.id]: newFlightWithNumber,
+          },
+          myFlightsList: [
+            mockedMyFlight1,
+            mockedMyFlight2,
+            mockedMyFlight3,
+            newFlightWithNumber,
+          ],
+        };
+        const { result } = renderHook(() => useMyFlights(mockedMyFlightsList));
+        // Act
+        await act(async () => {
+          await result.current.updateMyFlight(newFlight as MyFlightData);
+        });
+        // Assert
+        expect(result.current).toEqual(expectedState);
+      });
     });
   });
 

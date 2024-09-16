@@ -33,6 +33,8 @@ const getFormFieldsSchema = (
     {
       name: 'altAirline',
       label: 'Alt airline',
+      matchers: matchers?.airlines,
+      options: airlines,
     },
     {
       name: 'origin',

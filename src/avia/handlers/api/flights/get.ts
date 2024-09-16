@@ -22,11 +22,13 @@ const handler = async (
         query.date as string
       );
 
-      if (!data.length) throw data;
+      if (!Array.isArray(data)) throw data;
+      if (data.length === 0) throw { status: 404, message: 'Not found.' };
 
       res.status(200).json({ data: deserializeFlights(data) });
     } catch (error: any) {
-      res.status(500).json(getError(500, error?.message));
+      const status = error.status ?? 500;
+      res.status(status).json(getError(status, error?.message));
     }
   } else {
     res.status(405).json(getError(405));
