@@ -95,6 +95,32 @@ describe('AeroDataBoxService', () => {
         method: 'GET',
       });
     });
+
+    describe('when receives 204 status', () => {
+      test('returns data', async () => {
+        // Arange
+        fetchMock.get(
+          `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`,
+          { status: 204 }
+        );
+        // Act
+        const result = await aeroDataBoxService.retreiveAirportByCode(
+          mockedCode
+        );
+        // Assert
+        expect(result).toEqual(null);
+        expect(fetchMock.lastUrl()).toEqual(
+          `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`
+        );
+        expect(fetchMock.lastOptions()).toEqual({
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': mockedApiKey,
+          },
+          method: 'GET',
+        });
+      });
+    });
   });
 
   describe('retreiveAirportsByText', () => {
@@ -125,6 +151,32 @@ describe('AeroDataBoxService', () => {
           'x-rapidapi-key': mockedApiKey,
         },
         method: 'GET',
+      });
+    });
+
+    describe('when receives 204 status', () => {
+      test('returns data', async () => {
+        // Arange
+        fetchMock.get(
+          `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`,
+          { status: 204 }
+        );
+        // Act
+        const result = await aeroDataBoxService.retreiveAirportsByText(
+          mockedSearchQuery
+        );
+        // Assert
+        expect(result).toEqual([]);
+        expect(fetchMock.lastUrl()).toEqual(
+          `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`
+        );
+        expect(fetchMock.lastOptions()).toEqual({
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': mockedApiKey,
+          },
+          method: 'GET',
+        });
       });
     });
   });
@@ -159,6 +211,33 @@ describe('AeroDataBoxService', () => {
           'x-rapidapi-key': mockedApiKey,
         },
         method: 'GET',
+      });
+    });
+
+    describe('when receives 204 status', () => {
+      test('returns data', async () => {
+        // Arange
+        fetchMock.get(
+          `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`,
+          { status: 204 }
+        );
+        // Act
+        const result = await aeroDataBoxService.retreiveAirportsByLocation(
+          mockedLat,
+          mockedLon
+        );
+        // Assert
+        expect(result).toEqual([]);
+        expect(fetchMock.lastUrl()).toEqual(
+          `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`
+        );
+        expect(fetchMock.lastOptions()).toEqual({
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': mockedApiKey,
+          },
+          method: 'GET',
+        });
       });
     });
   });

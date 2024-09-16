@@ -40,6 +40,7 @@ const handler = async (
           code,
           'iata'
         );
+        if (!result) throw { status: 404, message: 'Not found.' };
         if (result.message) throw result;
         data = [result];
       } else if (byIcaoCode) {
@@ -47,6 +48,7 @@ const handler = async (
           code,
           'icao'
         );
+        if (!result) throw { status: 404, message: 'Not found.' };
         if (result.message) throw result;
         data = [result];
       } else if (byLocation) {

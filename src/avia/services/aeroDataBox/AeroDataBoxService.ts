@@ -33,7 +33,7 @@ class AeroDataBoxService {
   async retreiveAirportByCode(
     code: string,
     searchBy: 'iata' | 'icao' = 'iata'
-  ): Promise<AeroDataBoxApi.AirportExact> {
+  ): Promise<AeroDataBoxApi.AirportExact | null> {
     // return mockedAirports[1] as AeroDataBoxApi.AirportExact;
     const response = await fetch(
       `${this.baseURL}/airports/${searchBy}/${code}?withTime=true`,
@@ -42,6 +42,7 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
+    if (response.status === 204) return null;
     return await response.json();
   }
 
@@ -56,6 +57,7 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
+    if (response.status === 204) return [];
     const { items } = await response.json();
     return items;
   }
@@ -72,6 +74,7 @@ class AeroDataBoxService {
         headers: this.headers,
       }
     );
+    if (response.status === 204) return [];
     const { items } = await response.json();
     return items;
   }
