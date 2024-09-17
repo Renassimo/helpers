@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import EditInNewIcon from '@mui/icons-material/Edit';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 
 import useThemeBreakpoints from '@/common/hooks/useThemeBreakpoints';
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
@@ -33,6 +34,14 @@ const MyFlightCardActions = ({ data }: { data: MyFlightData }) => {
       <Grid item>
         <IconButton aria-label="Edit" onClick={() => openModal(data)}>
           {<EditInNewIcon />}
+        </IconButton>
+      </Grid>
+      <Grid item>
+        <IconButton
+          aria-label="Add Return Flight"
+          onClick={() => openModal(data, true)}
+        >
+          {<SwapHorizIcon />}
         </IconButton>
       </Grid>
       <Grid item>

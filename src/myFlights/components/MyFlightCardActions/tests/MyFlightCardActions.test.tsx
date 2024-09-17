@@ -100,4 +100,17 @@ describe('MyFlightCardActions', () => {
       expect(mockedOpenModal).toBeCalledWith(mockedMyFlight);
     });
   });
+
+  describe('when clicks to Add Return Flight', () => {
+    test('call openModal', async () => {
+      // Arange
+      const { getByLabelText } = renderWithTheme(
+        <FlightCardActions data={mockedMyFlight} />
+      );
+      // Act
+      await userEvent.click(getByLabelText('Add Return Flight'));
+      // Assert
+      expect(mockedOpenModal).toBeCalledWith(mockedMyFlight, true);
+    });
+  });
 });

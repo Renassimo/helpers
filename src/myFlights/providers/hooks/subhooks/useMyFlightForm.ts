@@ -25,7 +25,8 @@ const useMyFlightForm = (
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [editingData, setEditingData] = useState<MyFlightData | null>(null);
-  const isEditing = !!editingData;
+  const [isReturnFlight, setIsReturnFlight] = useState(false);
+  const isEditing = !!editingData && !isReturnFlight;
 
   const [state, setState] = useState<Partial<MyFlightAttributes>>(
     editingData?.attributes ?? {}
@@ -35,15 +36,34 @@ const useMyFlightForm = (
     setState((current) => ({ ...current, [key]: value }));
   }, []);
 
-  const openModal = useCallback((data?: MyFlightData | null) => {
-    if (data) setEditingData(data);
-    setIsModalOpen(true);
-  }, []);
+  const openModal = useCallback(
+    (data?: MyFlightData | null, isReturn = false) => {
+      if (data) {
+        if (isReturn) {
+          setIsReturnFlight(true);
+          setEditingData({
+            attributes: {
+              ...data.attributes,
+              destination: data.attributes.origin,
+              destinationName: data.attributes.originName,
+              origin: data.attributes.destination,
+              originName: data.attributes.destinationName,
+            },
+          } as MyFlightData);
+        } else {
+          setEditingData(data);
+        }
+      }
+      setIsModalOpen(true);
+    },
+    []
+  );
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
     setEditingData(null);
     setState({});
+    setIsReturnFlight(false);
     cleanUp();
   }, []);
 
@@ -88,39 +108,57 @@ const useMyFlightForm = (
     };
   }, [getNewMatcher]);
 
+  const createMyFlight = useCallback(async () => {
+    return await retreive('/api/myFlights', {
+      method: 'POST',
+      body: JSON.stringify({
+        data: {
+          attributes: {
+            ...state,
+            title:
+              state.title ??
+              `${state.origin ?? ''} - ${state.destination ?? ''}`,
+          },
+        },
+      }),
+    });
+  }, [state]);
+
+  const patchMyFlight = useCallback(
+    async (editingData: MyFlightData) => {
+      let updates = '';
+      const attributes = Object.entries(state).reduce(
+        (result, [key, value]) => {
+          // @ts-ignore
+          if (editingData.attributes[key] === value) return result;
+          // @ts-ignore
+          updates = `${updates}\n${key}: ${editingData.attributes[key]} -> ${value}`;
+          return {
+            ...result,
+            [key]: value,
+          };
+        },
+        {}
+      );
+
+      if (!confirm(`Update?\n${updates}`)) return;
+
+      return await retreive(`/api/myFlights/${editingData.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          data: {
+            attributes,
+          },
+        }),
+      });
+    },
+    [state]
+  );
+
   const onSubmit = useCallback(async () => {
     const updatedData = isEditing
-      ? await retreive(`/api/myFlights/${editingData.id}`, {
-          method: 'PATCH',
-          body: JSON.stringify({
-            data: {
-              attributes: Object.entries(state).reduce(
-                (result, [key, value]) => {
-                  // @ts-ignore
-                  if (editingData.attributes[key] === value) return result;
-                  return {
-                    ...result,
-                    [key]: value,
-                  };
-                },
-                {}
-              ),
-            },
-          }),
-        })
-      : await retreive('/api/myFlights', {
-          method: 'POST',
-          body: JSON.stringify({
-            data: {
-              attributes: {
-                ...state,
-                title:
-                  state.title ??
-                  `${state.origin ?? ''} - ${state.destination ?? ''}`,
-              },
-            },
-          }),
-        });
+      ? await patchMyFlight(editingData)
+      : await createMyFlight();
 
     if (updatedData) {
       updateMyFlight(updatedData.data);
@@ -134,7 +172,7 @@ const useMyFlightForm = (
 
       await Promise.all(promises);
     }
-  }, [isEditing, editingData, state, getNewMatchers]);
+  }, [isEditing, editingData, patchMyFlight, createMyFlight, getNewMatchers]);
 
   const onDelete = useCallback(async () => {
     if (!isEditing) return;
@@ -150,23 +188,55 @@ const useMyFlightForm = (
   useEffect(() => {
     setState((state) => ({
       ...state,
-      date: loadedValues.date,
-      flightNumber: loadedValues.flightNumber,
+      originName: loadedValues.originName,
+      distance: loadedValues.distance,
+    }));
+  }, [loadedValues.origin]);
+
+  useEffect(() => {
+    setState((state) => ({
+      ...state,
+      destinationName: loadedValues.destinationName,
+      distance: loadedValues.distance,
+    }));
+  }, [loadedValues.destination]);
+
+  useEffect(() => {
+    setState((state) => {
+      const aircraftExtraData =
+        state.registration === loadedValues.registration
+          ? {}
+          : {
+              registration: loadedValues.registration,
+              cn: null,
+              firstFlight: null,
+              planespottersUrl: loadedValues.planespottersUrl,
+              age: null,
+              photoUrl: loadedValues.photoUrl,
+            };
+      return {
+        ...state,
+        date: loadedValues.date,
+        flightNumber: loadedValues.flightNumber,
+        originName: loadedValues.originName,
+        destinationName: loadedValues.destinationName,
+        distance: loadedValues.distance,
+        ...aircraftExtraData,
+      };
+    });
+  }, [loadedValues.flightNumber]);
+
+  useEffect(() => {
+    setState((state) => ({
+      ...state,
       registration: loadedValues.registration,
       cn: loadedValues.cn,
       firstFlight: loadedValues.firstFlight,
-      airplaneName: loadedValues.airplaneName,
-      originName: loadedValues.originName,
-      destinationName: loadedValues.destinationName,
-      seatNumber: loadedValues.seatNumber,
-      altAirline: loadedValues.altAirline,
-      altFlightNumber: loadedValues.altFlightNumber,
       planespottersUrl: loadedValues.planespottersUrl,
-      distance: loadedValues.distance,
       age: loadedValues.age,
       photoUrl: loadedValues.photoUrl,
     }));
-  }, [loadedValues]);
+  }, [loadedValues.registration]);
 
   useEffect(() => {
     if (editingData) setState(editingData.attributes);

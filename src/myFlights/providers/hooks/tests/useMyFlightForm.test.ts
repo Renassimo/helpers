@@ -37,7 +37,7 @@ describe('useMyFlightForm', () => {
     loading: false,
   }));
 
-  const mockedPassedTime = ' N years!';
+  const mockedPassedTime = 'N years!';
 
   beforeEach(() => {
     (useRetreiveData as unknown as jest.Mock).mockImplementation(
@@ -110,25 +110,22 @@ describe('useMyFlightForm', () => {
   });
 
   describe('when loaded values passed', () => {
+    const loadedValues = {
+      date: 'loadedValues.date',
+      flightNumber: 'loadedValues.flightNumber',
+      registration: 'loadedValues.registration',
+      cn: 'loadedValues.cn',
+      firstFlight: 'loadedValues.firstFlight',
+      originName: 'loadedValues.originName',
+      destinationName: 'loadedValues.destinationName',
+      planespottersUrl: 'loadedValues.planespottersUrl',
+      distance: 900,
+      age: 'loadedValues.age',
+      photoUrl: 'loadedValues.photoUrl',
+    };
+
     test('returns state', () => {
       // Arange
-      const loadedValues = {
-        date: 'loadedValues.date',
-        flightNumber: 'loadedValues.flightNumber',
-        registration: 'loadedValues.registration',
-        cn: 'loadedValues.cn',
-        firstFlight: 'loadedValues.firstFlight',
-        airplaneName: 'loadedValues.airplaneName',
-        originName: 'loadedValues.originName',
-        destinationName: 'loadedValues.destinationName',
-        seatNumber: 'loadedValues.seatNumber',
-        altAirline: 'loadedValues.altAirline',
-        altFlightNumber: 'loadedValues.altFlightNumber',
-        planespottersUrl: 'loadedValues.planespottersUrl',
-        distance: 900,
-        age: 'loadedValues.age',
-        photoUrl: 'loadedValues.photoUrl',
-      };
       // Act
       const { result } = renderHook(() =>
         useMyFlightForm(
@@ -144,6 +141,322 @@ describe('useMyFlightForm', () => {
       expect(result.current).toEqual({
         ...defaultState,
         state: { ...loadedValues, age: mockedPassedTime },
+      });
+    });
+
+    describe('and destination loaded value changed', () => {
+      test('returns state', () => {
+        // Arange
+        const newLoadedValues = {
+          origin: 'loadedValues.origin2',
+
+          flightNumber: 'loadedValues.flightNumber',
+          registration: 'loadedValues.registration',
+
+          date: 'loadedValues.date2',
+          cn: 'loadedValues.cn2',
+          firstFlight: 'loadedValues.firstFlight2',
+          originName: 'loadedValues.originName2',
+          destinationName: 'loadedValues.destinationName2',
+          planespottersUrl: 'loadedValues.planespottersUrl2',
+          distance: 1000,
+          age: 'loadedValues.age2',
+          photoUrl: 'loadedValues.photoUrl2',
+        };
+        const initialProps = {
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers,
+        };
+        const { result, rerender } = renderHook(
+          ({
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers,
+          }) =>
+            useMyFlightForm(
+              loadedValues,
+              cleanUp,
+              updateMyFlight,
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
+            ),
+          { initialProps }
+        );
+        // Act
+        rerender({ ...initialProps, loadedValues: newLoadedValues });
+        // Assert
+        expect(result.current).toEqual({
+          ...defaultState,
+          state: {
+            ...loadedValues,
+            age: mockedPassedTime,
+            originName: newLoadedValues.originName,
+            distance: newLoadedValues.distance,
+          },
+        });
+      });
+    });
+
+    describe('and origin loaded value changed', () => {
+      test('returns state', () => {
+        // Arange
+        const newLoadedValues = {
+          destination: 'loadedValues.destination2',
+
+          flightNumber: 'loadedValues.flightNumber',
+          registration: 'loadedValues.registration',
+
+          date: 'loadedValues.date2',
+          cn: 'loadedValues.cn2',
+          firstFlight: 'loadedValues.firstFlight2',
+          originName: 'loadedValues.originName2',
+          destinationName: 'loadedValues.destinationName2',
+          planespottersUrl: 'loadedValues.planespottersUrl2',
+          distance: 1000,
+          age: 'loadedValues.age2',
+          photoUrl: 'loadedValues.photoUrl2',
+        };
+        const initialProps = {
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers,
+        };
+        const { result, rerender } = renderHook(
+          ({
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers,
+          }) =>
+            useMyFlightForm(
+              loadedValues,
+              cleanUp,
+              updateMyFlight,
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
+            ),
+          { initialProps }
+        );
+        // Act
+        rerender({ ...initialProps, loadedValues: newLoadedValues });
+        // Assert
+        expect(result.current).toEqual({
+          ...defaultState,
+          state: {
+            ...loadedValues,
+            age: mockedPassedTime,
+            destinationName: newLoadedValues.destinationName,
+            distance: newLoadedValues.distance,
+          },
+        });
+      });
+    });
+
+    describe('and flightNumber loaded value changed', () => {
+      test('returns state', () => {
+        // Arange
+        const newLoadedValues = {
+          flightNumber: 'loadedValues.flightNumber2',
+
+          registration: 'loadedValues.registration',
+
+          date: 'loadedValues.date2',
+          cn: 'loadedValues.cn2',
+          firstFlight: 'loadedValues.firstFlight2',
+          originName: 'loadedValues.originName2',
+          destinationName: 'loadedValues.destinationName2',
+          planespottersUrl: 'loadedValues.planespottersUrl2',
+          distance: 1000,
+          age: 'loadedValues.age2',
+          photoUrl: 'loadedValues.photoUrl2',
+        };
+        const initialProps = {
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers,
+        };
+        const { result, rerender } = renderHook(
+          ({
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers,
+          }) =>
+            useMyFlightForm(
+              loadedValues,
+              cleanUp,
+              updateMyFlight,
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
+            ),
+          { initialProps }
+        );
+        // Act
+        rerender({ ...initialProps, loadedValues: newLoadedValues });
+        // Assert
+        expect(result.current).toEqual({
+          ...defaultState,
+          state: {
+            ...loadedValues,
+            age: mockedPassedTime,
+            date: newLoadedValues.date,
+            destinationName: newLoadedValues.destinationName,
+            originName: newLoadedValues.originName,
+            distance: newLoadedValues.distance,
+            flightNumber: newLoadedValues.flightNumber,
+          },
+        });
+      });
+    });
+
+    describe('and registration loaded value changed', () => {
+      test('returns state', () => {
+        // Arange
+        const newLoadedValues = {
+          registration: 'loadedValues.registration2',
+
+          flightNumber: 'loadedValues.flightNumber',
+
+          date: 'loadedValues.date2',
+          cn: 'loadedValues.cn2',
+          firstFlight: 'loadedValues.firstFlight2',
+          originName: 'loadedValues.originName2',
+          destinationName: 'loadedValues.destinationName2',
+          planespottersUrl: 'loadedValues.planespottersUrl2',
+          distance: 1000,
+          age: 'loadedValues.age2',
+          photoUrl: 'loadedValues.photoUrl2',
+        };
+        const initialProps = {
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers,
+        };
+        const { result, rerender } = renderHook(
+          ({
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers,
+          }) =>
+            useMyFlightForm(
+              loadedValues,
+              cleanUp,
+              updateMyFlight,
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
+            ),
+          { initialProps }
+        );
+        // Act
+        rerender({ ...initialProps, loadedValues: newLoadedValues });
+        // Assert
+        expect(result.current).toEqual({
+          ...defaultState,
+          state: {
+            ...loadedValues,
+            age: mockedPassedTime,
+            registration: newLoadedValues.registration,
+            cn: newLoadedValues.cn,
+            firstFlight: newLoadedValues.firstFlight,
+            planespottersUrl: newLoadedValues.planespottersUrl,
+            photoUrl: newLoadedValues.photoUrl,
+          },
+        });
+      });
+    });
+
+    describe('and both flightNumber and registration loaded values changed', () => {
+      test('returns state', () => {
+        // Arange
+        const newLoadedValues = {
+          flightNumber: 'loadedValues.flightNumber2',
+          registration: 'loadedValues.registration2',
+
+          date: 'loadedValues.date2',
+          cn: 'loadedValues.cn2',
+          firstFlight: 'loadedValues.firstFlight2',
+          originName: 'loadedValues.originName2',
+          destinationName: 'loadedValues.destinationName2',
+          planespottersUrl: 'loadedValues.planespottersUrl2',
+          distance: 1000,
+          age: 'loadedValues.age2',
+          photoUrl: 'loadedValues.photoUrl2',
+        };
+        const initialProps = {
+          loadedValues,
+          cleanUp,
+          updateMyFlight,
+          deleteMyFlight,
+          updateOptions,
+          updateMatchers,
+        };
+        const { result, rerender } = renderHook(
+          ({
+            loadedValues,
+            cleanUp,
+            updateMyFlight,
+            deleteMyFlight,
+            updateOptions,
+            updateMatchers,
+          }) =>
+            useMyFlightForm(
+              loadedValues,
+              cleanUp,
+              updateMyFlight,
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
+            ),
+          { initialProps }
+        );
+        // Act
+        rerender({ ...initialProps, loadedValues: newLoadedValues });
+        // Assert
+        expect(result.current).toEqual({
+          ...defaultState,
+          state: {
+            ...loadedValues,
+            age: mockedPassedTime,
+            registration: newLoadedValues.registration,
+            cn: newLoadedValues.cn,
+            firstFlight: newLoadedValues.firstFlight,
+            planespottersUrl: newLoadedValues.planespottersUrl,
+            photoUrl: newLoadedValues.photoUrl,
+
+            date: newLoadedValues.date,
+            destinationName: newLoadedValues.destinationName,
+            originName: newLoadedValues.originName,
+            distance: newLoadedValues.distance,
+            flightNumber: newLoadedValues.flightNumber,
+          },
+        });
       });
     });
 
@@ -328,6 +641,9 @@ describe('useMyFlightForm', () => {
       describe('and then calls onSubmit', () => {
         test('calls retrieveData, callbacks and updates state', async () => {
           // Arange
+          const confirmSpy = jest.spyOn(window, 'confirm');
+          confirmSpy.mockImplementationOnce(jest.fn(() => true));
+
           const { result } = renderHook(() =>
             useMyFlightForm(
               loadedValues,
@@ -361,9 +677,152 @@ describe('useMyFlightForm', () => {
           expect(updateMyFlight).toBeCalledWith(mockedRetreivedData);
           expect(updateOptions).toBeCalledWith();
           expect(updateMatchers).not.toBeCalled();
+          expect(confirmSpy).toBeCalledWith(expect.stringContaining(`Update?`));
+          expect(confirmSpy).toBeCalledWith(
+            expect.stringContaining(`age: age1 -> N years!`)
+          );
+          expect(confirmSpy).toBeCalledWith(
+            expect.stringContaining(`origin: origin1 -> WAW`)
+          );
           expect(result.current).toEqual({
             ...defaultState,
             state: { age: mockedPassedTime },
+          });
+        });
+
+        describe('but does not confirms deletion', () => {
+          test('does not call retrieveData, callbacks and updates state', async () => {
+            // Arange
+            const confirmSpy = jest.spyOn(window, 'confirm');
+            confirmSpy.mockImplementationOnce(jest.fn(() => false));
+
+            const { result } = renderHook(() =>
+              useMyFlightForm(
+                loadedValues,
+                cleanUp,
+                updateMyFlight,
+                deleteMyFlight,
+                updateOptions,
+                updateMatchers
+              )
+            );
+            await act(async () => {
+              await result.current.openModal(mockedMyFlight);
+            });
+            await act(async () => {
+              await result.current.setValue('origin', 'WAW');
+            });
+            // Act
+            await act(async () => {
+              await result.current.onSubmit();
+            });
+            // Assert
+            expect(mockedRetreive).not.toBeCalled();
+            expect(updateMyFlight).not.toBeCalled();
+            expect(updateOptions).not.toBeCalled();
+            expect(updateMatchers).not.toBeCalled();
+            expect(confirmSpy).toBeCalledWith(
+              expect.stringContaining(`Update?`)
+            );
+            expect(confirmSpy).toBeCalledWith(
+              expect.stringContaining(`age: age1 -> N years!`)
+            );
+            expect(confirmSpy).toBeCalledWith(
+              expect.stringContaining(`origin: origin1 -> WAW`)
+            );
+            expect(result.current).toEqual({
+              ...defaultState,
+              isModalOpen: true,
+              isEditing: true,
+              state: {
+                ...mockedMyFlight.attributes,
+                age: mockedPassedTime,
+                origin: 'WAW',
+              },
+            });
+          });
+        });
+      });
+
+      describe('when opens with flight return', () => {
+        test('update state', async () => {
+          // Arange
+          const { result } = renderHook(() =>
+            useMyFlightForm(
+              loadedValues,
+              cleanUp,
+              updateMyFlight,
+              deleteMyFlight,
+              updateOptions,
+              updateMatchers
+            )
+          );
+          // Act
+          await act(async () => {
+            await result.current.openModal(mockedMyFlight, true);
+          });
+          // Assert
+          expect(result.current).toEqual({
+            ...defaultState,
+            isModalOpen: true,
+            isEditing: false,
+            state: {
+              ...mockedMyFlight.attributes,
+              age: mockedPassedTime,
+              destination: mockedMyFlight.attributes.origin,
+              origin: mockedMyFlight.attributes.destination,
+              destinationName: mockedMyFlight.attributes.originName,
+              originName: mockedMyFlight.attributes.destinationName,
+            },
+          });
+        });
+
+        describe('and then calls onSubmit', () => {
+          test('calls retrieveData, callbacks and updates state', async () => {
+            // Arange
+            const { result } = renderHook(() =>
+              useMyFlightForm(
+                loadedValues,
+                cleanUp,
+                updateMyFlight,
+                deleteMyFlight,
+                updateOptions,
+                updateMatchers
+              )
+            );
+            await act(async () => {
+              await result.current.openModal(mockedMyFlight, true);
+            });
+            await act(async () => {
+              await result.current.setValue('origin', 'WAW');
+            });
+            // Act
+            await act(async () => {
+              await result.current.onSubmit();
+            });
+            // Assert
+            expect(mockedRetreive).toBeCalledWith(`/api/myFlights`, {
+              method: 'POST',
+              body: JSON.stringify({
+                data: {
+                  attributes: {
+                    ...mockedMyFlight.attributes,
+                    age: mockedPassedTime,
+                    destination: mockedMyFlight.attributes.origin,
+                    origin: 'WAW',
+                    destinationName: mockedMyFlight.attributes.originName,
+                    originName: mockedMyFlight.attributes.destinationName,
+                  },
+                },
+              }),
+            });
+            expect(updateMyFlight).toBeCalledWith(mockedRetreivedData);
+            expect(updateOptions).toBeCalledWith();
+            expect(updateMatchers).not.toBeCalled();
+            expect(result.current).toEqual({
+              ...defaultState,
+              state: { age: mockedPassedTime },
+            });
           });
         });
       });
@@ -372,7 +831,7 @@ describe('useMyFlightForm', () => {
         test('calls retrieveData, deleteMyFlight and updates state', async () => {
           // Arange
           const confirmSpy = jest.spyOn(window, 'confirm');
-          confirmSpy.mockImplementation(jest.fn(() => true));
+          confirmSpy.mockImplementationOnce(jest.fn(() => true));
 
           const { result } = renderHook(() =>
             useMyFlightForm(
@@ -401,6 +860,9 @@ describe('useMyFlightForm', () => {
           expect(deleteMyFlight).toBeCalledWith(mockedMyFlight.id);
           expect(updateOptions).not.toBeCalled();
           expect(updateMatchers).not.toBeCalled();
+          expect(confirmSpy).toBeCalledWith(
+            'Are you sure to delete this flight?'
+          );
           expect(result.current).toEqual({
             ...defaultState,
             state: { age: mockedPassedTime },
@@ -411,7 +873,7 @@ describe('useMyFlightForm', () => {
           test('does not call retrieveData, deleteMyFlight and updates state', async () => {
             // Arange
             const confirmSpy = jest.spyOn(window, 'confirm');
-            confirmSpy.mockImplementation(jest.fn(() => false));
+            confirmSpy.mockImplementationOnce(jest.fn(() => false));
 
             const { result } = renderHook(() =>
               useMyFlightForm(
@@ -435,6 +897,9 @@ describe('useMyFlightForm', () => {
             expect(deleteMyFlight).not.toBeCalled();
             expect(updateOptions).not.toBeCalled();
             expect(updateMatchers).not.toBeCalled();
+            expect(confirmSpy).toBeCalledWith(
+              'Are you sure to delete this flight?'
+            );
             expect(result.current).toEqual({
               ...defaultState,
               isModalOpen: true,
