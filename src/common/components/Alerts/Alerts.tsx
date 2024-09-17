@@ -4,12 +4,12 @@ import { Alert } from '@/common/types/alerts';
 
 const AlertsContainer = styled.div`
   position: absolute;
+  z-index: 2000;
   top: 7vh;
   right: 2vw;
   display: grid;
   grid-gap: 16px;
   width: 300px;
-  z-index: 2;
 `;
 
 const Alerts = ({
