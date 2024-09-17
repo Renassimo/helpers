@@ -4,7 +4,7 @@ exports[`Alerts snapshot renders successfully 1`] = `
 <body>
   <div>
     <div
-      class="css-7b9tes"
+      class="css-10p3zbo"
     >
       <div
         class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardError MuiAlert-standard css-1hdyuqk-MuiPaper-root-MuiAlert-root"

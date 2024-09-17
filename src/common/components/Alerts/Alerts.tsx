@@ -4,6 +4,7 @@ import { Alert } from '@/common/types/alerts';
 
 const AlertsContainer = styled.div`
   position: absolute;
+  z-index: 2000;
   top: 7vh;
   right: 2vw;
   display: grid;
