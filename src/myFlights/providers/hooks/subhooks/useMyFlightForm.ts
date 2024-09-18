@@ -49,6 +49,7 @@ const useMyFlightForm = (
               destinationName: data.attributes.originName,
               origin: data.attributes.destination,
               originName: data.attributes.destinationName,
+              number: null,
             },
           } as MyFlightData);
         } else {

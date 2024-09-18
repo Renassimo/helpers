@@ -773,6 +773,7 @@ describe('useMyFlightForm', () => {
               origin: mockedMyFlight.attributes.destination,
               destinationName: mockedMyFlight.attributes.originName,
               originName: mockedMyFlight.attributes.destinationName,
+              number: null,
             },
           });
         });
@@ -810,6 +811,7 @@ describe('useMyFlightForm', () => {
                     age: mockedPassedTime,
                     destination: mockedMyFlight.attributes.origin,
                     title: `WAW - ${mockedMyFlight.attributes.origin}`,
+                    number: null,
                     origin: 'WAW',
                     destinationName: mockedMyFlight.attributes.originName,
                     originName: mockedMyFlight.attributes.destinationName,
