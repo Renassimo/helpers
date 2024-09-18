@@ -73,21 +73,17 @@ describe('useMyFlights', () => {
           id: 'new-flight',
           attributes: { origin: 'ORIGIN' },
         };
-        const newFlightWithNumber = {
-          ...newFlight,
-          attributes: { ...newFlight.attributes, number: 4 },
-        };
         const expectedState = {
           ...expectedDefaultState,
           myFlights: {
             ...expectedDefaultState.myFlights,
-            [newFlight.id]: newFlightWithNumber,
+            [newFlight.id]: newFlight,
           },
           myFlightsList: [
             mockedMyFlight1,
             mockedMyFlight2,
             mockedMyFlight3,
-            newFlightWithNumber,
+            newFlight,
           ],
         };
         const { result } = renderHook(() => useMyFlights(mockedMyFlightsList));

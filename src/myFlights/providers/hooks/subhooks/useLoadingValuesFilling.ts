@@ -58,7 +58,7 @@ const useLoadingValuesFilling = (
       age: loadedValues.age,
       photoUrl: loadedValues.photoUrl,
     }));
-  }, [loadedValues.registration]);
+  }, [loadedValues.cn]);
 };
 
 export default useLoadingValuesFilling;

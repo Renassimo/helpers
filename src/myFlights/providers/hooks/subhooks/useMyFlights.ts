@@ -23,15 +23,7 @@ const useMyFlights = (
     (flight: MyFlightData) =>
       setMyFlights((current) => ({
         ...current,
-        [flight.id]: {
-          ...flight,
-          attributes: {
-            ...flight.attributes,
-            number:
-              current[flight.id]?.attributes?.number ||
-              myFlightsList.length + 1,
-          },
-        },
+        [flight.id]: flight,
       })),
     [myFlightsList]
   );

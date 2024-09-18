@@ -1,5 +1,7 @@
 import NotionService from '@/common/services/notion';
 
+import getMyLastFlight from '@/myFlights/handlers/myFlights/getMyLastFlight';
+
 import {
   deserializeMyFlights,
   serializeMyFlight,
@@ -11,7 +13,19 @@ const createMyFlight = async (
   requestBody: string
 ) => {
   const body = JSON.parse(requestBody);
-  const serializedData = serializeMyFlight(body.data);
+  let { number } = body.data.attributes;
+
+  if (!number) {
+    const lastFlightNumber = (await getMyLastFlight(notionService, dataBaseID))
+      ?.attributes.number;
+
+    if (lastFlightNumber) number = lastFlightNumber + 1;
+  }
+
+  const serializedData = serializeMyFlight({
+    ...body.data,
+    attributes: { ...body.data.attributes, number },
+  });
 
   const { ok, data } = await notionService.createPage(
     dataBaseID,

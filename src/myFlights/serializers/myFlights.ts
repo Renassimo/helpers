@@ -7,7 +7,7 @@ import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSe
 export const deserializeMyFlights = (
   results: NotionResult[]
 ): MyFlightData[] => {
-  return results.map((result: NotionResult, index, arr) => {
+  return results.map((result: NotionResult) => {
     const deserializer = new NotionPropertiesDeserializer(result);
     const id = deserializer.id;
 
@@ -34,9 +34,9 @@ export const deserializeMyFlights = (
         planespottersUrl: deserializer.getUrlAttribute('Planespotters URL'),
         distance: deserializer.getNumberAttribute('Distance, km'),
         age: deserializer.getTextAttribute('Age'),
+        number: deserializer.getNumberAttribute('N'),
         url: deserializer.url,
         photoUrl: deserializer.cover,
-        number: arr.length > 1 ? index + 1 : null,
       },
     };
   });
@@ -70,6 +70,7 @@ export const serializeMyFlight = (data: MyFlightData) => {
       ...serializer.getSelect('Model', 'model'),
       ...serializer.getNumber('Distance, km', 'distance'),
       ...serializer.getUrl('Planespotters URL', 'planespottersUrl'),
+      ...serializer.getNumber('N', 'number'),
     },
   };
 };
