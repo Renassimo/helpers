@@ -11,7 +11,8 @@ import useLoadedValues from './subhooks/useLoadedValues';
 import useMyFlightForm from './subhooks/useMyFlightForm';
 
 const useMyFlightsProvider = (
-  data: MyFlightData[] | null
+  data: MyFlightData[] | null,
+  nextCursor: string | null
 ): MyFlightsContextData => {
   // Options
   const { data: options, updateOptions } = useAviaOptions();
@@ -41,7 +42,7 @@ const useMyFlightsProvider = (
 
   // Flights data
   const { myFlights, myFlightsList, updateMyFlight, deleteMyFlight } =
-    useMyFlights(data);
+    useMyFlights(data, nextCursor);
 
   // My Flight Form
   const myFlightForm = useMyFlightForm(

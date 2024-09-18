@@ -26,6 +26,7 @@ describe('MyFlightsPage', () => {
   const mockedUseAlerts = jest.fn(() => ({
     createErrorAlert: mockedCreateErrorAlert,
   }));
+  const nextCursor = 'nextCursor';
 
   beforeEach(() => {
     (useAlerts as unknown as jest.Mock).mockImplementation(mockedUseAlerts);
@@ -51,6 +52,7 @@ describe('MyFlightsPage', () => {
         pages={mockedPageInfos}
         data={mockedMyFlightsList}
         error={null}
+        nextCursor={nextCursor}
       />
     );
     // Assert

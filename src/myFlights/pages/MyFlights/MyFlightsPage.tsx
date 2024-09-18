@@ -17,11 +17,13 @@ const MyFlightsPage = ({
   pages,
   data,
   error,
+  nextCursor = null,
 }: {
   user: User;
   pages: PageInfo[];
   data: MyFlightData[] | null;
   error: NotionError | null;
+  nextCursor?: string | null;
 }) => {
   const { createErrorAlert } = useAlerts();
 
@@ -30,7 +32,7 @@ const MyFlightsPage = ({
   }, [createErrorAlert, error]);
 
   return (
-    <MyFlightsProvider data={data}>
+    <MyFlightsProvider data={data} nextCursor={nextCursor}>
       <PageTemplate title="My Flights" user={user} pages={pages}>
         <MyFlights />
       </PageTemplate>

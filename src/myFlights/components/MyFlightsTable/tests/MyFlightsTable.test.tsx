@@ -53,7 +53,7 @@ describe('MyFlightsTable', () => {
   const mockedReverse = jest.fn();
   const mockedUseTableOrderResult = {
     orderedList: mockedMyFlightsList,
-    isReversedOrder: true,
+    isReversedOrder: false,
     reverse: mockedReverse,
   };
   const mockedUseTableOrder = jest.fn(() => mockedUseTableOrderResult);
@@ -131,7 +131,7 @@ describe('MyFlightsTable', () => {
       'destinationName',
       'airplaneName',
     ]);
-    expect(useTableOrder).toBeCalledWith(mockedMyFlightsList, true);
+    expect(useTableOrder).toBeCalledWith(mockedMyFlightsList, false);
     expect(useTablePagination).toBeCalledWith(mockedMyFlightsList, [
       10,
       25,
@@ -208,7 +208,7 @@ describe('MyFlightsTable', () => {
         'destinationName',
         'airplaneName',
       ]);
-      expect(useTableOrder).toBeCalledWith(mockedMyFlightsList, true);
+      expect(useTableOrder).toBeCalledWith(mockedMyFlightsList, false);
       expect(useTablePagination).toBeCalledWith(mockedMyFlightsList, [
         10,
         25,

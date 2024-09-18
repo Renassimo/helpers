@@ -11,6 +11,7 @@ import { Matcher } from '@/common/types/matchers';
 import { showTimePassed } from '@/common/utils/dayjs';
 
 import useRetreiveData from '@/common/hooks/useRetreiveData';
+import useLoadingValuesFilling from './useLoadingValuesFilling';
 
 const useMyFlightForm = (
   loadedValues: Partial<MyFlightAttributes>,
@@ -48,6 +49,7 @@ const useMyFlightForm = (
               destinationName: data.attributes.originName,
               origin: data.attributes.destination,
               originName: data.attributes.destinationName,
+              number: null,
             },
           } as MyFlightData);
         } else {
@@ -115,9 +117,7 @@ const useMyFlightForm = (
         data: {
           attributes: {
             ...state,
-            title:
-              state.title ??
-              `${state.origin ?? ''} - ${state.destination ?? ''}`,
+            title: `${state.origin ?? ''} - ${state.destination ?? ''}`,
           },
         },
       }),
@@ -185,58 +185,7 @@ const useMyFlightForm = (
     closeModal();
   }, [isEditing, editingData]);
 
-  useEffect(() => {
-    setState((state) => ({
-      ...state,
-      originName: loadedValues.originName,
-      distance: loadedValues.distance,
-    }));
-  }, [loadedValues.origin]);
-
-  useEffect(() => {
-    setState((state) => ({
-      ...state,
-      destinationName: loadedValues.destinationName,
-      distance: loadedValues.distance,
-    }));
-  }, [loadedValues.destination]);
-
-  useEffect(() => {
-    setState((state) => {
-      const aircraftExtraData =
-        state.registration === loadedValues.registration
-          ? {}
-          : {
-              registration: loadedValues.registration,
-              cn: null,
-              firstFlight: null,
-              planespottersUrl: loadedValues.planespottersUrl,
-              age: null,
-              photoUrl: loadedValues.photoUrl,
-            };
-      return {
-        ...state,
-        date: loadedValues.date,
-        flightNumber: loadedValues.flightNumber,
-        originName: loadedValues.originName,
-        destinationName: loadedValues.destinationName,
-        distance: loadedValues.distance,
-        ...aircraftExtraData,
-      };
-    });
-  }, [loadedValues.flightNumber]);
-
-  useEffect(() => {
-    setState((state) => ({
-      ...state,
-      registration: loadedValues.registration,
-      cn: loadedValues.cn,
-      firstFlight: loadedValues.firstFlight,
-      planespottersUrl: loadedValues.planespottersUrl,
-      age: loadedValues.age,
-      photoUrl: loadedValues.photoUrl,
-    }));
-  }, [loadedValues.registration]);
+  useLoadingValuesFilling(loadedValues, setState);
 
   useEffect(() => {
     if (editingData) setState(editingData.attributes);

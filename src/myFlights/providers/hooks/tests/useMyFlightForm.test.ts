@@ -151,10 +151,10 @@ describe('useMyFlightForm', () => {
           origin: 'loadedValues.origin2',
 
           flightNumber: 'loadedValues.flightNumber',
-          registration: 'loadedValues.registration',
+          cn: 'loadedValues.cn',
 
           date: 'loadedValues.date2',
-          cn: 'loadedValues.cn2',
+          registration: 'loadedValues.registration2',
           firstFlight: 'loadedValues.firstFlight2',
           originName: 'loadedValues.originName2',
           destinationName: 'loadedValues.destinationName2',
@@ -212,10 +212,10 @@ describe('useMyFlightForm', () => {
           destination: 'loadedValues.destination2',
 
           flightNumber: 'loadedValues.flightNumber',
-          registration: 'loadedValues.registration',
+          cn: 'loadedValues.cn',
 
           date: 'loadedValues.date2',
-          cn: 'loadedValues.cn2',
+          registration: 'loadedValues.registration2',
           firstFlight: 'loadedValues.firstFlight2',
           originName: 'loadedValues.originName2',
           destinationName: 'loadedValues.destinationName2',
@@ -272,10 +272,10 @@ describe('useMyFlightForm', () => {
         const newLoadedValues = {
           flightNumber: 'loadedValues.flightNumber2',
 
+          cn: 'loadedValues.cn',
           registration: 'loadedValues.registration',
 
           date: 'loadedValues.date2',
-          cn: 'loadedValues.cn2',
           firstFlight: 'loadedValues.firstFlight2',
           originName: 'loadedValues.originName2',
           destinationName: 'loadedValues.destinationName2',
@@ -333,12 +333,12 @@ describe('useMyFlightForm', () => {
       test('returns state', () => {
         // Arange
         const newLoadedValues = {
-          registration: 'loadedValues.registration2',
+          cn: 'loadedValues.cn2',
 
           flightNumber: 'loadedValues.flightNumber',
 
           date: 'loadedValues.date2',
-          cn: 'loadedValues.cn2',
+          registration: 'loadedValues.registration2',
           firstFlight: 'loadedValues.firstFlight2',
           originName: 'loadedValues.originName2',
           destinationName: 'loadedValues.destinationName2',
@@ -397,10 +397,10 @@ describe('useMyFlightForm', () => {
         // Arange
         const newLoadedValues = {
           flightNumber: 'loadedValues.flightNumber2',
-          registration: 'loadedValues.registration2',
+          cn: 'loadedValues.cn2',
 
           date: 'loadedValues.date2',
-          cn: 'loadedValues.cn2',
+          registration: 'loadedValues.registration2',
           firstFlight: 'loadedValues.firstFlight2',
           originName: 'loadedValues.originName2',
           destinationName: 'loadedValues.destinationName2',
@@ -773,6 +773,7 @@ describe('useMyFlightForm', () => {
               origin: mockedMyFlight.attributes.destination,
               destinationName: mockedMyFlight.attributes.originName,
               originName: mockedMyFlight.attributes.destinationName,
+              number: null,
             },
           });
         });
@@ -809,6 +810,8 @@ describe('useMyFlightForm', () => {
                     ...mockedMyFlight.attributes,
                     age: mockedPassedTime,
                     destination: mockedMyFlight.attributes.origin,
+                    title: `WAW - ${mockedMyFlight.attributes.origin}`,
+                    number: null,
                     origin: 'WAW',
                     destinationName: mockedMyFlight.attributes.originName,
                     originName: mockedMyFlight.attributes.destinationName,

@@ -22,7 +22,7 @@ describe('Flights serializers', () => {
     const mockedTextAttribute = 'mockedTextAttribute';
     const mockedSelectAttribute = 'mockedSelectAttribute';
     const mockedDateAttribute = 'mockedDateAttribute';
-    const mockedNumberAttribute = 'mockedCheckboxAttribute';
+    const mockedNumberAttribute = 'mockedNumberAttribute';
     const mockedUrlAttribute = 'mockedUrlAttribute';
 
     const mockedGetTextAttribute = jest.fn(() => mockedTextAttribute);
@@ -52,9 +52,9 @@ describe('Flights serializers', () => {
       planespottersUrl: mockedUrlAttribute,
       distance: mockedNumberAttribute,
       age: mockedTextAttribute,
+      number: mockedNumberAttribute,
       url: mockedUrl,
       photoUrl: mockedCover,
-      number: null,
     };
 
     beforeEach(() => {
@@ -128,45 +128,17 @@ describe('Flights serializers', () => {
       expect(mockedGetDateAttribute).toHaveBeenCalledTimes(2);
       expect(mockedGetDateAttribute).toHaveBeenNthCalledWith(1, 'Date');
       expect(mockedGetDateAttribute).toHaveBeenNthCalledWith(2, 'First flight');
-      expect(mockedGetNumberAttribute).toHaveBeenCalledTimes(1);
+      expect(mockedGetNumberAttribute).toHaveBeenCalledTimes(2);
       expect(mockedGetNumberAttribute).toHaveBeenNthCalledWith(
         1,
         'Distance, km'
       );
+      expect(mockedGetNumberAttribute).toHaveBeenNthCalledWith(2, 'N');
       expect(mockedGetUrlAttribute).toHaveBeenCalledTimes(1);
       expect(mockedGetUrlAttribute).toHaveBeenNthCalledWith(
         1,
         'Planespotters URL'
       );
-    });
-
-    describe('when length is mpre than 1', () => {
-      test('deserializes results', () => {
-        // Arrange
-        const expectedResult = [
-          {
-            id: mockedId,
-            attributes: {
-              ...expectedAttributes,
-              number: 1,
-            },
-          },
-          {
-            id: mockedId,
-            attributes: {
-              ...expectedAttributes,
-              number: 2,
-            },
-          },
-        ];
-        // Act
-        const result = deserializeMyFlights([
-          { mockedResult1: 'mockedResult1' },
-          { mockedResult2: 'mockedResult2' },
-        ] as unknown as NotionResult[]);
-        // Assert
-        expect(result).toEqual(expectedResult);
-      });
     });
   });
 
@@ -233,8 +205,9 @@ describe('Flights serializers', () => {
       expect(getSelect).nthCalledWith(4, 'Manufacturer', 'manufacturer');
       expect(getSelect).nthCalledWith(5, 'Alt airline', 'altAirline');
       expect(getSelect).nthCalledWith(6, 'Model', 'model');
-      expect(getNumber).toBeCalledTimes(1);
+      expect(getNumber).toBeCalledTimes(2);
       expect(getNumber).nthCalledWith(1, 'Distance, km', 'distance');
+      expect(getNumber).nthCalledWith(2, 'N', 'number');
       expect(getUrl).toBeCalledTimes(1);
       expect(getUrl).nthCalledWith(1, 'Planespotters URL', 'planespottersUrl');
       expect(result).toEqual({
@@ -261,6 +234,7 @@ describe('Flights serializers', () => {
           Model: 'model',
           'Distance, km': 'distance',
           'Planespotters URL': 'planespottersUrl',
+          N: 'number',
         },
       });
     });

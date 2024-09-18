@@ -1,28 +1,25 @@
 import NotionService from '@/common/services/notion';
 
 import { deserializeMyFlights } from '@/myFlights/serializers';
+import { MyFlightData } from '@/myFlights/types';
 
-const getMyFlights = async (
+const getMyLastFlight = async (
   notionService: NotionService,
-  dataBaseID: string,
-  cursor?: string
-) => {
+  dataBaseID: string
+): Promise<MyFlightData | null> => {
   const { ok, data } = await notionService.queryDatabase(dataBaseID, {
     sorts: [
       { property: 'Date', direction: 'descending' },
       { property: 'N', direction: 'descending' },
       { timestamp: 'created_time', direction: 'descending' },
     ],
-    ...(cursor ? { start_cursor: cursor } : {}),
+    page_size: 1,
   });
-  if (!ok) return { error: data };
+  if (!ok) throw data;
 
-  const { results, next_cursor: nextCursor, has_more: hasMore } = data;
+  const { results } = data;
 
-  return {
-    data: deserializeMyFlights(results),
-    nextCursor: hasMore ? nextCursor : null,
-  };
+  return deserializeMyFlights(results)[0] ?? null;
 };
 
-export default getMyFlights;
+export default getMyLastFlight;
