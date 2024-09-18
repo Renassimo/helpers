@@ -809,6 +809,7 @@ describe('useMyFlightForm', () => {
                     ...mockedMyFlight.attributes,
                     age: mockedPassedTime,
                     destination: mockedMyFlight.attributes.origin,
+                    title: `WAW - ${mockedMyFlight.attributes.origin}`,
                     origin: 'WAW',
                     destinationName: mockedMyFlight.attributes.originName,
                     originName: mockedMyFlight.attributes.destinationName,

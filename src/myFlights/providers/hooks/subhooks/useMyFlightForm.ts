@@ -116,9 +116,7 @@ const useMyFlightForm = (
         data: {
           attributes: {
             ...state,
-            title:
-              state.title ??
-              `${state.origin ?? ''} - ${state.destination ?? ''}`,
+            title: `${state.origin ?? ''} - ${state.destination ?? ''}`,
           },
         },
       }),
