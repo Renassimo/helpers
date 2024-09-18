@@ -9,11 +9,13 @@ import useMyFlightsProvider from '@/myFlights/providers/hooks/useMyFlightsProvid
 const MyFlightsProvider = ({
   children,
   data: apiData,
+  nextCursor = null,
 }: {
   children: ReactNode;
   data: MyFlightData[] | null;
+  nextCursor: string | null;
 }) => {
-  const data = useMyFlightsProvider(apiData);
+  const data = useMyFlightsProvider(apiData, nextCursor);
 
   return (
     <MyFlightsContext.Provider value={data}>

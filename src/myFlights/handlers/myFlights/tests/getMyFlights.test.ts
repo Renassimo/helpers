@@ -22,8 +22,9 @@ describe('getMyFlights', () => {
     mockedDataBaseID,
     {
       sorts: [
-        { property: 'Date', direction: 'ascending' },
-        { timestamp: 'created_time', direction: 'ascending' },
+        { property: 'Date', direction: 'descending' },
+        { property: 'N', direction: 'descending' },
+        { timestamp: 'created_time', direction: 'descending' },
       ],
     },
   ];
@@ -47,7 +48,10 @@ describe('getMyFlights', () => {
         const mockedNotionService = {
           queryDatabase: mockedQueryDatabase,
         } as unknown as NotionService;
-        const expectedResult = { data: mockedDeserializedData };
+        const expectedResult = {
+          data: mockedDeserializedData,
+          nextCursor: null,
+        };
         // Act
         const result = await getMyFlights(
           mockedNotionService,
@@ -63,6 +67,45 @@ describe('getMyFlights', () => {
           expectedQueryDatabaseArgs[1]
         );
       });
+
+      describe('and when cursor passed has results', () => {
+        test('returns data', async () => {
+          // Arrange
+          const cursor = 'cursor';
+          const nextCursor = 'nextCursor';
+          mockedData = {
+            results: [mockedDataToDeserialize],
+            has_more: true,
+            next_cursor: 'nextCursor',
+          };
+          mockedOk = true;
+          const mockedNotionService = {
+            queryDatabase: mockedQueryDatabase,
+          } as unknown as NotionService;
+          const expectedResult = {
+            data: mockedDeserializedData,
+            nextCursor,
+          };
+          // Act
+          const result = await getMyFlights(
+            mockedNotionService,
+            mockedDataBaseID,
+            cursor
+          );
+          // Assert
+          expect(result).toEqual(expectedResult);
+          expect(deserializeMyFlights).toHaveBeenCalledWith([
+            mockedDataToDeserialize,
+          ]);
+          expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+            expectedQueryDatabaseArgs[0],
+            {
+              ...(expectedQueryDatabaseArgs[1] as object),
+              start_cursor: cursor,
+            }
+          );
+        });
+      });
     });
 
     describe('and results are empty', () => {
@@ -72,7 +115,10 @@ describe('getMyFlights', () => {
         const mockedNotionService = {
           queryDatabase: mockedQueryDatabase,
         } as unknown as NotionService;
-        const expectedResult = { data: mockedDeserializedData };
+        const expectedResult = {
+          data: mockedDeserializedData,
+          nextCursor: null,
+        };
         // Act
         const result = await getMyFlights(
           mockedNotionService,

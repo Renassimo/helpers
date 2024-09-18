@@ -26,6 +26,7 @@ describe('getServerSideProps', () => {
     notionHelperData: { dataBaseID: mockedDataBaseID, token: mockedToken },
     db: mockedDb,
   };
+  const nextCursor = 'nextCursor';
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -36,6 +37,7 @@ describe('getServerSideProps', () => {
       const mockedGetFlights = jest.fn(async () => ({
         data: mockedData,
         error: null,
+        nextCursor,
       }));
       (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
         mockedGetFlights
@@ -50,6 +52,7 @@ describe('getServerSideProps', () => {
           error: null,
           user: mockedUser,
           pages: mockedPages,
+          nextCursor,
         },
       };
       // Act
@@ -79,6 +82,7 @@ describe('getServerSideProps', () => {
           error: { status: 500 },
           user: mockedUser,
           pages: mockedPages,
+          nextCursor: null,
         },
       };
       // Act

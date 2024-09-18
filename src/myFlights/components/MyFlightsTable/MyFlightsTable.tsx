@@ -49,7 +49,7 @@ const MyFlightsTable = () => {
     orderedList: orderedFlights,
     isReversedOrder,
     reverse,
-  } = useTableOrder(visibleFlights, true);
+  } = useTableOrder(visibleFlights, false);
 
   const { paginationProps, rows: paginatedAndOrderedFlights } =
     useTablePagination(orderedFlights, [10, 25, 50, 100, myFlightsList.length]);
@@ -76,8 +76,8 @@ const MyFlightsTable = () => {
               <TableRow>
                 <TableCell>
                   <TableSortLabel
-                    active={!isReversedOrder}
-                    direction={isReversedOrder ? 'asc' : 'desc'}
+                    active={isReversedOrder}
+                    direction={isReversedOrder ? 'desc' : 'asc'}
                     onClick={reverse}
                     aria-label="Reverse"
                   >

@@ -4,12 +4,15 @@ import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
 import NotionService from '@/common/services/notion';
 import { getError } from '@/common/utils/errors';
-import createMyFlight from '@/myFlights/handlers/myFlights/createMyFlight';
 
-import handler from '@/myFlights/handlers/api/create';
+import createMyFlight from '@/myFlights/handlers/myFlights/createMyFlight';
+import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
+
+import handler from '@/myFlights/handlers/api/createGet';
 
 jest.mock('@/common/services/notion');
 jest.mock('@/myFlights/handlers/myFlights/createMyFlight');
+jest.mock('@/myFlights/handlers/myFlights/getMyFlights');
 jest.mock('@/common/utils/errors');
 
 describe('create my flight handler', () => {
@@ -46,6 +49,10 @@ describe('create my flight handler', () => {
   );
 
   const mockedCreateMyFlight = jest.fn(() => mockedData);
+  const mockedGetMyFlights = jest.fn(() => ({
+    data: mockedData,
+    nextCursor: 'nextCursor',
+  }));
 
   beforeEach(() => {
     (NotionService as unknown as jest.Mock).mockImplementation(
@@ -53,6 +60,9 @@ describe('create my flight handler', () => {
     );
     (createMyFlight as unknown as jest.Mock).mockImplementation(
       mockedCreateMyFlight
+    );
+    (getMyFlights as unknown as jest.Mock).mockImplementation(
+      mockedGetMyFlights
     );
   });
 
@@ -71,8 +81,98 @@ describe('create my flight handler', () => {
       mockedFlightsDbID,
       mockedBody
     );
+    expect(mockedGetMyFlights).not.toHaveBeenCalled();
     expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);
     expect(mockedJson).toHaveBeenCalledWith(mockedData.responseBody);
+  });
+
+  describe('when method is GET', () => {
+    const cursor = 'cursor';
+
+    test('writes status and data to response', async () => {
+      // Arange
+      const req = {
+        method: 'GET',
+        notionHelperData: mockedNotionHelperData,
+        query: { cursor },
+      } as unknown as NextApiRequestWithAuth;
+      // Act
+      await handler(req, res);
+      // Assert
+      expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(mockedToken);
+      expect(mockedCreateMyFlight).not.toHaveBeenCalled();
+      expect(mockedGetMyFlights).toHaveBeenCalledWith(
+        mockedNotionServiceInstance,
+        mockedFlightsDbID,
+        cursor
+      );
+      expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);
+      expect(mockedJson).toHaveBeenCalledWith({
+        data: mockedData,
+        nextCursor: 'nextCursor',
+      });
+    });
+
+    describe('when cursor did not passed in queries', () => {
+      test('writes status and data to response', async () => {
+        // Arange
+        const req = {
+          method: 'GET',
+          notionHelperData: mockedNotionHelperData,
+          query: {},
+        } as unknown as NextApiRequestWithAuth;
+
+        (mockedCreateMyFlight as unknown as jest.Mock).mockImplementation(
+          () => {
+            throw Error(mockedErrorMessage);
+          }
+        );
+        const expectedStatusNumber = 400;
+        // Act
+        await handler(req, res);
+        // Assert
+        expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(
+          mockedToken
+        );
+        expect(mockedCreateMyFlight).not.toHaveBeenCalled();
+        expect(mockedGetMyFlights).not.toHaveBeenCalled();
+        expect(mockedStatus).toHaveBeenCalledWith(expectedStatusNumber);
+        expect(mockedJson).toHaveBeenCalledWith({
+          message: 'Cursor did not passed',
+          status: expectedStatusNumber,
+        });
+      });
+    });
+
+    describe('when catches notion error', () => {
+      test('writes status and data to response', async () => {
+        // Arange
+        const req = {
+          method: 'GET',
+          notionHelperData: mockedNotionHelperData,
+          query: { cursor },
+        } as unknown as NextApiRequestWithAuth;
+
+        const expectedStatusNumber = 418;
+        const mockedGetMyFlights = jest.fn(() => ({
+          error: { status: expectedStatusNumber, message: 'mocked-error' },
+        }));
+        (getMyFlights as unknown as jest.Mock).mockImplementation(
+          mockedGetMyFlights
+        );
+        // Act
+        await handler(req, res);
+        // Assert
+        expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(
+          mockedToken
+        );
+        expect(mockedStatus).toHaveBeenCalledWith(expectedStatusNumber);
+        expect(mockedJson).toHaveBeenCalledWith({
+          message: 'mocked-error',
+          status: expectedStatusNumber,
+        });
+      });
+    });
   });
 
   describe('when catches error', () => {
@@ -120,7 +220,7 @@ describe('create my flight handler', () => {
       // Arange
       const mockedReq = {
         ...req,
-        method: 'GET',
+        method: 'PATCH',
       } as unknown as NextApiRequestWithAuth;
 
       const expectedStatusNumber = 405;
