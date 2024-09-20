@@ -9,7 +9,7 @@ import PageTemplate from '@/common/templates/PageTemplate';
 import { PageInfo, User } from '@/auth/types';
 import { BreadcrumbsItem } from '@/common/types/props';
 
-const GameMapsTemplate = ({
+const PageTemplateWithBreadcrumbs = ({
   children,
   title,
   description,
@@ -41,4 +41,4 @@ const GameMapsTemplate = ({
   );
 };
 
-export default GameMapsTemplate;
+export default PageTemplateWithBreadcrumbs;

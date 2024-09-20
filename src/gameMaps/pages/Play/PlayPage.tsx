@@ -1,4 +1,4 @@
-import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 
 import { PlayPageProps } from '@/gameMaps/types';
 import { BreadcrumbsItem } from '@/common/types/props';
@@ -30,7 +30,7 @@ const PlayPage = ({ user, pages }: Partial<PlayPageProps>) => {
   ];
 
   return (
-    <GameMapsTemplate
+    <PageTemplateWithBreadcrumbs
       title={title}
       user={user}
       pages={pages}
@@ -38,7 +38,7 @@ const PlayPage = ({ user, pages }: Partial<PlayPageProps>) => {
       breadcrumbs={breadcrumbs}
     >
       <Play />
-    </GameMapsTemplate>
+    </PageTemplateWithBreadcrumbs>
   );
 };
 

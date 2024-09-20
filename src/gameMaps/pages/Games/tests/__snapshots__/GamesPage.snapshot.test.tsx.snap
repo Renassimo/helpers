@@ -4,7 +4,7 @@ exports[`GamesPage snapshot renders successfully 1`] = `
 <body>
   <div>
     <div>
-      Mocked Game Maps Template (
+      MockedPageTemplateWithBreadcrumbs (
       Game Maps
       ):
       <span>

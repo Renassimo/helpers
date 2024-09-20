@@ -8,13 +8,13 @@ import PageTemplate from '@/common/templates/PageTemplate';
 import MockedBreadcrumbs from '@/common/components/Breadcrumbs/mocks';
 import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
 
-import GameMapsTemplate from '../GameMapsTemplate';
+import PageTemplateWithBreadcrumbs from '../PageTemplateWithBreadcrumbs';
 import { mockedBreadCrumbItems } from '@/common/types/props/mocks';
 
 jest.mock('@/common/components/Breadcrumbs');
 jest.mock('@/common/templates/PageTemplate');
 
-describe('GameMaps Template snapshot', () => {
+describe('PageTemplateWithBreadcrumbs snapshot', () => {
   beforeEach(() => {
     (Breadcrumbs as unknown as jest.Mock).mockImplementation(MockedBreadcrumbs);
     (PageTemplate as unknown as jest.Mock).mockImplementation(
@@ -26,7 +26,7 @@ describe('GameMaps Template snapshot', () => {
     // Arange
     // Act
     const { baseElement } = renderWithTheme(
-      <GameMapsTemplate
+      <PageTemplateWithBreadcrumbs
         title="Title"
         description="Descrtiption"
         user={mockedUser}
@@ -34,7 +34,7 @@ describe('GameMaps Template snapshot', () => {
         breadcrumbs={mockedBreadCrumbItems}
       >
         Child
-      </GameMapsTemplate>
+      </PageTemplateWithBreadcrumbs>
     );
     // Assert
     expect(baseElement).toMatchSnapshot();

@@ -2,7 +2,7 @@ import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import { PageInfo } from '@/auth/types';
 
-import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 import PagesList from '@/common/components/PagesList';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
 
@@ -10,14 +10,14 @@ import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
 import MockedPagesList from '@/common/components/PagesList/mocks';
 import MockedGameFormModal from '@/gameMaps/components/GameFormModal/mocks';
-import MockedGameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate/mocks';
+import MockedPageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs/mocks';
 
 import { mockedUser } from '@/auth/types/mocks';
 import { mockedGames } from '@/gameMaps/types/mocks';
 
 import GamesPage from '../GamesPage';
 
-jest.mock('@/gameMaps/templates/GameMapsTemplate');
+jest.mock('@/common/templates/PageTemplateWithBreadcrumbs');
 jest.mock('@/common/components/PagesList');
 jest.mock('@/gameMaps/components/GameFormModal');
 jest.mock('@/common/hooks/alerts');
@@ -31,8 +31,8 @@ describe('GamesPage snapshot', () => {
   }));
 
   beforeAll(() => {
-    (GameMapsTemplate as unknown as jest.Mock).mockImplementation(
-      MockedGameMapsTemplate
+    (PageTemplateWithBreadcrumbs as unknown as jest.Mock).mockImplementation(
+      MockedPageTemplateWithBreadcrumbs
     );
     (PagesList as unknown as jest.Mock).mockImplementation(MockedPagesList);
     (GameFormModal as unknown as jest.Mock).mockImplementation(

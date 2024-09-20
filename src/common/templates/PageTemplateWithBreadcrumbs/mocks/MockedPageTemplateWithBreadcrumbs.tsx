@@ -1,7 +1,7 @@
-const MockedGameMapsTemplate = jest.fn(
+const MockedPageTemplateWithBreadcrumbs = jest.fn(
   ({ title, user, pages, description, children }) => (
     <div>
-      Mocked Game Maps Template ({title}):
+      MockedPageTemplateWithBreadcrumbs ({title}):
       <span>
         {user?.name} - {pages[0]?.title} - {description}
       </span>
@@ -10,4 +10,4 @@ const MockedGameMapsTemplate = jest.fn(
   )
 );
 
-export default MockedGameMapsTemplate;
+export default MockedPageTemplateWithBreadcrumbs;

@@ -6,16 +6,16 @@ import { PlayPageProps } from '@/gameMaps/types';
 
 import usePlayContext from '@/gameMaps/contexts/hooks/usePlayContext';
 
-import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 import Play from '@/gameMaps/components/Play';
 
-import MockedGameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate/mocks';
+import MockedPageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs/mocks';
 import MockedPlay from '@/gameMaps/components/Play/mocks';
 import { mockedGame, mockedPlay } from '@/gameMaps/types/mocks';
 
 import PlayPage from '../PlayPage';
 
-jest.mock('@/gameMaps/templates/GameMapsTemplate');
+jest.mock('@/common/templates/PageTemplateWithBreadcrumbs');
 jest.mock('@/gameMaps/components/Play');
 jest.mock('@/gameMaps/contexts/hooks/usePlayContext');
 
@@ -28,8 +28,8 @@ describe('Game Page snapshot', () => {
   }));
 
   beforeEach(() => {
-    (GameMapsTemplate as unknown as jest.Mock).mockImplementation(
-      MockedGameMapsTemplate
+    (PageTemplateWithBreadcrumbs as unknown as jest.Mock).mockImplementation(
+      MockedPageTemplateWithBreadcrumbs
     );
     (Play as unknown as jest.Mock).mockImplementation(MockedPlay);
     (usePlayContext as unknown as jest.Mock).mockImplementation(
