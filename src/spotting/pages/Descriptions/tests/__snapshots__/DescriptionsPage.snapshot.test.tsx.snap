@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DescriptionsPage when got data renders successfully 1`] = `
+<div>
+  <div>
+    Mocked Page Template (
+    Spotting
+    ):
+    <span>
+      Jesse Pinkman
+       - 
+      5book
+    </span>
+    <div>
+      Mocked Spotted Planes List:
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DescriptionsPage when got error renders successfully 1`] = `
+<div>
+  <div>
+    Mocked Page Template (
+    Spotting
+    ):
+    <span>
+      Jesse Pinkman
+       - 
+      5book
+    </span>
+    <div>
+      Mocked Spotted Planes List:
+    </div>
+  </div>
+</div>
+`;

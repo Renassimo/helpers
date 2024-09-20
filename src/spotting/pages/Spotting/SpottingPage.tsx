@@ -1,39 +1,25 @@
-import { useEffect } from 'react';
-
 import { PageInfo, User } from '@/auth/types';
-import { NotionError } from '@/common/types/notion';
-import { SpottedPlaneApiData } from '@/spotting/types';
-
-import SpottingProvider from '@/spotting/providers/SpottingProvider';
-
-import useAlerts from '@/common/hooks/alerts';
 
 import PageTemplate from '@/common/templates/PageTemplate';
-import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';
 
-const SpottingPage = ({
-  user,
-  pages,
-  data,
-  error,
-}: {
-  user: User;
-  pages: PageInfo[];
-  data: SpottedPlaneApiData[] | null;
-  error: NotionError | null;
-}) => {
-  const { createErrorAlert } = useAlerts();
+import PagesList from '@/common/components/PagesList';
+import { Typography } from '@mui/material';
 
-  useEffect(() => {
-    if (error) createErrorAlert(error.message || error.code || error.status);
-  }, [createErrorAlert, error]);
+const SpottingPage = ({ user, pages }: { user: User; pages: PageInfo[] }) => {
+  const spottingPages: PageInfo[] = [
+    {
+      title: 'Descriptions',
+      path: '/spotting/descriptions',
+    },
+  ];
 
   return (
-    <SpottingProvider data={data}>
-      <PageTemplate title="Spotting" user={user} pages={pages}>
-        <SpottedPlanesList />
-      </PageTemplate>
-    </SpottingProvider>
+    <PageTemplate title="Spotting" user={user} pages={pages}>
+      <Typography component="h1" variant="h5" textAlign="center" mt={5}>
+        Spotting
+      </Typography>
+      <PagesList pages={spottingPages} />
+    </PageTemplate>
   );
 };
 

@@ -5,7 +5,7 @@ import getSpottedPlanes from '@/spotting/handlers/getSpottedPlanes';
 import { GetServerSidePropsContextWithAuth } from '@/auth/types';
 import { Firestore } from '@/common/lib/firebase/types';
 
-import getServerSideProps from '../getServerSideProps';
+import getServerSideProps from '../descriptions/getServerSideProps';
 
 jest.mock('@/common/services/notion', () => jest.fn());
 jest.mock('@/spotting/handlers/getSpottedPlanes');
