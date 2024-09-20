@@ -3,13 +3,14 @@
 exports[`DescriptionsPage when got data renders successfully 1`] = `
 <div>
   <div>
-    Mocked Page Template (
+    MockedPageTemplateWithBreadcrumbs (
     Spotting
     ):
     <span>
       Jesse Pinkman
        - 
       5book
+       - 
     </span>
     <div>
       Mocked Spotted Planes List:
@@ -21,13 +22,14 @@ exports[`DescriptionsPage when got data renders successfully 1`] = `
 exports[`DescriptionsPage when got error renders successfully 1`] = `
 <div>
   <div>
-    Mocked Page Template (
+    MockedPageTemplateWithBreadcrumbs (
     Spotting
     ):
     <span>
       Jesse Pinkman
        - 
       5book
+       - 
     </span>
     <div>
       Mocked Spotted Planes List:

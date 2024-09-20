@@ -8,8 +8,9 @@ import SpottingProvider from '@/spotting/providers/SpottingProvider';
 
 import useAlerts from '@/common/hooks/alerts';
 
-import PageTemplate from '@/common/templates/PageTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';
+import { BreadcrumbsItem } from '@/common/types/props';
 
 const DescriptionsPage = ({
   user,
@@ -28,11 +29,20 @@ const DescriptionsPage = ({
     if (error) createErrorAlert(error.message || error.code || error.status);
   }, [createErrorAlert, error]);
 
+  const breadcrumbs: BreadcrumbsItem[] = [
+    { title: 'Spotting', href: '/spotting' },
+  ];
+
   return (
     <SpottingProvider data={data}>
-      <PageTemplate title="Spotting" user={user} pages={pages}>
+      <PageTemplateWithBreadcrumbs
+        title="Spotting"
+        user={user}
+        pages={pages}
+        breadcrumbs={breadcrumbs}
+      >
         <SpottedPlanesList />
-      </PageTemplate>
+      </PageTemplateWithBreadcrumbs>
     </SpottingProvider>
   );
 };
