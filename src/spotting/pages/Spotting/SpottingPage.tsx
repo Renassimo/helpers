@@ -9,6 +9,10 @@ const SpottingPage = ({ user, pages }: { user: User; pages: PageInfo[] }) => {
       title: 'Descriptions',
       path: '/spotting/descriptions',
     },
+    {
+      title: 'Create Info',
+      path: '/spotting/createInfo',
+    },
   ];
 
   return (

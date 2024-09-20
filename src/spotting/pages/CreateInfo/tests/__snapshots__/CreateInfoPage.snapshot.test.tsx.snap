@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateInfoPage renders successfully 1`] = `
+<div>
+  <div>
+    MockedPageTemplateWithBreadcrumbs (
+    Spotting
+    ):
+    <span>
+      Jesse Pinkman
+       - 
+      5book
+       - 
+    </span>
+    <div>
+      CreateInfoPage
+    </div>
+  </div>
+</div>
+`;

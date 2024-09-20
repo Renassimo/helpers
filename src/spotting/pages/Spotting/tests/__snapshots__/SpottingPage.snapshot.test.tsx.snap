@@ -3,19 +3,16 @@
 exports[`SpottingPage renders successfully 1`] = `
 <div>
   <div>
-    Mocked Page Template (
+    MockedPageTemplateWithBreadcrumbs (
     Spotting
     ):
     <span>
       Jesse Pinkman
        - 
       5book
-    </span>
-    <h1
-      class="MuiTypography-root MuiTypography-h5 css-1uxccsd-MuiTypography-root"
-    >
+       - 
       Spotting
-    </h1>
+    </span>
     <div
       class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1xsir0u-MuiGrid-root"
     >
@@ -35,6 +32,27 @@ exports[`SpottingPage renders successfully 1`] = `
                 class="MuiTypography-root MuiTypography-h6 css-1kgxqm0-MuiTypography-root"
               >
                 Descriptions
+              </h2>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 MuiGrid-grid-xl-3 css-4031bd-MuiGrid-root"
+      >
+        <a
+          href="/spotting/createInfo"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1ps6pg7-MuiPaper-root"
+          >
+            <div
+              class="MuiBox-root css-hpgf8j"
+            >
+              <h2
+                class="MuiTypography-root MuiTypography-h6 css-1kgxqm0-MuiTypography-root"
+              >
+                Create Info
               </h2>
             </div>
           </div>

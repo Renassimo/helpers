@@ -6,6 +6,7 @@ import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBrea
 
 import MockedPageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs/mocks';
 import MockedSpottedPlanesList from '@/spotting/components/SpottedPlanesList/mocks';
+
 import { mockedSpottedPlaneApiDataTruthy } from '@/spotting/types/mocks';
 import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
 import { mockedNotionError418 } from '@/common/types/notion/mocks';
