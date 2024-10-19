@@ -2,7 +2,7 @@ import { Matcher } from '@/common/types/matchers';
 import { ApiData, Data } from '@/common/types/props';
 
 export namespace Avia {
-  interface Location {
+  export interface Location {
     lat: number;
     lon: number;
   }

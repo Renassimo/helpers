@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
+import ExifReader from 'exifreader';
 
 import { defaultPhotosState, PhotoActionType } from '@/spotting/types';
 
@@ -12,6 +13,7 @@ import usePhotoInfoProvider from '../hooks/usePhotoInfoProvider';
 jest.mock('../hooks/usePhotoInfoReducer');
 jest.mock('@/common/utils/images/compressImage');
 jest.mock('@/common/utils/files');
+jest.mock('exifreader');
 
 describe('usePhotoInfoProvider', () => {
   const dispatch = jest.fn();
@@ -24,6 +26,13 @@ describe('usePhotoInfoProvider', () => {
     // Arange
     (usePhotoInfoReducer as unknown as jest.Mock).mockImplementation(
       jest.fn(() => [defaultPhotosState, dispatch])
+    );
+    (ExifReader.load as unknown as jest.Mock).mockImplementation(
+      jest.fn(() => ({
+        DateTimeOriginal: { description: '2024-10-19' },
+        GPSLatitude: { description: 10 },
+        GPSLongitude: { description: 20 },
+      }))
     );
     // Act
     const { result } = renderHook(() => usePhotoInfoProvider());
@@ -109,6 +118,8 @@ describe('usePhotoInfoProvider', () => {
               name: file4.name,
               selected: false,
               preview: 'preview',
+              date: '2024-10-19',
+              location: { lat: 10, lon: 20 },
             },
           });
         });

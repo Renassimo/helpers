@@ -23,6 +23,7 @@
     "change-case": "^4.1.2",
     "class-validator": "^0.14.1",
     "dayjs": "^1.11.7",
+    "exifreader": "^4.23.7",
     "firebase": "^9.17.1",
     "firebase-admin": "^11.5.0",
     "fuse.js": "^7.0.0",

@@ -7,6 +7,8 @@ export const mockedPhoto1: PhotoInfo = {
   name: 'name1',
   preview: 'preview1',
   selected: true,
+  date: '2024-10-19',
+  location: { lat: 10, lon: 20 },
 };
 
 export const mockedPhoto2: PhotoInfo = {
@@ -15,6 +17,8 @@ export const mockedPhoto2: PhotoInfo = {
   name: 'name2',
   preview: 'preview2',
   selected: true,
+  date: '2023-10-19',
+  location: null,
 };
 
 export const mockedPhoto3: PhotoInfo = {
@@ -23,6 +27,8 @@ export const mockedPhoto3: PhotoInfo = {
   name: 'name3',
   preview: 'preview3',
   selected: true,
+  date: null,
+  location: null,
 };
 
 export const mockedPhoto = mockedPhoto1;

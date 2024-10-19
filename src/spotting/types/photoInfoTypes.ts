@@ -1,3 +1,4 @@
+import { Avia } from '@/avia/types/avia';
 import { FileWithPath } from 'react-dropzone';
 
 export interface PhotoInfo {
@@ -6,6 +7,8 @@ export interface PhotoInfo {
   name: string;
   preview: string;
   selected: boolean;
+  date: string | null;
+  location: Avia.Location | null;
 }
 
 export interface PhotoInfosState {

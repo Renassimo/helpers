@@ -1,11 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
+import ExifReader from 'exifreader';
 
 import compressImage from '@/common/utils/images/compressImage';
 import { getFileWithPreview } from '@/common/utils/files';
 
-import { PhotoInfoContextState, PhotoActionType } from '@/spotting/types';
+import {
+  PhotoInfoContextState,
+  PhotoActionType,
+  PhotoInfo,
+} from '@/spotting/types';
 
 import usePhotoInfoReducer from '../usePhotoInfoReducer';
+import { Avia } from '@/avia/types/avia';
 
 const usePhotoInfoProvider = (): PhotoInfoContextState => {
   const [handlingText, setHandlingText] = useState('');
@@ -32,12 +38,22 @@ const usePhotoInfoProvider = (): PhotoInfoContextState => {
           continue;
 
         const compressedImage = await compressImage(file, { quality: 0.2 });
-        const photo = {
+
+        const tags = (await ExifReader.load(file)) || {};
+        const date = tags?.['DateTimeOriginal']?.description || null;
+        const lat = tags?.['GPSLatitude']?.description || null;
+        const lon = tags?.['GPSLongitude']?.description || null;
+        const location: Avia.Location | null =
+          lat && lon ? { lat: Number(lat), lon: Number(lon) } : null;
+
+        const photo: PhotoInfo = {
           file,
           path,
           name: file.name,
           selected: false,
           preview: getFileWithPreview(compressedImage).preview,
+          date,
+          location,
         };
 
         dispatch({ type: PhotoActionType.ADD_PHOTO, payload: photo });
