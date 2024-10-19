@@ -3,17 +3,20 @@
 exports[`CreateInfoPage renders successfully 1`] = `
 <div>
   <div>
-    MockedPageTemplateWithBreadcrumbs (
-    Spotting
-    ):
-    <span>
-      Jesse Pinkman
-       - 
-      5book
-       - 
-    </span>
+    MockedPhotoInfoProvider - 
     <div>
-      CreateInfoPage
+      MockedPageTemplateWithBreadcrumbs (
+      Spotting
+      ):
+      <span>
+        Jesse Pinkman
+         - 
+        5book
+         - 
+      </span>
+      <div>
+        MockedPhotoInfoHandler
+      </div>
     </div>
   </div>
 </div>

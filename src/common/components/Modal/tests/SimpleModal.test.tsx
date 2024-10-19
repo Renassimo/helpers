@@ -13,6 +13,7 @@ describe('SimpleModal', () => {
     title: 'Title',
     open: true,
     loading: false,
+    fullWidth: false,
   };
 
   describe('when "close" button clicked', () => {

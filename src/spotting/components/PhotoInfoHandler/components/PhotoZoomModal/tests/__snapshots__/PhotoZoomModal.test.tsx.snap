@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoZoomModal renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="MuiBox-root css-0"
+      >
+        <img
+          alt="path1"
+          src="preview1"
+          style="width: 100%;"
+        />
+      </div>
+      <div>
+        title: 
+        path1
+        ; maxWidth: 
+        xl
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        did not passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;
