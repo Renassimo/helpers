@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoFolderPhotos renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-8atqhb"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1pq723i-MuiGrid-root"
+      />
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PhotoFolderPhotos when photoFolder chosen renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-8atqhb"
+    >
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Remove folder
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1pq723i-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-t2nu3-MuiGrid-root"
+        >
+          <div>
+            selected
+             - 
+            name1
+             - 
+            preview1
+             - 
+             -
+             
+             - 
+            onOpenZoom
+             
+            - 
+             -
+             
+            onRemoveFromFolder
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-t2nu3-MuiGrid-root"
+        >
+          <div>
+            selected
+             - 
+            name2
+             - 
+            preview2
+             - 
+             -
+             
+             - 
+            onOpenZoom
+             
+            - 
+             -
+             
+            onRemoveFromFolder
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

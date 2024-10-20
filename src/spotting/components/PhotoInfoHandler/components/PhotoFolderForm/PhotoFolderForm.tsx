@@ -1,3 +1,5 @@
-const PhotoFolderForm = () => {};
+const PhotoFolderForm = () => {
+  return <>PhotoFolderForm</>;
+};
 
 export default PhotoFolderForm;

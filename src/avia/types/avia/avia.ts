@@ -71,4 +71,35 @@ export namespace Avia {
     manufacturers: Matcher;
     models: Matcher;
   }
+
+  export interface AircraftsResult {
+    aircrafts: AircraftData[] | null;
+    chosenAircraft: AircraftData | null;
+    retreiveAircrafts: (
+      flightNumber: string
+    ) => Promise<AircraftApiData | null>;
+    chooseAircraft: (id: string) => AircraftData | null;
+    clearChosenAircraft: () => null;
+    loading: boolean;
+    cleanUpAircrafts: () => void;
+  }
+
+  export interface AirportsResult {
+    airports: AirportData[] | null;
+    chosenAirport: AirportData | null;
+    retreiveAirports: (
+      props: RetrieveAirportsProps
+    ) => Promise<AirportsApiData | null>;
+    chooseAirport: (id: string) => AirportData | null;
+    clearChosenAirport: () => null;
+    loading: boolean;
+    cleanUpAirports: () => void;
+  }
+
+  export interface RetrieveAirportsProps {
+    code?: string;
+    text?: string;
+    lat?: string;
+    lon?: string;
+  }
 }
