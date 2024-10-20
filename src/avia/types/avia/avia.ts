@@ -96,6 +96,19 @@ export namespace Avia {
     cleanUpAirports: () => void;
   }
 
+  export interface FlightsResult {
+    flights: Avia.FlightData[] | null;
+    chosenFlight: Avia.FlightData | null;
+    retreiveFlights: (
+      flightNumber: string,
+      date?: string | null
+    ) => Promise<Avia.FlightsApiData | null>;
+    chooseFlight: (id: string) => Avia.FlightData | null;
+    clearChosenFlight: () => null;
+    loading: boolean;
+    cleanUpFlights: () => void;
+  }
+
   export interface RetrieveAirportsProps {
     code?: string;
     text?: string;
@@ -103,3 +116,33 @@ export namespace Avia {
     lon?: string;
   }
 }
+
+export const defaultFlightsResult = {
+  flights: null,
+  chosenFlight: null,
+  retreiveFlights: async () => null,
+  chooseFlight: () => null,
+  clearChosenFlight: () => null,
+  loading: false,
+  cleanUpFlights: () => {},
+};
+
+export const defaultAircraftsResult = {
+  aircrafts: null,
+  chosenAircraft: null,
+  retreiveAircrafts: async () => null,
+  chooseAircraft: () => null,
+  clearChosenAircraft: () => null,
+  loading: false,
+  cleanUpAircrafts: () => {},
+};
+
+export const defaultAirportsResult = {
+  airports: null,
+  chosenAirport: null,
+  retreiveAirports: async () => null,
+  chooseAirport: () => null,
+  clearChosenAirport: () => null,
+  loading: false,
+  cleanUpAirports: () => {},
+};

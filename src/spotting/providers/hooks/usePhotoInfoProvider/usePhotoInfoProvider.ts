@@ -4,6 +4,7 @@ import ExifReader from 'exifreader';
 import compressImage from '@/common/utils/images/compressImage';
 import { getFileWithPreview } from '@/common/utils/files';
 
+import { Avia } from '@/avia/types/avia';
 import {
   PhotoInfoContextState,
   PhotoActionType,
@@ -11,7 +12,6 @@ import {
 } from '@/spotting/types';
 
 import usePhotoInfoReducer from '../usePhotoInfoReducer';
-import { Avia } from '@/avia/types/avia';
 
 const usePhotoInfoProvider = (): PhotoInfoContextState => {
   const [handlingText, setHandlingText] = useState('');

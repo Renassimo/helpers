@@ -1,10 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 
-import {
-  UseAircraftsResult,
-  UseAirportsResult,
-  UseFlightsResult,
-} from '@/myFlights/types';
+import { Avia } from '@/avia/types/avia';
 
 import { showTimePassed } from '@/common/utils/dayjs';
 import geoDistance from '@/common/lib/geoDistance';
@@ -55,7 +51,7 @@ describe('useLoadedValues', () => {
   const flightsResult = {
     chosenFlight,
     cleanUpFlights,
-  } as unknown as UseFlightsResult;
+  } as unknown as Avia.FlightsResult;
 
   // Aircrafs
   const cleanUpAircrafts = jest.fn();
@@ -79,7 +75,7 @@ describe('useLoadedValues', () => {
   const aircraftsResult = {
     chosenAircraft,
     cleanUpAircrafts,
-  } as unknown as UseAircraftsResult;
+  } as unknown as Avia.AircraftsResult;
 
   // Airports
   // Origin
@@ -100,7 +96,7 @@ describe('useLoadedValues', () => {
   const originsResult = {
     chosenAirport: chosenOrigin,
     cleanUpAirports: cleanUpOrigins,
-  } as unknown as UseAirportsResult;
+  } as unknown as Avia.AirportsResult;
   // Destination
   const cleanUpDestinations = jest.fn();
   const chosenDestination = {
@@ -119,7 +115,7 @@ describe('useLoadedValues', () => {
   const destinationsResult = {
     chosenAirport: chosenDestination,
     cleanUpAirports: cleanUpDestinations,
-  } as unknown as UseAirportsResult;
+  } as unknown as Avia.AirportsResult;
 
   describe('when calls cleanup', () => {
     test('returns default state', async () => {

@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
-import { UseFlightsResult } from '@/myFlights/types';
+import { Avia } from '@/avia/types/avia';
 
 import useStateValue from '@/common/hooks/useStateValue';
 
@@ -41,9 +41,9 @@ describe('FlightForm', () => {
     chooseFlight,
     clearChosenFlight,
     loading: false,
-  } as unknown as UseFlightsResult;
+  } as unknown as Avia.FlightsResult;
 
-  const mockUseMyFlightsContext = (props: Partial<UseFlightsResult> = {}) =>
+  const mockUseMyFlightsContext = (props: Partial<Avia.FlightsResult> = {}) =>
     jest.fn(() => ({ flightsResult: { ...flightsResult, ...props } }));
 
   beforeEach(() => {

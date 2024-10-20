@@ -1,9 +1,8 @@
 import { Avia } from '@/avia/types/avia';
-import { RetrieveAirportsProps, UseAirportsResult } from '@/myFlights/types';
 
 import useChooseRetreivedItem from '@/common/hooks/useChooseRetreivedItem';
 
-const useAirports = (): UseAirportsResult => {
+const useAirports = (): Avia.AirportsResult => {
   const {
     items: airports,
     chosenItem: chosenAirport,
@@ -23,7 +22,7 @@ const useAirports = (): UseAirportsResult => {
     text,
     lat,
     lon,
-  }: RetrieveAirportsProps) => {
+  }: Avia.RetrieveAirportsProps) => {
     let url = '';
 
     if (code) url = `/api/avia/airports?code=${code}`;

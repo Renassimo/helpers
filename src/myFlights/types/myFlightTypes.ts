@@ -1,10 +1,5 @@
 import { Avia } from '@/avia/types/avia';
-import {
-  UseAircraftsResult,
-  UseAirportsResult,
-  UseFlightsResult,
-  UseMyFlightFormResult,
-} from './props';
+import { UseMyFlightFormResult } from './props';
 
 export interface MyFlightAttributes {
   title: string | null;
@@ -51,12 +46,12 @@ export interface MyFlightsContextData {
   // Matchers
   matchers: Avia.Matchers | null;
   // Flights
-  flightsResult: UseFlightsResult;
+  flightsResult: Avia.FlightsResult;
   // Aircrafts
-  aircraftsResult: UseAircraftsResult;
+  aircraftsResult: Avia.AircraftsResult;
   // Airports
-  originsResult: UseAirportsResult;
-  destinationsResult: UseAirportsResult;
+  originsResult: Avia.AirportsResult;
+  destinationsResult: Avia.AirportsResult;
   // CleanUp
   cleanUp: () => void;
   // Loaded values
