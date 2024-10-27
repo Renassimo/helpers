@@ -11,6 +11,9 @@ import {
   PhotoInfo,
 } from '@/spotting/types';
 
+import useAviaOptions from '@/avia/hooks/useAviaOptions';
+import useAviaMatchers from '@/avia/hooks/useAviaMatchers';
+
 import usePhotoInfoReducer from '../usePhotoInfoReducer';
 
 const usePhotoInfoProvider = (): PhotoInfoContextState => {
@@ -40,7 +43,11 @@ const usePhotoInfoProvider = (): PhotoInfoContextState => {
         const compressedImage = await compressImage(file, { quality: 0.2 });
 
         const tags = (await ExifReader.load(file)) || {};
-        const date = tags?.['DateTimeOriginal']?.description || null;
+        const date =
+          tags?.['DateTimeOriginal']?.description
+            ?.split(' ')[0]
+            .split(':')
+            .join('-') || null;
         const lat = tags?.['GPSLatitude']?.description || null;
         const lon = tags?.['GPSLongitude']?.description || null;
         const location: Avia.Location | null =
@@ -67,12 +74,20 @@ const usePhotoInfoProvider = (): PhotoInfoContextState => {
   const photosList = useMemo(() => Object.values(photos), [photos]);
   const foldersList = useMemo(() => Object.values(folders), [folders]);
 
+  // Options
+  const { data: options } = useAviaOptions();
+
+  // Matchers
+  const { data: matchers } = useAviaMatchers();
+
   return {
     ...state,
     handlingText,
     dispatch,
     photosList,
     foldersList,
+    options,
+    matchers,
   };
 };
 

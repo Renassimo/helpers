@@ -1,0 +1,1296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoFolderInfoForm renders successfully with empty values 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+           - 
+          Date
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Place
+           - 
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Registration
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          CN
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Carrier
+           - 
+           -
+           
+          Airline 1 -
+          Airline 2 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Manufacturer
+           - 
+           -
+           
+          Manufacturer 5 -
+          Manufacturers 6 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Model
+           - 
+           -
+           
+          Model 7 -
+          Model 8 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+           - 
+           - 
+          First flight
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Airplane name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Planespotters URL
+           - 
+          url
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+           - 
+          Extra link
+           - 
+          url
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxOutlineBlankIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Flown
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxOutlineBlankIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Modelled
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxOutlineBlankIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Info ready
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxOutlineBlankIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Ready to publish
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-12lywrk"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PhotoFolderInfoForm when loaded values passed renders successfully with empty values 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          loadedValues.date
+           - 
+           - 
+          Date
+           - 
+           -
+           
+          loadedValues.date
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Place
+           - 
+          loadedValues.place
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.registration
+           - 
+          Registration
+           - 
+           - 
+          loadedValues.registration
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.cn
+           - 
+          CN
+           - 
+           - 
+          loadedValues.cn
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Carrier
+           - 
+          loadedValues.carrier
+           -
+           
+          Airline 1 -
+          Airline 2 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Manufacturer
+           - 
+          loadedValues.manufacturer
+           -
+           
+          Manufacturer 5 -
+          Manufacturers 6 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+           - 
+          Model
+           - 
+          loadedValues.model
+           -
+           
+          Model 7 -
+          Model 8 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          loadedValues.firstFlight
+           - 
+           - 
+          First flight
+           - 
+           -
+           
+          loadedValues.firstFlight
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.airplaneName
+           - 
+          Airplane name
+           - 
+           - 
+          loadedValues.airplaneName
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.planespottersUrl
+           - 
+          Planespotters URL
+           - 
+          url
+           - 
+          loadedValues.planespottersUrl
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.extraLink
+           - 
+          Extra link
+           - 
+          url
+           - 
+          loadedValues.extraLink
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Flown
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Modelled
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Info ready
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Ready to publish
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-12lywrk"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PhotoFolderInfoForm when loaded values passed when state values passed renders successfully with state and loaded values 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          loadedValues.date
+           - 
+           - 
+          Date
+           - 
+           -
+           
+          loadedValues.date
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.place
+           - 
+          Place
+           - 
+          loadedValues.place
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.registration
+           - 
+          Registration
+           - 
+           - 
+          loadedValues.registration
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.cn
+           - 
+          CN
+           - 
+           - 
+          loadedValues.cn
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.carrier
+           - 
+          Carrier
+           - 
+          loadedValues.carrier
+           -
+           
+          Airline 1 -
+          Airline 2 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.manufacturer
+           - 
+          Manufacturer
+           - 
+          loadedValues.manufacturer
+           -
+           
+          Manufacturer 5 -
+          Manufacturers 6 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.model
+           - 
+          Model
+           - 
+          loadedValues.model
+           -
+           
+          Model 7 -
+          Model 8 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          loadedValues.firstFlight
+           - 
+           - 
+          First flight
+           - 
+           -
+           
+          loadedValues.firstFlight
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.airplaneName
+           - 
+          Airplane name
+           - 
+           - 
+          loadedValues.airplaneName
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.planespottersUrl
+           - 
+          Planespotters URL
+           - 
+          url
+           - 
+          loadedValues.planespottersUrl
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          loadedValues.extraLink
+           - 
+          Extra link
+           - 
+          url
+           - 
+          loadedValues.extraLink
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Flown
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Modelled
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Info ready
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Ready to publish
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-12lywrk"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PhotoFolderInfoForm when state values passed renders successfully with state values 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          state.date
+           - 
+           - 
+          Date
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.place
+           - 
+          Place
+           - 
+           -
+           
+          Airport 3 -
+          Airport 4 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.registration
+           - 
+          Registration
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.cn
+           - 
+          CN
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.carrier
+           - 
+          Carrier
+           - 
+           -
+           
+          Airline 1 -
+          Airline 2 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.manufacturer
+           - 
+          Manufacturer
+           - 
+           -
+           
+          Manufacturer 5 -
+          Manufacturers 6 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedFreeAutoComplete - 
+          state.model
+           - 
+          Model
+           - 
+           -
+           
+          Model 7 -
+          Model 8 -
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedDateInput - 
+          state.firstFlight
+           - 
+           - 
+          First flight
+           - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.airplaneName
+           - 
+          Airplane name
+           - 
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.planespottersUrl
+           - 
+          Planespotters URL
+           - 
+          url
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <div>
+          MockedClearableInput - 
+          state.extraLink
+           - 
+          Extra link
+           - 
+          url
+           - 
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Flown
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Modelled
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Info ready
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-164r41r"
+      >
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+          >
+            Ready to publish
+          </span>
+        </label>
+      </div>
+      <div
+        class="MuiBox-root css-12lywrk"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;

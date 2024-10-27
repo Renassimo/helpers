@@ -84,7 +84,11 @@ describe('BaseAirportForm', () => {
     // Arange
     // Act
     const { baseElement } = renderWithTheme(
-      <BaseAirportForm title="Origin" airportsResult={getAirportsResult()} />
+      <BaseAirportForm
+        title="Origin"
+        airportsResult={getAirportsResult()}
+        adornments={<div>Adornments</div>}
+      />
     );
     // Assert
     expect(baseElement).toMatchSnapshot();

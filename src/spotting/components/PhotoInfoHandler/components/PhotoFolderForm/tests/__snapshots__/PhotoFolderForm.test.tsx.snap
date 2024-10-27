@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoFolderForm renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedBaseAircraftForm - 
+      </div>
+      <div>
+        MockedBaseAirportForm - 
+        Airport
+         - 
+      </div>
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2 css-jpb38c-MuiTypography-root"
+      >
+        Enter fields mannually
+      </h6>
+      <div>
+        MockedPhotoFolderInfoForm
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PhotoFolderForm when place, showingFolder and chosenAirport passed renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedBaseAircraftForm - 
+      </div>
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2 css-jpb38c-MuiTypography-root"
+      >
+        Enter fields mannually
+      </h6>
+      <div>
+        MockedPhotoFolderInfoForm
+      </div>
+    </div>
+  </div>
+</body>
+`;

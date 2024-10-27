@@ -18,6 +18,7 @@ export interface PhotoInfosState {
 export interface PhotoFolder {
   photos: PhotoInfosState;
   id: string;
+  attributes?: Partial<PhotoFolderInfoAttributes>;
 }
 
 export interface PhotoFoldersState {
@@ -30,6 +31,7 @@ export interface PhotoHandlerState {
   folders: PhotoFoldersState;
   zoomedPhoto: PhotoInfo | null;
   showingFolder: PhotoFolder | null;
+  place: string | null;
 }
 
 export interface PhotoInfoContextState extends PhotoHandlerState {
@@ -37,6 +39,8 @@ export interface PhotoInfoContextState extends PhotoHandlerState {
   photosList: PhotoInfo[];
   foldersList: PhotoFolder[];
   dispatch: (value: PhotoInfoAction) => void;
+  options: Avia.Options | null;
+  matchers: Avia.Matchers | null;
 }
 
 export enum PhotoActionType {
@@ -53,6 +57,8 @@ export enum PhotoActionType {
   CLEAR_FOLDER_MODAL,
   REMOVE_FROM_FOLDER,
   REMOVE_FOLDER,
+  UPDATE_PLACE,
+  SAVE_FOLDER_INFO,
 }
 
 export const defaultPhotosState: PhotoHandlerState = {
@@ -61,6 +67,7 @@ export const defaultPhotosState: PhotoHandlerState = {
   folders: {},
   zoomedPhoto: null,
   showingFolder: null,
+  place: null,
 };
 
 export type PhotoInfoAction =
@@ -109,4 +116,41 @@ export type PhotoInfoAction =
   | {
       type: PhotoActionType.REMOVE_FOLDER;
       payload: string;
+    }
+  | {
+      type: PhotoActionType.UPDATE_PLACE;
+      payload?: string | null;
+    }
+  | {
+      type: PhotoActionType.SAVE_FOLDER_INFO;
+      payload?: Partial<PhotoFolderInfoAttributes>;
     };
+
+export interface PhotoFolderInfoAttributes
+  extends Record<string, string | number | boolean | null> {
+  title: string | null;
+  date: string | null;
+  place: string | null;
+  photosUrl: string | null;
+  extraLink: string | null;
+  planespottersUrl: string | null;
+  registration: string | null;
+  carrier: string | null;
+  manufacturer: string | null;
+  model: string | null;
+  firstFlight: string | null;
+  cn: string | null;
+  airplaneName: string | null;
+  flown: boolean | null;
+  modelled: boolean | null;
+  infoReady: boolean | null;
+  readyToPublish: boolean | null;
+  rating: string | null;
+  age: string | null;
+  url: string | null;
+}
+
+export interface PhotoFolderInfoData {
+  id: string;
+  attributes: PhotoFolderInfoAttributes;
+}

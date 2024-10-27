@@ -5,7 +5,7 @@ export interface UseMyFlightFormResult {
   openModal: (data?: MyFlightData | null, isReturn?: boolean) => void;
   closeModal: () => void;
   state: Partial<MyFlightAttributes>;
-  setValue: (key: string, value: string | number | null) => void;
+  setValue: (key: string, value: string | number | boolean | null) => void;
   isEditing: boolean;
   onSubmit: () => Promise<void>;
   onDelete: () => Promise<void>;

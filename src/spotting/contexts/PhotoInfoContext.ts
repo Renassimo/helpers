@@ -6,6 +6,8 @@ const PhotoInfoContext = createContext<PhotoInfoContextState>({
   photosList: [],
   foldersList: [],
   dispatch: () => {},
+  options: null,
+  matchers: null,
   ...defaultPhotosState,
 });
 

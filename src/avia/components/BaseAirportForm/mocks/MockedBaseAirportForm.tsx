@@ -1,5 +1,7 @@
-const MockedBaseAirportForm = jest.fn(({ title }) => (
-  <div>MockedBaseAirportForm - {title}</div>
+const MockedBaseAirportForm = jest.fn(({ title, adornments }) => (
+  <div>
+    MockedBaseAirportForm - {title} - {adornments}
+  </div>
 ));
 
 export default MockedBaseAirportForm;

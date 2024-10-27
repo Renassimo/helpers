@@ -1,12 +1,15 @@
-import { MyFlightAttributes } from '@/myFlights/types';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
+import { Avia } from '@/avia/types/avia';
 
 import DateInput from '@/common/components/DatePickers/DateInput';
 import FreeAutoComplete from '@/common/components/FreeAutoComplete';
 import ClearableInput from '@/common/components/ClearableInput';
 
-import MyFlightFormFieldProps from '../types';
-
-const MyFlightFormField = ({
+const AviaFormField = <
+  Attributes extends Record<string, string | number | boolean | null>
+>({
   name,
   label,
   options,
@@ -17,12 +20,13 @@ const MyFlightFormField = ({
   state,
   setValue,
   loadedValues,
-}: MyFlightFormFieldProps & {
-  state: Partial<MyFlightAttributes>;
-  setValue: (key: string, value: string | number | null) => void;
-  loadedValues: Partial<MyFlightAttributes>;
+}: Avia.FormFieldProps<Attributes> & {
+  state: Partial<Attributes>;
+  setValue: (key: string, value: string | number | boolean | null) => void;
+  loadedValues: Partial<Attributes>;
 }) => {
   const value = state[name];
+
   if (options)
     return (
       <FreeAutoComplete
@@ -34,6 +38,7 @@ const MyFlightFormField = ({
         matchers={matchers}
       />
     );
+
   if (isDate)
     return (
       <DateInput
@@ -45,9 +50,23 @@ const MyFlightFormField = ({
         fullWidth
       />
     );
+
+  if (type === 'checkbox')
+    return (
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={!!(loadedValues[name] || value) as boolean}
+            onChange={(event) => setValue(name, event?.target.checked)}
+          />
+        }
+        label={label}
+      />
+    );
+
   return (
     <ClearableInput
-      value={value}
+      value={value as number | string | null}
       setValue={(value) => setValue(name, value)}
       label={label}
       type={type}
@@ -61,4 +80,4 @@ const MyFlightFormField = ({
   );
 };
 
-export default MyFlightFormField;
+export default AviaFormField;

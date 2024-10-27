@@ -6,10 +6,15 @@ import { defaultPhotosState, PhotoActionType } from '@/spotting/types';
 import compressImage from '@/common/utils/images/compressImage';
 import { getFileWithPreview } from '@/common/utils/files';
 
+import useAviaOptions from '@/avia/hooks/useAviaOptions';
+import useAviaMatchers from '@/avia/hooks/useAviaMatchers';
+
 import usePhotoInfoReducer from '../hooks/usePhotoInfoReducer';
 
 import usePhotoInfoProvider from '../hooks/usePhotoInfoProvider';
 
+jest.mock('@/avia/hooks/useAviaOptions');
+jest.mock('@/avia/hooks/useAviaMatchers');
 jest.mock('../hooks/usePhotoInfoReducer');
 jest.mock('@/common/utils/images/compressImage');
 jest.mock('@/common/utils/files');
@@ -17,6 +22,15 @@ jest.mock('exifreader');
 
 describe('usePhotoInfoProvider', () => {
   const dispatch = jest.fn();
+
+  beforeEach(() => {
+    (useAviaOptions as unknown as jest.Mock).mockReturnValue({
+      data: 'aviaOptions',
+    });
+    (useAviaMatchers as unknown as jest.Mock).mockReturnValue({
+      data: 'aviaMatchers',
+    });
+  });
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -27,13 +41,6 @@ describe('usePhotoInfoProvider', () => {
     (usePhotoInfoReducer as unknown as jest.Mock).mockImplementation(
       jest.fn(() => [defaultPhotosState, dispatch])
     );
-    (ExifReader.load as unknown as jest.Mock).mockImplementation(
-      jest.fn(() => ({
-        DateTimeOriginal: { description: '2024-10-19' },
-        GPSLatitude: { description: 10 },
-        GPSLongitude: { description: 20 },
-      }))
-    );
     // Act
     const { result } = renderHook(() => usePhotoInfoProvider());
     // Assert
@@ -43,6 +50,8 @@ describe('usePhotoInfoProvider', () => {
       dispatch,
       photosList: [],
       foldersList: [],
+      matchers: 'aviaMatchers',
+      options: 'aviaOptions',
     });
   });
 
@@ -70,6 +79,13 @@ describe('usePhotoInfoProvider', () => {
       (getFileWithPreview as unknown as jest.Mock).mockImplementation(
         jest.fn(() => ({ preview: 'preview' }))
       );
+      (ExifReader.load as unknown as jest.Mock).mockImplementation(
+        jest.fn(() => ({
+          DateTimeOriginal: { description: '2024:10:19 15:19' },
+          GPSLatitude: { description: 10 },
+          GPSLongitude: { description: 20 },
+        }))
+      );
     });
 
     test('returns updated state', () => {
@@ -86,6 +102,8 @@ describe('usePhotoInfoProvider', () => {
         dispatch,
         photosList: ['photo2'],
         foldersList: [folder1],
+        matchers: 'aviaMatchers',
+        options: 'aviaOptions',
       });
       expect(compressImage).toBeCalledWith(file4, { quality: 0.2 });
       expect(getFileWithPreview).not.toBeCalled();
@@ -108,6 +126,8 @@ describe('usePhotoInfoProvider', () => {
             dispatch,
             photosList: ['photo2'],
             foldersList: [folder1],
+            matchers: 'aviaMatchers',
+            options: 'aviaOptions',
           });
           expect(getFileWithPreview).toBeCalledWith('compressed-image');
           expect(dispatch).toBeCalledWith({

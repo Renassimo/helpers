@@ -6,6 +6,7 @@ exports[`AirportForm renders successfully 1`] = `
     <div>
       MockedBaseAirportForm - 
       Origin
+       - 
     </div>
   </div>
 </body>
@@ -17,6 +18,7 @@ exports[`AirportForm when titile is Destination renders successfully 1`] = `
     <div>
       MockedBaseAirportForm - 
       Destination
+       - 
     </div>
   </div>
 </body>

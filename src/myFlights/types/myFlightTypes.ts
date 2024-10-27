@@ -1,7 +1,8 @@
 import { Avia } from '@/avia/types/avia';
 import { UseMyFlightFormResult } from './props';
 
-export interface MyFlightAttributes {
+export interface MyFlightAttributes
+  extends Record<string, string | number | boolean | null> {
   title: string | null;
   date: string | null;
   airline: string | null;

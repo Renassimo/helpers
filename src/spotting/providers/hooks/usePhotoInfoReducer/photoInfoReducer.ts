@@ -99,7 +99,10 @@ const photoInfoReducer = (
 
       return {
         ...state,
-        folders: { ...state.folders, [id]: { photos: folderPhotos, id } },
+        folders: {
+          ...state.folders,
+          [id]: { photos: folderPhotos, id, attributes: {} },
+        },
         photos: updatedPhotos,
       };
     }
@@ -174,6 +177,30 @@ const photoInfoReducer = (
         photos: { ...state.photos, ...photos },
         showingFolder: null,
         folders: updatedFolders,
+      };
+    }
+    case PhotoActionType.UPDATE_PLACE: {
+      const place = action.payload || null;
+
+      return {
+        ...state,
+        place,
+      };
+    }
+    case PhotoActionType.SAVE_FOLDER_INFO: {
+      const attributes = action.payload;
+      const { showingFolder } = state;
+      if (!showingFolder) return state;
+
+      const updatedFolder = { ...showingFolder, attributes };
+
+      return {
+        ...state,
+        showingFolder: null,
+        folders: {
+          ...state.folders,
+          [updatedFolder.id]: updatedFolder,
+        },
       };
     }
   }

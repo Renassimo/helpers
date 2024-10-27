@@ -51,6 +51,7 @@ describe('photoInfoReducer when action is', () => {
       [photo1.path]: photo1,
       [photo2.path]: photo2,
     },
+    place: null,
   };
   const folder2 = {
     id: 'folder2',
@@ -59,6 +60,7 @@ describe('photoInfoReducer when action is', () => {
       [photo4.path]: photo4,
       [photo5.path]: photo5,
     },
+    place: null,
   };
 
   const folders = {
@@ -248,6 +250,7 @@ describe('photoInfoReducer when action is', () => {
                 [photo6.path]: { ...photo6, selected: false },
                 [photo7.path]: { ...photo7, selected: false },
               },
+              attributes: {},
             },
           },
           photos: {
@@ -336,6 +339,19 @@ describe('photoInfoReducer when action is', () => {
           folders: {
             [folder2.id]: folder2,
           },
+        }
+      )
+    );
+  });
+
+  describe('UPDATE_PLACE', () => {
+    test(
+      'updates place value',
+      getTest(
+        { type: PhotoActionType.UPDATE_PLACE, payload: 'WAW/EPWA' },
+        {},
+        {
+          place: 'WAW/EPWA',
         }
       )
     );

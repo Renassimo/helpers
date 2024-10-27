@@ -115,6 +115,16 @@ export namespace Avia {
     lat?: string;
     lon?: string;
   }
+
+  export interface FormFieldProps<Attributes> {
+    name: Extract<keyof Attributes, string>;
+    label: string;
+    options?: string[];
+    matchers?: Matcher;
+    type?: string;
+    disabled?: boolean;
+    isDate?: boolean;
+  }
 }
 
 export const defaultFlightsResult = {

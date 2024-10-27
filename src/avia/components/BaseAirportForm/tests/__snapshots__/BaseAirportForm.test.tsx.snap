@@ -76,6 +76,9 @@ exports[`BaseAirportForm renders successfully 1`] = `
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />
         </button>
+        <div>
+          Adornments
+        </div>
       </div>
       <div
         class="MuiBox-root css-ohyvb6"

@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent, useEffect } from 'react';
+import { useState, KeyboardEvent, useEffect, ReactNode } from 'react';
 
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -20,9 +20,11 @@ import { Avia } from '@/avia/types/avia';
 const BaseAirportForm = ({
   title = 'Airport',
   airportsResult,
+  adornments,
 }: {
   title: string;
   airportsResult: Avia.AirportsResult;
+  adornments?: ReactNode;
 }) => {
   const { createErrorAlert } = useAlerts();
 
@@ -128,6 +130,7 @@ const BaseAirportForm = ({
               >
                 <MyLocationIcon />
               </IconButton>
+              {adornments}
             </>
           }
         />
