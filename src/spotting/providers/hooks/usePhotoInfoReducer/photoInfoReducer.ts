@@ -101,7 +101,7 @@ const photoInfoReducer = (
         ...state,
         folders: {
           ...state.folders,
-          [id]: { photos: folderPhotos, id, attributes: {} },
+          [id]: { photos: folderPhotos, id },
         },
         photos: updatedPhotos,
       };

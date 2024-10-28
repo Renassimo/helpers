@@ -38,6 +38,7 @@ const PhotoFoldersList = () => {
               name={first.name}
               preview={first.preview}
               id={folder.id}
+              selected={!!folder.attributes}
               onClick={() =>
                 dispatch({
                   type: PhotoActionType.SET_FOLDER_MODAL,

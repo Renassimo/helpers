@@ -250,7 +250,6 @@ describe('photoInfoReducer when action is', () => {
                 [photo6.path]: { ...photo6, selected: false },
                 [photo7.path]: { ...photo7, selected: false },
               },
-              attributes: {},
             },
           },
           photos: {
@@ -352,6 +351,31 @@ describe('photoInfoReducer when action is', () => {
         {},
         {
           place: 'WAW/EPWA',
+        }
+      )
+    );
+  });
+
+  describe('SAVE_FOLDER_INFO', () => {
+    test(
+      'saves attributes and closes modal',
+      getTest(
+        {
+          type: PhotoActionType.SAVE_FOLDER_INFO,
+          payload: { place: 'WAW/EPWA', model: 'A320neo' },
+        },
+        {
+          showingFolder: folder1,
+        },
+        {
+          showingFolder: null,
+          folders: {
+            ...folders,
+            [folder1.id]: {
+              ...folder1,
+              attributes: { place: 'WAW/EPWA', model: 'A320neo' },
+            },
+          },
         }
       )
     );

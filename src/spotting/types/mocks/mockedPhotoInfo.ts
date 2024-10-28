@@ -60,7 +60,6 @@ export const mockedPhotoFolder2: PhotoFolder = {
     [mockedPhoto3.path]: mockedPhoto3,
   },
   id: 'id2',
-  attributes: {},
 };
 
 export const mockedPhotoFolder = mockedPhotoFolder1;
