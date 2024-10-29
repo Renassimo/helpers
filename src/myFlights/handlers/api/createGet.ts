@@ -31,13 +31,16 @@ const handler = async (req: NextApiRequestWithAuth, res: NextApiResponse) => {
     }
     if (req.method === 'GET') {
       const cursor = req.query.cursor;
-      if (!cursor) throw { status: 400, message: 'Cursor did not passed' };
+      const cn = req.query.cn;
+      if (!cursor && !cn)
+        throw { status: 400, message: 'Cursor did not passed' };
 
-      const { error, data, nextCursor } = await getMyFlights(
+      const { error, data, nextCursor } = await getMyFlights({
         notionService,
-        req.notionHelperData?.dataBaseID ?? '',
-        cursor as string
-      );
+        dataBaseID: req.notionHelperData?.dataBaseID ?? '',
+        cursor: cursor as string,
+        ...(cn ? { filter: { cn: cn as string } } : {}),
+      });
 
       if (error) throw error;
 

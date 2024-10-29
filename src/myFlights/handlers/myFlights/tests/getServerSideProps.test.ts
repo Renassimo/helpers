@@ -13,7 +13,7 @@ jest.mock('@/common/lib/firebase/auth', jest.fn());
 
 describe('getServerSideProps', () => {
   const mockedDb = 'mockedDb' as unknown as Firestore;
-  const mockedDataBaseID = 'data-base-id';
+  const dataBaseID = 'data-base-id';
   const mockedToken = 'token';
   const mockedUser = { name: 'User' };
   const mockedData = { properties: {} };
@@ -23,7 +23,7 @@ describe('getServerSideProps', () => {
   const mockedContext = {
     user: mockedUser,
     pages: mockedPages,
-    notionHelperData: { dataBaseID: mockedDataBaseID, token: mockedToken },
+    notionHelperData: { dataBaseID, token: mockedToken },
     db: mockedDb,
   };
   const nextCursor = 'nextCursor';
@@ -62,7 +62,10 @@ describe('getServerSideProps', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(NotionService).toHaveBeenCalledWith(mockedToken);
-      expect(getMyFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
+      expect(getMyFlights).toHaveBeenCalledWith({
+        dataBaseID,
+        notionService: expect.any(NotionService),
+      });
     });
   });
 
@@ -92,7 +95,10 @@ describe('getServerSideProps', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(NotionService).toHaveBeenCalledWith(mockedToken);
-      expect(getMyFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
+      expect(getMyFlights).toHaveBeenCalledWith({
+        dataBaseID,
+        notionService: expect.any(NotionService),
+      });
     });
   });
 
@@ -114,7 +120,10 @@ describe('getServerSideProps', () => {
       // Assert
       expect(result).toEqual(expectedResult);
       expect(NotionService).toHaveBeenCalledWith(mockedToken);
-      expect(getMyFlights).toHaveBeenCalledWith({}, mockedDataBaseID);
+      expect(getMyFlights).toHaveBeenCalledWith({
+        dataBaseID,
+        notionService: expect.any(NotionService),
+      });
     });
   });
 });
