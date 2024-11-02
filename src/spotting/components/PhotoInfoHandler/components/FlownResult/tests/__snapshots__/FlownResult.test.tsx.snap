@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlownResult renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+      >
+        Maybe already flown on that plane:
+      </p>
+      <div
+        class="MuiBox-root css-29xf8s"
+      >
+        <div>
+          MockedAviaCard - 
+          registration1
+           -
+          <div>
+            airline1
+          </div>
+          <div>
+            originName1 - destinationName1
+          </div>
+          <div>
+            readableDate
+          </div>
+           
+          - 
+           - 
+          photoUrl1
+           - 
+          registration1
+           - 
+          url1
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`FlownResult when data is loading renders correctly 1`] = `
+<body>
+  <div>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      Searching flown data...
+    </p>
+  </div>
+</body>
+`;
+
+exports[`FlownResult when no data loaded renders correctly 1`] = `
+<body>
+  <div />
+</body>
+`;

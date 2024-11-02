@@ -56,7 +56,8 @@ const AviaFormField = <
       <FormControlLabel
         control={
           <Checkbox
-            checked={!!(loadedValues[name] || value) as boolean}
+            defaultChecked={!!loadedValues[name] as boolean}
+            checked={!!value}
             onChange={(event) => setValue(name, event?.target.checked)}
           />
         }

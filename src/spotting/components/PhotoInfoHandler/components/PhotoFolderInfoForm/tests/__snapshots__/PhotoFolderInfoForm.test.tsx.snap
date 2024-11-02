@@ -481,7 +481,6 @@ exports[`PhotoFolderInfoForm when loaded values passed renders successfully with
             class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
           >
             <input
-              checked=""
               class="PrivateSwitchBase-input css-1m9pwf3"
               data-indeterminate="false"
               type="checkbox"
@@ -518,7 +517,6 @@ exports[`PhotoFolderInfoForm when loaded values passed renders successfully with
             class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
           >
             <input
-              checked=""
               class="PrivateSwitchBase-input css-1m9pwf3"
               data-indeterminate="false"
               type="checkbox"
@@ -555,7 +553,6 @@ exports[`PhotoFolderInfoForm when loaded values passed renders successfully with
             class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
           >
             <input
-              checked=""
               class="PrivateSwitchBase-input css-1m9pwf3"
               data-indeterminate="false"
               type="checkbox"
@@ -592,7 +589,6 @@ exports[`PhotoFolderInfoForm when loaded values passed renders successfully with
             class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
           >
             <input
-              checked=""
               class="PrivateSwitchBase-input css-1m9pwf3"
               data-indeterminate="false"
               type="checkbox"

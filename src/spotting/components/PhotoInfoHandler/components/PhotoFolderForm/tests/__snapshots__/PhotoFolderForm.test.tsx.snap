@@ -10,6 +10,9 @@ exports[`PhotoFolderForm renders successfully 1`] = `
         MockedBaseAircraftForm - 
       </div>
       <div>
+        MockedFlownResult
+      </div>
+      <div>
         MockedBaseAirportForm - 
         Airport
          - 
@@ -27,7 +30,7 @@ exports[`PhotoFolderForm renders successfully 1`] = `
 </body>
 `;
 
-exports[`PhotoFolderForm when place, showingFolder and chosenAirport passed renders successfully 1`] = `
+exports[`PhotoFolderForm when placeCommon returned renders successfully 1`] = `
 <body>
   <div>
     <div
@@ -35,6 +38,9 @@ exports[`PhotoFolderForm when place, showingFolder and chosenAirport passed rend
     >
       <div>
         MockedBaseAircraftForm - 
+      </div>
+      <div>
+        MockedFlownResult
       </div>
       <h6
         class="MuiTypography-root MuiTypography-subtitle2 css-jpb38c-MuiTypography-root"

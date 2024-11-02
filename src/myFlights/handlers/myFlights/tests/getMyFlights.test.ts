@@ -142,7 +142,7 @@ describe('getMyFlights', () => {
               ...(expectedQueryDatabaseArgs[1] as object),
               filter: {
                 and: [
-                  { property: 'CN / MSN', rich_text: { contains: filter.cn } },
+                  { property: 'CN / MSN', rich_text: { equals: filter.cn } },
                 ],
               },
             }

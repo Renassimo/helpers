@@ -3,19 +3,19 @@ import renderWithTheme from '@/common/tests/helpers';
 import BaseAircraftForm from '@/avia/components/BaseAircraftForm';
 import BaseAirportForm from '@/avia/components/BaseAirportForm';
 import PhotoFolderInfoForm from '../../PhotoFolderInfoForm';
+import FlownResult from '../../FlownResult';
 
 import useAircrafts from '@/avia/hooks/useAircrafts';
 import useAirports from '@/avia/hooks/useAirports';
 
-import usePhotoInfoContext from '@/spotting/contexts/hooks/usePhotoInfoContext';
-import useLoadedValues from '@/spotting/providers/hooks/usePhotoInfoProvider/useLoadedValues';
+import usePhotoFolderInfoForm from '../hooks/usePhotoFolderInfoForm';
 
 import MockedBaseAircraftForm from '@/avia/components/BaseAircraftForm/mocks';
 import MockedBaseAirportForm from '@/avia/components/BaseAirportForm/mocks';
 import MockedPhotoFolderInfoForm from '../../PhotoFolderInfoForm/mocks';
+import MockedFlownResult from '../../FlownResult/mocks';
 
 import PhotoFolderForm from '../PhotoFolderForm';
-import { mockedPhotoFolder } from '@/spotting/types/mocks';
 
 jest.mock('@/avia/components/BaseAircraftForm');
 jest.mock('@/avia/components/BaseAirportForm');
@@ -24,8 +24,13 @@ jest.mock('@/avia/hooks/useAircrafts');
 jest.mock('@/avia/hooks/useAirports');
 jest.mock('@/spotting/contexts/hooks/usePhotoInfoContext');
 jest.mock('@/spotting/providers/hooks/usePhotoInfoProvider/useLoadedValues');
+jest.mock('../hooks/usePhotoFolderInfoForm');
+jest.mock('../../FlownResult');
 
 describe('PhotoFolderForm', () => {
+  const setFlown = jest.fn();
+  const placeCommon = 'placeCommon';
+
   beforeEach(() => {
     (BaseAircraftForm as unknown as jest.Mock).mockImplementation(
       MockedBaseAircraftForm
@@ -36,17 +41,19 @@ describe('PhotoFolderForm', () => {
     (PhotoFolderInfoForm as unknown as jest.Mock).mockImplementation(
       MockedPhotoFolderInfoForm
     );
+    (FlownResult as unknown as jest.Mock).mockImplementation(MockedFlownResult);
     (useAircrafts as unknown as jest.Mock).mockImplementation(
       jest.fn(() => 'mockedUseAircraft')
     );
     (useAirports as unknown as jest.Mock).mockImplementation(
-      jest.fn(() => ({ chosenAirport: { attributes: { airportCode: null } } }))
+      jest.fn(() => 'mockedUseAirports')
     );
-    (usePhotoInfoContext as unknown as jest.Mock).mockImplementation(
-      jest.fn(() => ({ place: null, showingFolder: null }))
-    );
-    (useLoadedValues as unknown as jest.Mock).mockImplementation(
-      jest.fn(() => ({ loadedValues: 'loadedValues' }))
+    (usePhotoFolderInfoForm as unknown as jest.Mock).mockImplementation(
+      jest.fn(() => ({
+        loadedValues: 'loadedValues',
+        setFlown,
+        placeCommon: null,
+      }))
     );
   });
 
@@ -60,20 +67,19 @@ describe('PhotoFolderForm', () => {
     const { baseElement } = renderWithTheme(<PhotoFolderForm />);
     // Assert
     expect(baseElement).toMatchSnapshot();
-    expect(useLoadedValues).toBeCalledWith({
+    expect(usePhotoFolderInfoForm).toBeCalledWith({
       aircraftsResult: 'mockedUseAircraft',
-      place: null,
-      date: null,
+      airportsResult: 'mockedUseAirports',
     });
     expect(BaseAircraftForm).toBeCalledWith(
-      { aircraftsResult: 'mockedUseAircraft' },
+      {
+        aircraftsResult: 'mockedUseAircraft',
+      },
       {}
     );
     expect(BaseAirportForm).toBeCalledWith(
       {
-        airportsResult: {
-          chosenAirport: { attributes: { airportCode: null } },
-        },
+        airportsResult: 'mockedUseAirports',
         title: 'Airport',
       },
       {}
@@ -82,17 +88,20 @@ describe('PhotoFolderForm', () => {
       { loadedValues: 'loadedValues' },
       {}
     );
+    expect(FlownResult).toBeCalledWith(
+      { aircraftsResult: 'mockedUseAircraft', onClick: setFlown },
+      {}
+    );
   });
 
-  describe('when place, showingFolder and chosenAirport passed', () => {
+  describe('when placeCommon returned', () => {
     beforeEach(() => {
-      (useAirports as unknown as jest.Mock).mockImplementation(
+      (usePhotoFolderInfoForm as unknown as jest.Mock).mockImplementation(
         jest.fn(() => ({
-          chosenAirport: { attributes: { airportCode: 'airportCode' } },
+          loadedValues: 'loadedValues',
+          setFlown,
+          placeCommon,
         }))
-      );
-      (usePhotoInfoContext as unknown as jest.Mock).mockImplementation(
-        jest.fn(() => ({ place: 'place', showingFolder: mockedPhotoFolder }))
       );
     });
 
@@ -102,10 +111,9 @@ describe('PhotoFolderForm', () => {
       const { baseElement } = renderWithTheme(<PhotoFolderForm />);
       // Assert
       expect(baseElement).toMatchSnapshot();
-      expect(useLoadedValues).toBeCalledWith({
+      expect(usePhotoFolderInfoForm).toBeCalledWith({
         aircraftsResult: 'mockedUseAircraft',
-        place: 'place',
-        date: mockedPhotoFolder.photos['path1'].date,
+        airportsResult: 'mockedUseAirports',
       });
       expect(BaseAircraftForm).toBeCalledWith(
         { aircraftsResult: 'mockedUseAircraft' },
@@ -114,6 +122,10 @@ describe('PhotoFolderForm', () => {
       expect(BaseAirportForm).not.toBeCalled();
       expect(PhotoFolderInfoForm).toBeCalledWith(
         { loadedValues: 'loadedValues' },
+        {}
+      );
+      expect(FlownResult).toBeCalledWith(
+        { aircraftsResult: 'mockedUseAircraft', onClick: setFlown },
         {}
       );
     });

@@ -26,7 +26,7 @@ const getMyFlights = async ({
     ...(filter
       ? {
           filter: {
-            and: [{ property: 'CN / MSN', rich_text: { contains: filter.cn } }],
+            and: [{ property: 'CN / MSN', rich_text: { equals: filter.cn } }],
           },
         }
       : {}),
