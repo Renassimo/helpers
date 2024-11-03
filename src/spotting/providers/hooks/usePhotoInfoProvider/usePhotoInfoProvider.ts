@@ -74,7 +74,19 @@ const usePhotoInfoProvider = (): PhotoInfoContextState => {
     updatePhotos();
   }, [files]);
 
-  const photosList = useMemo(() => Object.values(photos), [photos]);
+  const photosList = useMemo(
+    () =>
+      Object.values(photos).sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      }),
+    [photos]
+  );
   const foldersList = useMemo(() => Object.values(folders), [folders]);
 
   // Options
