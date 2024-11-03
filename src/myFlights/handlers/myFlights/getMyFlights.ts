@@ -2,17 +2,34 @@ import NotionService from '@/common/services/notion';
 
 import { deserializeMyFlights } from '@/myFlights/serializers';
 
-const getMyFlights = async (
-  notionService: NotionService,
-  dataBaseID: string,
-  cursor?: string
-) => {
+interface GetMyFligtsProps {
+  notionService: NotionService;
+  dataBaseID: string;
+  cursor?: string;
+  filter?: {
+    cn?: string;
+  };
+}
+
+const getMyFlights = async ({
+  notionService,
+  dataBaseID,
+  cursor,
+  filter,
+}: GetMyFligtsProps) => {
   const { ok, data } = await notionService.queryDatabase(dataBaseID, {
     sorts: [
       { property: 'Date', direction: 'descending' },
       { property: 'N', direction: 'descending' },
       { timestamp: 'created_time', direction: 'descending' },
     ],
+    ...(filter
+      ? {
+          filter: {
+            and: [{ property: 'CN / MSN', rich_text: { equals: filter.cn } }],
+          },
+        }
+      : {}),
     ...(cursor ? { start_cursor: cursor } : {}),
   });
   if (!ok) return { error: data };

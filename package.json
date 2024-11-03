@@ -23,12 +23,14 @@
     "change-case": "^4.1.2",
     "class-validator": "^0.14.1",
     "dayjs": "^1.11.7",
+    "exifreader": "^4.23.7",
     "firebase": "^9.17.1",
     "firebase-admin": "^11.5.0",
     "fuse.js": "^7.0.0",
     "html2canvas": "^1.4.1",
     "invert-color": "^2.0.0",
     "jspdf": "^2.5.1",
+    "jszip": "^3.10.1",
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
     "next": "13.1.5",
@@ -39,6 +41,7 @@
     "react-dropzone": "^14.2.3",
     "react-leaflet": "^4.2.1",
     "recharts": "^2.10.3",
+    "uid": "^2.0.2",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

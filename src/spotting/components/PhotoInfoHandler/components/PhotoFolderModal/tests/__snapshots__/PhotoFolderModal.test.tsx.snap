@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoFolderModal renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedPhotoFolderPhotos
+      </div>
+      <div>
+         MockedPhotoFolderForm
+      </div>
+      <div>
+        title: 
+        ; maxWidth: 
+        sm
+        ;
+        closed
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        did not passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PhotoFolderModal when photoFolder chosen renders successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <div>
+        MockedPhotoFolderPhotos
+      </div>
+      <div>
+         MockedPhotoFolderForm
+      </div>
+      <div>
+        title: 
+        ; maxWidth: 
+        sm
+        ;
+        open
+        ;
+        not loading
+        ;
+        not disabled
+        ; onClose
+         
+        passed
+        ; onSubmit
+         
+        did not passed
+        ;
+      </div>
+    </div>
+  </div>
+</body>
+`;

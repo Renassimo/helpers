@@ -1,6 +1,11 @@
 import { createContext } from 'react';
 
 import { MyFlightsContextData } from '@/myFlights/types';
+import {
+  defaultAircraftsResult,
+  defaultAirportsResult,
+  defaultFlightsResult,
+} from '@/avia/types/avia';
 
 const MyFlightsContext = createContext<MyFlightsContextData>({
   // Flights data
@@ -12,46 +17,14 @@ const MyFlightsContext = createContext<MyFlightsContextData>({
   // Matchers
   matchers: null,
   // Flights
-  flightsResult: {
-    flights: null,
-    chosenFlight: null,
-    retreiveFlights: async () => null,
-    chooseFlight: () => null,
-    clearChosenFlight: () => null,
-    loading: false,
-    cleanUpFlights: () => {},
-  },
+  flightsResult: defaultFlightsResult,
   // Aircrafts
-  aircraftsResult: {
-    aircrafts: null,
-    chosenAircraft: null,
-    retreiveAircrafts: async () => null,
-    chooseAircraft: () => null,
-    clearChosenAircraft: () => null,
-    loading: false,
-    cleanUpAircrafts: () => {},
-  },
+  aircraftsResult: defaultAircraftsResult,
   // Airports
   // Origins
-  originsResult: {
-    airports: null,
-    chosenAirport: null,
-    retreiveAirports: async () => null,
-    chooseAirport: () => null,
-    clearChosenAirport: () => null,
-    loading: false,
-    cleanUpAirports: () => {},
-  },
+  originsResult: defaultAirportsResult,
   // Destinations
-  destinationsResult: {
-    airports: null,
-    chosenAirport: null,
-    retreiveAirports: async () => null,
-    chooseAirport: () => null,
-    clearChosenAirport: () => null,
-    loading: false,
-    cleanUpAirports: () => {},
-  },
+  destinationsResult: defaultAirportsResult,
   // CleanUp
   cleanUp: () => {},
   // Loaded values

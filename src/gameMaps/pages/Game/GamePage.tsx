@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 import PlayCards from '@/gameMaps/components/PlayCards';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
 import PlayFormModal from '@/gameMaps/components/PlayFormModal';
@@ -63,7 +63,7 @@ const GamePage = ({ user, pages, data, error }: GamePageProps) => {
   };
 
   return (
-    <GameMapsTemplate
+    <PageTemplateWithBreadcrumbs
       title={title}
       user={user}
       pages={pages}
@@ -91,7 +91,7 @@ const GamePage = ({ user, pages, data, error }: GamePageProps) => {
           />
         </>
       )}
-    </GameMapsTemplate>
+    </PageTemplateWithBreadcrumbs>
   );
 };
 

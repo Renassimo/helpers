@@ -1,11 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
-import {
-  MyFlightAttributes,
-  UseAircraftsResult,
-  UseAirportsResult,
-  UseFlightsResult,
-} from '@/myFlights/types';
+import { MyFlightAttributes } from '@/myFlights/types';
+import { Avia } from '@/avia/types/avia';
 
 import { showTimePassed } from '@/common/utils/dayjs';
 import geoDistance from '@/common/lib/geoDistance';
@@ -16,10 +12,10 @@ const useLoadedValues = ({
   originsResult,
   destinationsResult,
 }: {
-  flightsResult: UseFlightsResult;
-  aircraftsResult: UseAircraftsResult;
-  originsResult: UseAirportsResult;
-  destinationsResult: UseAirportsResult;
+  flightsResult: Avia.FlightsResult;
+  aircraftsResult: Avia.AircraftsResult;
+  originsResult: Avia.AirportsResult;
+  destinationsResult: Avia.AirportsResult;
 }): {
   loadedValues: Partial<MyFlightAttributes>;
   cleanUp: () => void;

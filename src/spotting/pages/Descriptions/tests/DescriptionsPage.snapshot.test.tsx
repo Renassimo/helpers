@@ -2,25 +2,26 @@ import renderWithTheme from '@/common/tests/helpers';
 
 import DescriptionsPage from '@/spotting/pages/Descriptions';
 import SpottedPlanesList from '@/spotting/components/SpottedPlanesList';
-import PageTemplate from '@/common/templates/PageTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 
-import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
+import MockedPageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs/mocks';
 import MockedSpottedPlanesList from '@/spotting/components/SpottedPlanesList/mocks';
+
 import { mockedSpottedPlaneApiDataTruthy } from '@/spotting/types/mocks';
 import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
 import { mockedNotionError418 } from '@/common/types/notion/mocks';
 
 jest.mock('@/spotting/components/SpottedPlanesList');
-jest.mock('@/common/templates/PageTemplate');
+jest.mock('@/common/templates/PageTemplateWithBreadcrumbs');
 
 describe('DescriptionsPage', () => {
   beforeEach(() => {
     (SpottedPlanesList as unknown as jest.Mock).mockImplementationOnce(
       MockedSpottedPlanesList
     );
-    (PageTemplate as unknown as jest.Mock).mockImplementationOnce(
-      MockedPageTemplate
-    );
+    (
+      PageTemplateWithBreadcrumbs as unknown as jest.Mock
+    ).mockImplementationOnce(MockedPageTemplateWithBreadcrumbs);
   });
 
   afterEach(() => {

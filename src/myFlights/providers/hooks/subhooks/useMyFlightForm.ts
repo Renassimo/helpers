@@ -33,9 +33,12 @@ const useMyFlightForm = (
     editingData?.attributes ?? {}
   );
 
-  const setValue = useCallback((key: string, value: string | number | null) => {
-    setState((current) => ({ ...current, [key]: value }));
-  }, []);
+  const setValue = useCallback(
+    (key: string, value: string | number | boolean | null) => {
+      setState((current) => ({ ...current, [key]: value }));
+    },
+    []
+  );
 
   const openModal = useCallback(
     (data?: MyFlightData | null, isReturn = false) => {
@@ -74,7 +77,7 @@ const useMyFlightForm = (
       const loadedValue = loadedValues[key as keyof MyFlightAttributes];
       const stateValue = state[key as keyof MyFlightAttributes];
 
-      if (!loadedValue ?? !stateValue) return {};
+      if (!loadedValue || !stateValue) return {};
 
       return loadedValue !== stateValue
         ? { [String(loadedValue)]: String(stateValue) }

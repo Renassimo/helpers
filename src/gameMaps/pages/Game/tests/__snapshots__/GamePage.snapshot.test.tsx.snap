@@ -3,7 +3,7 @@
 exports[`Game Page snapshot renders successfully 1`] = `
 <div>
   <div>
-    Mocked Game Maps Template (
+    MockedPageTemplateWithBreadcrumbs (
     Game 1
     ):
     <span>
@@ -39,7 +39,7 @@ exports[`Game Page snapshot renders successfully 1`] = `
 exports[`Game Page snapshot when got an error renders successfully 1`] = `
 <div>
   <div>
-    Mocked Game Maps Template (
+    MockedPageTemplateWithBreadcrumbs (
     Game
     ):
     <span>

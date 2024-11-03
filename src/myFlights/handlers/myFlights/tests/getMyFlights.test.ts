@@ -11,7 +11,7 @@ describe('getMyFlights', () => {
   let mockedOk: boolean;
   let mockedData: object;
 
-  const mockedDataBaseID = 'mocked_data_base_id';
+  const dataBaseID = 'mocked_data_base_id';
   const mockedDeserializedData = { data: 'some deserialized data' };
   const mockedDataToDeserialize = { data: 'some data to deserialize' };
   const mockedQueryDatabase = jest.fn(async () => ({
@@ -19,7 +19,7 @@ describe('getMyFlights', () => {
     data: mockedData,
   }));
   const expectedQueryDatabaseArgs = [
-    mockedDataBaseID,
+    dataBaseID,
     {
       sorts: [
         { property: 'Date', direction: 'descending' },
@@ -45,7 +45,7 @@ describe('getMyFlights', () => {
         // Arrange
         mockedData = { results: [mockedDataToDeserialize] };
         mockedOk = true;
-        const mockedNotionService = {
+        const notionService = {
           queryDatabase: mockedQueryDatabase,
         } as unknown as NotionService;
         const expectedResult = {
@@ -53,16 +53,16 @@ describe('getMyFlights', () => {
           nextCursor: null,
         };
         // Act
-        const result = await getMyFlights(
-          mockedNotionService,
-          mockedDataBaseID
-        );
+        const result = await getMyFlights({
+          notionService,
+          dataBaseID,
+        });
         // Assert
         expect(result).toEqual(expectedResult);
         expect(deserializeMyFlights).toHaveBeenCalledWith([
           mockedDataToDeserialize,
         ]);
-        expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+        expect(notionService.queryDatabase).toHaveBeenCalledWith(
           expectedQueryDatabaseArgs[0],
           expectedQueryDatabaseArgs[1]
         );
@@ -79,7 +79,7 @@ describe('getMyFlights', () => {
             next_cursor: 'nextCursor',
           };
           mockedOk = true;
-          const mockedNotionService = {
+          const notionService = {
             queryDatabase: mockedQueryDatabase,
           } as unknown as NotionService;
           const expectedResult = {
@@ -87,21 +87,64 @@ describe('getMyFlights', () => {
             nextCursor,
           };
           // Act
-          const result = await getMyFlights(
-            mockedNotionService,
-            mockedDataBaseID,
-            cursor
-          );
+          const result = await getMyFlights({
+            notionService,
+            dataBaseID,
+            cursor,
+          });
           // Assert
           expect(result).toEqual(expectedResult);
           expect(deserializeMyFlights).toHaveBeenCalledWith([
             mockedDataToDeserialize,
           ]);
-          expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+          expect(notionService.queryDatabase).toHaveBeenCalledWith(
             expectedQueryDatabaseArgs[0],
             {
               ...(expectedQueryDatabaseArgs[1] as object),
               start_cursor: cursor,
+            }
+          );
+        });
+      });
+
+      describe('and when filters passed has results', () => {
+        test('returns data', async () => {
+          // Arrange
+          const filter = { cn: 'cn' };
+          const nextCursor = 'nextCursor';
+          mockedData = {
+            results: [mockedDataToDeserialize],
+            has_more: true,
+            next_cursor: 'nextCursor',
+          };
+          mockedOk = true;
+          const notionService = {
+            queryDatabase: mockedQueryDatabase,
+          } as unknown as NotionService;
+          const expectedResult = {
+            data: mockedDeserializedData,
+            nextCursor,
+          };
+          // Act
+          const result = await getMyFlights({
+            notionService,
+            dataBaseID,
+            filter,
+          });
+          // Assert
+          expect(result).toEqual(expectedResult);
+          expect(deserializeMyFlights).toHaveBeenCalledWith([
+            mockedDataToDeserialize,
+          ]);
+          expect(notionService.queryDatabase).toHaveBeenCalledWith(
+            expectedQueryDatabaseArgs[0],
+            {
+              ...(expectedQueryDatabaseArgs[1] as object),
+              filter: {
+                and: [
+                  { property: 'CN / MSN', rich_text: { equals: filter.cn } },
+                ],
+              },
             }
           );
         });
@@ -112,7 +155,7 @@ describe('getMyFlights', () => {
       test('returns empty data', async () => {
         // Arrange
         mockedData = { results: [] };
-        const mockedNotionService = {
+        const notionService = {
           queryDatabase: mockedQueryDatabase,
         } as unknown as NotionService;
         const expectedResult = {
@@ -120,14 +163,14 @@ describe('getMyFlights', () => {
           nextCursor: null,
         };
         // Act
-        const result = await getMyFlights(
-          mockedNotionService,
-          mockedDataBaseID
-        );
+        const result = await getMyFlights({
+          notionService,
+          dataBaseID,
+        });
         // Assert
         expect(result).toEqual(expectedResult);
         expect(deserializeMyFlights).toHaveBeenCalledWith([]);
-        expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+        expect(notionService.queryDatabase).toHaveBeenCalledWith(
           expectedQueryDatabaseArgs[0],
           expectedQueryDatabaseArgs[1]
         );
@@ -145,16 +188,16 @@ describe('getMyFlights', () => {
         status: 500,
       };
       mockedOk = false;
-      const mockedNotionService = {
+      const notionService = {
         queryDatabase: mockedQueryDatabase,
       } as unknown as NotionService;
       const expectedResult = { error: mockedData };
       // Act
-      const result = await getMyFlights(mockedNotionService, mockedDataBaseID);
+      const result = await getMyFlights({ notionService, dataBaseID });
       // Assert
       expect(result).toEqual(expectedResult);
       expect(deserializeMyFlights).not.toHaveBeenCalled();
-      expect(mockedNotionService.queryDatabase).toHaveBeenCalledWith(
+      expect(notionService.queryDatabase).toHaveBeenCalledWith(
         expectedQueryDatabaseArgs[0],
         expectedQueryDatabaseArgs[1]
       );

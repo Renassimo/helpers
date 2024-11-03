@@ -1,19 +1,20 @@
 import renderWithTheme from '@/common/tests/helpers';
 
 import SpottingPage from '@/spotting/pages/Spotting';
-import PageTemplate from '@/common/templates/PageTemplate';
 
-import MockedPageTemplate from '@/common/templates/PageTemplate/mocks';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
+
 import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
+import MockedPageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs/mocks';
 
 jest.mock('@/spotting/components/SpottedPlanesList');
-jest.mock('@/common/templates/PageTemplate');
+jest.mock('@/common/templates/PageTemplateWithBreadcrumbs');
 
 describe('SpottingPage', () => {
   beforeEach(() => {
-    (PageTemplate as unknown as jest.Mock).mockImplementationOnce(
-      MockedPageTemplate
-    );
+    (
+      PageTemplateWithBreadcrumbs as unknown as jest.Mock
+    ).mockImplementationOnce(MockedPageTemplateWithBreadcrumbs);
   });
 
   afterEach(() => {

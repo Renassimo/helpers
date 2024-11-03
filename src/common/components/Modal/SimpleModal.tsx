@@ -18,18 +18,20 @@ const SimpleModal = ({
   onClose,
   onSubmit,
   title,
-  loading,
+  loading = false,
   disabled = false,
   maxWidth = 'sm',
+  fullWidth = false,
 }: {
   open: boolean;
   children: ReactNode;
   onClose: () => void;
-  onSubmit: () => void;
-  title: string;
-  loading: boolean;
+  onSubmit?: () => void;
+  title?: string;
+  loading?: boolean;
   disabled?: boolean;
   maxWidth?: Breakpoint;
+  fullWidth?: boolean;
 }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -41,6 +43,7 @@ const SimpleModal = ({
       onClose={onClose}
       aria-labelledby="responsive-modal"
       maxWidth={maxWidth}
+      fullWidth={fullWidth}
     >
       <DialogTitle id="responsive-modal">
         {title}
@@ -60,16 +63,18 @@ const SimpleModal = ({
         )}
       </DialogTitle>
       <DialogContent>{children}</DialogContent>
-      <DialogActions>
-        <LoadingButton
-          loading={loading}
-          disabled={disabled}
-          type="button"
-          onClick={() => onSubmit()}
-        >
-          Save
-        </LoadingButton>
-      </DialogActions>
+      {onSubmit && (
+        <DialogActions>
+          <LoadingButton
+            loading={loading}
+            disabled={disabled}
+            type="button"
+            onClick={() => onSubmit()}
+          >
+            Save
+          </LoadingButton>
+        </DialogActions>
+      )}
     </Dialog>
   );
 };

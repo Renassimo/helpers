@@ -88,6 +88,7 @@ describe('create my flight handler', () => {
 
   describe('when method is GET', () => {
     const cursor = 'cursor';
+    const cn = 'cn';
 
     test('writes status and data to response', async () => {
       // Arange
@@ -101,11 +102,11 @@ describe('create my flight handler', () => {
       // Assert
       expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(mockedToken);
       expect(mockedCreateMyFlight).not.toHaveBeenCalled();
-      expect(mockedGetMyFlights).toHaveBeenCalledWith(
-        mockedNotionServiceInstance,
-        mockedFlightsDbID,
-        cursor
-      );
+      expect(mockedGetMyFlights).toHaveBeenCalledWith({
+        notionService: mockedNotionServiceInstance,
+        dataBaseID: mockedFlightsDbID,
+        cursor,
+      });
       expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);
       expect(mockedJson).toHaveBeenCalledWith({
         data: mockedData,
@@ -114,6 +115,34 @@ describe('create my flight handler', () => {
     });
 
     describe('when cursor did not passed in queries', () => {
+      describe('but cn passed', () => {
+        test('writes status and data to response', async () => {
+          // Arange
+          const req = {
+            method: 'GET',
+            notionHelperData: mockedNotionHelperData,
+            query: { cn },
+          } as unknown as NextApiRequestWithAuth;
+          // Act
+          await handler(req, res);
+          // Assert
+          expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(
+            mockedToken
+          );
+          expect(mockedCreateMyFlight).not.toHaveBeenCalled();
+          expect(mockedGetMyFlights).toHaveBeenCalledWith({
+            notionService: mockedNotionServiceInstance,
+            dataBaseID: mockedFlightsDbID,
+            filter: { cn },
+          });
+          expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);
+          expect(mockedJson).toHaveBeenCalledWith({
+            data: mockedData,
+            nextCursor: 'nextCursor',
+          });
+        });
+      });
+
       test('writes status and data to response', async () => {
         // Arange
         const req = {

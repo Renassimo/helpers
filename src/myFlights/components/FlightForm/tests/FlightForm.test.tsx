@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
-import { UseFlightsResult } from '@/myFlights/types';
+import { Avia } from '@/avia/types/avia';
 
 import useStateValue from '@/common/hooks/useStateValue';
 
@@ -9,11 +9,11 @@ import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext'
 
 import AviaInput from '@/avia/components/AviaInput';
 import DatePicker from '@/common/components/DatePickers/DateInput';
-import AircraftCard from '@/myFlights/components/AircraftCard';
+import FlightCard from '@/myFlights/components/FlightCard';
 
 import MockedAviaInput from '@/avia/components/AviaInput/mocks';
 import MockedDateInput from '@/common/components/DatePickers/DateInput/mocks';
-import MockedAircraftCard from '@/myFlights/components/AircraftCard/mocks';
+import MockedFlightCard from '@/myFlights/components/FlightCard/mocks';
 
 import { mockedDeserializedFlights } from '@/avia/types/avia/mocks';
 
@@ -23,7 +23,7 @@ jest.mock('@/common/hooks/useStateValue');
 jest.mock('@/avia/components/AviaInput');
 jest.mock('@/common/components/DatePickers/DateInput');
 jest.mock('@/myFlights/contexts/hooks/useMyFlightsContext');
-jest.mock('@/myFlights/components/AircraftCard');
+jest.mock('@/myFlights/components/FlightCard');
 
 describe('FlightForm', () => {
   const mockedSetValue = jest.fn();
@@ -41,17 +41,15 @@ describe('FlightForm', () => {
     chooseFlight,
     clearChosenFlight,
     loading: false,
-  } as unknown as UseFlightsResult;
+  } as unknown as Avia.FlightsResult;
 
-  const mockUseMyFlightsContext = (props: Partial<UseFlightsResult> = {}) =>
+  const mockUseMyFlightsContext = (props: Partial<Avia.FlightsResult> = {}) =>
     jest.fn(() => ({ flightsResult: { ...flightsResult, ...props } }));
 
   beforeEach(() => {
     (AviaInput as unknown as jest.Mock).mockImplementation(MockedAviaInput);
     (DatePicker as unknown as jest.Mock).mockImplementation(MockedDateInput);
-    (AircraftCard as unknown as jest.Mock).mockImplementation(
-      MockedAircraftCard
-    );
+    (FlightCard as unknown as jest.Mock).mockImplementation(MockedFlightCard);
   });
 
   afterEach(() => {

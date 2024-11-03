@@ -1,10 +1,10 @@
 import { Avia } from '@/avia/types/avia';
-import MyFlightFormFieldProps from '../types';
+import { MyFlightAttributes } from '@/myFlights/types';
 
 const getFormFieldsSchema = (
   matchers: Avia.Matchers | null,
   options: Avia.Options | null
-): MyFlightFormFieldProps[] => {
+): Avia.FormFieldProps<MyFlightAttributes>[] => {
   const { airlines, airports, manufacturers, models } = options ?? {};
   return [
     {

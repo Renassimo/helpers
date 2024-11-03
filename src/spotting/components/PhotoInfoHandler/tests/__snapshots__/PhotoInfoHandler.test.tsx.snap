@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoInfoHandler renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div>
+        MockedPhotoPlaceForm
+      </div>
+      <div>
+        MockedPhotoDropZone
+      </div>
+      <div>
+        MockedPhotoFoldersList
+      </div>
+      <div>
+        MockedPhotoInfoActions
+      </div>
+      <div>
+        MockedPhotosList
+      </div>
+      <div>
+        MockedPhotoZoomModal
+      </div>
+      <div>
+        MockedPhotoFolderModal
+      </div>
+      <div>
+        MockedPhotoFolderSaver
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -5,7 +5,7 @@ import { PageInfo } from '@/auth/types';
 
 import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
-import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 
 import PagesList from '@/common/components/PagesList';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
@@ -42,7 +42,7 @@ const GamesPage = ({
   };
 
   return (
-    <GameMapsTemplate
+    <PageTemplateWithBreadcrumbs
       title="Game Maps"
       user={user}
       pages={pages}
@@ -55,7 +55,7 @@ const GamesPage = ({
         setIsModalOpen={setIsGameModalOpen}
         onFinish={addGameToState}
       />
-    </GameMapsTemplate>
+    </PageTemplateWithBreadcrumbs>
   );
 };
 

@@ -5,16 +5,21 @@ import Button from '@mui/material/Button';
 
 import useMyFlightsContext from '@/myFlights/contexts/hooks/useMyFlightsContext';
 
-import MyFlightFormField from './components/MyFlightFormField';
+import { Avia } from '@/avia/types/avia';
+import { MyFlightAttributes } from '@/myFlights/types';
+
+import AviaFormField from '@/avia/components/AviaFormField';
+
 import getFormFieldsSchema from './utils/getFormFieldsSchema';
-import MyFlightFormFieldProps from './types';
+
+const MyFlightFormField = AviaFormField<MyFlightAttributes>;
 
 const MyFlightForm = () => {
   const { options, matchers, loadedValues, myFlightForm } =
     useMyFlightsContext();
   const { state, setValue, isEditing, loading, onDelete } = myFlightForm;
 
-  const formFields: MyFlightFormFieldProps[] = useMemo(
+  const formFields: Avia.FormFieldProps<MyFlightAttributes>[] = useMemo(
     () => getFormFieldsSchema(matchers, options),
     [matchers, options]
   );

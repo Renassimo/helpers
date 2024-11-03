@@ -1,14 +1,14 @@
 import renderWithTheme from '@/common/tests/helpers/renderWithTheme';
 
 import PlayCards from '@/gameMaps/components/PlayCards';
-import GameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate';
+import PageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs';
 import GameFormModal from '@/gameMaps/components/GameFormModal';
 import PlayFormModal from '@/gameMaps/components/PlayFormModal';
 
 import useAlerts, { useErrorAlert } from '@/common/hooks/alerts';
 
 import MockedPlayCards from '@/gameMaps/components/PlayCards/mocks';
-import MockedGameMapsTemplate from '@/gameMaps/templates/GameMapsTemplate/mocks';
+import MockedPageTemplateWithBreadcrumbs from '@/common/templates/PageTemplateWithBreadcrumbs/mocks';
 import MockedGameFormModal from '@/gameMaps/components/GameFormModal/mocks';
 import MockedPlayFormModal from '@/gameMaps/components/PlayFormModal/mocks';
 import { mockedPageInfos, mockedUser } from '@/auth/types/mocks';
@@ -19,7 +19,7 @@ import { GamePageProps } from '@/gameMaps/types';
 import GamePage from '../GamePage';
 
 jest.mock('@/gameMaps/components/PlayCards');
-jest.mock('@/gameMaps/templates/GameMapsTemplate');
+jest.mock('@/common/templates/PageTemplateWithBreadcrumbs');
 jest.mock('@/common/hooks/alerts');
 jest.mock('@/gameMaps/components/GameFormModal');
 jest.mock('@/gameMaps/components/PlayFormModal');
@@ -37,9 +37,9 @@ describe('Game Page snapshot', () => {
   }));
 
   beforeEach(() => {
-    (GameMapsTemplate as unknown as jest.Mock).mockImplementationOnce(
-      MockedGameMapsTemplate
-    );
+    (
+      PageTemplateWithBreadcrumbs as unknown as jest.Mock
+    ).mockImplementationOnce(MockedPageTemplateWithBreadcrumbs);
     (PlayCards as unknown as jest.Mock).mockImplementationOnce(MockedPlayCards);
     (useErrorAlert as unknown as jest.Mock).mockImplementation(
       mockedUseErrorAlert

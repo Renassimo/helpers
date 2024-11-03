@@ -1,9 +1,8 @@
 import { Avia } from '@/avia/types/avia';
-import { UseAircraftsResult } from '@/myFlights/types';
 
 import useChooseRetreivedItem from '@/common/hooks/useChooseRetreivedItem';
 
-const useAircrafts = (): UseAircraftsResult => {
+const useAircrafts = (): Avia.AircraftsResult => {
   const {
     items: aircrafts,
     chosenItem: chosenAircraft,

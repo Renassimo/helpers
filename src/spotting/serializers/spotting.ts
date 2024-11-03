@@ -1,11 +1,13 @@
 import { NotionResult } from '@/common/types/notion';
 import {
+  PhotoFolderInfoData,
   SpottedPlaneCreatedData,
   SpottedPlaneFirstFlight,
   SpottedPlaneGroup,
 } from '@/spotting/types';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
+import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSerializer';
 
 export const deserializeSpottedPlanes = (
   results: NotionResult[],
@@ -101,4 +103,67 @@ export const serializeSpottedPlanes = (data: SpottedPlaneCreatedData[]) => {
       },
     };
   });
+};
+
+export const serializePhotoInfo = (data: PhotoFolderInfoData) => {
+  const { attributes } = data;
+  const serializer = new NotionPropertiesSerializer(attributes);
+
+  return {
+    icon: { type: 'emoji', emoji: '📷' },
+    properties: {
+      ...serializer.getName('title'),
+      ...serializer.getDate('Spotted date', 'date'),
+      ...serializer.getSelect('Place', 'place'),
+      ...serializer.getUrl('Photos URL', 'photosUrl'),
+      ...serializer.getUrl('Extra link', 'extraLink'),
+      ...serializer.getUrl('Planespotters URL', 'planespottersUrl'),
+      ...serializer.getRichText('Registration', 'registration'),
+      ...serializer.getSelect('Carrier', 'carrier'),
+      ...serializer.getSelect('Manufacturer', 'manufacturer'),
+      ...serializer.getSelect('Model', 'model'),
+      ...serializer.getDate('First flight', 'firstFlight'),
+      ...serializer.getRichText('CN / MSN', 'cn'),
+      ...serializer.getRichText('Airplane Name / Marks', 'airplaneName'),
+      ...serializer.getCheckbox('Flown', 'flown'),
+      ...serializer.getCheckbox('Modelled', 'modelled'),
+      ...serializer.getCheckbox('Info Ready', 'infoReady'),
+      ...serializer.getCheckbox('Ready to publish', 'readyToPublish'),
+      ...serializer.getSelect('Rating', 'rating'),
+      ...serializer.getRichText('Age', 'age'),
+    },
+  };
+};
+
+export const deserializePhotoInfo = (
+  result: NotionResult
+): PhotoFolderInfoData => {
+  const deserializer = new NotionPropertiesDeserializer(result);
+  const id = deserializer.id;
+
+  return {
+    id,
+    attributes: {
+      title: deserializer.getTextAttribute('Name', true),
+      date: deserializer.getDateAttribute('Spotted date'),
+      place: deserializer.getSelectAttribute('Place'),
+      photosUrl: deserializer.getUrlAttribute('Photos URL'),
+      extraLink: deserializer.getUrlAttribute('Extra link'),
+      planespottersUrl: deserializer.getUrlAttribute('Planespotters URL'),
+      registration: deserializer.getTextAttribute('Registration'),
+      carrier: deserializer.getSelectAttribute('Carrier'),
+      manufacturer: deserializer.getSelectAttribute('Manufacturer'),
+      model: deserializer.getSelectAttribute('Model'),
+      firstFlight: deserializer.getDateAttribute('First flight'),
+      cn: deserializer.getTextAttribute('CN / MSN'),
+      airplaneName: deserializer.getTextAttribute('Airplane Name / Marks'),
+      flown: deserializer.getCheckboxAttribute('Flown'),
+      modelled: deserializer.getCheckboxAttribute('Modelled'),
+      infoReady: deserializer.getCheckboxAttribute('Info Ready'),
+      readyToPublish: deserializer.getCheckboxAttribute('Ready to publish'),
+      rating: deserializer.getSelectAttribute('Rating'),
+      age: deserializer.getTextAttribute('Age'),
+      url: deserializer.url,
+    },
+  };
 };

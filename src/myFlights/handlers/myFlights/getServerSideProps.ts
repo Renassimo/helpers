@@ -16,7 +16,7 @@ const getServerSideProps = async (ctx: GetServerSidePropsContextWithAuth) => {
     data = null,
     error = null,
     nextCursor = null,
-  } = await getMyFlights(notionService, dataBaseID);
+  } = await getMyFlights({ notionService, dataBaseID });
   if (error?.status === 404) return showNotFound;
 
   return {

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotosList renders successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1pq723i-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-t2nu3-MuiGrid-root"
+      >
+        <div>
+          selected
+           - 
+          name1
+           - 
+          preview1
+           - 
+           -
+           
+          onPhotoSelected
+           - 
+          onOpenZoom
+           
+          - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-t2nu3-MuiGrid-root"
+      >
+        <div>
+          selected
+           - 
+          name2
+           - 
+          preview2
+           - 
+           -
+           
+          onPhotoSelected
+           - 
+          onOpenZoom
+           
+          - 
+           -
+           
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 MuiGrid-grid-lg-3 css-t2nu3-MuiGrid-root"
+      >
+        <div>
+          selected
+           - 
+          name3
+           - 
+          preview3
+           - 
+           -
+           
+          onPhotoSelected
+           - 
+          onOpenZoom
+           
+          - 
+           -
+           
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
