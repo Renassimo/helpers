@@ -26,8 +26,13 @@ exports[`PhotoFolderSaver when loading renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="MuiBox-root css-1uwjw6e"
+      class="MuiBox-root css-gg4vpm"
     >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle2 css-ejlz1b-MuiTypography-root"
+      >
+        progressText
+      </h6>
       <button
         class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium Mui-disabled MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1vqlznj-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
         disabled=""

@@ -10,6 +10,7 @@ import createPhotoInfo from '../utils/createPhotoInfo';
 
 const usePhotoInfoSaver = () => {
   const [loading, setLoading] = useState(false);
+  const [progressText, setProgressText] = useState('');
 
   const { foldersList, files, newMatchers, updateMatchers, dispatch } =
     usePhotoInfoContext();
@@ -27,32 +28,27 @@ const usePhotoInfoSaver = () => {
 
     zipPhotoFolders(foldersList, files);
 
-    const responses = await createPhotoInfo(foldersList, setLoading);
+    const responses = await createPhotoInfo(
+      foldersList,
+      setLoading,
+      setProgressText
+    );
     const responsesCount = responses.length;
 
     const errors: { title: string; error: string }[] = [];
 
     responses.forEach((response, index) => {
-      const { status } = response;
+      const { ok, value } = response;
 
-      if (status === 'rejected')
+      if (!ok || !value?.data?.id)
         errors.push({
           title: getTitle(index),
-          error: response.reason,
+          error:
+            value?.error?.message ||
+            value?.error?.status ||
+            value?.error?.status ||
+            'Unknown error',
         });
-
-      if (status === 'fulfilled') {
-        const { value } = response;
-        if (!value?.data?.id)
-          errors.push({
-            title: getTitle(index),
-            error:
-              value?.error?.message ||
-              value?.error?.status ||
-              value?.error?.status ||
-              'Unknown error',
-          });
-      }
     });
 
     const errorsCount = errors.length;
@@ -77,7 +73,7 @@ const usePhotoInfoSaver = () => {
     });
   };
 
-  return { loading, onSave };
+  return { loading, onSave, progressText };
 };
 
 export default usePhotoInfoSaver;

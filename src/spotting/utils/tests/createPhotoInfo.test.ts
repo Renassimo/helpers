@@ -12,6 +12,7 @@ describe('createPhotoInfo', () => {
     { attributes: 'attributes2' },
   ] as unknown as PhotoFolder[];
   const setLoading = jest.fn();
+  const setProgressText = jest.fn();
 
   beforeEach(() => {
     fetchMock.post(url, mockedResponseData);
@@ -25,11 +26,15 @@ describe('createPhotoInfo', () => {
   test('calls fetch and setLoading', async () => {
     // Arange
     // Act
-    const result = await createPhotoInfo(foldersList, setLoading);
+    const result = await createPhotoInfo(
+      foldersList,
+      setLoading,
+      setProgressText
+    );
     // Assert
     expect(result).toEqual([
-      { status: 'fulfilled', value: mockedResponseData },
-      { status: 'fulfilled', value: mockedResponseData },
+      { ok: true, value: mockedResponseData },
+      { ok: true, value: mockedResponseData },
     ]);
     expect(fetchMock.lastUrl()).toEqual(url);
     expect(fetchMock.lastOptions()).toEqual({
