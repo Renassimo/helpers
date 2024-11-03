@@ -167,7 +167,18 @@ describe('PhotoFolderInfoForm', () => {
           // Act
           await userEvent.click(getByText('Save'));
           // Assert
-          expect(dispatch).toBeCalledWith({
+          expect(dispatch).nthCalledWith(1, {
+            type: PhotoActionType.UPDATE_MATCHERS,
+            payload: {
+              airlines: { 'loadedValues.carrier': 'state.carrier' },
+              airports: { 'loadedValues.place': 'state.place' },
+              manufacturers: {
+                'loadedValues.manufacturer': 'state.manufacturer',
+              },
+              models: { 'loadedValues.model': 'state.model' },
+            },
+          });
+          expect(dispatch).nthCalledWith(2, {
             type: PhotoActionType.SAVE_FOLDER_INFO,
             payload: {
               title: 'loadedValues.title',

@@ -11,6 +11,7 @@ import AviaFormField from '@/avia/components/AviaFormField';
 import usePhotoInfoContext from '@/spotting/contexts/hooks/usePhotoInfoContext';
 
 import getFormFieldsSchema from './utils/getFormFieldsSchema';
+import getNewMatchers from './utils/getNewMatchers';
 
 const FormField = AviaFormField<PhotoFolderInfoAttributes>;
 
@@ -53,6 +54,10 @@ const PhotoFolderInfoForm = ({
   );
 
   const onSave = () => {
+    dispatch({
+      type: PhotoActionType.UPDATE_MATCHERS,
+      payload: getNewMatchers(loadedValues, formState),
+    });
     dispatch({
       type: PhotoActionType.SAVE_FOLDER_INFO,
       payload: formState,

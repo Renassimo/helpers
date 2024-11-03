@@ -22,6 +22,7 @@ jest.mock('exifreader');
 
 describe('usePhotoInfoProvider', () => {
   const dispatch = jest.fn();
+  const updateMatchers = jest.fn();
 
   beforeEach(() => {
     (useAviaOptions as unknown as jest.Mock).mockReturnValue({
@@ -29,6 +30,7 @@ describe('usePhotoInfoProvider', () => {
     });
     (useAviaMatchers as unknown as jest.Mock).mockReturnValue({
       data: 'aviaMatchers',
+      updateMatchers,
     });
   });
 
@@ -52,18 +54,34 @@ describe('usePhotoInfoProvider', () => {
       foldersList: [],
       matchers: 'aviaMatchers',
       options: 'aviaOptions',
+      updateMatchers: expect.any(Function),
     });
   });
 
   describe('when files passed', () => {
-    const file1 = { path: 'path1', type: 'type1', name: 'name1' };
-    const file2 = { path: 'path2', type: 'image/jpeg', name: 'name2' };
-    const file3 = { path: 'path3', type: 'image/jpeg', name: 'name3' };
-    const file4 = { path: 'path4', type: 'image/jpeg', name: 'name4' };
-    const files = [file1, file2, file3, file4];
+    const file1 = { path: '/root/FINAL/path1', type: 'type1', name: 'name1' };
+    const file2 = {
+      path: '/root/FINAL/path2',
+      type: 'image/jpeg',
+      name: 'name2',
+    };
+    const file3 = {
+      path: '/root/FINAL/path3',
+      type: 'image/jpeg',
+      name: 'name3',
+    };
+    const file4 = { path: '/root/path4', type: 'image/jpeg', name: 'name4' };
+    const file5 = {
+      path: '/root/FINAL/path5',
+      type: 'image/jpeg',
+      name: 'name5',
+    };
+    const files = [file1, file2, file3, file4, file5];
 
-    const photos = { path2: 'photo2' };
-    const folder1 = { photos: { path3: { path: 'path3' } } };
+    const photos = { '/root/FINAL/path2': 'photo2' };
+    const folder1 = {
+      photos: { '/root/FINAL/path3': { path: '/root/FINAL/path3' } },
+    };
     const folders = { folder1 };
 
     beforeEach(() => {
@@ -96,7 +114,7 @@ describe('usePhotoInfoProvider', () => {
       expect(result.current).toEqual({
         ...defaultPhotosState,
         files,
-        handlingText: 'Handling: 4 of 4',
+        handlingText: 'Handling: 5 of 5',
         folders,
         photos,
         dispatch,
@@ -104,8 +122,9 @@ describe('usePhotoInfoProvider', () => {
         foldersList: [folder1],
         matchers: 'aviaMatchers',
         options: 'aviaOptions',
+        updateMatchers: expect.any(Function),
       });
-      expect(compressImage).toBeCalledWith(file4, { quality: 0.2 });
+      expect(compressImage).toBeCalledWith(file5, { quality: 0.2 });
       expect(getFileWithPreview).not.toBeCalled();
       expect(dispatch).not.toBeCalled();
     });
@@ -128,14 +147,15 @@ describe('usePhotoInfoProvider', () => {
             foldersList: [folder1],
             matchers: 'aviaMatchers',
             options: 'aviaOptions',
+            updateMatchers: expect.any(Function),
           });
           expect(getFileWithPreview).toBeCalledWith('compressed-image');
           expect(dispatch).toBeCalledWith({
             type: PhotoActionType.ADD_PHOTO,
             payload: {
-              file: file4,
-              path: file4.path,
-              name: file4.name,
+              file: file5,
+              path: file5.path,
+              name: file5.name,
               selected: false,
               preview: 'preview',
               date: '2024-10-19',

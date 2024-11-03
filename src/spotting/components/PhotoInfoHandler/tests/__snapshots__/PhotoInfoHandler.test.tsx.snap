@@ -27,6 +27,9 @@ exports[`PhotoInfoHandler renders successfully 1`] = `
       <div>
         MockedPhotoFolderModal
       </div>
+      <div>
+        MockedPhotoFolderSaver
+      </div>
     </div>
   </div>
 </body>

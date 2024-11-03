@@ -6,6 +6,7 @@ import {
   PhotoInfosState,
   PhotoFoldersState,
   PhotoFolder,
+  defaultPhotosState,
 } from '@/spotting/types';
 
 const photoInfoReducer = (
@@ -39,10 +40,7 @@ const photoInfoReducer = (
       };
     }
     case PhotoActionType.CLEAR_FILES: {
-      return {
-        ...state,
-        files: [],
-      };
+      return defaultPhotosState;
     }
     case PhotoActionType.SELECT_ALL: {
       return {
@@ -192,7 +190,14 @@ const photoInfoReducer = (
       const { showingFolder } = state;
       if (!showingFolder) return state;
 
-      const updatedFolder = { ...showingFolder, attributes };
+      const title = `${attributes?.carrier || ''} ${attributes?.model || ''} ${
+        attributes?.registration || ''
+      }`;
+
+      const updatedFolder = {
+        ...showingFolder,
+        attributes: { ...attributes, title },
+      };
 
       return {
         ...state,
@@ -200,6 +205,24 @@ const photoInfoReducer = (
         folders: {
           ...state.folders,
           [updatedFolder.id]: updatedFolder,
+        },
+      };
+    }
+    case PhotoActionType.UPDATE_MATCHERS: {
+      const newMatchers = action.payload;
+      if (!newMatchers) return state;
+      const { airlines, airports, manufacturers, models } = newMatchers;
+
+      return {
+        ...state,
+        newMatchers: {
+          airlines: { ...state.newMatchers.airlines, ...airlines },
+          airports: { ...state.newMatchers.airports, ...airports },
+          manufacturers: {
+            ...state.newMatchers.manufacturers,
+            ...manufacturers,
+          },
+          models: { ...state.newMatchers.models, ...models },
         },
       };
     }

@@ -10,6 +10,7 @@ describe('propertiesSerializer', () => {
     const selectAttr = 'select Attribute';
     const dateAttr = 'date Attribute';
     const richTextAttr = 'rich text Attribute';
+    const checkBoxAttr = true;
 
     const attributes = {
       titleAttr,
@@ -19,6 +20,7 @@ describe('propertiesSerializer', () => {
       selectAttr,
       dateAttr,
       richTextAttr,
+      checkBoxAttr,
     };
 
     const expectedResult = {
@@ -45,6 +47,9 @@ describe('propertiesSerializer', () => {
             text: { content: richTextAttr },
           },
         ],
+      },
+      'Check Box Key': {
+        checkbox: true,
       },
     };
     const propertiesSerializer = new NotionPropertiesSerializer(attributes);
@@ -73,6 +78,7 @@ describe('propertiesSerializer', () => {
         'Rich Text Key',
         'unknown rich text attribute'
       ),
+      ...propertiesSerializer.getCheckbox('Check Box Key', 'checkBoxAttr'),
     };
     // Assert
     expect(result).toEqual(expectedResult);

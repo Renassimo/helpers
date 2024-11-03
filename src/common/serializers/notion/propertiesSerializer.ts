@@ -84,6 +84,14 @@ class NotionPropertiesSerializer<T extends { [key: string]: any }> {
         }
       : {};
   };
+
+  getCheckbox = (notionKey: string, attributeKey: string) => {
+    const content = this.attributes[attributeKey];
+    if (content === undefined) return {};
+    return {
+      [notionKey]: { checkbox: !!content },
+    };
+  };
 }
 
 export default NotionPropertiesSerializer;

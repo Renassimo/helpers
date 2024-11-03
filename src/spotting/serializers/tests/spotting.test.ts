@@ -1,12 +1,17 @@
 import { NotionResult } from '@/common/types/notion';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
+import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSerializer';
 import {
+  deserializePhotoInfo,
   deserializeSpottedPlanes,
+  serializePhotoInfo,
   serializeSpottedPlanes,
 } from '@/spotting/serializers';
+import { PhotoFolderInfoData } from '@/spotting/types';
 
 jest.mock('@/common/serializers/notion');
+jest.mock('@/common/serializers/notion/propertiesSerializer');
 
 describe('Spotting serializers', () => {
   describe('deserializeSpottedPlanes ', () => {
@@ -205,6 +210,238 @@ describe('Spotting serializers', () => {
       const result = serializeSpottedPlanes(data);
       // Assert
       expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('serializePhotoInfo', () => {
+    const getRichText = jest.fn((key, attr) => ({ [key]: attr }));
+    const getDate = jest.fn((key, attr) => ({ [key]: attr }));
+    const getSelect = jest.fn((key, attr) => ({ [key]: attr }));
+    const getUrl = jest.fn((key, attr) => ({ [key]: attr }));
+    const getUrlCover = jest.fn((attr) => ({ urlCover: attr }));
+    const getNumber = jest.fn((key, attr) => ({ [key]: attr }));
+    const getName = jest.fn((attr) => ({ name: attr }));
+    const getCheckbox = jest.fn((key, attr) => ({ [key]: attr }));
+
+    beforeEach(() => {
+      (NotionPropertiesSerializer as unknown as jest.Mock).mockImplementation(
+        () => ({
+          getRichText,
+          getDate,
+          getSelect,
+          getUrl,
+          getUrlCover,
+          getNumber,
+          getName,
+          getCheckbox,
+        })
+      );
+    });
+
+    test('serializes result', () => {
+      // Arange
+      const mockedPhotoInfo = {
+        attributes: {
+          title: 'title',
+          date: 'date',
+          place: 'place',
+          photosUrl: 'photosUrl',
+          extraLink: 'extraLink',
+          planespottersUrl: 'planespottersUrl',
+          registration: 'registration',
+          carrier: 'carrier',
+          manufacturer: 'manufacturer',
+          model: 'model',
+          firstFlight: 'firstFlight',
+          cn: 'cn',
+          airplaneName: 'airplaneName',
+          flown: 'flown',
+          modelled: 'modelled',
+          infoReady: 'infoReady',
+          readyToPublish: 'readyToPublish',
+          rating: 'rating',
+          age: 'age',
+        },
+      } as unknown as PhotoFolderInfoData;
+      // Act
+      const result = serializePhotoInfo(mockedPhotoInfo);
+      // Assert
+      expect(NotionPropertiesSerializer).toBeCalledWith(
+        mockedPhotoInfo.attributes
+      );
+      expect(getUrlCover).not.toBeCalled();
+      expect(getName).toBeCalledTimes(1);
+      expect(getName).nthCalledWith(1, 'title');
+      expect(getRichText).toBeCalledTimes(4);
+      expect(getRichText).nthCalledWith(1, 'Registration', 'registration');
+      expect(getRichText).nthCalledWith(2, 'CN / MSN', 'cn');
+      expect(getRichText).nthCalledWith(
+        3,
+        'Airplane Name / Marks',
+        'airplaneName'
+      );
+      expect(getRichText).nthCalledWith(4, 'Age', 'age');
+      expect(getDate).toBeCalledTimes(2);
+      expect(getDate).nthCalledWith(1, 'Spotted date', 'date');
+      expect(getDate).nthCalledWith(2, 'First flight', 'firstFlight');
+      expect(getSelect).toBeCalledTimes(5);
+      expect(getSelect).nthCalledWith(1, 'Place', 'place');
+      expect(getSelect).nthCalledWith(2, 'Carrier', 'carrier');
+      expect(getSelect).nthCalledWith(3, 'Manufacturer', 'manufacturer');
+      expect(getSelect).nthCalledWith(4, 'Model', 'model');
+      expect(getSelect).nthCalledWith(5, 'Rating', 'rating');
+      expect(getNumber).not.toBeCalled();
+      expect(getUrl).toBeCalledTimes(3);
+      expect(getUrl).nthCalledWith(1, 'Photos URL', 'photosUrl');
+      expect(getUrl).nthCalledWith(2, 'Extra link', 'extraLink');
+      expect(getUrl).nthCalledWith(3, 'Planespotters URL', 'planespottersUrl');
+      expect(getCheckbox).toBeCalledTimes(4);
+      expect(getCheckbox).nthCalledWith(1, 'Flown', 'flown');
+      expect(getCheckbox).nthCalledWith(2, 'Modelled', 'modelled');
+      expect(getCheckbox).nthCalledWith(3, 'Info Ready', 'infoReady');
+      expect(getCheckbox).nthCalledWith(
+        4,
+        'Ready to publish',
+        'readyToPublish'
+      );
+      expect(result).toEqual({
+        icon: { type: 'emoji', emoji: '📷' },
+        properties: {
+          name: 'title',
+          'Spotted date': 'date',
+          Place: 'place',
+          'Photos URL': 'photosUrl',
+          'Extra link': 'extraLink',
+          'Planespotters URL': 'planespottersUrl',
+          Registration: 'registration',
+          Carrier: 'carrier',
+          Manufacturer: 'manufacturer',
+          Model: 'model',
+          'First flight': 'firstFlight',
+          'CN / MSN': 'cn',
+          'Airplane Name / Marks': 'airplaneName',
+          Flown: 'flown',
+          Modelled: 'modelled',
+          'Info Ready': 'infoReady',
+          'Ready to publish': 'readyToPublish',
+          Rating: 'rating',
+          Age: 'age',
+        },
+      });
+    });
+  });
+
+  describe('deserializeFlights ', () => {
+    const mockedResults = [{ mockedResult1: 'mockedResult1' }];
+
+    const mockedId = 'mockedPhotoUrl1';
+    const mockedUrl = 'mockedUrl';
+    const mockedCover = 'mockedCover';
+    const mockedTextAttribute = 'mockedTextAttribute';
+    const mockedSelectAttribute = 'mockedSelectAttribute';
+    const mockedDateAttribute = 'mockedDateAttribute';
+    const mockedNumberAttribute = 'mockedNumberAttribute';
+    const mockedUrlAttribute = 'mockedUrlAttribute';
+    const mockedCheckboxAttribute = 'mockedCheckboxAttribute';
+
+    const mockedGetTextAttribute = jest.fn(() => mockedTextAttribute);
+    const mockedGetSelectAttribute = jest.fn(() => mockedSelectAttribute);
+    const mockedGetDateAttribute = jest.fn(() => mockedDateAttribute);
+    const mockedGetNumberAttribute = jest.fn(() => mockedNumberAttribute);
+    const mockedGetUrlAttribute = jest.fn(() => mockedUrlAttribute);
+    const mockedGetCheckboxAttribute = jest.fn(() => mockedCheckboxAttribute);
+
+    const expectedAttributes = {
+      title: mockedTextAttribute,
+      date: mockedDateAttribute,
+      place: mockedSelectAttribute,
+      photosUrl: mockedUrlAttribute,
+      extraLink: mockedUrlAttribute,
+      planespottersUrl: mockedUrlAttribute,
+      registration: mockedTextAttribute,
+      carrier: mockedSelectAttribute,
+      manufacturer: mockedSelectAttribute,
+      model: mockedSelectAttribute,
+      firstFlight: mockedDateAttribute,
+      cn: mockedTextAttribute,
+      airplaneName: mockedTextAttribute,
+      flown: mockedCheckboxAttribute,
+      modelled: mockedCheckboxAttribute,
+      infoReady: mockedCheckboxAttribute,
+      readyToPublish: mockedCheckboxAttribute,
+      rating: mockedSelectAttribute,
+      age: mockedTextAttribute,
+      url: mockedUrl,
+    };
+
+    beforeEach(() => {
+      (NotionPropertiesDeserializer as unknown as jest.Mock).mockImplementation(
+        () => ({
+          getTextAttribute: mockedGetTextAttribute,
+          getSelectAttribute: mockedGetSelectAttribute,
+          getDateAttribute: mockedGetDateAttribute,
+          getNumberAttribute: mockedGetNumberAttribute,
+          getUrlAttribute: mockedGetUrlAttribute,
+          getCheckboxAttribute: mockedGetCheckboxAttribute,
+          id: mockedId,
+          url: mockedUrl,
+          cover: mockedCover,
+        })
+      );
+    });
+
+    test('deserializes result', () => {
+      // Arrange
+      const expectedResult = {
+        id: mockedId,
+        attributes: { ...expectedAttributes },
+      };
+      // Act
+      const result = deserializePhotoInfo(
+        mockedResults as unknown as NotionResult
+      );
+      // Assert
+      expect(result).toEqual(expectedResult);
+      expect(mockedGetTextAttribute).toHaveBeenCalledTimes(5);
+      expect(mockedGetTextAttribute).toHaveBeenNthCalledWith(1, 'Name', true);
+      expect(mockedGetTextAttribute).toHaveBeenNthCalledWith(2, 'Registration');
+      expect(mockedGetTextAttribute).toHaveBeenNthCalledWith(3, 'CN / MSN');
+      expect(mockedGetTextAttribute).toHaveBeenNthCalledWith(
+        4,
+        'Airplane Name / Marks'
+      );
+      expect(mockedGetTextAttribute).toHaveBeenNthCalledWith(5, 'Age');
+      expect(mockedGetSelectAttribute).toHaveBeenCalledTimes(5);
+      expect(mockedGetSelectAttribute).toHaveBeenNthCalledWith(1, 'Place');
+      expect(mockedGetSelectAttribute).toHaveBeenNthCalledWith(2, 'Carrier');
+      expect(mockedGetSelectAttribute).toHaveBeenNthCalledWith(
+        3,
+        'Manufacturer'
+      );
+      expect(mockedGetSelectAttribute).toHaveBeenNthCalledWith(4, 'Model');
+      expect(mockedGetSelectAttribute).toHaveBeenNthCalledWith(5, 'Rating');
+      expect(mockedGetDateAttribute).toHaveBeenCalledTimes(2);
+      expect(mockedGetDateAttribute).toHaveBeenNthCalledWith(1, 'Spotted date');
+      expect(mockedGetDateAttribute).toHaveBeenNthCalledWith(2, 'First flight');
+      expect(mockedGetNumberAttribute).not.toBeCalled();
+      expect(mockedGetUrlAttribute).toHaveBeenCalledTimes(3);
+      expect(mockedGetUrlAttribute).toHaveBeenNthCalledWith(1, 'Photos URL');
+      expect(mockedGetUrlAttribute).toHaveBeenNthCalledWith(2, 'Extra link');
+      expect(mockedGetUrlAttribute).toHaveBeenNthCalledWith(
+        3,
+        'Planespotters URL'
+      );
+      expect(mockedGetCheckboxAttribute).toHaveBeenCalledTimes(4);
+      expect(mockedGetCheckboxAttribute).toHaveBeenNthCalledWith(1, 'Flown');
+      expect(mockedGetCheckboxAttribute).toHaveBeenNthCalledWith(2, 'Modelled');
+      expect(mockedGetCheckboxAttribute).toHaveBeenNthCalledWith(
+        3,
+        'Info Ready'
+      );
+      expect(mockedGetCheckboxAttribute).toHaveBeenNthCalledWith(
+        4,
+        'Ready to publish'
+      );
     });
   });
 });

@@ -30,6 +30,9 @@ const usePhotoInfoProvider = (): PhotoInfoContextState => {
         const file = files[i];
 
         const path = file.path as string;
+        const subfolder = path.split('/')[2];
+
+        if (subfolder !== 'FINAL') continue;
 
         if (
           file.type !== 'image/jpeg' ||
@@ -78,7 +81,7 @@ const usePhotoInfoProvider = (): PhotoInfoContextState => {
   const { data: options } = useAviaOptions();
 
   // Matchers
-  const { data: matchers } = useAviaMatchers();
+  const { data: matchers, updateMatchers } = useAviaMatchers();
 
   return {
     ...state,
@@ -88,6 +91,7 @@ const usePhotoInfoProvider = (): PhotoInfoContextState => {
     foldersList,
     options,
     matchers,
+    updateMatchers,
   };
 };
 

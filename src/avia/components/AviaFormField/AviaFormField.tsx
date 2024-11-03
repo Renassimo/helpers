@@ -51,19 +51,25 @@ const AviaFormField = <
       />
     );
 
-  if (type === 'checkbox')
+  if (type === 'checkbox') {
+    const loadedValue = loadedValues[name] as boolean;
+    const hasValue = typeof value === 'boolean';
+    const hasLoadedValue = typeof loadedValue === 'boolean';
+
+    const checked = hasValue ? value : hasLoadedValue ? loadedValue : false;
+
     return (
       <FormControlLabel
         control={
           <Checkbox
-            defaultChecked={!!loadedValues[name] as boolean}
-            checked={!!value}
+            checked={checked}
             onChange={(event) => setValue(name, event?.target.checked)}
           />
         }
         label={label}
       />
     );
+  }
 
   return (
     <ClearableInput

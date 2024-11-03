@@ -30,6 +30,7 @@
     "html2canvas": "^1.4.1",
     "invert-color": "^2.0.0",
     "jspdf": "^2.5.1",
+    "jszip": "^3.10.1",
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
     "next": "13.1.5",

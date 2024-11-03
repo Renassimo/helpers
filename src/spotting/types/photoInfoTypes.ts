@@ -1,4 +1,6 @@
 import { Avia } from '@/avia/types/avia';
+import { Matcher } from '@/common/types/matchers';
+import { Data } from '@/common/types/props';
 import { FileWithPath } from 'react-dropzone';
 
 export interface PhotoInfo {
@@ -32,6 +34,12 @@ export interface PhotoHandlerState {
   zoomedPhoto: PhotoInfo | null;
   showingFolder: PhotoFolder | null;
   place: string | null;
+  newMatchers: {
+    airlines: Matcher;
+    airports: Matcher;
+    manufacturers: Matcher;
+    models: Matcher;
+  };
 }
 
 export interface PhotoInfoContextState extends PhotoHandlerState {
@@ -41,6 +49,7 @@ export interface PhotoInfoContextState extends PhotoHandlerState {
   dispatch: (value: PhotoInfoAction) => void;
   options: Avia.Options | null;
   matchers: Avia.Matchers | null;
+  updateMatchers: (data: Partial<Avia.Matchers>) => Promise<void>;
 }
 
 export enum PhotoActionType {
@@ -59,6 +68,7 @@ export enum PhotoActionType {
   REMOVE_FOLDER,
   UPDATE_PLACE,
   SAVE_FOLDER_INFO,
+  UPDATE_MATCHERS,
 }
 
 export const defaultPhotosState: PhotoHandlerState = {
@@ -68,6 +78,12 @@ export const defaultPhotosState: PhotoHandlerState = {
   zoomedPhoto: null,
   showingFolder: null,
   place: null,
+  newMatchers: {
+    airlines: {},
+    airports: {},
+    manufacturers: {},
+    models: {},
+  },
 };
 
 export type PhotoInfoAction =
@@ -124,6 +140,10 @@ export type PhotoInfoAction =
   | {
       type: PhotoActionType.SAVE_FOLDER_INFO;
       payload?: Partial<PhotoFolderInfoAttributes>;
+    }
+  | {
+      type: PhotoActionType.UPDATE_MATCHERS;
+      payload: Avia.Matchers | null;
     };
 
 export interface PhotoFolderInfoAttributes
@@ -150,7 +170,4 @@ export interface PhotoFolderInfoAttributes
   url: string | null;
 }
 
-export interface PhotoFolderInfoData {
-  id: string;
-  attributes: PhotoFolderInfoAttributes;
-}
+export type PhotoFolderInfoData = Data<PhotoFolderInfoAttributes>;

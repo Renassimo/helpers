@@ -128,7 +128,7 @@ describe('photoInfoReducer when action is', () => {
         { type: PhotoActionType.CLEAR_FILES },
         {},
         {
-          files: [],
+          ...defaultPhotosState,
         }
       )
     );
@@ -362,7 +362,12 @@ describe('photoInfoReducer when action is', () => {
       getTest(
         {
           type: PhotoActionType.SAVE_FOLDER_INFO,
-          payload: { place: 'WAW/EPWA', model: 'A320neo' },
+          payload: {
+            place: 'WAW/EPWA',
+            model: 'A320neo',
+            carrier: 'Airbus',
+            registration: 'SP-ABC',
+          },
         },
         {
           showingFolder: folder1,
@@ -373,8 +378,57 @@ describe('photoInfoReducer when action is', () => {
             ...folders,
             [folder1.id]: {
               ...folder1,
-              attributes: { place: 'WAW/EPWA', model: 'A320neo' },
+              attributes: {
+                place: 'WAW/EPWA',
+                model: 'A320neo',
+                carrier: 'Airbus',
+                registration: 'SP-ABC',
+                title: 'Airbus A320neo SP-ABC',
+              },
             },
+          },
+        }
+      )
+    );
+  });
+
+  describe('UPDATE_MATCHERS', () => {
+    test(
+      'updates place value',
+      getTest(
+        {
+          type: PhotoActionType.UPDATE_MATCHERS,
+          payload: {
+            airlines: { airline1: 'Airline1' },
+            airports: { airport1: 'Airport1' },
+            manufacturers: {
+              manufacturer1: 'Manufacturer1',
+              manufacturer3: 'Manufacturer3',
+            },
+            models: {},
+          },
+        },
+        {
+          newMatchers: {
+            airlines: {},
+            airports: { airport1: 'Airport1' },
+            manufacturers: {
+              manufacturer1: 'Manufacturer1',
+              manufacturer2: 'Manufacturer2',
+            },
+            models: {},
+          },
+        },
+        {
+          newMatchers: {
+            airlines: { airline1: 'Airline1' },
+            airports: { airport1: 'Airport1' },
+            manufacturers: {
+              manufacturer1: 'Manufacturer1',
+              manufacturer2: 'Manufacturer2',
+              manufacturer3: 'Manufacturer3',
+            },
+            models: {},
           },
         }
       )

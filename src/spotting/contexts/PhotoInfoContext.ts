@@ -8,6 +8,7 @@ const PhotoInfoContext = createContext<PhotoInfoContextState>({
   dispatch: () => {},
   options: null,
   matchers: null,
+  updateMatchers: () => Promise.resolve(),
   ...defaultPhotosState,
 });
 

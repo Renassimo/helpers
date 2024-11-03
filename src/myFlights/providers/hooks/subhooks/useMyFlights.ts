@@ -52,7 +52,6 @@ const useMyFlights = (
       if (!response) return;
 
       const { data, nextCursor } = response;
-      console.log({ data, nextCursor });
       setMyFlights((current) => ({
         ...current,
         ...getAttributeObjectFromArray(data),
