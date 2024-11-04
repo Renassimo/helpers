@@ -126,9 +126,10 @@ describe('photoInfoReducer when action is', () => {
       'clears all files from state',
       getTest(
         { type: PhotoActionType.CLEAR_FILES },
-        {},
+        { place: 'WAW/EPWA' },
         {
           ...defaultPhotosState,
+          place: 'WAW/EPWA',
         }
       )
     );

@@ -40,7 +40,7 @@ const photoInfoReducer = (
       };
     }
     case PhotoActionType.CLEAR_FILES: {
-      return defaultPhotosState;
+      return { ...defaultPhotosState, place: state.place };
     }
     case PhotoActionType.SELECT_ALL: {
       return {
