@@ -22,6 +22,7 @@ describe('usePhotoInfoSaver', () => {
   const createErrorAlert = jest.fn();
   const createWarnAlert = jest.fn();
   const files = 'files';
+  const photosList = 'photosList';
   const newMatchers = 'newMatchers';
   const updateMatchers = jest.fn();
   const dispatch = jest.fn();
@@ -41,6 +42,7 @@ describe('usePhotoInfoSaver', () => {
     (usePhotoInfoContext as unknown as jest.Mock).mockImplementation(
       jest.fn(() => ({
         foldersList,
+        photosList,
         files,
         newMatchers,
         updateMatchers,
@@ -64,7 +66,7 @@ describe('usePhotoInfoSaver', () => {
     result.current.onSave();
     // Assert
     await waitFor(() => {
-      expect(zipPhotoFolders).toBeCalledWith(foldersList, files);
+      expect(zipPhotoFolders).toBeCalledWith(foldersList, photosList, files);
       expect(createPhotoInfo).toBeCalledWith(
         foldersList,
         expect.any(Function),
@@ -98,7 +100,7 @@ describe('usePhotoInfoSaver', () => {
       result.current.onSave();
       // Assert
       await waitFor(() => {
-        expect(zipPhotoFolders).toBeCalledWith(foldersList, files);
+        expect(zipPhotoFolders).toBeCalledWith(foldersList, photosList, files);
         expect(createPhotoInfo).toBeCalledWith(
           foldersList,
           expect.any(Function),
@@ -140,7 +142,7 @@ describe('usePhotoInfoSaver', () => {
       result.current.onSave();
       // Assert
       await waitFor(() => {
-        expect(zipPhotoFolders).toBeCalledWith(foldersList, files);
+        expect(zipPhotoFolders).toBeCalledWith(foldersList, photosList, files);
         expect(createPhotoInfo).toBeCalledWith(
           foldersList,
           expect.any(Function),

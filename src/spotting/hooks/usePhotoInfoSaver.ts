@@ -12,8 +12,14 @@ const usePhotoInfoSaver = () => {
   const [loading, setLoading] = useState(false);
   const [progressText, setProgressText] = useState('');
 
-  const { foldersList, files, newMatchers, updateMatchers, dispatch } =
-    usePhotoInfoContext();
+  const {
+    foldersList,
+    photosList,
+    files,
+    newMatchers,
+    updateMatchers,
+    dispatch,
+  } = usePhotoInfoContext();
 
   const { createSuccessAlert, createErrorAlert, createWarnAlert } = useAlerts();
 
@@ -26,7 +32,7 @@ const usePhotoInfoSaver = () => {
   const onSave = async () => {
     if (!foldersList.length) return;
 
-    zipPhotoFolders(foldersList, files);
+    zipPhotoFolders(foldersList, photosList, files);
 
     const responses = await createPhotoInfo(
       foldersList,
