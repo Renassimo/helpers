@@ -126,9 +126,10 @@ describe('photoInfoReducer when action is', () => {
       'clears all files from state',
       getTest(
         { type: PhotoActionType.CLEAR_FILES },
-        {},
+        { place: 'WAW/EPWA' },
         {
           ...defaultPhotosState,
+          place: 'WAW/EPWA',
         }
       )
     );
@@ -431,6 +432,17 @@ describe('photoInfoReducer when action is', () => {
             models: {},
           },
         }
+      )
+    );
+  });
+
+  describe('DUPLICATE_PHOTO', () => {
+    test(
+      'updates place value',
+      getTest(
+        { type: PhotoActionType.DUPLICATE_PHOTO, payload: photo1.path },
+        { showingFolder: folder1 },
+        { showingFolder: folder1, photos: { ...photos, [photo1.path]: photo1 } }
       )
     );
   });

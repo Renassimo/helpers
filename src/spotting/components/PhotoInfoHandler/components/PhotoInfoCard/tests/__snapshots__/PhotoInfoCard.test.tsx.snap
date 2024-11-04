@@ -31,7 +31,7 @@ exports[`PhotoInfoCard renders successfully 1`] = `
 </body>
 `;
 
-exports[`PhotoInfoCard when card media clicked clicked when onClick passed calls onClick 1`] = `
+exports[`PhotoInfoCard when card media clicked when onClick passed calls onClick 1`] = `
 <body>
   <div>
     <div>
@@ -62,7 +62,7 @@ exports[`PhotoInfoCard when card media clicked clicked when onClick passed calls
 </body>
 `;
 
-exports[`PhotoInfoCard when card media clicked clicked when onPhotoSelected passed calls onPhotoSelected 1`] = `
+exports[`PhotoInfoCard when card media clicked when onPhotoSelected passed calls onPhotoSelected 1`] = `
 <body>
   <div>
     <div>
@@ -93,7 +93,69 @@ exports[`PhotoInfoCard when card media clicked clicked when onPhotoSelected pass
 </body>
 `;
 
-exports[`PhotoInfoCard when remove button clicked clicked calls onRemoveFromFolder 1`] = `
+exports[`PhotoInfoCard when duplicate button clicked calls onRemoveFromFolder 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="MuiBox-root css-79elbk"
+      >
+        <div
+          class="MuiCardMedia-root css-10ib1k4-MuiCardMedia-root"
+          role="img"
+          style="background-image: url(preview);"
+          title="name"
+        />
+        <div
+          class="MuiBox-root css-1hpf0kz"
+        >
+          <button
+            aria-label="duplicate"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="ContentCopyIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            >
+              <span
+                class="css-y4cjyz-MuiTouchRipple-ripple MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
+                style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
+              >
+                <span
+                  class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
+                />
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+       
+      selectable
+      ,
+      not selected
+      ,
+      not isAnySelected
+      ,
+      toggleSelect passed
+      .
+    </div>
+  </div>
+</body>
+`;
+
+exports[`PhotoInfoCard when remove button clicked calls onRemoveFromFolder 1`] = `
 <body>
   <div>
     <div>
@@ -155,7 +217,7 @@ exports[`PhotoInfoCard when remove button clicked clicked calls onRemoveFromFold
 </body>
 `;
 
-exports[`PhotoInfoCard when zoom button clicked clicked calls onOpenZoom 1`] = `
+exports[`PhotoInfoCard when zoom button clicked calls onOpenZoom 1`] = `
 <body>
   <div>
     <div>

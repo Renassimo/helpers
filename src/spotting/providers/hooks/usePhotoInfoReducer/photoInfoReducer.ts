@@ -40,7 +40,7 @@ const photoInfoReducer = (
       };
     }
     case PhotoActionType.CLEAR_FILES: {
-      return defaultPhotosState;
+      return { ...defaultPhotosState, place: state.place };
     }
     case PhotoActionType.SELECT_ALL: {
       return {
@@ -223,6 +223,20 @@ const photoInfoReducer = (
             ...manufacturers,
           },
           models: { ...state.newMatchers.models, ...models },
+        },
+      };
+    }
+    case PhotoActionType.DUPLICATE_PHOTO: {
+      const path = action.payload;
+      const photo = state.showingFolder?.photos[path];
+
+      if (!photo) return state;
+
+      return {
+        ...state,
+        photos: {
+          ...state.photos,
+          [path]: photo,
         },
       };
     }
