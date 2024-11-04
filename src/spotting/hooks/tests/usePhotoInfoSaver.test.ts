@@ -22,6 +22,7 @@ describe('usePhotoInfoSaver', () => {
   const createErrorAlert = jest.fn();
   const createWarnAlert = jest.fn();
   const files = 'files';
+  const photosList = 'photosList';
   const newMatchers = 'newMatchers';
   const updateMatchers = jest.fn();
   const dispatch = jest.fn();
@@ -41,6 +42,7 @@ describe('usePhotoInfoSaver', () => {
     (usePhotoInfoContext as unknown as jest.Mock).mockImplementation(
       jest.fn(() => ({
         foldersList,
+        photosList,
         files,
         newMatchers,
         updateMatchers,
@@ -57,15 +59,19 @@ describe('usePhotoInfoSaver', () => {
   test('creates success alert and cleans up state', async () => {
     // Arange
     (createPhotoInfo as unknown as jest.Mock).mockImplementationOnce(
-      jest.fn(() => [{ status: 'fulfilled', value: { data: { id: 1 } } }])
+      jest.fn(() => [{ ok: true, value: { data: { id: 1 } } }])
     );
     const { result } = renderHook(() => usePhotoInfoSaver());
     // Act
     result.current.onSave();
     // Assert
     await waitFor(() => {
-      expect(zipPhotoFolders).toBeCalledWith(foldersList, files);
-      expect(createPhotoInfo).toBeCalledWith(foldersList, expect.any(Function));
+      expect(zipPhotoFolders).toBeCalledWith(foldersList, photosList, files);
+      expect(createPhotoInfo).toBeCalledWith(
+        foldersList,
+        expect.any(Function),
+        expect.any(Function)
+      );
       expect(dispatch).toBeCalledWith({ type: PhotoActionType.CLEAR_FILES });
       expect(updateMatchers).toBeCalledWith(newMatchers);
       expect(result.current.loading).toBe(false);
@@ -82,9 +88,9 @@ describe('usePhotoInfoSaver', () => {
       // Arange
       (createPhotoInfo as unknown as jest.Mock).mockImplementationOnce(
         jest.fn(() => [
-          { status: 'rejected', reason: 'Bad luck I guess..' },
+          { ok: false, value: { error: { message: 'Bad luck I guess..' } } },
           {
-            status: 'fulfilled',
+            ok: true,
             value: { error: { message: 'Ah shit, here we go again' } },
           },
         ])
@@ -94,9 +100,10 @@ describe('usePhotoInfoSaver', () => {
       result.current.onSave();
       // Assert
       await waitFor(() => {
-        expect(zipPhotoFolders).toBeCalledWith(foldersList, files);
+        expect(zipPhotoFolders).toBeCalledWith(foldersList, photosList, files);
         expect(createPhotoInfo).toBeCalledWith(
           foldersList,
+          expect.any(Function),
           expect.any(Function)
         );
         expect(dispatch).not.toHaveBeenCalled();
@@ -122,12 +129,12 @@ describe('usePhotoInfoSaver', () => {
       // Arange
       (createPhotoInfo as unknown as jest.Mock).mockImplementationOnce(
         jest.fn(() => [
-          { status: 'rejected', reason: 'Bad luck I guess..' },
+          { ok: false, value: { error: { message: 'Bad luck I guess..' } } },
           {
-            status: 'fulfilled',
+            ok: true,
             value: { error: { message: 'Ah shit, here we go again' } },
           },
-          { status: 'fulfilled', value: { data: { id: 1 } } },
+          { ok: true, value: { data: { id: 1 } } },
         ])
       );
       const { result } = renderHook(() => usePhotoInfoSaver());
@@ -135,9 +142,10 @@ describe('usePhotoInfoSaver', () => {
       result.current.onSave();
       // Assert
       await waitFor(() => {
-        expect(zipPhotoFolders).toBeCalledWith(foldersList, files);
+        expect(zipPhotoFolders).toBeCalledWith(foldersList, photosList, files);
         expect(createPhotoInfo).toBeCalledWith(
           foldersList,
+          expect.any(Function),
           expect.any(Function)
         );
         expect(dispatch).not.toHaveBeenCalled();

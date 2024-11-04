@@ -1,12 +1,13 @@
 import JSZip from 'jszip';
 
 import { FileWithPath } from 'react-dropzone';
-import { PhotoFolder } from '../types';
+import { PhotoFolder, PhotoInfo } from '../types';
 
 import downloadZip from '@/common/utils/files/downloadZip';
 
 const zipPhotoFolders = async (
   foldersList: PhotoFolder[],
+  photosList: PhotoInfo[],
   files: FileWithPath[]
 ) => {
   if (!foldersList.length) return;
@@ -27,6 +28,18 @@ const zipPhotoFolders = async (
         if (fileNameShort === photoNameShort && fileName !== photoName)
           zip.file(`${title}/${fileName}`, file);
       });
+    });
+  });
+
+  photosList.forEach((photo) => {
+    zip.file(`FINAL/${photo.name}`, photo.file);
+    files.forEach((file) => {
+      const fileName = file.name;
+      const [fileNameShort] = fileName.split('.');
+      const photoName = photo.name;
+      const [photoNameShort] = photoName.split('.');
+      if (fileNameShort === photoNameShort && fileName !== photoName)
+        zip.file(fileName, file);
     });
   });
 

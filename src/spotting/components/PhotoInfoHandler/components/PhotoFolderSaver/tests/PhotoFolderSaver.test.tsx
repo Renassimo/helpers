@@ -30,10 +30,13 @@ describe('PhotoFolderSaver', () => {
   });
 
   describe('when loading', () => {
+    const progressText = 'progressText';
+
     beforeEach(() => {
       (usePhotoInfoSaver as jest.Mock).mockReturnValue({
         loading: true,
         onSave,
+        progressText,
       });
     });
 
