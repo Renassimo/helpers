@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
@@ -16,6 +17,7 @@ const PhotoInfoCard = ({
   onOpenZoom,
   onClick,
   onRemoveFromFolder,
+  onDuplicate,
 }: {
   selected?: boolean;
   name: string;
@@ -25,6 +27,7 @@ const PhotoInfoCard = ({
   onOpenZoom?: (id: string) => void;
   onClick?: () => void;
   onRemoveFromFolder?: (id: string) => void;
+  onDuplicate?: (id: string) => void;
 }) => {
   const toggleSelect = () => onPhotoSelected?.(id);
   const handleClick = onClick || toggleSelect;
@@ -55,6 +58,11 @@ const PhotoInfoCard = ({
               onClick={() => onRemoveFromFolder(id)}
             >
               <RemoveCircleOutlineIcon />
+            </IconButton>
+          )}
+          {onDuplicate && (
+            <IconButton aria-label="duplicate" onClick={() => onDuplicate(id)}>
+              <ContentCopyIcon />
             </IconButton>
           )}
           {onOpenZoom && (

@@ -69,6 +69,7 @@ export enum PhotoActionType {
   UPDATE_PLACE,
   SAVE_FOLDER_INFO,
   UPDATE_MATCHERS,
+  DUPLICATE_PHOTO,
 }
 
 export const defaultPhotosState: PhotoHandlerState = {
@@ -144,6 +145,10 @@ export type PhotoInfoAction =
   | {
       type: PhotoActionType.UPDATE_MATCHERS;
       payload: Avia.Matchers | null;
+    }
+  | {
+      type: PhotoActionType.DUPLICATE_PHOTO;
+      payload: string;
     };
 
 export interface PhotoFolderInfoAttributes

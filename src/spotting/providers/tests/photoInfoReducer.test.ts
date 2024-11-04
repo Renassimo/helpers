@@ -434,4 +434,15 @@ describe('photoInfoReducer when action is', () => {
       )
     );
   });
+
+  describe('DUPLICATE_PHOTO', () => {
+    test(
+      'updates place value',
+      getTest(
+        { type: PhotoActionType.DUPLICATE_PHOTO, payload: photo1.path },
+        { showingFolder: folder1 },
+        { showingFolder: folder1, photos: { ...photos, [photo1.path]: photo1 } }
+      )
+    );
+  });
 });

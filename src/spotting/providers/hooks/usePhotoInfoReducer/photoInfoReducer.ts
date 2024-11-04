@@ -226,6 +226,20 @@ const photoInfoReducer = (
         },
       };
     }
+    case PhotoActionType.DUPLICATE_PHOTO: {
+      const path = action.payload;
+      const photo = state.showingFolder?.photos[path];
+
+      if (!photo) return state;
+
+      return {
+        ...state,
+        photos: {
+          ...state.photos,
+          [path]: photo,
+        },
+      };
+    }
   }
 };
 

@@ -28,6 +28,7 @@ describe('PhotoInfoCard', () => {
   const onOpenZoom = jest.fn();
   const onClick = jest.fn();
   const onRemoveFromFolder = jest.fn();
+  const onDuplicate = jest.fn();
 
   const props = {
     selected,
@@ -44,7 +45,7 @@ describe('PhotoInfoCard', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
-  describe('when card media clicked clicked', () => {
+  describe('when card media clicked', () => {
     describe('when onPhotoSelected passed', () => {
       test('calls onPhotoSelected', async () => {
         // Arange
@@ -57,6 +58,8 @@ describe('PhotoInfoCard', () => {
         expect(onPhotoSelected).toBeCalledWith(id);
         expect(onOpenZoom).not.toBeCalled();
         expect(onClick).not.toBeCalled();
+        expect(onRemoveFromFolder).not.toBeCalled();
+        expect(onDuplicate).not.toBeCalled();
         expect(baseElement).toMatchSnapshot();
       });
     });
@@ -73,12 +76,14 @@ describe('PhotoInfoCard', () => {
         expect(onPhotoSelected).not.toBeCalled();
         expect(onOpenZoom).not.toBeCalled();
         expect(onClick).toBeCalled();
+        expect(onRemoveFromFolder).not.toBeCalled();
+        expect(onDuplicate).not.toBeCalled();
         expect(baseElement).toMatchSnapshot();
       });
     });
   });
 
-  describe('when zoom button clicked clicked', () => {
+  describe('when zoom button clicked', () => {
     test('calls onOpenZoom', async () => {
       // Arange
       const { baseElement, getByLabelText } = renderWithTheme(
@@ -90,11 +95,13 @@ describe('PhotoInfoCard', () => {
       expect(onPhotoSelected).not.toBeCalled();
       expect(onOpenZoom).toBeCalledWith(id);
       expect(onClick).not.toBeCalled();
+      expect(onRemoveFromFolder).not.toBeCalled();
+      expect(onDuplicate).not.toBeCalled();
       expect(baseElement).toMatchSnapshot();
     });
   });
 
-  describe('when remove button clicked clicked', () => {
+  describe('when remove button clicked', () => {
     test('calls onRemoveFromFolder', async () => {
       // Arange
       const { baseElement, getByLabelText } = renderWithTheme(
@@ -107,6 +114,25 @@ describe('PhotoInfoCard', () => {
       expect(onOpenZoom).not.toBeCalled();
       expect(onClick).not.toBeCalled();
       expect(onRemoveFromFolder).toBeCalledWith(id);
+      expect(onDuplicate).not.toBeCalled();
+      expect(baseElement).toMatchSnapshot();
+    });
+  });
+
+  describe('when duplicate button clicked', () => {
+    test('calls onRemoveFromFolder', async () => {
+      // Arange
+      const { baseElement, getByLabelText } = renderWithTheme(
+        <PhotoInfoCard {...{ ...props, onDuplicate }} />
+      );
+      // Act
+      await userEvent.click(getByLabelText('duplicate'));
+      // Assert
+      expect(onPhotoSelected).not.toBeCalled();
+      expect(onOpenZoom).not.toBeCalled();
+      expect(onClick).not.toBeCalled();
+      expect(onRemoveFromFolder).not.toBeCalled();
+      expect(onDuplicate).toBeCalledWith(id);
       expect(baseElement).toMatchSnapshot();
     });
   });
