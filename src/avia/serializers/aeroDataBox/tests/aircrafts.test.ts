@@ -31,6 +31,7 @@ describe('Airports serializers', () => {
               'https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg',
             airplaneName: null,
             source: 'aerodatabox',
+            flown: null,
           },
         },
       ];
@@ -62,6 +63,7 @@ describe('Airports serializers', () => {
                 'https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg',
               airplaneName: null,
               source: 'aerodatabox',
+              flown: null,
             },
           },
         ];
@@ -102,6 +104,7 @@ describe('Airports serializers', () => {
               photoUrl: null,
               airplaneName: null,
               source: 'aerodatabox',
+              flown: null,
             },
           },
         ];
@@ -130,13 +133,14 @@ describe('Airports serializers', () => {
             model: mockedMyFlight.attributes.model,
             typeName: mockedMyFlight.attributes.manufacturer,
             productionLine: mockedMyFlight.attributes.manufacturer,
-            isFreighter: false,
+            isFreighter: null,
             firstFlightDate: mockedMyFlight.attributes.firstFlight,
             rolloutDate: mockedMyFlight.attributes.firstFlight,
             deliveryDate: mockedMyFlight.attributes.firstFlight,
             photoUrl: mockedMyFlight.attributes.photoUrl,
             airplaneName: mockedMyFlight.attributes.airplaneName,
             source: 'myFlights',
+            flown: true,
           },
         },
       ]);

@@ -54,6 +54,7 @@ export namespace Avia {
     photoUrl: string | null;
     airplaneName: string | null;
     source: 'myFlights' | 'spotted' | 'aerodatabox' | null;
+    flown: boolean | null;
   }
 
   export type AircraftData = Data<AircraftAttributes>;

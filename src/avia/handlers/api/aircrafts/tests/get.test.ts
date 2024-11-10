@@ -13,6 +13,8 @@ import {
   convertMyFlightsToAircrafts,
 } from '@/avia/serializers/aeroDataBox';
 import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
+import { getSpottedPlanes } from '@/spotting/handlers';
+import { convertSpottedPlaneApiDataToAircrafts } from '@/spotting/serializers';
 
 import { mockedAircrafts } from '@/avia/types/aeroDataBox/mocks';
 import { mockedDeserializedFlights } from '@/avia/types/avia/mocks';
@@ -23,6 +25,8 @@ jest.mock('@/avia/services/aeroDataBox');
 jest.mock('@/common/services/notion');
 jest.mock('@/avia/serializers/aeroDataBox');
 jest.mock('@/myFlights/handlers/myFlights/getMyFlights');
+jest.mock('@/spotting/handlers');
+jest.mock('@/spotting/serializers');
 
 describe('get (aircrafts)', () => {
   const mockedMethod = 'GET';
@@ -95,9 +99,16 @@ describe('get (aircrafts)', () => {
       (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
         jest.fn(() => mockedMyFlights)
       );
+      const mockedSpottedPlanes = { data: 'mockedSpottedPlanes' };
+      (getSpottedPlanes as unknown as jest.Mock).mockImplementationOnce(
+        jest.fn(() => mockedSpottedPlanes)
+      );
       (
         convertMyFlightsToAircrafts as unknown as jest.Mock
       ).mockImplementationOnce(jest.fn(() => ['flightData1']));
+      (
+        convertSpottedPlaneApiDataToAircrafts as unknown as jest.Mock
+      ).mockImplementationOnce(jest.fn(() => ['SpottedPlaneData1']));
       mockedRetreiveAircrafts = jest.fn(() => mockedAircrafts);
       // Act
       await handler(
@@ -118,24 +129,39 @@ describe('get (aircrafts)', () => {
       expect(convertMyFlightsToAircrafts).toHaveBeenCalledWith(
         mockedMyFlights.data
       );
+      expect(getSpottedPlanes).toHaveBeenCalledWith(
+        mockedNotionService,
+        'spottingDbId',
+        'registration'
+      );
+      expect(convertSpottedPlaneApiDataToAircrafts).toHaveBeenCalledWith(
+        mockedSpottedPlanes.data
+      );
       expect(AeroDataBoxService).not.toBeCalled();
       expect(mockedRetreiveAircrafts).not.toBeCalled();
       expect(mockedDeserializeAircrafts).not.toBeCalled();
       expect(mockedStatus).toHaveBeenCalledWith(200);
       expect(mockedJson).toHaveBeenCalledWith({
-        data: ['flightData1'],
+        data: ['flightData1', 'SpottedPlaneData1'],
       });
     });
 
-    describe('and empty results returned from own db', () => {
+    describe('and empty results returned from own dbs', () => {
       test('calls retreiveAircrafts and writes status and data to response', async () => {
         // Arange
         const mockedMyFlights = { data: 'mockedMyFlights' };
         (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
           jest.fn(() => mockedMyFlights)
         );
+        const mockedSpottedPlanes = { data: 'mockedSpottedPlanes' };
+        (getSpottedPlanes as unknown as jest.Mock).mockImplementationOnce(
+          jest.fn(() => mockedSpottedPlanes)
+        );
         (
           convertMyFlightsToAircrafts as unknown as jest.Mock
+        ).mockImplementationOnce(jest.fn(() => []));
+        (
+          convertSpottedPlaneApiDataToAircrafts as unknown as jest.Mock
         ).mockImplementationOnce(jest.fn(() => []));
         mockedRetreiveAircrafts = jest.fn(() => mockedAircrafts);
         // Act
@@ -156,6 +182,14 @@ describe('get (aircrafts)', () => {
         });
         expect(convertMyFlightsToAircrafts).toHaveBeenCalledWith(
           mockedMyFlights.data
+        );
+        expect(getSpottedPlanes).toHaveBeenCalledWith(
+          mockedNotionService,
+          'spottingDbId',
+          'registration'
+        );
+        expect(convertSpottedPlaneApiDataToAircrafts).toHaveBeenCalledWith(
+          mockedSpottedPlanes.data
         );
         expect(AeroDataBoxService).toHaveBeenCalledWith(mockedXRapidapiKey);
         expect(mockedRetreiveAircrafts).toHaveBeenCalledWith(mockedReg);

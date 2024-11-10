@@ -19,6 +19,7 @@ export const mockedDeserializedAircrafts: Avia.AircraftData[] = [
         'https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg',
       airplaneName: 'Ayvazovski',
       source: 'aerodatabox',
+      flown: null,
     },
   },
   {
@@ -38,6 +39,7 @@ export const mockedDeserializedAircrafts: Avia.AircraftData[] = [
       photoUrl: null,
       airplaneName: null,
       source: 'aerodatabox',
+      flown: null,
     },
   },
 ];

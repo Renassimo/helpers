@@ -389,6 +389,7 @@ describe('useLoadedValues', () => {
                   modelCode: null,
                   airplaneName: null,
                   source: 'myFlights',
+                  flown: null,
                 },
               },
             },

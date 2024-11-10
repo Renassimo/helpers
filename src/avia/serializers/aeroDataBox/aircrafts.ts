@@ -42,6 +42,7 @@ export const deserializeAircrafts = (
         photoUrl: image?.url ?? null,
         airplaneName: null,
         source: 'aerodatabox',
+        flown: null,
       },
     });
   });
@@ -75,13 +76,14 @@ export const convertMyFlightsToAircrafts = (
         model,
         typeName: manufacturer,
         productionLine: manufacturer,
-        isFreighter: false,
+        isFreighter: null,
         firstFlightDate: firstFlight,
         rolloutDate: firstFlight,
         deliveryDate: firstFlight,
         photoUrl,
         airplaneName,
         source: 'myFlights',
+        flown: true,
       },
     };
   });

@@ -6,14 +6,17 @@ import { deserializeSpottedPlanes } from '@/spotting/serializers';
 
 const getSpottedPlanes = async (
   notionService: NotionService,
-  dataBaseID: string
+  dataBaseID: string,
+  registration?: string
 ) => {
   const { ok, data } = await notionService.queryDatabase(dataBaseID, {
     filter: {
-      and: [
-        { property: 'Info Ready', checkbox: { equals: true } },
-        { property: 'Ready to publish', checkbox: { equals: false } },
-      ],
+      and: registration
+        ? [{ property: 'Registration', rich_text: { equals: registration } }]
+        : [
+            { property: 'Info Ready', checkbox: { equals: true } },
+            { property: 'Ready to publish', checkbox: { equals: false } },
+          ],
     },
   });
   if (!ok) return { error: data };

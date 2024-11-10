@@ -1,10 +1,12 @@
 import { NotionResult } from '@/common/types/notion';
 import {
   PhotoFolderInfoData,
+  SpottedPlaneApiData,
   SpottedPlaneCreatedData,
   SpottedPlaneFirstFlight,
   SpottedPlaneGroup,
 } from '@/spotting/types';
+import { Avia } from '@/avia/types/avia';
 
 import NotionPropertiesDeserializer from '@/common/serializers/notion';
 import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSerializer';
@@ -12,7 +14,7 @@ import NotionPropertiesSerializer from '@/common/serializers/notion/propertiesSe
 export const deserializeSpottedPlanes = (
   results: NotionResult[],
   photoUrls: Record<string, string>
-) => {
+): SpottedPlaneApiData[] => {
   return results.map((result: NotionResult) => {
     const deserializer = new NotionPropertiesDeserializer(result);
     const id = deserializer.id;
@@ -167,3 +169,42 @@ export const deserializePhotoInfo = (
     },
   };
 };
+
+export const convertSpottedPlaneApiDataToAircrafts = (
+  spottedPlanes: SpottedPlaneApiData[]
+): Avia.AircraftData[] =>
+  spottedPlanes.map((spottedPlane) => {
+    const { attributes, id } = spottedPlane;
+    const {
+      airplaneName,
+      cn,
+      carrier,
+      firstFlight,
+      flown,
+      manufacturer,
+      model,
+      registration,
+      photoUrl,
+    } = attributes;
+
+    return {
+      id,
+      attributes: {
+        serial: cn,
+        airlineName: carrier,
+        modelCode: model,
+        model,
+        typeName: manufacturer,
+        productionLine: manufacturer,
+        isFreighter: null,
+        firstFlightDate: firstFlight,
+        rolloutDate: firstFlight,
+        deliveryDate: firstFlight,
+        photoUrl,
+        airplaneName,
+        source: 'spotted',
+        registration: registration ?? '',
+        flown,
+      },
+    };
+  });

@@ -12,6 +12,8 @@ import {
 } from '@/avia/serializers/aeroDataBox';
 
 import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
+import { getSpottedPlanes } from '@/spotting/handlers';
+import { convertSpottedPlaneApiDataToAircrafts } from '@/spotting/serializers';
 
 const handler = async (
   req: NextApiRequestWithAuth,
@@ -37,19 +39,26 @@ const handler = async (
 
       if (query.useOwnDB === 'true') {
         const notionService = new NotionService(token);
-        console.log({ spottingDataBaseID });
 
-        const [myFlights] = await Promise.all([
+        const [myFlights, spottedPlanes] = await Promise.all([
           getMyFlights({
             notionService,
             dataBaseID: myFlightsDataBaseID,
             filter: { reg: query.reg as string },
           }),
+          getSpottedPlanes(
+            notionService,
+            spottingDataBaseID,
+            query.reg as string
+          ),
         ]);
         const myFlightsData = convertMyFlightsToAircrafts(
           myFlights?.data || []
         );
-        const data = [...myFlightsData];
+        const spottedPlanesData = convertSpottedPlaneApiDataToAircrafts(
+          spottedPlanes?.data || []
+        );
+        const data = [...myFlightsData, ...spottedPlanesData];
 
         if (data.length) {
           res.status(200).json({
