@@ -52,6 +52,8 @@ export namespace Avia {
     rolloutDate: string | null;
     deliveryDate: string | null;
     photoUrl: string | null;
+    airplaneName: string | null;
+    source: 'myFlights' | 'spotted' | 'aerodatabox' | null;
   }
 
   export type AircraftData = Data<AircraftAttributes>;
@@ -76,7 +78,8 @@ export namespace Avia {
     aircrafts: AircraftData[] | null;
     chosenAircraft: AircraftData | null;
     retreiveAircrafts: (
-      flightNumber: string
+      flightNumber: string,
+      useOwnDB?: boolean
     ) => Promise<AircraftApiData | null>;
     chooseAircraft: (id: string) => AircraftData | null;
     clearChosenAircraft: () => null;

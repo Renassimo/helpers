@@ -17,6 +17,7 @@ describe('useLoadedValues', () => {
   const serial = 'serial';
   const place = 'place';
   const date = '2020-01-01';
+  const airplaneName = 'airplaneName';
 
   describe('when no values passed', () => {
     test('return default values', () => {
@@ -76,6 +77,7 @@ describe('useLoadedValues', () => {
                 modelCode,
                 model,
                 serial,
+                airplaneName,
               },
             },
           } as Avia.AircraftsResult,
@@ -98,7 +100,7 @@ describe('useLoadedValues', () => {
           model: modelCode,
           firstFlight: firstFlightDate,
           cn: serial,
-          airplaneName: null,
+          airplaneName,
           flown: null,
           modelled: null,
           infoReady: null,

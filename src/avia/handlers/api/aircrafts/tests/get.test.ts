@@ -7,7 +7,12 @@ import handler from '../get';
 import { getError } from '@/common/utils/errors';
 
 import AeroDataBoxService from '@/avia/services/aeroDataBox';
-import { deserializeAircrafts } from '@/avia/serializers/aeroDataBox';
+import NotionService from '@/common/services/notion';
+import {
+  deserializeAircrafts,
+  convertMyFlightsToAircrafts,
+} from '@/avia/serializers/aeroDataBox';
+import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
 
 import { mockedAircrafts } from '@/avia/types/aeroDataBox/mocks';
 import { mockedDeserializedFlights } from '@/avia/types/avia/mocks';
@@ -15,7 +20,9 @@ import { mockedDeserializedFlights } from '@/avia/types/avia/mocks';
 jest.mock('@/common/utils/errors');
 
 jest.mock('@/avia/services/aeroDataBox');
+jest.mock('@/common/services/notion');
 jest.mock('@/avia/serializers/aeroDataBox');
+jest.mock('@/myFlights/handlers/myFlights/getMyFlights');
 
 describe('get (aircrafts)', () => {
   const mockedMethod = 'GET';
@@ -31,6 +38,10 @@ describe('get (aircrafts)', () => {
     method: mockedMethod,
     query: mockedQuery,
     aeroDataBoxHelperData: mockedAeroDataBoxHelperData,
+    notionHelperData: {
+      token: 'token',
+      additionalDbIds: { myFlights: 'myFlightsDbId', spotting: 'spottingDbId' },
+    },
   } as unknown as NextApiRequestWithAuth;
   const res = {
     status: mockedStatus,
@@ -41,12 +52,17 @@ describe('get (aircrafts)', () => {
   const mockedAeroDataBoxServiceConstructor = jest.fn(() => ({
     retrieveAircrafts: mockedRetreiveAircrafts,
   }));
+  const mockedNotionService = { mockedNotionService: 'mockedNotionService' };
+  const mockedNotionServiceConstructor = jest.fn(() => mockedNotionService);
 
   const mockedDeserializeAircrafts = jest.fn(() => mockedDeserializedFlights);
 
   beforeEach(() => {
     (AeroDataBoxService as unknown as jest.Mock).mockImplementationOnce(
       mockedAeroDataBoxServiceConstructor
+    );
+    (NotionService as unknown as jest.Mock).mockImplementationOnce(
+      mockedNotionServiceConstructor
     );
     (deserializeAircrafts as unknown as jest.Mock).mockImplementationOnce(
       mockedDeserializeAircrafts
@@ -69,6 +85,88 @@ describe('get (aircrafts)', () => {
     expect(mockedStatus).toHaveBeenCalledWith(200);
     expect(mockedJson).toHaveBeenCalledWith({
       data: mockedDeserializedFlights,
+    });
+  });
+
+  describe('when "useOwnDB" passed in query', () => {
+    test('writes status and data to response', async () => {
+      // Arange
+      const mockedMyFlights = { data: 'mockedMyFlights' };
+      (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
+        jest.fn(() => mockedMyFlights)
+      );
+      (
+        convertMyFlightsToAircrafts as unknown as jest.Mock
+      ).mockImplementationOnce(jest.fn(() => ['flightData1']));
+      mockedRetreiveAircrafts = jest.fn(() => mockedAircrafts);
+      // Act
+      await handler(
+        {
+          ...req,
+          query: { ...req.query, useOwnDB: 'true' },
+        } as unknown as NextApiRequestWithAuth,
+        res
+      );
+      // Assert
+      expect(getMyFlights).toHaveBeenCalledWith({
+        notionService: mockedNotionService,
+        dataBaseID: 'myFlightsDbId',
+        filter: {
+          reg: 'registration',
+        },
+      });
+      expect(convertMyFlightsToAircrafts).toHaveBeenCalledWith(
+        mockedMyFlights.data
+      );
+      expect(AeroDataBoxService).not.toBeCalled();
+      expect(mockedRetreiveAircrafts).not.toBeCalled();
+      expect(mockedDeserializeAircrafts).not.toBeCalled();
+      expect(mockedStatus).toHaveBeenCalledWith(200);
+      expect(mockedJson).toHaveBeenCalledWith({
+        data: ['flightData1'],
+      });
+    });
+
+    describe('and empty results returned from own db', () => {
+      test('calls retreiveAircrafts and writes status and data to response', async () => {
+        // Arange
+        const mockedMyFlights = { data: 'mockedMyFlights' };
+        (getMyFlights as unknown as jest.Mock).mockImplementationOnce(
+          jest.fn(() => mockedMyFlights)
+        );
+        (
+          convertMyFlightsToAircrafts as unknown as jest.Mock
+        ).mockImplementationOnce(jest.fn(() => []));
+        mockedRetreiveAircrafts = jest.fn(() => mockedAircrafts);
+        // Act
+        await handler(
+          {
+            ...req,
+            query: { ...req.query, useOwnDB: 'true' },
+          } as unknown as NextApiRequestWithAuth,
+          res
+        );
+        // Assert
+        expect(getMyFlights).toHaveBeenCalledWith({
+          notionService: mockedNotionService,
+          dataBaseID: 'myFlightsDbId',
+          filter: {
+            reg: 'registration',
+          },
+        });
+        expect(convertMyFlightsToAircrafts).toHaveBeenCalledWith(
+          mockedMyFlights.data
+        );
+        expect(AeroDataBoxService).toHaveBeenCalledWith(mockedXRapidapiKey);
+        expect(mockedRetreiveAircrafts).toHaveBeenCalledWith(mockedReg);
+        expect(mockedDeserializeAircrafts).toHaveBeenCalledWith(
+          mockedAircrafts
+        );
+        expect(mockedStatus).toHaveBeenCalledWith(200);
+        expect(mockedJson).toHaveBeenCalledWith({
+          data: mockedDeserializedFlights,
+        });
+      });
     });
   });
 

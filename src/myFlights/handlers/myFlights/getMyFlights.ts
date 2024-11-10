@@ -8,6 +8,7 @@ interface GetMyFligtsProps {
   cursor?: string;
   filter?: {
     cn?: string;
+    reg?: string;
   };
 }
 
@@ -17,16 +18,26 @@ const getMyFlights = async ({
   cursor,
   filter,
 }: GetMyFligtsProps) => {
+  const { cn = null, reg = null } = filter || {};
+  const hasFilters = !!(cn || reg);
   const { ok, data } = await notionService.queryDatabase(dataBaseID, {
     sorts: [
       { property: 'Date', direction: 'descending' },
       { property: 'N', direction: 'descending' },
       { timestamp: 'created_time', direction: 'descending' },
     ],
-    ...(filter
+    ...(hasFilters
       ? {
           filter: {
-            and: [{ property: 'CN / MSN', rich_text: { equals: filter.cn } }],
+            and: [
+              ...(cn
+                ? [{ property: 'CN / MSN', rich_text: { equals: cn } }]
+                : []),
+              ...(reg
+                ? [{ property: 'Registration', rich_text: { equals: reg } }]
+                : []),
+              ...[],
+            ],
           },
         }
       : {}),

@@ -75,7 +75,7 @@ describe('PhotoInfoCard', () => {
         // Assert
         expect(onPhotoSelected).not.toBeCalled();
         expect(onOpenZoom).not.toBeCalled();
-        expect(onClick).toBeCalled();
+        expect(onClick).toBeCalledWith(id);
         expect(onRemoveFromFolder).not.toBeCalled();
         expect(onDuplicate).not.toBeCalled();
         expect(baseElement).toMatchSnapshot();

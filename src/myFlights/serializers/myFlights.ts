@@ -37,6 +37,7 @@ export const deserializeMyFlights = (
         number: deserializer.getNumberAttribute('N'),
         url: deserializer.url,
         photoUrl: deserializer.cover,
+        source: 'myFlights',
       },
     };
   });

@@ -14,8 +14,14 @@ const useAircrafts = (): Avia.AircraftsResult => {
   } = useChooseRetreivedItem<Avia.AircraftData>();
 
   // /api/avia/aircrafts/SP-TVZ
-  const retreiveAircrafts = async (registration: string) =>
-    await retreiveItems(`/api/avia/aircrafts/${registration}`);
+  const retreiveAircrafts = async (registration: string, useOwnDB?: boolean) =>
+    await retreiveItems(
+      `/api/avia/aircrafts/${registration}${useOwnDB ? '?useOwnDB=true' : ''}`
+    );
+
+  // const recognizeAircraft = async (registration: string) => {
+  //   return await retreiveItems(`/api/avia/aircrafts/${registration}`);
+  // };
 
   return {
     aircrafts,

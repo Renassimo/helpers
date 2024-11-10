@@ -125,7 +125,45 @@ describe('BaseAircraftForm', () => {
           // Act
           await userEvent.click(getByLabelText('Search'));
           // Assert
-          expect(retreiveAircrafts).toBeCalledWith('Val');
+          expect(retreiveAircrafts).toBeCalledWith('Val', false);
+        });
+
+        describe('and useOwnDb is true', () => {
+          test('calls retreiveAircrafts', async () => {
+            // Arange
+            (useStateValue as unknown as jest.Mock).mockImplementation(
+              mockUseStateValue(value)
+            );
+            const { getByLabelText } = renderWithTheme(
+              <BaseAircraftForm
+                aircraftsResult={getAircraftsResult(contextProps)}
+                useOwnDb
+              />
+            );
+            // Act
+            await userEvent.click(getByLabelText('Search'));
+            // Assert
+            expect(retreiveAircrafts).toBeCalledWith('Val', true);
+          });
+        });
+
+        describe('and uwhen checks "From own database"', () => {
+          test('calls retreiveAircrafts', async () => {
+            // Arange
+            (useStateValue as unknown as jest.Mock).mockImplementation(
+              mockUseStateValue(value)
+            );
+            const { getByLabelText } = renderWithTheme(
+              <BaseAircraftForm
+                aircraftsResult={getAircraftsResult(contextProps)}
+              />
+            );
+            await userEvent.click(getByLabelText('From own database'));
+            // Act
+            await userEvent.click(getByLabelText('Search'));
+            // Assert
+            expect(retreiveAircrafts).toBeCalledWith('Val', true);
+          });
         });
       });
     });

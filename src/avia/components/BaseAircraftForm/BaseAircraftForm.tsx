@@ -1,8 +1,10 @@
-import { KeyboardEvent, useEffect } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 
 import { Avia } from '@/avia/types/avia';
 
 import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -21,14 +23,17 @@ const BaseAircraftForm = ({
     clearChosenAircraft,
     loading,
   },
+  useOwnDb: useOwnDbDefault = false,
 }: {
   registration?: string | null;
   aircraftsResult: Avia.AircraftsResult;
+  useOwnDb?: boolean;
 }) => {
   const [aircraftValue, setAircraftValue] = useStateValue('');
+  const [useOwnDb, setUseOwnDb] = useState(useOwnDbDefault);
 
   const onSubmit = async () => {
-    await retreiveAircrafts(aircraftValue);
+    await retreiveAircrafts(aircraftValue, useOwnDb);
   };
 
   const lengthOk = aircraftValue.length > 2;
@@ -40,6 +45,15 @@ const BaseAircraftForm = ({
   useEffect(() => {
     if (!aircraftValue && registration) setAircraftValue(registration);
   }, [registration]);
+
+  useEffect(() => {
+    if (chosenAircraft) {
+      const { attributes } = chosenAircraft;
+      setUseOwnDb(
+        attributes.source === 'myFlights' || attributes.source === 'spotted'
+      );
+    }
+  }, [chosenAircraft]);
 
   return (
     <Box>
@@ -87,6 +101,16 @@ const BaseAircraftForm = ({
           chosen
         />
       )}
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={useOwnDb}
+            onChange={(event) => setUseOwnDb(event?.target.checked)}
+            disabled={!!chosenAircraft}
+          />
+        }
+        label="From own database"
+      />
     </Box>
   );
 };

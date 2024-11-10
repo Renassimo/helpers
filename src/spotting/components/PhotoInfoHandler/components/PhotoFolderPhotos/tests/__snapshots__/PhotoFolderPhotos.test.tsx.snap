@@ -53,6 +53,7 @@ exports[`PhotoFolderPhotos when photoFolder chosen renders successfully 1`] = `
             onOpenZoom
              
             - 
+            onClick
              -
              
             onRemoveFromFolder
@@ -74,6 +75,7 @@ exports[`PhotoFolderPhotos when photoFolder chosen renders successfully 1`] = `
             onOpenZoom
              
             - 
+            onClick
              -
              
             onRemoveFromFolder

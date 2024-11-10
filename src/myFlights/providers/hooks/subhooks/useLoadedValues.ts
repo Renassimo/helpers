@@ -84,7 +84,7 @@ const useLoadedValues = ({
       registration,
       cn: chosenAircraft?.attributes.serial ?? null,
       firstFlight,
-      airplaneName: null,
+      airplaneName: chosenAircraft?.attributes.airplaneName ?? null,
       originName:
         chosenOrigin?.attributes.airportName ??
         chosenFlight?.attributes.originName ??

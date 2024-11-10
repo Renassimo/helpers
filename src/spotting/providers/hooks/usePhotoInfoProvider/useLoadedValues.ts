@@ -49,7 +49,7 @@ const useLoadedValues = ({
         null,
       firstFlight,
       cn: chosenAircraft?.attributes.serial ?? null,
-      airplaneName: null,
+      airplaneName: chosenAircraft?.attributes.airplaneName ?? null,
       flown: null,
       modelled: null,
       infoReady: null,

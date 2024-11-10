@@ -4,8 +4,14 @@ import { NextApiRequestWithAuth } from '@/auth/types';
 import { getError } from '@/common/utils/errors';
 
 import AeroDataBoxService from '@/avia/services/aeroDataBox';
+import NotionService from '@/common/services/notion';
 
-import { deserializeAircrafts } from '@/avia/serializers/aeroDataBox';
+import {
+  convertMyFlightsToAircrafts,
+  deserializeAircrafts,
+} from '@/avia/serializers/aeroDataBox';
+
+import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
 
 const handler = async (
   req: NextApiRequestWithAuth,
@@ -13,8 +19,45 @@ const handler = async (
 ): Promise<void> => {
   if (req.method === 'GET') {
     try {
-      const { aeroDataBoxHelperData, query } = req;
-      const { xRapidapiKey } = aeroDataBoxHelperData!;
+      const {
+        notionHelperData = {
+          additionalDbIds: { myFlights: '', spotting: '' },
+          token: '',
+        },
+        aeroDataBoxHelperData = { xRapidapiKey: '' },
+        query,
+      } = req;
+      const { additionalDbIds = { myFlights: '', spotting: '' }, token = '' } =
+        notionHelperData;
+      const { xRapidapiKey = '' } = aeroDataBoxHelperData;
+      const {
+        myFlights: myFlightsDataBaseID = '',
+        spotting: spottingDataBaseID = '',
+      } = additionalDbIds;
+
+      if (query.useOwnDB === 'true') {
+        const notionService = new NotionService(token);
+        console.log({ spottingDataBaseID });
+
+        const [myFlights] = await Promise.all([
+          getMyFlights({
+            notionService,
+            dataBaseID: myFlightsDataBaseID,
+            filter: { reg: query.reg as string },
+          }),
+        ]);
+        const myFlightsData = convertMyFlightsToAircrafts(
+          myFlights?.data || []
+        );
+        const data = [...myFlightsData];
+
+        if (data.length) {
+          res.status(200).json({
+            data,
+          });
+          return;
+        }
+      }
 
       const aeroDataBoxService = new AeroDataBoxService(xRapidapiKey);
       const data = await aeroDataBoxService.retrieveAircrafts(

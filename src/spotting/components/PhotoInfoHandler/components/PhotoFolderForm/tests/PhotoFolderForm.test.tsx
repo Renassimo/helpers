@@ -74,6 +74,7 @@ describe('PhotoFolderForm', () => {
     expect(BaseAircraftForm).toBeCalledWith(
       {
         aircraftsResult: 'mockedUseAircraft',
+        useOwnDb: true,
       },
       {}
     );
@@ -116,7 +117,7 @@ describe('PhotoFolderForm', () => {
         airportsResult: 'mockedUseAirports',
       });
       expect(BaseAircraftForm).toBeCalledWith(
-        { aircraftsResult: 'mockedUseAircraft' },
+        { aircraftsResult: 'mockedUseAircraft', useOwnDb: true },
         {}
       );
       expect(BaseAirportForm).not.toBeCalled();

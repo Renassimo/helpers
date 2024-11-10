@@ -2,7 +2,11 @@ import { AeroDataBoxApi } from '@/avia/types/aeroDataBox';
 
 import { mockedAircrafts } from '@/avia/types/aeroDataBox/mocks';
 
-import { deserializeAircrafts } from '../aircrafts';
+import {
+  convertMyFlightsToAircrafts,
+  deserializeAircrafts,
+} from '../aircrafts';
+import { mockedMyFlight } from '@/myFlights/types/mocks';
 
 describe('Airports serializers', () => {
   describe('deserializeAirports ', () => {
@@ -25,6 +29,8 @@ describe('Airports serializers', () => {
             deliveryDate: '2006-12-06',
             photoUrl:
               'https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg',
+            airplaneName: null,
+            source: 'aerodatabox',
           },
         },
       ];
@@ -54,6 +60,8 @@ describe('Airports serializers', () => {
               deliveryDate: '2006-12-06',
               photoUrl:
                 'https://farm66.staticflickr.com/65535/49793557276_d983c0beb5_z.jpg',
+              airplaneName: null,
+              source: 'aerodatabox',
             },
           },
         ];
@@ -92,6 +100,8 @@ describe('Airports serializers', () => {
               rolloutDate: null,
               deliveryDate: null,
               photoUrl: null,
+              airplaneName: null,
+              source: 'aerodatabox',
             },
           },
         ];
@@ -100,6 +110,36 @@ describe('Airports serializers', () => {
         // Assert
         expect(result).toEqual(expectedResult);
       });
+    });
+  });
+
+  describe('convertMyFlightsToAircrafts', () => {
+    test('converts MyFlightData to AircraftData', () => {
+      // Arange
+      // Act
+      const result = convertMyFlightsToAircrafts([mockedMyFlight]);
+      // Assert
+      expect(result).toEqual([
+        {
+          id: mockedMyFlight.id,
+          attributes: {
+            registration: mockedMyFlight.attributes.registration,
+            serial: mockedMyFlight.attributes.cn,
+            airlineName: mockedMyFlight.attributes.airline,
+            modelCode: mockedMyFlight.attributes.model,
+            model: mockedMyFlight.attributes.model,
+            typeName: mockedMyFlight.attributes.manufacturer,
+            productionLine: mockedMyFlight.attributes.manufacturer,
+            isFreighter: false,
+            firstFlightDate: mockedMyFlight.attributes.firstFlight,
+            rolloutDate: mockedMyFlight.attributes.firstFlight,
+            deliveryDate: mockedMyFlight.attributes.firstFlight,
+            photoUrl: mockedMyFlight.attributes.photoUrl,
+            airplaneName: mockedMyFlight.attributes.airplaneName,
+            source: 'myFlights',
+          },
+        },
+      ]);
     });
   });
 });
