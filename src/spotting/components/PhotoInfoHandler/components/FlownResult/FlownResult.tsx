@@ -24,6 +24,7 @@ const FlownResult = ({
   if (flownLoading) {
     return <Typography variant="body1">Searching flown data...</Typography>;
   }
+
   if (flownData && flownData?.data.length > 0) {
     return (
       <Box>

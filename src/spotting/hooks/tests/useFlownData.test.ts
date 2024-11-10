@@ -35,7 +35,7 @@ describe('useFlownData', () => {
   });
 
   describe('when aircraft passed', () => {
-    test('reutrns state and call retreive', () => {
+    test('reuturns state and call retreive', () => {
       // Arange
       // Act
       const { result } = renderHook(() =>
@@ -46,6 +46,23 @@ describe('useFlownData', () => {
       // Assert
       expect(result.current).toEqual({ loading, data });
       expect(retreive).toBeCalledWith(`/api/myFlights?cn=serial`);
+    });
+
+    describe('and source is "myFlights"', () => {
+      test('reuturns state but not call retreive', () => {
+        // Arange
+        // Act
+        const { result } = renderHook(() =>
+          useFlownData({
+            chosenAircraft: {
+              attributes: { serial: 'serial', source: 'myFlights' },
+            },
+          } as Avia.AircraftsResult)
+        );
+        // Assert
+        expect(result.current).toEqual({ loading, data });
+        expect(retreive).not.toBeCalled();
+      });
     });
   });
 });

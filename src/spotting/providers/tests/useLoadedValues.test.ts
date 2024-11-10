@@ -59,7 +59,7 @@ describe('useLoadedValues', () => {
   });
 
   describe('when values passed', () => {
-    test('return default values', () => {
+    test('return values', () => {
       // Arange
       // Act
       const { result } = renderHook(() =>
@@ -78,6 +78,7 @@ describe('useLoadedValues', () => {
                 model,
                 serial,
                 airplaneName,
+                source: 'spotted',
               },
             },
           } as Avia.AircraftsResult,
@@ -113,8 +114,8 @@ describe('useLoadedValues', () => {
     });
   });
 
-  describe('when firstFlightDate, typeName, modelCode passed', () => {
-    test('return default values', () => {
+  describe('when firstFlightDate, typeName, modelCode not passed', () => {
+    test('return values', () => {
       // Arange
       // Act
       const { result } = renderHook(() =>
@@ -163,8 +164,8 @@ describe('useLoadedValues', () => {
       });
     });
 
-    describe('when firstFlightDate, typeName, modelCode passed', () => {
-      test('return default values', () => {
+    describe('when rolloutDate not passed and source is "myFlights"', () => {
+      test('return values', () => {
         // Arange
         // Act
         const { result } = renderHook(() =>
@@ -178,6 +179,7 @@ describe('useLoadedValues', () => {
                   productionLine,
                   model,
                   serial,
+                  source: 'myFlights',
                 },
               },
             } as Avia.AircraftsResult,
@@ -201,7 +203,7 @@ describe('useLoadedValues', () => {
             firstFlight: deliveryDate,
             cn: serial,
             airplaneName: null,
-            flown: null,
+            flown: true,
             modelled: null,
             infoReady: null,
             readyToPublish: null,
