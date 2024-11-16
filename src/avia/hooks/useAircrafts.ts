@@ -19,10 +19,6 @@ const useAircrafts = (): Avia.AircraftsResult => {
       `/api/avia/aircrafts/${registration}${useOwnDB ? '?useOwnDB=true' : ''}`
     );
 
-  // const recognizeAircraft = async (registration: string) => {
-  //   return await retreiveItems(`/api/avia/aircrafts/${registration}`);
-  // };
-
   return {
     aircrafts,
     chosenAircraft,
