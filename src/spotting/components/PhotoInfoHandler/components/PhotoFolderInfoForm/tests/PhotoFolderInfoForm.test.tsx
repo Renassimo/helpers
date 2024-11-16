@@ -194,7 +194,7 @@ describe('PhotoFolderInfoForm', () => {
               firstFlight: 'loadedValues.firstFlight',
               cn: 'loadedValues.cn',
               airplaneName: 'loadedValues.airplaneName',
-              flown: 'loadedValues.flown',
+              flown: true,
               modelled: 'loadedValues.modelled',
               infoReady: 'loadedValues.infoReady',
               readyToPublish: 'loadedValues.readyToPublish',

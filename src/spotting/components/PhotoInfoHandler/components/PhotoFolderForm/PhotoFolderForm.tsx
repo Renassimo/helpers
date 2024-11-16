@@ -23,7 +23,7 @@ const PhotoFolderForm = () => {
 
   return (
     <Box>
-      <BaseAircraftForm aircraftsResult={aircraftsResult} />
+      <BaseAircraftForm aircraftsResult={aircraftsResult} useOwnDb />
       <FlownResult aircraftsResult={aircraftsResult} onClick={setFlown} />
       {!placeCommon && (
         <BaseAirportForm title="Airport" airportsResult={airportsResult} />

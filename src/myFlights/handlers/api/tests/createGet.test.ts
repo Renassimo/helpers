@@ -89,6 +89,7 @@ describe('create my flight handler', () => {
   describe('when method is GET', () => {
     const cursor = 'cursor';
     const cn = 'cn';
+    const reg = 'reg';
 
     test('writes status and data to response', async () => {
       // Arange
@@ -134,6 +135,62 @@ describe('create my flight handler', () => {
             notionService: mockedNotionServiceInstance,
             dataBaseID: mockedFlightsDbID,
             filter: { cn },
+          });
+          expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);
+          expect(mockedJson).toHaveBeenCalledWith({
+            data: mockedData,
+            nextCursor: 'nextCursor',
+          });
+        });
+      });
+
+      describe('but reg passed', () => {
+        test('writes status and data to response', async () => {
+          // Arange
+          const req = {
+            method: 'GET',
+            notionHelperData: mockedNotionHelperData,
+            query: { reg },
+          } as unknown as NextApiRequestWithAuth;
+          // Act
+          await handler(req, res);
+          // Assert
+          expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(
+            mockedToken
+          );
+          expect(mockedCreateMyFlight).not.toHaveBeenCalled();
+          expect(mockedGetMyFlights).toHaveBeenCalledWith({
+            notionService: mockedNotionServiceInstance,
+            dataBaseID: mockedFlightsDbID,
+            filter: { reg },
+          });
+          expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);
+          expect(mockedJson).toHaveBeenCalledWith({
+            data: mockedData,
+            nextCursor: 'nextCursor',
+          });
+        });
+      });
+
+      describe('but cn and reg passed', () => {
+        test('writes status and data to response', async () => {
+          // Arange
+          const req = {
+            method: 'GET',
+            notionHelperData: mockedNotionHelperData,
+            query: { reg, cn },
+          } as unknown as NextApiRequestWithAuth;
+          // Act
+          await handler(req, res);
+          // Assert
+          expect(mockedNotionServiceConstructor).toHaveBeenCalledWith(
+            mockedToken
+          );
+          expect(mockedCreateMyFlight).not.toHaveBeenCalled();
+          expect(mockedGetMyFlights).toHaveBeenCalledWith({
+            notionService: mockedNotionServiceInstance,
+            dataBaseID: mockedFlightsDbID,
+            filter: { cn, reg },
           });
           expect(mockedStatus).toHaveBeenCalledWith(mockedStatusCode);
           expect(mockedJson).toHaveBeenCalledWith({

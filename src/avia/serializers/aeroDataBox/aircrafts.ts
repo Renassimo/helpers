@@ -1,5 +1,6 @@
 import { AeroDataBoxApi } from '@/avia/types/aeroDataBox';
 import { Avia } from '@/avia/types/avia';
+import { MyFlightData } from '@/myFlights/types';
 
 export const deserializeAircrafts = (
   results: AeroDataBoxApi.Aircraft[]
@@ -39,9 +40,50 @@ export const deserializeAircrafts = (
         rolloutDate: rolloutDate ?? null,
         deliveryDate: deliveryDate ?? null,
         photoUrl: image?.url ?? null,
+        airplaneName: null,
+        source: 'aerodatabox',
+        flown: null,
       },
     });
   });
 
   return data;
 };
+
+export const convertMyFlightsToAircrafts = (
+  myFlights: MyFlightData[]
+): Avia.AircraftData[] =>
+  myFlights.map((myFlight: MyFlightData) => {
+    const { attributes, id } = myFlight;
+    const {
+      registration,
+      cn,
+      airline,
+      model,
+      manufacturer,
+      firstFlight,
+      airplaneName,
+      photoUrl,
+    } = attributes;
+
+    return {
+      id,
+      attributes: {
+        registration: registration ?? '',
+        serial: cn,
+        airlineName: airline,
+        modelCode: model,
+        model,
+        typeName: manufacturer,
+        productionLine: manufacturer,
+        isFreighter: null,
+        firstFlightDate: firstFlight,
+        rolloutDate: firstFlight,
+        deliveryDate: firstFlight,
+        photoUrl,
+        airplaneName,
+        source: 'myFlights',
+        flown: true,
+      },
+    };
+  });

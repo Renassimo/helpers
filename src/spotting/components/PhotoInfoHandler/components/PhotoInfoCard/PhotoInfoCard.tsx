@@ -25,12 +25,12 @@ const PhotoInfoCard = ({
   id: string;
   onPhotoSelected?: (id: string) => void;
   onOpenZoom?: (id: string) => void;
-  onClick?: () => void;
+  onClick?: (id?: string) => void;
   onRemoveFromFolder?: (id: string) => void;
   onDuplicate?: (id: string) => void;
 }) => {
   const toggleSelect = () => onPhotoSelected?.(id);
-  const handleClick = onClick || toggleSelect;
+  const handleClick = (onClick && (() => onClick(id))) || toggleSelect;
 
   return (
     <SelectableCard selectable selected={selected} toggleSelect={toggleSelect}>

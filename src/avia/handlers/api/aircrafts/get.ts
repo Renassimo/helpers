@@ -4,8 +4,16 @@ import { NextApiRequestWithAuth } from '@/auth/types';
 import { getError } from '@/common/utils/errors';
 
 import AeroDataBoxService from '@/avia/services/aeroDataBox';
+import NotionService from '@/common/services/notion';
 
-import { deserializeAircrafts } from '@/avia/serializers/aeroDataBox';
+import {
+  convertMyFlightsToAircrafts,
+  deserializeAircrafts,
+} from '@/avia/serializers/aeroDataBox';
+
+import getMyFlights from '@/myFlights/handlers/myFlights/getMyFlights';
+import { getSpottedPlanes } from '@/spotting/handlers';
+import { convertSpottedPlaneApiDataToAircrafts } from '@/spotting/serializers';
 
 const handler = async (
   req: NextApiRequestWithAuth,
@@ -13,8 +21,52 @@ const handler = async (
 ): Promise<void> => {
   if (req.method === 'GET') {
     try {
-      const { aeroDataBoxHelperData, query } = req;
-      const { xRapidapiKey } = aeroDataBoxHelperData!;
+      const {
+        notionHelperData = {
+          additionalDbIds: { myFlights: '', spotting: '' },
+          token: '',
+        },
+        aeroDataBoxHelperData = { xRapidapiKey: '' },
+        query,
+      } = req;
+      const { additionalDbIds = { myFlights: '', spotting: '' }, token = '' } =
+        notionHelperData;
+      const { xRapidapiKey = '' } = aeroDataBoxHelperData;
+      const {
+        myFlights: myFlightsDataBaseID = '',
+        spotting: spottingDataBaseID = '',
+      } = additionalDbIds;
+
+      if (query.useOwnDB === 'true') {
+        const notionService = new NotionService(token);
+
+        const [myFlights, spottedPlanes] = await Promise.all([
+          getMyFlights({
+            notionService,
+            dataBaseID: myFlightsDataBaseID,
+            filter: { reg: query.reg as string },
+          }),
+          getSpottedPlanes(
+            notionService,
+            spottingDataBaseID,
+            query.reg as string
+          ),
+        ]);
+        const myFlightsData = convertMyFlightsToAircrafts(
+          myFlights?.data || []
+        );
+        const spottedPlanesData = convertSpottedPlaneApiDataToAircrafts(
+          spottedPlanes?.data || []
+        );
+        const data = [...myFlightsData, ...spottedPlanesData];
+
+        if (data.length) {
+          res.status(200).json({
+            data,
+          });
+          return;
+        }
+      }
 
       const aeroDataBoxService = new AeroDataBoxService(xRapidapiKey);
       const data = await aeroDataBoxService.retrieveAircrafts(

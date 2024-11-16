@@ -68,7 +68,7 @@ describe('getMyFlights', () => {
         );
       });
 
-      describe('and when cursor passed has results', () => {
+      describe('and when cursor passed', () => {
         test('returns data', async () => {
           // Arrange
           const cursor = 'cursor';
@@ -107,10 +107,10 @@ describe('getMyFlights', () => {
         });
       });
 
-      describe('and when filters passed has results', () => {
+      describe('and when filters passed', () => {
         test('returns data', async () => {
           // Arrange
-          const filter = { cn: 'cn' };
+          const filter = { cn: 'cn', reg: 'reg' };
           const nextCursor = 'nextCursor';
           mockedData = {
             results: [mockedDataToDeserialize],
@@ -143,10 +143,103 @@ describe('getMyFlights', () => {
               filter: {
                 and: [
                   { property: 'CN / MSN', rich_text: { equals: filter.cn } },
+                  {
+                    property: 'Registration',
+                    rich_text: { equals: filter.reg },
+                  },
                 ],
               },
             }
           );
+        });
+
+        describe('when only cn filter passed', () => {
+          test('returns data', async () => {
+            // Arrange
+            const filter = { cn: 'cn' };
+            const nextCursor = 'nextCursor';
+            mockedData = {
+              results: [mockedDataToDeserialize],
+              has_more: true,
+              next_cursor: 'nextCursor',
+            };
+            mockedOk = true;
+            const notionService = {
+              queryDatabase: mockedQueryDatabase,
+            } as unknown as NotionService;
+            const expectedResult = {
+              data: mockedDeserializedData,
+              nextCursor,
+            };
+            // Act
+            const result = await getMyFlights({
+              notionService,
+              dataBaseID,
+              filter,
+            });
+            // Assert
+            expect(result).toEqual(expectedResult);
+            expect(deserializeMyFlights).toHaveBeenCalledWith([
+              mockedDataToDeserialize,
+            ]);
+            expect(notionService.queryDatabase).toHaveBeenCalledWith(
+              expectedQueryDatabaseArgs[0],
+              {
+                ...(expectedQueryDatabaseArgs[1] as object),
+                filter: {
+                  and: [
+                    { property: 'CN / MSN', rich_text: { equals: filter.cn } },
+                  ],
+                },
+              }
+            );
+          });
+        });
+
+        describe('when only reg filter passed', () => {
+          test('returns data', async () => {
+            // Arrange
+            const filter = { reg: 'reg' };
+            const nextCursor = 'nextCursor';
+            mockedData = {
+              results: [mockedDataToDeserialize],
+              has_more: true,
+              next_cursor: 'nextCursor',
+            };
+            mockedOk = true;
+            const notionService = {
+              queryDatabase: mockedQueryDatabase,
+            } as unknown as NotionService;
+            const expectedResult = {
+              data: mockedDeserializedData,
+              nextCursor,
+            };
+            // Act
+            const result = await getMyFlights({
+              notionService,
+              dataBaseID,
+              filter,
+            });
+            // Assert
+            expect(result).toEqual(expectedResult);
+            expect(deserializeMyFlights).toHaveBeenCalledWith([
+              mockedDataToDeserialize,
+            ]);
+            expect(notionService.queryDatabase).toHaveBeenCalledWith(
+              expectedQueryDatabaseArgs[0],
+              {
+                ...(expectedQueryDatabaseArgs[1] as object),
+                filter: {
+                  and: [
+                    {
+                      property: 'Registration',
+                      rich_text: { equals: filter.reg },
+                    },
+                  ],
+                },
+              }
+            );
+          });
         });
       });
     });

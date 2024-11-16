@@ -68,6 +68,30 @@ describe('useAircrafts', () => {
       expect(mockedClearChosenItem).not.toBeCalled();
       expect(mockedCleanUp).not.toBeCalled();
     });
+
+    describe('with "useOwnDB" option', () => {
+      test('returns default state and retreive items', async () => {
+        // Arange
+        const { result } = renderHook(() => useAircrafts());
+        // Act
+        let responseData: string | null = '';
+        await act(async () => {
+          responseData = (await result.current.retreiveAircrafts(
+            'reg',
+            true
+          )) as unknown as string;
+        });
+        // Assert
+        expect(result.current).toEqual(defaultState);
+        expect(mockedRetreiveItems).toBeCalledWith(
+          '/api/avia/aircrafts/reg?useOwnDB=true'
+        );
+        expect(responseData).toEqual(mockedRetreiveItemsResult);
+        expect(mockedChooseItem).not.toBeCalled();
+        expect(mockedClearChosenItem).not.toBeCalled();
+        expect(mockedCleanUp).not.toBeCalled();
+      });
+    });
   });
 
   describe('when calls chooseAircraft', () => {

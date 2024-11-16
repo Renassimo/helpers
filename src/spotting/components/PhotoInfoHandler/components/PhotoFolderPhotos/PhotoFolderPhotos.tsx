@@ -34,6 +34,10 @@ const PhotoFolderPhotos = () => {
       dispatch({ type: PhotoActionType.DUPLICATE_PHOTO, payload: id }),
     []
   );
+  const onPhotoClick = useCallback((id?: string) => {
+    if (!id) return;
+    console.log('Photo clicked', id, showingFolder?.photos[id]);
+  }, []);
 
   return (
     <Box width="100%">
@@ -66,6 +70,7 @@ const PhotoFolderPhotos = () => {
                 onOpenZoom={onOpenZoom}
                 onRemoveFromFolder={onRemoveFromFolder}
                 onDuplicate={onDuplicatePhoto}
+                onClick={onPhotoClick}
               />
             </Grid>
           ))}

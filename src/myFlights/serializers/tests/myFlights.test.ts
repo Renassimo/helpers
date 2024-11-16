@@ -55,6 +55,7 @@ describe('Flights serializers', () => {
       number: mockedNumberAttribute,
       url: mockedUrl,
       photoUrl: mockedCover,
+      source: 'myFlights',
     };
 
     beforeEach(() => {

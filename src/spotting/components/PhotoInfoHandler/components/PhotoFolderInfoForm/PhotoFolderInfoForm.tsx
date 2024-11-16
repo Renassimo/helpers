@@ -64,6 +64,10 @@ const PhotoFolderInfoForm = ({
     });
   };
 
+  useEffect(() => {
+    setFormValue('flown', !!loadedValues.flown);
+  }, [loadedValues.flown]);
+
   return (
     <Box>
       {formFields.map((field) => (
