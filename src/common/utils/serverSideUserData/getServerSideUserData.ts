@@ -30,7 +30,7 @@ const getServerSideUserData = async (
     const { helpersData } = await getUserHelpersData(uid, db);
 
     return { user: { email, name, picture, uid }, helpersData };
-  } catch (error) {
+  } catch (_error) {
     return { user: null, helpersData: null };
   }
 };
