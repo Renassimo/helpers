@@ -16,7 +16,7 @@ exports[`Breadcrumbs snapshot renders successfully 1`] = `
             href="/breadcrumb1"
           >
             <span
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-11iau0r-MuiTypography-root-MuiLink-root"
             >
               Breadcrumb 1
             </span>
@@ -50,7 +50,7 @@ exports[`Breadcrumbs snapshot renders successfully 1`] = `
             href="/breadcrumb3"
           >
             <span
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-11iau0r-MuiTypography-root-MuiLink-root"
             >
               Breadcrumb 3
             </span>

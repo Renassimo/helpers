@@ -54,7 +54,7 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
           viewBox="0 0 24 24"
         >
           <path
-            d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"
+            d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zM9 14H7v-2h2zm4 0h-2v-2h2zm4 0h-2v-2h2zm-8 4H7v-2h2zm4 0h-2v-2h2zm4 0h-2v-2h2z"
           />
         </svg>
         <span
@@ -73,7 +73,7 @@ exports[`DatePicker Snapshot renders successfully 1`] = `
     </div>
   </div>
   <div
-    class="MuiPickersPopper-root css-1anqmj6-MuiPopper-root-MuiPickersPopper-root MuiPopperUnstyled-root"
+    class="MuiPopper-root MuiPickersPopper-root css-1anqmj6-MuiPopper-root-MuiPickersPopper-root"
     data-popper-escaped=""
     data-popper-placement="bottom"
     data-popper-reference-hidden=""

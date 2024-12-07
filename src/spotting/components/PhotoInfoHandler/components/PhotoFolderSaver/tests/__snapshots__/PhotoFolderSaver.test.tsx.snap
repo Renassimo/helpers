@@ -7,7 +7,7 @@ exports[`PhotoFolderSaver renders correctly 1`] = `
       class="MuiBox-root css-1uwjw6e"
     >
       <button
-        class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1vqlznj-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1vqlznj-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
         id=":r0:"
         tabindex="0"
         type="button"
@@ -34,13 +34,13 @@ exports[`PhotoFolderSaver when loading renders correctly 1`] = `
         progressText
       </h6>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium Mui-disabled MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1vqlznj-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiLoadingButton-root MuiLoadingButton-loading MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1vqlznj-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
         disabled=""
         id=":r1:"
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="MuiLoadingButton-loadingIndicator MuiLoadingButton-loadingIndicatorCenter css-1yt7yx7-MuiLoadingButton-loadingIndicator"
         >
           <span
@@ -63,7 +63,7 @@ exports[`PhotoFolderSaver when loading renders correctly 1`] = `
               />
             </svg>
           </span>
-        </div>
+        </span>
         Save
       </button>
     </div>

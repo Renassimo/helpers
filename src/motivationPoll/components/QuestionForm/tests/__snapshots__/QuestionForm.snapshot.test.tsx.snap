@@ -42,78 +42,77 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 0%;"
                   >
@@ -133,7 +132,7 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -165,78 +164,77 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 0%;"
                   >
@@ -256,7 +254,7 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -288,78 +286,77 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 0%;"
                   >
@@ -379,7 +376,7 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -411,78 +408,77 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 0%;"
                   >
@@ -502,7 +498,7 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -526,7 +522,7 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
               class="MuiBox-root css-1tmxrsx"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -536,7 +532,7 @@ exports[`QuestionForm Snapshot when fon the last question matches snapshot 1`] =
                 />
               </button>
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 disabled=""
                 tabindex="-1"
                 type="button"
@@ -594,78 +590,77 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 18.181818181818183%;"
                   >
@@ -685,7 +680,7 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -717,78 +712,77 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 18.181818181818183%;"
                   >
@@ -808,7 +802,7 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -840,78 +834,77 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 27.272727272727273%;"
                   >
@@ -931,7 +924,7 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -963,78 +956,77 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 36.36363636363637%;"
                   >
@@ -1054,7 +1046,7 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -1081,7 +1073,7 @@ exports[`QuestionForm Snapshot when on the first question matches snapshot 1`] =
                 class="MuiBox-root css-0"
               />
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 disabled=""
                 tabindex="-1"
                 type="button"
@@ -1139,78 +1131,77 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 18.181818181818183%;"
                   >
@@ -1230,7 +1221,7 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -1262,78 +1253,77 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 27.272727272727273%;"
                   >
@@ -1353,7 +1343,7 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -1385,78 +1375,77 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 0%;"
                   >
@@ -1476,7 +1465,7 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -1508,78 +1497,77 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                 class="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-187mznn-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-188mx6n-MuiSlider-root"
                 >
                   <span
-                    class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                    class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                    class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                     style="left: 0%; width: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark MuiSlider-markActive css-6cwnna-MuiSlider-mark"
+                    class="MuiSlider-mark MuiSlider-markActive css-z5sdnj-MuiSlider-mark"
                     data-index="0"
                     style="left: 0%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="1"
                     style="left: 9.090909090909092%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="2"
                     style="left: 18.181818181818183%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="3"
                     style="left: 27.272727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="4"
                     style="left: 36.36363636363637%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="5"
                     style="left: 45.45454545454545%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="6"
                     style="left: 54.54545454545455%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="7"
                     style="left: 63.63636363636363%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="8"
                     style="left: 72.72727272727273%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="9"
                     style="left: 81.81818181818181%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="10"
                     style="left: 90.9090909090909%;"
                   />
                   <span
-                    class="MuiSlider-mark css-1tfve6q-MuiSlider-mark"
+                    class="MuiSlider-mark css-hzp7sc-MuiSlider-mark"
                     data-index="11"
                     style="left: 100%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
-                    data-focusvisible="false"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                     data-index="0"
                     style="left: 0%;"
                   >
@@ -1599,7 +1587,7 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                     />
                     <span
                       aria-hidden="true"
-                      class="MuiSlider-valueLabel css-nnid7-MuiSlider-valueLabel"
+                      class="MuiSlider-valueLabel css-14gyywz-MuiSlider-valueLabel"
                     >
                       <span
                         class="MuiSlider-valueLabelCircle"
@@ -1623,7 +1611,7 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
               class="MuiBox-root css-1tmxrsx"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -1633,7 +1621,7 @@ exports[`QuestionForm Snapshot when on the following question matches snapshot 1
                 />
               </button>
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 disabled=""
                 tabindex="-1"
                 type="button"
