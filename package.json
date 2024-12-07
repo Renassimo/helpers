@@ -42,7 +42,7 @@
     "react-leaflet": "^4.2.1",
     "recharts": "^2.10.3",
     "uid": "^2.0.2",
-    "uuid": "^10.0.0"
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
