@@ -1,8 +1,15 @@
 import { renderHook } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
 import useUpdateDay from '@/fiveBook/hooks/useUpdateDay';
 
 describe('useUpdateDay', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn();
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   test('updates day', async () => {
     // Arrange
     const responseData = { hello: 'world' };
@@ -14,7 +21,11 @@ describe('useUpdateDay', () => {
         attributes: { answers: { '2015': 'changed 2015 answer' } },
       },
     };
-    fetchMock.patch(`/api/5book/${dayCode}`, responseData);
+
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => responseData,
+    });
 
     const {
       result: { current },
@@ -24,8 +35,7 @@ describe('useUpdateDay', () => {
     const result = await update(dayCode, payload);
     // Assert
     expect(result).toEqual(expectedResult);
-    expect(fetchMock.lastUrl()).toEqual(`/api/5book/${dayCode}`);
-    expect(fetchMock.lastOptions()).toEqual({
+    expect(global.fetch).toHaveBeenCalledWith(`/api/5book/${dayCode}`, {
       body: '{"data":{"id":"id","attributes":{"answers":{"2015":"changed 2015 answer"}}}}',
       method: 'PATCH',
     });

@@ -1,46 +1,45 @@
-import fetchMock from 'fetch-mock';
-
 import { CommonError } from '@/common/types/errors';
-
 import deleteItem from '../deleteItem';
 
 describe('deleteItem', () => {
   afterEach(() => {
-    fetchMock.reset();
+    jest.resetAllMocks();
   });
 
   const mockedGameId = 'game-id';
   const mockedItemId = 'item-id';
 
   test('deletes play', async () => {
-    // Arange
+    // Arrange
     const responseData = {};
-    fetchMock.delete(
-      `/api/gameMaps/games/${mockedGameId}/items/${mockedItemId}`,
-      responseData
-    );
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(responseData),
+      })
+    ) as jest.Mock;
+
     // Act
     const result = await deleteItem(mockedGameId, mockedItemId);
+
     // Assert
     expect(result).toEqual({});
-    expect(fetchMock.lastUrl()).toEqual(
-      `/api/gameMaps/games/${mockedGameId}/items/${mockedItemId}`
+    expect(global.fetch).toHaveBeenCalledWith(
+      `/api/gameMaps/games/${mockedGameId}/items/${mockedItemId}`,
+      { method: 'DELETE' }
     );
-    expect(fetchMock.lastOptions()).toEqual({
-      method: 'DELETE',
-    });
   });
 
   describe('when response is not ok', () => {
     test('throws error', async () => {
-      // Arange
-      const mockedFetch = jest.fn(() => ({
-        ok: false,
-        json: () => ({ error: { message: 'Error happened' } }),
-      }));
-      Object.defineProperty(globalThis, 'fetch', {
-        value: mockedFetch,
-      });
+      // Arrange
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: false,
+          json: () => Promise.resolve({ error: { message: 'Error happened' } }),
+        })
+      ) as jest.Mock;
+
       // Act
       let error = '';
       try {
@@ -48,6 +47,7 @@ describe('deleteItem', () => {
       } catch (err: unknown) {
         error = (err as CommonError)?.message ?? '';
       }
+
       // Assert
       expect(error).toEqual('Error happened');
     });

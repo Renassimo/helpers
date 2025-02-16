@@ -1,24 +1,23 @@
-import fetchMock from 'fetch-mock';
-
 import { mockedGame, mockedCategory } from '@/gameMaps/types/mocks';
-
 import { CommonError } from '@/common/types/errors';
-
 import createCategory from '../createCategory';
 
 describe('createCategory', () => {
   afterEach(() => {
-    fetchMock.reset();
+    jest.resetAllMocks();
   });
 
   test('creates category', async () => {
-    // Arange
+    // Arrange
     const responseData = { data: { hello: 'world' } };
     const expectedResult = responseData.data;
-    fetchMock.post(
-      `/api/gameMaps/games/${mockedGame.id}/categories`,
-      responseData
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(responseData),
+      } as Response)
     );
+
     // Act
     const result = await createCategory(mockedGame.id, {
       title: mockedCategory.attributes.title,
@@ -26,31 +25,41 @@ describe('createCategory', () => {
       color: mockedCategory.attributes.color,
       itemsAmount: mockedCategory.attributes.itemsAmount,
     });
+
     // Assert
     expect(result).toEqual(expectedResult);
-    expect(fetchMock.lastUrl()).toEqual(
-      `/api/gameMaps/games/${mockedGame.id}/categories`
+    expect(global.fetch).toHaveBeenCalledWith(
+      `/api/gameMaps/games/${mockedGame.id}/categories`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            attributes: {
+              title: mockedCategory.attributes.title,
+              description: mockedCategory.attributes.description,
+              color: mockedCategory.attributes.color,
+              itemsAmount: mockedCategory.attributes.itemsAmount,
+            },
+          },
+        }),
+      }
     );
-    expect(fetchMock.lastOptions()).toEqual({
-      body: `{"data":{"attributes":{"title":"${mockedCategory.attributes.title}","description":"${mockedCategory.attributes.description}","color":"${mockedCategory.attributes.color}","itemsAmount":${mockedCategory.attributes.itemsAmount}}}}`,
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
   });
 
   describe('when response is not ok', () => {
     test('throws error', async () => {
-      // Arange
-      const mockedFetch = jest.fn(() => ({
-        ok: false,
-        json: () => ({ error: { message: 'Error happened' } }),
-      }));
-      Object.defineProperty(globalThis, 'fetch', {
-        value: mockedFetch,
-      });
+      // Arrange
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: false,
+          json: () => Promise.resolve({ error: { message: 'Error happened' } }),
+        } as Response)
+      );
+
       // Act
       let error = '';
       try {
@@ -58,6 +67,7 @@ describe('createCategory', () => {
       } catch (err: unknown) {
         error = (err as CommonError)?.message ?? '';
       }
+
       // Assert
       expect(error).toEqual('Error happened');
     });

@@ -1,53 +1,61 @@
-import fetchMock from 'fetch-mock';
-
 import { mockedGame, mockedPlay } from '@/gameMaps/types/mocks';
-
 import { CommonError } from '@/common/types/errors';
-
 import updatePlay from '../updatePlay';
 
 describe('updatePlay', () => {
   afterEach(() => {
-    fetchMock.reset();
+    jest.resetAllMocks();
   });
 
   test('updates play', async () => {
-    // Arange
+    // Arrange
     const responseData = { data: { hello: 'world' } };
-    const expectedResult = responseData.data;
-    fetchMock.patch(
-      `/api/gameMaps/games/${mockedGame.id}/plays/${mockedPlay.id}`,
-      responseData
+    const mockedFetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(responseData),
+      })
     );
+    global.fetch = mockedFetch as jest.Mock;
+
     // Act
     const result = await updatePlay(mockedGame.id, mockedPlay.id, {
       title: mockedPlay.attributes.title,
     });
+
     // Assert
-    expect(result).toEqual(expectedResult);
-    expect(fetchMock.lastUrl()).toEqual(
-      `/api/gameMaps/games/${mockedGame.id}/plays/${mockedPlay.id}`
+    expect(result).toEqual(responseData.data);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `/api/gameMaps/games/${mockedGame.id}/plays/${mockedPlay.id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            id: mockedPlay.id,
+            attributes: {
+              title: mockedPlay.attributes.title,
+            },
+          },
+        }),
+      }
     );
-    expect(fetchMock.lastOptions()).toEqual({
-      body: `{"data":{"id":"${mockedPlay.id}","attributes":{"title":"${mockedPlay.attributes.title}"}}}`,
-      method: 'PATCH',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
   });
 
   describe('when response is not ok', () => {
     test('throws error', async () => {
-      // Arange
-      const mockedFetch = jest.fn(() => ({
-        ok: false,
-        json: () => ({ error: { message: 'Error happened' } }),
-      }));
-      Object.defineProperty(globalThis, 'fetch', {
-        value: mockedFetch,
-      });
+      // Arrange
+      const mockedFetch = jest.fn(() =>
+        Promise.resolve({
+          ok: false,
+          json: () => Promise.resolve({ error: { message: 'Error happened' } }),
+        })
+      );
+      global.fetch = mockedFetch as jest.Mock;
+
       // Act
       let error = '';
       try {
@@ -55,6 +63,7 @@ describe('updatePlay', () => {
       } catch (err: unknown) {
         error = (err as CommonError)?.message ?? '';
       }
+
       // Assert
       expect(error).toEqual('Error happened');
     });
