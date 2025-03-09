@@ -1,5 +1,4 @@
 import { GetServerSidePropsContext } from 'next';
-import sortBy from 'lodash/sortBy';
 import { capitalCase } from 'change-case';
 
 import getServerSideUserData from '@/common/utils/serverSideUserData';
@@ -13,23 +12,23 @@ import { HelpersData } from '@/common/types/helpers';
 import { Firestore } from '@/common/lib/firebase/types';
 
 // todo use as separate module
-const getPages = (helpersData: HelpersData) =>
-  sortBy(
-    Object.entries(helpersData ?? {}).reduce(
-      (result: PageInfo[], [key, value]) => {
-        if (value.apiOnly) return result;
-        return [
-          ...result,
-          {
-            title: value?.title ?? capitalCase(key),
-            path: value?.path ?? `/${key}`,
-          },
-        ];
-      },
-      []
-    ),
-    'title'
+const getPages = (helpersData: HelpersData) => {
+  const pages = Object.entries(helpersData ?? {}).reduce(
+    (result: PageInfo[], [key, value]) => {
+      if (value.apiOnly) return result;
+      return [
+        ...result,
+        {
+          title: value?.title ?? capitalCase(key),
+          path: value?.path ?? `/${key}`,
+        },
+      ];
+    },
+    []
   );
+
+  return pages.sort((a, b) => a.title.localeCompare(b.title));
+};
 
 const withAuthServerSideProps = (
   handler: (ctx: GetServerSidePropsContextWithAuth) => object,
