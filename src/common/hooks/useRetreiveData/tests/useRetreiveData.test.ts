@@ -1,5 +1,4 @@
 import { act, cleanup, renderHook } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
 
 import { useErrorAlert } from '@/common/hooks/alerts';
 
@@ -22,7 +21,6 @@ describe('useRetreiveData', () => {
   afterEach(() => {
     jest.clearAllMocks();
     cleanup();
-    fetchMock.reset();
   });
 
   test('returns default state', () => {
@@ -36,7 +34,11 @@ describe('useRetreiveData', () => {
   describe('when url passed to hook', () => {
     test('retreives data and returns updated state', async () => {
       // Arange
-      fetchMock.get(mockedUrl, mockedResponseData);
+      const mockedFetch = jest.fn(() => ({
+        ok: true,
+        json: () => mockedResponseData,
+      })) as jest.Mock;
+      global.fetch = mockedFetch;
       // Act
       const { result } = await renderHook(() => useRetreiveData(mockedUrl));
       await act(async () => {});
@@ -45,15 +47,18 @@ describe('useRetreiveData', () => {
         ...defaultState,
         data: mockedResponseData,
       });
-      expect(fetchMock.lastUrl()).toEqual(mockedUrl);
-      expect(fetchMock.lastOptions()).toEqual(undefined);
+      expect(mockedFetch).toHaveBeenCalledWith(mockedUrl, undefined);
     });
   });
 
   describe('when retreives data', () => {
     test('returns updated state', async () => {
       // Arange
-      fetchMock.get(mockedUrl, mockedResponseData);
+      const mockedFetch = jest.fn(() => ({
+        ok: true,
+        json: () => mockedResponseData,
+      })) as jest.Mock;
+      global.fetch = mockedFetch;
       const { result } = renderHook(() => useRetreiveData());
       // Act
       let responseData: string | null = '';
@@ -67,15 +72,19 @@ describe('useRetreiveData', () => {
         ...defaultState,
         data: mockedResponseData,
       });
-      expect(fetchMock.lastUrl()).toEqual(mockedUrl);
-      expect(fetchMock.lastOptions()).toEqual({ method: 'GET' });
+      expect(mockedFetch).toHaveBeenCalledWith(mockedUrl, { method: 'GET' });
       expect(responseData).toEqual(mockedResponseData);
     });
 
     describe('when deletes data', () => {
       test('returns empty object', async () => {
         // Arange
-        fetchMock.delete(mockedUrl, { status: 204 });
+        const mockedFetch = jest.fn(() => ({
+          ok: true,
+          status: 204,
+          json: () => mockedResponseData,
+        })) as jest.Mock;
+        global.fetch = mockedFetch;
         const { result } = renderHook(() => useRetreiveData());
         // Act
         let responseData: string | null = '';
@@ -88,8 +97,9 @@ describe('useRetreiveData', () => {
         expect(result.current).toEqual({
           ...defaultState,
         });
-        expect(fetchMock.lastUrl()).toEqual(mockedUrl);
-        expect(fetchMock.lastOptions()).toEqual({ method: 'DELETE' });
+        expect(mockedFetch).toHaveBeenCalledWith(mockedUrl, {
+          method: 'DELETE',
+        });
         expect(responseData).toEqual({});
       });
     });
@@ -97,7 +107,11 @@ describe('useRetreiveData', () => {
     describe('and then cleans data', () => {
       test('returns default state', async () => {
         // Arange
-        fetchMock.get(mockedUrl, mockedResponseData);
+        const mockedFetch = jest.fn(() => ({
+          ok: true,
+          json: () => mockedResponseData,
+        })) as jest.Mock;
+        global.fetch = mockedFetch;
         const { result } = renderHook(() => useRetreiveData());
         // Act
         let responseData: string | null = '';
@@ -109,8 +123,7 @@ describe('useRetreiveData', () => {
         });
         // Assert
         expect(result.current).toEqual(defaultState);
-        expect(fetchMock.lastUrl()).toEqual(mockedUrl);
-        expect(fetchMock.lastOptions()).toEqual(undefined);
+        expect(mockedFetch).toHaveBeenCalledWith(mockedUrl, undefined);
         expect(responseData).toEqual(mockedResponseData);
       });
     });

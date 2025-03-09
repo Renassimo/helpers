@@ -1,7 +1,4 @@
-import fetchMock from 'fetch-mock';
-
 import { PhotoFolder } from '@/spotting/types';
-
 import createPhotoInfo from '../createPhotoInfo';
 
 describe('createPhotoInfo', () => {
@@ -15,16 +12,20 @@ describe('createPhotoInfo', () => {
   const setProgressText = jest.fn();
 
   beforeEach(() => {
-    fetchMock.post(url, mockedResponseData);
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockedResponseData),
+      })
+    ) as jest.Mock;
   });
 
   afterEach(() => {
     jest.clearAllMocks();
-    fetchMock.reset();
   });
 
   test('calls fetch and setLoading', async () => {
-    // Arange
+    // Arrange
     // Act
     const result = await createPhotoInfo(
       foldersList,
@@ -36,8 +37,12 @@ describe('createPhotoInfo', () => {
       { ok: true, value: mockedResponseData },
       { ok: true, value: mockedResponseData },
     ]);
-    expect(fetchMock.lastUrl()).toEqual(url);
-    expect(fetchMock.lastOptions()).toEqual({
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+    expect(global.fetch).toHaveBeenCalledWith(url, {
+      method: 'POST',
+      body: '{"data":{"attributes":"attributes1"}}',
+    });
+    expect(global.fetch).toHaveBeenCalledWith(url, {
       method: 'POST',
       body: '{"data":{"attributes":"attributes2"}}',
     });

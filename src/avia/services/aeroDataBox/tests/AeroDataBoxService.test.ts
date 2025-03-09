@@ -1,4 +1,3 @@
-import fetchMock from 'fetch-mock';
 import AeroDataBoxService from '../AeroDataBoxService';
 
 describe('AeroDataBoxService', () => {
@@ -11,8 +10,12 @@ describe('AeroDataBoxService', () => {
 
   const aeroDataBoxService = new AeroDataBoxService(mockedApiKey);
 
+  beforeEach(() => {
+    global.fetch = jest.fn();
+  });
+
   afterEach(() => {
-    fetchMock.reset();
+    jest.resetAllMocks();
   });
 
   describe('retrieveAircrafts', () => {
@@ -20,52 +23,60 @@ describe('AeroDataBoxService', () => {
     const mockedSearchQuery = 'search-query';
 
     test('returns data', async () => {
-      // Arange
-      fetchMock.get(
-        `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`,
-        responseGetData
-      );
+      // Arrange
+      const mockResponse = {
+        json: async () => responseGetData,
+        status: 200,
+        headers: { get: () => 'application/json' },
+      };
+      (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
       // Act
       const result = await aeroDataBoxService.retrieveAircrafts(
         mockedSearchQuery
       );
+
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`
-      );
-      expect(fetchMock.lastOptions()).toEqual({
-        headers: {
-          'Content-Type': 'application/json',
-          'x-rapidapi-key': mockedApiKey,
-        },
-        method: 'GET',
-      });
-    });
-
-    describe('when fetch returns 204 status', () => {
-      test('returns data', async () => {
-        // Arange
-        fetchMock.get(
-          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`,
-          { status: 204 }
-        );
-        // Act
-        const result = await aeroDataBoxService.retrieveAircrafts(
-          mockedSearchQuery
-        );
-        // Assert
-        expect(result).toEqual([]);
-        expect(fetchMock.lastUrl()).toEqual(
-          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`
-        );
-        expect(fetchMock.lastOptions()).toEqual({
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`,
+        {
           headers: {
             'Content-Type': 'application/json',
             'x-rapidapi-key': mockedApiKey,
           },
           method: 'GET',
-        });
+        }
+      );
+    });
+
+    describe('when fetch returns 204 status', () => {
+      test('returns data', async () => {
+        // Arrange
+        const mockResponse = {
+          json: async () => null,
+          status: 204,
+          headers: { get: () => 'application/json' },
+        };
+        (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
+        // Act
+        const result = await aeroDataBoxService.retrieveAircrafts(
+          mockedSearchQuery
+        );
+
+        // Assert
+        expect(result).toEqual([]);
+        expect(global.fetch).toHaveBeenCalledWith(
+          `${mockedURL}/aircrafts/${mockedSearchBy}/${mockedSearchQuery}/all?withImage=true`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'x-rapidapi-key': mockedApiKey,
+            },
+            method: 'GET',
+          }
+        );
       });
     });
   });
@@ -75,108 +86,119 @@ describe('AeroDataBoxService', () => {
     const mockedCode = 'waw';
 
     test('returns data', async () => {
-      // Arange
-      fetchMock.get(
-        `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`,
-        responseGetData
-      );
+      // Arrange
+      const mockResponse = {
+        json: async () => responseGetData,
+        status: 200,
+        headers: { get: () => 'application/json' },
+      };
+      (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
       // Act
       const result = await aeroDataBoxService.retreiveAirportByCode(mockedCode);
+
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': mockedApiKey,
+          },
+          method: 'GET',
+        }
       );
-      expect(fetchMock.lastOptions()).toEqual({
-        headers: {
-          'Content-Type': 'application/json',
-          'x-rapidapi-key': mockedApiKey,
-        },
-        method: 'GET',
-      });
     });
 
     describe('when receives 204 status', () => {
       test('returns data', async () => {
-        // Arange
-        fetchMock.get(
-          `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`,
-          { status: 204 }
-        );
+        // Arrange
+        const mockResponse = {
+          json: async () => null,
+          status: 204,
+          headers: { get: () => 'application/json' },
+        };
+        (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
         // Act
         const result = await aeroDataBoxService.retreiveAirportByCode(
           mockedCode
         );
+
         // Assert
         expect(result).toEqual(null);
-        expect(fetchMock.lastUrl()).toEqual(
-          `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`
+        expect(global.fetch).toHaveBeenCalledWith(
+          `${mockedURL}/airports/${mockedSearchBy}/${mockedCode}?withTime=true`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'x-rapidapi-key': mockedApiKey,
+            },
+            method: 'GET',
+          }
         );
-        expect(fetchMock.lastOptions()).toEqual({
-          headers: {
-            'Content-Type': 'application/json',
-            'x-rapidapi-key': mockedApiKey,
-          },
-          method: 'GET',
-        });
       });
     });
   });
-
   describe('retreiveAirportsByText', () => {
     const mockedSearchQuery = 'search-query';
 
     test('returns data', async () => {
-      // Arange
-      const expectedResult = [responseGetData];
-      const responseData = {
-        items: [responseGetData],
+      // Arrange
+      const mockResponse = {
+        json: async () => ({ items: [responseGetData] }),
+        status: 200,
+        headers: { get: () => 'application/json' },
       };
-      fetchMock.get(
-        `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`,
-        responseData
-      );
+      (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
       // Act
       const result = await aeroDataBoxService.retreiveAirportsByText(
         mockedSearchQuery
       );
-      // Assert
-      expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`
-      );
-      expect(fetchMock.lastOptions()).toEqual({
-        headers: {
-          'Content-Type': 'application/json',
-          'x-rapidapi-key': mockedApiKey,
-        },
-        method: 'GET',
-      });
-    });
 
-    describe('when receives 204 status', () => {
-      test('returns data', async () => {
-        // Arange
-        fetchMock.get(
-          `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`,
-          { status: 204 }
-        );
-        // Act
-        const result = await aeroDataBoxService.retreiveAirportsByText(
-          mockedSearchQuery
-        );
-        // Assert
-        expect(result).toEqual([]);
-        expect(fetchMock.lastUrl()).toEqual(
-          `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`
-        );
-        expect(fetchMock.lastOptions()).toEqual({
+      // Assert
+      expect(result).toEqual([responseGetData]);
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`,
+        {
           headers: {
             'Content-Type': 'application/json',
             'x-rapidapi-key': mockedApiKey,
           },
           method: 'GET',
-        });
+        }
+      );
+    });
+
+    describe('when receives 204 status', () => {
+      test('returns data', async () => {
+        // Arrange
+        const mockResponse = {
+          json: async () => null,
+          status: 204,
+          headers: { get: () => 'application/json' },
+        };
+        (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
+        // Act
+        const result = await aeroDataBoxService.retreiveAirportsByText(
+          mockedSearchQuery
+        );
+
+        // Assert
+        expect(result).toEqual([]);
+        expect(global.fetch).toHaveBeenCalledWith(
+          `${mockedURL}/airports/search/term?q=${mockedSearchQuery}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'x-rapidapi-key': mockedApiKey,
+            },
+            method: 'GET',
+          }
+        );
       });
     });
   });
@@ -186,58 +208,62 @@ describe('AeroDataBoxService', () => {
     const mockedLon = 'longitude';
 
     test('returns data', async () => {
-      // Arange
-      const expectedResult = [responseGetData];
-      const responseData = {
-        items: [responseGetData],
+      // Arrange
+      const mockResponse = {
+        json: async () => ({ items: [responseGetData] }),
+        status: 200,
+        headers: { get: () => 'application/json' },
       };
-      fetchMock.get(
-        `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`,
-        responseData
-      );
+      (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
       // Act
       const result = await aeroDataBoxService.retreiveAirportsByLocation(
         mockedLat,
         mockedLon
       );
-      // Assert
-      expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`
-      );
-      expect(fetchMock.lastOptions()).toEqual({
-        headers: {
-          'Content-Type': 'application/json',
-          'x-rapidapi-key': mockedApiKey,
-        },
-        method: 'GET',
-      });
-    });
 
-    describe('when receives 204 status', () => {
-      test('returns data', async () => {
-        // Arange
-        fetchMock.get(
-          `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`,
-          { status: 204 }
-        );
-        // Act
-        const result = await aeroDataBoxService.retreiveAirportsByLocation(
-          mockedLat,
-          mockedLon
-        );
-        // Assert
-        expect(result).toEqual([]);
-        expect(fetchMock.lastUrl()).toEqual(
-          `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`
-        );
-        expect(fetchMock.lastOptions()).toEqual({
+      // Assert
+      expect(result).toEqual([responseGetData]);
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`,
+        {
           headers: {
             'Content-Type': 'application/json',
             'x-rapidapi-key': mockedApiKey,
           },
           method: 'GET',
-        });
+        }
+      );
+    });
+
+    describe('when receives 204 status', () => {
+      test('returns data', async () => {
+        // Arrange
+        const mockResponse = {
+          json: async () => null,
+          status: 204,
+          headers: { get: () => 'application/json' },
+        };
+        (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
+        // Act
+        const result = await aeroDataBoxService.retreiveAirportsByLocation(
+          mockedLat,
+          mockedLon
+        );
+
+        // Assert
+        expect(result).toEqual([]);
+        expect(global.fetch).toHaveBeenCalledWith(
+          `${mockedURL}/airports/search/location?lat=${mockedLat}&lon=${mockedLon}&radiusKm=25&limit=10`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'x-rapidapi-key': mockedApiKey,
+            },
+            method: 'GET',
+          }
+        );
       });
     });
   });
@@ -247,83 +273,91 @@ describe('AeroDataBoxService', () => {
     const mockedDate = 'date';
 
     test('returns data', async () => {
-      // Arange
-      const expectedResult = [responseGetData];
-      const responseData = [responseGetData];
-      fetchMock.get(
-        `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`,
-        responseData
-      );
+      // Arrange
+      const mockResponse = {
+        json: async () => [responseGetData],
+        status: 200,
+        headers: { get: () => 'application/json' },
+      };
+      (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
       // Act
       const result = await aeroDataBoxService.retreiveFlights(
         mockedFlightNumber
       );
-      // Assert
-      expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`
-      );
-      expect(fetchMock.lastOptions()).toEqual({
-        headers: {
-          'Content-Type': 'application/json',
-          'x-rapidapi-key': mockedApiKey,
-        },
-        method: 'GET',
-      });
-    });
 
-    describe('when fetch returns 204 status', () => {
-      test('returns data', async () => {
-        // Arange
-        fetchMock.get(
-          `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`,
-          { status: 204 }
-        );
-        // Act
-        const result = await aeroDataBoxService.retreiveFlights(
-          mockedFlightNumber
-        );
-        // Assert
-        expect(result).toEqual([]);
-        expect(fetchMock.lastUrl()).toEqual(
-          `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`
-        );
-        expect(fetchMock.lastOptions()).toEqual({
+      // Assert
+      expect(result).toEqual([responseGetData]);
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`,
+        {
           headers: {
             'Content-Type': 'application/json',
             'x-rapidapi-key': mockedApiKey,
           },
           method: 'GET',
-        });
+        }
+      );
+    });
+
+    describe('when fetch returns 204 status', () => {
+      test('returns data', async () => {
+        // Arrange
+        const mockResponse = {
+          json: async () => null,
+          status: 204,
+          headers: { get: () => 'application/json' },
+        };
+        (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
+        // Act
+        const result = await aeroDataBoxService.retreiveFlights(
+          mockedFlightNumber
+        );
+
+        // Assert
+        expect(result).toEqual([]);
+        expect(global.fetch).toHaveBeenCalledWith(
+          `${mockedURL}/flights/number/${mockedFlightNumber}?withAircraftImage=true`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'x-rapidapi-key': mockedApiKey,
+            },
+            method: 'GET',
+          }
+        );
       });
     });
 
     describe('when date passed', () => {
       test('returns data', async () => {
-        // Arange
-        const expectedResult = [responseGetData];
-        const responseData = [responseGetData];
-        fetchMock.get(
-          `${mockedURL}/flights/number/${mockedFlightNumber}/${mockedDate}?withAircraftImage=true`,
-          responseData
-        );
+        // Arrange
+        const mockResponse = {
+          json: async () => [responseGetData],
+          status: 200,
+          headers: { get: () => 'application/json' },
+        };
+        (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
         // Act
         const result = await aeroDataBoxService.retreiveFlights(
           mockedFlightNumber,
           mockedDate
         );
+
         // Assert
-        expect(result).toEqual(expectedResult);
-        expect(fetchMock.lastUrl()).toEqual(
-          `${mockedURL}/flights/number/${mockedFlightNumber}/${mockedDate}?withAircraftImage=true`
+        expect(result).toEqual([responseGetData]);
+        expect(global.fetch).toHaveBeenCalledWith(
+          `${mockedURL}/flights/number/${mockedFlightNumber}/${mockedDate}?withAircraftImage=true`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'x-rapidapi-key': mockedApiKey,
+            },
+            method: 'GET',
+          }
         );
-        expect(fetchMock.lastOptions()).toEqual({
-          headers: {
-            'Content-Type': 'application/json',
-            'x-rapidapi-key': mockedApiKey,
-          },
-          method: 'GET',
-        });
       });
     });
   });

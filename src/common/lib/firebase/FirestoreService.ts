@@ -1,6 +1,7 @@
 import { CommonError } from '@/common/types/errors';
 import { Firestore, FirestoreDesrializedDoc, FirestoreDocData } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 interface FirestoreService {
   getAll?<T>(...args: string[]): Promise<FirestoreDesrializedDoc[] | T>;
   getOne?(
@@ -13,6 +14,7 @@ interface FirestoreService {
   delete?(...args: string[]): Promise<Record<string, never>>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 abstract class FirestoreService {
   constructor(protected db: Firestore) {}
 

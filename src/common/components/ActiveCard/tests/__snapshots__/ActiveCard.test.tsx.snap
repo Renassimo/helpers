@@ -8,7 +8,7 @@ exports[`ActiveCard renders successfully 1`] = `
     >
       <button
         aria-label="Action area"
-        class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        class="MuiButtonBase-root MuiCardActionArea-root css-1oitmrd-MuiButtonBase-root-MuiCardActionArea-root"
         tabindex="0"
         type="button"
       >
@@ -60,7 +60,7 @@ exports[`ActiveCard when chosen passed renders successfully 1`] = `
       </button>
       <button
         aria-label="Action area"
-        class="MuiButtonBase-root Mui-disabled MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        class="MuiButtonBase-root Mui-disabled MuiCardActionArea-root css-1oitmrd-MuiButtonBase-root-MuiCardActionArea-root"
         disabled=""
         tabindex="-1"
         type="button"
@@ -89,7 +89,7 @@ exports[`ActiveCard when image passed renders successfully 1`] = `
     >
       <button
         aria-label="Action area"
-        class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        class="MuiButtonBase-root MuiCardActionArea-root css-1oitmrd-MuiButtonBase-root-MuiCardActionArea-root"
         tabindex="0"
         type="button"
       >
@@ -147,7 +147,7 @@ exports[`ActiveCard when image passed when chosen passed renders successfully 1`
       </button>
       <button
         aria-label="Action area"
-        class="MuiButtonBase-root Mui-disabled MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
+        class="MuiButtonBase-root Mui-disabled MuiCardActionArea-root css-1oitmrd-MuiButtonBase-root-MuiCardActionArea-root"
         disabled=""
         tabindex="-1"
         type="button"

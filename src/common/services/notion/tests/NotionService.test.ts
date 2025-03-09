@@ -1,5 +1,4 @@
 import NotionService from '@/common/services/notion';
-import fetchMock from 'fetch-mock';
 
 describe('Notion service', () => {
   const mockedToken = 'token';
@@ -10,6 +9,10 @@ describe('Notion service', () => {
   const mockedURL = 'https://api.example.com/v1';
   process.env.NOTION_API_BASE_URL = mockedURL;
 
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   describe('queryDatabase', () => {
     const mockedDataBaseID = 'data-base-id';
 
@@ -17,10 +20,12 @@ describe('Notion service', () => {
       // Arrange
       const responseData = { hello: 'world' };
       const expectedResult = { data: responseData, ok: true };
-      fetchMock.post(
-        `${mockedURL}/databases/${mockedDataBaseID}/query`,
-        responseData
-      );
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(responseData),
+          ok: true,
+        })
+      ) as jest.Mock;
       const notionService = new NotionService(mockedToken);
       // Act
       const result = await notionService.queryDatabase(
@@ -29,18 +34,18 @@ describe('Notion service', () => {
       );
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/databases/${mockedDataBaseID}/query`
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/databases/${mockedDataBaseID}/query`,
+        {
+          body: '{"arg1":[],"arg2":{}}',
+          headers: {
+            Authorization: 'Bearer token',
+            'Content-Type': 'application/json',
+            'Notion-Version': '2022-02-22',
+          },
+          method: 'POST',
+        }
       );
-      expect(fetchMock.lastOptions()).toEqual({
-        body: '{"arg1":[],"arg2":{}}',
-        headers: {
-          Authorization: 'Bearer token',
-          'Content-Type': 'application/json',
-          'Notion-Version': '2022-02-22',
-        },
-        method: 'POST',
-      });
     });
   });
 
@@ -51,23 +56,28 @@ describe('Notion service', () => {
       // Arrange
       const responseData = { hello: 'world' };
       const expectedResult = { data: responseData, ok: true };
-      fetchMock.get(`${mockedURL}/databases/${mockedDataBaseID}`, responseData);
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(responseData),
+          ok: true,
+        })
+      ) as jest.Mock;
       const notionService = new NotionService(mockedToken);
       // Act
       const result = await notionService.retreiveDatabase(mockedDataBaseID);
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/databases/${mockedDataBaseID}`
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/databases/${mockedDataBaseID}`,
+        {
+          headers: {
+            Authorization: 'Bearer token',
+            'Content-Type': 'application/json',
+            'Notion-Version': '2022-02-22',
+          },
+          method: 'GET',
+        }
       );
-      expect(fetchMock.lastOptions()).toEqual({
-        headers: {
-          Authorization: 'Bearer token',
-          'Content-Type': 'application/json',
-          'Notion-Version': '2022-02-22',
-        },
-        method: 'GET',
-      });
     });
   });
 
@@ -78,22 +88,29 @@ describe('Notion service', () => {
       // Arrange
       const responseData = { hello: 'world' };
       const expectedResult = { data: responseData, ok: true };
-      fetchMock.patch(`${mockedURL}/pages/${mockedPageID}`, responseData);
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(responseData),
+          ok: true,
+        })
+      ) as jest.Mock;
       const notionService = new NotionService(mockedToken);
       // Act
       const result = await notionService.updatePage(mockedPageID, mockedArgs);
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(`${mockedURL}/pages/${mockedPageID}`);
-      expect(fetchMock.lastOptions()).toEqual({
-        body: '{"arg1":[],"arg2":{}}',
-        headers: {
-          Authorization: 'Bearer token',
-          'Content-Type': 'application/json',
-          'Notion-Version': '2022-02-22',
-        },
-        method: 'PATCH',
-      });
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/pages/${mockedPageID}`,
+        {
+          body: '{"arg1":[],"arg2":{}}',
+          headers: {
+            Authorization: 'Bearer token',
+            'Content-Type': 'application/json',
+            'Notion-Version': '2022-02-22',
+          },
+          method: 'PATCH',
+        }
+      );
     });
   });
 
@@ -104,7 +121,12 @@ describe('Notion service', () => {
       // Arrange
       const responseData = { hello: 'world' };
       const expectedResult = { data: responseData, ok: true };
-      fetchMock.post(`${mockedURL}/pages`, responseData);
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(responseData),
+          ok: true,
+        })
+      ) as jest.Mock;
       const notionService = new NotionService(mockedToken);
       // Act
       const result = await notionService.createPage(
@@ -113,8 +135,7 @@ describe('Notion service', () => {
       );
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(`${mockedURL}/pages`);
-      expect(fetchMock.lastOptions()).toEqual({
+      expect(global.fetch).toHaveBeenCalledWith(`${mockedURL}/pages`, {
         body: '{"parent":{"database_id":"data-base-id"},"arg1":[],"arg2":{}}',
         headers: {
           Authorization: 'Bearer token',
@@ -133,27 +154,28 @@ describe('Notion service', () => {
       // Arrange
       const responseData = { hello: 'world' };
       const expectedResult = { data: responseData, ok: true };
-      fetchMock.get(
-        `${mockedURL}/blocks/${mockedBlockID}/children`,
-        responseData
-      );
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(responseData),
+          ok: true,
+        })
+      ) as jest.Mock;
       const notionService = new NotionService(mockedToken);
       // Act
       const result = await notionService.retrieveBlockChildren(mockedBlockID);
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(result).toEqual(expectedResult);
-      expect(fetchMock.lastUrl()).toEqual(
-        `${mockedURL}/blocks/${mockedBlockID}/children`
+      expect(global.fetch).toHaveBeenCalledWith(
+        `${mockedURL}/blocks/${mockedBlockID}/children`,
+        {
+          headers: {
+            Authorization: 'Bearer token',
+            'Content-Type': 'application/json',
+            'Notion-Version': '2022-02-22',
+          },
+          method: 'GET',
+        }
       );
-      expect(fetchMock.lastOptions()).toEqual({
-        headers: {
-          Authorization: 'Bearer token',
-          'Content-Type': 'application/json',
-          'Notion-Version': '2022-02-22',
-        },
-        method: 'GET',
-      });
     });
   });
 });

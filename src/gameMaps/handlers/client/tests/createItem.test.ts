@@ -1,21 +1,23 @@
-import fetchMock from 'fetch-mock';
-
 import { mockedGame, mockedItem } from '@/gameMaps/types/mocks';
-
 import { CommonError } from '@/common/types/errors';
-
 import createItem from '../createItem';
 
 describe('createPlay', () => {
   afterEach(() => {
-    fetchMock.reset();
+    jest.resetAllMocks();
   });
 
   test('creates item', async () => {
-    // Arange
+    // Arrange
     const responseData = { data: { hello: 'world' } };
     const expectedResult = responseData.data;
-    fetchMock.post(`/api/gameMaps/games/${mockedGame.id}/items`, responseData);
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(responseData),
+      })
+    ) as jest.Mock;
+
     // Act
     const result = await createItem(mockedGame.id, {
       description: mockedItem.attributes.description,
@@ -24,31 +26,42 @@ describe('createPlay', () => {
       playId: mockedItem.attributes.playId,
       coordinates: mockedItem.attributes.coordinates,
     });
+
     // Assert
     expect(result).toEqual(expectedResult);
-    expect(fetchMock.lastUrl()).toEqual(
-      `/api/gameMaps/games/${mockedGame.id}/items`
+    expect(global.fetch).toHaveBeenCalledWith(
+      `/api/gameMaps/games/${mockedGame.id}/items`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            attributes: {
+              description: mockedItem.attributes.description,
+              collected: mockedItem.attributes.collected,
+              categoryId: mockedItem.attributes.categoryId,
+              playId: mockedItem.attributes.playId,
+              coordinates: mockedItem.attributes.coordinates,
+            },
+          },
+        }),
+      }
     );
-    expect(fetchMock.lastOptions()).toEqual({
-      body: `{"data":{"attributes":{"description":"${mockedItem.attributes.description}","collected":${mockedItem.attributes.collected},"categoryId":"${mockedItem.attributes.categoryId}","playId":"${mockedItem.attributes.playId}","coordinates":[${mockedItem.attributes.coordinates}]}}}`,
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
   });
 
   describe('when response is not ok', () => {
     test('throws error', async () => {
-      // Arange
-      const mockedFetch = jest.fn(() => ({
-        ok: false,
-        json: () => ({ error: { message: 'Error happened' } }),
-      }));
-      Object.defineProperty(globalThis, 'fetch', {
-        value: mockedFetch,
-      });
+      // Arrange
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: false,
+          json: () => Promise.resolve({ error: { message: 'Error happened' } }),
+        })
+      ) as jest.Mock;
+
       // Act
       let error = '';
       try {
@@ -56,6 +69,7 @@ describe('createPlay', () => {
       } catch (err: unknown) {
         error = (err as CommonError)?.message ?? '';
       }
+
       // Assert
       expect(error).toEqual('Error happened');
     });
